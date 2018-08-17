@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="DiamondMansion_Extensions::diamondmansion"
+			title="DiamondMansion"
+			module="DiamondMansion_Extensions"
+			sortOrder="9999"
+			resource="Magento_Backend::content" />
+		<add id="DiamondMansion_Extensions::diamondmansion_design_ring"
+			title="Design Ring"
+			translate="title"
+			module="DiamondMansion_Extensions"
+			sortOrder="10"
+			parent="DiamondMansion_Extensions::diamondmansion"
+			resource="Magento_Backend::content"/>
+        <add id="DiamondMansion_Extensions::diamondmansion_design_ring_stone_price"
+			title="Stone Price"
+			module="DiamondMansion_Extensions"
+			sortOrder="10"
+			parent="DiamondMansion_Extensions::diamondmansion_design_ring"
+			action="diamondmansion/ring_design_price/stone"
+			resource="DiamondMansion_Extensions::ring_design_price" />
+		<add id="DiamondMansion_Extensions::diamondmansion_content"
+			title="Content"
+			translate="title"
+			module="DiamondMansion_Extensions"
+			sortOrder="90"
+			parent="DiamondMansion_Extensions::diamondmansion"
+			resource="Magento_Backend::content"/>
+        <add id="DiamondMansion_Extensions::diamondmansion_content_designer"
+			title="Designer"
+			module="DiamondMansion_Extensions"
+			sortOrder="10"
+			parent="DiamondMansion_Extensions::diamondmansion_content"
+			action="diamondmansion/designer"
+			resource="DiamondMansion_Extensions::designer" />
+    </menu>
+</config>
