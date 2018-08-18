@@ -21,6 +21,13 @@
 			parent="DiamondMansion_Extensions::diamondmansion_design_ring"
 			action="diamondmansion/ring_design_price_stone/"
 			resource="DiamondMansion_Extensions::ring_design_price" />
+		<add id="DiamondMansion_Extensions::diamondmansion_design_ring_sidestone_price"
+			 title="Side Stone Price"
+			 module="DiamondMansion_Extensions"
+			 sortOrder="10"
+			 parent="DiamondMansion_Extensions::diamondmansion_design_ring"
+			 action="diamondmansion/ring_design_price_sidestone/"
+			 resource="DiamondMansion_Extensions::ring_design_price" />
 		<add id="DiamondMansion_Extensions::diamondmansion_content"
 			title="Content"
 			translate="title"

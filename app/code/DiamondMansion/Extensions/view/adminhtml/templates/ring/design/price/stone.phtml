@@ -74,7 +74,7 @@ $prices = $this->getAllPrices();
                                     <tr>
                                         <td class="label"><?php echo strtoupper($color) ?></td>
                                         <?php foreach ($clarities as $clarity): ?>
-                                        <?php $price = isset($prices[$shape][$carat][str_replace(" ", "-", $color)][$clarity])?:""; ?>
+                                        <?php $price = isset($prices[$shape][$carat][str_replace(" ", "-", $color)][$clarity])?$prices[$shape][$carat][str_replace(" ", "-", $color)][$clarity]:""; ?>
                                             <td class="value">
                                                 <input type="text" name="price[<?php echo $shape ?>][<?php echo $carat ?>][<?php echo str_replace(" ", "-", $color) ?>][<?php echo $clarity ?>]" id="price[<?php echo $shape ?>][<?php echo $carat ?>][<?php echo str_replace(" ", "-", $color) ?>][<?php echo $clarity ?>]" value="<?php echo ($price == 0)?"":(double)$price ?>"></td>
                                         <?php endforeach; ?>
