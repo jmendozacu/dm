@@ -1,0 +1,126 @@
+<?php
+$shapes = $this->helper->getEternityRingStoneShapes();
+$carats = $this->helper->getEternityRingStoneCarats();
+$color_clarities = $this->helper->getEternityRingStoneColorClarities();
+
+$prices = $this->getAllPrices();
+?>
+<style type="text/css">
+    .entry-edit td.label {
+        white-space: nowrap;
+        padding-right: 10px;
+        text-align: center;
+    }
+    .entry-edit td.value {
+        padding: 5px;
+    }
+    .entry-edit td.value input {
+        width: 80px;
+        text-align: center;
+    }
+</style>
+<div class="page-main-actions">
+    <div class="page-actions-placeholder" style=""></div>
+    <div class="page-actions" data-ui-id="page-actions-toolbar-content-header">
+        <div class="page-actions-inner" data-title="New Product">
+            <div class="page-actions-buttons">
+                <button id="import" title="Import" type="button" class="action- scalable action-secondary" data-ui-id="import-button" onclick="importPrices()">
+                    <span>Load eternity.xls</span>
+                </button>
+
+                <button id="save-button" title="Save" class="action-default primary" data-ui-id="save-button" onclick="savePrices()">
+                    <span>Save</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<form action="" method="post">
+    <div id="element" class="entry-edit" data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": false, "multipleCollapsible": false}}'>
+    <?php foreach ($color_clarities as $color_clarity): ?>
+        <div class="fieldset-wrapper admin__collapsible-block-wrapper">
+            <div data-role="collapsible" class="fieldset-wrapper-title">
+                <div data-role="trigger" class="admin__collapsible-title">
+                    <span><?php echo strtoupper($color_clarity) ?></span>
+                </div>
+            </div>
+            <div data-role="content" class="admin__fieldset-wrapper-content">
+                <div class="fieldset fieldset-wide">
+                    <table align="center">
+                        <thead>
+                            <tr>
+                                <td class="label"></td>
+                                <?php foreach ($shapes as $shape): ?>
+                                    <td class="label" style="width: 50px;"><?php echo ucfirst($shape) ?></td>
+                                <?php endforeach; ?>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($carats as $carat): ?>
+                            <tr>
+                                <td class="label"><?php echo $carat ?></td>
+                                <?php foreach ($shapes as $shape): ?>
+                                <?php $price = isset($prices[str_replace(" ", "__", $color_clarity)][$carat][$shape])?$prices[str_replace(" ", "__", $color_clarity)][$carat][$shape]:""; ?>
+                                    <td class="value">
+                                        <input type="text" name="price[<?php echo str_replace(" ", "__", $color_clarity) ?>][<?php echo $carat ?>][<?php echo $shape ?>]" id="price[<?php echo str_replace(" ", "__", $color_clarity) ?>][<?php echo $carat ?>][<?php echo $shape ?>]" value="<?php echo ($price == 0)?"":(double)$price ?>"></td>
+                                <?php endforeach; ?>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+</form>
+<script type="text/javascript">
+    function importPrices() {
+        require(['jquery'],
+        function () {
+            jQuery.ajax ({
+                url: '<?php echo $this->getUrl("*/*/import"); ?>',
+                data: {
+                    form_key: window.FORM_KEY
+                },
+                type: 'post',
+                showLoader: true
+            }).done(function(json) {
+                var color_clarities = Object.keys(json);
+                for (var i=0;i<color_clarities.length;i++) {
+                    var color_clarity = color_clarities[i];
+                    var carats = Object.keys(json[color_clarity]);
+                    for (var j=0;j<carats.length;j++) {
+                        var carat = carats[j];
+                        var shapes = Object.keys(json[color_clarity][carat]);
+                        for (var k=0;k<shapes.length;k++) {
+                            var shape = shapes[k];
+                            if (jQuery('[id=\'price['+color_clarity+']['+carat+']['+shape+']\']')) {
+                                jQuery('[id=\'price['+color_clarity+']['+carat+']['+shape+']\']').val(json[color_clarity][carat][shape]);
+                            }
+                        }
+                    }
+                }
+
+                return true;
+            });
+        });
+    }
+
+    function savePrices() {
+        require(['jquery'],
+            function () {
+                jQuery.ajax ({
+                    url: '<?php echo $this->getUrl("*/*/save"); ?>',
+                    data: jQuery('form').serialize(),
+                    type: 'post',
+                    showLoader: true
+                }).done(function(json) {
+                    if (json.error) {
+                        alert(json.message);
+                    }
+                    return true;
+                });
+            });
+    }
+</script>

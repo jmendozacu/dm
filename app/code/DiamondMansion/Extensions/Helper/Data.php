@@ -49,8 +49,19 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return ["g-h/si", "f-g/vs"];
     }
 
-    public function getEternityRingCarats()
+    public function getEternityRingStoneShapes()
+    {
+        return ["round", "princess", "asscher", "emerald", "cushion", "radiant", "oval", "trillion", "pear", "marquise", "heart", "baguette", "trapezoid", "halfmoon", "bullet"];
+    }
+
+    public function getEternityRingStoneCarats()
     {
         return ["0.05", "0.1", "0.15", "0.2", "0.25", "0.33", "0.4", "0.5"];
     }
+
+    public function getEternityRingStoneColorClarities()
+    {
+        return ["g-h/si", "f-g/vs"];
+    }
+
 }
