@@ -1,8 +1,8 @@
 <?php
-$shapes = $this->getDefaultShapes();
-$carats = $this->getDefaultCarats();
-$colors = $this->getDefaultColors();
-$clarities = $this->getDefaultClarities();
+$shapes = $this->helper->getDesignRingStoneShapes();
+$carats = $this->helper->getDesignRingStoneCarats();
+$colors = $this->helper->getDesignRingStoneColors();
+$clarities = $this->helper->getDesignRingStoneClarities();
 
 $prices = $this->getAllPrices();
 ?>
@@ -33,21 +33,19 @@ $prices = $this->getAllPrices();
     <div class="page-actions" data-ui-id="page-actions-toolbar-content-header">
         <div class="page-actions-inner" data-title="New Product">
             <div class="page-actions-buttons">
-                <div title="Save" class="actions-split save primary">
-                    <button id="save-button" title="Save" class="action-default primary" data-ui-id="save-button">
-                        <span>Save</span>
-                    </button>
-                </div>
-
-
                 <button id="import" title="Import" type="button" class="action- scalable action-secondary" data-ui-id="import-button" onclick="importPrices()">
-                    <span>Import From Excel</span>
+                    <span>Load gia.xls</span>
+                </button>
+
+                <button id="save-button" title="Save" class="action-default primary" data-ui-id="save-button" onclick="savePrices()">
+                    <span>Save</span>
                 </button>
             </div>
         </div>
     </div>
 </div>
-<div id="element" data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": false, "multipleCollapsible": false}}'>
+<form action="" method="post">
+    <div id="element" data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": false, "multipleCollapsible": false}}'>
     <?php foreach ($shapes as $shape): ?>
         <div class="fieldset-wrapper admin__collapsible-block-wrapper">
             <div data-role="collapsible" class="fieldset-wrapper-title">
@@ -76,8 +74,9 @@ $prices = $this->getAllPrices();
                                     <tr>
                                         <td class="label"><?php echo strtoupper($color) ?></td>
                                         <?php foreach ($clarities as $clarity): ?>
+                                        <?php $price = isset($prices[$shape][$carat][str_replace(" ", "-", $color)][$clarity])?:""; ?>
                                             <td class="value">
-                                                <input type="text" name="price[<?php echo $shape ?>][<?php echo $carat ?>][<?php echo str_replace(" ", "-", $color) ?>][<?php echo $clarity ?>]" id="price[<?php echo $shape ?>][<?php echo $carat ?>][<?php echo str_replace(" ", "-", $color) ?>][<?php echo $clarity ?>]" value="<?php //echo isset($prices[$shape][$carat][str_replace(" ", "-", $color)][$clarity] == 0)?"":(double)$prices[$shape][$carat][str_replace(" ", "-", $color)][$clarity] ?>"></td>
+                                                <input type="text" name="price[<?php echo $shape ?>][<?php echo $carat ?>][<?php echo str_replace(" ", "-", $color) ?>][<?php echo $clarity ?>]" id="price[<?php echo $shape ?>][<?php echo $carat ?>][<?php echo str_replace(" ", "-", $color) ?>][<?php echo $clarity ?>]" value="<?php echo ($price == 0)?"":(double)$price ?>"></td>
                                         <?php endforeach; ?>
                                     </tr>
                                 <?php endforeach; ?>
@@ -90,7 +89,7 @@ $prices = $this->getAllPrices();
         </div>
     <?php endforeach; ?>
 </div>
-
+</form>
 <script type="text/javascript">
     function importPrices() {
         require(['jquery'],
@@ -98,35 +97,51 @@ $prices = $this->getAllPrices();
             jQuery.ajax ({
                 url: '<?php echo $this->getUrl("*/*/import"); ?>',
                 data: {
-                    form_key: window.FORM_KEY,
-                    type: '',
-                    cert: 'gia'
+                    form_key: window.FORM_KEY
                 },
-                method: 'post',
-                showLoader: true,
-                success: function(xhr) {
-                    var json = xhr.responseText.evalJSON();
-                    var shapes = Object.keys(json);
-                    for (var i=0;i<shapes.length;i++) {
-                        var shape = shapes[i];
-                        var carats = Object.keys(json[shape]);
-                        for (var j=0;j<carats.length;j++) {
-                            var carat = carats[j];
-                            var colors = Object.keys(json[shape][carat]);
-                            for (var k=0;k<colors.length;k++) {
-                                var color = colors[k];
-                                var clarities = Object.keys(json[shape][carat][color])
-                                for (var l=0;l<clarities.length;l++) {
-                                    clarity = clarities[l];
-                                    if ($('price['+shape+']['+carat+']['+color+']['+clarity+']')) {
-                                        $('price['+shape+']['+carat+']['+color+']['+clarity+']').value = json[shape][carat][color][clarity];
-                                    }
+                type: 'post',
+                showLoader: true
+            }).done(function(json) {
+                var shapes = Object.keys(json);
+                for (var i=0;i<shapes.length;i++) {
+                    var shape = shapes[i];
+                    var carats = Object.keys(json[shape]);
+                    for (var j=0;j<carats.length;j++) {
+                        var carat = carats[j];
+                        var colors = Object.keys(json[shape][carat]);
+                        for (var k=0;k<colors.length;k++) {
+                            var color = colors[k];
+                            var clarities = Object.keys(json[shape][carat][color])
+                            for (var l=0;l<clarities.length;l++) {
+                                clarity = clarities[l];
+                                if (jQuery('[id=\'price['+shape+']['+carat+']['+color+']['+clarity+']\']')) {
+                                    jQuery('[id=\'price['+shape+']['+carat+']['+color+']['+clarity+']\']').val(json[shape][carat][color][clarity]);
                                 }
                             }
                         }
                     }
                 }
+
+                //jQuery('.loading-mask').remove();
+                return true;
             });
         });
+    }
+
+    function savePrices() {
+        require(['jquery'],
+            function () {
+                jQuery.ajax ({
+                    url: '<?php echo $this->getUrl("*/*/save"); ?>',
+                    data: jQuery('form').serialize(),
+                    type: 'post',
+                    showLoader: true
+                }).done(function(json) {
+                    if (json.error) {
+                        alert(json.message);
+                    }
+                    return true;
+                });
+            });
     }
 </script>
