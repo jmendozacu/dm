@@ -64,4 +64,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return ["g-h/si", "f-g/vs"];
     }
 
+    public function getEternityRingStoneWidth(
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        $shape,
+        $carat) {
+        return $scopeConfig->getValue('dm/eternity/width/' . $shape . '/' . $carat);
+    }
 }

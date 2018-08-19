@@ -42,6 +42,13 @@
 			 parent="DiamondMansion_Extensions::diamondmansion_eternity_ring"
 			 action="diamondmansion/ring_eternity_price_stone/"
 			 resource="DiamondMansion_Extensions::ring_eternity_price" />
+		<add id="DiamondMansion_Extensions::diamondmansion_eternity_ring_width"
+			 title="Width"
+			 module="DiamondMansion_Extensions"
+			 sortOrder="10"
+			 parent="DiamondMansion_Extensions::diamondmansion_eternity_ring"
+			 action="diamondmansion/ring_eternity_width/"
+			 resource="DiamondMansion_Extensions::ring_eternity_width" />
 		<add id="DiamondMansion_Extensions::diamondmansion_content"
 			title="Content"
 			translate="title"

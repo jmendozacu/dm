@@ -1,0 +1,79 @@
+<?php
+$shapes = $this->helper->getEternityRingStoneShapes();
+$carats = $this->helper->getEternityRingStoneCarats();
+?>
+<style type="text/css">
+    .entry-edit td.label {
+        white-space: nowrap;
+        padding-right: 10px;
+        text-align: center;
+    }
+    .entry-edit td.value {
+        padding: 5px;
+    }
+    .entry-edit td.value input {
+        width: 80px;
+        text-align: center;
+    }
+</style>
+<div class="page-main-actions">
+    <div class="page-actions-placeholder" style=""></div>
+    <div class="page-actions" data-ui-id="page-actions-toolbar-content-header">
+        <div class="page-actions-inner" data-title="New Product">
+            <div class="page-actions-buttons">
+                <button id="save-button" title="Save" class="action-default primary" data-ui-id="save-button" onclick="saveWidths()">
+                    <span>Save</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<form action="" method="post">
+    <div id="element" class="entry-edit">
+        <div data-role="content" class="admin__fieldset-wrapper-content">
+            <div class="fieldset fieldset-wide">
+                <table align="center">
+                    <thead>
+                    <tr>
+                        <td class="label"></td>
+                        <?php foreach ($shapes as $shape): ?>
+                            <td class="label" style="width: 50px;"><?php echo ucfirst($shape) ?></td>
+                        <?php endforeach; ?>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($carats as $carat): ?>
+                        <tr>
+                            <td class="label"><?php echo $carat ?></td>
+                            <?php foreach ($shapes as $shape): ?>
+                                <?php $width = $this->helper->getEternityRingStoneWidth($this->scopeConfig, $shape, $carat); ?>
+                                <td class="value">
+                                    <input type="text" name="widths[<?php echo $carat ?>][<?php echo $shape ?>]" id="widths[<?php echo $carat ?>][<?php echo $shape ?>]" value="<?php echo ($width == 0)?"":(double)$width ?>">
+                                </td>
+                            <?php endforeach; ?>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    function saveWidths() {
+        require(['jquery'],
+            function () {
+                jQuery.ajax ({
+                    url: '<?php echo $this->getUrl("*/*/save"); ?>',
+                    data: jQuery('form').serialize(),
+                    type: 'post',
+                    showLoader: true
+                }).done(function(json) {
+                    if (json.error) {
+                        alert(json.message);
+                    }
+                    return true;
+                });
+            });
+    }
+</script>
