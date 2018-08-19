@@ -44,7 +44,7 @@ class Save extends \DiamondMansion\Extensions\Controller\Adminhtml\Base
                     if ($value) {
                         $writeConnection->query("UPDATE " . $table . " SET value = " . $width . " WHERE path = '" . $path . "'");
                     } else {
-                        $writeConnection->query("INSERT INTO " . $table . " (scope, scope_id, path, value) VALUES ('default', 0, '" . $path . "', '" . $width . "')");
+                        $writeConnection->query("INSERT INTO " . $table . " (scope, scope_id, path, value) VALUES ('default', 0, '" . $path . "', '" . $width . "') ON DUPLICATE KEY UPDATE value='" . $width . "'");
                     }
                 }
             }

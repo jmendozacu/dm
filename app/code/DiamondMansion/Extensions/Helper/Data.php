@@ -70,4 +70,36 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $carat) {
         return $scopeConfig->getValue('dm/eternity/width/' . $shape . '/' . $carat);
     }
+
+    public function getMetals()
+    {
+        return [
+            '14k-white-gold' => '14k White Gold',
+            '18k-white-gold' => '18k White Gold',
+            '14k-yellow-gold' => '14k Yellow Gold',
+            '18k-yellow-gold' => '18k Yellow Gold',
+            '14k-rose-gold' => '14k Rose Gold',
+            '18k-rose-gold' => '18k Rose Gold',
+            '14k-tri-color-gold' => '14k Tri-Color Gold',
+            '18k-tri-color-gold' => '18k Tri-Color Gold',
+            '14k-two-tone-yellow-gold' => '14k Two-Tone Yellow Gold',
+            '18k-two-tone-yellow-gold' => '18k Two-Tone Yellow Gold',
+            '14k-two-tone-rose-gold' => '14k Two-Tone Rose Gold',
+            '18k-two-tone-rose-gold' => '18k Two-Tone Rose Gold',
+            'platinum' => 'Platinum',
+            'platinum-two-tone-yellow-gold' => 'Platinum Two-Tone Yellow Gold',
+            'platinum-two-tone-rose-gold' => 'Platinum Two-Tone Rose Gold',
+        ];
+    }
+
+    public function getMetalPrice(
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        $metal
+    ) {
+        return $scopeConfig->getValue('dm/metal/price/' . $this->getSlug($metal));
+    }
+
+    public function getSlug($value) {
+        return strtolower(str_replace(" ", "-", $value));
+    }
 }

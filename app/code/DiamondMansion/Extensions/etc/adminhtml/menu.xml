@@ -49,6 +49,13 @@
 			 parent="DiamondMansion_Extensions::diamondmansion_eternity_ring"
 			 action="diamondmansion/ring_eternity_width/"
 			 resource="DiamondMansion_Extensions::ring_eternity_width" />
+		<add id="DiamondMansion_Extensions::diamondmansion_metal_price"
+			 title="Metal Price"
+			 module="DiamondMansion_Extensions"
+			 sortOrder="10"
+			 parent="DiamondMansion_Extensions::diamondmansion"
+			 action="diamondmansion/metal_price/"
+			 resource="DiamondMansion_Extensions::metal_price" />
 		<add id="DiamondMansion_Extensions::diamondmansion_content"
 			title="Content"
 			translate="title"
