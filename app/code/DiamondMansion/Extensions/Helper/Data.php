@@ -59,11 +59,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function getDesignRingSidestoneCarats()
     {
         $carats = [];
-        for ($carat = 0.005; $carat < 0.046; $carat = $carat + 0.005 ) {
-            $carats[] = $carat."";
+        for ($carat = 0.005; $carat < 0.046; $carat = $carat + 0.005) {
+            $carats[] = $carat . "";
         }
-        for ($carat = 0.05; $carat < 1.05; $carat = $carat + 0.05 ) {
-            $carats[] = $carat."";
+        for ($carat = 0.05; $carat < 1.05; $carat = $carat + 0.05) {
+            $carats[] = $carat . "";
         }
 
         return $carats;
@@ -92,7 +92,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function getEternityRingStoneWidth(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         $shape,
-        $carat) {
+        $carat)
+    {
         return $scopeConfig->getValue('dm/eternity/width/' . $shape . '/' . $carat);
     }
 
