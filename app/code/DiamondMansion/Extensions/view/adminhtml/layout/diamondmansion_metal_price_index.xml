@@ -2,12 +2,12 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
         <title>
-            Designers
+            Metal Price
         </title>
     </head>
     <body>
         <referenceContainer name="content">
-            <uiComponent name="diamondmansion_extensions_designer_listing"/>
+            <block class="DiamondMansion\Extensions\Block\Adminhtml\Metal\Price" template="DiamondMansion_Extensions::metal/price.phtml"/>
         </referenceContainer>
     </body>
 </page>

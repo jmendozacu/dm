@@ -6,6 +6,31 @@ use \Magento\Framework\App\Helper\AbstractHelper;
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
+    public function getObjectManager()
+    {
+        return \Magento\Framework\App\ObjectManager::getInstance();
+    }
+
+    public function getStoreManager()
+    {
+        return $this->getObjectManager()->get('\Magento\Store\Model\StoreManagerInterface');
+    }
+
+    public function getDesignerPhotoDir()
+    {
+        return BP . '/pub/media/diamondmansion/designer/';
+    }
+
+    public function getDesignerPhotoTmpDir()
+    {
+        return BP . '/pub/media/catalog/tmp/category/';
+    }
+
+    public function getDesignerPhotoUrl($photo)
+    {
+        return $this->getStoreManager()->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'diamondmansion/designer/' . $photo;
+    }
+
     public function getDesignRingStoneShapes()
     {
         return ["asscher", "cushion", "emerald", "heart", "marquise", "oval", "pear", "princess", "radiant", "round", "trilliant"];

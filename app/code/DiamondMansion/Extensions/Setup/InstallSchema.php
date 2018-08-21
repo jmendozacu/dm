@@ -28,6 +28,8 @@ class InstallSchema implements InstallSchemaInterface
         $this->createDesignRingSidestonePriceEntityTable($setup);
         $this->createEternityRingStonePriceEntityTable($setup);
 
+        $this->createDesignerTable($setup);
+
         $setup->endSetup();
     }
 
@@ -185,6 +187,77 @@ class InstallSchema implements InstallSchemaInterface
                     'Price'
                 )
                 ->setComment('Design Ring - Sidestone Price');
+            $setup->getConnection()->createTable($table);
+        }
+    }
+    private function createDesignerTable($setup) {
+        $tableName = $setup->getTable('dm_designer');
+
+        if ($setup->getConnection()->isTableExists($tableName) != true) {
+            $table = $setup->getConnection()
+                ->newTable($tableName)
+                ->addColumn(
+                    'entity_id',
+                    Table::TYPE_INTEGER,
+                    null,
+                    [
+                        'identity' => true,
+                        'unsigned' => true,
+                        'nullable' => false,
+                        'primary' => true
+                    ],
+                    'ID'
+                )
+                ->addColumn(
+                    'name',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Designer Name'
+                )
+                ->addColumn(
+                    'description',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Description'
+                )
+                ->addColumn(
+                    'photo',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Photo'
+                )
+                ->addColumn(
+                    'link_facebook',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Facebook Link'
+                )
+                ->addColumn(
+                    'link_twitter',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Twitter Link'
+                )
+                ->addColumn(
+                    'link_google',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Google Link'
+                )
+                ->addColumn(
+                    'link_blog',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Blog Link'
+                )
+                ->setComment('Designer');
             $setup->getConnection()->createTable($table);
         }
     }

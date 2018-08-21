@@ -1,0 +1,15 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="diamondmansion_extensions_designer_listing_data_source" xsi:type="string">DiamondMansion\Extensions\Model\ResourceModel\Designer\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="DiamondMansion\Extensions\Model\ResourceModel\Designer\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">dm_designer</argument>
+            <argument name="resourceModel" xsi:type="string">DiamondMansion\Extensions\Model\ResourceModel\Designer</argument>
+        </arguments>
+    </virtualType>
+</config>

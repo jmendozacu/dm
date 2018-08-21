@@ -1,0 +1,66 @@
+<?php
+$metals = $this->helper->getMetals();
+?>
+<style type="text/css">
+    .entry-edit td.label {
+        white-space: nowrap;
+        padding-right: 10px;
+        text-align: left;
+    }
+    .entry-edit td.value {
+        padding: 5px;
+    }
+    .entry-edit td.value input {
+        width: 300px;
+        text-align: center;
+    }
+</style>
+<div class="page-main-actions">
+    <div class="page-actions-placeholder" style=""></div>
+    <div class="page-actions" data-ui-id="page-actions-toolbar-content-header">
+        <div class="page-actions-inner" data-title="New Product">
+            <div class="page-actions-buttons">
+                <button id="save-button" title="Save" class="action-default primary" data-ui-id="save-button" onclick="savePrices()">
+                    <span>Save</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<form action="" method="post">
+    <div id="element" class="entry-edit">
+        <div data-role="content" class="admin__fieldset-wrapper-content">
+            <div class="fieldset fieldset-wide">
+                <table align="center">
+                <?php foreach ($metals as $slug => $metal): ?>
+                    <tr>
+                        <td class="label"><?php echo $metal ?></td>
+                        <?php $price = $this->helper->getMetalPrice($this->scopeConfig, $slug); ?>
+                        <td class="value">
+                            <input type="text" name="prices[<?php echo $slug ?>]" id="prices[<?php echo $slug ?>]" value="<?php echo ($price == 0)?"":(double)$price ?>">
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    function savePrices() {
+        require(['jquery'],
+            function () {
+                jQuery.ajax ({
+                    url: '<?php echo $this->getUrl("*/*/save"); ?>',
+                    data: jQuery('form').serialize(),
+                    type: 'post',
+                    showLoader: true
+                }).done(function(json) {
+                    if (json.error) {
+                        alert(json.message);
+                    }
+                    return true;
+                });
+            });
+    }
+</script>
