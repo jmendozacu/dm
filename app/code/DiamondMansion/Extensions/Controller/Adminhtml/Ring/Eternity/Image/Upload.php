@@ -1,5 +1,5 @@
 <?php
-namespace DiamondMansion\Extensions\Controller\Adminhtml\Ring\Design\Image;
+namespace DiamondMansion\Extensions\Controller\Adminhtml\Ring\Eternity\Image;
 
 use \Magento\Framework\App\Filesystem\DirectoryList;
 
@@ -25,14 +25,14 @@ class Upload extends \DiamondMansion\Extensions\Controller\Adminhtml\Base
 
         $elmId = $this->getRequest()->getParam('eid');
 
-        $cats = explode("___", $elmId);
+        $cats = explode("___", str_replace('_dot_', '.', $elmId));
 
         if (count($cats) == 5) {
             $sku = $cats[0];
-            $band = $cats[1];
-            $type = $cats[2];
-            $metal = $cats[3];
-            $shape = $cats[4];
+            $type = $cats[1];
+            $metal = $cats[2];
+            $shape = $cats[3];
+            $carat = $cats[4];
 
             if(isset($_FILES[$elmId]['name']) && $_FILES[$elmId]['name'] != '') {
                 $fileName       = $_FILES[$elmId]['name'];
@@ -45,10 +45,10 @@ class Upload extends \DiamondMansion\Extensions\Controller\Adminhtml\Base
                 } else {
                     $relativePath = $this->_imageHelper->getProductImagePath([
                         'sku' => $sku,
-                        'band' => $band,
                         'type' => $type,
                         'metal' => $metal,
                         'shape' => $shape,
+                        'carat' => $carat,
                     ]);
 
                     $dir = $this->_imageHelper->getProductImageDir() . $relativePath;

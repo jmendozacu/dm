@@ -1,0 +1,207 @@
+<?php
+$groups = $this->getOptionsGroup();
+$groups['default'] = [];
+$groups['stone-amount'] = [];
+$skipGroups = [];
+
+$productOptions = $this->getProductOptions();
+?>
+<style type="text/css">
+    #tab_stone-amount_content th { white-space: nowrap; }
+    #tab_stone-amount_content input.dm-option { width: 40px; margin: 5px; text-align: center; }
+</style>
+<div id="dm-options-group">
+    <ul class="tabs-horiz">
+        <?php foreach ($groups as $group => $options): ?>
+            <?php if (in_array($group, $skipGroups)) { continue; }?>
+            <li>
+                <a href="#tab_<?php echo $group ?>_content" id="tab_<?php echo $group ?>" title="<?php echo $group ?>" class="tab-item-link">
+                    <?php if ($group == 'stone-type'): ?>
+                    Stone
+                    <?php elseif ($group == 'stone-amount'): ?>
+                    Stone #
+                    <?php else: ?>
+                    <?php echo ucwords(str_replace("-", " ", $group)); ?>
+                    <?php endif; ?>
+                </a>
+                <div id="tab_<?php echo $group ?>_content" style="display:none">
+                    <?php if ($group == 'stone-type'): ?>
+                        <div class="dm-options-collapsible admin__control-collapsible">
+                            <?php foreach ($options as $type): ?>
+                                <?php if ($productOptions && !isset($productOptions[$group][$type['code']])) { continue; } ?>
+                                <div class="fieldset-wrapper admin__collapsible-block-wrapper opened">
+                                    <div class="fieldset-wrapper-title">
+                                        <div data-role="collapsible-title" class="admin__collapsible-title">
+                                            <span><?php echo $type['title'] ?></span>
+                                        </div>
+
+                                        <button class="action-delete" type="button" title="Delete"><span>Delete</span></button>
+                                    </div>
+
+                                    <div data-role="collapsible-content" class="admin__fieldset-wrapper-content">
+                                        <div class="fieldset-wrapper admin__collapsible-block-wrapper _show _no-header">
+                                            <div class="admin__fieldset-wrapper-content admin__collapsible-content _show">
+                                                <fieldset class="fieldset-wrapper">
+                                                    <?php $values = $productOptions ? $productOptions[$group][$type['code']]['values'] : $type['values']; ?>
+                                                    <?php
+                                                    $chilrenGroups = [
+                                                        'stone-shape' => 'Shape',
+                                                        'stone-carat' => 'Carat',
+                                                        'stone-color-clarity' => 'Color & Clarity',
+                                                    ];
+                                                    $skipGroups = array_merge($skipGroups, array_keys($chilrenGroups));
+                                                    ?>
+                                                    <?php foreach ($chilrenGroups as $childGroupCode => $childGroupTitle): ?>
+                                                        <?php if (isset($groups[$childGroupCode])): ?>
+                                                            <div class="row">
+                                                                <div class="col-m-1">
+                                                                    <?php echo $childGroupTitle ?>
+                                                                </div>
+                                                                <div class="col-m-11">
+                                                                    <div class="row">
+                                                                        <?php foreach ($groups[$childGroupCode] as $option): ?>
+                                                                            <div class="col-m-2">
+                                                                                <label>
+                                                                                    <input type="checkbox" class="dm-option" name="[<?php echo $type['group'] ?>][<?php echo $type['code'] ?>][values][children][<?php echo $option['group'] ?>][]" value="<?php echo $option['code'] ?>" <?php if (isset($values['children'][$childGroupCode])&& in_array($option['code'], $values['children'][$childGroupCode])): ?> checked="checked"<?php endif; ?>/>
+                                                                                    <?php echo $option['title'] ?>
+                                                                                </label>
+                                                                            </div>
+                                                                        <?php endforeach; ?>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php elseif ($group == 'metal'): ?>
+                        <div class="row">
+                            <?php foreach ($options as $option): ?>
+                                <div class="col-m-3">
+                                    <div class="row">
+                                        <div class="col-m-6">
+                                            <label>
+                                                <input class="dm-option" type="checkbox" name="[<?php echo $group; ?>][]" value="<?php echo $option['code'] ?>" <?php if (!$productOptions || isset($productOptions[$group][$option['code']])): ?> checked="checked"<?php endif; ?>/>
+                                                <?php echo $option['title'] ?>
+                                            </label>
+                                        </div>
+                                        <div class="col-m-6 input-wrapper">
+                                            <input class="dm-option" type="text" name="[<?php echo $option['group'] ?>][<?php echo $option['code'] ?>][values][weight][]" value="<?php echo ($productOptions && isset($productOptions[$group][$option['code']])) ? $productOptions[$group][$option['code']]['values']['weight'][0] : "" ?>" placeholder="Weight"/>
+                                            <input class="dm-option" type="text" name="[<?php echo $option['group'] ?>][<?php echo $option['code'] ?>][values][weight][]" value="<?php echo ($productOptions && isset($productOptions[$group][$option['code']])) ? $productOptions[$group][$option['code']]['values']['weight'][1] : "" ?>" placeholder="Weight(+)"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php elseif ($group == 'default'): ?>
+                        <div class="row">
+                            <?php foreach ($groups as $group2 => $options2): ?>
+                            <?php if ($group2 == 'others' || $group2 == 'default') { continue; } ?>
+                            <div class="col-m-3">
+                                <div class="row">
+                                    <div class="col-m-6">
+                                        <label>
+                                            <?php echo ucwords(str_replace("-", " ", $group2)) ?>
+                                        </label>
+                                    </div>
+                                    <div class="col-m-6 input-wrapper">
+                                        <select class="dm-option" name="[<?php echo $group2; ?>][is_default]">
+                                            <?php foreach ($options2 as $option2): ?>
+                                            <?php if ((!$productOptions && $option2['is_default'])
+                                                || ($productOptions && isset($productOptions[$group2][$option2['code']]) && $productOptions[$group2][$option2['code']]['is_default'])): ?>
+                                            <option value="<?php echo $option2['code'] ?>" selected><?php echo $option2['title'] ?></option>
+                                            <?php else: ?>
+                                            <option value="<?php echo $option2['code'] ?>"><?php echo $option2['title'] ?></option>
+                                            <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php elseif ($group == 'stone-amount'): ?>
+                        <div class="dm-options-collapsible admin__control-collapsible">
+                            <?php foreach ($groups['stone-shape'] as $shape): ?>
+                            <div class="fieldset-wrapper admin__collapsible-block-wrapper opened">
+                                <div class="fieldset-wrapper-title">
+                                    <div data-role="collapsible-title" class="admin__collapsible-title">
+                                        <span><?php echo $shape['title'] ?></span>
+                                    </div>
+                                </div>
+
+                                <div data-role="collapsible-content" class="admin__fieldset-wrapper-content">
+                                    <div class="fieldset-wrapper admin__collapsible-block-wrapper _show _no-header">
+                                        <div class="admin__fieldset-wrapper-content admin__collapsible-content _show">
+                                            <fieldset class="fieldset-wrapper">
+                                                <table>
+                                                    <thead>
+                                                        <th>Carat\Ring Size</th>
+                                                        <?php foreach ($groups['ring-size'] as $ringsize): ?>
+                                                        <th><?php echo $ringsize['title'] ?></th>
+                                                        <?php endforeach; ?>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php foreach ($groups['stone-carat'] as $carat): ?>
+                                                        <tr>
+                                                            <td><?php echo $carat['title'] ?></td>
+                                                            <?php foreach ($groups['ring-size'] as $ringsize): ?>
+                                                            <td><input class="dm-option" value="<?php echo ($productOptions && isset($productOptions['stone-shape'][$shape['code']]['values']['amount'][$carat['code'] . '-' . $ringsize['code']])) ? $productOptions['stone-shape'][$shape['code']]['values']['amount'][$carat['code'] . '-' . $ringsize['code']] : "" ?>" name="[stone-amount][<?php echo $shape['code'] ?>][values][amount][<?php echo $carat['code'] . '-' . $ringsize['code'] ?>]"/></td>
+                                                            <?php endforeach; ?>
+                                                        </tr>
+                                                        <?php endforeach; ?>
+                                                    </tbody>
+                                                </table>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php else: ?>
+                        <div class="row">
+                            <?php foreach ($options as $option): ?>
+                                <div class="col-m-2">
+                                    <label>
+                                        <input class="dm-option" type="checkbox" name="[<?php echo $group; ?>][]" value="<?php echo $option['code'] ?>" <?php if (!$productOptions || isset($productOptions[$group][$option['code']])): ?> checked="checked"<?php endif; ?>/>
+                                        <?php echo $option['title'] ?>
+                                    </label>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+    <div id="dm-options-group-content">
+    </div>
+</div>
+<script>
+    require([
+        'jquery',
+        'tabs',
+        'Magento_Ui/js/form/provider'
+    ], function ($, Tabs, Provider) {
+        $("#dm-options-group").tabs({
+            destination: '#dm-options-group-content'
+        });
+
+        $("#dm-options-group-content [data-role='collapsible-title']").on('click', function () {
+            $(this).parent().parent().toggleClass('opened');
+            $(this).parent().parent().find("[data-role='collapsible-content']").slideToggle();
+        });
+
+        $("button.action-delete").on('click', function () {
+            $(this).parent().parent().slideUp('fast', function () {
+                $(this).remove();
+            });
+        });
+    });
+</script>

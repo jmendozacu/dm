@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Catalog:etc/product_types.xsd">
-    <type name="dm_ring_design" label="Design Ring" modelInstance="DiamondMansion\Extensions\Model\Ring\Design\Product\Type" indexPriority="60" sortOrder="80" isQty="true">
+    <type name="dm_ring_design" label="Design Ring" modelInstance="DiamondMansion\Extensions\Model\Ring\Design\Product\Type" indexPriority="60" sortOrder="0" isQty="true">
         <priceModel instance="DiamondMansion\Extensions\Model\Ring\Design\Product\Price" />
+    </type>
+    <type name="dm_ring_eternity" label="Eternity Ring" modelInstance="DiamondMansion\Extensions\Model\Ring\Eternity\Product\Type" indexPriority="60" sortOrder="1" isQty="true">
+        <priceModel instance="DiamondMansion\Extensions\Model\Ring\Eternity\Product\Price" />
     </type>
 </config>

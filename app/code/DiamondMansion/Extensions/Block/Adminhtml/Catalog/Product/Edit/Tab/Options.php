@@ -65,10 +65,28 @@ class Options extends \Magento\Framework\View\Element\Template
     public function getProductOptions() {
         if ($this->getProduct()->getTypeId() == 'dm_ring_design') {
             return $this->_getProductRingDesignOptions();
+        } else if ($this->getProduct()->getTypeId() == 'dm_ring_eternity') {
+            return $this->_getProductRingEternityOptions();
         }
     }
 
     private function _getProductRingDesignOptions() {
+        $collection = $this->_productOptionsModel->getCollection()
+            ->addFieldToFilter('product_id', ['eq' => $this->getProduct()->getId()]);
+
+        $options = [];
+        foreach ($collection as $item) {
+            $tmp = $item->getData();
+            if ($tmp['values'] !== "") {
+                $tmp['values'] = json_decode($tmp['values'], true);
+            }
+            $options[$item->getGroup()][$item->getCode()] = $tmp;
+        }
+
+        return count($options) ? $options : false;
+    }
+
+    private function _getProductRingEternityOptions() {
         $collection = $this->_productOptionsModel->getCollection()
             ->addFieldToFilter('product_id', ['eq' => $this->getProduct()->getId()]);
 
