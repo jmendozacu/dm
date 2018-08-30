@@ -69,3 +69,4 @@ atlassian*
 .DS_Store
 /app/etc/config.php
 /.htaccess
+/pub/media/diamondmansion/product/*
