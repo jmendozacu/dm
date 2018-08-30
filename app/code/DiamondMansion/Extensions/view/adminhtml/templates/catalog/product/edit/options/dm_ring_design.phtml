@@ -1,0 +1,251 @@
+<?php
+$groups = $this->getOptionsGroup();
+$groups['default'] = [];
+$skipGroups = [];
+
+$productOptions = $this->getProductOptions();
+?>
+
+<div id="dm-options-group">
+    <ul class="tabs-horiz">
+        <?php foreach ($groups as $group => $options): ?>
+            <?php if (in_array($group, $skipGroups)) { continue; }?>
+            <li>
+                <a href="#tab_<?php echo $group ?>_content" id="tab_<?php echo $group ?>" title="<?php echo $group ?>" class="tab-item-link">
+                    <?php if ($group == 'main-stone-type'): ?>
+                    Center Stone
+                    <?php elseif ($group == 'side-stone-shape'): ?>
+                    Side Stone
+                    <?php else: ?>
+                    <?php echo ucwords(str_replace("-", " ", $group)); ?>
+                    <?php endif; ?>
+                </a>
+                <div id="tab_<?php echo $group ?>_content" style="display:none">
+                    <?php if ($group == 'main-stone-type'): ?>
+                        <div class="dm-options-collapsible admin__control-collapsible">
+                            <?php foreach ($options as $type): ?>
+                                <?php if ($productOptions && !isset($productOptions[$group][$type['code']])) { continue; } ?>
+                                <div class="fieldset-wrapper admin__collapsible-block-wrapper opened">
+                                    <div class="fieldset-wrapper-title">
+                                        <div data-role="collapsible-title" class="admin__collapsible-title">
+                                            <span><?php echo $type['title'] ?></span>
+                                        </div>
+
+                                        <button class="action-delete" type="button" title="Delete"><span>Delete</span></button>
+                                    </div>
+
+                                    <div data-role="collapsible-content" class="admin__fieldset-wrapper-content">
+                                        <div class="fieldset-wrapper admin__collapsible-block-wrapper _show _no-header">
+                                            <div class="admin__fieldset-wrapper-content admin__collapsible-content _show">
+                                                <fieldset class="fieldset-wrapper">
+                                                    <?php $values = $productOptions ? $productOptions[$group][$type['code']]['values'] : $type['values']; ?>
+                                                    <?php
+                                                    if ($type['code'] != 'setting') {
+                                                        $chilrenGroups = [
+                                                            'main-stone-shape' => 'Shape',
+                                                            'main-stone-carat' => 'Carat',
+                                                            'main-stone-color' => 'Color',
+                                                            'main-stone-clarity' => 'Clarity',
+                                                            'main-stone-cert' => 'Cert'
+                                                        ];
+                                                    } else {
+                                                        $chilrenGroups = [
+                                                            'setting-options-stone' => 'Stone',
+                                                            'setting-options-size' => 'Size',
+                                                        ];
+                                                    }
+                                                    $skipGroups = array_merge($skipGroups, array_keys($chilrenGroups));
+                                                    ?>
+                                                    <?php foreach ($chilrenGroups as $childGroupCode => $childGroupTitle): ?>
+                                                        <?php if (isset($groups[$childGroupCode])): ?>
+                                                            <div class="row">
+                                                                <div class="col-m-1">
+                                                                    <?php echo $childGroupTitle ?>
+                                                                </div>
+                                                                <div class="col-m-11">
+                                                                    <div class="row">
+                                                                        <?php foreach ($groups[$childGroupCode] as $option): ?>
+                                                                            <div class="col-m-2">
+                                                                                <label>
+                                                                                    <input type="checkbox" class="dm-option" name="[<?php echo $type['group'] ?>][<?php echo $type['code'] ?>][values][children][<?php echo $option['group'] ?>][]" value="<?php echo $option['code'] ?>" <?php if (isset($values['children'][$childGroupCode])&& in_array($option['code'], $values['children'][$childGroupCode]) || $type['code'] == 'setting'): ?> checked="checked"<?php endif; ?>/>
+                                                                                    <?php echo $option['title'] ?>
+                                                                                </label>
+                                                                            </div>
+                                                                        <?php endforeach; ?>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php elseif ($group == 'side-stone-shape'): ?>
+                        <div class="dm-options-collapsible admin__control-collapsible">
+                            <?php for ($i = 1; $i < 5; $i++): ?>
+                                <?php //if ($productOptions && !isset($productOptions[$group . '-' . $i])) { continue; } ?>
+                                <div class="fieldset-wrapper admin__collapsible-block-wrapper opened">
+                                    <div class="fieldset-wrapper-title">
+                                        <div data-role="collapsible-title" class="admin__collapsible-title">
+                                            <span>#<?php echo $i ?></span>
+                                        </div>
+
+                                        <!--<button class="action-delete" type="button" title="Delete"><span>Delete</span></button>-->
+                                    </div>
+                                    <div data-role="collapsible-content" class="admin__fieldset-wrapper-content">
+                                        <div class="fieldset-wrapper admin__collapsible-block-wrapper _show _no-header">
+                                            <div class="admin__fieldset-wrapper-content admin__collapsible-content _show">
+                                                <fieldset class="fieldset-wrapper">
+                                                    <?php
+                                                    $chilrenGroups = [
+                                                        'side-stone-shape' => 'Shape',
+                                                        'side-stone-carat' => 'Carat',
+                                                        'side-stone-color-clarity' => 'Color Clarity',
+                                                    ];
+                                                    $skipGroups = array_merge($skipGroups, array_keys($chilrenGroups));
+                                                    ?>
+                                                    <?php foreach ($chilrenGroups as $childGroupCode => $childGroupTitle): ?>
+                                                        <?php if (isset($groups[$childGroupCode])): ?>
+                                                            <div class="row">
+                                                                <div class="col-m-1">
+                                                                    <?php echo $childGroupTitle ?>
+                                                                </div>
+                                                                <div class="col-m-11">
+                                                                    <div class="row">
+                                                                        <?php foreach ($groups[$childGroupCode] as $option): ?>
+                                                                            <div class="col-m-2">
+                                                                                <?php if ($childGroupCode == 'side-stone-shape'): ?>
+                                                                                <div class="row">
+                                                                                    <div class="col-m-6">
+                                                                                        <label>
+                                                                                            <input class="dm-option" type="checkbox" name="[<?php echo $option['group'] ?>][<?php echo $i ?>][]" value="<?php echo $option['code'] ?>" <?php if ($productOptions && isset($productOptions[$group . '-' . $i][$option['code']])): ?> checked="checked" <?php endif; ?>/>
+                                                                                            <?php echo $option['title'] ?>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                    <div class="col-m-6 input-wrapper">
+                                                                                       <input class="dm-option" type="text" name="[<?php echo $option['group'] ?>][<?php echo $i ?>][<?php echo $option['code'] ?>][values][qty][]" value="<?php echo ($productOptions && isset($productOptions[$group . '-' . $i][$option['code']])) ? $productOptions[$group . '-' . $i][$option['code']]['values']['qty'][0] : "" ?>" placeholder="Qty"/>
+                                                                                        <input class="dm-option" type="text" name="[<?php echo $option['group'] ?>][<?php echo $i ?>][<?php echo $option['code'] ?>][values][qty][]" value="<?php echo ($productOptions && isset($productOptions[$group . '-' . $i][$option['code']])) ? $productOptions[$group . '-' . $i][$option['code']]['values']['qty'][1] : "" ?>" placeholder="Qty(+)"/>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <?php else: ?>
+                                                                                    <label>
+                                                                                        <input class="dm-option" type="checkbox" name="[<?php echo $option['group'] ?>][<?php echo $i ?>][]" value="<?php echo $option['code'] ?>" <?php if ($productOptions && isset($productOptions[$group . '-' . $i][$option['code']])): ?> checked="checked" <?php endif; ?>/>
+                                                                                        <?php echo $option['title'] ?>
+                                                                                    </label>
+                                                                                <?php endif; ?>
+                                                                            </div>
+                                                                        <?php endforeach; ?>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endfor; ?>
+                        </div>
+                    <?php elseif ($group == 'metal'): ?>
+                        <div class="row">
+                            <?php foreach ($options as $option): ?>
+                                <div class="col-m-3">
+                                    <div class="row">
+                                        <div class="col-m-6">
+                                            <label>
+                                                <input class="dm-option" type="checkbox" name="[<?php echo $group; ?>][]" value="<?php echo $option['code'] ?>" <?php if (!$productOptions || isset($productOptions[$group][$option['code']])): ?> checked="checked"<?php endif; ?>/>
+                                                <?php echo $option['title'] ?>
+                                            </label>
+                                        </div>
+                                        <div class="col-m-6 input-wrapper">
+                                            <input class="dm-option" type="text" name="[<?php echo $option['group'] ?>][<?php echo $option['code'] ?>][values][weight][]" value="<?php echo ($productOptions && isset($productOptions[$group][$option['code']])) ? $productOptions[$group][$option['code']]['values']['weight'][0] : "" ?>" placeholder="Weight"/>
+                                            <input class="dm-option" type="text" name="[<?php echo $option['group'] ?>][<?php echo $option['code'] ?>][values][weight][]" value="<?php echo ($productOptions && isset($productOptions[$group][$option['code']])) ? $productOptions[$group][$option['code']]['values']['weight'][1] : "" ?>" placeholder="Weight(+)"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php elseif ($group == 'others'): ?>
+                        <div class="row">
+                            <?php foreach ($options as $option): ?>
+                                <div class="col-m-2">
+                                    <label>
+                                        <input class="dm-option" type="checkbox" name="[<?php echo $group; ?>][]" value="<?php echo $option['code'] ?>" <?php if ($productOptions && isset($productOptions[$group][$option['code']])): ?> checked="checked"<?php endif; ?>/>
+                                        <?php echo $option['title'] ?>
+                                    </label>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php elseif ($group == 'default'): ?>
+                        <div class="row">
+                            <?php foreach ($groups as $group2 => $options2): ?>
+                            <?php if ($group2 == 'others' || $group2 == 'default') { continue; } ?>
+                            <div class="col-m-3">
+                                <div class="row">
+                                    <div class="col-m-6">
+                                        <label>
+                                            <?php echo ucwords(str_replace("-", " ", $group2)) ?>
+                                        </label>
+                                    </div>
+                                    <div class="col-m-6 input-wrapper">
+                                        <select class="dm-option" name="[<?php echo $group2; ?>][is_default]">
+                                            <?php foreach ($options2 as $option2): ?>
+                                            <?php if ((!$productOptions && $option2['is_default'])
+                                                || ($productOptions && isset($productOptions[$group2][$option2['code']]) && $productOptions[$group2][$option2['code']]['is_default'])): ?>
+                                            <option value="<?php echo $option2['code'] ?>" selected><?php echo $option2['title'] ?></option>
+                                            <?php else: ?>
+                                            <option value="<?php echo $option2['code'] ?>"><?php echo $option2['title'] ?></option>
+                                            <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php else: ?>
+                        <div class="row">
+                            <?php foreach ($options as $option): ?>
+                                <div class="col-m-2">
+                                    <label>
+                                        <input class="dm-option" type="checkbox" name="[<?php echo $group; ?>][]" value="<?php echo $option['code'] ?>" <?php if (!$productOptions || isset($productOptions[$group][$option['code']])): ?> checked="checked"<?php endif; ?>/>
+                                        <?php echo $option['title'] ?>
+                                    </label>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+    <div id="dm-options-group-content">
+    </div>
+</div>
+<script>
+    require([
+        'jquery',
+        'tabs',
+        'Magento_Ui/js/form/provider'
+    ], function ($, Tabs, Provider) {
+        $("#dm-options-group").tabs({
+            destination: '#dm-options-group-content'
+        });
+
+        $("#dm-options-group-content [data-role='collapsible-title']").on('click', function () {
+            $(this).parent().parent().toggleClass('opened');
+            $(this).parent().parent().find("[data-role='collapsible-content']").slideToggle();
+        });
+
+        $("button.action-delete").on('click', function () {
+            $(this).parent().parent().slideUp('fast', function () {
+                $(this).remove();
+            });
+        });
+    });
+</script>

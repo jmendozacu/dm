@@ -28,7 +28,7 @@ class InstallData implements InstallDataInterface
             [
                 'code' => 'dm_stone_type',
                 'label' => 'DM Diamond Type',
-                'values' => ['Colorless', 'Yellow', 'Pink', 'Black', 'Setting']
+                'values' => ['Natural', 'Yellow', 'Pink', 'Black', 'Setting']
             ],
             [
                 'code' => 'dm_stone_shape',
@@ -81,6 +81,10 @@ class InstallData implements InstallDataInterface
         ];
 
         foreach ($attributes as $attribute) {
+            if ($eavSetup->getAttributeId('catalog_product', $attribute['code'])) {
+                continue;
+            }
+
             $eavSetup->addAttribute(
                 \Magento\Catalog\Model\Product::ENTITY,
                 $attribute['code'],

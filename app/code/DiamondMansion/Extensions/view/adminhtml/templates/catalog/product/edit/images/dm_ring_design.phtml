@@ -1,0 +1,164 @@
+<?php
+$groups = $this->getOptionsGroup();
+$productOptions = $this->getProductOptions();
+$metalColors = [
+        'white' => 'White',
+        'yellow' => 'Yellow',
+        'rose' => 'Rose'
+    ];
+?>
+<?php if (!$productOptions): ?>
+<h2>Please save product first. After that you can set images for this product.</h2>
+<?php else: ?>
+<style type="text/css">
+    .file-wrapper, input[type="file"] { display: none; }
+    .image-list td { padding: 5px }
+    .image-list td img {width: 100%;}
+    .image-list td button { font-size: 12px; width: 100%; }
+</style>
+
+<div id="dm-images-group">
+    <ul class="tabs-horiz">
+        <?php foreach ($productOptions['band'] as $band): ?>
+        <?php foreach ($productOptions['main-stone-type'] as $typeCode => $type): ?>
+            <?php if ($typeCode == 'setting') { continue; } ?>
+            <li>
+                <a href="#tab_<?php echo $typeCode ?>_<?php echo $band['code'] ?>_content" id="tab_<?php echo $typeCode ?>" title="<?php echo $typeCode ?>" class="tab-item-link">
+                    <?php echo ucwords(str_replace("-", " ", $typeCode . ' ( ' . $band['code'] . ' )')); ?>
+                </a>
+                <div id="tab_<?php echo $typeCode ?>_<?php echo $band['code'] ?>_content" style="display:none">
+                    <div class="dm-images-collapsible admin__control-collapsible">
+                        <?php $availableShapes = current($productOptions['main-stone-type'][$typeCode]['values']['children']); ?>
+                        <?php foreach ($metalColors as $metalColorCode => $metalColorTitle): ?>
+                            <div class="fieldset-wrapper admin__collapsible-block-wrapper opened">
+                                <div class="fieldset-wrapper-title">
+                                    <div data-role="collapsible-title" class="admin__collapsible-title">
+                                        <span><?php echo $metalColorTitle ?></span>
+                                    </div>
+                                </div>
+
+                                <div data-role="collapsible-content" class="admin__fieldset-wrapper-content">
+                                    <div class="fieldset-wrapper admin__collapsible-block-wrapper _show _no-header">
+                                        <div class="admin__fieldset-wrapper-content admin__collapsible-content _show">
+                                            <fieldset class="fieldset-wrapper">
+                                                <table width="100%" class="image-list" style="max-width: <?php echo 200 * count($availableShapes) ?>px">
+                                                    <thead>
+                                                    <?php foreach ($groups['main-stone-shape'] as $shape): ?>
+                                                        <?php if (!in_array($shape['code'], $availableShapes)) { continue; } ?>
+                                                        <th width="<?php echo 100 / count($availableShapes) ?>%"><?php echo $shape['title'] ?></th>
+                                                    <?php endforeach; ?>
+                                                    </thead>
+                                                    <tbody>
+                                                    <?php foreach ($groups['main-stone-shape'] as $shape): ?>
+                                                        <?php if (!in_array($shape['code'], $availableShapes)) { continue; } ?>
+                                                        <?php
+                                                        $selectedOptions = [
+                                                            'sku' => $this->getProduct()->getSku(),
+                                                            'band' => $band['code'],
+                                                            'type' => $typeCode,
+                                                            'metal' => $metalColorCode,
+                                                            'shape' => $shape['code'],
+                                                        ];
+                                                        $images = $this->_imageHelper->getProductImages($selectedOptions);
+                                                        $imageElmId = implode("___", $selectedOptions);
+                                                        ?>
+                                                        <td>
+                                                            <div><img id="image___<?php echo $imageElmId ?>" src="<?php echo $images['main'] ?>"></div>
+                                                            <div>
+                                                                <button class="scalable save left" onclick="uploadImageAction('<?php echo $imageElmId; ?>')" type="button" title="Upload Image">
+                                                                    <span>Upload</span>
+                                                                </button>
+                                                                <div class="file-wrapper"><input type="file" id="<?php echo $imageElmId ?>" name="<?php echo $imageElmId ?>"></div>
+                                                            </div>
+                                                        </td>
+                                                    <?php endforeach; ?>
+                                                    </tbody>
+                                                </table>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </li>
+        <?php endforeach; ?>
+        <?php endforeach; ?>
+    </ul>
+    <div id="dm-images-group-content">
+    </div>
+</div>
+<script>
+    require([
+        'jquery',
+        'tabs',
+        'Magento_Ui/js/form/provider'
+    ], function ($, Tabs, Provider) {
+        $("#dm-images-group").tabs({
+            destination: '#dm-images-group-content'
+        });
+
+        $("#dm-images-group-content [data-role='collapsible-title']").on('click', function () {
+            $(this).parent().parent().toggleClass('opened');
+            $(this).parent().parent().find("[data-role='collapsible-content']").slideToggle();
+        });
+    });
+
+    function uploadImage(elmId) {
+        require([
+            'jquery',
+            'ajaxFileUpload'
+        ], function ($) {
+            $.ajaxFileUpload({
+                url: '<?php echo $this->getUrl("diamondmansion/ring_design_image/upload", ['eid' => 'ELMID', 'form_key' => 'FORMKEY']); ?>'.replace('ELMID', elmId).replace('FORMKEY', FORM_KEY),
+                secureuri: false,
+                fileElementId: elmId,
+                dataType: 'json',
+                success: function (data, status) {
+                    if (typeof(data.error) != 'undefined') {
+                        if (data.error != '') {
+                            alert(data.error);
+                        } else {
+                            $("input[id='" + elmId + "']").parent().parent().parent().html('<div><img id="image___' + data.eid + '" src="' + data.url + '"></div><div><button title="Upload Image" type="button" onclick="uploadImageAction(\'' + data.eid + '\')" class="scalable save left"><span>Upload</span></button><div class="file-wrapper"><input type="file" name="' + data.eid + '" id="' + data.eid + '"></div></div>');
+                        }
+                    }
+                },
+                error: function (data, status, e) {
+                    alert(e);
+                }
+            });
+
+            $("input[id='" + elmId + "']").parent().html("<input type='file' id='" + elmId + "' name='" + elmId + "'>");
+
+            return false;
+        });
+    }
+
+    var selected_eid;
+    var prev_value;
+    var timer;
+
+    function checkFileSelected() {
+        require([
+            'jquery'
+        ], function ($) {
+            if ($("input[id='" + selected_eid + "']").val() != prev_value) {
+                clearInterval(timer);
+                uploadImage(selected_eid);
+            }
+        });
+    }
+
+    function uploadImageAction(elmId) {
+        require([
+            'jquery'
+        ], function ($) {
+            selected_eid = elmId;
+            prev_value = $("input[id='" + elmId + "']").val();
+            $("input[id='" + elmId + "']").trigger("click");
+            timer = setInterval("checkFileSelected();", 500);
+        });
+    }
+</script>
+<?php endif; ?>

@@ -1,0 +1,35 @@
+
+.ui-tabs-panel {
+    border-top: 1px solid #adadad;
+}
+
+#dm-options-group {
+    line-height: 30px;
+}
+
+#dm-options-group > .row {
+    margin-bottom: 20px;
+}
+
+#dm-options-group .admin__control-collapsible .admin__collapsible-block-wrapper.fieldset-wrapper .fieldset-wrapper-title {
+    border-width: 1px;
+}
+
+#dm-options-group .admin__control-collapsible .admin__collapsible-content > .fieldset-wrapper {
+    margin: -1px 0 0 0;
+}
+
+#dm-options-group .input-wrapper select {
+    width: 70%;
+}
+
+#dm-options-group .input-wrapper input[type=text] {
+    width: 40%;
+    font-size: 10px;
+    line-height: 16px;
+    text-align: center;
+}
+
+#dm-options-group .input-wrapper input[type=text]::placeholder {
+    color: #aaa;
+}

@@ -3,9 +3,21 @@
 namespace DiamondMansion\Extensions\Helper;
 
 use \Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\App\Helper\Context;
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
+    protected $_imageFactory;
+
+    public function __construct(
+        Context $context,
+        \Magento\Framework\Image\AdapterFactory $imageFactory
+    )
+    {
+        $this->_imageFactory = $imageFactory;
+        parent::__construct($context);
+    }
+
     public function getObjectManager()
     {
         return \Magento\Framework\App\ObjectManager::getInstance();
@@ -14,6 +26,16 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function getStoreManager()
     {
         return $this->getObjectManager()->get('\Magento\Store\Model\StoreManagerInterface');
+    }
+
+    public function getMediaDir()
+    {
+        return BP . DIRECTORY_SEPARATOR . 'pub' . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR;
+    }
+
+    public function getMediaUrl()
+    {
+        return $this->getStoreManager()->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
     }
 
     public function getDesignerPhotoDir()
@@ -28,7 +50,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function getDesignerPhotoUrl($photo)
     {
-        return $this->getStoreManager()->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'diamondmansion/designer/' . $photo;
+        return $this->getMediaUrl() . 'diamondmansion/designer/' . $photo;
     }
 
     public function getDesignRingStoneShapes()
