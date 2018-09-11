@@ -32,7 +32,9 @@ class Options extends \Magento\Framework\View\Element\Template
         $this->_optionsGroupModel = $optionsGroupModel;
         $this->_productOptionsModel = $productOptionsModel;
 
-        $this->_template = 'catalog/product/edit/options/' . $this->getProduct()->getTypeId() . '.phtml';
+        if (strpos($this->getProduct()->getTypeId(), 'dm_') !== false) {
+            $this->_template = 'catalog/product/edit/options/' . $this->getProduct()->getTypeId() . '.phtml';
+        }
 
         parent::__construct($context, $data);
     }

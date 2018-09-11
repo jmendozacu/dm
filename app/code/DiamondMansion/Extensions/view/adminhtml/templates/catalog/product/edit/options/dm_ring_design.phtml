@@ -133,7 +133,7 @@ $productOptions = $this->getProductOptions();
                                                                                 </div>
                                                                                 <?php else: ?>
                                                                                     <label>
-                                                                                        <input class="dm-option" type="checkbox" name="[<?php echo $option['group'] ?>][<?php echo $i ?>][]" value="<?php echo $option['code'] ?>" <?php if ($productOptions && isset($productOptions[$group . '-' . $i][$option['code']])): ?> checked="checked" <?php endif; ?>/>
+                                                                                        <input class="dm-option" type="checkbox" name="[<?php echo $option['group'] ?>][<?php echo $i ?>][]" value="<?php echo $option['code'] ?>" <?php if ($productOptions && isset($productOptions[$childGroupCode . '-' . $i][$option['code']])): ?> checked="checked" <?php endif; ?>/>
                                                                                         <?php echo $option['title'] ?>
                                                                                     </label>
                                                                                 <?php endif; ?>

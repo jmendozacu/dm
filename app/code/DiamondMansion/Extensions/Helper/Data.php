@@ -55,7 +55,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function getDesignRingStoneShapes()
     {
-        return ["asscher", "cushion", "emerald", "heart", "marquise", "oval", "pear", "princess", "radiant", "round", "trilliant"];
+        return ["asscher", "cushion", "emerald", "heart", "marquise", "oval", "pear", "princess", "radiant", "round", "trilliant", "square cushion", "long cushion", "square radiant", "long radiant"];
     }
 
     public function getDesignRingStoneCarats()

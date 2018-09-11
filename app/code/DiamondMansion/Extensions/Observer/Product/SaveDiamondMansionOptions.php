@@ -8,13 +8,19 @@ class SaveDiamondMansionOptions implements ObserverInterface
     protected $_request;
     protected $_optionModelFactory;
     protected $_optionModel;
+    protected $_eavConfig;
+    protected $_helper;
 
     public function __construct(
         \Magento\Framework\App\RequestInterface $request,
-        \DiamondMansion\Extensions\Model\ProductOptionsFactory $optionModelFactory
+        \DiamondMansion\Extensions\Model\ProductOptionsFactory $optionModelFactory,
+        \Magento\Eav\Model\Config $eavConfig,
+        \DiamondMansion\Extensions\Helper\Data $helper
     ) {
         $this->_request = $request;
         $this->_optionModelFactory = $optionModelFactory;
+        $this->_eavConfig = $eavConfig;
+        $this->_helper = $helper;
     }
 
     public function execute(\Magento\Framework\Event\Observer $observer)
@@ -141,6 +147,8 @@ class SaveDiamondMansionOptions implements ObserverInterface
                     }
             }
         }
+
+        $this->_saveAttributes($product, $dm['options']);
     }
 
     private function _processRingEternity($product) {
@@ -243,5 +251,54 @@ class SaveDiamondMansionOptions implements ObserverInterface
     {
         $this->_optionModel->setData($data);
         $this->_optionModel->save();
+    }
+
+    private function _saveAttributes($product, $options)
+    {
+        $map = [
+            'dm_stone_type' => 'main-stone-type',
+            'dm_stone_shape' => 'main-stone-shape',
+            'dm_band' => 'band',
+            'dm_metal' => 'metal',
+        ];
+
+        $eavOptions = [];
+        foreach (array_keys($map) as $attribute) {
+            $eavAttribute = $this->_eavConfig->getAttribute('catalog_product', $attribute);
+            $eavOptions[$attribute] = [];
+            foreach ($eavAttribute->getSource()->getAllOptions() as $eavOption) {
+                $eavOptions[$attribute][$this->_helper->getSlug($eavOption['label'])] = $eavOption;
+            }
+        }
+
+        foreach ($map as $attribute => $group) {
+            $productAttributeOptions = [];
+            if (isset($options[$group])) {
+                foreach ($options[$group] as $code => $option) {
+                    if ($group == 'metal') {
+                        if (strpos($code, 'white') !== false) {
+                            $code = 'white-gold';
+                        } else if (strpos($code, 'platinum') !== false) {
+                            $code = 'platinum';
+                        } else if (strpos($code, 'rose') !== false) {
+                            $code = 'rose-gold';
+                        } else if (strpos($code, 'yellow') !== false) {
+                            $code = 'yellow-gold';
+                        } else if (strpos($code, 'tri-color') !== false) {
+                            $code = 'tri-color-gold';
+                        }
+                    } else if ($group == 'main-stone-shape' || $group == 'band') {
+                        $code = $option;
+                    }
+
+                    if (isset($eavOptions[$attribute][$code])) {
+                        $productAttributeOptions[] = $eavOptions[$attribute][$code]['value'];
+                    }
+                }
+
+                $product->setData($attribute, implode(',', $productAttributeOptions));
+                $product->getResource()->saveAttribute($product, $attribute);
+            }
+        }
     }
 }

@@ -24,6 +24,8 @@ class Images extends Options
 
         $this->_imageHelper = $imageHelper;
 
-        $this->_template = 'catalog/product/edit/images/' . $this->getProduct()->getTypeId() . '.phtml';
+        if (strpos($this->getProduct()->getTypeId(), 'dm_') !== false) {
+            $this->_template = 'catalog/product/edit/images/' . $this->getProduct()->getTypeId() . '.phtml';
+        }
     }
 }
