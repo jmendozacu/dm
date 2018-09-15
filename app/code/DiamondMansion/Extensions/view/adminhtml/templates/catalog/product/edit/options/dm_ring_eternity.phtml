@@ -82,18 +82,23 @@ $productOptions = $this->getProductOptions();
                     <?php elseif ($group == 'metal'): ?>
                         <div class="row">
                             <?php foreach ($options as $option): ?>
-                                <div class="col-m-3">
+                                <div class="col-m-4">
                                     <div class="row">
-                                        <div class="col-m-6">
+                                        <div class="col-m-4">
                                             <label>
                                                 <input class="dm-option" type="checkbox" name="[<?php echo $group; ?>][]" value="<?php echo $option['code'] ?>" <?php if (!$productOptions || isset($productOptions[$group][$option['code']])): ?> checked="checked"<?php endif; ?>/>
                                                 <?php echo $option['title'] ?>
                                             </label>
                                         </div>
-                                        <div class="col-m-6 input-wrapper">
+                                        <div class="col-m-3 input-wrapper">
                                             <input class="dm-option" type="text" name="[<?php echo $option['group'] ?>][<?php echo $option['code'] ?>][values][weight][]" value="<?php echo ($productOptions && isset($productOptions[$group][$option['code']])) ? $productOptions[$group][$option['code']]['values']['weight'][0] : "" ?>" placeholder="Weight"/>
                                             <input class="dm-option" type="text" name="[<?php echo $option['group'] ?>][<?php echo $option['code'] ?>][values][weight][]" value="<?php echo ($productOptions && isset($productOptions[$group][$option['code']])) ? $productOptions[$group][$option['code']]['values']['weight'][1] : "" ?>" placeholder="Weight(+)"/>
                                         </div>
+                                        <div class="col-m-3 input-wrapper">
+                                            <input class="dm-option" type="text" name="[<?php echo $option['group'] ?>][<?php echo $option['code'] ?>][values][price][]" value="<?php echo ($productOptions && isset($productOptions[$group][$option['code']]['values']['price'])) ? $productOptions[$group][$option['code']]['values']['price'][0] : "" ?>" placeholder="Price"/>
+                                            <input class="dm-option" type="text" name="[<?php echo $option['group'] ?>][<?php echo $option['code'] ?>][values][price][]" value="<?php echo ($productOptions && isset($productOptions[$group][$option['code']]['values']['price'])) ? $productOptions[$group][$option['code']]['values']['price'][1] : "" ?>" placeholder="Price(+)"/>
+                                        </div>
+                                        <div class="col-m-2"></div>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
