@@ -20,7 +20,7 @@
 
     <dataSource name="diamondmansion_extensions_designer_form_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">DiamondMansion\Extensions\Model\Designer\DataProvider</argument>
+            <argument name="class" xsi:type="string">DiamondMansion\Extensions\Ui\Component\DataProvider\Designer\Form</argument>
             <argument name="name" xsi:type="string">diamondmansion_extensions_designer_form_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>

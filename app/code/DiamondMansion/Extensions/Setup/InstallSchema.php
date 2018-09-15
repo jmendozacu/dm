@@ -33,6 +33,12 @@ class InstallSchema implements InstallSchemaInterface
         $this->createOptionsGroupTable($setup);
         $this->createProductOptionsTable($setup);
 
+        $this->createContactRequestsProductTable($setup);
+        $this->createContactRequestsCertificateTable($setup);
+        $this->createContactRequestsDeliveryTable($setup);
+        $this->createContactRequestsOpinionTable($setup);
+        $this->createContactRequestsPriceReserveTable($setup);
+
         $setup->endSetup();
     }
 
@@ -825,6 +831,390 @@ class InstallSchema implements InstallSchemaInterface
                     'Special Values'
                 )
                 ->setComment('DiamondMansion Product Options');
+            $setup->getConnection()->createTable($table);
+        }
+    }
+
+    private function createContactRequestsProductTable($setup) {
+        $tableName = $setup->getTable('dm_contact_product');
+
+        if ($setup->getConnection()->isTableExists($tableName) != true) {
+            $table = $setup->getConnection()
+                ->newTable($tableName)
+                ->addColumn(
+                    'entity_id',
+                    Table::TYPE_INTEGER,
+                    null,
+                    [
+                        'identity' => true,
+                        'unsigned' => true,
+                        'nullable' => false,
+                        'primary' => true
+                    ],
+                    'ID'
+                )
+                ->addColumn(
+                    'name',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Customer Name'
+                )
+                ->addColumn(
+                    'phone',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Customer Phone'
+                )
+                ->addColumn(
+                    'email',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Customer Email'
+                )
+                ->addColumn(
+                    'product_type',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Product Type'
+                )
+                ->addColumn(
+                    'created_at',
+                    Table::TYPE_DATETIME,
+                    255,
+                    ['nullable' => false],
+                    'Request Date'
+                )
+                ->addColumn(
+                    'preferred_metal',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Preferred Metal'
+                )
+                ->addColumn(
+                    'price_range',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Price Range'
+                )
+                ->addColumn(
+                    'message',
+                    Table::TYPE_TEXT,
+                    32767,
+                    ['nullable' => false],
+                    'Message'
+                )
+                ->addColumn(
+                    'images',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Images'
+                )
+                ->setComment('Contact Requests - Product');
+            $setup->getConnection()->createTable($table);
+        }
+    }
+    private function createContactRequestsCertificateTable($setup) {
+        $tableName = $setup->getTable('dm_contact_certificate');
+
+        if ($setup->getConnection()->isTableExists($tableName) != true) {
+            $table = $setup->getConnection()
+                ->newTable($tableName)
+                ->addColumn(
+                    'entity_id',
+                    Table::TYPE_INTEGER,
+                    null,
+                    [
+                        'identity' => true,
+                        'unsigned' => true,
+                        'nullable' => false,
+                        'primary' => true
+                    ],
+                    'ID'
+                )
+                ->addColumn(
+                    'name',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Customer Name'
+                )
+                ->addColumn(
+                    'phone',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Customer Phone'
+                )
+                ->addColumn(
+                    'email',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Customer Email'
+                )
+                ->addColumn(
+                    'product_name',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Product Name'
+                )
+                ->addColumn(
+                    'product_link',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Product Link'
+                )
+                ->addColumn(
+                    'product_price',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Product Price'
+                )
+                ->addColumn(
+                    'message',
+                    Table::TYPE_TEXT,
+                    32767,
+                    ['nullable' => false],
+                    'Message'
+                )
+                ->addColumn(
+                    'created_at',
+                    Table::TYPE_TIMESTAMP,
+                    255,
+                    ['nullable' => false, 'default' => Table::TIMESTAMP_INIT],
+                    'Create date'
+                )
+                ->setComment('Contact Requests - Certificate');
+            $setup->getConnection()->createTable($table);
+        }
+    }
+    private function createContactRequestsDeliveryTable($setup) {
+        $tableName = $setup->getTable('dm_contact_delivery');
+
+        if ($setup->getConnection()->isTableExists($tableName) != true) {
+            $table = $setup->getConnection()
+                ->newTable($tableName)
+                ->addColumn(
+                    'entity_id',
+                    Table::TYPE_INTEGER,
+                    null,
+                    [
+                        'identity' => true,
+                        'unsigned' => true,
+                        'nullable' => false,
+                        'primary' => true
+                    ],
+                    'ID'
+                )
+                ->addColumn(
+                    'name',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Customer Name'
+                )
+                ->addColumn(
+                    'phone',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Customer Phone'
+                )
+                ->addColumn(
+                    'email',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Customer Email'
+                )
+                ->addColumn(
+                    'product_name',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Product Name'
+                )
+                ->addColumn(
+                    'product_link',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Product Link'
+                )
+                ->addColumn(
+                    'product_price',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Product Price'
+                )
+                ->addColumn(
+                    'message',
+                    Table::TYPE_TEXT,
+                    32767,
+                    ['nullable' => false],
+                    'Message'
+                )
+                ->addColumn(
+                    'created_at',
+                    Table::TYPE_TIMESTAMP,
+                    255,
+                    ['nullable' => false, 'default' => Table::TIMESTAMP_INIT],
+                    'Create date'
+                )
+                ->setComment('Contact Requests - Delivery');
+            $setup->getConnection()->createTable($table);
+        }
+    }
+    private function createContactRequestsOpinionTable($setup) {
+        $tableName = $setup->getTable('dm_contact_opinion');
+
+        if ($setup->getConnection()->isTableExists($tableName) != true) {
+            $table = $setup->getConnection()
+                ->newTable($tableName)
+                ->addColumn(
+                    'entity_id',
+                    Table::TYPE_INTEGER,
+                    null,
+                    [
+                        'identity' => true,
+                        'unsigned' => true,
+                        'nullable' => false,
+                        'primary' => true
+                    ],
+                    'ID'
+                )
+                ->addColumn(
+                    'name',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Customer Name'
+                )
+                ->addColumn(
+                    'email',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Customer Email'
+                )
+                ->addColumn(
+                    'product_name',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Product Name'
+                )
+                ->addColumn(
+                    'product_link',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Product Link'
+                )
+                ->addColumn(
+                    'message',
+                    Table::TYPE_TEXT,
+                    32767,
+                    ['nullable' => false],
+                    'Message'
+                )
+                ->addColumn(
+                    'created_at',
+                    Table::TYPE_TIMESTAMP,
+                    255,
+                    ['nullable' => false, 'default' => Table::TIMESTAMP_INIT],
+                    'Create date'
+                )
+                ->setComment('Contact Requests - Expert Opinion');
+            $setup->getConnection()->createTable($table);
+        }
+    }
+    private function createContactRequestsPriceReserveTable($setup) {
+        $tableName = $setup->getTable('dm_contact_pricereserve');
+
+        if ($setup->getConnection()->isTableExists($tableName) != true) {
+            $table = $setup->getConnection()
+                ->newTable($tableName)
+                ->addColumn(
+                    'entity_id',
+                    Table::TYPE_INTEGER,
+                    null,
+                    [
+                        'identity' => true,
+                        'unsigned' => true,
+                        'nullable' => false,
+                        'primary' => true
+                    ],
+                    'ID'
+                )
+                ->addColumn(
+                    'name',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Customer Name'
+                )
+                ->addColumn(
+                    'phone',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Customer Phone'
+                )
+                ->addColumn(
+                    'email',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Customer Email'
+                )
+                ->addColumn(
+                    'product_name',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Product Name'
+                )
+                ->addColumn(
+                    'product_link',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Product Link'
+                )
+                ->addColumn(
+                    'product_price',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Product Price'
+                )
+                ->addColumn(
+                    'message',
+                    Table::TYPE_TEXT,
+                    32767,
+                    ['nullable' => false],
+                    'Message'
+                )
+                ->addColumn(
+                    'created_at',
+                    Table::TYPE_TIMESTAMP,
+                    255,
+                    ['nullable' => false, 'default' => Table::TIMESTAMP_INIT],
+                    'Create date'
+                )
+                ->setComment('Contact Requests - Price Reserve');
             $setup->getConnection()->createTable($table);
         }
     }

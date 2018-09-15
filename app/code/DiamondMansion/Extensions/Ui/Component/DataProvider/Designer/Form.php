@@ -1,7 +1,7 @@
 <?php
-namespace DiamondMansion\Extensions\Model\Designer;
+namespace DiamondMansion\Extensions\Ui\Component\DataProvider\Designer;
 
-class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
+class Form extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
     protected $helper;
 

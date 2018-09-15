@@ -70,3 +70,4 @@ atlassian*
 /app/etc/config.php
 /.htaccess
 /pub/media/diamondmansion/product/*
+/pub/media/contact

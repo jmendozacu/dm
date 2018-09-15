@@ -12,4 +12,69 @@
             <argument name="resourceModel" xsi:type="string">DiamondMansion\Extensions\Model\ResourceModel\Designer</argument>
         </arguments>
     </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="diamondmansion_extensions_contact_product_listing_data_source" xsi:type="string">DiamondMansion\Extensions\Model\ResourceModel\Contact\Product\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="DiamondMansion\Extensions\Model\ResourceModel\Contact\Product\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">dm_contact_product</argument>
+            <argument name="resourceModel" xsi:type="string">DiamondMansion\Extensions\Model\ResourceModel\Contact\Product</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="diamondmansion_extensions_contact_certificate_listing_data_source" xsi:type="string">DiamondMansion\Extensions\Model\ResourceModel\Contact\Certificate\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="DiamondMansion\Extensions\Model\ResourceModel\Contact\Certificate\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">dm_contact_certificate</argument>
+            <argument name="resourceModel" xsi:type="string">DiamondMansion\Extensions\Model\ResourceModel\Contact\Certificate</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="diamondmansion_extensions_contact_delivery_listing_data_source" xsi:type="string">DiamondMansion\Extensions\Model\ResourceModel\Contact\Delivery\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="DiamondMansion\Extensions\Model\ResourceModel\Contact\Delivery\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">dm_contact_delivery</argument>
+            <argument name="resourceModel" xsi:type="string">DiamondMansion\Extensions\Model\ResourceModel\Contact\Delivery</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="diamondmansion_extensions_contact_opinion_listing_data_source" xsi:type="string">DiamondMansion\Extensions\Model\ResourceModel\Contact\Opinion\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="DiamondMansion\Extensions\Model\ResourceModel\Contact\Opinion\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">dm_contact_opinion</argument>
+            <argument name="resourceModel" xsi:type="string">DiamondMansion\Extensions\Model\ResourceModel\Contact\Opinion</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="diamondmansion_extensions_contact_pricereserve_listing_data_source" xsi:type="string">DiamondMansion\Extensions\Model\ResourceModel\Contact\PriceReserve\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="DiamondMansion\Extensions\Model\ResourceModel\Contact\PriceReserve\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">dm_contact_pricereserve</argument>
+            <argument name="resourceModel" xsi:type="string">DiamondMansion\Extensions\Model\ResourceModel\Contact\PriceReserve</argument>
+        </arguments>
+    </virtualType>
 </config>
