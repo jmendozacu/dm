@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="header.container">
+            <referenceContainer name="header.panel.wrapper" remove="true"/>
+            <referenceContainer name="header-wrapper">
+                <referenceBlock name="logo">
+                    <arguments>
+                        <argument name="logo_file" xsi:type="string">images/logo.png</argument>
+                        <argument name="logo_img_width" xsi:type="number">450</argument>
+                        <argument name="logo_img_height" xsi:type="number">76</argument>
+                    </arguments>
+                </referenceBlock>
+                <container name="nav-container-wrapper" as="nav-container-wrapper" htmlTag="div" htmlClass="nav-container-wrapper desktop-only">
+                    <block class="Magento\Framework\View\Element\Template" name="catalog.topnav.desktop" template="Magento_Theme::html/topmenu.phtml" ttl="3600"/>
+                </container>
+                <container name="top-links-wrapper" as="top-links-wrapper" htmlTag="div" htmlClass="top-links-wrapper desktop-only" after="minicart">
+                    <block class="Magento\Customer\Block\Account\Navigation" name="top.links">
+                        <arguments>
+                            <argument name="css_class" xsi:type="string">header links</argument>
+                        </arguments>
+                    </block>
+                    <!-- <referenceBlock name="header" remove="true"/> -->
+                    <referenceBlock name="my-account-link" remove="true"/>
+                    <referenceBlock name="register-link" remove="true"/>
+                    <referenceBlock name="catalog.compare.link" remove="true"/>
+                </container>
+            </referenceContainer>            
+            <block class="Magento\Framework\View\Element\Template" name="nav-container-mobile" as="nav-container-mobile" before="page.top" template="Magento_Theme::html/topmenu-m.phtml"/>
+        </referenceContainer>    
+        <referenceContainer name="page.top">
+            <referenceBlock name="navigation.sections" remove="true"/>
+        </referenceContainer>
+    </body>
+</page>
