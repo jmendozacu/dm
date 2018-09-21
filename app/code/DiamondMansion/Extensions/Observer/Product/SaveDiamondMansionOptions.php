@@ -296,7 +296,7 @@ class SaveDiamondMansionOptions implements ObserverInterface
                     }
                 }
 
-                $product->setData($attribute, implode(',', $productAttributeOptions));
+                $product->setData($attribute, implode(',', array_unique($productAttributeOptions)));
                 $product->getResource()->saveAttribute($product, $attribute);
             }
         }
