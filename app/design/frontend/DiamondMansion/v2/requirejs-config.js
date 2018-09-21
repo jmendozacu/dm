@@ -6,7 +6,7 @@
 var config = {
     map: {
         '*': {
-            'menu': 'js/dm-navigation-menu',
+            'menu': 'js/dm-navigation-menu'
         }
     }
 };

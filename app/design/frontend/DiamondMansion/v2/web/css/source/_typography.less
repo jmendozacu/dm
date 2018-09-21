@@ -241,7 +241,7 @@ ul > li, ol > li { margin: 0; }
 .no-bg        { background:none !important; }
 
 .clear,
-.clear-2{clear:both;}
+.clear-2{clear:both;width:0;height:0;}
 
 a {  
     text-decoration:none;
@@ -264,6 +264,47 @@ h6            { font-size:0.91em; line-height:normal; font-weight:normal; margin
 h1,h2,h3,h4,h5,h6{font-family: Arial, sans-serif;}
 
 /* ======================================================================================= */
+
+/* Form Elements */
+input,select,textarea,button { font:11px/18px Arial, Helvetica, sans-serif; vertical-align:middle; color:#999699; }
+input.input-text,select{height:18px;}
+input.input-text,select,textarea { background:#fff; border:1px solid #d4d4d4; }
+input.input-text,textarea { padding:2px; }
+select { padding:1px 1px 1px 3px; height:20px;}
+select option { padding-right:10px; }
+select.multiselect{height:auto;}
+select.multiselect option { border-bottom:1px solid #ddd; padding:2px 5px; }
+select.multiselect option:last-child { border-bottom:0; }
+textarea { overflow:auto; }
+input.radio { margin-right:3px; margin-top:0;}
+input.checkbox { margin-right:3px; }
+input.qty { width:1.7em !important; }
+button.button::-moz-focus-inner { padding:0; border:0; } /* FF Fix */
+button.button { -webkit-border-fit:lines; } /* <- Safari & Google Chrome Fix */
+button.button::-moz-focus-inner { padding:0; border:0; } /* FF Fix */
+button.button { -webkit-border-fit:lines; } /* <- Safari & Google Chrome Fix */
+button.button { overflow:visible; width:auto; border:0; padding:0; margin:0; background:transparent; cursor:pointer; }
+button.button span {
+    float:left;
+    height:35px;
+    padding:0 0 0 31px;
+    font:bold 14px/22px Arial, Helvetica, sans-serif;
+    text-align:center;
+    white-space:nowrap;
+    color:#fff;
+    -moz-transition: all 300ms ease;
+    -webkit-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+button.button > span{background-color:#909090;}
+button.button:active > span{background-color:#909090!important; -moz-transition: all 10ms ease; -webkit-transition: all 10ms ease; -o-transition: all 10ms ease; transition: all 10ms ease;}
+button.button span span { height: auto; background:none; border:none; padding:7px 31px 0 0; text-transform:uppercase;}
+button.btn-checkout span {}
+button.btn-checkout.no-checkout {}
+
+p.control input.checkbox,
+p.control input.radio { margin-right:6px; }
 
 @dm-color-red: #ed5842;
 @dm-color-black-bright: #909090;

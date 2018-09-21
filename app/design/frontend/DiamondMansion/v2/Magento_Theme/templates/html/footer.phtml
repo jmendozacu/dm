@@ -1,0 +1,26 @@
+<footer id="footer">
+    <div class="footer-columns-wrapper">
+        <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_top')->toHtml(); ?>
+        <div class="container_12">
+            <div class="grid_9" style="float: none; margin: 0 auto; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; display: block; padding-top: 10px; padding-left: 10px; padding-right: 10px;">
+                <span class="f-left" style="font: bold 14px/32px Arial; margin-right: 10px;">Connect</span>
+                <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_social_links')->toHtml(); ?>
+                <section class="block-subscribe">
+                    <?php echo $this->getChildHtml('footer-subscribe') ?>
+                </section>
+                <div class="clear"></div>
+                <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_bottom')->toHtml(); ?>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="footer-bottom-wrapper">
+        <div class="container_12">
+            <div class="grid_12 a-center">
+                <img src="<?php echo $this->getViewFileUrl("images/logo.png"); ?>" alt="Diamond Mansion"><br/>
+                <address><?php echo sprintf($this->getChildHtml('footer-copyright'), date('Y')); ?></address>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</footer>

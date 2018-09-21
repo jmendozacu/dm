@@ -1,0 +1,57 @@
+<?php
+/*
+    $today = Mage::getModel('core/date')->gmtDate();
+    
+    $noticeCollection = array_values(Mage::getModel('notice/standard')
+        ->getCollection()
+        ->addFieldToFilter('type', 'footer')
+        ->addFieldToFilter('status', 1)
+        ->addFieldToFilter('starts_at',
+            array(
+                array('lteq' => $today),
+                array('starts_at', 'null'=>'')
+            ))
+        ->addFieldToFilter('ends_at',
+            array(
+                array('gteq' => $today),
+                array('ends_at', 'null'=>'')
+            ))        
+        ->getItems());
+    
+    if (count($noticeCollection) > 1) {
+        $noticeIndex = rand(0, count($noticeCollection) - 1);
+        
+        if ($prevIndex = Mage::getSingleton("core/session")->getNoticeIndex()) {
+            while ($prevIndex == $noticeIndex) {
+                $noticeIndex = rand(0, count($noticeCollection) - 1);
+            }
+        }
+        Mage::getSingleton("core/session")->setNoticeIndex($noticeIndex);
+    } else {
+        $noticeIndex = 0;
+    }
+
+    if (isset($noticeCollection[$noticeIndex])) {
+        $noticeContent = $noticeCollection[$noticeIndex]->getContent();
+
+        if ($noticeContent) {
+            echo $noticeContent;
+        }
+    }*/
+?>
+
+<p><strong>Did you know</strong></p>
+<p>All our diamonds come with<br> a Life Time Warranty<br> &amp; 100% Satisfaction Guarantee</p><a id="reload-notice" onclick="reloadNotice(); return false;" href="#">Reload</a>
+
+<a id="reload-notice" onclick="reloadNotice(); return false;" href="#">Reload</a>
+<script type="text/javascript">// <![CDATA[
+function reloadNotice() {
+    jQuery.ajax({
+        type: "POST",
+        url: "<?php echo $this->getUrl("notice/index/reload"); ?>",
+        success: function(msg){
+            jQuery(".custom-footer-content.notice").html(msg);
+        }
+    });
+}
+// ]]></script>

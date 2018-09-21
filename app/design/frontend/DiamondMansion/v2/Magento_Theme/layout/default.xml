@@ -31,5 +31,16 @@
         <referenceContainer name="page.top">
             <referenceBlock name="navigation.sections" remove="true"/>
         </referenceContainer>
+        <referenceContainer name="footer">
+            <referenceBlock name="store_switcher" remove="true"/>
+            <referenceBlock name="footer_links" remove="true"/>
+            <referenceBlock name="form.subscribe" remove="true"/>
+            <referenceBlock name="copyright" remove="true"/>
+            <referenceBlock name="report.bugs" remove="true"/>
+            <block class="Magento\Framework\View\Element\Template" name="footer-content" as="footer-content" after="-" template="Magento_Theme::html/footer.phtml">
+                <block class="Magento\Newsletter\Block\Subscribe" name="footer-subscribe" as="footer-subscribe" template="Magento_Newsletter::subscribe.phtml"/>
+                <block class="Magento\Theme\Block\Html\Footer" name="footer-copyright" as="footer-copyright" template="Magento_Theme::html/copyright.phtml"/>
+            </block>
+        </referenceContainer>
     </body>
 </page>
