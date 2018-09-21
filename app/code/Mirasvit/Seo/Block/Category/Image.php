@@ -1,0 +1,60 @@
+<?php
+/**
+ * Mirasvit
+ *
+ * This source file is subject to the Mirasvit Software License, which is available at https://mirasvit.com/license/.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category  Mirasvit
+ * @package   mirasvit/module-seo
+ * @version   2.0.85
+ * @copyright Copyright (C) 2018 Mirasvit (https://mirasvit.com/)
+ */
+
+
+
+namespace Mirasvit\Seo\Block\Category;
+
+use Magento\Catalog\Block\Category\View;
+use Mirasvit\Seo\Api\Service\Image\ImageServiceInterface;
+use Magento\Framework\View\Element\Template\Context;
+use Magento\Catalog\Model\Layer\Resolver;
+use Magento\Framework\Registry;
+use Magento\Catalog\Helper\Category;
+use Mirasvit\Seo\Helper\Data;
+
+class Image extends View
+{
+    public function __construct(
+        Context $context,
+        Resolver $layerResolver,
+        Registry $registry,
+        Category $categoryHelper,
+        ImageServiceInterface $imageService,
+        Data $seoData,
+        array $data = []
+    ) {
+        $this->imageService = $imageService;
+        $this->seoData = $seoData;
+        parent::__construct($context, $layerResolver, $registry, $categoryHelper, $data);
+    }
+
+
+    /**
+     * Return identifiers for produced content
+     *
+     * @return array
+     */
+    public function getCategoryImageUrl()
+    {
+        if (!$this->seoData->isIgnoredActions()
+            && !$this->seoData->isIgnoredUrls()
+            && ($seo = $this->seoData->getCurrentSeo())
+            && ($categoryImage = $seo->getCategoryImage())
+            && ($categoryImageUrl = $this->imageService->getCategoryImageUrl($categoryImage))) {
+                return $categoryImageUrl;
+        }
+    }
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--SITEMAP-->
+    <preference for="Magento\Sitemap\Model\Sitemap" type="Mirasvit\SeoSitemap\Model\Sitemap" />
+    <preference for="Magento\Sitemap\Model\ResourceModel\Catalog\Product" type="Mirasvit\SeoSitemap\Preference\ResourceModel\Product" />
+
+    <!--CONFIG-->
+    <preference for="Mirasvit\SeoSitemap\Api\Config\CmsSitemapConfigInterface" type="Mirasvit\SeoSitemap\Service\Config\CmsSitemapConfig" />
+    <preference for="Mirasvit\SeoSitemap\Api\Config\LinkSitemapConfigInterface" type="Mirasvit\SeoSitemap\Service\Config\LinkSitemapConfig" />
+
+    <!--DATA-->
+    <preference for="Mirasvit\SeoSitemap\Api\Data\BlogMx\SitemapInterface" type="Mirasvit\SeoSitemap\Service\Data\BlogMx\Sitemap" />
+
+    <!-- SERVICE -->
+    <preference for="Mirasvit\SeoSitemap\Api\Service\SeoSitemapUrlServiceInterface"
+                type="Mirasvit\SeoSitemap\Service\SeoSitemapUrlService" />
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="SitemapGenerateCommand" xsi:type="object">Mirasvit\SeoSitemap\Console\Command\SitemapGenerateCommand</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- correct sitemap url if use pub folder -->
+    <type name="Magento\Sitemap\Block\Adminhtml\Grid\Renderer\Link">
+        <plugin name="m-seositemap-link" type="Mirasvit\SeoSitemap\Plugin\SitemapLinkPlugin" sortOrder="1000"/>
+    </type>
+
+    <!-- add home page in xml sitemap (from Magento 2.2.4) -->
+    <type name="Magento\Cms\Model\GetUtilityPageIdentifiers">
+        <plugin name="m-seositemap-home-page" type="Mirasvit\SeoSitemap\Plugin\SitemapHomePagePlugin" sortOrder="1000"/>
+    </type>
+
+</config>
