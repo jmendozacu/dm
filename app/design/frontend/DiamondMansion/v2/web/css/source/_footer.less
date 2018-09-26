@@ -6,7 +6,7 @@
 #footer ul {float:left; margin-bottom:9px;}
 #footer ul li{padding:0 10px 0 8px; float:left; background:url(../images/footer_link_divider.gif) right 7px no-repeat;}
 #footer ul li:first-child{padding-left:0;}
-#footer ul li a{text-decoration:none; line-height:1.5em;}
+#footer ul li a{text-decoration:none; line-height:1;}
 #footer ul li a:hover{text-decoration:none;}
 #footer ul.links li:first-child{padding-left:8px!important;}
 
@@ -115,28 +115,46 @@ ul.social-links li a.pinterest:hover { background-position: -64px bottom; }
 ul.social-links li a.instagram:hover { background-position: -96px bottom; }
 ul.social-links li a.youtube:hover { background-position: -128px bottom; }
 
-.container_12 .grid_9 {
-    max-width: 934px;
-    width: 75%;
-    float: left;
-    margin-right: 10px;
-}
-
-.container_12 .grid_2 {
-    width: 192px;
-    float: left;
-    margin-right: 10px;
-}
-
-.container_12 .grid_3 {
-    width: 298px;
-    float: left;
-    margin-right: 10px;
-}
-
 .custom-footer-content {display: block !important;}
 .custom-footer-content ul li { font-size: 14px; }
 .custom-footer-content ul li:first-child a { color: #ed5843 !important; padding: 10px 0; font-weight: bold; }
 .custom-footer-content.notice { margin-top: 20px; background-color: #fff; padding: 20px; color: #666; font: 14px/20px Arial; display: inline-block !important; position: relative; width: 200px; height: 90px; overflow: hidden; }
 .custom-footer-content.notice p strong { font-weight: bold; line-height: 30px; }
 .custom-footer-content.notice #reload-notice { position: absolute; right: 5px; top: 5px; display: block; width: 19px; height: 19px; background: url(../images/i_refresh.png) center center no-repeat;text-indent: -9999px; }
+
+.footer-middle {
+    max-width: 934px;
+    width: 75%;
+    margin: 0 auto; 
+    border-top: 1px solid #ccc; 
+    display: block; 
+    padding-top: 10px; 
+    padding-left: 10px; 
+    padding-right: 10px;
+
+    .terms-conditions {
+        border-top: 1px solid #ccc; 
+        padding-top: 20px; 
+        font-size: 15px;
+    }
+}
+
+.custom-footer-content {
+    float: left;
+
+    &.education {
+        width: 22%;
+    }
+
+    &.account {
+        width: 22%;
+    }
+
+    &.aboutus {
+        width: 22%;
+    }
+
+    &.notice {
+        width: 200px;
+    }
+}
