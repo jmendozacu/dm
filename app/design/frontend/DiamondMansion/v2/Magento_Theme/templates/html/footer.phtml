@@ -2,8 +2,11 @@
     <div class="footer-columns-wrapper">
         <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_top')->toHtml(); ?>
         <div class="footer-middle">
-            <span class="f-left" style="font: bold 14px/32px Arial; margin-right: 10px;">Connect</span>
-            <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_social_links')->toHtml(); ?>
+            <section class="block-social-links">
+                <span class="f-left" style="font: bold 14px/32px Arial; margin-right: 10px;">Connect</span>
+                <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_social_links')->toHtml(); ?>
+                <div class="clear"></div>
+            </section>
             <section class="block-subscribe">
                 <?php echo $this->getChildHtml('footer-subscribe') ?>
             </section>

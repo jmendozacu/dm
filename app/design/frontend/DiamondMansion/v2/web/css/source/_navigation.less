@@ -79,7 +79,7 @@
         }
     }
 
-    #mobile-menu-open { position: absolute; left: 30px; top: 12px; display: block !important; }
+    #mobile-menu-open { position: absolute; left: 30px; top: 12px; display: block !important; width: 25px; }
 
     #mobile-menu-shopby { 
         display: none;
@@ -242,6 +242,14 @@
             }
         }
     }    
+}
+
+@media only screen and (max-width: 639px) {
+    #mobile-menu-open {
+        width: 20px;
+        top: 15px !important;
+        left: 15px !important;
+    }
 }
 
 @media only screen and (max-width: 1365px) and (min-width: 768px) {

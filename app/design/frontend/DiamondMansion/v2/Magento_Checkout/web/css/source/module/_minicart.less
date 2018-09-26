@@ -389,10 +389,30 @@
     }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (min-width: 640px) and (max-width: 767px) {
     .minicart-wrapper {
         position: absolute;
         right: 30px;
+        top: 15px;
+        margin: 0;
+
+        a.show-cart {
+            color: @dm-color-black-bright;
+            padding-left: 20px;
+            display: block;
+            line-height: 20px;
+            background: url(../images/top_cart_mobile.png) 5px top no-repeat;
+            .text {
+                display: none;
+            }
+        }        
+    }
+}
+
+@media only screen and (max-width: 639px) {
+    .minicart-wrapper {
+        position: absolute;
+        right: 15px;
         top: 15px;
         margin: 0;
 
