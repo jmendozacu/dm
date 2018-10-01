@@ -77,10 +77,10 @@
     #top-filter-bar {
         .filter-options-content {
             display: none;
+            border: 0 none;
         }
     }
 
-    @screen-md: 1279px;
     #top-filter-bar {
 
         @filter-cell-padding-left-right: 20px;
@@ -92,7 +92,7 @@
         margin-bottom: 20px;
         border-bottom: 2px solid #333;
     
-        @media (min-width: @screen-md + 1) {
+        @media (min-width: 1280px) {
             &.fixed {
                 position: fixed;
                 top: 0;
@@ -102,9 +102,13 @@
     
         .top-filters {
     
-            @media (min-width: @screen-md + 1) {
+            @media (min-width: 1280px) {
                 height: 38px;
                 overflow: hidden;
+            }
+
+            ul.filter-options {
+                border: 0 none;
             }
     
             li {
@@ -119,11 +123,11 @@
     
                     color: #505050;
     
-                    @media (min-width: @screen-md + 1) {
+                    @media (min-width: 1280px) {
                         display: inline-block !important;
                     }
     
-                    @media (max-width: @screen-md) {
+                    @media (max-width: 1279px) {
                         display: block;
                         width: auto !important;
                     }
@@ -131,6 +135,12 @@
                     padding: 10px 20px;
                     font-size: 14px;
                     text-align: left;
+                    box-sizing: content-box;
+
+                    .filter-options-title {
+                        display: inline;
+                        line-height: 20px;
+                    }
                 }
     
                 b {
@@ -140,9 +150,9 @@
                 .filter-anchor {
                     white-space: nowrap;
                     color: #505050;
-                    font-family: 'montserratsemi_bold';
+                    font-family: 'Montserrat Semi';
     
-                    @media (max-width: @screen-md) {
+                    @media (max-width: 1279px) {
                         display: block;
                     }
     
@@ -153,22 +163,19 @@
                 }
     
                 .content {
-                    padding: 25px 0 15px;
+                    padding: 15px 0 15px;
                     text-align: left;
+                    position: inherit;
                     display: none;
     
-                    @media (max-width: @screen-md) {
+                    @media (max-width: 1279px) {
                         margin-top: 10px;
                         padding: 10px;
                         background-color: #efefef;
                     }
     
-                    li {
-                        padding: 5px 0;
-                        white-space: nowrap;
-                    }
-    
                     a {
+                        padding: 5px 0;
                         line-height: 21px;
                         font-size: 12px;
                         white-space: nowrap;
@@ -184,29 +191,46 @@
                             color: #505050;
                         }
                     }
+
+                    .am-show-more {
+                        display: none !important;
+                    }
+
+                    input[type="radio"], span.count {
+                        display: none;
+                    }
+
+                    .swatch-option {
+                        min-width: 21px;
+                        width: 21px;
+                        height: 21px;
+                        border: 0 none;
+                        outline: none;
+                    }
                 }
             }
         }
     
-        #filter-center-diamond-shape {
+        #filter-diamond-shape {
             @center-diamond-shape-col-width: 120px;
     
             .content {
-                @media (min-width: @screen-md + 1) {
-                    width: @center-diamond-shape-col-width * 2;
+                @media (min-width: 1280px) {
+                    width: @center-diamond-shape-col-width * 2 + 10;
                 }
-    
-                ol {
-                    li {
-                        width: @center-diamond-shape-col-width;
-                        float: left;
-    
-                        @media (min-width: @screen-md + 1) {
-                            &:nth-child(2n+1) {
-                                clear: both;
-                            }
+                .am-swatch-options {
+                    display: block;
+                }
+        
+                form a {
+                    width: @center-diamond-shape-col-width;
+                    display: inline-block;
+
+                    @media (min-width: 1280px) {
+                        &:nth-child(2n+1) {
+                            clear: both;
                         }
-                    }
+                    }                    
                 }
             }
         }
@@ -215,19 +239,21 @@
             @setting-style-col-width: 110px;
     
             .content {
-                @media (min-width: @screen-md + 1) {
-                    width: @setting-style-col-width * 2;
+                @media (min-width: 1280px) {
+                    width: @setting-style-col-width * 2 + 10;
+                }
+
+                .am-swatch-options {
+                    display: block;
                 }
     
-                ol {
-                    li {
-                        width: @setting-style-col-width;
-                        float: left;
-    
-                        @media (min-width: @screen-md + 1) {
-                            &:nth-child(2n+1) {
-                                clear: both;
-                            }
+                form a {
+                    width: @setting-style-col-width;
+                    display: inline-block;
+
+                    @media (min-width: 1280px) {
+                        &:nth-child(2n+1) {
+                            clear: both;
                         }
                     }
                 }
@@ -240,27 +266,25 @@
     
             .content {
     
-                @media (min-width: @screen-md + 1) {
+                @media (min-width: 1280px) {
                     width: @design-collection-col-width * @design-collection-col-count;
                     margin-left: -1 * (@design-collection-col-width * (@design-collection-col-count - 4));
                 }
     
-                ol {
-                    li {
-                        width: @design-collection-col-width;
-                        float: left;
-    
-                        @media (min-width: @screen-md + 1) {
-                            &:nth-child(9n+1) {
-                                clear: both;
-                            }
+                ol li {
+                    width: @design-collection-col-width;
+                    float: left;
+
+                    @media (min-width: 1280px) {
+                        &:nth-child(9n+1) {
+                            clear: both;
                         }
                     }
-                }		
+                }
             }
         }
     
-        @media (max-width: @screen-md) {
+        @media (max-width: 1279px) {
             #filter-title {
                 cursor: pointer;
                 span {

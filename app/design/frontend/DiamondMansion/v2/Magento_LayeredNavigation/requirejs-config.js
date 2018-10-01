@@ -6,8 +6,7 @@
 var config = {
     map: {
         '*': {
-            'menu': 'js/dm-navigation-menu',
-            'dm-ajax': 'js/dm-ajax'
+            'dm-top-filter': 'Magento_LayeredNavigation/js/dm-top-filter'
         }
     }
 };

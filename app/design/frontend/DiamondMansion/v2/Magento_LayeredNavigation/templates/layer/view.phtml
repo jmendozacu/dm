@@ -30,21 +30,67 @@
                 </div>
             <?php endif; ?>
             <?php $wrapOptions = false; ?>
+            <?php $params = $this->getRequest()->getParams(); ?>
             <?php foreach ($block->getFilters() as $filter): ?>
+                <?php
+                    $isFilterSelected = false;
+                    $filterItemSelected = null;
+                    if ($filter->getItemsCount()) {
+                        foreach ($filter->getItems() as $filterItem) {
+                            $filterKey = $filterItem->getFilter()->getRequestVar();
+                            if (isset($params[$filterKey]) && $params[$filterKey] == $filterItem->getValue()) {
+                                $isFilterSelected = true;
+                                $filterItemSelected = $filterItem;
+                                break;
+                            }
+                        }
+                    }
+                ?>
+
                 <?php if (!$wrapOptions): ?>
-                    <ul class="filter-options top-filters" id="narrow-by-list">
-                        <li class="filter-label collapsed" id="filter-title"><?= /* @escapeNotVerified */ __('Filter By') ?></li>
+                <div class="top-filters">
+                    <ul class="filter-options" id="narrow-by-list">
+                        <li class="filter-label collapsed" id="filter-title"><?= /* @escapeNotVerified */ __('Filter By') ?>:</li>
                 <?php $wrapOptions = true; endif; ?>
                     <?php if ($filter->getItemsCount()): ?>
-                    <li class="filter-label">
-                        <div role="heading" aria-level="3" class="filter-options-title"><?= $block->escapeHtml(__($filter->getName())) ?></div>
-                        <div class="filter-options-content"><?= /* @escapeNotVerified */ $block->getChildBlock('renderer')->render($filter) ?></div>
+                    <li class="filter-label <?= str_replace(' ', '-', strtolower($filter->getName())) ?>" id="filter-<?= str_replace(' ', '-', strtolower($filter->getName())) ?>">
+                    <?php if ($isFilterSelected): ?>
+                        <a class="filter-anchor see-all" href="<?php echo $filterItemSelected->getRemoveUrl() ?>">
+                            <?php if ($filterKey == "dm-diamond-type"): ?>
+                            <span class="attr-selected"><?php echo str_replace('Diamond', 'Natural', $filterItemSelected->getLabel()) ?> Diamond</span>
+                            <?php elseif ($filterKey == "dm-diamond-shape"): ?>
+                            <span class="attr-selected">
+                                <?php echo $filterItemSelected->getLabel() ?>
+                                <?php if ($filterItemSelected->getLabel() == 'Heart'): ?>
+                                Shape
+                                <?php else: ?>
+                                Cut
+                                <?php endif ?>
+                            </span>
+                            <?php else: ?>
+                            <span class="attr-selected"><?php echo $filterItemSelected->getLabel() ?></span>
+                            <?php endif ?>
+                            &nbsp;X
+                        </a>
+                    <?php else: ?>
+                        <a href="javascript:void(0)" class="filter-anchor"><?= $block->escapeHtml(__($filter->getName())) ?></a>
+                    <?php endif; ?>
+                        <div class="filter-options-content content"><?= /* @escapeNotVerified */ $block->getChildBlock('renderer')->render($filter) ?></div>
                     </li>
                     <?php endif; ?>
             <?php endforeach; ?>
             <?php if ($wrapOptions): ?>
                 </ul>
+            </div>
             <?php endif; ?>
         </div>
     </div>
+
+    <script type="text/x-magento-init">
+    {
+        "*": {
+            "dm-top-filter": ""
+        }
+    }
+    </script>
 <?php endif; ?>
