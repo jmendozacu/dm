@@ -82,4 +82,6 @@
         <plugin name="diamondmansion_extensions_override_amasty_shopbyseo_controller_router" type="DiamondMansion\Extensions\Override\Amasty\ShopbySeo\Controller\Router" />
     </type>
     <preference for="Amasty\ShopbySeo\Controller\Router" type="DiamondMansion\Extensions\Override\Amasty\ShopbySeo\Controller\Router"/>
+
+    <preference for="Magento\Theme\Block\Html\Breadcrumbs" type="DiamondMansion\Extensions\Override\Magento\Theme\Block\Html\Breadcrumbs"/>
 </config>

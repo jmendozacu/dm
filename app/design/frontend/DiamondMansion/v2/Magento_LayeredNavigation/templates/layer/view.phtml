@@ -55,10 +55,10 @@
                     <?php if ($filter->getItemsCount()): ?>
                     <li class="filter-label <?= str_replace(' ', '-', strtolower($filter->getName())) ?>" id="filter-<?= str_replace(' ', '-', strtolower($filter->getName())) ?>">
                     <?php if ($isFilterSelected): ?>
-                        <a class="filter-anchor see-all" href="<?php echo $filterItemSelected->getRemoveUrl() ?>">
-                            <?php if ($filterKey == "dm-diamond-type"): ?>
+                        <a class="filter-anchor see-all" href="<?php echo str_replace('\\', '/', $filterItemSelected->getRemoveUrl()) ?>">
+                            <?php if ($filterKey == 'dm_stone_type'): ?>
                             <span class="attr-selected"><?php echo str_replace('Diamond', 'Natural', $filterItemSelected->getLabel()) ?> Diamond</span>
-                            <?php elseif ($filterKey == "dm-diamond-shape"): ?>
+                            <?php elseif ($filterKey == 'dm_stone_shape'): ?>
                             <span class="attr-selected">
                                 <?php echo $filterItemSelected->getLabel() ?>
                                 <?php if ($filterItemSelected->getLabel() == 'Heart'): ?>
