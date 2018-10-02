@@ -78,10 +78,11 @@
         </arguments>
     </virtualType>
 
-    <type name="Amasty\ShopbySeo\Controller\Router">
-        <plugin name="diamondmansion_extensions_override_amasty_shopbyseo_controller_router" type="DiamondMansion\Extensions\Override\Amasty\ShopbySeo\Controller\Router" />
-    </type>
-    <preference for="Amasty\ShopbySeo\Controller\Router" type="DiamondMansion\Extensions\Override\Amasty\ShopbySeo\Controller\Router"/>
-
     <preference for="Magento\Theme\Block\Html\Breadcrumbs" type="DiamondMansion\Extensions\Override\Magento\Theme\Block\Html\Breadcrumbs"/>
+    <preference for="Magento\Catalog\Block\Category\View" type="DiamondMansion\Extensions\Override\Magento\Catalog\Block\Category\View"/>
+    <preference for="Magento\Catalog\Model\Category\Attribute\Source\Mode" type="DiamondMansion\Extensions\Override\Magento\Catalog\Model\Category\Attribute\Source\Mode"/>
+
+    <preference for="Mirasvit\Seo\Observer\SeoDataObserver" type="DiamondMansion\Extensions\Override\Mirasvit\Seo\Observer\SeoDataObserver"/>
+
+    <preference for="Amasty\ShopbySeo\Controller\Router" type="DiamondMansion\Extensions\Override\Amasty\ShopbySeo\Controller\Router"/>
 </config>

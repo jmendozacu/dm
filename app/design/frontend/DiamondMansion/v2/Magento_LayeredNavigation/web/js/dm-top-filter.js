@@ -34,17 +34,16 @@ define([
                     var _pageTitle = "";
                     $(xhr).each(function (index, elm) {
                         if (elm.className == 'page-wrapper') {
-                            $('.page-wrapper').html(elm.innerHTML);
+                            $(elm.innerHTML).each(function (index, subElm) {
+                                if (subElm.className == 'breadcrumbs') {
+                                    $('.breadcrumbs').html(subElm.innerHTML);
+                                }
+            
+                                if (subElm.className == 'page-main') {
+                                    $('.page-main').html(subElm.innerHTML);
+                                }
+                            });
                         }
-                        /*
-                        if (elm.className == 'breadcrumbs') {
-                            $('.breadcrumbs').html(elm.innerHTML);
-                        }
-    
-                        if (elm.className == 'page-main') {
-                            $('.page-main').html(elm.innerHTML);
-                        }
-                        */
                         
                         if (elm.tagName == 'TITLE') {
                             _pageTitle = elm.innerHTML;
@@ -72,10 +71,10 @@ define([
                         $('#view-more-products-wrapper').show();
                     }
                     */
-    
-                    $(window).scrollTop(0);
 
                     widget.initialize();
+    
+                    $(window).scrollTop(0);
                 });
     
                 return false;

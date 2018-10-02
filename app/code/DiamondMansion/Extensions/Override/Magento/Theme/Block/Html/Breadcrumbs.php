@@ -26,13 +26,13 @@ class Breadcrumbs extends \Magento\Theme\Block\Html\Breadcrumbs
             $params = array();
             $urlParams = array();
             foreach ($this->getRequest()->getParams() as $key=>$value) {
-                if (in_array($key, array("dm_stone_type", "dm_stone_shape", "band", "metal", "setting_style", "design_collection"))) {
+                if (in_array($key, array("dm_stone_type", "dm_stone_shape", "dm_band", "dm_metal", "dm_setting_style", "dm_design_collection"))) {
                     $params[$key] = $value;
                     $urlParams[$key] = "";
                 }
             }
             
-            $filterOrder = array("dm_stone_type", "band", "dm_stone_shape", "setting_style", "design_collection");
+            $filterOrder = array("dm_stone_type", "dm_band", "dm_stone_shape", "dm_setting_style", "dm_design_collection");
             
             $index = 0;
 
@@ -47,7 +47,7 @@ class Breadcrumbs extends \Magento\Theme\Block\Html\Breadcrumbs
                         if ($uValue == "") continue;
                         $uLabel = strtolower(str_replace(" ", "-", $eavConfig->getAttribute('catalog_product', $uKey)->getSource()->getOptionText($uValue)));
                         $uLabel = $uLabel != 'natural' ?: 'diamond';
-                        if ($index >= 2 && in_array($uKey, array("band", "design_collection", "metal"))) {
+                        if ($index >= 2 && in_array($uKey, array("dm_band", "dm_design_collection", "dm_metal"))) {
                             if ($urlSuffix[1] == "") {
                                 $urlSuffix[1] = str_replace("_", "-", $uKey) . "=" . $uLabel;
                             } else {
@@ -68,7 +68,7 @@ class Breadcrumbs extends \Magento\Theme\Block\Html\Breadcrumbs
                                 $label = $attrLabel . " Diamond";
                             }
                             break;
-                        case "band":
+                        case "dm_band":
                             $label = "Bridal Set";
                             break;
                         case "dm_stone_shape":

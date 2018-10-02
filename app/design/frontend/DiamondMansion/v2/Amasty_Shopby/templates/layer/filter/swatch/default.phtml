@@ -33,14 +33,11 @@ $relNofollow = $filterSetting ? $filterSetting->getRelNofollow() : false;
                 overflow-y: auto;
                 overflow-x: hidden;"
         <?php endif; ?>>
-        <div class="<?= $extraClass;?> swatch-attribute swatch-layered <?= $attributeCode ?>
-                <?= $showImagesLabel ? 'am-swatch-options': ''; ?>"
-             attribute-code="<?= /* @escapeNotVerified */ $attributeCode ?>"
-             attribute-id="<?= /* @escapeNotVerified */ $swatchData['attribute_id'] ?>"
-             data-am-js="swatch-options">
+        <div attribute-code="<?= /* @escapeNotVerified */ $attributeCode ?>"
+             attribute-id="<?= /* @escapeNotVerified */ $swatchData['attribute_id'] ?>">
             <?php foreach ($swatchData['options'] as $option => $label) : ?>
             <?php if ($block instanceof \Amasty\Shopby\Block\Navigation\State\Swatch) : ?>
-                <span class="item swatch-option-link-layered am-swatch-link">
+                <span class="item">
             <?php else : ?>
                 <a href="<?= /* @escapeNotVerified */
                 str_replace('\\', '/', $label['link']) ?>"
@@ -107,7 +104,6 @@ $relNofollow = $filterSetting ? $filterSetting->getRelNofollow() : false;
                         <div class="<?= /* @escapeNotVerified */ $extraSwatchClass; ?> swatch-option
                                         <?= /* @escapeNotVerified */ $label['custom_style'] ?>
                                         <?= /* @escapeNotVerified */ $class; ?> "
-                             data-am-js="swatch-item"
                              option-type="<?= /* @escapeNotVerified */ $optionType; ?>"
                              option-id="<?= /* @escapeNotVerified */ $option ?>"
                              option-label="<?= $block->escapeHtml($label['label']) ?>"
@@ -119,7 +115,7 @@ $relNofollow = $filterSetting ? $filterSetting->getRelNofollow() : false;
                     <?php endif; ?>
                     <?php if ($showImagesLabel) : ?>
                         <div class="am-shopby-swatch-label">
-                            <span class="label"><?= $label['label'] ?></span>
+                            <span class="label"><?= $label['label'] == 'Natural' ? 'Diamond' : $label['label'] ?></span>
                             <?php if ($filterSetting && $filterSetting->isShowProductQuantities()) : ?>
                                 <span class="count">
                                 <?= $label[SwatchRenderer::VAR_COUNT]; ?>

@@ -98,7 +98,7 @@ class Router extends \Amasty\ShopbySeo\Controller\Router {
      * @return bool|\Magento\Framework\App\ActionInterface
      */
     public function match(RequestInterface $request)
-    {                
+    {
         $identifier = trim($request->getPathInfo(), '/');
         $brandUrlKey = $this->helper->getBrandUrlKey();
         $positionBrandUrlKey = $brandUrlKey ? strpos($identifier, $brandUrlKey) : false;
@@ -121,7 +121,7 @@ class Router extends \Amasty\ShopbySeo\Controller\Router {
             }
 
             $matches[self::INDEX_ALIAS] = $category;
-            $matches[self::INDEX_CATEGORY] = trim($identifier, $category);
+            $matches[self::INDEX_CATEGORY] = substr($identifier, strlen($category) + 1);
             /* -- Custom Code for DM End -- */
             
             //$posLastValue = strrpos($identifier, "/");
@@ -131,6 +131,7 @@ class Router extends \Amasty\ShopbySeo\Controller\Router {
         }
 
         $seoPart = $this->urlHelper->removeCategorySuffix($matches[self::INDEX_CATEGORY]);
+
         $suffix = $this->scopeConfig
             ->getValue('catalog/seo/category_url_suffix', ScopeInterface::SCOPE_STORE);
         $suffixMoved = $seoPart != $matches[self::INDEX_CATEGORY] || $suffix == '/';
@@ -138,6 +139,7 @@ class Router extends \Amasty\ShopbySeo\Controller\Router {
         $alias = $regex ? preg_replace($regex, '', $matches[self::INDEX_ALIAS]) : $matches[self::INDEX_ALIAS];
 
         $params = $this->urlParser->parseSeoPart($seoPart);
+
         if ($params === false) {
             return false;
         }
