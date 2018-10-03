@@ -85,4 +85,5 @@
     <preference for="Mirasvit\Seo\Observer\SeoDataObserver" type="DiamondMansion\Extensions\Override\Mirasvit\Seo\Observer\SeoDataObserver"/>
 
     <preference for="Amasty\ShopbySeo\Controller\Router" type="DiamondMansion\Extensions\Override\Amasty\ShopbySeo\Controller\Router"/>
+    <preference for="Amasty\ShopbySeo\Helper\Url" type="DiamondMansion\Extensions\Override\Amasty\ShopbySeo\Helper\Url"/>
 </config>

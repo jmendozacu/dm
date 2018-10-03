@@ -99,7 +99,14 @@ class Router extends \Amasty\ShopbySeo\Controller\Router {
      */
     public function match(RequestInterface $request)
     {
+        $params = $request->getParams();
+        
         $identifier = trim($request->getPathInfo(), '/');
+
+        $identifier .= isset($params['band']) ? '/' . $params['band'] : '';
+        $identifier .= isset($params['design-collection']) ? '/' . $params['design-collection'] : '';
+        $identifier .= isset($params['metal']) ? '/' . $params['metal'] : '';
+
         $brandUrlKey = $this->helper->getBrandUrlKey();
         $positionBrandUrlKey = $brandUrlKey ? strpos($identifier, $brandUrlKey) : false;
 
