@@ -28,6 +28,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return $this->getObjectManager()->get('\Magento\Store\Model\StoreManagerInterface');
     }
 
+    public function getBaseUrl()
+    {
+        return $this->getStoreManager()->getStore()->getBaseUrl();
+    }
+
     public function getMediaDir()
     {
         return BP . DIRECTORY_SEPARATOR . 'pub' . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR;

@@ -8,7 +8,6 @@
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="catalog.leftnav" remove="true"/>
-        <referenceBlock name="product_list_toolbar" remove="true"/>
         <referenceContainer name="content">
             <container name="amshopby.catalog.topnav.container" htmlTag="div" htmlClass="catalog-topnav amasty-catalog-topnav" before="-">
                 <block class="Amasty\Shopby\Block\Navigation\CategoryTop" name="amshopby.catalog.topnav" template="Magento_LayeredNavigation::layer/view.phtml">
@@ -17,6 +16,18 @@
                 </block>
                 <container name="amshopby.catalog.topnav.container.last" htmlTag="div" htmlClass="catalog-topnav-last-item" after="amshopby.catalog.topnav"></container>
             </container>
+            <referenceBlock name="category.products">
+                <block class="Magento\Catalog\Block\Product\ListProduct" name="category.products.list.ring.design" as="products_ring_design" template="Magento_Catalog::product/list_ring_design.phtml">
+                    <container name="category.product.list.additional" as="additional" />
+                    <block class="Magento\Framework\View\Element\Template" name="category.product.item.ring.design" as="item_ring_design" template="Magento_Catalog::product/list/item_ring_design.phtml"/>
+                    <block class="Magento\Catalog\Block\Product\ProductList\Toolbar" name="product_list_toolbar" template="Magento_Catalog::product/list/toolbar.phtml">
+                        <block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>
+                    </block>
+                    <action method="setToolbarBlockName">
+                        <argument name="name" xsi:type="string">product_list_toolbar</argument>
+                    </action>
+                </block>
+            </referenceBlock>
         </referenceContainer>
     </body>
 </page>

@@ -1,0 +1,76 @@
+<?php 
+    $defaultImage = $this->getViewFileUrl('images/default.jpg');
+    $defaultSmallImage = $this->getViewFileUrl('images/default_small.jpg');
+
+    $filters = array_filter($this->getRequest()->getParams(), function ($filterKey) {
+        return substr($filterKey, 0, 3) === 'dm_';
+    }, ARRAY_FILTER_USE_KEY);
+
+    $product = $this->getProduct(); 
+    $product->setFilters($filters);
+    $productUrl = $product->getProductUrl();
+    $productName = $product->getName();
+    $productImage = $product->getImage();
+    $productPrice = $product->getPrice();
+
+    $recommendItems = [];//json_decode($product->getRecommendItems(), true);
+?>
+<script type="text/javascript">
+var qazy_image = "<?php echo $defaultImage ?>"; 
+</script>
+
+<li class="grid_4 item design-ring" id="item-<?php echo $product->getId() ?>">
+    <div class="product-box">
+        <div class="product-img-box">
+            <a href="<?php echo $productUrl ?>" title="<?php echo $productName ?>" class="product-image"><div class="hover-box">
+                <img id="<?php echo 'img-'.$product->getSku(); ?>" data-qazy="true" data-qazy-placeholder="<?php echo $defaultImage ?>" class="lazy" src="<?php echo $productImage ?>" alt="<?php echo $this->getImageAlt() ?>"/>
+            </div></a>
+        </div>
+        <div class="product-info">
+            <div class="product-info-content">
+                <h2 class="product-name">
+                    <a href="<?php echo $productUrl ?>" title="<?php echo $productName ?>"><?php echo $productName ?></a>
+                </h2>
+                <div class="price-box"><span class="regular-price"><span class="price">$<?php echo $productPrice ?></span></span></div>
+                <div class="recommend-items">
+                    <?php foreach ($recommendItems as $recommendItem): ?>
+                    <div class="recommend-item">
+                        <?php
+                            $recommendItemParams = $product->getDefaultOptions(array(
+                                    'default'   => $recommendItem
+                                )
+                            );
+
+                            $recommendItem = Mage::helper('dmcustom')->strSanitizer($recommendItem);
+                            
+                            foreach ($recommendItemParams as $paramKey => $paramValue) {
+                                if (isset($recommendItem[$paramKey])) {
+                                    $recommendItemParams[$paramKey] = $recommendItem[$paramKey];
+                                }
+                            }
+
+                            $recommendItemUrl = $product->getCustomUrl($recommendItemParams);
+                            $recommendItemName = $product->getCustomName($recommendItemParams);
+                            $recommendItemtImage = $product->getCustomImage(array(
+                                    'params' => $recommendItemParams,
+                                    'width' => 420,
+                                    'height' => 420,
+                                ));
+                            $recommendItemPrice = $product->getCustomPrice($recommendItemParams);
+                        ?>
+                        <a href="<?php echo $recommendItemUrl ?>" title="<?php echo $recommendItemName ?>" data-price="<?php echo $recommendItemPrice ?>" data-image="<?php echo $recommendItemtImage ?>">
+                            <?php if (!$useDirectImage): ?>
+                            <img data-qazy="true" data-qazy-placeholder="<?php echo $defaultImage ?>" class="lazy" src="<?php echo $recommendItemtImage ?>" />
+                            <?php else: ?>
+                            <img src="<?php echo $recommendItemtImage ?>" />
+                            <?php endif ?>
+                        </a>
+                    </div>
+                    <?php endforeach ?>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</li>

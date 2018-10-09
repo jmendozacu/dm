@@ -1,0 +1,66 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\Action\Action;
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ */
+?>
+<?php
+$_productCollection = $block->getLoadedProductCollection();
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+?>
+<?php if (!$_productCollection->count()): ?>
+    <div class="message info empty"><div><?= /* @escapeNotVerified */ __('We can\'t find products matching the selection.') ?></div></div>
+<?php else: ?>
+    <?= $block->getToolbarHtml() ?>
+    <?= $block->getAdditionalHtml() ?>
+    <?php
+    if ($block->getMode() == 'grid') {
+        $viewMode = 'grid';
+        $image = 'category_page_grid';
+        $showDescription = false;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    } else {
+        $viewMode = 'list';
+        $image = 'category_page_list';
+        $showDescription = true;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
+    }
+    /**
+     * Position for actions regarding image size changing in vde if needed
+     */
+    $pos = $block->getPositioned();
+    ?>
+
+<section class="category-products">
+    <ul class="products-grid">
+    <?php $i=1; foreach ($_productCollection as $_product): ?>
+        <?php 
+            if ($_product->getTypeId() != 'dm_ring_design' && $_product->getTypeId() != 'dm_ring_simple') {
+                continue;
+            }
+
+            echo $this->getChildBlock('item_ring_design')
+                ->setProduct($_product)
+                ->setImageAlt(($i == 1) ? $block->getLayout()->getBlock('page.main.title')->getPageTitle() : '')
+                ->toHtml();
+        ?>
+    <?php $i++; endforeach ?>
+    </ul>
+        
+    <div class="toolbar-bottom">
+        <?php //echo $this->getToolbarHtml() ?>
+    </div>
+</section>
+    <?= $block->getToolbarHtml() ?>
+<?php endif; ?>

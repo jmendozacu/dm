@@ -4,9 +4,9 @@ namespace DiamondMansion\Extensions\Helper;
 
 class Image extends Data
 {
-    public function getPlaceholderImageUrl()
+    public function getPlaceholderImageUrl($size = "")
     {
-        return $this->getMediaUrl() . 'diamondmansion/placeholder/image.jpg';
+        return $this->getMediaUrl() . 'diamondmansion/placeholder/image' . $size . '.jpg';
     }
 
     public function getProductImageDir()
@@ -78,7 +78,7 @@ class Image extends Data
         }
 
         $placeholder = [
-            "main" => $this->getPlaceholderImageUrl(),
+            "main" => $this->getPlaceholderImageUrl('_420x420'),
             "pop" => $this->getPlaceholderImageUrl(),
             "thumb" => $this->getPlaceholderImageUrl(),
             "filename" => "image.jpg",

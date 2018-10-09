@@ -7,39 +7,8 @@ class View extends \Magento\Catalog\Block\Category\View
     protected function _prepareLayout()
     {
         parent::_prepareLayout();
-/*
-        $this->getLayout()->createBlock(\Magento\Catalog\Block\Breadcrumbs::class);
 
-        $category = $this->getCurrentCategory();
-        if ($category) {
-            $title = $category->getMetaTitle();
-            if ($title) {
-                $this->pageConfig->getTitle()->set($title);
-            }
-            $description = $category->getMetaDescription();
-            if ($description) {
-                $this->pageConfig->setDescription($description);
-            }
-            $keywords = $category->getMetaKeywords();
-            if ($keywords) {
-                $this->pageConfig->setKeywords($keywords);
-            }
-            if ($this->_categoryHelper->canUseCanonicalTag()) {
-                $this->pageConfig->addRemotePageAsset(
-                    $category->getUrl(),
-                    'canonical',
-                    ['attributes' => ['rel' => 'canonical']]
-                );
-            }
-
-            $pageMainTitle = $this->getLayout()->getBlock('page.main.title');
-            if ($pageMainTitle) {
-                $pageMainTitle->setPageTitle($this->getCurrentCategory()->getName());
-            }
-        }
-*/
-        $category = $this->getCurrentCategory();
-        if ($category && $category->getDisplayMode() == \DiamondMansion\Extensions\Override\Magento\Catalog\Model\Category\Attribute\Source\Mode::DM_RING_DESIGN) {
+        if ($this->isRingDesignMode()) {
             $title = $this->_getDmRingDesignPageTitle();
             if (!empty($title)) {
                 $this->pageConfig->getTitle()->set($title);
@@ -52,6 +21,22 @@ class View extends \Magento\Catalog\Block\Category\View
         }
 
         return $this;
+    }
+
+    public function isRingDesignMode() {
+        return $this->getCurrentCategory()->getDisplayMode() == \DiamondMansion\Extensions\Override\Magento\Catalog\Model\Category\Attribute\Source\Mode::DM_RING_DESIGN;
+    }
+
+    public function getProductListHtml()
+    {
+        $html = "";
+        if ($this->isProductMode() || $this->isMixedMode()) {
+            $html = $this->getChildHtml('product_list');
+        } else {
+            $html = $this->getChildHtml(strtolower($this->getCurrentCategory()->getDisplayMode()));
+        }
+
+        return $html;
     }
 
     protected function _getDmRingDesignPageTitle() {

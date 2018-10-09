@@ -78,9 +78,19 @@
         </arguments>
     </virtualType>
 
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="dm:urlrewrites:regenerate" xsi:type="object">DiamondMansion\Extensions\Console\Command\RegenerateUrlRewrites</item>
+            </argument>
+        </arguments>
+    </type>
+
     <preference for="Magento\Theme\Block\Html\Breadcrumbs" type="DiamondMansion\Extensions\Override\Magento\Theme\Block\Html\Breadcrumbs"/>
     <preference for="Magento\Catalog\Block\Category\View" type="DiamondMansion\Extensions\Override\Magento\Catalog\Block\Category\View"/>
     <preference for="Magento\Catalog\Model\Category\Attribute\Source\Mode" type="DiamondMansion\Extensions\Override\Magento\Catalog\Model\Category\Attribute\Source\Mode"/>
+    <preference for="Magento\Catalog\Model\Product" type="DiamondMansion\Extensions\Override\Magento\Catalog\Model\Product"/>
+    <preference for="Magento\UrlRewrite\Model\Storage\DbStorage" type="DiamondMansion\Extensions\Override\Magento\UrlRewrite\Model\Storage\DbStorage"/>
 
     <preference for="Mirasvit\Seo\Observer\SeoDataObserver" type="DiamondMansion\Extensions\Override\Mirasvit\Seo\Observer\SeoDataObserver"/>
 
