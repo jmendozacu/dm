@@ -88,6 +88,8 @@
 
     <preference for="Magento\Theme\Block\Html\Breadcrumbs" type="DiamondMansion\Extensions\Override\Magento\Theme\Block\Html\Breadcrumbs"/>
     <preference for="Magento\Catalog\Block\Category\View" type="DiamondMansion\Extensions\Override\Magento\Catalog\Block\Category\View"/>
+    <preference for="Magento\Catalog\Block\Product\ListProduct" type="DiamondMansion\Extensions\Override\Magento\Catalog\Block\Product\ListProduct"/>
+    <preference for="Magento\Catalog\Block\Product\ProductList\Toolbar" type="DiamondMansion\Extensions\Override\Magento\Catalog\Block\Product\ProductList\Toolbar"/>
     <preference for="Magento\Catalog\Model\Category\Attribute\Source\Mode" type="DiamondMansion\Extensions\Override\Magento\Catalog\Model\Category\Attribute\Source\Mode"/>
     <preference for="Magento\Catalog\Model\Product" type="DiamondMansion\Extensions\Override\Magento\Catalog\Model\Product"/>
     <preference for="Magento\UrlRewrite\Model\Storage\DbStorage" type="DiamondMansion\Extensions\Override\Magento\UrlRewrite\Model\Storage\DbStorage"/>

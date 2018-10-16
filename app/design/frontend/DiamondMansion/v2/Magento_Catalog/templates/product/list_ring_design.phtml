@@ -24,24 +24,6 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
 <?php else: ?>
     <?= $block->getToolbarHtml() ?>
     <?= $block->getAdditionalHtml() ?>
-    <?php
-    if ($block->getMode() == 'grid') {
-        $viewMode = 'grid';
-        $image = 'category_page_grid';
-        $showDescription = false;
-        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
-    } else {
-        $viewMode = 'list';
-        $image = 'category_page_list';
-        $showDescription = true;
-        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
-    }
-    /**
-     * Position for actions regarding image size changing in vde if needed
-     */
-    $pos = $block->getPositioned();
-    ?>
-
 <section class="category-products">
     <ul class="products-grid">
     <?php $i=1; foreach ($_productCollection as $_product): ?>
@@ -57,10 +39,55 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
         ?>
     <?php $i++; endforeach ?>
     </ul>
-        
-    <div class="toolbar-bottom">
-        <?php //echo $this->getToolbarHtml() ?>
-    </div>
 </section>
-    <?= $block->getToolbarHtml() ?>
+<script type="text/javascript">
+require([
+    'jquery',
+    'jquery-isotope'
+], function ($) {
+    $(window).load(function() {
+        var $container = $('.products-grid');
+        $container.isotope({
+            duration: 250,
+            itemSelector: '.item',
+            resizable: true,
+            layoutMode : 'fitRows'
+        });
+    });
+});
+</script>
+
+<?php /*** View More ***/ ?>
+<div class="buttons-set a-center" id="view-more-products-wrapper">
+    <a id="view-more-products" class="button" style="float: none;" href="javascript:void(0)">View More</a>
+    <img id="view-more-products-loading" src="<?php echo $this->getViewFileUrl("images/amshopby-overlay.gif") ?>" class="no-display"/>
+</div>
+<?php 
+    $url = $this->getCurrentUrl();
+    if ($this->getRequest()->getParam("p")) {
+        $page = $this->getRequest()->getParam("p");
+        $this->setViewedPage($url, $page);
+        $viewedItemIdentifier = 0;
+    } else {
+        $page = $this->getViewedPage($url);
+        $viewedItemIdentifier = $this->getViewedItem($url);
+    }
+?>
+<?php /*** View More End ***/ ?>
 <?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "dm-qazy": {
+                "qazy_image" : "<?php echo $this->getViewFileUrl('images/default.jpg'); ?>"
+            },
+            "dm-viewmore": {
+                "isLast": false,
+                "isStoppedLoad": -1,
+                "currentUrl": "<?= $url ?>",
+                "page": "<?= $page ?>",
+                "viewItemIdentifier": "<?= $viewedItemIdentifier ?>"
+            }
+        }
+    }
+</script>

@@ -68,7 +68,7 @@ class Price extends \Magento\Catalog\Model\Product\Type\Price
             $metalFixedPrice = $values["price"][1];
         }
 
-        $metalPrice = ($metalFixedPrice > 0) ? $metalFixedPrice : $this->_helper->getMetalPrice($this->config, $params["metal"]) * $metalWeight;
+        $metalPrice = ($metalFixedPrice > 0) ? $metalFixedPrice : (double)$this->_helper->getMetalPrice($this->config, $params["metal"]) * (double)$metalWeight;
         
         $isFixedMainStonePrice = isset($params['others']) && isset($params['others']['fixed-main-stone-price']) && $params['others']['fixed-main-stone-price'];
         if ($params["main-stone-type"] == "setting") {
@@ -134,13 +134,13 @@ class Price extends \Magento\Catalog\Model\Product\Type\Price
                         return 0;
                     }
 
-                    $sideStonePriceTotal += $sideStonePrice * $sideStoneQty;
+                    $sideStonePriceTotal += (double)$sideStonePrice * (double)$sideStoneQty;
                 }    
             }
         }
 
         return round((
-            parent::getPrice() + 
+            parent::getPrice($product) + 
             $mainStonePrice + 
             $metalPrice + 
             $sideStonePriceTotal

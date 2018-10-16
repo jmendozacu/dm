@@ -18,6 +18,9 @@
             </container>
             <referenceBlock name="category.products">
                 <block class="Magento\Catalog\Block\Product\ListProduct" name="category.products.list.ring.design" as="products_ring_design" template="Magento_Catalog::product/list_ring_design.phtml">
+                    <action method="setDefaultDirection">
+                        <argument name="dir" xsi:type="string">desc</argument>
+                    </action>
                     <container name="category.product.list.additional" as="additional" />
                     <block class="Magento\Framework\View\Element\Template" name="category.product.item.ring.design" as="item_ring_design" template="Magento_Catalog::product/list/item_ring_design.phtml"/>
                     <block class="Magento\Catalog\Block\Product\ProductList\Toolbar" name="product_list_toolbar" template="Magento_Catalog::product/list/toolbar.phtml">

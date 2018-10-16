@@ -1,8 +1,3 @@
-/**
- * @author    Amasty Team
- * @copyright Copyright (c) Amasty Ltd. ( http://www.amasty.com/ )
- * @package   Amasty_Shopby
- */
 define([
     "jquery"
 ], function ($) {

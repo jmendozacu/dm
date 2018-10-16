@@ -22,8 +22,8 @@ $displayMode = $filterSetting ? $filterSetting->getDisplayMode() : false;
 $displayMode = $displayMode ?: $block->getDisplayModeByAttributeCode($attributeCode);
 $showImagesLabel = ($displayMode == DisplayMode::MODE_IMAGES_LABELS) ? true : false;
 $relNofollow = $filterSetting ? $filterSetting->getRelNofollow() : false;
+$params = $this->getRequest()->getParams();
 ?>
-
 <?php if ($filterSetting && $showImagesLabel && $filterSetting->isShowSearchBox(count($swatchData['options']))) : ?>
     <?= $block->getSearchForm(); ?>
 <?php endif; ?>
@@ -36,6 +36,16 @@ $relNofollow = $filterSetting ? $filterSetting->getRelNofollow() : false;
         <div attribute-code="<?= /* @escapeNotVerified */ $attributeCode ?>"
              attribute-id="<?= /* @escapeNotVerified */ $swatchData['attribute_id'] ?>">
             <?php foreach ($swatchData['options'] as $option => $label) : ?>
+            <?php
+            if (($attributeCode == "dm_stone_shape") && ((isset($params["dm_stone_type"]) && $params["dm_stone_type"] == 34 && !in_array($label['label'], array("Round"))) ||
+                (isset($params["dm_stone_type"]) && $params["dm_stone_type"] == 32 && !in_array($label['label'], array("Cushion", "Radiant"))))
+            ) { continue; }
+            if (($attributeCode == "dm_stone_type") && ((isset($params["center_diamond_shape"]) && $params["center_diamond_shape"] != 45 && $label['label'] == "Black") ||
+                (isset($params["center_diamond_shape"]) && !in_array($params["center_diamond_shape"], array(37, 44)) && $label['label'] == "Yellow") ||
+                $label['label'] == "Pink"
+                )
+            ) { continue; }
+            ?>            
             <?php if ($block instanceof \Amasty\Shopby\Block\Navigation\State\Swatch) : ?>
                 <span class="item">
             <?php else : ?>

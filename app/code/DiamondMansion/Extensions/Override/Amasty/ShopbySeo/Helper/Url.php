@@ -16,7 +16,7 @@ class Url extends \Amasty\ShopbySeo\Helper\Url
 
     protected function injectAliases($routeUrl, array $aliases)
     {
-        $result = $routeUrl;
+        $result = rtrim($routeUrl, '/');
         if ($aliases) {
             $aliasesTmp = $aliases;
             $aliases= [];
@@ -63,7 +63,7 @@ class Url extends \Amasty\ShopbySeo\Helper\Url
             }
         }
 
-        return $result; 
+        return $result . '/';
     }
 
     public function seofyUrl($url) {

@@ -69,43 +69,43 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
     }
 
     public function getAllDmOptions($product) {
-        if (!$this->_allDmOptions) {
+        if (!isset($this->_allDmOptions[$product->getId()])) {
             $collection = $this->_dmOptionModel->getCollection()
                 ->addFieldToFilter('product_id', $product->getId())
                 ->joinDetails($product->getTypeId());
 
-            $this->_allDmOptions = [];
+            $this->_allDmOptions[$product->getId()] = [];
             foreach ($collection as $item) {
-                if (!isset($this->_allDmOptions[$item->getGroup()])) {
-                    $this->_allDmOptions[$item->getGroup()] = [];
+                if (!isset($this->_allDmOptions[$product->getId()][$item->getGroup()])) {
+                    $this->_allDmOptions[$product->getId()][$item->getGroup()] = [];
                 }
 
-                $this->_allDmOptions[$item->getGroup()][$item->getCode()] = $item;
+                $this->_allDmOptions[$product->getId()][$item->getGroup()][$item->getCode()] = $item;
             }
         }
 
-        return $this->_allDmOptions;
+        return $this->_allDmOptions[$product->getId()];
     }
 
     public function getDefaultDmOptions($product) {
-        if (!$this->_defaultDmOptions) {
-            $this->_defaultDmOptions = [];
+        if (!isset($this->_defaultDmOptions[$product->getId()])) {
+            $this->_defaultDmOptions[$product->getId()] = [];
             $options = $this->getAllDmOptions($product);
             foreach ($options as $group => $optionGroup) {
                 foreach ($optionGroup as $option) {
                     if ($option->getIsDefault()) {
-                        $this->_defaultDmOptions[$group] = $option;
+                        $this->_defaultDmOptions[$product->getId()][$group] = $option;
                         break;
                     }
                 }
 
-                if (!isset($this->_defaultDmOptions[$group])) {
-                    $this->_defaultDmOptions[$group] = current($options[$group]);
+                if (!isset($this->_defaultDmOptions[$product->getId()][$group])) {
+                    $this->_defaultDmOptions[$product->getId()][$group] = current($options[$group]);
                 }
             }
         }
 
-        return $this->_defaultDmOptions;
+        return $this->_defaultDmOptions[$product->getId()];
     }
 
     public function getDmOptions($product) {
@@ -189,10 +189,10 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
                 continue;
             }
 
-            if (is_array($children) && isset($children[$group]) && !in_array($this->_defaultDmOptions[$group]->getCode(), $children[$group])) {
+            if (is_array($children) && isset($children[$group]) && !in_array($defaultOptions[$group]->getCode(), $children[$group])) {
                 $result[$group] = $children[$group][0];
             } else {
-                $result[$group] = $this->_defaultDmOptions[$group]->getCode();
+                $result[$group] = $defaultOptions[$group]->getCode();
             }
         }
 

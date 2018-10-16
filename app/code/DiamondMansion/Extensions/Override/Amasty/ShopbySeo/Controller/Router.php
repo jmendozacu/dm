@@ -129,12 +129,12 @@ class Router extends \Amasty\ShopbySeo\Controller\Router {
 
             $matches[self::INDEX_ALIAS] = $category;
             $matches[self::INDEX_CATEGORY] = substr($identifier, strlen($category) + 1);
-            /* -- Custom Code for DM End -- */
             
             //$posLastValue = strrpos($identifier, "/");
             //$matches[self::INDEX_ALIAS] = substr($identifier, 0, $posLastValue);
             //$positionFrom = ($posLastValue === false) ? 0 : $posLastValue + 1;
             //$matches[self::INDEX_CATEGORY] = substr($identifier, $positionFrom);
+            /* -- Custom Code for DM End -- */
         }
 
         $seoPart = $this->urlHelper->removeCategorySuffix($matches[self::INDEX_CATEGORY]);
@@ -172,7 +172,9 @@ class Router extends \Amasty\ShopbySeo\Controller\Router {
             $this->registry->unregister('amasty_shopby_seo_parsed_params');
             $this->registry->register('amasty_shopby_seo_parsed_params', $params);
             $request->setParams($params);
-            $request->setPathInfo($matchedAlias);
+            /* -- Custom Code for DM -- */
+            $request->setPathInfo(rtrim($matchedAlias, '/') . '/');
+            /* -- Custom Code for DM End -- */
             return $this->actionFactory->create(\Magento\Framework\App\Action\Forward::class);
         }
 
