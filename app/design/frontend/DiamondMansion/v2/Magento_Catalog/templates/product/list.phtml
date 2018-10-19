@@ -24,22 +24,20 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
 <?php else: ?>
     <?= $block->getToolbarHtml() ?>
     <?= $block->getAdditionalHtml() ?>
-<section class="category-products">
+    <section class="category-products">
+    <?php $iterator = 1; ?>
     <ul class="products-grid">
-    <?php $i=1; foreach ($_productCollection as $_product): ?>
-        <?php 
-            if ($_product->getTypeId() != 'dm_ring_design' && $_product->getTypeId() != 'dm_ring_simple') {
-                continue;
-            }
-
-            echo $this->getChildBlock('item')
-                ->setProduct($_product)
-                ->setImageAlt(($i == 1) ? $block->getLayout()->getBlock('page.main.title')->getPageTitle() : '')
-                ->toHtml();
-        ?>
-    <?php $i++; endforeach ?>
+        <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+        <?php $i=0; foreach ($_productCollection as $_product): ?>
+            <?php 
+                echo $block->getChildBlock('item')
+                    ->setProduct($_product)
+                    ->setImageAlt(($i == 1) ? $block->getLayout()->getBlock('page.main.title')->getPageTitle() : '')
+                    ->toHtml();
+            ?>
+        <?php $i++; endforeach; ?>
     </ul>
-</section>
+    </section>
 <script type="text/javascript">
 require([
     'jquery',

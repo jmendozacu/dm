@@ -371,19 +371,33 @@
     
         .product-info {
     
+            .product-name {
+                margin-bottom: 10px;
+            }
+            
             .product-name a {
                 font-family: "Montserrat Semi";
                 font-weight: 600;
-                font-size: 16px;
+                font-size: 14px;
                 color: #000;
                 text-transform: uppercase;
+
+                &:hover {
+                    -moz-transition: all 10ms ease;
+                    -webkit-transition: all 10ms ease;
+                    -o-transition: all 10ms ease;
+                    transition: all 10ms ease;
+                    color: #ff0030;
+                }
             }
     
             .title-divider {
                 background-color: transparent;
+                width:100%; height:1px; overflow:hidden; background:#d2d2d2;
     
                 span {
-                    background-color: #777777;				
+                    background-color:#ff0030;
+                    width:37px; height:1px; display:block;
                 }
             }
     

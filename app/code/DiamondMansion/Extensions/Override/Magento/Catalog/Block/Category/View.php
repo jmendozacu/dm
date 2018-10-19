@@ -27,18 +27,6 @@ class View extends \Magento\Catalog\Block\Category\View
         return $this->getCurrentCategory()->getDisplayMode() == \DiamondMansion\Extensions\Override\Magento\Catalog\Model\Category\Attribute\Source\Mode::DM_RING_DESIGN;
     }
 
-    public function getProductListHtml()
-    {
-        $html = "";
-        if ($this->isProductMode() || $this->isMixedMode()) {
-            $html = $this->getChildHtml('product_list');
-        } else {
-            $html = $this->getChildHtml(strtolower($this->getCurrentCategory()->getDisplayMode()));
-        }
-
-        return $html;
-    }
-
     protected function _getDmRingDesignPageTitle() {
         $params = array();
         foreach ($this->getRequest()->getParams() as $key=>$value) {

@@ -82,11 +82,13 @@
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="dm:urlrewrites:regenerate" xsi:type="object">DiamondMansion\Extensions\Console\Command\RegenerateUrlRewrites</item>
+                <item name="dm:amshopby:custompages" xsi:type="object">DiamondMansion\Extensions\Console\Command\AmshopbyCustomPages</item>
             </argument>
         </arguments>
     </type>
 
     <preference for="Magento\Theme\Block\Html\Breadcrumbs" type="DiamondMansion\Extensions\Override\Magento\Theme\Block\Html\Breadcrumbs"/>
+    <preference for="Magento\Catalog\Controller\Category\View" type="DiamondMansion\Extensions\Override\Magento\Catalog\Controller\Category\View"/>
     <preference for="Magento\Catalog\Block\Category\View" type="DiamondMansion\Extensions\Override\Magento\Catalog\Block\Category\View"/>
     <preference for="Magento\Catalog\Block\Product\ListProduct" type="DiamondMansion\Extensions\Override\Magento\Catalog\Block\Product\ListProduct"/>
     <preference for="Magento\Catalog\Block\Product\ProductList\Toolbar" type="DiamondMansion\Extensions\Override\Magento\Catalog\Block\Product\ProductList\Toolbar"/>
@@ -98,4 +100,5 @@
 
     <preference for="Amasty\ShopbySeo\Controller\Router" type="DiamondMansion\Extensions\Override\Amasty\ShopbySeo\Controller\Router"/>
     <preference for="Amasty\ShopbySeo\Helper\Url" type="DiamondMansion\Extensions\Override\Amasty\ShopbySeo\Helper\Url"/>
+    <preference for="Amasty\ShopbyPage\Model\Customizer\Category\Page" type="DiamondMansion\Extensions\Override\Amasty\ShopbyPage\Model\Customizer\Category\Page"/>
 </config>

@@ -1,0 +1,28 @@
+<?php 
+    $defaultImage = $this->getViewFileUrl('images/default.jpg');
+    $defaultSmallImage = $this->getViewFileUrl('images/default_small.jpg');
+
+    $product = $this->getProduct(); 
+    $productUrl = $product->getProductUrl();
+    $productName = $product->getName();
+    $productImage = $block->getImage($product, 'category_page_grid')->toHtml();
+    $productImage = $block->getImage($product, 'category_page_grid')->getUrl();
+    $productPrice = $product->getPrice();
+?>
+<li class="grid_4 item" id="item-<?php echo $product->getId() ?>">
+    <div class="product-box">
+        <div class="product-img-box">
+            <a href="<?php echo $productUrl ?>" title="<?php echo $productName ?>"><?= $block->getImage($product, 'category_page_grid')->toHtml(); ?></a>
+        </div>
+        <div class="product-info">
+            <h2 class="product-name">
+                <a href="<?php echo $productUrl ?>" title="<?php echo $productName ?>"><?php echo $productName ?></a>
+                <div class="title-divider"><span>&nbsp;</span></div>
+            </h2>
+        </div>
+        <button class="button btn-cart" data-mage-init='{"redirectUrl": {"url": "<?= /* @escapeNotVerified */ $block->getAddToCartUrl($product) ?>"}}' type="button" title="<?= /* @escapeNotVerified */ __('Add to Cart') ?>">
+            <span><span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span></span>
+        </button>
+    </div>
+    <div class="clear"></div>
+</li>
