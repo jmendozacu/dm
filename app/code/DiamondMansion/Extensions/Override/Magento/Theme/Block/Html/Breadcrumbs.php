@@ -7,6 +7,34 @@ class Breadcrumbs extends \Magento\Theme\Block\Html\Breadcrumbs
 
     protected function _toHtml()
     {
+        if ($this->getRequest()->getControllerName() == "product" && count($this->_crumbs) == 0) {
+            $this->_crumbs[] = array(
+                'label' => 'Home',
+                'title' => 'Go to Home Page',
+                'link' => '/'
+            );
+
+            $registry = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Framework\Registry');
+            $product = $registry->registry('current_product');
+
+            $categoryCollection = $product->getCategoryCollection();
+            $categoryCollection->addAttributeToSort('level', $categoryCollection::SORT_ORDER_DESC);
+            $categoryCollection->setPageSize(1);
+            $categories = $categoryCollection->getFirstItem()->getParentCategories();
+            foreach ($categories as $category) {
+                $this->_crumbs[] = array(
+                    'label' => $category->getName(),
+                    'title' => $category->getName(),
+                    'link' => $category->getUrl()
+                );
+            }
+            $this->_crumbs[] = array(
+                'label' => $product->getName(),
+                'title' => $product->getName(),
+                'link' => $product->getUrl()
+            );
+        }
+
         if (is_array($this->_crumbs)) {
             reset($this->_crumbs);
             $this->_crumbs[key($this->_crumbs)]['first'] = true;

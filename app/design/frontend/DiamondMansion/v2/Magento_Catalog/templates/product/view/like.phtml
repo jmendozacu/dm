@@ -1,0 +1,4 @@
+<div class="like-dislike-buttons-set">
+    <a class="button like <?php if (Mage::getModel("catalog/product")->getLikeStatus($_product->getId())=="liked") echo "active"; ?>" onclick="onLikeProduct(1); return false;" href="#"><?php echo Mage::getModel("catalog/product")->getLikeCount($_product->getId(), true) ?></a>
+    <a class="button dislike <?php if (Mage::getModel("catalog/product")->getLikeStatus($_product->getId())=="disliked") echo "active"; ?>" onclick="onLikeProduct(0); return false" href="#"><?php echo Mage::getModel("catalog/product")->getLikeCount($_product->getId(), false) ?></a>
+</div>

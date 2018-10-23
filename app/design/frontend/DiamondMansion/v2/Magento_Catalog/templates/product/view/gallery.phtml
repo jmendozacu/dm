@@ -1,0 +1,98 @@
+<?php 
+$jsonGallery =  $block->getGalleryImagesJson();
+$arrayJsonGallery = json_decode($jsonGallery, true);
+?>
+<div class="gallery-placeholder product-image">
+    <?php if (isset($arrayJsonGallery[0]) && isset($arrayJsonGallery[0]['img']) && isset($arrayJsonGallery[0]['full'])): ?>
+    <div id="wrap">
+        <a id="zoom" 
+            class="cloud-zoom" 
+            data-zoom='"showTitle": false, "adjustX": -5, "adjustY":-5, "tint": "#fff", "tintOpacity":0.6, "position":"inside"' 
+            href="<?php echo $arrayJsonGallery[0]['full']; ?>">
+            <img id="image" src="<?php echo $arrayJsonGallery[0]['img'] ?>" alt="<?php echo $arrayJsonGallery[0]['caption'] ?>"/>
+        </a>
+    </div>
+    <div class="item-image-arrows">
+        <a href="#" class="l-arrow f-left">Prev</a>
+        <a href="#" class="r-arrow f-right">Next</a>
+    </div>
+    <div class="more-views-container show-button">
+        <div class="more-views">
+            <div class="more-views-title">
+                <h2>More Views</h2>
+            </div>
+            <div class="more-views-holder">
+                <ul>
+                    <?php foreach ($arrayJsonGallery as $_image): ?>
+                    <li>
+                        <a class="cloud-zoom-gallery" 
+                            data-zoom='"useZoom":"zoom", "smallImage":"<?php echo str_replace('\\', '/', $_image['img']); ?>"' 
+                            href="<?php echo $_image['full']; ?>" 
+                            title="<?php echo $_image['caption'] ?>">
+                            <img src="<?php echo $_image['thumb']; ?>" alt="<?php echo $_image['caption'] ?>" />
+                        </a>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+</div>
+<script type="text/javascript">
+require([
+    'jquery',
+    'cloudzoom'
+], function ($) {
+    $(document).ready(function () {
+        if ($('#zoom').length) {
+            $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
+        }
+        
+        $('.more-views h2').on('click', function () {
+            $('.more-views-container').toggleClass('show-button');
+        });
+
+        $('.item-image-arrows .l-arrow').on('click', function() {
+            changeGalleryImage(false);
+            return false;
+        });
+        $('.item-image-arrows .r-arrow').on('click', function() {
+            changeGalleryImage(true);
+            return false;
+        });
+    });
+
+    var galleryIndex = 0;
+    
+    function changeGalleryImage(next) {
+        if (next) {
+            galleryIndex ++;
+            if (galleryIndex == $(".more-views-container ul li").length) {
+                galleryIndex = 0;
+            }
+        } else {
+            if (galleryIndex == 0) {
+                galleryIndex = $(".more-views-container ul li").length;
+            }
+            galleryIndex --;
+        }
+        
+        var galleryImageUrl = $(".more-views-container ul li a").eq(galleryIndex).attr("href");
+        var isReady = true;
+        $('#image').fadeTo(300, 0, function() {
+            $('#image').attr('src',galleryImageUrl).bind('onreadystatechange load', function(){
+                if (isReady && this.complete){
+                    $(".more-views-container ul li a").eq(galleryIndex).trigger("click");
+                    $(this).fadeTo(100, 1);
+                    isReady = false;
+                }
+            });
+            
+        });     
+        
+        return false;   
+    }
+
+});
+</script>

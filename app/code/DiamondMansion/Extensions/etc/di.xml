@@ -83,8 +83,13 @@
             <argument name="commands" xsi:type="array">
                 <item name="dm:urlrewrites:regenerate" xsi:type="object">DiamondMansion\Extensions\Console\Command\RegenerateUrlRewrites</item>
                 <item name="dm:amshopby:custompages" xsi:type="object">DiamondMansion\Extensions\Console\Command\AmshopbyCustomPages</item>
+                <item name="dm:addoptions:ringsize" xsi:type="object">DiamondMansion\Extensions\Console\Command\AddRingSizeOptions</item>
             </argument>
         </arguments>
+    </type>
+
+    <type name="Magento\Catalog\Block\Product\View">
+        <plugin name="dm_plugin_add_catalog_breadcrumb_block" type="DiamondMansion\Extensions\Plugin\Catalog\Block\Product\View" />
     </type>
 
     <preference for="Magento\Theme\Block\Html\Breadcrumbs" type="DiamondMansion\Extensions\Override\Magento\Theme\Block\Html\Breadcrumbs"/>

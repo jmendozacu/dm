@@ -24,6 +24,7 @@
                     <referenceBlock name="my-account-link" remove="true"/>
                     <referenceBlock name="register-link" remove="true"/>
                     <referenceBlock name="catalog.compare.link" remove="true"/>
+                    <referenceBlock name="wish-list-link" remove="true"/>
                 </container>
             </referenceContainer>            
             <block class="Magento\Framework\View\Element\Template" name="nav-container-mobile" as="nav-container-mobile" before="page.top" template="Magento_Theme::html/topmenu-m.phtml"/>

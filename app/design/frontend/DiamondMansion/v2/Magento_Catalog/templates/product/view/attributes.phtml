@@ -1,0 +1,66 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ */
+?>
+
+<?php
+    $_helper = $this->helper('Magento\Catalog\Helper\Output');
+    $_product = $this->getProduct();
+    
+    $_subTitles = array(
+        "design" => array("show"=>false, "label"=>"Design Details", "prefix"=>"Design "), 
+        "center" => array("show"=>false, "label"=>"Center Stone", "prefix"=>"Center Stone "), 
+        "side" => array("show"=>false, "label"=>"Side Stone", "prefix"=>"Side Stone"), 
+        "stone" => array("show"=>false, "label"=>"Stone Details", "prefix"=>"Stone "), 
+        "diamond" => array("show"=>false, "label"=>"Diamond Details", "prefix"=>"Diamond ")
+    );
+    
+    $_currentPrefix = "";
+?>
+<?php if($_additional = $this->getAdditionalData()): ?>
+    <div class="box-collateral">
+        <table class="data-table" id="product-attribute-specs-table">
+            <col />
+            <col />
+            <tbody>
+            <?php foreach ($_additional as $_data): ?>
+            <?php if ($_data['value'] == "No" || $_data['value'] == "N/A") { continue; } ?>
+                <?php foreach ($_subTitles as $key=>$_subTitle): ?>
+                <?php if (strpos($_data['code'], "dmz_".$key."_") !== false && $_subTitle["show"] == false): ?>
+                <tr>
+                    <th class="sub-title" colspan="2"><?php echo $_subTitle["label"] ?></th>
+                </tr>
+                <?php $_subTitles[$key]["show"] = true; $_currentPrefix = $_subTitle["prefix"]; break; endif ?>
+                <?php endforeach ?>
+                <?php if ($_data['code'] == 'dmz_center_cert_number'): ?>
+                <?php $_center_cert_number = $_helper->productAttribute($_product, $_data['value'], $_data['code']); ?>
+                <?php $_center_cert_number_label = str_replace($_currentPrefix, "", $_data['label']); ?>
+                <?php continue; endif ?>
+                <tr>
+                    <?php if ($_data['code'] == 'dmz_center_cert_link'): ?>
+                    <th class="label"><?php echo $_center_cert_number_label ?></th>
+                    <td class="data">
+                        <a href="<?php echo $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?>"><?php echo $_center_cert_number ?></a>
+                    </td>
+                    <?php else: ?>
+                    <th class="label"><?php echo str_replace($_currentPrefix, "", $_data['label']) ?></th>
+                    <td class="data">
+                        <?php echo $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?>
+                    </td>
+                    <?php endif ?>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+<?php endif;?>

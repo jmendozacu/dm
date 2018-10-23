@@ -10,7 +10,8 @@ var config = {
             'dm-ajax': 'js/dm-ajax',
             'dm-qazy': 'js/dm-qazy',
             'jquery-isotope': 'js/jquery.isotope.min',
-            'dm-viewmore': 'js/dm-viewmore'
+            'dm-viewmore': 'js/dm-viewmore',
+            'cloudzoom': 'js/cloudzoom'
         }
     }
 };
