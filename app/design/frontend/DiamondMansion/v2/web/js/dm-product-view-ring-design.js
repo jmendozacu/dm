@@ -391,7 +391,7 @@ define([
                 config.center_stone["clarity"] != "") {
                 
                 new $.ajax(
-                    '/dm/api_ring_design_reload/price',
+                    '/dm/api_ring_design_reload/price/',
                     {
                         method:'post',
                         asynchronous: false,
@@ -447,7 +447,7 @@ define([
             }
             
             new $.ajax(
-                '/dm/api_ring_design_reload/image',
+                '/dm/api_ring_design_reload/image/',
                 {
                     method:'post',
                     asynchronous: config.isLoaded,
