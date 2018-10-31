@@ -1,0 +1,499 @@
+<?php
+    $_product = $this->getProduct();
+
+    extract($this->getOptions());
+
+    $_product->setDefaultDmOptions($defaultOptions);
+
+    $_helper = $this->getHelper();
+
+    $imageDefault = $_product->getImage();
+
+    if ($defaultOptions["band"]->getCode() == "no-band" && count($allOptions["band"]) >= 2) {
+        $imageDefaultWithBand = $_helper->getProductImages([
+            'sku' => $_product->getSku(),
+            'type' => $defaultOptions['main-stone-type']->getCode(),
+            'shape' => $defaultOptions['main-stone-shape']->getCode(),
+            'band' => 'bridal-set',
+            'metal' => $defaultOptions['metal']->getCode(),
+        ]);
+    } else {
+        $imageDefaultWithBand = ['main' => $imageDefault];
+    }
+    
+    $mainStonePriceDefault = $_product->getPrice();
+
+    $category = $this->getHelper()->getObjectManager()->get('Magento\Framework\Registry')->registry('current_category');
+?>
+<div id="design-ring-custom-options">
+    <div class="f-left custom-options-tabs">
+        <div class="custom-options-types">
+            <a href="#center-diamond-details" class="active">Center Diamond</a>
+            <?php if (isset($allOptions["side-stone-shape-1"]) || isset($allOptions["side-stone-shape-2"]) || isset($allOptions["side-stone-shape-"]) || isset($allOptions["side-stone-shape-"])): ?>
+            <a href="#side-stones-details">Side Stones</a>
+            <?php endif ?>
+            <a href="#metal-details">Metal</a>
+            <a href="#ring-size-details">Ring Size</a>
+            <?php if (is_array($allOptions['band']) && count($allOptions['band']) > 1): ?>
+            <a href="#matching-band-details">Matching Band</a>
+            <?php endif; ?>
+            <a href="#summary-details">Summary</a>
+        </div>
+        <div class="buttons">
+            <?php echo $block->getChildHtml('wishlist') ?>
+            <?php echo $block->getChildHtml('social_share') ?>
+        </div>
+        <div id="price-box">
+            <div class="price-box">
+                <span class="regular-price">
+                    <span class="price"></span>
+                </span>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <a class="btn-buy" href="#" onclick="productAddToCartForm.submit(this); return false;"></a>
+            <a class="btn-reserve" href="#form-reserve"></a>
+        </div>
+    </div>
+    <div class="custom-options-tabs-mobile">
+        <div class="custom-options-types">
+            <a href="#center-diamond-details" class="active">Center Diamond</a>
+            <?php if (isset($custom_options["sideshapes"]) || isset($custom_options["sideshapes2"]) || isset($custom_options["sideshapes3"]) || isset($custom_options["sideshapes4"])): ?>
+            <a href="#side-stones-details">Side Stones</a>
+            <?php endif; ?>
+            <a href="#metal-details">Metal</a>
+            <a href="#ring-size-details">Ring Size</a>
+            <?php if (is_array($allOptions['band']) && count($allOptions['band']) > 1): ?>
+            <a href="#matching-band-details">Matching Band</a>
+            <?php endif; ?>
+            <a href="#summary-details">Summary</a>
+        </div>                        
+        <a href="#" class="prev-arrow" style="display: none;">&nbsp;</a>
+        <a href="#" class="next-arrow">&nbsp;</a>
+    </div>
+    <div class="f-left custom-options-details">
+        <div id="center-diamond-details" class="options-details active">
+            <div class="block-options">
+                <div class="option">
+                    <span style="line-height: 42px;">TYPE: </span>
+                    <ul class="type-list" rel="type" data-group="main-stone-type">
+                    <?php if (is_array($allOptions['main-stone-type']) && count($allOptions['main-stone-type']) > 0): ?>
+                        <?php foreach ($allOptions['main-stone-type'] as $type => $typeOption): ?>
+                        <li>
+                            <a href="#" rel="<?= $type ?>" id="main-stone-type-<?= $typeOption->getId() ?>" data-code="<?= $type ?>">
+                            <?php if ($type != "setting") : ?>
+                                <img src="<?php echo $this->getViewFileUrl("images/diamond/type/active.png")?>" class="focus" width="45px" height="40px">
+                            <?php else: ?>
+                                <img src="<?php echo $this->getViewFileUrl("images/diamond/type/setting-active.png")?>" class="focus" width="45px" height="40px">
+                            <?php endif ?>
+                            <img src="<?php echo $this->getViewFileUrl("images/diamond/type/".$type.".png")?>" alt="<?= $type ?>" title="<?php echo $typeOption->getTitle() ?>" width="40px" height="40px">
+                            <span class="caption <?= $type ?>"><?php if ($type != "setting") { echo $typeOption->getTitle(); echo " Diamond"; } else { echo "Semi Setting Only<br/>Center Stone not included."; } ?></span>
+                            </a>
+                        </li>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <li><a href="#" class="selected"><img src="<?php echo $this->getViewFileUrl("images/diamond/type/setting.png")?>" alt="No Center Stone" title="Natural"></a></li>
+                    <?php endif; ?>
+                    </ul>
+                    <div class="clearer"></div>
+                </div>
+                
+                <?php if (isset($allOptions["setting-options-stone"])): ?>
+                <div class="option" style="display: none;" id="stone-list-wrapper">
+                    <p class="setting-description">Provide accurate detail of the stone you are planning to mount on this ring:</p>
+                    <span style="line-height: 40px;">STONE: </span>
+                    <ul class="stone-list" rel="stone" data-group="setting-options-stone">
+                        <?php foreach($allOptions["setting-options-stone"] as $setting => $settingOption): ?>
+                        <li><a href="#" rel="<?= $setting ?>" id="setting-options-stone-<?= $settingOption->getId() ?>" data-code="<?= $setting ?>"><?= $settingOption->getTitle() ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <div class="clearer"></div>
+                </div>
+                <?php endif ?>
+
+                <?php if (is_array($allOptions['main-stone-shape']) && count($allOptions['main-stone-shape']) > 0): ?>
+                <div class="option" <?php if (count($allOptions['main-stone-shape']) == 1 && isset($allOptions['main-stone-shape']['no-shape'])): ?>style="display: none;"<?php endif; ?>>
+                    <span>SHAPE: </span>
+                    <?php foreach ($allOptions['main-stone-type'] as $type => $typeOption): ?>
+                    <?php $typeValues = json_decode($typeOption->getValues(), true); ?>
+                    <?php if ($type != 'setting' && !isset($typeValues['children'])) { continue; } ?>
+                    <ul class="shape-list <?php echo $type ?> dependent" rel="shape" data-group="main-stone-shape">
+                        <?php foreach ($allOptions['main-stone-shape'] as $shape => $shapeOption): ?>
+                        <?php if ($type == 'setting' || in_array($shape, $typeValues["children"]["main-stone-shape"])): ?>
+                        <li><a style="width: 22px;" href="#" rel="<?= $shape ?>" id="main-stone-shape-<?= $shapeOption->getId() ?>" data-code="<?= $shape ?>"><img src="<?php echo $this->getViewFileUrl("images/diamond/shape/".$shape.".png")?>" alt="<?= $shapeOption->getTitle() ?>" title="<?= $shapeOption->getTitle() ?>" class="default"><img src="<?php echo $this->getViewFileUrl("images/diamond/shape/".$shape."_ac.png")?>" alt="<?= $shapeOption->getTitle() ?>" title="<?= $shapeOption->getTitle() ?>" class="active" width="21px" height="21px"><span class="caption"><?= $shapeOption->getTitle() ?></span></a></li>
+                        <?php endif; ?>
+                        <?php endforeach; ?>
+                    </ul>
+                    <?php endforeach; ?>
+                    <div class="clearer"></div>
+                </div>
+                <?php endif; ?>
+
+                <?php if (isset($allOptions["setting-options-stone"])): ?>
+                <div class="option" style="display: none;" id="size-list-wrapper">
+                    <span>SIZE: </span>
+                    <ul class="size-list" rel="size" data-group="setting-options-size">
+                        <li><input type="text" class="input-text" value="<?php echo isset($settingSize[0])?$settingSize[0]:"" ?>" placeholder="Height" title="Height" id="size-height" name="size-height"> mm</li>
+
+                        <li><input type="text" class="input-text" value="<?php echo isset($settingSize[1])?$settingSize[1]:"" ?>" placeholder="Width" title="Width" id="size-width" name="size-width"> mm</li>
+
+                        <li><input type="text" class="input-text" value="<?php echo isset($settingSize[2])?$settingSize[2]:"" ?>" placeholder="Depth" title="Depth" id="size-depth" name="size-depth"> mm</li>
+                    </ul>
+                    <div class="clearer"></div>                                    
+                </div>
+                <?php endif ?>                                
+                
+                <?php foreach ($allOptions as $group => $options): ?>
+                <?php if (!in_array($group, array_keys($mainStone)) || in_array($group, ['main-stone-type', 'main-stone-shape', 'setting-options-stone', 'setting-options-size'])) { continue; }?>
+                <div class="option" id="<?= strtolower($mainStone[$group]) ?>-list-wrapper">
+                    <span><?= $mainStone[$group] ?>:</span>
+                    <?php foreach ($allOptions['main-stone-type'] as $type => $typeOption): ?>
+                    <?php $typeValues = json_decode($typeOption->getValues(), true); ?>
+                    <?php if ($type != 'setting' && !isset($typeValues['children'])) { continue; } ?>
+                    <ul class="<?= strtolower($mainStone[$group]) ?>-list <?= $type ?> dependent" rel="<?= $typeOption->getTitle() ?>" data-group="<?= $group ?>">
+                        <?php foreach($options as $code => $option): ?>
+                        <?php if ($type == 'setting' || in_array($code, $typeValues["children"][$group])): ?>
+                        <li><a href="#" rel="<?= $code ?>" id="<?= $group ?>-<?= $option->getId() ?>" class="general-options" data-list="<?= strtolower($mainStone[$group]) ?>" data-code="<?= $code ?>"><?php if ($group == "main-stone-carat") { echo (double)(substr($option->getTitle(), 0, 3)); } else { echo $option->getTitle(); } ?></a></li>
+                        <?php endif; ?>
+                        <?php endforeach; ?>
+                    </ul>
+                    <?php endforeach; ?>
+                    <?php if ($group == "main-stone-cert"): ?>
+                    <div class="cert-icon">
+                        <img src="<?php echo $this->getViewFileUrl("images/i_cert_gia.png") ?>" title="GIA" alt="GIA"/>
+                    </div>
+                    <div class="cert-request">
+                        <a class="btn-certificate" href="#form-certificate">Diamond Picture and Certificate</a>
+                    </div>
+                    <?php endif; ?>
+                    <div class="clearer"></div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="clearer"></div>
+        </div>
+        <div id="metal-details" class="options-details">
+            <div class="block-options">
+                <?php if (is_array($allOptions['metal']) && count($allOptions['metal']) > 0): ?>
+                <div class="option">
+                    <?php if (count($allOptions['metal'])): $str_metals = implode(",", array_keys($allOptions['metal'])); ?>
+                    <ul class="metal-label-list">
+                        <?php if (strpos($str_metals, "white-gold") !== false): ?>
+                        <li>White Gold</li>
+                        <?php endif; ?>
+                        <?php if (strpos($str_metals, "yellow-gold") !== false): ?>
+                        <li>Yellow Gold</li>
+                        <?php endif; ?>
+                        <?php if (strpos($str_metals, "rose-gold") !== false): ?>
+                        <li>Rose Gold</li>
+                        <?php endif; ?>
+                        <?php if (strpos($str_metals, "platinum") !== false): ?>
+                        <li>Platinum</li>
+                        <?php endif; ?>
+                    </ul>
+                    <div class="clearer"></div>
+                    <?php endif; ?>
+                    <ul class="metal-list" rel="metal" data-group="metal">
+                        <?php $previous_metal = ""; ?>
+                        <?php foreach ($allOptions['metal'] as $metal => $metalOption): $class="wide"; ?>
+                        <?php $metalValues = json_decode($metalOption->getValues(), true); ?>
+                        <?php if ((strpos($previous_metal, "white-gold") !== false && strpos($metal, "white-gold") !==false) || 
+                                    (strpos($previous_metal, "yellow-gold") !== false && strpos($metal, "yellow-gold") !==false) || 
+                                    (strpos($previous_metal, "rose-gold") !== false && strpos($metal, "rose-gold") !==false) || 
+                                    (strpos($previous_metal, "platinum") !== false && strpos($metal, "platinum") !==false)) { $class=""; } $previous_metal = $metal; ?>
+                        <li class="<?php echo $class; ?>">
+                            <a href="#" rel="<?= $metal ?>" id="metal-<?= $metalOption->getId() ?>" data-code="<?= $metal ?>" data-price="<?= (isset($metalValues["price"]) && $metalValues["price"][0] > 0) ? $metalValues["price"][0] : (isset($metalValues["weight"]) ? (double)$metalValues["weight"][0] : 0) * $this->getMetalPrice($metal) ?>" data-price2="<?= (isset($metalValues["price"]) && $metalValues["price"][1] > 0) ? $metalValues["price"][1] : (isset($metalValues["weight"]) ? (double)$metalValues["weight"][1] : 0) * $this->getMetalPrice($metal) ?>">
+                                <img src="<?= $this->getViewFileUrl("images/diamond/metal/".$metal.".png") ?>" alt="<?= $metalOption->getTitle() ?>" title="<?= $metalOption->getTitle() ?>">
+                            </a>
+                        </li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <div class="clearer"></div>
+                </div>
+                <?php endif; ?>
+            </div>
+            <div class="clearer"></div>
+        </div>
+        <div id="matching-band-details" class="options-details">
+            <div class="block-options">
+                <?php if (is_array($allOptions['band']) && count($allOptions['band']) > 0): ?>
+                <div class="band-image" <?php if (count($allOptions['band']) == 1 && isset($allOptions['band']["no-band"])): ?> style="display: none;" <?php endif; ?>>
+                    <a href="#"><img id="band-image" src="<?php echo isset($imageDefaultWithBand)?$imageDefaultWithBand['main']:"" ?>"/></a>
+                    <p>INCLUDE A MATCHING BAND FOR JUST <b>$7950</b></p>
+                </div>
+                <div class="option" <?php if (count($allOptions['band']) == 1 && isset($allOptions['band']["no-band"])): ?> style="display: none;" <?php endif; ?>>
+                    <ul class="band-list" rel="band" data-group="band">
+                        <?php foreach ($allOptions['band'] as $band => $bandOption): ?>
+                        <li><a href="#" rel="<?= $band ?>" id="band-<?= $bandOption->getId() ?>" data-code="<?= $band ?>"><?php echo $band=="no-band"?"Don't Include":"Include"?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <div class="clearer"></div>
+                </div>
+                <?php endif; ?>
+            </div>
+            <div class="clearer"></div>
+        </div>            
+        <?php //if (isset($custom_options["sideshapes"]) || isset($custom_options["sideshapes2"]) || isset($custom_options["sideshapes3"]) || isset($custom_options["sideshapes4"])): ?>
+        <div id="side-stones-details" class="options-details">
+            <div class="block-options">
+                <div class="option">
+                    <!--<span class="wide">SIDE STONES:</span><br/>-->
+                </div>
+                <div class="sub-block-options">
+                    <?php foreach (array("side-stone-shape-1"=>"side-stone-carat-1", "side-stone-shape-2"=>"side-stone-carat-2", "side-stone-shape-3"=>"side-stone-carat-3", "side-stone-shape-4"=>"side-stone-carat-4") as $sideshape => $sidecarat): ?>
+                    <?php if (isset($allOptions[$sideshape])): ?>
+                    <div class="sub-option">
+                        <div class="sideshapes">
+                            <img id="<?php echo $sideshape ?>-selected" src="<?php echo $this->getViewFileUrl("images/diamond/side/".$defaultOptions[$sideshape]->getCode().".jpg") ?>">
+                            <sub></sub>
+                            <div class="clear"></div>
+                            <ul class="<?php echo $sideshape ?>-list" rel="<?php echo $sideshape ?>" data-group="<?= $sideshape ?>">
+                            <?php foreach($allOptions[$sideshape] as $sideshapeCode => $sideshapeOption): ?>
+                            <?php if ($sideshapeCode == $defaultOptions[$sideshape]->getCode()): ?>
+                                <?php $sidevalues = json_decode($sideshapeOption->getValues(), true) ?>
+                                <li><a href="#" rel="<?= $sideshapeCode ?>" id="<?= $sideshape ?>-<?= $sideshapeOption->getId() ?>" data-group="<?= $sideshape ?>" data-code="<?= $sideshapeCode ?>" data-qty="<?php echo $sidevalues['qty'][0] ?>" data-qty2="<?php echo $sidevalues['qty'][0] + $sidevalues['qty'][1] ?>"><span class="caption"><?php echo $sideshapeOption->getTitle() ?></span><img src="<?php echo $this->getViewFileUrl("images/diamond/side/".$sideshapeCode.".jpg")?>" alt="<?= $sideshapeOption->getTitle() ?>" title="<?= $sideshapeOption->getTitle() ?>" class="default"></a></li>
+                            <?php break; endif; ?>
+                            <?php endforeach; ?>
+                            </ul>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="sidecarats">
+                            <span>CARATS:</span>
+                            <ul class="<?php echo $sidecarat ?>-list" rel="<?= $sidecarat ?>" data-group="<?= $sidecarat ?>">
+                            <?php foreach($allOptions[$sidecarat] as $sidecaratCode => $sidecaratOption): ?>                                        
+                                <li><a href="#" rel="<?= $sidecaratCode ?>" id="<?= $sidecarat ?>-<?= $sidecaratOption->getId() ?>" data-group="<?= $sidecarat ?>" data-code="<?= $sidecaratCode ?>"><?= $sidecaratOption->getTitle() ?></a></li>
+                            <?php endforeach; ?>
+                            </ul>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <?php endif; ?>
+                    <?php endforeach; ?>
+                    
+                    <?php $fixed_side_carat_total = 0; ?>
+                    <?php $fixed_side_carat_band_total = 0; ?>
+                    <?php for ($index=1;$index<=5;$index++): ?>
+                    <?php if ($fixed_side_shape = $_product->getData("dmz_fixed_side_shape_".$index)): ?>
+                    <?php $fixed_side_carat = (float)$_product->getData("dmz_fixed_side_carat_".$index); $fixed_side_carat_total += $fixed_side_carat; ?>
+                    <?php $fixed_side_carat_band = (float)$_product->getData("dmz_fixed_side_carat_band_".$index); $fixed_side_carat_band_total += $fixed_side_carat_band; ?>
+                    <div class="sub-option">
+                        <div class="sideshapes">
+                            <img src="<?php echo $this->getViewFileUrl("images/diamond/side/".strtolower($fixed_side_shape).".jpg") ?>"/>
+                        </div>
+                        <div class="sidecarats fixed">
+                            <span>CARATS:</span>
+                            <ul>
+                                <li><a href="#" class="selected" onclick="return false;" data-carat="<?php echo number_format($fixed_side_carat, 2) ?>" data-carat-band="<?php echo number_format($fixed_side_carat_band, 2) ?>"><?php echo number_format($fixed_side_carat, 2) ?></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <?php endif; ?>
+                    <?php endfor; ?>
+                </div>
+                
+                <?php if (isset($allOptions["side-stone-color-clarity-1"]) && is_array($allOptions["side-stone-color-clarity-1"]) && count($allOptions["side-stone-color-clarity-1"]) > 0): ?>
+                <div class="option">
+                    <span class="color-clarity">Color &amp; Clarity: </span>
+                    <ul class="sidecolorclarity-list" rel="sidecolorclarity" data-group="side-stone-color-clarity-1">
+                        <?php foreach ($allOptions["side-stone-color-clarity-1"] as $sidestoneColorClairty => $sidestoneColorClairtyOption): ?>
+                        <li><a href="#" rel="<?= $sidestoneColorClairty ?>" id="side-stone-color-clarity-1-<?= $sidestoneColorClairtyOption->getId() ?>" data-group="side-stone-color-clarity-1" data-code="<?= $sidestoneColorClairty ?>"><?= $sidestoneColorClairtyOption->getTitle() ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <div class="clearer"></div>
+                </div>
+                <?php endif; ?>
+            
+            </div>
+            <div class="clearer"></div>
+        </div>
+        <?php //endif; ?>
+        <div id="ring-size-details" class="options-details">
+            <div class="block-options">
+                <?php if (isset($allOptions['ring-size'])): ?>
+                <div class="option">
+                    <span>PLEASE SELECT YOUR SIZE:</span>
+                    <ul class="ring-size-list" rel="ring-size" data-group="ring-size">
+                        <?php foreach ($allOptions['ring-size'] as $ringsize => $ringsizeOption): ?>
+                        <li><a href="#" rel="<?= $ringsize ?>" id="ring-size-<?= $ringsizeOption->getId() ?>" data-code="<?= $ringsize ?>"><?= $ringsizeOption->getTitle() ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <div class="clearer"></div>
+                </div>
+                <?php endif; ?>
+                <div class="ring-size-tips">
+                    <p>If you are unsure of the size, read our <a href="#">Ring Size Tips</a>.</p>
+                    <p>We offer one FREE resizing (within 2 full sizes) of your ring during the First 12 months after purchase</p>
+                </div>
+            </div>
+            <div class="clearer"></div>
+        </div>
+        <div id="summary-details" class="options-details">
+            <div class="block-options">
+                <div class="option total-carat">
+                    <span class="giant">TOTAL CARAT WEIGHT:</span>
+                    <span id="total-carat"></span>
+                    <div class="clearer"></div>
+                </div>
+                <div class="option center-stone">
+                    <span class="wide" id="center-diamond-details-label">CENTRAL STONE:<a href="#center-diamond-details">Change</a></span>
+                    <span class="wide" id="center-diamond-setting-label">Setting:<a href="#center-diamond-details">Change</a></span>
+                    <ul>
+                        <li class="stone"><a href="#"></a><label>STONE</label></li>
+                        <li class="shape"><a href="#"></a><label>SHAPE</label></li>
+                        <li class="carat"><a href="#">1</a><label>CARAT</label></li>
+                        <li class="size"><a href="#">0 x 0 x 0</a><label>SIZE</label></li>
+                        <li class="color"><a href="#">G</a><label>COLOR</label></li>
+                        <li class="clarity"><a href="#">SI1</a><label>CLARITY</label></li>
+                        <li class="cert"><img src="<?php echo $this->getViewFileUrl("images/i_cert_gia.png") ?>"/></li>
+                    </ul>
+                    <span class="sub-price">$6,660</span>
+                    <div class="clearer"></div>
+                </div>
+                
+                <div class="option side-stones <?php if (!(isset($allOptions["side-stone-shape-1"]) || isset($allOptions["side-stone-shape-2"]) || isset($allOptions["side-stone-shape-3"]) || isset($allOptions["side-stone-shape-4"]))): ?>no-display<?php endif ?>">
+                    <span class="wide">SIDE STONES:<a href="#side-stones-details">Change</a></span>
+                    <ul>
+                        <li class="carat"><a href="#">0.7</a><label>CARAT</label></li>
+                        <li class="color-clarity"><a href="#">F-G/VS</a><label>COLOR &amp; CLARITY</label></li>
+                    </ul>
+                    <span class="sub-price">$2,660</span>
+                    <div class="clearer"></div>
+                </div>
+                <div class="option metal">
+                    <span class="wide">METAL:<a href="#metal-details">Change</a></span>
+                    <ul>
+                        <li class="metal-type"><a href="#">14K WHITE GOLD</a></li>
+                    </ul>
+                    <span class="sub-price">$750</span>
+                    <div class="clearer"></div>
+                </div>
+                <div class="option ring-size">
+                    <span class="wide">RING SIZE:<a href="#ring-size-details">Change</a></span>
+                    <ul>
+                        <li class="ring-size"><a href="#">7</a></li>
+                    </ul>
+                    <div class="clearer"></div>
+                </div>
+                <div class="option matching-band <?php if (!is_array($allOptions['band']) || count($allOptions['band']) < 2): ?>no-display<?php endif ?>">
+                    <span class="wide">MATCHING BAND:<a href="#matching-band-details">Change</a></span>
+                    <ul>
+                        <li class="matching-band"><a href="#">DON'T INCLUDE</a></li>
+                    </ul>                                    
+                    <div class="clearer"></div>
+                </div>
+            </div>
+            <div class="clearer"></div>
+        </div>   
+        <div class="custom-options-tabs-mobile">
+            <div class="custom-options-types">
+                <span class="f-left prev-arrow-label" style="margin-left: 45px; line-height: 36px; display: none;">PREVIOUS</span>
+                <span class="f-right next-arrow-label" style="margin-right: 45px; line-height: 36px;">NEXT</span>
+                <div class="clearer"></div>
+            </div>
+            <a href="#" class="prev-arrow" style="display: none;">&nbsp;</a>
+            <a href="#" class="next-arrow">&nbsp;</a>
+        </div>
+        <div class="buttons-mobile">
+            <div>
+                <div class="price-box">
+                    <span class="regular-price">
+                        <span class="price"></span>
+                    </span>
+                </div>
+            </div>                           
+
+            <div class="buttons">
+                <a class="btn-buy" href="#" onclick="productAddToCartForm.submit(this); return false;"></a>
+                <a class="btn-reserve" href="#form-reserve"></a>
+            </div>
+        </div>
+        <div class="ideal10-section">
+            <div id="ideal10-section-content">
+                <h3>Diamond Mansion only carries IDEAL10 ultimate beauty diamonds.</h3>
+                <p>
+                other than the color and the clarity of a diamond there are 10 factors that effect the beauty of a diamond. When these 10 proportions &amp; elements are dynamicly within their sweetspot range, they support the diamond to emenate its hidden beauty. <br/>IDEAL10 is a GIA certified diamond that emenates its ultimate beauty!
+                </p>
+            </div>
+            <a href="#" id="more-view-ideal10-section" class="more"></a>
+            <img src="<?php echo $this->getViewFileUrl("images/mobile/button_ideal10.jpg") ?>"/>
+        </div>
+    </div>
+    <div class="clearer"></div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "dm-product-view-ring-design": {
+                "product_id": <?= $_product->getId() ?>,
+                "sku": "<?= $_product->getSku() ?>",
+                "name": "<?= $_product->getName() ?>",
+                "urlKey": "<?= $_product->getUrlKey() ?>",
+                "categoryUrl": "<?= ($category) ? $category->getUrl() : "" ?>",
+                "isReqeustedOptions": <?= $block->isRequestedOptions() ?>,
+                "isLoaded": false,
+                "default_image": "<?= isset($imageDefault) ? $imageDefault : "" ?>",
+                "center_stone": {
+                    "type": "",
+                    "stone": "",
+                    "shape": "",
+                    "carat": "",
+                    "color": "",
+                    "clarity": "",
+                    "cert": ""
+                },
+                "side_stone": {
+                    "side-stone-shape-1": "",
+                    "side-stone-shape-2": "",
+                    "side-stone-shape-3": "",
+                    "side-stone-shape-4": "",
+                    "side-stone-carat-1": "",
+                    "side-stone-carat-2": "",
+                    "side-stone-carat-3": "",
+                    "side-stone-carat-4": "",
+                    "side-stone-color-clarity-1": "",
+                    "side-stone-color-clarity-2": "",
+                    "side-stone-color-clarity-3": "",
+                    "side-stone-color-clarity-4": "",
+                    "qty": {
+                        "side-stone-shape-1": 0,
+                        "side-stone-shape-2": 0,
+                        "side-stone-shape-3": 0,
+                        "side-stone-shape-4": 0
+                    }
+                },
+                "band_qty": {
+                    "side_stone": {
+                        "side-stone-shape-1": 0,
+                        "side-stone-shape-2": 0,
+                        "side-stone-shape-3": 0,
+                        "side-stone-shape-4": 0
+                    }
+                },
+                "isTypeChanged": false,
+                "totalCarat": 0,
+                "ring_size": "",
+                "metal": "",
+                "band": "",
+                "current_price": <?= $_product->getPrice() ?>,
+                "option_skus": {
+                    <?php $i=1; foreach ($allOptions as $group => $optionGroup): ?>
+                    "<?= $group ?>": {
+                        <?php $k=1; foreach ($optionGroup as $code => $option): ?>
+                        "<?= $code ?>": "<?= $option->getSlug() ?>"<?= ($k < count($optionGroup)) ? ',' : '' ?>
+                        <?php $k++; endforeach ?>
+                    }<?= ($i < count($allOptions)) ? ',' : '' ?>
+                    <?php $i++; endforeach ?>
+                },
+                "default_options": {
+                    <?php $i=1; foreach ($defaultOptions as $group => $option): ?>
+                    "<?= $group ?>": "<?= $group ?>-<?= $option->getId() ?>"<?= ($i < count($defaultOptions)) ? ',' : '' ?>
+                    <?php $i++; endforeach ?>
+                },
+                "is_fixed_main_stone_price": <?= (isset($allOptions['others']) && isset($allOptions['others']['fixed-main-stone-price']) && $allOptions['others']['fixed-main-stone-price']) ? 1 : 0 ?>
+            }
+        }
+    }
+</script>

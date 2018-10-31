@@ -29,7 +29,7 @@ class Price extends \Magento\Catalog\Model\Product\Type\Price
         parent::__construct($ruleFactory, $storeManager, $localeDate, $customerSession, $eventManager, $priceCurrency, $groupManagement, $tierPriceFactory, $config, $tierPriceExtensionFactory);
     }
 
-    public function getPrice($product) {        
+    public function getPrice($product) {
         $allDmOptions = $product->getAllDmOptions();
         $params = $product->getDmOptions();
 
@@ -111,18 +111,22 @@ class Price extends \Magento\Catalog\Model\Product\Type\Price
                     $sideStoneQty = $values["qty"][0];
                 }
 
-                $params["side-stone-color-clarity"] = "f-g/vs";
+                $sideIndex = str_replace('side-stone-shape-', '', $group);
+
+                if (!isset($params["side-stone-color-clarity-" . $sideIndex])) {
+                    $params["side-stone-color-clarity-" . $sideIndex] = "f-g/vs";
+                }
 
                 if (!$isExcludeSideStonePrice) {
                     $sideStonePriceCollecion = $this->_sideStonePriceModel->getCollection();
-                    if (isset($params['side-stone-shape'])) {
-                        $sideStonePriceCollecion->addFieldToFilter('shape', $params['side-stone-shape']);
+                    if (isset($params[$group])) {
+                        $sideStonePriceCollecion->addFieldToFilter('shape', $params[$group]);
                     }
-                    if (isset($params['side-stone-carat'])) {
-                        $sideStonePriceCollecion->addFieldToFilter('carat', $params['side-stone-carat']);
+                    if (isset($params['side-stone-carat-' . $sideIndex])) {
+                        $sideStonePriceCollecion->addFieldToFilter('carat', $params['side-stone-carat-' . $sideIndex]);
                     }
-                    if (isset($params['side-stone-color-clarity'])) {
-                        $sideStonePriceCollecion->addFieldToFilter('color_clarity', $params['side-stone-color-clarity']);
+                    if (isset($params['side-stone-color-clarity-' . $sideIndex])) {
+                        $sideStonePriceCollecion->addFieldToFilter('color_clarity', $params["side-stone-color-clarity-" . $sideIndex]);
                     }
                     if ($sideStonePriceCollecion->count()) {
                         $sideStonePrice = $sideStonePriceCollecion->getFirstItem()->getPrice();
@@ -139,11 +143,13 @@ class Price extends \Magento\Catalog\Model\Product\Type\Price
             }
         }
 
-        return round((
+        $total = round((
             parent::getPrice($product) + 
             $mainStonePrice + 
             $metalPrice + 
             $sideStonePriceTotal
         ), 2);
-    }    
+
+        return $total; 
+    }
 }

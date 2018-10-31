@@ -25,9 +25,18 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         'main-stone-cert',
         'metal',
         'band',
-        'side-stone-shape',
-        'side-stone-carat',
-        'side-stone-color-clarity',
+        'side-stone-shape-1',
+        'side-stone-carat-1',
+        'side-stone-color-clarity-1',
+        'side-stone-shape-2',
+        'side-stone-carat-2',
+        'side-stone-color-clarity-2',
+        'side-stone-shape-3',
+        'side-stone-carat-3',
+        'side-stone-color-clarity-3',
+        'side-stone-shape-4',
+        'side-stone-carat-4',
+        'side-stone-color-clarity-4',
         'ring-size',
         'setting-options-stone',
         'setting-options-size',
@@ -68,7 +77,7 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         );
     }
 
-    public function getAllDmOptions($product) {
+    public function getAllDmOptions($product, $sort = false) {
         if (!isset($this->_allDmOptions[$product->getId()])) {
             $collection = $this->_dmOptionModel->getCollection()
                 ->addFieldToFilter('product_id', $product->getId())
@@ -84,10 +93,14 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
             }
         }
 
+        if ($sort) {
+            $this->_sortDmOptions($this->_allDmOptions[$product->getId()]);
+        }
+
         return $this->_allDmOptions[$product->getId()];
     }
 
-    public function getDefaultDmOptions($product) {
+    public function getDefaultDmOptions($product, $sort = false) {
         if (!isset($this->_defaultDmOptions[$product->getId()])) {
             $this->_defaultDmOptions[$product->getId()] = [];
             $options = $this->getAllDmOptions($product);
@@ -105,10 +118,18 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
             }
         }
 
+        if ($sort) {
+            $this->_sortDmOptions($this->_defaultDmOptions[$product->getId()]);
+        }
+
         return $this->_defaultDmOptions[$product->getId()];
     }
 
-    public function getDmOptions($product) {
+    public function setDefaultDmOptions($product, $options) {
+        $this->_defaultDmOptions[$product->getId()] = $options;
+    }
+
+    public function getDmOptions($product, $sort = false) {
         $options = $this->getAllDmOptions($product);
         $defaultOptions = $this->getDefaultDmOptions($product);
 
@@ -191,9 +212,13 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
 
             if (is_array($children) && isset($children[$group]) && !in_array($defaultOptions[$group]->getCode(), $children[$group])) {
                 $result[$group] = $children[$group][0];
-            } else {
+            } else if (isset($defaultOptions[$group])) {
                 $result[$group] = $defaultOptions[$group]->getCode();
             }
+        }
+
+        if ($sort) {
+            $this->_sortDmOptions($result);
         }
 
         return $result;

@@ -11,7 +11,9 @@ var config = {
             'dm-qazy': 'js/dm-qazy',
             'jquery-isotope': 'js/jquery.isotope.min',
             'dm-viewmore': 'js/dm-viewmore',
-            'cloudzoom': 'js/cloudzoom'
+            'cloudzoom': 'js/cloudzoom',
+            'dm-product-view-ring-design': 'js/dm-product-view-ring-design',
+            'jquery-fancybox': 'js/jquery.fancybox'
         }
     }
 };

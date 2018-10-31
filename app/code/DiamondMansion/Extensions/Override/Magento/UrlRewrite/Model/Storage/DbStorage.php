@@ -13,7 +13,7 @@ class DbStorage extends \Magento\UrlRewrite\Model\Storage\DbStorage
                 $shape = strtolower(str_replace(" ", "-", $eavOption['label']));
                 $prefix = ($shape == 'heart') ? $shape . '-shape-' : $shape . '-cut-';
                 if (strpos($data[UrlRewrite::REQUEST_PATH], $prefix) === 0) {
-                    $data[UrlRewrite::REQUEST_PATH] = substr($data[UrlRewrite::REQUEST_PATH], strlen($prefix));
+                    $data[UrlRewrite::REQUEST_PATH] = rtrim(substr($data[UrlRewrite::REQUEST_PATH], strlen($prefix)), '/') . '/';
                 }
             }
         }

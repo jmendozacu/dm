@@ -8,13 +8,17 @@ use Magento\Framework\App\Helper\Context;
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
     protected $_imageFactory;
+    protected $_variable;
 
     public function __construct(
         Context $context,
-        \Magento\Framework\Image\AdapterFactory $imageFactory
+        \Magento\Framework\Image\AdapterFactory $imageFactory,
+        \Magento\Variable\Model\Variable $variable
     )
     {
         $this->_imageFactory = $imageFactory;
+        $this->_variable = $variable;
+
         parent::__construct($context);
     }
 
@@ -154,5 +158,56 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function getSlug($value) {
         return strtolower(str_replace(" ", "-", $value));
+    }
+
+    public function getCustomValue($code, $type = 'plain') {
+        return $this->_variable->loadByCode($code)->getValue($type);
+    }
+
+    public function getRingDesignOptions($product, $params) {
+        if (isset($params["option"])) {
+            $optionParams = explode("-", $params["option"]);
+            $skus = str_split($optionParams[0]);
+        } else {
+            $currentUrl = $this->getStoreManager()->getStore()->getCurrentUrl(false);
+            $urlPaths = explode('/', trim(str_replace($this->getStoreManager()->getStore()->getBaseUrl(), "", $currentUrl), '/'));
+            $urlPath = current($urlPaths);
+
+            foreach ($this->getDesignRingStoneShapes() as $shape) {
+                if (strpos($urlPath, $this->getSlug($shape)) !== false) {
+                    $mainStoneShape = $this->getSlug($shape);
+                }
+            }
+        }
+
+        $allOptions = $product->getAllDmOptions(true);
+        $defaultOptions = [];
+        if (isset($skus)) {
+            reset($skus);
+            $sku = current($skus);
+            foreach ($allOptions as $group => $optionGroup) {
+                foreach ($optionGroup as $code => $option) {
+                    if ($option->getSlug() == $sku) {
+                        $defaultOptions[$group] = $option;
+                        break;
+                    }
+                }
+                $sku = next($skus);
+            }
+        } else {
+            $defaultOptions = $product->getDefaultDmOptions(true);
+            if (isset($mainStoneShape) && isset($defaultOptions['main-stone-shape'])) {
+                $defaultOptions['main-stone-shape'] = $allOptions['main-stone-shape'][$mainStoneShape];
+            }
+        }
+
+        return [
+            'allOptions' => $allOptions,
+            'defaultOptions' => $defaultOptions,
+            "mainStone"=>array("main-stone-type" => 'Type', "main-stone-shape" => 'Shape', "main-stone-carat" => 'Carat', "main-stone-color" => 'Color', "main-stone-clarity" => 'Clarity', "main-stone-cert" => 'Cert'),
+            "setting"=>array("metal", "band", "side-stone-color-clarity"),
+            "sideStone"=>array("side-stone-shape", "side-stone-carat"),
+            "settingSize"=>isset($optionParams[1])?explode("x", $optionParams[1]):[],
+        ];        
     }
 }

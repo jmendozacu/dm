@@ -14,19 +14,23 @@ class Product extends \Magento\Catalog\Model\Product
         return $this->_filters;
     }
 
-    public function getAllDmOptions() {
-        return $this->getTypeInstance()->getAllDmOptions($this);
+    public function getAllDmOptions($sort = false) {
+        return $this->getTypeInstance()->getAllDmOptions($this, $sort);
     }
 
-    public function getDefaultDmOptions() {
-        return $this->getTypeInstance()->getDefaultDmOptions($this);
+    public function getDefaultDmOptions($sort = false) {
+        return $this->getTypeInstance()->getDefaultDmOptions($this, $sort);
     }
 
-    public function getDmOptions() {
-        return $this->getTypeInstance()->getDmOptions($this);
+    public function setDefaultDmOptions($options) {
+        $this->getTypeInstance()->setDefaultDmOptions($this, $options);
     }
 
-    public function getName() {
+    public function getDmOptions($sort = false) {
+        return $this->getTypeInstance()->getDmOptions($this, $sort);
+    }
+
+    public function getDmName() {
         if (method_exists($this->getTypeInstance(), 'getName')) {
             return $this->getTypeInstance()->getName($this, parent::getName());
         } else {

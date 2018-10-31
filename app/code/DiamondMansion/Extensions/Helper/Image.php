@@ -70,7 +70,7 @@ class Image extends Data
                 $images = [
                     "main" => $this->_resize($imagePath, $fileName, 720),
                     "pop" => $this->_resize($imagePath, $fileName, ''),
-                    "thumb" => $this->_resize($imagePath, $fileName, 97),
+                    "thumb" => $this->_resize($imagePath, $fileName, 90),
                     "filename" => $fileName,
                 ];
                 break;

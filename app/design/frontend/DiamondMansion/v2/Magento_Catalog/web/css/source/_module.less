@@ -32,6 +32,7 @@
 
 @import 'module/_listings.less';
 @import 'module/_toolbar.less';
+@import 'module/_ring_design_options.less';
 
 .catalog-product-view {
     .breadcrumbs,
@@ -66,7 +67,7 @@
         font-size: 1.16em;
         line-height: 1.57em;
         margin: 0 0 9px;
-        font-weight: normal;
+        font-weight: bold;
         text-transform: uppercase;        
     }
 
@@ -333,7 +334,7 @@
         margin:0;
     }
 
-    .product-image .item-image-arrows { padding: 10px 25%; margin-top: 0; position: relative; z-index: 999; height: 80px; }
+    .product-image .item-image-arrows { padding: 10px 25%; margin-top: -80px; position: relative; z-index: 999; height: 80px; }
     .product-image .item-image-arrows a { display: inline-block; width: 32px; height: 59px; background:url(../images/item_picture_arrows.png) no-repeat; text-indent: -9999px; }
     .product-image .item-image-arrows a.l-arrow { background-position: left top; }
     .product-image .item-image-arrows a.l-arrow:hover { background-position: right top; }
