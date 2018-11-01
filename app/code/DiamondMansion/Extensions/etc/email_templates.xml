@@ -1,4 +1,8 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:Magento:module:Magento_Email:etc/email_templates.xsd">
-    <template id="dm_email_template_opinion" label="Get Expert Opinion" file="opinion.html" type="text" module="DiamondMansion_Extensions" area="frontend"/>
+    <template id="dm_email_template_opinion" label="Get Expert Opinion" file="opinion.html" type="html" module="DiamondMansion_Extensions" area="frontend"/>
+    <template id="dm_email_template_certificate" label="Diamond Picture and Certificate" file="certificate.html" type="html" module="DiamondMansion_Extensions" area="frontend"/>
+    <template id="dm_email_template_delivery" label="Delivery" file="delivery.html" type="html" module="DiamondMansion_Extensions" area="frontend"/>
+    <template id="dm_email_template_pricereserve" label="Price Reserve" file="pricereserve.html" type="html" module="DiamondMansion_Extensions" area="frontend"/>
+    <template id="dm_email_template_product" label="Product" file="pricereserve.html" type="html" module="DiamondMansion_Extensions" area="frontend"/>
 </config>

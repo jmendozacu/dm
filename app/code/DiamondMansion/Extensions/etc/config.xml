@@ -4,6 +4,10 @@
      <diamondmansion>
          <email>
              <opinion>dm_email_template_opinion</opinion>
+             <certificate>dm_email_template_certificate</certificate>
+             <delivery>dm_email_template_delivery</delivery>
+             <pricereserve>dm_email_template_pricereserve</pricereserve>
+             <product>dm_email_template_product</product>
          </email>
      </diamondmansion>
 </default>

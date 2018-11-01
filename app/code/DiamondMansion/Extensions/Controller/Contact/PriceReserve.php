@@ -14,7 +14,7 @@ use \Psr\Log\LoggerInterface;
 use \Magento\Framework\App\ObjectManager;
 use \Magento\Framework\DataObject;
 
-class Opinion extends \Magento\Contact\Controller\Index\Post
+class PriceReserve extends \Magento\Contact\Controller\Index\Post
 {
     protected $_contactFactory;
     protected $_transportBuilder;
@@ -25,7 +25,7 @@ class Opinion extends \Magento\Contact\Controller\Index\Post
     private $logger;
 
     public function __construct(
-        \DiamondMansion\Extensions\Model\Contact\OpinionFactory $contactFactory,
+        \DiamondMansion\Extensions\Model\Contact\PriceReserveFactory $contactFactory,
         \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
@@ -66,15 +66,16 @@ class Opinion extends \Magento\Contact\Controller\Index\Post
             $contact->setData([
                 'name' => $params['name'],
                 'email' => $params['email'],
+                'phone' => $params['telephone'],
                 'product_name' => $params['productname'],
                 'product_link' => $params['productlink'],
-                'message' => $params['comment']
+                'product_price' => $params['productprice']
             ])->save();
 
             $storeId = $this->_storeManager->getStore()->getId();
 
             $template = $this->_scopeConfig->getValue(
-                'diamondmansion/email/opinion',
+                'diamondmansion/email/pricereserve',
                 \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
                 $storeId
             );
@@ -125,9 +126,6 @@ class Opinion extends \Magento\Contact\Controller\Index\Post
         $request = $this->getRequest();
         if (trim($request->getParam('name')) === '') {
             throw new LocalizedException(__('Name is missing'));
-        }
-        if (trim($request->getParam('comment')) === '') {
-            throw new LocalizedException(__('Message is missing'));
         }
         if (false === \strpos($request->getParam('email'), '@')) {
             throw new LocalizedException(__('Invalid email address'));
