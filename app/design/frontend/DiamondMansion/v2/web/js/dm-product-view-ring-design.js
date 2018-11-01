@@ -105,7 +105,12 @@ define([
                 $(".custom-options-types a[href='"+$(this).attr("href")+"']").addClass("active");
                 $($(this).attr("href")).addClass("active");
                 return false;
-            })
+            });
+
+            var tmp = location.href.indexOf(config.urlKey);
+            if (tmp != -1) {
+                $("input.productlink").val('/' + location.href.slice(tmp));
+            }
 
             config.isLoaded = true;
             $(".product-view").slideDown("slow");
@@ -695,13 +700,13 @@ define([
             title = title.trim();
             if (title != "") {
                 title += " Diamond";
-                title = "<h1 class=\"page-title\"><span class=\"base\" data-ui-id=\"page-title-wrapper\" itemprop=\"name\">" + config.name + "</span></h1><h2>" + title + "</h2>";
+                var titleHTML = "<h1 class=\"page-title\"><span class=\"base\" data-ui-id=\"page-title-wrapper\" itemprop=\"name\">" + config.name + "</span></h1><h2>" + title + "</h2>";
             } else {
-                title = "<h1 class=\"page-title\"><span class=\"base\" data-ui-id=\"page-title-wrapper\" itemprop=\"name\">" + config.name + "</span></h1>";
+                var titleHTML = "<h1 class=\"page-title\"><span class=\"base\" data-ui-id=\"page-title-wrapper\" itemprop=\"name\">" + config.name + "</span></h1>";
             }
             
-            $(".product-name").html(title);
-            $("input.productname").val(title);
+            $(".product-name").html(titleHTML);
+            $("input.productname").val(config.name + " - " + title);
         }
 
         function ucfirst(str) {

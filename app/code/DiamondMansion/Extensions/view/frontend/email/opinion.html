@@ -1,6 +1,6 @@
-{{trans "Name: %name" name=$data.name}}
-{{trans "Email: %email" name=$data.email}}
-
-{{trans 'Product: <a href="%productlink">%productname</a>' productlink=$data.productlink productname=$data.productname}}</a>
-
-{{trans "Message: %message" message=$data.comment}}
+Name: {{var name}}<br/>
+E-mail: {{var email}}<br/>
+<br/>
+Product:<a href="https://www.diamondmansion.com{{var productlink}}">{{var productname}}</a><br/>
+<br/>
+Message: {{var comment}}

@@ -72,11 +72,7 @@ class Opinion extends \Magento\Contact\Controller\Index\Post
 
             $transport = $this->_transportBuilder->setTemplateIdentifier($template)
                 ->setTemplateOptions(['area' => 'frontend', 'store' => $storeId])
-                ->setTemplateVars(
-                    [
-                        'store' => $this->_storeManager->getStore(),
-                    ]
-                )
+                ->setTemplateVars($params)
                 ->setFrom($sender)
                 // you can config general email address in Store -> Configuration -> General -> Store Email Addresses
                 ->addTo($this->_scopeConfig->getValue(self::XML_PATH_EMAIL_RECIPIENT, \Magento\Store\Model\ScopeInterface::SCOPE_STORE))
