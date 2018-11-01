@@ -112,7 +112,7 @@ define([
         });
 
         function onChangeTab(tabIndex) {
-            elmId = $(".custom-options-tabs-mobile .custom-options-types a").eq(tabIndex).attr("href");
+            var elmId = $(".custom-options-tabs-mobile .custom-options-types a").eq(tabIndex).attr("href");
             //$(".custom-options-tabs-mobile .custom-options-types a").eq(tabIndex).trigger("click");
             $(".custom-options-types a.active").removeClass("active");
             $(".custom-options-details div.active").removeClass("active");

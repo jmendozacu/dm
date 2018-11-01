@@ -16,12 +16,13 @@ use \Magento\Framework\DataObject;
 
 class Opinion extends \Magento\Contact\Controller\Index\Post
 {
-    const XML_PATH_EMAIL_RECIPIENT = 'diamondmansion/email/opinion';
-
     protected $_contactFactory;
     protected $_transportBuilder;
     protected $_storeManager;
     protected $_scopeConfig;
+
+    private $dataPersistor;
+    private $logger;
 
     public function __construct(
         \DiamondMansion\Extensions\Model\Contact\OpinionFactory $contactFactory,
@@ -39,6 +40,9 @@ class Opinion extends \Magento\Contact\Controller\Index\Post
         $this->_storeManager = $storeManager;
         $this->_scopeConfig = $scopeConfig;
 
+        $this->dataPersistor = $dataPersistor;
+        $this->logger = $logger ?: ObjectManager::getInstance()->get(LoggerInterface::class);
+
         parent::__construct($context, $contactsConfig, $mail, $dataPersistor, $logger);
     }
     /**
@@ -49,7 +53,7 @@ class Opinion extends \Magento\Contact\Controller\Index\Post
     public function execute()
     {
         if (!$this->isPostRequest()) {
-            return $this->resultRedirectFactory->create()->setPath('*/*/');
+            return $this->resultRedirectFactory->create()->setPath($this->_redirect->getRefererUrl());
         }
         try {
             $params = $this->validatedParams();
@@ -59,7 +63,14 @@ class Opinion extends \Magento\Contact\Controller\Index\Post
             ];
 
             $storeId = $this->_storeManager->getStore()->getId();
-            $transport = $this->_transportBuilder->setTemplateIdentifier('modulename_test_template')
+
+            $template = $this->_scopeConfig->getValue(
+                'diamondmansion/email/opinion',
+                \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
+                $storeId
+            );            
+
+            $transport = $this->_transportBuilder->setTemplateIdentifier($template)
                 ->setTemplateOptions(['area' => 'frontend', 'store' => $storeId])
                 ->setTemplateVars(
                     [
@@ -86,8 +97,19 @@ class Opinion extends \Magento\Contact\Controller\Index\Post
             );
             $this->dataPersistor->set('contact_us', $this->getRequest()->getParams());
         }
-        return $this->resultRedirectFactory->create()->setPath('contact/index');
+        return $this->resultRedirectFactory->create()->setPath($this->_redirect->getRefererUrl());
     }
+
+    /**
+     * @return bool
+     */
+    private function isPostRequest()
+    {
+        /** @var Request $request */
+        $request = $this->getRequest();
+        return !empty($request->getPostValue());
+    }
+
 
     /**
      * @return array
