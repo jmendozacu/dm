@@ -84,6 +84,7 @@
                 <item name="dm:urlrewrites:regenerate" xsi:type="object">DiamondMansion\Extensions\Console\Command\RegenerateUrlRewrites</item>
                 <item name="dm:amshopby:custompages" xsi:type="object">DiamondMansion\Extensions\Console\Command\AmshopbyCustomPages</item>
                 <item name="dm:addoptions:ringsize" xsi:type="object">DiamondMansion\Extensions\Console\Command\AddRingSizeOptions</item>
+                <item name="dm:reindex:likedislike" xsi:type="object">DiamondMansion\Extensions\Console\Command\ReindexLikeDislike</item>
             </argument>
         </arguments>
     </type>

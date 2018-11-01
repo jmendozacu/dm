@@ -1,0 +1,48 @@
+<?php
+    $status = $this->getLikeDislikeStatus();
+?>
+<div class="like-dislike-buttons-set">
+    <a class="button like <?= $status['liked'] ? 'active' : '' ?>" href="#" data-review="1"><?= $this->getProduct()->getDmLikes() ?: 0 ?></a>
+    <a class="button dislike <?= $status['disliked'] ? 'active' : '' ?>" href="#" data-review="0"><?= $this->getProduct()->getDmDislikes() ?: 0 ?></a>
+</div>
+<div class="clear"></div>
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {
+        $(document).ready(function() {
+            $(".like-dislike-buttons-set a").on('click', function () {
+                if ($(this).hasClass('active')) {
+                    if ($(this).hasClass('like')) {
+                        alert('You liked this product already. Thanks.');
+                    } else {
+                        alert('You disliked this product already. Thanks.');
+                    }
+                    return false;
+                }
+                var review = $(this).data('review');
+                new $.ajax(
+                    '/dm/api/likedislike/',
+                    {
+                        method:'post',
+                        asynchronous: false,
+                        data: {
+                            "product_id": <?= $this->getProduct()->getId() ?>,
+                            "liked": review
+                        },
+                        complete : function(xhr) {
+                            result = JSON.parse(xhr.responseText);
+
+                            $('.like-dislike-buttons-set a.like').html(result.likes);
+                            $('.like-dislike-buttons-set a.dislike').html(result.dislikes);
+
+                            $('.like-dislike-buttons-set a').toggleClass('active');
+                        }
+                    }
+                );
+
+                return false;   
+            });
+        });
+    });
+</script>

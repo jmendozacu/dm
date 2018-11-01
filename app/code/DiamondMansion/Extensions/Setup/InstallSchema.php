@@ -39,6 +39,8 @@ class InstallSchema implements InstallSchemaInterface
         $this->createContactRequestsOpinionTable($setup);
         $this->createContactRequestsPriceReserveTable($setup);
 
+        $this->createLikeDislikeTable($setup);
+
         $setup->endSetup();
     }
 
@@ -1218,4 +1220,48 @@ class InstallSchema implements InstallSchemaInterface
             $setup->getConnection()->createTable($table);
         }
     }
+
+    private function createLikeDislikeTable($setup) {
+        $tableName = $setup->getTable('dm_product_like_dislike');
+
+        if ($setup->getConnection()->isTableExists($tableName) != true) {
+            $table = $setup->getConnection()
+                ->newTable($tableName)
+                ->addColumn(
+                    'entity_id',
+                    Table::TYPE_INTEGER,
+                    null,
+                    [
+                        'identity' => true,
+                        'unsigned' => true,
+                        'nullable' => false,
+                        'primary' => true
+                    ],
+                    'ID'
+                )
+                ->addColumn(
+                    'product_id',
+                    Table::TYPE_INTEGER,
+                    11,
+                    ['nullable' => false],
+                    'Customer Name'
+                )
+                ->addColumn(
+                    'customer_ip',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Customer Phone'
+                )
+                ->addColumn(
+                    'review',
+                    Table::TYPE_INTEGER,
+                    11,
+                    ['nullable' => false],
+                    'Customer Email'
+                )
+                ->setComment('Product Likes and Dislikes');
+            $setup->getConnection()->createTable($table);
+        }
+    }    
 }

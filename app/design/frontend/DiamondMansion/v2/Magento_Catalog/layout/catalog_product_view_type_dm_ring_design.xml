@@ -38,6 +38,7 @@
         <move element="view.addto.wishlist" destination="product.ring.design.options" as="wishlist"/>
         <referenceContainer name="content">
             <container name="product.info.media" htmlTag="div" htmlClass="product media grid_5 alpha push_7" before="-">
+                <block class="DiamondMansion\Extensions\Block\Product\View\LikeDislike" name="product.info.likedislike" before="-" template="Magento_Catalog::product/view/likedislike.phtml"/>
                 <block class="Magento\Theme\Block\Html\Title" name="page.main.title.mobile" template="Magento_Catalog::product/view/type/ring_design/title.phtml">
                     <arguments>
                         <argument name="css_class" xsi:type="string">product mobile</argument>
