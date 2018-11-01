@@ -62,13 +62,22 @@ class Opinion extends \Magento\Contact\Controller\Index\Post
                 'email' => $params['email']
             ];
 
+            $contact = $this->_contactFactory->create();
+            $contact->setData([
+                'name' => $params['name'],
+                'email' => $params['email'],
+                'product_name' => $params['productname'],
+                'product_link' => $params['productlink'],
+                'message' => $params['comment']
+            ])->save();
+
             $storeId = $this->_storeManager->getStore()->getId();
 
             $template = $this->_scopeConfig->getValue(
                 'diamondmansion/email/opinion',
                 \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
                 $storeId
-            );            
+            );
 
             $transport = $this->_transportBuilder->setTemplateIdentifier($template)
                 ->setTemplateOptions(['area' => 'frontend', 'store' => $storeId])
