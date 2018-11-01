@@ -10,6 +10,11 @@
         <css src="mage/gallery/gallery.css"/>
     </head>
     <update handle="catalog_product_opengraph" />
+    <referenceBlock name="opengraph.general">
+        <action method="setTemplate">
+            <argument name="template" xsi:type="string">Magento_Catalog::product/view/type/ring_design/opengraph.phtml</argument>
+        </action>
+    </referenceBlock>
     <update handle="page_calendar"/>
     <body>
         <attribute name="itemtype" value="http://schema.org/Product" />

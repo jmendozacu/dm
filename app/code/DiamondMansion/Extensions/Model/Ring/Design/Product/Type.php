@@ -130,12 +130,18 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
     }
 
     public function getDmOptions($product, $sort = false) {
-        $options = $this->getAllDmOptions($product);
-        $defaultOptions = $this->getDefaultDmOptions($product);
+        $filters = $product->getFilters();
+
+        if (isset($filters['option'])) {
+            $optionSet = $this->_helper->getRingDesignOptions($product, $filters);
+            $options = $optionSet['allOptions'];
+            $defaultOptions = $optionSet['defaultOptions'];
+        } else {
+            $options = $this->getAllDmOptions($product);
+            $defaultOptions = $this->getDefaultDmOptions($product);
+        }
 
         $result = [];
-
-        $filters = $product->getFilters();
 
         $attributeKey = 'dm_stone_type';
         $children = false;
