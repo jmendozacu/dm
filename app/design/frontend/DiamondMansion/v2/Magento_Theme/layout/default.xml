@@ -20,7 +20,7 @@
                             <argument name="css_class" xsi:type="string">header links</argument>
                         </arguments>
                     </block>
-                    <!-- <referenceBlock name="header" remove="true"/> -->
+                    <referenceBlock name="header" remove="true"/>
                     <referenceBlock name="my-account-link" remove="true"/>
                     <referenceBlock name="register-link" remove="true"/>
                     <referenceBlock name="catalog.compare.link" remove="true"/>

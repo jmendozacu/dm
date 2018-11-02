@@ -105,6 +105,34 @@
                 &, a {
                     color: @dm-color-red;
                 }
+
+                &.customer-link {
+                    padding-left: 7px;
+                    padding-right: 3px;
+                    position: relative;
+
+                    &:hover {
+                        ul.customer-sub-links {
+                            display: block;
+                        }
+                    }
+
+                    ul.customer-sub-links {
+                        display: none;
+                        position: absolute;
+                        left: 0;
+                        top: 55px;
+                        background: #fff;
+                        box-shadow: 0 1px #FFFFFF inset, 0 1px 3px rgba(34, 25, 25, 0.4);
+                        z-index: 9999;
+                        
+                        li {
+                            float: none;
+                            padding: 10px;
+                            width: 140px;
+                        }
+                    }
+                }
             }
         }
     }

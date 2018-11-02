@@ -1,0 +1,41 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Customer\Block\Account\AuthorizationLink $block */
+
+$dataPostParam = '';
+if ($block->isLoggedIn()) {
+    $dataPostParam = sprintf(" data-post='%s'", $block->getPostParams());
+}
+?>
+<?php if ($block->isLoggedIn()): ?>
+<li class="customer-link">
+    <a href="#" class="anchor">
+        <span>Account</span>
+    </a>
+    <ul class="customer-sub-links">
+        <li><a href="/customer/account/">Profile</a></li>
+        <li><a href="/wishlist/">Dream List</a></li>
+        <li><a href="/sales/order/history/">Order History</a></li>
+        <li class="authorization-link" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
+            <a <?= /* @noEscape */ $block->getLinkAttributes() ?><?= /* @noEscape */ $dataPostParam ?>>
+                <?= $block->escapeHtml($block->getLabel()) ?>
+            </a>
+        </li>
+    </ul>
+</li>
+<?php else: ?>
+<li class="authorization-link" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
+    <a <?= /* @noEscape */ $block->getLinkAttributes() ?><?= /* @noEscape */ $dataPostParam ?>>
+        <?= $block->escapeHtml($block->getLabel()) ?>
+    </a>
+</li>
+<?php endif; ?>
+<li class="phone-number">
+    <span>800-518-0240</span>
+</li>
