@@ -393,4 +393,14 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
 
         $options = $newOptions;
     }
+
+    protected function _prepareProduct(\Magento\Framework\DataObject $buyRequest, $product, $processMode) {
+        if ($buyRequest['dm_options']) {
+            $filters = $product->getFilters();
+            $filters['option'] = $buyRequest['dm_options'];
+            $product->setFilters($filters);
+        }
+        
+        return parent::_prepareProduct($buyRequest, $product, $processMode);
+    }
 }

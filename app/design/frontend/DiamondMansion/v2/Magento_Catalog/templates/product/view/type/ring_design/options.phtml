@@ -52,7 +52,12 @@
         </div>
 
         <div class="buttons">
-            <a class="btn-buy" href="#" onclick="productAddToCartForm.submit(this); return false;"></a>
+            <form action="<?= $block->getSubmitUrl($_product) ?>" method="post">
+                <input type="hidden" name="dm_options" class="dm_custom_options" value="<?= isset($params['option']) ? $params['option'] : "" ?>"/>
+                <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $_product->getId() ?>" />
+                <?= $block->getBlockHtml('formkey') ?>
+                <a class="btn-buy" href="#" data-submit-url="<?= $block->getSubmitUrl($_product) ?>"></a>
+            </form>
             <a class="btn-reserve" href="#form-reserve"></a>
         </div>
     </div>
@@ -406,7 +411,12 @@
             </div>                           
 
             <div class="buttons">
-                <a class="btn-buy" href="#" onclick="productAddToCartForm.submit(this); return false;"></a>
+                <form action="<?= $block->getSubmitUrl($_product) ?>" method="post">
+                    <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $_product->getId() ?>" />
+                    <?= $block->getBlockHtml('formkey') ?>
+                    <input type="hidden" name="custom_options" class="dm_custom_options" value="<?= isset($params['option']) ? $params['option'] : "" ?>"/>
+                    <a class="btn-buy" href="#" data-submit-url="<?= $block->getSubmitUrl($_product) ?>"></a>
+                </form>
                 <a class="btn-reserve" href="#form-reserve"></a>
             </div>
         </div>

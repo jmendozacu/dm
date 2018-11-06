@@ -100,6 +100,8 @@
     <preference for="Magento\Catalog\Block\Product\ProductList\Toolbar" type="DiamondMansion\Extensions\Override\Magento\Catalog\Block\Product\ProductList\Toolbar"/>
     <preference for="Magento\Catalog\Model\Category\Attribute\Source\Mode" type="DiamondMansion\Extensions\Override\Magento\Catalog\Model\Category\Attribute\Source\Mode"/>
     <preference for="Magento\Catalog\Model\Product" type="DiamondMansion\Extensions\Override\Magento\Catalog\Model\Product"/>
+    <preference for="Magento\Checkout\Controller\Cart\Index" type="DiamondMansion\Extensions\Override\Magento\Checkout\Controller\Cart\Index"/>
+    <preference for="Magento\Quote\Model\Quote\Item" type="DiamondMansion\Extensions\Override\Magento\Quote\Model\Quote\Item"/>
     <preference for="Magento\UrlRewrite\Model\Storage\DbStorage" type="DiamondMansion\Extensions\Override\Magento\UrlRewrite\Model\Storage\DbStorage"/>
 
     <preference for="Mirasvit\Seo\Observer\SeoDataObserver" type="DiamondMansion\Extensions\Override\Mirasvit\Seo\Observer\SeoDataObserver"/>

@@ -112,6 +112,11 @@ define([
                 $("input.productlink").val('/' + location.href.slice(tmp));
             }
 
+            $("a.btn-buy").on("click", function () {
+                $(this).parent().submit();
+                return false;
+            });
+
             config.isLoaded = true;
             $(".product-view").slideDown("slow");
         });
@@ -643,6 +648,8 @@ define([
                 if (!config.isRequestedOptions && !config.isLoaded) {
                     return;
                 }
+
+                $("input.dm_custom_options").val(url.toLowerCase().replace('option=', ''));
                 
                 $("input.productlink").val("/" + config.urlKey + "?" + url.toLowerCase());
                 

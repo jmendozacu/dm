@@ -208,6 +208,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             "setting"=>array("metal", "band", "side-stone-color-clarity"),
             "sideStone"=>array("side-stone-shape", "side-stone-carat"),
             "settingSize"=>isset($optionParams[1])?explode("x", $optionParams[1]):[],
+            "params" => $params,
         ];        
     }
 }
