@@ -201,3 +201,46 @@ button:hover > span {
         text-transform: uppercase;
     }
 }
+
+
+.checkout-index-index {
+    button span{background:none; padding:0; height:auto;}
+    button span span{background:none; padding:0 7px 0 5px; color:#909090; font-weight:normal; border-right:1px solid #d2d2d2;}
+    button:hover span{background:none;}
+
+    .opc-block-summary {
+        background: transparent;
+
+        .product-item {
+            .product-item-name-block {
+                display: block;
+
+                .details-qty {
+                    .label {
+                        display: none;
+                    }
+
+                    &:after {
+                        content: "x";
+                        display: inline-block;
+                    }
+                }
+            }
+
+            .subtotal {
+                display: block;
+                margin-top: -20px;
+                text-align: left;
+                text-indent: 25px;
+
+                .price {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+
+    .discount-code {
+        display: none;
+    }
+}
