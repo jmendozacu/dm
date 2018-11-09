@@ -1,0 +1,46 @@
+<div class="grid_6 omega">
+    <h3>Send Us a Question</h3>
+    <div class="title-divider"><span>&nbsp;</span></div>
+    <div class="contacts-footer-content">
+        <form action="/contact/index/post/" id="contactForm" method="post">
+            <ul class="form-list">
+                <li class="fields">
+                    <div class="field">
+                        <label for="name" class="required"><em>*</em>Name</label>
+                        <div class="input-box">
+                            <input name="name" id="name" placeholder="Name" title="Name" class="input-text required-entry" type="text" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="email" class="required"><em>*</em>Email</label>
+                        <div class="input-box">
+                            <input name="email" id="email" placeholder="Email" title="Email" class="input-text required-entry validate-email" type="text" />
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <label for="telephone">Telephone</label>
+                    <div class="input-box">
+                        <input name="telephone" id="telephone" title="Telephone" placeholder="Telephone" class="input-text" type="text" />
+                    </div>
+                </li>
+                <li class="wide">
+                    <label for="comment" class="required"><em>*</em>Comment</label>
+                    <div class="input-box">
+                        <textarea name="comment" id="comment" placeholder="Comment" title="Comment" class="required-entry input-text" cols="5" rows="3"></textarea>
+                    </div>
+                </li>
+            </ul>           
+            <div class="buttons-set">
+                <p class="required">* Required Fields</p>
+                <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+                <button type="submit" title="Send" class="button"><span><span>Send</span></span></button>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+    //var contactForm = new VarienForm('contactForm', true);
+//]]>
+</script>

@@ -1,0 +1,253 @@
+/*------------------------------------------------------------------------------------
+
+	Theme Name: Eternity
+	Theme URI: http://demo.themechills.com/eternity
+	Description: A beautiful landing page template for all wedding occasions.
+	Author: ThemeChills
+	Author URI: http://www.themechills.com
+
+--------------------------------------------------------------------------------------
+
+	1. Screens that are at least 768px
+	2. Screens that are at least 1344px
+	3. iPads (landscape)
+	4. iPads (portrait)
+	5. Retina Image Support
+
+-------------------------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------------------*/
+/*	1. Styles for screens that are at least 768px; */
+/*-----------------------------------------------------------------------------------*/
+
+@media only screen and (min-width: 48em) {
+
+	.cms-diamond-education #maincontent blockquote {
+		padding: 1em 4em;
+	}
+
+	/*==== The Logo ====*/
+
+	.cms-diamond-education #maincontent .logo {		
+		margin:1em auto 0;
+	}
+	.cms-diamond-education #maincontent .logo a {
+		border-radius: 0;
+	}
+	.cms-diamond-education #maincontent .ribbon {
+		background:url(../img/ribbon.png) bottom left repeat-x;		
+	}
+
+	/*==== The Grid ====*/
+
+	.cms-diamond-education #maincontent .large-3,
+	.cms-diamond-education #maincontent .large-9 {
+		width:100%;
+	}
+	.cms-diamond-education #maincontent .row .large-offset-1 {
+		margin-left: 0;
+	}
+	.cms-diamond-education #maincontent .clearing-assembled .clearing-container .carousel {
+		height:185px;
+	}
+	.cms-diamond-education #maincontent .clearing-assembled .clearing-container .carousel > ul li {
+		margin-right: 5px;
+		width: 185px;
+	}
+	.cms-diamond-education #maincontent .section-title {	
+		font-size: 6em;			
+		width: auto;	
+	}
+	.cms-diamond-education #maincontent .section-title em {
+		display: inline;
+	}
+	.cms-diamond-education #maincontent .section-title span:first-child {
+		margin-right: -15px;	
+	}
+	.cms-diamond-education #maincontent .section-title span:last-child {
+		margin-left: -10px;	
+	}	
+	.cms-diamond-education #maincontent .block-grid .block-logo {
+		height: 15em;
+		text-align: center;
+		padding: 4em;
+		width: 50%;	
+	}
+
+	/*==== Carousel +  Flexslider ====*/
+
+	.cms-diamond-education #maincontent .carousel li {
+		width: 25%;
+	}
+
+	/*==== Form ====*/
+
+	.cms-diamond-education #maincontent .rsvp-form fieldset {
+		padding: 2.5em;	
+	}
+
+	/*==== Date Block ====*/
+
+	.cms-diamond-education #maincontent .date-container {
+		padding: 3em 3em 0;
+		text-align: left;
+	}
+	.cms-diamond-education #maincontent .date-container.col-1 {
+		text-align: right;
+		border-right: 1px solid #e4e4e4;
+		border-bottom: none;
+	}
+	.cms-diamond-education #maincontent .date-container .day-date {
+		font-size: 1.250em;		
+	}
+	.cms-diamond-education #maincontent .date-container .day-time, 
+	.cms-diamond-education #maincontent .date-container .day-address {
+		font-size: 1.563em;
+	}
+	.cms-diamond-education #maincontent .date-container .day-meta {
+		font-size: 2.188em;
+	}
+
+	/*==== Footer ====*/
+
+	.cms-diamond-education #maincontent footer {
+		text-align: left;
+	}
+	.cms-diamond-education #maincontent footer .credit {
+		text-align: right;
+	}	
+
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	2. Styles for screens that are at least 1344px; */
+/*-----------------------------------------------------------------------------------*/
+
+@media only screen and (min-width: 84em) {
+
+	/*==== The Logo ====*/
+
+	.cms-diamond-education #maincontent .logo {		
+		margin:auto;
+	}
+
+	/*==== Visibility ====*/
+
+	.cms-diamond-education #maincontent .hide-for-large, 
+	.cms-diamond-education #maincontent .hide-for-large-down {
+		display: inherit !important;
+	}
+
+	/*==== The Grid ====*/
+
+	.cms-diamond-education #maincontent .large-3 {
+		width: 25%;
+	}
+	.cms-diamond-education #maincontent .large-9 {
+		width: 75%;
+	}
+	.cms-diamond-education #maincontent .row .large-offset-1 {
+		margin-left: 8.33333%;
+	}
+	.cms-diamond-education #maincontent .section-title {
+		margin-top: 0.550em;
+	}
+
+	/*==== The Sidebar ====*/
+	
+	.cms-diamond-education #maincontent aside {
+		height: 100%;
+		position: fixed!important;
+		float: left;
+		display: block;
+		left: 0;
+		z-index: 10;	
+	}
+	.cms-diamond-education #maincontent #main > .row {
+		padding-top: 0;
+	}
+	.cms-diamond-education #maincontent .top-bar {
+		display: none!important;
+	}
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	3. Styles for iPads (landscape) */
+/*-----------------------------------------------------------------------------------*/
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+	
+	/*==== The Top Bar ====*/
+
+	.cms-diamond-education #maincontent .top-bar {
+		overflow: hidden;
+		position: fixed;
+	}
+	.cms-diamond-education #maincontent .top-bar-section ul {
+		float: right;
+	}
+	.cms-diamond-education #maincontent .top-bar-section ul li {
+		border-bottom: none;
+	}
+
+	/*==== The Header ====*/
+	
+	.cms-diamond-education #maincontent header {
+		margin-top: 4em;
+	}
+
+	/*==== Gifts Grid ====*/
+	
+	.cms-diamond-education #maincontent #section-5 .large-6 {
+		width: 66.66667%;
+	}
+
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	4. Styles for iPads (portrait) */
+/*-----------------------------------------------------------------------------------*/
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+	
+	.cms-diamond-education #maincontent blockquote {
+		padding: 2em 2em 4em;
+	}
+
+	/*==== Date Block ====*/
+
+	.cms-diamond-education #maincontent .date-container {
+		padding:3em;
+	} 
+	.cms-diamond-education #maincontent .date-section > .large-6 {
+		width: 100%;
+	}
+	.cms-diamond-education #maincontent .date-container,
+	.cms-diamond-education #maincontent .date-container.col-1 {
+		text-align: center;
+	}
+	.cms-diamond-education #maincontent .date-container.col-1 {
+		border-bottom: 1px solid #e4e4e4;
+		padding-bottom: 1em;
+	}
+
+	/*==== Gifts Grid ====*/
+	
+	.cms-diamond-education #maincontent #section-5 .large-6 {
+		width: 83.33333%;
+	}
+
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	5. Retina Image Support */
+/*-----------------------------------------------------------------------------------*/
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+     
+    .cms-diamond-education #maincontent .hearts {
+		background: url(../img/icon-hearts@2x.png) no-repeat center bottom;
+		background-size: 56px 29px;
+    }
+
+}

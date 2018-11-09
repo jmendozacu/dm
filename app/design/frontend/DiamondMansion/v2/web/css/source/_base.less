@@ -177,6 +177,10 @@ button:hover > span {
     margin: 0 auto;
 }
 
+.cms-home #maincontent {
+    max-width: 100%;
+}
+
 .breadcrumbs{
     padding:9px 10px 12px;
 
@@ -204,6 +208,9 @@ button:hover > span {
 
 
 .checkout-index-index {
+    #checkout {
+        padding-top: 30px;
+    }
     button span{background:none; padding:0; height:auto;}
     button span span{background:none; padding:0 7px 0 5px; color:#909090; font-weight:normal; border-right:1px solid #d2d2d2;}
     button:hover span{background:none;}
@@ -242,5 +249,406 @@ button:hover > span {
 
     .discount-code {
         display: none;
+    }
+}
+
+.cms-history {
+    .our-story-wrapper { max-width: 800px; margin: 0 auto; color: #5b5b5b; padding: 0 20px 30px; }
+    .our-story-title { font: 800 36pt 'Futura LT'; padding: 25px 100px; text-align: center; text-transform: uppercase; border-top: 5px solid #5b5b5b; display: block; margin: 0 auto; }
+    .our-story-main-desc { font: normal 24pt 'Futura LT'; text-align: justify; margin-bottom: 30px; text-indent: 25px; letter-spacing: -2px; }
+    .our-story-detail-desc { padding: 0 100px; letter-spacing: -1px; }
+    .our-story-detail-desc p { font: normal 17pt 'Futura LT'; margin-bottom: 20px; text-align: left; }
+    .our-story-detail-desc p strong { font-weight: 800; }
+    .our-story-detail-desc p.font-bookoblique { font-family: 'Futura LT'; font-style: italic; }
+    
+    @media only screen and (max-width: 767px) {
+        .our-story-wrapper { padding: 0 0 10px; }
+        .our-story-title { font-size: 24pt; }    
+        .our-story-main-desc { font-size: 17pt; }
+        .our-story-detail-desc { padding: 0 10px; }
+        .our-story-detail-desc p { font-size: 14pt; }
+        
+        .container_12 { width: 100%; margin: 0; }     
+    }
+    
+    @media only screen and (max-width: 479px) {
+        .our-story-title { font-size: 18pt; }    
+        .our-story-main-desc { font-size: 14pt; }
+        .our-story-detail-desc p { font-size: 13pt; }
+    }
+    
+    
+    .breadcrumbs { display: none; }
+    .page-main { padding-top: 30px; }
+}
+
+.cms-philanthropy {
+    .page-header { margin: 0; padding: 0; }
+    #maincontent { max-width: 100%; margin: 0; padding: 0; }
+    .breadcrumbs { display: none; }
+    .columns .column.main {
+        padding-bottom: 0;
+    }
+
+    .testimoni blockquote {
+        font-family: inherit;
+        color: #75838e;
+        font-style: normal;
+    }
+}
+
+.cms-design-craftsmanship {
+    .breadcrumbs { display: none; }
+
+    .page-title {
+        padding-top: 36px;
+        margin-bottom: 18px;
+        h1 {
+            font-weight: 400;
+        }
+    }
+
+    &,
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Futura LT';
+    }
+    color: #5b5b5b;
+    
+    img {
+        max-width: 100%;
+    }
+
+    .design-craftsmanship-wrapper {
+        .page-title {
+            
+            text-align: center;
+            border-bottom: 1px solid #5b5b5b;
+            
+            h1 {
+                font-family: 'Futura LT';
+                font-size: 14pt;
+                display: inline-block;
+                width: 400px;
+                max-width: 100%;
+                line-height: 40px;
+                border-bottom: 2px solid #5b5b5b;
+            }
+            
+            .title-divider {
+                display: none;
+            }
+        }
+        
+        .main-banner {
+            text-align: center;
+            position: relative;
+            margin-bottom: 20px;
+            margin-left: -10px;
+            margin-right: -10px;
+            
+            & > .banner-label {
+                position: absolute;
+                width: 100%;
+                top: 210px;
+                
+                color: #fff;
+                h2 {
+                    font-size: 52pt;
+                    font-weight: bold;
+                    line-height: 110px;
+                }
+                
+                h4 {
+                    width: 720px;
+                    max-width: 100%;
+                    line-height: 70px;
+                    font-family: 'Futura LT';
+                    font-style: italic;
+                    font-size: 18pt;
+                    border-top: 1px solid #fff;
+                    margin: 0 auto;
+                }
+            }
+        }
+        
+        .content {
+            text-align: center;
+            .column {
+                display: inline-block;
+                padding: 0 10px;
+                width: 470px;
+                
+                .block {
+                    margin-bottom: 20px;
+                    
+                    img {
+                        width: 100%;
+                    }
+                    
+                    h3 {
+                        font-size: 28.65pt;
+                        font-weight: normal;
+                        color: #ed5842;
+                        padding-bottom: 20px;
+                        margin-bottom: 20px;
+                        border-bottom: 1px solid #5b5b5b;
+                        text-transform: uppercase;
+                        text-align: left;
+                    }
+                    
+                    p {
+                        font-size: 25.84pt;
+                        line-height: 45px;
+                        text-align: left;
+                    }
+                }
+            }
+            
+            &.visible-ms {
+                display: none;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 1365px) {
+        .design-craftsmanship-wrapper {
+            .main-banner {
+                & > .banner-label {
+                    top: 30%;
+                    
+                    h2 {
+                        font-size: 25pt;
+                        line-height: 50px;
+                    }
+                    
+                    h4 {
+                        font-size: 14pt;
+                        line-height: 50px;
+                        width: 70%;
+                    }
+                }
+            }
+            
+            .content {
+                .column {
+                    width: 460px;
+                }
+            }
+        }
+    }    
+    @media only screen and (max-width: 977px) {
+        .design-craftsmanship-wrapper {
+            .content {
+                .column {
+                    width: 350px;
+                }
+            }
+        }
+    }    
+    @media only screen and (max-width: 767px) {
+        .container_12 {
+            width: 100%;
+        } 
+        
+        .design-craftsmanship-wrapper {
+            .content {
+                display: none;
+                &.visible-ms {
+                    display: block;
+                }
+                
+                .column {
+                    width: 100%;
+                    padding: 0;
+                }
+            }
+        }
+    }
+    
+    @media only screen and (max-width: 639px) {
+        .container_12 {
+            width: 100%;
+        } 
+        
+        .design-craftsmanship-wrapper {
+            .main-banner {
+                & > .banner-label {
+                    top: 30%;
+                    
+                    h2 {
+                        font-size: 20pt;
+                        line-height: 50px;
+                    }
+                    
+                    h4 {
+                        font-size: 11pt;
+                        line-height: 50px;
+                        width: 70%;
+                    }
+                }
+            }
+            
+            .content {
+                .column {
+                    width: 100%;
+                    
+                    .block {
+                        h3 {
+                            font-size: 20pt;
+                        }
+                        p {
+                            font-size: 16pt;
+                            line-height: 30px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    @media only screen and (max-width: 479px) {
+        .container_12 {
+            margin: 0;
+        }
+        .design-craftsmanship-wrapper {
+            .main-banner {
+                & > .banner-label {
+                    top: 30%;
+                    
+                    h2 {
+                        font-size: 15pt;
+                        line-height: 50px;
+                    }
+                    
+                    h4 {
+                        font-size: 8pt;
+                        line-height: 50px;
+                        width: 70%;
+                    }
+                }
+            }            
+        }
+    }    
+}
+
+.cms-diamond-education {
+    .breadcrumbs { display: none; }    
+    #maincontent { max-width: 100%; padding: 0; margin: 0; margin-top: 5px !important; }
+    #maincontent .logo { max-width: 100%; }
+
+    #maincontent aside.columns {margin-top: 82px; }
+    #maincontent .column.main,
+    #maincontent .columns {
+        padding: 0 !important;
+    }
+
+    .hide-for-large-down { clear: both; }
+}
+
+.gallery {
+    padding-top: 30px;
+
+    h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .white > ul > li {
+        text-align: center;
+    }
+
+    #contactus .contactus-top p span { color: #000; font-weight: bold; }
+    #contactus p { font-size: 12px; padding: 10px 0; line-height: 15px; }
+    #contactus h3 { line-height: 24px; font-size: 14px; }
+    #contactus .contactus-top { padding-top: 20px; }
+    #contactus .contactus-bottom { padding-top: 20px; }
+    #contactus .contactus-top .grid_4 { margin-right: 0; }
+    #contactus .contactus-top img { float: left; }
+    #contactus .contactus-top h3 { padding-left: 34px; }
+    #contactus .contactus-bottom .title-divider { margin-bottom: 10px; }
+    
+    #contactus #contactForm .form-list { list-style: none; }
+    #contactus #contactForm .form-list textarea { width: 100%; }
+    #contactus #contactForm p.required { float: left; }
+    #contactus .contactus-bottom .buttons-set button.button { float: left; }
+    #contactus .contactus-bottom #contactForm .buttons-set { max-width: 535px; }
+    #contactus .contactus-bottom #contactForm .buttons-set button.button { float: right; }
+    #contactus .contactus-bottom .input-zipcode { float: left; line-height: 20px; margin: 0 5px; }
+    #contactus .contactus-bottom .input-zipcode input { width: 80px; }
+    #contactus #contactForm .form-list li.wide .input-box { max-width: 100%; }
+    
+    #contactus h4 { color: #000000; font: bold 14px/20px Helvetica,sans-serif; margin-bottom: 1px; padding: 0 0 0 10px; }
+    #contactus h5 { color: #000000; font: normal 12px/20px Helvetica,sans-serif; margin-bottom: 1px; padding: 0 0 0 10px; }
+    #contactus label { color: #000; }
+    
+    #contactus button.button span { background: none #990000; border-radius: 8px; font: normal 11px/20px arial; height: 20px; }
+    #contactus button.button span span { padding-top: 0; }    
+
+    /* Form lists */
+    /* Grouped fields */
+    /*.form-list { width:535px; margin:0 auto; overflow:hidden; }*/
+    .form-list{margin:9px 0;}
+    .form-list li { 
+        margin:0 0 9px; 
+        &:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .field {
+            margin-bottom: 10px;
+        }
+    }
+    .form-list label { float:left; color:#111; font-weight:normal; position:relative; z-index:0; font-size: 12px; }
+    .form-list label.required {}
+    .form-list label.required em { float:right; font-style:normal; color:#eb340a; position:absolute; top:0; right:-8px; }
+    .form-list li.control label { float:none; }
+    .form-list li.control input.radio,
+    .form-list li.control input.checkbox { margin-right:6px; }
+    .form-list li.control .input-box { clear:none; display:inline; width:auto; }
+    /*.form-list li.fields { margin-right:-15px; }*/
+    .form-list .input-box { display:block; clear:both; width:260px; }
+    .form-list .field { float:left; width:324px; }
+    .form-list input.input-text { width:303px; }
+    .form-list textarea { width:254px; height:10em; }
+    .form-list select { width:310px; }
+    .form-list li.wide .input-box { width:535px; }
+    .form-list li.wide input.input-text { width:626px; }
+    .form-list li.wide textarea { width:627px; }
+    .form-list li.wide select { width:677px; }
+    .form-list li.additional-row { border-top:1px solid #ccc; margin-top:10px; padding-top:7px; }
+    .form-list li.additional-row .btn-remove { float:right; margin:5px 0 0; }
+    .form-list .input-range input.input-text { width:74px; }    
+
+    #contactus h4 {
+        margin-bottom: 10px;
+    }
+
+    input {
+        height: 24px;
+        line-height: 24px;
+        font-size: 12px;
+    }
+
+    #contactus #contactForm p.required {
+        padding: 0;
+        color: #eb340a;
+    }
+
+    .input-zipcode {
+        font-size: 12px;
+    }
+
+    ul { display: block; margin: 0px; padding: 0px; list-style: none; }
+    ul li { text-align: center; min-width: 100px; }
+    .picture_links ul li ul li { font-weight: bold; }    
+
+    .buttons-set {
+        &:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
     }
 }

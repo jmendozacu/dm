@@ -1,0 +1,861 @@
+/*------------------------------------------------------------------------------------
+
+	Theme Name: Eternity
+	Theme URI: http://demo.themechills.com/eternity
+	Description: A beautiful landing page template for all wedding occasions.
+	Author: Leo Acosta
+	Author URI: http://www.themechills.com
+
+--------------------------------------------------------------------------------------
+
+	1.	Overrides
+	2.	Main Content Styles
+	3.	Sidebar Styles
+	4.	Forms - Base Styles
+	5.	Image Gallery
+	6.	Footer Styles
+	7.	Helpers
+
+------------------------------------------------------------------------------------*/
+
+@font-face {
+    font-family: 'ostrich_sansbold';
+    src: url('../fonts/ostrich-bold-webfont.eot');
+    src: url('../fonts/ostrich-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/ostrich-bold-webfont.woff') format('woff'),
+         url('../fonts/ostrich-bold-webfont.ttf') format('truetype'),
+         url('../fonts/ostrich-bold-webfont.svg#ostrich_sansbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    src: url('../fonts/RobotoSlab-Bold-webfont.eot');
+    src: url('../fonts/RobotoSlab-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/RobotoSlab-Bold-webfont.woff') format('woff'),
+         url('../fonts/RobotoSlab-Bold-webfont.ttf') format('truetype'),
+         url('../fonts/RobotoSlab-Bold-webfont.svg#roboto_slabbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto Slab Regular';
+    src: url('../fonts/RobotoSlab-Regular-webfont.eot');
+    src: url('../fonts/RobotoSlab-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/RobotoSlab-Regular-webfont.woff') format('woff'),
+         url('../fonts/RobotoSlab-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/RobotoSlab-Regular-webfont.svg#roboto_slabregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+/*	1.	Overrides
+/*-----------------------------------------------------------------------------------*/
+
+.cms-diamond-education #maincontent { margin-top: -10px; margin-bottom: -15px; }
+
+.cms-diamond-education #maincontent a {
+	color:#de675f;
+	-webkit-transition: all 300ms ease-out;
+	-moz-transition: all 300ms ease-out;
+	transition: all 300ms ease-out;
+}
+.cms-diamond-education #maincontent a:hover {
+	color:#ec6d65;
+}
+.cms-diamond-education #maincontent img {
+	width: 100%;
+	height: auto;
+}
+
+/*==== Headings ====*/
+
+.cms-diamond-education #maincontent h1,
+.cms-diamond-education #maincontent h2,
+.cms-diamond-education #maincontent h3,
+.cms-diamond-education #maincontent h4,
+.cms-diamond-education #maincontent h5,
+.cms-diamond-education #maincontent h6 {	
+	color:#de675f;
+	font-family: 'ostrich_sansbold','Helvetica Neue', Helvetica, sans-serif;
+	font-weight: normal;
+	line-height: 1.5;
+}
+
+/*==== The Grid ====*/
+
+.cms-diamond-education #maincontent .row,
+.cms-diamond-education #maincontent .row .row {
+	height: 100%;
+	max-width: 100%;
+	margin:0;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	2.	Main Content Styles
+/*-----------------------------------------------------------------------------------*/
+
+.cms-diamond-education #maincontent #main {
+    background-color: #fff;
+}
+
+.cms-diamond-education #maincontent header {
+	margin-top: 0.5em;
+}
+
+.cms-diamond-education #maincontent blockquote {
+	border-left: none;
+	padding: 4em 2em;	
+	margin-bottom: 0;
+	text-align: left;
+}
+.cms-diamond-education #maincontent blockquote:before {
+	content: "";
+	position: absolute;
+	height: 100%;
+	top: 0;
+	right: 0;
+	width: 0px;
+	background:#d9d9d9;
+}
+.cms-diamond-education #maincontent blockquote.caption-2:before {
+	background:none
+}
+.cms-diamond-education #maincontent blockquote p {
+    font-family: "Roboto Slab Regular";
+    font-size: 15px;
+    font-style: normal;
+}
+.cms-diamond-education #maincontent blockquote p b {
+    font-family: "Roboto Slab";
+}
+.cms-diamond-education #maincontent blockquote p span.sign {
+    color: #de675f;
+}
+.cms-diamond-education #maincontent blockquote p span.strong {
+    color: #987c61;
+    font-family: "Roboto Slab";
+}
+.cms-diamond-education #maincontent .subline {
+	padding: 1em 0.5em 0;
+    font-family: 'Roboto Slab';
+    font-size: 16px;
+}
+.cms-diamond-education #maincontent .section-title-container {	
+	text-align: center;
+	margin: 2em 0 2em;
+}
+.cms-diamond-education #maincontent .section-title {	
+	border-bottom: 4px double #c9b29b;
+	display: inline-block;
+	text-align: center;
+	font-size: 4em;
+	line-height: 1.2;
+	margin: 0;
+	width: 100%;
+}
+.cms-diamond-education #maincontent .section-title small {
+    color: #DE675F;
+    vertical-align: baseline;
+}
+.cms-diamond-education #maincontent .section-title em {
+	color:#987c61;
+	font-family: 'Playfair Display', serif;
+	font-size: 0.5em;
+    vertical-align: baseline;
+}
+
+.cms-diamond-education #maincontent #section-0-sub-0 {
+    background-color: #de675f;
+    color: #fff;
+}
+
+.cms-diamond-education #maincontent #section-0-sub-0 .subheader {
+    margin-top: 30px;
+    font-family: 'Roboto Slab Regular';
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.cms-diamond-education #maincontent #section-0-sub-0 .subheader .small {
+    font-size: 24px;
+}
+
+.cms-diamond-education #maincontent #section-0-sub-0 .subheader .large {
+    font-size: 28px;
+}
+
+.cms-diamond-education #maincontent #section-0-sub-0 blockquote p {
+    color: #fff;
+    font-family: 'Roboto Slab Regular';
+    font-size: 15px;
+    font-style: normal;
+}
+
+.cms-diamond-education #maincontent #section-0-sub-0 blockquote p b {
+    font-family: 'Roboto Slab';
+}
+
+.cms-diamond-education #maincontent #section-0-sub-0 blockquote:before {
+    width: 0px;
+}
+
+.cms-diamond-education #maincontent .section-carat { background: url(../img/bg-carat.png) no-repeat right top #f7f7f7; }
+.cms-diamond-education #maincontent .section-cut { background: url(../img/bg-cut.png) no-repeat right top #f7f7f7; }
+.cms-diamond-education #maincontent .section-clarity { background: url(../img/bg-clarity.png) no-repeat right 210px #f7f7f7; }
+.cms-diamond-education #maincontent .section-color { background: url(../img/bg-color.png) no-repeat right -20px #f7f7f7; }
+.cms-diamond-education #maincontent .section-certificate { background: url(../img/bg-certificate.png) no-repeat right 20px #f7f7f7; }
+.cms-diamond-education #maincontent .section-setting { background: url(../img/bg-setting.png) no-repeat right -70px #f7f7f7; }
+.cms-diamond-education #maincontent .section-metal { background: url(../img/bg-metal.png) no-repeat right -70px #f7f7f7; }
+.cms-diamond-education #maincontent .section-ring-size { background: url(../img/bg-ring-size.png) no-repeat right 0 #f7f7f7; }
+.cms-diamond-education #maincontent .section-ideal { background: url(../img/bg-ideal.png) no-repeat right 0 #f7f7f7; }
+
+.cms-diamond-education #maincontent .icon-img { text-align: center; padding: 5px 0 45px; }
+.cms-diamond-education #maincontent .icon-img img { width: auto !important; display: inline; }
+
+.cms-diamond-education #maincontent .sub-section-title { color: #987c61; font-family: "Roboto Slab"; font-size: 24px; height: 80px; line-height: 80px; text-transform: uppercase; }
+
+.cms-diamond-education #maincontent .flexslider-list li { cursor: pointer; height: 40px; line-height: 40px; font-family: "Roboto Slab"; font-size: 15px; text-align: left; color: #987c61; }
+.cms-diamond-education #maincontent .flexslider-list li.flex-active-slide { color: #DE675F; }
+
+.cms-diamond-education #maincontent #section-cut-grading #cut-type-slider { height: 205px; margin-right: 40px; margin-top: 20px; }
+.cms-diamond-education #maincontent #section-cut-grading #cut-type-list .flex-viewport { height: 250px !important; }
+.cms-diamond-education #maincontent #section-cut-grading #cut-type-content .flex-caption p { height: 168px; }
+.cms-diamond-education #maincontent #section-clarity-grading #clarity-type-slider { height: 205px; margin-right: 40px; margin-top: 20px; }
+.cms-diamond-education #maincontent #section-clarity-grading #clarity-type-list .flex-viewport { height: 250px !important; }
+.cms-diamond-education #maincontent #section-clarity-grading #clarity-type-content .flex-caption p { height: 72px; }
+.cms-diamond-education #maincontent #section-color-grading #color-type-slider { height: 285px; margin-right: 40px; margin-top: 20px; }
+.cms-diamond-education #maincontent #section-color-grading #color-type-list .flex-viewport { height: 330px !important; }
+.cms-diamond-education #maincontent #section-color-grading #color-type-content .flex-caption p { height: 72px; }
+.cms-diamond-education #maincontent #section-cut-parts #cut-part-list .flex-viewport { height: 250px !important; padding-left: 50px; }
+.cms-diamond-education #maincontent #section-cut-parts #cut-part-list li { text-indent: 30px; height: 50px; line-height: 50px; }
+.cms-diamond-education #maincontent #section-cut-parts #cut-part-list li.flex-active-slide { background: url(../img/bg-cut-part-tab.png) no-repeat; }
+.cms-diamond-education #maincontent #cut-part-caption { height: 48px; }
+
+.cms-diamond-education #maincontent #section-setting-contents p { padding-left: 180px; min-height: 140px; line-height: 30px; }
+.cms-diamond-education #maincontent #section-setting-contents p.setting-solitaire { background: url(../img/bg-setting-solitaire.png) left center no-repeat; }
+.cms-diamond-education #maincontent #section-setting-contents p.setting-three-stone { background: url(../img/bg-setting-three-stone.png) left center no-repeat; }
+.cms-diamond-education #maincontent #section-setting-contents p.setting-pave { background: url(../img/bg-setting-pave.png) left center no-repeat; }
+.cms-diamond-education #maincontent #section-setting-contents p.setting-halo { background: url(../img/bg-setting-halo.png) left center no-repeat; }
+.cms-diamond-education #maincontent #section-setting-contents p.setting-channel-set { background: url(../img/bg-setting-channel-set.png) left center no-repeat; }
+.cms-diamond-education #maincontent #section-setting-contents p.setting-bezel-set { background: url(../img/bg-setting-bezel-set.png) left center no-repeat; }
+.cms-diamond-education #maincontent #section-setting-contents p.setting-split-shank { background: url(../img/bg-setting-split-shank.png) left center no-repeat; }
+
+.cms-diamond-education #maincontent #section-metal-contents blockquote { padding-left: 0px; }
+.cms-diamond-education #maincontent #section-metal-contents p { padding-left: 300px; min-height: 300px; line-height: 30px; }
+.cms-diamond-education #maincontent #section-metal-contents p.metal-14k-gold { background: url(../img/bg-metal-14k-gold.png) -230px -20px no-repeat; }
+.cms-diamond-education #maincontent #section-metal-contents p.metal-18k-gold { background: url(../img/bg-metal-18k-gold.png) -230px -20px no-repeat; }
+.cms-diamond-education #maincontent #section-metal-contents p.metal-platinum { background: url(../img/bg-metal-platinum.png) -230px -20px no-repeat; }
+
+.cms-diamond-education #maincontent #section-ring-size blockquote.caption-2 p { padding-left: 73px; background: url(../img/bg-ring-size-icon-1.png) 20px 5px no-repeat; min-height: 30px; }
+.cms-diamond-education #maincontent #section-ring-size blockquote.caption-4 p { padding-left: 73px; background: url(../img/bg-ring-size-icon-2.png) 25px 5px no-repeat; min-height: 30px; }
+
+.cms-diamond-education #maincontent #ring-size-chart { width: 100%; border-color: #e5e5e5; }
+.cms-diamond-education #maincontent #ring-size-chart thead {  }
+.cms-diamond-education #maincontent #ring-size-chart thead th { background-color: #ff6460; font-size: 14px; color: #fff; width: 20%; font-weight: normal; text-align: center; }
+.cms-diamond-education #maincontent #ring-size-chart tbody td { font-size: 14px; color: #8b8a86; font-family: 'Roboto Slab Regular'; border-right: 1px solid #e5e5e5; }
+
+.cms-diamond-education #maincontent #section-ideal .section-title { border-bottom: none; display: block; }
+.cms-diamond-education #maincontent #section-ideal .sub-section-title { border-bottom: 4px double #C9B29B; display: inline-block; line-height: 24px; height: 50px; }
+.cms-diamond-education #maincontent #section-ideal .hearts { margin-top: -10px; }
+
+.cms-diamond-education #maincontent #section-footer { height: 54px; background: url(../img/bg-footer.png) repeat-x; }
+.cms-diamond-education #maincontent #section-footer span { line-height: 54px; font-weight: bold; }
+.cms-diamond-education #maincontent #section-footer span.odd { color: #f3b0ac; }
+.cms-diamond-education #maincontent #section-footer span.even { color: #f8e4e3; }
+
+.cms-diamond-education #maincontent .noUi-target { width: 10px; }
+.cms-diamond-education #maincontent .noUi-handle, .cms-diamond-education #maincontent .noUi-handle:after, .cms-diamond-education #maincontent .noUi-handle:before { background: url(../img/icon-scroll-button.png) no-repeat transparent !important; height: 42px; width: 42px; left: -16px; top: -20px; border: none; box-shadow: none; content: none; }
+
+.cms-diamond-education #maincontent .hearts {
+	background:url(../img/icon-hearts.png) no-repeat center bottom;	
+	display: block;
+	height: 29px;
+	position: relative;
+	z-index: 4;
+	bottom: 15px;
+}
+.cms-diamond-education #maincontent .divider {
+	border-bottom:1px solid #e4e4e4;
+}
+
+/*==== Date Block ====*/
+
+.cms-diamond-education #maincontent .date-container {
+	padding: 1.5em;
+}
+.cms-diamond-education #maincontent .date-container.col-1 {
+	border-bottom:1px solid #e4e4e4;
+}
+.cms-diamond-education #maincontent .date-container .day-date,
+.cms-diamond-education #maincontent .date-container .day-time,
+.cms-diamond-education #maincontent .date-container .day-address {
+	font-size: 1em;
+}
+.cms-diamond-education #maincontent .date-container span {
+	display:block;
+}
+.cms-diamond-education #maincontent .date-container .date {
+	font-family: 'Roboto Slab', serif;
+}
+.cms-diamond-education #maincontent .date-container .accent {
+	color:#755f49;
+	font-family: 'ostrich_sansbold','Helvetica Neue', Helvetica, sans-serif;
+	font-weight: normal;
+}
+.cms-diamond-education #maincontent .date-container .day-location {
+	font-size: 3.750em;
+	margin: 10px 0 5px;
+}
+.cms-diamond-education #maincontent .date-container .day-year {
+	font-size: 12em;
+}
+.cms-diamond-education #maincontent .date-container, .subline, .side-nav {
+	color: #987c61;
+	font-family: 'Roboto Slab', serif;
+	font-weight:bold;	
+	text-transform: uppercase;	
+}
+.cms-diamond-education #maincontent .date-container .day-meta {
+	font-family: 'Playfair Display', serif;
+	font-style: italic;
+	text-transform: lowercase;
+	font-weight: normal;
+	font-size: 1.45em;
+	margin-top: 15px;
+}
+
+/*==== Callout ====*/
+
+.cms-diamond-education #maincontent .callout {
+	clear:both;
+	text-align: center;
+	margin: 4em 0 6em;
+}
+.cms-diamond-education #maincontent .callout .button {
+	margin-bottom: 0;
+}
+
+/*==== Sections ====*/
+
+.cms-diamond-education #maincontent div[id*="section-"] {
+	overflow: hidden;
+	text-align: center;
+}
+.cms-diamond-education #maincontent .section-odd {
+	background:#f7f7f7;
+}
+.cms-diamond-education #maincontent .btn-label {
+	margin-left: 0.5em;
+}
+
+/*==== Block Grid ====*/
+
+.cms-diamond-education #maincontent .block-grid li {
+	margin-bottom: 0.88em;
+}
+.cms-diamond-education #maincontent .block-grid .block-logo {
+	background-color: #FFF;
+	border-radius: 10px;
+	display: table-cell;
+	height: 10em;
+	text-align: center;
+	padding: 4em;
+	vertical-align: middle;
+	width: 50%;	
+}
+.cms-diamond-education #maincontent .block-logo:hover {
+	background-color: #FFF;
+	cursor: pointer;
+}
+.cms-diamond-education #maincontent .block-logo img {
+	opacity: .5;
+	-webkit-filter: grayscale(1);
+	-webkit-transition: all .6s ease; /* Fade to color for Chrome and Safari */
+    -webkit-backface-visibility: hidden; /* Fix for transition flickering */
+}
+.cms-diamond-education #maincontent .block-logo:hover img {
+	opacity: 1;
+	-webkit-filter: grayscale(0)
+}
+.cms-diamond-education #maincontent .visible-img img {
+	width: auto;
+}
+
+/*==== Content Block ====*/
+
+.cms-diamond-education #maincontent .content-block {
+	margin: 2em 0 6em;
+	line-height: 2em;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	3.	Sidebar Styles
+/*-----------------------------------------------------------------------------------*/
+
+.cms-diamond-education #maincontent aside {
+	width: 100%;
+	height: 30em;
+	top: 0;
+	right: 0;
+	bottom: auto;
+	position: relative!important;
+	z-index: 997;
+    margin-top: 138px;
+}
+.cms-diamond-education #maincontent aside .postfix.button {
+	line-height:0.125em;
+	padding:1.43em 0;
+}
+.cms-diamond-education #maincontent .side-nav {
+	background-color:#ec6d65; /* fallback */
+	background: rgba(236, 109, 101, 0.9); 
+	margin: 0;
+	padding:0;
+}
+.cms-diamond-education #maincontent .side-nav li { 
+	margin:0;
+}
+.cms-diamond-education #maincontent .side-nav li a {
+	color:#fff;
+	border-top: 1px solid #fb918a;
+	display: block;
+	padding: 1em 1.25em;
+    font: 1.25em 'Roboto Slab';
+    text-align: center;
+}
+.cms-diamond-education #maincontent .side-nav li.active a,
+.cms-diamond-education #maincontent .side-nav li a:hover {	
+	background-color:#fff;
+	color:#de675f;
+}
+.cms-diamond-education #maincontent .side-nav-container {
+	margin: 0 auto;
+	width: 70%;
+}
+.cms-diamond-education #maincontent .shadow {	
+	-webkit-box-shadow: 0 0 1.5em #6e6e6e;
+	   -moz-box-shadow: 0 0 1.5em #6e6e6e;
+			box-shadow: 0 0 1.5em #6e6e6e;
+}
+.cms-diamond-education #maincontent .logo {		
+	margin:5em auto;
+}
+.cms-diamond-education #maincontent .logo a {
+	background-color: #de675f; /* fallback */
+	background-color: rgba( 222, 103, 95, 0.9);
+	color:#fff;
+	display: block;
+	font-size: 2.5em;
+	/*letter-spacing: -12px;*/
+	border-radius: 30px;
+    text-align: center;
+}
+.cms-diamond-education #maincontent .ribbon {
+	background:none;
+	display: block;
+	height: 8px;
+	opacity: 0.9;
+}
+
+/* Global Buttons */
+
+.cms-diamond-education #maincontent button, .button {
+	background-color: #de675f;
+	border-color: transparent;
+	-webkit-box-shadow: none;
+		    box-shadow: none;
+	text-transform: uppercase;
+	padding: 1.250em 1.5em;
+}
+.cms-diamond-education #maincontent button:hover, 
+.cms-diamond-education #maincontent button:focus, 
+.cms-diamond-education #maincontent .button:hover, 
+.cms-diamond-education #maincontent .button:focus {
+	background-color:#ec6d65;
+}
+
+/* High Quality/Definition Images */
+
+.cms-diamond-education #maincontent .hd {
+	margin-bottom: 1em;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	4.	Forms - Base Styles
+/*-----------------------------------------------------------------------------------*/
+
+.cms-diamond-education #maincontent input[type="text"],
+.cms-diamond-education #maincontent input[type="password"],
+.cms-diamond-education #maincontent input[type="date"],
+.cms-diamond-education #maincontent input[type="datetime"],
+.cms-diamond-education #maincontent input[type="datetime-local"],
+.cms-diamond-education #maincontent input[type="month"],
+.cms-diamond-education #maincontent input[type="week"],
+.cms-diamond-education #maincontent input[type="email"],
+.cms-diamond-education #maincontent input[type="number"],
+.cms-diamond-education #maincontent input[type="search"],
+.cms-diamond-education #maincontent input[type="tel"],
+.cms-diamond-education #maincontent input[type="time"],
+.cms-diamond-education #maincontent input[type="url"],
+.cms-diamond-education #maincontent textarea {
+	background-color: #F5F5F6;
+	border: 1px solid #F5F5F6;
+	border-radius: 3px; 
+	height: 38px;
+	color: #818b92;
+	-webkit-font-smoothing: antialiased;
+	-webkit-appearance: none;
+	-webkit-box-shadow: none;
+			box-shadow: none;
+	-webkit-transition: .25s ease-in;
+	   -moz-transition: .25s ease-in;
+		    transition: .25s ease-in;
+}
+.cms-diamond-education #maincontent input[type="text"]:focus, 
+.cms-diamond-education #maincontent input[type="password"]:focus, 
+.cms-diamond-education #maincontent input[type="date"]:focus, 
+.cms-diamond-education #maincontent input[type="datetime"]:focus, 
+.cms-diamond-education #maincontent input[type="datetime-local"]:focus, 
+.cms-diamond-education #maincontent input[type="month"]:focus, 
+.cms-diamond-education #maincontent input[type="week"]:focus, 
+.cms-diamond-education #maincontent input[type="email"]:focus, 
+.cms-diamond-education #maincontent input[type="number"]:focus, 
+.cms-diamond-education #maincontent input[type="search"]:focus, 
+.cms-diamond-education #maincontent input[type="tel"]:focus, 
+.cms-diamond-education #maincontent input[type="time"]:focus, 
+.cms-diamond-education #maincontent input[type="url"]:focus, 
+.cms-diamond-education #maincontent textarea:focus {
+	background-color: #FFF;
+	border:1px solid #de675f;
+	-webkit-box-shadow: none;
+	   -moz-box-shadow: none;
+		    box-shadow: none;
+} 
+
+.cms-diamond-education #maincontent label {
+	text-align: left;
+	margin-bottom: 0.5em;
+}
+
+/*==== RSVP ====*/
+
+.cms-diamond-education #maincontent .rsvp-form {
+	margin:2em 0 4em;
+}
+.cms-diamond-education #maincontent .rsvp-form fieldset {
+	border-color:#e6e6e6;
+	padding: 2em 0.5em;
+	margin: 1em 1em 3em;
+}
+.cms-diamond-education #maincontent .rsvp-form legend {
+	font-weight: normal;
+	padding: 0 1em;
+	line-height: 1.4;
+}
+.cms-diamond-education #maincontent .rsvp-form div[class*="large-"] {
+	padding-left:0.9375em!important;
+	padding-right:0.9375em!important;
+}
+.cms-diamond-education #maincontent .rsvp-attendance label {
+	text-align:center;
+	display: inline-block;
+}
+.cms-diamond-education #maincontent .rsvp-attendance .radio-label {
+	display: block;
+	margin-top: 1em;
+}
+
+.cms-diamond-education #maincontent form.custom .custom {
+	border: solid 5px #e6e6e6;
+	height: 29px;
+	width: 30px;
+}
+.cms-diamond-education #maincontent form.custom .custom.radio.checked:before {
+	top: 4px;
+	left: 5px;
+	background-color: #e6e6e6;
+	width: 10px;
+	height: 10px;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	5.	Image Gallery
+/*-----------------------------------------------------------------------------------*/
+
+.cms-diamond-education #maincontent .carousel li {
+	position: relative;
+	margin: 0;
+	max-width:100%;
+	width: 100%;
+}
+.cms-diamond-education #maincontent .carousel img {
+	max-width: 100%;
+	height: auto;
+}
+.cms-diamond-education #maincontent .overlay-label {
+	background-color: rgba( 222, 103, 95, 0.7);
+	display: inline;
+	left: 0px;
+	text-transform: uppercase;
+	font-weight: 300;
+	letter-spacing: 3px;
+	opacity: 0;
+	margin: 0px;	
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	padding-top: 45%;
+	color: white;
+	font-size: 15px;
+	-webkit-transition: all .4s;
+	   -moz-transition: all .4s;
+	        transition: all .4s;
+
+}
+.cms-diamond-education #maincontent .overlay-label:hover {
+	opacity: 1;
+}
+
+/* Navigation */
+
+.cms-diamond-education #maincontent .top-bar {
+	position: relative;
+	top: 0;
+	width: 100%;
+	z-index: 997;
+	text-align: left;
+}
+.cms-diamond-education #maincontent .top-bar .name {
+	color:#fff;
+	font-weight: bold;
+	line-height: 3em;
+	padding-left: 1em;
+}
+.cms-diamond-education #maincontent .top-bar-section ul li {
+	border-bottom: 1px dotted #222222;
+}
+.cms-diamond-education #maincontent .top-bar-section ul li > a {
+	background: #111111;
+	font-weight: normal;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	6.	Footer Styles
+/*-----------------------------------------------------------------------------------*/
+
+.cms-diamond-education #maincontent footer {
+	overflow: hidden;	
+	text-transform: uppercase;
+	text-align: center;
+	padding: 2em;
+}
+.cms-diamond-education #maincontent footer p {
+	font-size: 0.750em;
+	margin-bottom: 0;
+}
+.cms-diamond-education #maincontent footer a {
+}
+.cms-diamond-education #maincontent .copyright {
+	margin-bottom: 0.650em;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*	7.	Helpers
+/*-----------------------------------------------------------------------------------*/
+
+.cms-diamond-education #maincontent .wrapper {
+	padding: 0 1em!important;
+}
+.cms-diamond-education #maincontent .sep {
+	margin: 3em 0 2em;
+}
+.cms-diamond-education #maincontent .preloader {
+	background:url(../img/status.gif) no-repeat center center; 
+	min-height:400px;
+}
+
+.cms-diamond-education #maincontent .carat-size-viewer-wrapper {
+    border: 1px solid #e5e5e5;
+    display: inline-block;
+    background-color: #f8f8f8;    
+}
+
+.cms-diamond-education #maincontent .carat-size-viewer-wrapper > li {
+    float: left;
+    min-height: 500px;
+    border-left: 1px solid #e5e5e5;
+    z-index: 11;
+    position: relative;
+}
+
+.cms-diamond-education #maincontent .carat-size-viewer-wrapper > li:first-child {
+    border-left: none;
+    background-color: #fff;
+}
+
+.cms-diamond-education #maincontent #shape-list, .cms-diamond-education #maincontent #carat-list {
+    list-style: none;
+    margin: 0;
+}
+
+.cms-diamond-education #maincontent #shape-list li {
+    font: normal 13px/36px 'Roboto Slab Regular';
+    color: #8b8a86;
+    text-align: left;
+    cursor: pointer;
+    padding: 0 15px 0 45px;
+    background: url(../img/icon-shapes.png) 10px top no-repeat #fff;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+}
+
+.cms-diamond-education #maincontent #shape-list li:nth-child(1) { background-position: 10px 0px; }
+.cms-diamond-education #maincontent #shape-list li:nth-child(2) { background-position: 10px -36px; }
+.cms-diamond-education #maincontent #shape-list li:nth-child(3) { background-position: 10px -72px; }
+.cms-diamond-education #maincontent #shape-list li:nth-child(4) { background-position: 10px -108px; }
+.cms-diamond-education #maincontent #shape-list li:nth-child(5) { background-position: 10px -144px; }
+.cms-diamond-education #maincontent #shape-list li:nth-child(6) { background-position: 10px -180px; }
+.cms-diamond-education #maincontent #shape-list li:nth-child(7) { background-position: 10px -216px; }
+.cms-diamond-education #maincontent #shape-list li:nth-child(8) { background-position: 10px -252px; }
+.cms-diamond-education #maincontent #shape-list li:nth-child(9) { background-position: 10px -288px; }
+.cms-diamond-education #maincontent #shape-list li:nth-child(10) { background-position: 10px -324px; }
+
+.cms-diamond-education #maincontent #shape-list li.active, .cms-diamond-education #maincontent #shape-list li:hover {
+    background-color: #ff6460;
+    color: #fff;
+    background-image: url(../img/icon-shapes-active.png);
+}
+
+.cms-diamond-education #maincontent #carat-list li {
+    font: normal 13px/36px 'Roboto Slab Regular';
+    color: #8b8a86;
+    text-align: left;    
+    cursor: pointer;
+    padding: 0 15px;
+    border-right: 1px solid transparent;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+}
+
+.cms-diamond-education #maincontent #carat-list li:first-child {
+    border-top-color: transparent !important;
+}
+
+.cms-diamond-education #maincontent #carat-list li:hover {
+    background-color: #fff;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.cms-diamond-education #maincontent #carat-list li.active {
+    background-color: #fff;
+    border-right: 1px solid #fff;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.cms-diamond-education #maincontent #carat-size-image-wrapper {
+    max-width: 500px;
+    margin-left: -1px !important;
+    z-index: 10;
+}
+
+#footer {
+    position: relative;
+    z-index: 9999;
+}
+
+.cms-diamond-education #maincontent a.prev-arrow, .cms-diamond-education #maincontent a.next-arrow { display: none; }
+.cms-diamond-education #maincontent .top-links-section { 
+    display: none;    
+    padding: 0 1em !important;     
+}
+
+.cms-diamond-education #maincontent .top-links-section li { list-style: none; text-align: left; }
+.cms-diamond-education #maincontent .top-links-section li a {
+    font-family: 'Roboto Slab';
+    font-size: 24px;    
+    color: #987C61;
+    text-transform: uppercase;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1343px) {
+    .cms-diamond-education #maincontent .section-carat { background-size: 50%; }
+    .cms-diamond-education #maincontent .section-clarity { background-size: 37%; }
+    .cms-diamond-education #maincontent .section-metal { background-size: 60%; }
+    
+    .cms-diamond-education #maincontent #section-cut-parts .large-3 { width: 25%; }
+    .cms-diamond-education #maincontent #section-cut-parts .large-9 { width: 75%; }
+
+    .cms-diamond-education #maincontent #section-clarity-grading .large-3 { width: 25%; }
+    .cms-diamond-education #maincontent #section-clarity-grading .large-9 { width: 75%; }
+    
+    .cms-diamond-education #maincontent #section-color-grading .large-3 { width: 25%; }
+    .cms-diamond-education #maincontent #section-color-grading .large-9 { width: 75%; }
+
+    .cms-diamond-education #maincontent #section-cut-parts #cut-part-list .flex-viewport { padding-left: 0; }
+    
+    .cms-diamond-education #maincontent #cut-type-slider, .cms-diamond-education #maincontent #clarity-type-slider, .cms-diamond-education #maincontent #color-type-slider { visibility: hidden; }
+    
+    .cms-diamond-education #maincontent aside.large-3.columns.hide-for-medium-down { display: none !important; }
+    
+    .cms-diamond-education #maincontent .top-links-section { display: block; }
+}
+
+@media only screen and (max-width: 767px) {
+    .cms-diamond-education #maincontent .section-carat,
+    .cms-diamond-education #maincontent .section-cut,
+    .cms-diamond-education #maincontent .section-clarity,
+    .cms-diamond-education #maincontent .section-color,
+    .cms-diamond-education #maincontent .section-certificate,
+    .cms-diamond-education #maincontent .section-setting,
+    .cms-diamond-education #maincontent .section-metal,
+    .cms-diamond-education #maincontent .section-ring-size,
+    .cms-diamond-education #maincontent .section-ideal { background: none; }
+    
+    .cms-diamond-education #maincontent #cut-type-slider, .cms-diamond-education #maincontent #clarity-type-slider, .cms-diamond-education #maincontent #color-type-slider { display: none; }
+    .cms-diamond-education #maincontent #cut-type-list .flex-viewport { max-height: 36px !important; }
+    
+    .cms-diamond-education #maincontent #cut-part-list .flex-viewport { max-height: 36px !important; padding-left: 0 !important; }
+    .cms-diamond-education #maincontent #cut-part-list li { height: 36px !important; line-height: 36px !important; text-indent: 0 !important;}
+    .cms-diamond-education #maincontent #cut-part-list li.flex-active-slide { background: none !important; }
+    
+    .cms-diamond-education #maincontent #clarity-type-list .flex-viewport { max-height: 36px !important; padding-left: 0 !important; }    
+    .cms-diamond-education #maincontent #color-type-list .flex-viewport { max-height: 36px !important; padding-left: 0 !important; }    
+    
+    .cms-diamond-education #maincontent ul.slides li { text-align: center; display: none !important; }
+    .cms-diamond-education #maincontent ul.slides li.flex-active-slide { display: block !important; }
+    
+    .cms-diamond-education #maincontent .section-title-container { margin-bottom: 0; }
+    .cms-diamond-education #maincontent blockquote { padding: 0 1em; width: 100%; }
+    
+    .cms-diamond-education #maincontent .carat-size-viewer-wrapper { min-width: 280px; }
+    .cms-diamond-education #maincontent .carat-size-viewer-wrapper > li { float: none; min-height: 0; background-color: #fff; border-bottom: 1px solid #e5e5e5; border-left: 0 none; }
+    .cms-diamond-education #maincontent .carat-size-viewer-wrapper, .cms-diamond-education #maincontent .carat-size-viewer-wrapper > li:last-child { border-bottom: 0 none; }
+    .cms-diamond-education #maincontent .carat-size-viewer-wrapper > li > ul { display: inline-block; }
+    .cms-diamond-education #maincontent #shape-list li, .cms-diamond-education #maincontent #carat-list li { display: none; }
+    .cms-diamond-education #maincontent #shape-list li.active, .cms-diamond-education #maincontent #carat-list li.active { display:inline-block; border: 0 none; }
+    .cms-diamond-education #maincontent #shape-list li.active, .cms-diamond-education #maincontent #shape-list li:hover { background: url(../img/icon-shapes.png) no-repeat 10px top transparent; color: #8B8A86; }
+    
+    .cms-diamond-education #maincontent a.prev-arrow, .cms-diamond-education #maincontent a.next-arrow { display: inline-block; width: 36px; height: 36px; position: absolute; top: 0; z-index: 999999; }
+    .cms-diamond-education #maincontent a.prev-arrow { background: url(../../images/mobile/arrows.png) no-repeat left top #e5e5e5; left: 0; }
+    .cms-diamond-education #maincontent a.prev-arrow:hover { background-color: #ed5843; background-position: right top; }
+    .cms-diamond-education #maincontent a.next-arrow { background: url(../../images/mobile/arrows.png) no-repeat right bottom #e5e5e5; right: 0; }
+    .cms-diamond-education #maincontent a.next-arrow:hover { background-color: #ed5843; background-position: left bottom; }
+    
+    .cms-diamond-education #maincontent #section-setting-contents p { padding-left: 0; padding-top: 140px; background-position: center top !important; }
+    
+    .cms-diamond-education #maincontent #section-metal-contents blockquote { padding-left: 1em; }
+    .cms-diamond-education #maincontent #section-metal-contents p { padding-left: 0; background: none !important; }
+    
+    .cms-diamond-education #maincontent .top-links-section { display: block; }    
+    .cms-diamond-education #maincontent .top-links-section li a { font-size: 16px; }
+}
