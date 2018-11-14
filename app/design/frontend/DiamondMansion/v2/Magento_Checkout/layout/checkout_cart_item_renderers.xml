@@ -27,6 +27,12 @@
                     <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Remove" name="checkout.cart.item.renderers.dm_ring_design.actions.remove3" template="Magento_Checkout::cart/item/renderer/actions/remove.phtml"/>
                 </block>
             </block>
+            <block class="DiamondMansion\Extensions\Block\Ring\Eternity\Cart\Item\Renderer" name="checkout.cart.item.renderers.dm_ring_eternity" as="dm_ring_eternity" template="Magento_Checkout::cart/item/ring_eternity.phtml">
+                <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions" name="checkout.cart.item.renderers.dm_ring_eternity.actions" as="actions">
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Remove" name="checkout.cart.item.renderers.dm_ring_eternity.actions.remove2" template="Magento_Checkout::cart/item/renderer/actions/remove.phtml"/>
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Remove" name="checkout.cart.item.renderers.dm_ring_eternity.actions.remove3" template="Magento_Checkout::cart/item/renderer/actions/remove.phtml"/>
+                </block>
+            </block>
         </referenceBlock>
     </body>
 </page>

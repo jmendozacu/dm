@@ -1,0 +1,274 @@
+<?php
+$_product = $this->getProduct();
+?>
+<div class="product-static-blocks">
+    <ul>
+        <li class="life-time-care"><a href="#" onclick="return false;">Life Time Care<span>Free lifetime maintenance. Includes polishing, deep 3D cleaning & securing of stones. You also get one free resizing. All you pay for is Shipping</span></a></li>
+        <li class="forty-five-day-returns"><a href="#" onclick="return false;">45 Day Returns<span>Our ultimate goal is that you fall in love with your piece. If you don't, you can send it back for a 100% full refund. Even if it's a customized piece. 45 Days begins from the day you receive the item.</span></a></li>
+        <li class="life-time-upgrade"><a href="#" onclick="return false;">Life Time Upgrade<span>You should continue to celebrate your engagement every year. To do that, we offer a life time CENTER STONE  upgrade policy, so we can be a part of your celebration. When you are ready to upgrade, we will take back your diamond for the full amount it was purchased, and apply the credit towards your new diamond. You won't lose a penny!</span></a></li>
+        <li class="six-months-financing" onclick="return false;"><a href="#">6 Months Financing<span>No Payment + No interest if paid in full in 6 months. In the shopping cart click on "check out with bill me later" and follow the steps to apply and get approved instantly. </span></a></li>
+        <li class="natural-and-conflict-free" onclick="return false;"><a href="#">Natural &amp; Conflict Free<span>All diamonds sold by Diamond Mansion are tracked back to its origin to confirm that it originates from an ethical and environmentally responsible source. We do NOT carry any kind of treated or enhanced diamonds. All of our diamond are a 100% Natural!</span></a></li>
+    </ul>
+    <div class="clearer"></div>
+</div>
+<div class="product-description">
+    <div class="description">
+        <h2>Description</h2>
+        <div class="box-collateral">
+            <?= $_product->getDescription() ?>
+        </div>
+    </div>
+    <div class="item-details">
+        <h2>Item Details</h2>
+        <ul>
+            <li><label>SKU : </label><span><?= strtoupper($_product->getSku()); ?></span></li>
+        </ul>
+    </div>
+    <div class="clearer"></div>
+</div>
+<?php $_designer = $this->getDesigner() ?>
+<?php if ($_designer && ($_designer->getPhoto() || $_designer->getDescription())): ?>
+<div class="product-designer">
+    <div class="designer-image">
+        <img src="<?= $this->getHelper()->getDesignerPhotoUrl($_designer->getPhoto()); ?>" />
+    </div>
+    <div class="designer-info">
+        <div class="designer-about">
+            <div class="title">About the Designer</div>
+            <div class="description">
+                <?= $_designer->getDescription() ?>
+            </div>
+        </div>
+        <div class="designer-links">
+            <div class="title">Get an expert opinion</div>
+            <div class="clearer"></div>
+            <div>
+                <div class="read-more">
+                    <a href="">READ MORE</a>
+                </div>
+                <?php $_linkFacebook = $_designer->getLinkFacebook(); ?>
+                <?php $_linkTwitter = $_designer->getLinkTwitter(); ?>
+                <?php $_linkGoogle = $_designer->getLinkGoogle(); ?>
+                <?php $_linkBlog = $_designer->getLinkBlog(); ?>
+                <?php if ($_linkFacebook || $_linkTwitter): ?>
+                <div class="social">
+                    <label>CONNECT: </label>
+                    <ul>
+                        <?php if ($_linkFacebook): ?><li class="facebook"><a href="<?php echo $_linkFacebook ?>"></a></li><?php endif ?>
+                        <?php if ($_linkTwitter): ?><li class="twitter"><a href="<?php echo $_linkTwitter ?>"></a></li><?php endif ?>
+                        <?php if ($_linkGoogle): ?><li class="google"><a href="<?php echo $_linkGoogle ?>"></a></li><?php endif ?>
+                        <?php if ($_linkBlog): ?><li class="blog"><a href="<?php echo $_linkBlog ?>"></a></li><?php endif ?>
+                    </ul>
+                </div>
+                <?php endif; ?>
+                <div class="clearer"></div>
+            </div>
+        </div>
+    </div>
+    <div class="clearer"></div>
+</div>
+<?php endif ?>
+<?php 
+    $_deliveryDate = strtotime('+' . ($_product->getDmDeliveryDates()==""?10:(int)$_product->getDmDeliveryDates()) . ' days'); 
+    $_deliveryMM = date("M", $_deliveryDate);
+    $_deliveryDD = date("j", $_deliveryDate);
+?>
+<div class="product-delivery">
+    <div class="delivery-info">
+        <h2>Packaged to L<span class="heart">&hearts;</span>VE</h2>
+        <p>Your order will be beautifully and securely packaged to fly over the skies of City of Angels (Los Angeles) to your door. Shipping is always free at DIAMOND MANSION.<br/>
+We ship to: United States, Canada, Australia, United Kingdom and Elsewhere!
+</p>
+        <p class="date-title">Order today and receive by</p>
+        <div class="date-info">
+            <div class="month"><?php echo $_deliveryMM ?></div>
+            <div class="date"><?php echo $_deliveryDD ?></div>
+        </div>
+        <div class="contactus-link"><a class="btn-delivery" href="#form-delivery">Contact Us For Faster Delivery</a></div>
+    </div>
+</div>
+
+<div class="product-footer">
+    <div class="grid_2">&nbsp;</div>
+    <div class="grid_4 omega contact-form-mini-wrap">
+        <h3>Get Expert Help</h3>
+        <div class="contact-form-mini" id="form-expert">
+            <div class="contacts-footer-content">
+                <div><span>QUESTIONS? CALL </span><span class="phone-number"><b><?= $this->getPhoneNumber(); ?></b></span></div>
+                <div><span>OR SEND A MESSAGE</span></div>
+                <form action="/dm/contact/opinion/" id="contactForm" method="post">
+                    <ul>
+                        <li class="fields grid_3">
+                            <div class="half">
+                                <input name="name" id="opinion-name" placeholder="Name" title="Name" value="" class="input-text required-entry" type="text" />
+                            </div>
+                            <div class="half">
+                                <input name="email" id="opinion-email" placeholder="Email" title="Email" value="" class="input-text required-entry" type="text" />
+                            </div>
+                            <div class="clearer"></div>
+                        </li>
+                        <li class="fields grid_3">
+                            <div class="wide">
+                                <textarea name="comment" id="opinion-comment" title="Message" class="required-entry input-text" cols="5" rows="5" placeholder="Message"></textarea>
+                            </div>
+                        </li>
+                    </ul>           
+                    <div class="buttons-set">
+                        <input type="text" name="hideit" id="opinion-hideit" value="" style="display:none !important;" />
+                        <input type="hidden" name="productname" class="productname" value="" style="display:none !important;" />
+                        <input type="hidden" name="productlink" class="productlink" value="" style="display:none !important;" />
+                        <button type="submit" title="Submit" class="button"><span><span>Submit</span></span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="grid_1">&nbsp;</div>
+    <div class="grid_3 buy-online">
+        <h3>Buy Online Now</h3>
+        <div class="product-name">
+            <h2></h2>
+        </div>                
+        <div id="price-box-2">
+            <div class="price-box">
+                <span class="regular-price">
+                    <span class="price"></span>
+                </span>
+            </div>
+        </div>
+        <div class="buttons">
+            <a class="btn-buy" href="#" onclick="productAddToCartForm.submit(this); return false;"></a>
+            <a class="btn-reserve" href="#form-reserve"></a>
+        </div>
+    </div>
+    <div class="clearer"></div>
+    <div>
+        <div class="contact-form-mini" id="form-reserve" style="display: none;">
+            <div class="contacts-footer-content">
+                <h2>Price Reserve Request</h2>
+                <div class="grid_3">
+                    <div class="reserved-product">
+                        <img class="product-image-current" src="">
+                    </div>
+                    <div class="reserved-price price-box">
+                        <label>Your Reserved Price:</label>
+                        <span class="price"></span>
+                    </div>
+                </div>
+                <div class="grid_3">
+                    <form action="/dm/contact/pricereserve" id="reserveForm" method="post">
+                        <ul>
+                            <li class="fields">
+                                <input name="name" id="pricereserve-name" title="Your Name" placeholder="Your Name" value="" class="input-text required-entry" type="text" />
+                            </li>
+                            <li class="fields">
+                                <input name="email" id="pricereserve-email" title="Your Email Address" placeholder="Your Email Address" value="" class="input-text required-entry validate-email" type="text" />
+                            </li>
+                            <li class="fields">
+                                <input name="telephone" id="pricereserve-telephone" title="Your Phone Number (optional)" placeholder="Your Phone Number (optional)" value="" class="input-text" type="text" />
+                            </li>
+                        </ul>           
+                        <div class="buttons-set">
+                            <input type="text" name="hideit" id="pricereserve-hideit" value="" style="display:none !important;" />
+                            <input type="hidden" name="productname" class="productname" value="" style="display:none !important;" />
+                            <input type="hidden" name="productlink" class="productlink" value="" style="display:none !important;" />
+                            <input type="hidden" name="productprice" class="productprice" value="" style="display:none !important;" />
+                            <button type="submit" title="RESERVE" class="button"><span><span>RESERVE</span></span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="contact-form-mini" id="form-delivery" style="display: none;">
+            <div class="contacts-footer-content">
+                <h2>Delivery Request</h2>
+                <div class="grid_3">
+                    <div class="reserved-product">
+                        <img class="product-image-current" src="">
+                    </div>
+                    <div class="reserved-price price-box">
+                        <label>Your Reserved Price:</label>
+                        <span class="price"></span>
+                    </div>
+                </div>
+                <div class="grid_3">
+                    <form action="/dm/contact/delivery" id="deliveryForm" method="post">
+                        <ul>
+                            <li class="fields">
+                                <input name="name" id="delivery-name" title="Your Name" placeholder="Your Name" value="" class="input-text required-entry" type="text" />
+                            </li>
+                            <li class="fields">
+                                <input name="email" id="delivery-email" title="Your Email Address" placeholder="Your Email Address" value="" class="input-text required-entry validate-email" type="text" />
+                            </li>
+                            <li class="fields">
+                                <input name="telephone" id="delivery-telephone" title="Your Phone Number (optional)" placeholder="Your Phone Number (optional)" value="" class="input-text" type="text" />
+                            </li>
+                            <li class="fields">
+                                <textarea name="comment" id="delivery-comment" title="Message" class="required-entry input-text" cols="5" rows="5" placeholder="Message"></textarea>
+                            </li>                            
+                        </ul>
+                        <div class="buttons-set">
+                            <input type="text" name="hideit" id="delivery-hideit" value="" style="display:none !important;" />
+                            <input type="hidden" name="productname" class="productname" value="" style="display:none !important;" />
+                            <input type="hidden" name="productlink" class="productlink" value="" style="display:none !important;" />
+                            <input type="hidden" name="productprice" class="productprice" value="" style="display:none !important;" />
+                            <button type="submit" title="SUBMIT" class="button"><span><span>SUBMIT</span></span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="contact-form-mini" id="form-certificate" style="display: none;">
+            <div class="contacts-footer-content">
+                <h2>Diamond Picture and Certificate Request</h2>
+                <div class="grid_3">
+                    <div class="reserved-product">
+                        <img class="product-image-current" src="">
+                    </div>
+                    <div class="reserved-price price-box">
+                        <label>Your Reserved Price:</label>
+                        <span class="price"></span>
+                    </div>
+                </div>
+                <div class="grid_3">
+                    <form action="/dm/contact/certificate" id="certificateForm" method="post">
+                        <ul>
+                            <li class="fields">
+                                <input name="name" id="certificate-name" title="Your Name" placeholder="Your Name" value="" class="input-text required-entry" type="text" />
+                            </li>
+                            <li class="fields">
+                                <input name="email" id="certificate-email" title="Your Email Address" placeholder="Your Email Address" value="" class="input-text required-entry validate-email" type="text" />
+                            </li>
+                            <li class="fields">
+                                <input name="telephone" id="certificate-telephone" title="Your Phone Number (optional)" placeholder="Your Phone Number (optional)" value="" class="input-text" type="text" />
+                            </li>
+                            <li class="fields">
+                                <textarea name="comment" id="certificate-comment" title="Message" class="required-entry input-text" cols="5" rows="5" placeholder="Message"></textarea>
+                            </li>                            
+                        </ul>           
+                        <div class="buttons-set">
+                            <input type="text" name="hideit" id="certificate-hideit" value="" style="display:none !important;" />
+                            <input type="hidden" name="productname" class="productname" value="" style="display:none !important;" />
+                            <input type="hidden" name="productlink" class="productlink" value="" style="display:none !important;" />
+                            <input type="hidden" name="productprice" class="productprice" value="" style="display:none !important;" />
+                            <button type="submit" title="SUBMIT" class="button"><span><span>SUBMIT</span></span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>        
+        <div class="clearer"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'jquery-fancybox'
+    ], function ($) {
+        $(document).ready(function() {
+            $(".btn-reserve").fancybox();
+            $(".btn-delivery").fancybox();
+            $(".btn-certificate").fancybox();
+        });
+    });
+</script>

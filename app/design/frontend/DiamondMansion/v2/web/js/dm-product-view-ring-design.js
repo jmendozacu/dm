@@ -113,7 +113,7 @@ define([
             }
 
             $("a.btn-buy").on("click", function () {
-                $(this).parent().submit();
+                $('#form_add_product').submit();    
                 return false;
             });
 

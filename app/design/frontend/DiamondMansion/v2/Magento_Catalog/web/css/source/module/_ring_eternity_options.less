@@ -1,0 +1,1184 @@
+#loading-screen {
+    position: fixed !important;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../images/amshopby-overlay.gif) no-repeat center center rgba(255,255,255,0.8) !important;
+    z-index: 9999999999;
+    opacity: 1;
+}
+
+.product-view-eternity {
+    position: relative;
+
+    .product-name.page-title-wrapper.product {
+        display: none;
+    }
+
+    font-family: 'Futura LT';
+    
+    .media {
+        float: none;
+    
+        .product-image {
+            text-align: center;
+            
+            #wrap {
+                display: inline-block; 
+                position: relative;
+                z-index: 999 !important;
+                max-width: 438px;
+            }
+            
+            .item-image-arrows {
+                display: none;
+            }
+            
+            .more-views-container .more-views-title {
+                display: none;
+            }
+
+            .more-views-container {
+                position: absolute;
+                top: 0;
+                right: 0;
+
+                .more-views-holder {
+                    display: block !important;
+                }
+
+                li {
+                    display: block;
+                    float: none;
+                    margin: 0;
+
+                    a {
+                        border: 0 none;
+                        background: transparent;
+                    }
+                }
+            }
+        }
+        
+        .product-image + .more-views {
+            display: none;
+        }       
+    }
+
+    .product-video-box {
+        top: 50px;
+
+        li {
+            max-width: 90px;
+        }
+
+        .video-wrpper {
+            text-align: center;
+            
+            a.video {
+                display: inline-block;
+            }
+        }
+    }
+    
+    .image-arrows.mobile {
+        position: absolute;
+        top: 50%;
+        margin-top: -21px;
+        z-index: 999;
+        width: 100%;
+        
+        a.image-arrow-left {
+            float: left;
+        }
+        a.image-arrow-right {
+            float: right;
+        }
+    }
+    
+    #eternity-ring-custom-options {
+        .custom-options-tabs {
+            .custom-options-tab {
+                display: inline-block;
+                width: 33%;
+                position: relative;
+                z-index: 9999999;
+                background-color: #959595;
+                
+                & > a {
+                    display: block;
+                    width: 100%;
+                    text-align: center;
+                    color: #fff;
+                    font-size: 22px;
+                    text-transform: uppercase;
+                    line-height: 30px;
+                    padding: 10px 0;
+                    
+                    & > sub {
+                        display: block;
+                        font-size: 16px;
+                        line-height: 30px;
+                    }
+                }
+                
+                & > ul {
+                    display: none;
+                    position: absolute;
+                    bottom: 80px;
+                    width: 100%;
+                    background-color: rgba(149, 149, 149, 0.75);
+                    
+                    li {
+                        input.radio {
+                            display: none;
+                        }
+                        
+                        span.label label {
+                            display: block;
+                            text-align: center;
+                            color: #fff;
+                            font-size: 20px;
+                            line-height: 40px;
+                            cursor: pointer;
+                            text-transform: uppercase;
+
+                            &:hover, &.active {
+                                color: #ed5842;                                
+                            }
+                        }
+                        
+                        &.selected {
+                            span.label label {
+                                color: #ed5842;
+                            }
+                        }
+                    }
+                    
+                    &.ring-size-list2 {
+                        li {
+                            display: inline-block;
+                            width: 23%;
+                            
+                            a {
+                                display: block;
+                                font-size: 22px;
+                                line-height: 40px;
+                                text-align: center;
+                                color: #fff;
+                                
+                                &:hover, &.active {
+                                    color: #ed5842;
+                                }
+                            }
+                        }
+                    }
+                    
+                    &.type-list {
+                        display: none !important;
+                    }
+                }
+                
+                &:hover {
+                    background-color: #ed5842;
+                    & > ul {
+                        display: block;
+                    }
+                }
+            }
+        }
+        
+        .custom-options-lists {
+            .custom-options-list {
+                padding: 15px 0;
+                border-top: 1px solid #5b5b5b;
+                label.list-title {
+                    font-size: 18px;
+                    line-height: 30px;
+                    text-align: center;
+                    color: #5b5b5b;
+                    display: inline-block;
+                    padding: 10px;
+                    text-transform: uppercase;
+                    
+                    sup {
+                        display: block;
+                        font-size: 24px;
+                        line-height: 30px;
+                        padding-top: 12px;
+                    }
+                }
+                
+                ul {
+                    display: inline-block;
+                    li { 
+                        display: inline-block;
+                        
+                        input.radio {
+                            display: none;
+                        }
+                        
+                        &.disabled {
+                            display: none !important;
+                        }
+                    }
+                }
+
+                &.quality-list {
+                    ul {
+                        border-top: 1px solid #959595;
+                        border-bottom: 1px solid #959595;
+                        margin-top: 15px;
+                    }
+                    li {
+                        label {
+                            width: 350px;
+                            display: inline-block;
+                            text-align: center;
+                            cursor: pointer;
+                            opacity: 0.5;
+                            color: #5b5b5b;
+                            border: 1px solid transparent;
+                            
+                            p {
+                                &.item-description {
+                                    font-size: 12px;
+                                    line-height: 20px;
+                                }
+                                
+                                span {
+                                    font-size: 15px;
+                                    line-height: 30px;
+                                    text-transform: uppercase;
+                                    
+                                    &.appraised-value, &.retail-value {
+                                        color: #ed5842;
+                                        margin-left: 10px;
+                                    }
+                                    
+                                    &.retail-value {
+                                        font-size: 20px;
+                                    }
+                                }
+                            }
+                            
+                            span.item-title {
+                                font-size: 22px;
+                                line-height: 30px;
+                                display: block;
+                            }
+                            
+                            dl {
+                                margin: 10px 0;
+                            
+                                dt {
+                                    width: 80px;
+                                    line-height: 40px;   
+                                    text-align: left;       
+                                    display: inline-block;
+                                    font-size: 12px;
+                                    text-indent: 20px;
+                                }
+                                
+                                dd {
+                                    width: 240px;
+                                    height: 40px;
+                                    display: inline-block;                          
+                                    
+                                    &.rate-5 {
+                                        background: url(../images/rate_5.png) no-repeat center center transparent;
+                                    }
+                                    
+                                    &.rate-4 {
+                                        background: url(../images/rate_4.png) no-repeat center center transparent;
+                                    }
+                                }
+                            }
+                            
+                            &:hover {
+                                opacity: 1;
+                            
+                                span.item-title {
+                                    color: #ed5842;
+                                }
+                            }
+                        }
+                        
+                        &.selected {
+                            label {
+                                opacity: 1;
+                                border-top-color: #ed5842;
+                                border-bottom-color: #ed5842;
+                                
+                                span.item-title {
+                                    color: #ed5842;
+                                }
+                                
+                                p.appraised, p.retail {
+                                    display: block;
+                                }                                
+                            }
+                        }
+                    }
+                }
+                
+                &.carat-list {
+                    li {
+                        label {
+                            font-size: 22px;
+                            width: 73px;
+                            text-align: center;
+                            line-height: 80px;
+                            display: inline-block;
+                            cursor: pointer;
+                            
+                            &:hover {
+                                color: #ed5842;
+                            }                        
+                        }
+                        
+                        &.selected {
+                            span.label label {
+                                color: #ed5842;
+                                background-color: #959595;
+                                padding: 0 3px;
+                                span:first-child {
+                                    line-height: 40px;
+                                    display: block;
+                                    border-bottom: 1px solid #fff;
+                                    margin-bottom: 10px;
+                                }
+                                span:nth-child(2) {
+                                    font-size: 15px;
+                                    display: block;
+                                    line-height: 20px;
+                                    color: #fff;
+                                }
+                                span:nth-child(3) {
+                                    font-size: 12px;
+                                    display: block;
+                                    line-height: 20px;
+                                    color: #909090;
+                                    width: 79px;
+                                    margin-left: -3px;
+                                    background: #fff;
+                                    sub {
+                                        font-size: 8px;
+                                        line-height: 16px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                &.shape-list {
+                    border-top: 0 none;
+                    padding-top: 25px;
+                
+                    li {
+                        &.selected, &:hover {
+                            label {
+                                margin-top: -10px;
+                            }
+                        }
+                    }
+                        
+                    li label { display: block; width: 73px; padding-top: 75px; text-align: center; font-size: 16px; background-position: center top; background-repeat: no-repeat; text-indent: -9999px; color: #ed5842 !important; text-transform: uppercase; line-height: 20px; }
+                    li.item-round label { background-image: url(../images/diamond_v2/shape/round.png); }
+                    li.item-round.selected label,
+                    li.item-round label:hover { background-image: url(../images/diamond_v2/shape/round_ac.png); text-indent: 0; }
+                    li.item-princess label { background-image: url(../images/diamond_v2/shape/princess.png); }
+                    li.item-princess.selected label,
+                    li.item-princess label:hover { background-image: url(../images/diamond_v2/shape/princess_ac.png); text-indent: 0; }
+                    li.item-asscher label { background-image: url(../images/diamond_v2/shape/asscher.png); }
+                    li.item-asscher.selected label,
+                    li.item-asscher label:hover { background-image: url(../images/diamond_v2/shape/asscher_ac.png); text-indent: 0; }
+                    li.item-emerald label { background-image: url(../images/diamond_v2/shape/emerald.png); }
+                    li.item-emerald.selected label,
+                    li.item-emerald label:hover { background-image: url(../images/diamond_v2/shape/emerald_ac.png); text-indent: 0; }
+                    li.item-cushion label { background-image: url(../images/diamond_v2/shape/cushion.png); }
+                    li.item-cushion.selected label,
+                    li.item-cushion label:hover { background-image: url(../images/diamond_v2/shape/cushion_ac.png); text-indent: 0; }
+                    li.item-radiant label { background-image: url(../images/diamond_v2/shape/radiant.png); }
+                    li.item-radiant.selected label,
+                    li.item-radiant label:hover { background-image: url(../images/diamond_v2/shape/radiant_ac.png); text-indent: 0; }
+                    li.item-oval label { background-image: url(../images/diamond_v2/shape/oval.png); }
+                    li.item-oval.selected label,
+                    li.item-oval label:hover { background-image: url(../images/diamond_v2/shape/oval_ac.png); text-indent: 0; }
+                    li.item-pear label { background-image: url(../images/diamond_v2/shape/pear.png); }
+                    li.item-pear.selected label,
+                    li.item-pear label:hover { background-image: url(../images/diamond_v2/shape/pear_ac.png); text-indent: 0; }
+                    li.item-marquise label { background-image: url(../images/diamond_v2/shape/marquise.png); }
+                    li.item-marquise.selected label,
+                    li.item-marquise label:hover { background-image: url(../images/diamond_v2/shape/marquise_ac.png); text-indent: 0; }
+                    li.item-heart label { background-image: url(../images/diamond_v2/shape/heart.png); }
+                    li.item-heart.selected label,
+                    li.item-heart label:hover { background-image: url(../images/diamond_v2/shape/heart_ac.png); text-indent: 0; }                    
+                }
+            }
+        }
+    }
+    
+    #eternity-ring-summary {
+        .product-name h1 {
+            font-family: 'Futura LT';
+            text-align: center;
+            color: #ed5842;
+            font-weight: normal;
+            text-transform: uppercase;
+            font-size: 16px;
+            line-height: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .product-summary {
+            border: 1px solid #5b5b5b;
+            font-size: 15px;
+            padding: 10px;
+            
+            .sold-out {
+                font-size: 20px;
+                padding: 20px 0;
+            }
+            
+            .btn-reserve {
+                margin: 20px 0;
+                display: inline-block;
+                text-transform: uppercase;
+            }
+            
+            .order-options {
+                margin-bottom: 10px;
+                input {
+                    margin: 18px 0 0;
+                    vertical-align: middle;
+                }
+                label {
+                    font-size: 20px;
+                    text-transform: uppercase;
+                    padding: 10px 0;
+                    display: inline-block;
+                    &+span {
+                        padding: 10px 0;
+                        text-transform: uppercase;
+                        font-size: 20px;
+                        color: #ed5842;
+                        float: right;
+                    }
+                }
+            }
+            
+            .buttons {
+                a.btn-buy {
+                    background: #ed5842;
+                    color: #fff;
+                    text-transfrom: uppercase;
+                    line-height: 53px;
+                    text-align: center;
+                    font-size: 30px;
+                    display: inline-block;
+                    width: 100%;
+                }
+                
+                a.btn-wishlist {
+                    float: left;
+                    font-size: 16px;
+                    color: #ed5842;
+                    margin-left: 20px;
+                }
+                
+                #btn-share {
+                    float: right;
+                    margin-right: 20px;
+                    a.btn-share {
+                        font-size: 16px;
+                        color: #ed5842;
+                        background: none;
+                        text-align: right;
+                    }
+                }
+            }
+            
+            .option {
+                text-transform: uppercase;
+                padding: 5px;
+                font-size: 12px;
+                
+                span#total-carat {
+                    font-weight: normal;
+                }
+            }
+            
+            .which-should-i-choose {
+                h4 {
+                    font-family: 'Futura LT';
+                    font-size: 18px;
+                    font-style: italic;
+                    color: #ed5842;
+                    text-align: center;
+                    cursor: pointer;
+                    
+                    span.arrow {
+                        width: 16px;
+                        height: 23px;
+                        display: inline-block;
+                        margin-left: 10px;
+                        
+                        &.show {
+                            background: url(../images/mobile/i_arrow_down_red.png) no-repeat center center;
+                        }
+                        
+                        &.hide {
+                            background: url(../images/mobile/i_arrow_up_red.png) no-repeat center center;
+                        }
+                    }
+                }
+                
+                p {
+                    font-family: 'Futura LT';
+                    font-size: 12px;
+                    line-height: 20px;
+                    margin-bottom: 10px;
+                    strong {
+                        font-size: 14px;
+                        line-height: 24px;
+                    }
+                }
+            }
+            
+        }
+    }
+    
+    #product-options-wrapper,
+    .product-options-bottom {
+        display: none;
+    }
+    
+    #eternity-ring-custom-options { z-index: 999; }
+    
+    .mobile {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 1279px) {
+    .product-view-eternity {
+        #eternity-ring-custom-options {
+            .custom-options-lists {
+                .custom-options-list {
+                    label.list-title sup {
+                            margin-left: 5px;
+                            font-size: 18px;
+                            display: inline-block;
+                    }
+                    
+                    &.shape-list {
+                        li label {
+                            width: 70px;
+                        }
+                    }
+                }
+            }
+        }
+        
+        #eternity-ring-summary {
+            .product-name h1 {
+                font-size: 15px;
+            }
+            
+            .product-summary {
+                .order-options label,
+                .order-options label+span {
+                    font-size: 15px;
+                }
+                
+                .buttons {
+                    a.btn-buy {
+                        font-size: 20px;
+                        line-height: 40px;
+                        height: 40px;
+                    }
+                    
+                    a.btn-wishlist,
+                    #btn-share a.btn-share {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 977px) {
+    .product-view-eternity {
+        #eternity-ring-custom-options {
+            width: 100%;
+            
+            .custom-options-lists .custom-options-list.quality-list ul {
+                width: 100%;
+            }
+        }
+        
+        #eternity-ring-summary {
+            margin-left: 0;
+            width: 100%;
+            
+            .product-summary {
+                padding: 0 30%;
+                
+                .option {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 640px) and (max-width: 767px) {
+    .container_12 {
+        width: 640px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .product-view-eternity {
+        .mobile { display: block !important; }
+        .desktop { display: none !important; } 
+        
+        .product-image { display: none; }
+        
+        .product-name.mobile {
+            margin-bottom: 0;
+            h1 {
+                font-size: 14pt;
+                text-align: center;
+                margin-top: 20px;
+                margin-bottom: 0;
+                padding: 10px 20px;
+                font-weight: normal;
+                border-top: 2px solid #5b5b5b;
+                border-bottom: 2px solid #5b5b5b;
+                font-family: 'Futura LT';
+            }
+        }
+        
+        .ring-specs {
+            font-size: 20pt;
+            font-family: 'Futura LT';
+            font-style: italic;
+            text-align: center;
+            color: #5b5b5b;
+            line-height: 40px;
+            font-weight: bold;
+        }
+        
+        #eternity-ring-custom-options .custom-options-lists .custom-options-list {
+            padding: 5px;
+            overflow: hidden;
+            
+            .arrows.mobile {
+                display: none !important;
+            }
+            
+            label.list-title {
+                padding: 0;
+                font-size: 18pt;
+                color: #5b5b5b;
+                width: 100%;
+                text-align: left;
+                
+                a.arrow {
+                    float: right;
+                    display: inline-block;
+                    line-height: 30px;
+                    height: 30px;
+                    padding-right: 35px;
+                    margin-right: 10px;
+                    background-position: right center;
+                    background-repeat: no-repeat;
+                    font-family: 'Futura LT';
+                    font-style: italic;
+                    color: #ed5842;
+                    
+                    &.hide {
+                        background-image: url(../images/mobile/i_menu_arrow_up.png);
+                    }                   
+                    &.show {
+                        background-image: url(../images/mobile/i_menu_arrow_down.png);
+                    }                   
+                }
+            }
+            
+            &.type-list {
+                li {
+                    margin-left: 10px;
+                    margin-right: 10px;
+                    
+                    background-position: center 5px;
+                    background-repeat: no-repeat;
+                    
+                    span.label label {
+                        width: 60px;
+                        padding-top: 50px;
+                        display: block;
+                        text-align: center;
+                        cursor: pointer;     
+                        text-transform: uppercase;           
+                    }                        
+                    
+                    &.selected span.label label {
+                        background: url(../images/diamond/type/active.png) center 5px no-repeat;
+                        color: #ed5842;
+                    }
+                    
+                    &.item-colorless {
+                        background-image: url(../images/diamond/type/colorless.png);
+                    }
+                    &.item-yellow {
+                        background-image: url(../images/diamond/type/yellow.png);
+                    }
+                    &.item-pink {
+                        background-image: url(../images/diamond/type/pink.png);
+                    }
+                    &.item-black {
+                        background-image: url(../images/diamond/type/black.png);
+                    }
+                }
+            }
+        
+            &.shape-list {
+                border-top: 1px solid #5b5b5b;
+                padding-top: 5px;
+                
+                li {
+                    padding-top: 10px;
+                    
+                    label {
+                        width: 60px;
+                        background-size: 50px auto;
+                        font-size: 12px;
+                        padding-top: 60px;
+                    }
+                    
+                    &.item-round label { background-image: url(../images/diamond_v2/shape/mobile/round.png) !important; }
+                    &.item-princess label { background-image: url(../images/diamond_v2/shape/mobile/princess.png) !important; }
+                    &.item-asscher label { background-image: url(../images/diamond_v2/shape/mobile/asscher.png) !important; }
+                    &.item-emerald label { background-image: url(../images/diamond_v2/shape/mobile/emerald.png) !important; }
+                    &.item-cushion label { background-image: url(../images/diamond_v2/shape/mobile/cushion.png) !important; }
+                    &.item-radiant label { background-image: url(../images/diamond_v2/shape/mobile/radiant.png) !important; }
+                    &.item-oval label { background-image: url(../images/diamond_v2/shape/mobile/oval.png) !important; }
+                    &.item-pear label { background-image: url(../images/diamond_v2/shape/mobile/pear.png) !important; }
+                    &.item-marquise label { background-image: url(../images/diamond_v2/shape/mobile/marquise.png) !important; }
+                    &.item-heart label { background-image: url(../images/diamond_v2/shape/mobile/heart.png) !important; }
+                }
+            }
+            
+            &.carat-list li {
+                padding: 5px 0;
+            }            
+            
+            &.quality-list li label {
+                width: 300px;
+                
+                dl {
+                    dd {
+                        width: 200px;
+                        background-size: 100% auto !important;
+                    }
+                }
+            }
+            
+            &.metal-list ul {
+                display: block;
+                
+                li {
+                    display: block;
+                    text-align: center;
+                    font-size: 18pt;
+                    line-height: 40px;
+                    width: 100%;
+                    text-transform: uppercase;
+                    font-family: 'Futura LT';
+                    color: #5b5b5b;
+                    
+                    &.selected {
+                        font-family: 'Futura LT';
+                        font-style: italic;
+                        color: #ed5842;
+                    }
+                }
+            }
+            
+            ul.ring-size-list2 {
+                li {
+                    width: 23%;
+                    text-align: center;
+                    font-family: 'Futura LT';
+                    color: #5b5b5b;
+                    line-height: 40px;
+                    font-size: 18pt;
+                    
+                    a.active {
+                        color: #ed5842;
+                    }
+                }
+            }
+        }
+        
+        #eternity-ring-summary {
+            .product-summary {
+                font-size: 15pt;
+                line-height: 30px;
+                border-left: 0 none;
+                border-right: 0 none;
+                border-bottom: 0 none;
+                padding-left: 0;
+                padding-right: 0;
+                
+                .product-available {
+                    padding: 0 20%;
+                    margin-bottom: 20px;
+                }
+                
+                .order-options label, 
+                .order-options label + span {
+                    font-size: 20pt;
+                }
+                
+                .buttons a.btn-buy {
+                    font-size: 36pt;
+                    line-height: 70px;
+                    height: 70px;
+                }
+                
+                .buttons a.btn-wishlist, 
+                .buttons #btn-share a.btn-share {
+                    font-size: 16px;
+                }
+                
+                .option {
+                    font-size: 14pt;
+                }
+            }
+        }
+        
+        .price-box.mobile {
+            position: absolute;
+            margin-top: -110px;
+            right: 0;
+            text-align: right;
+            z-index: 999;
+            padding: 0;
+            margin: 0;
+
+            span.price {
+                color: #ed5842;
+                font-weight: bold;
+                font-family: 'Futura LT';
+                font-size: 24pt;
+                line-height: 40px;
+            }
+            
+            p {
+                font-size: 10pt;
+                color: #5b5b5b;
+                margin: 0;
+                padding: 0;
+            }            
+        }
+    }
+}
+
+@media only screen and (max-width: 639px) {
+    .product-view-eternity {
+        #eternity-ring-custom-options .custom-options-lists .custom-options-list {
+            position: relative;
+            
+            .arrows.mobile {
+                display: block !important;
+                position: absolute;
+                width: 100%;
+                margin-left: -5px;
+                
+                .arrows-wrapper {
+                    margin: 0 auto;
+                }
+                
+                a.arrow-left {
+                    float: left;
+                }
+                
+                a.arrow-right {
+                    float: right;
+                }
+                
+                a.disabled {
+                    opacity: 0.3;
+                }
+            }
+            
+            &.carat-list {
+                .arrows.mobile {
+                    top: 60px; 
+                    .arrows-wrapper {
+                        width: 180px;
+                    }
+                }
+                ul.carat-list {
+                    width: 100%;
+                    text-align: center;
+                    li {
+                        display: none;
+                        &.selected {
+                            display: block;
+                            
+                            span.label label {
+                                background: none;
+                                border: 1px solid #959595;
+                                span:first-child {
+                                    border-bottom-color: #959595;
+                                }
+                                span:nth-child(2) {
+                                    color: #959595;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            &.quality-list {
+                .arrows.mobile {
+                    top: 160px; 
+                    .arrows-wrapper {
+                        width: 270px;
+                    }
+                }
+                ul.color-clarity-list {
+                    width: 100%;
+                    text-align: center;
+                    border: 0 none;
+                    li {
+                        padding-top: 10px;
+                        display: none;
+                        &.selected {
+                            display: block;
+                        }
+                        
+                        label {
+                            width: 200px;
+                            border: 0 none;
+                            
+                            dl {
+                                dt {
+                                    width: 60px;
+                                    text-indent: 0;
+                                    line-height: 30px;
+                                }
+                                
+                                dd {
+                                    width: 120px;
+                                    height: 30px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            &#ring-size-list {
+                .arrows.mobile {
+                    top: 30px; 
+                    .arrows-wrapper {
+                        width: 150px;
+                    }
+                }
+            }
+        }
+        #eternity-ring-summary {
+            .product-summary {
+                font-size: 15px;
+                line-height: 30px;
+                border-left: 0 none;
+                border-right: 0 none;
+                border-bottom: 0 none;
+                padding-left: 0;
+                padding-right: 0;
+                
+                .product-available {
+                    padding: 0 10%;
+                    margin-bottom: 20px;
+                }
+                
+                .order-options label, 
+                .order-options label + span {
+                    font-size: 20px;
+                }
+                
+                .buttons a.btn-buy {
+                    font-size: 36px;
+                    line-height: 70px;
+                    height: 70px;
+                }
+                
+                .buttons a.btn-wishlist, 
+                .buttons #btn-share a.btn-share {
+                    font-size: 16px;
+                }
+                
+                .option {
+                    font-size: 14px;
+                }
+            }
+        }        
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    .product-view-eternity {
+        .product-name.mobile h1 {
+            font-size: 12px;
+        }
+        
+        .ring-specs {
+            font-size: 16px;
+            line-height: 30px;
+        }
+        
+        #eternity-ring-custom-options .custom-options-lists .custom-options-list label.list-title {
+            font-size: 16px;
+        }
+        
+        #eternity-ring-custom-options .custom-options-lists .custom-options-list.shape-list li label {
+            width: 52px;
+        }
+        
+        #eternity-ring-custom-options .custom-options-lists .custom-options-list.carat-list li label {
+            font-size: 16px;
+            width: 60px;            
+        }
+        
+        #eternity-ring-custom-options .custom-options-lists .custom-options-list.quality-list li label {
+            width: 100%;
+            
+            dl dd {
+                width: 160px;
+            }
+        }
+        
+        #eternity-ring-custom-options .custom-options-lists .custom-options-list.metal-list ul li,
+        #eternity-ring-custom-options .custom-options-lists .custom-options-list ul.ring-size-list2 li {
+            font-size: 16px;
+            line-height: 24px;
+        }
+        
+        #eternity-ring-summary .product-summary .order-options label, 
+        #eternity-ring-summary .product-summary .order-options label + span {
+            font-size: 16px;
+        }
+        
+        #eternity-ring-summary .product-summary .buttons a.btn-wishlist, 
+        #eternity-ring-summary .product-summary .buttons #btn-share a.btn-share {
+            font-size: 16px;
+        }
+        
+        #eternity-ring-summary .product-summary .which-should-i-choose h4 {
+            font-size: 14px;
+            font-weight: normal;
+        }
+        
+        #eternity-ring-summary .product-summary .buttons a.btn-wishlist {
+            margin-left: 0;
+        }
+        #eternity-ring-summary .product-summary .buttons #btn-share {
+            margin-right: 0;
+        }
+    }
+}
+
+.centered-btns_nav {
+    background: url("themes.gif") no-repeat scroll left top transparent;
+    height: 61px;
+    left: 0;
+    margin-top: -45px;
+    opacity: 0.7;
+    overflow: hidden;
+    position: absolute;
+    text-decoration: none;
+    text-indent: -9999px;
+    top: 50%;
+    width: 38px;
+    z-index: 3;
+}
+.centered-btns_nav:active {
+    opacity: 1;
+}
+.centered-btns_nav.next {
+    background-position: right top;
+    left: auto;
+    right: 0;
+}
+.transparent-btns_nav {
+    background: none repeat scroll 0 0 #fff;
+    display: block;
+    height: 91%;
+    left: 0;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    text-indent: -9999px;
+    top: 0;
+    width: 48%;
+    z-index: 3;
+}
+.transparent-btns_nav.next {
+    left: auto;
+    right: 0;
+}
+.large-btns_nav {
+    background: url("themes.gif") no-repeat scroll left 50% #000;
+    bottom: 0;
+    left: 0;
+    opacity: 0.6;
+    overflow: hidden;
+    position: absolute;
+    text-indent: -9999px;
+    top: 0;
+    width: 38px;
+    z-index: 3;
+}
+.large-btns_nav:active {
+    opacity: 1;
+}
+.large-btns_nav.next {
+    background-position: right 50%;
+    left: auto;
+    right: 0;
+}
+.centered-btns_nav:focus, .transparent-btns_nav:focus, .large-btns_nav:focus {
+    outline: medium none;
+}
+.centered-btns_tabs, .transparent-btns_tabs, .large-btns_tabs {
+    margin-top: 10px;
+    text-align: center;
+}
+.centered-btns_tabs li, .transparent-btns_tabs li, .large-btns_tabs li {
+    display: inline;
+    float: none;
+    margin-right: 5px;
+}
+.centered-btns_tabs a, .transparent-btns_tabs a, .large-btns_tabs a {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3) inset;
+    display: inline-block;
+    height: 9px;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 9px;
+}
+.centered-btns_here a, .transparent-btns_here a, .large-btns_here a {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
+}

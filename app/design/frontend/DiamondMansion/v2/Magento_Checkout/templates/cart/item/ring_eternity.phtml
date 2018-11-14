@@ -1,0 +1,119 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Checkout\Block\Cart\Item\Renderer */
+
+$_item = $block->getItem();
+$product = $_item->getProduct();
+$allOptions = $product->getAllDmOptions();
+$dmOptions = $product->getDmOptions();
+
+$values = json_decode($allOptions['stone-shape'][$dmOptions['stone-shape']]->getValues(), true);
+$stoneAmount = $values['amount'][$dmOptions['stone-carat'] . '-' . $dmOptions['ring-size']];
+
+$isVisibleProduct = $product->isVisibleInSiteVisibility();
+/** @var \Magento\Msrp\Helper\Data $helper */
+$helper = $this->helper('Magento\Msrp\Helper\Data');
+$canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
+?>
+<tbody class="cart item">
+    <tr class="item-info">
+        <td data-th="<?= $block->escapeHtml(__('Item')) ?>" class="col item only-one">
+            <?php if ($block->hasProductUrl()):?>
+                <a href="<?= /* @escapeNotVerified */ $block->getProductUrl() ?>"
+                   title="<?= $block->escapeHtml($block->getProductName()) ?>"
+                   tabindex="-1"
+                   class="product-image">
+            <?php else:?>
+                <a class="product-image">
+            <?php endif;?>
+            <img src="<?= $product->getImage() ?>" alt="<?= $block->escapeHtml($block->getProductName()) ?>"/>
+            <?php if ($block->hasProductUrl()):?>
+                </a>
+            <?php else: ?>
+                </span>
+            <?php endif; ?>
+            <div class="right f-right">
+                <h2 class="product-name">
+                    <?php if ($block->hasProductUrl()):?>
+                        <a href="<?= /* @escapeNotVerified */ $block->getProductUrl() ?>"><?= $block->escapeHtml($block->getProductName()) ?></a>
+                    <?php else: ?>
+                        <?= $block->escapeHtml($block->getProductName()) ?>
+                    <?php endif; ?>
+                </h2>
+                <?php if ($dmOptions):?>
+                    <div class="item-options">
+                        <div class="summary-details">
+                            <div class="block-options">
+                                <?php if (isset($dmOptions['stone-shape'])): ?>
+                                <div class="option center-stone">
+                                    <span class="wide">STONE:</span>
+                                    <ul>
+                                        <li class="shape">
+                                            <a href="javascript:void">
+                                                <img height="21px" width="21px" class="active" 
+                                                    title="<?= $allOptions['stone-shape'][$dmOptions['stone-shape']]->getTitle() ?>" 
+                                                    alt="<?= $allOptions['stone-shape'][$dmOptions['stone-shape']]->getTitle() ?>" 
+                                                    src="<?= $block->getViewFileUrl("images/diamond/shape/" . $dmOptions['stone-shape'] . "_ac.png") ?>"/>
+                                            </a>
+                                            <label>SHAPE</label>
+                                        </li>
+                                        <li class="carat">
+                                            <a href="javascript:void"><?= $allOptions['stone-carat'][$dmOptions['stone-carat']]->getCode() * $stoneAmount ?></a>
+                                            <label>CARAT</label>
+                                        </li>
+                                        <li class="clarity">
+                                            <a href="javascript:void"><?= $allOptions['stone-color-clarity'][$dmOptions['stone-color-clarity']]->getTitle() ?></a>
+                                            <label>Quality</label>
+                                        </li>
+                                    </ul>
+                                    <div class="clearer"></div>
+                                </div>
+                                <?php endif ?>
+                                <?php if (isset($dmOptions['metal'])): ?>
+                                <div class="option metal">
+                                    <span class="wide">METAL:</span>
+                                    <ul>
+                                        <li class="metal-type">
+                                            <a href="javascript:void">
+                                                <img title="<?= $allOptions['metal'][$dmOptions['metal']]->getTitle() ?>" alt="<?= $allOptions['metal'][$dmOptions['metal']]->getTitle() ?>" src="<?= $block->getViewFileUrl("images/diamond/metal/" . $dmOptions['metal'] . ".png") ?>"/>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearer"></div>
+                                </div>
+                                <?php endif ?>
+                                <?php if (isset($dmOptions['ring-size'])): ?>
+                                <div class="option ring-size">
+                                    <span class="wide">RING SIZE:</span>
+                                    <ul>
+                                        <li class="ring-size">
+                                            <a href="javascript:void"><?= $allOptions['ring-size'][$dmOptions['ring-size']]->getTitle() ?></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearer"></div>
+                                </div>
+                                <?php endif ?>                                
+                            </div>
+                        </div>
+                    </div>
+                <?php endif;?>
+                <div class="cart-item-bottom">
+                    <span class="cart-label subtotal-label">Subtotal:</span>
+                    <span class="cart-price subtotal-price">
+                        <span class="price"><?= $block->getRowTotalHtml($_item) ?></span>                                    
+                    </span>
+                    <div class="action-links">
+                        <?= /* @escapeNotVerified */ $block->getActions($_item) ?>
+                        <div class="clear"></div>
+                    </div>
+                </div>                
+            </div>
+        </td>
+    </tr>
+</tbody>

@@ -411,7 +411,7 @@
             </div>                           
 
             <div class="buttons">
-                <form action="<?= $block->getSubmitUrl($_product) ?>" method="post">
+                <form action="<?= $block->getSubmitUrl($_product) ?>" method="post" id="form_add_product">
                     <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $_product->getId() ?>" />
                     <?= $block->getBlockHtml('formkey') ?>
                     <input type="hidden" name="custom_options" class="dm_custom_options" value="<?= isset($params['option']) ? $params['option'] : "" ?>"/>

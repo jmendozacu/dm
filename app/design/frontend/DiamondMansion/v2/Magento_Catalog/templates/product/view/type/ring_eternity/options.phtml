@@ -1,0 +1,353 @@
+<?php
+    $_product = $this->getProduct();
+
+    extract($this->getOptions());
+
+    $_product->setExcludeOrderType(true);
+    $_product->setDefaultDmOptions($defaultOptions);
+
+    $_helper = $this->getHelper();
+
+    $imageDefault = $_product->getImage();
+
+    $category = $this->getHelper()->getObjectManager()->get('Magento\Framework\Registry')->registry('current_category');
+
+    $stonePrices = $this->getStonePrices();
+?>
+<div id="product-img-slider" class="mobile">
+    <ul class="rslides">
+    </ul>
+    <div class="clear"></div>
+</div>
+<div class="mobile price-box" style="opacity: 0;">
+    <span class="price"></span>
+    <p class="a-right">PAYMENT OPTIONS AT<br/>THE BOTTOM OF THIS PAGE</p>
+</div>
+
+<div id="eternity-ring-custom-options" class="grid_9 alpha">
+    <div class="custom-options-tabs no-display desktop">
+        <div class="custom-options-tab" data-ref="stone-type">
+            <a href="#center-diamond-details" id="center-diamond-tab">Stone<sub>100% Natural</sub></a>
+            <ul class="options-list type-list" id="options-type-list" rel="type">
+                <?php foreach($allOptions['stone-type'] as $code => $option): ?>
+                <li rel="<?= $code ?>" class="item-<?= $code ?> <?= ($code == $defaultOptions['stone-type']->getCode()) ? 'selected' : '' ?>">
+                    <span class="label"><label><?= $option->getTitle() ?></label></span>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <div class="custom-options-tab" data-ref="metal">
+            <a href="#metal-details" id="metal-tab">Metal<sub><?= $defaultOptions['metal']->getTitle() ?></sub></a>
+            <ul class="options-list metal-list" id="options-metal-list" rel="metal">
+                <?php $metalWeight = -1; ?>
+                <?php foreach($allOptions['metal'] as $code => $option): ?>
+                <?php $values = json_decode($option->getValues(), true); ?>
+                <?php if ($metalWeight == -1): ?>
+                <?php $metalWeight = $values['weight'][0]; ?>
+                <?php $metalWeightBase = $metalWeight; ?>
+                <?php endif ?>
+                <?php if (strpos($code, '18k') !== false): ?>
+                <?php $metalWeight = $metalWeightBase * 1.16 ?>
+                <?php elseif (strpos($code, 'platinum') !== false): ?>
+                <?php $metalWeight = $metalWeightBase * 1.64 ?>
+                <?php else: ?>
+                <?php $metalWeight = $metalWeightBase * 1 ?>
+                <?php endif ?>
+                <?php $metalWeight = ($values['weight'][0] > 0) ? $values['weight'][0] : $metalWeight; ?>
+                <?php $metalPrice = ($values['price'][0] > 0) ? ($values['price'][0] * $metalWeight) : $this->getMetalPrice($code) * $metalWeight; ?>
+                <li rel="<?= $code ?>" data-price="<?= $metalPrice ?>" class="item-<?= $code ?> <?= ($code == $defaultOptions['metal']->getCode()) ? 'selected' : '' ?>">
+                    <span class="label"><label><?= $option->getTitle() ?></label></span>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <div class="custom-options-tab" data-ref="ring-size">
+            <a href="#ring-size-details" id="rign-size-tab">Ring Size<sub><?= $defaultOptions['ring-size']->getTitle() ?></sub></a>
+            <ul class="ring-size-list2">
+                <?php foreach($allOptions['ring-size'] as $code => $option): ?>
+                <li><a href="#" rel="<?= $code ?>" id="ring-size-<?= $code ?>" <?= ($code == $defaultOptions['ring-size']->getCode()) ? 'class="active"' : '' ?>><?= $option->getTitle() ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="custom-options-lists no-display">
+        <div class="ring-specs mobile">RING SPECS</div>
+        <div class="custom-options-list metal-list mobile" id="metal-list" data-ref="metal">
+            <label class="list-title">Metal <a href class="arrow show"></a></label>
+        </div>
+        <div class="custom-options-list shape-list" data-ref="stone-shape">
+            <label class="list-title desktop">Choose Diamond<sup>Shape</sup></label>
+            <label class="list-title mobile">Diamond Shape <a href class="arrow show"></a></label>
+            <ul class="options-list shape-list" id="options-shape-list" rel="shape">
+                <?php foreach($allOptions['stone-shape'] as $code => $option): ?>
+                <li rel="<?= $code ?>" class="item-<?= $code ?> <?= ($code == $defaultOptions['stone-shape']->getCode()) ? 'selected' : '' ?>">
+                    <span class="label"><label><?= $option->getTitle() ?></label></span>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <div class="custom-options-list carat-list" id="carat-list" data-ref="stone-carat">
+            <div class="arrows mobile">
+                <div class="arrows-wrapper">
+                    <a href="#" class="arrow-left"><img src="<?= $this->getViewFileUrl('images/mobile/i_minus.png') ?>"/></a>
+                    <a href="#" class="arrow-right"><img src="<?= $this->getViewFileUrl('images/mobile/i_plus.png') ?>"/></a>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <label class="list-title desktop">Choose Diamond<sup>Carat</sup></label>
+            <label class="list-title mobile">Diamond CTW. <a href class="arrow show"></a></label>
+            <ul class="options-list carat-list" id="options-carat-list" rel="carat">
+                <?php $values = json_decode($defaultOptions['stone-shape']->getValues(), true); ?>
+                <?php $ringSize = $defaultOptions['ring-size']->getCode(); ?>
+                <?php if (isset($values['amount']) && ($amount = $values['amount'])): ?>
+                <?php foreach($allOptions['stone-carat'] as $code => $option): ?>
+                <?php if (isset($amount[$code . '-' . $ringSize]) && $amount[$code . '-' . $ringSize]): ?>
+                <li rel="<?= $code ?>" data-carat="<?= number_format($code * $amount[$code . '-' . $ringSize], 2) ?>" class="item-<?= $code ?> <?= ($code == $defaultOptions['stone-carat']->getCode()) ? 'selected' : '' ?>">
+                    <span class="label">
+                        <label>
+                            <?php if ($code == $defaultOptions['stone-carat']->getCode()): ?>
+                            <span><?= number_format($code * $amount[$code . '-' . $ringSize], 2) ?></span>
+                            <span><?= $defaultOptions['stone-carat']->getTitle() ?> ct. each</span>
+                            <span>WIDTH:<?= $this->getStoneWidth($defaultOptions['stone-shape']->getCode(), $defaultOptions['stone-carat']->getCode()) ?><sub>MM</sub></span>
+                            <?php else: ?>
+                            <?= number_format($code * $amount[$code . '-' . $ringSize], 2) ?>
+                            <?php endif ?>
+                        </label>
+                    </span>
+                </li>
+                <?php endif ?>
+                <?php endforeach; ?>
+                <?php endif ?>
+            </ul>
+        </div>
+        <div class="custom-options-list quality-list" id="quality-list" data-ref="stone-color-clarity">
+            <div class="arrows mobile">
+                <div class="arrows-wrapper">
+                    <a href="#" class="arrow-left"><img src="<?= $this->getViewFileUrl('images/mobile/i_minus.png') ?>"/></a>
+                    <a href="#" class="arrow-right"><img src="<?= $this->getViewFileUrl('images/mobile/i_plus.png') ?>"/></a>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <label class="list-title desktop">Choose Diamond<sup>Quality</sup></label>
+            <label class="list-title mobile">Diamond Quality <a href class="arrow show"></a></label>
+            <ul class="options-list color-clarity-list" id="options-color-clarity-list" rel="color-clarity">
+                <?php foreach($allOptions['stone-color-clarity'] as $code => $option): ?>
+                <li rel="<?= $code ?>" class="item-<?= str_replace('/', '-', $code) ?> <?= ($code == $defaultOptions['stone-color-clarity']->getCode()) ? 'selected' : '' ?>">
+                    <span class="label"><label><?= $option->getTitle() ?></label></span>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+            <div class="quality-list-item-wrapper no-display">
+                <div class="quality-list-item" id="item-f-g-vs">
+                    <span class="item-title">F VS2</span>
+                    <p class="item-description">100% NATURAL &<br/>ETHICALY SOURCED</p>
+                    <dl>
+                        <dt>Color:</dt>
+                        <dd class="rate-5">&nbsp;</dd>
+                        <dt>Clarity:</dt>
+                        <dd class="rate-5">&nbsp;</dd>
+                        <dt>Cut:</dt>
+                        <dd class="rate-5">&nbsp;</dd>
+                        <dt>Polish:</dt>
+                        <dd class="rate-5">&nbsp;</dd>
+                        <dt>Symmetry:</dt>
+                        <dd class="rate-5">&nbsp;</dd>
+                    </dl>
+                    <p class="appraised"><span>Appraised Value:</span><span class="appraised-value">$0</span></p>
+                    <p class="retail"><span>Our Price:</span><span class="retail-value">$0</span></p>
+                </div>
+                <div class="quality-list-item" id="item-g-h-si">
+                    <span class="item-title">G SI1</span>
+                    <p class="item-description">100% NATURAL &<br/>ETHICALY SOURCED</p>
+                    <dl>
+                        <dt>Color:</dt>
+                        <dd class="rate-4">&nbsp;</dd>
+                        <dt>Clarity:</dt>
+                        <dd class="rate-4">&nbsp;</dd>
+                        <dt>Cut:</dt>
+                        <dd class="rate-5">&nbsp;</dd>
+                        <dt>Polish:</dt>
+                        <dd class="rate-5">&nbsp;</dd>
+                        <dt>Symmetry:</dt>
+                        <dd class="rate-5">&nbsp;</dd>
+                    </dl>
+                    <p class="appraised"><span>Appraised Value:</span><span class="appraised-value">$0</span></p>
+                    <p class="retail"><span>Our Price:</span><span class="retail-value">$0</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="custom-options-list mobile" id="ring-size-list" data-ref="ring-size">
+            <label class="list-title">Ring Size <a href class="arrow show"></a></label>
+            <ul class="ring-size-list2">
+                <?php foreach($allOptions['ring-size'] as $code => $option): ?>
+                <li><a href="#" rel="<?= $code ?>" id="ring-size-<?= $code ?>"><?= $option->getTitle() ?></a></li>
+                <?php endforeach; ?>
+            </ul>                            
+        </div>                        
+    </div>                   
+    <div class="product-name mobile">
+        <h1><?= $_product->getName() ?></h1>
+    </div>            
+    </div>
+
+    <div id="eternity-ring-summary" class="grid_3 omega no-display">
+    <div class="product-name">
+        <h1><?= $_product->getName() ?></h1>
+    </div>
+    <div class="product-summary">
+        <div class="sold-out a-center no-display">
+            SOLD OUT
+        </div>
+        <div class="product-available">
+            <div class="a-center">
+                <a class="btn-reserve a-center" href="#form-reserve"><span class="a-center" style="display: block;">Reserve<br/>Today's Price</span></a>
+            </div>
+            <div class="order-options">
+                <ul>    
+                    <?php if (isset($allOptions['order-type']['default'])): ?>
+                    <li>
+                        <input type="radio" class="order-type" id="order-default" data-code="default" name="order_type" <?php if ($defaultOptions['order-type']->getCode() == 'default'): ?>checked="checked"<?php endif ?>/>
+                        <label for="order-default">Order Now</label>
+                        <span id="order-type-order-now">$15500</span>
+                    </li>
+                    <?php endif ?>
+                    <?php if (isset($allOptions['order-type']['10%-deposit'])): ?>
+                    <li>
+                        <input type="radio" class="order-type" id="order-10%-deposit" data-code="10%-deposit" name="order_type" <?php if ($defaultOptions['order-type']->getCode() == '10%-deposit'): ?>checked="checked"<?php endif ?>/>
+                        <label for="order-10%-deposit">Down Payment</label>
+                        <span id="order-type-down-payment">$1550</span>
+                    </li>
+                    <?php endif ?>
+                    <?php if (isset($allOptions['order-type']['home-try-on'])): ?>
+                    <li>
+                        <input type="radio" class="order-type" id="order-home-try-on" data-code="home-try-on" name="order_type" <?php if ($defaultOptions['order-type']->getCode() == 'home-try-on'): ?>checked="checked"<?php endif ?>/>
+                        <label for="order-home-try-on">At Home Try On</label>
+                        <span>Free</span>
+                    </li>
+                    <?php endif ?>
+                </ul>
+            </div>
+            <div id="which-should-i-choose" class="which-should-i-choose">
+                <h4>WHICH SHOULD I CHOOSE? <span class="arrow show"></span></h4>
+                <div class="content" style="display: none;">
+                    <p>
+                        <strong>ORDER NOW</strong><br/>
+                        ORDER THIS ITEM NOW AND RECEIVE IT WITHIN 7-10 BUSINESS DAYS.
+                    </p>
+                    <p>
+                        <strong>DOWN PAYMENT</strong><br/>
+                        PUT A 10% DOWN PAYMENT, WE WILL START MAKING YOUR RING, CHECK OUT THE RING, PAY THE REMAINDER BALANCE.
+                    </p>
+                    <p>
+                        <strong>AT HOME TRY ON</strong><br/>
+                        TRY THE RING ON AT HOME AND SEE IF IT'S THE ONE!
+                    </p>
+                </div>
+            </div>
+            <div class="buttons a-center">
+                <form action="<?= $block->getSubmitUrl($_product) ?>" method="post" id="form_add_product">
+                    <input type="hidden" name="dm_options" class="dm_custom_options" value="<?= isset($params['option']) ? $params['option'] : "" ?>"/>
+                    <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $_product->getId() ?>" />
+                    <?= $block->getBlockHtml('formkey') ?>
+                    <a class="btn-buy" href="#" onclick="productAddToCartForm.submit(this); return false;">ORDER</a>
+                </form>
+            </div>                        
+            <div class="buttons" style="text-transform: uppercase;">
+                <?php echo $block->getChildHtml('wishlist') ?>
+                <?php echo $block->getChildHtml('social_share') ?>
+            </div>
+        </div>
+        <div class="a-center" style="text-transform: uppercase; margin-bottom: 10px; clear:both;">
+            <span>tax included</span><br/><span>45 days return</span>&nbsp;<span>-</span>&nbsp;<span>lifetime warranty</span>
+        </div>
+        <div class="option stone-type">
+            <span id="stone-type">100% Natural</span>, NON TREATED,<br/>NOT ENHANCED, & BLOOD FREE.
+        </div>                             
+        <div class="option">
+            HAND CRAFTED IN LOS ANGELES, CA.
+        </div>
+        <div class="option total-carat">
+            <span id="total-carat"></span>CARAT TOTAL DIAMOND WEIGHT
+        </div>
+        <div class="option quality">
+            <span id="quality"><?= $defaultOptions['stone-color-clarity']->getTitle() ?></span> NATURAL COLOR
+        </div>
+        <div class="option metal">
+            <span id="metal-type"><?= $defaultOptions['metal']->getTitle() ?></span>
+        </div>
+        <div class="a-center option sku">
+            SKU# <?php echo $_product->getSku() ?>
+        </div>                        
+    </div>                    
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "dm-product-view-ring-eternity": {
+                "product_id": <?= $_product->getId() ?>,
+                "sku": "<?= $_product->getSku() ?>",
+                "name": "<?= $_product->getName() ?>",
+                "urlKey": "<?= $_product->getUrlKey() ?>",
+                "categoryUrl": "<?= ($category) ? $category->getUrl() : "" ?>",
+                "isReqeustedOptions": <?= $block->isRequestedOptions() ?>,
+                "isLoaded": false,
+                "default_image": "<?= isset($imageDefault) ? $imageDefault : "" ?>",
+                "stone": {
+                    "type": "<?= $defaultOptions['stone-type']->getCode() ?>",
+                    "shape": "<?= $defaultOptions['stone-shape']->getCode() ?>",
+                    "carat": "<?= $defaultOptions['stone-carat']->getCode() ?>",
+                    "color-clarity": "<?= $defaultOptions['stone-color-clarity']->getCode() ?>",
+                    "qty": 0,
+                    "price": 0,
+                    "qtys": {
+                        <?php $i=1; foreach ($allOptions['stone-shape'] as $shape => $option): ?>
+                        "<?= $shape ?>": {
+                            <?php $values = json_decode($option->getValues(), true); ?>
+                            <?php $k=1; foreach ($values['amount'] as $key => $value): ?>
+                            "<?= $key ?>": "<?= $value ?>"<?= ($k < count($values['amount'])) ? ',' : '' ?>
+                            <?php $k++; endforeach ?>
+                        }<?= ($i < count($allOptions['stone-shape'])) ? ',' : '' ?>
+                        <?php $i++; endforeach ?>
+                    },
+                    "widths": {
+                        <?php $i=1; foreach ($allOptions['stone-shape'] as $shape => $shapeOption): ?>
+                        "<?= $shape ?>": {
+                            <?php $k=1; foreach ($allOptions['stone-carat'] as $carat => $caratOption): ?>
+                            "<?= $carat ?>": "<?= $this->getStoneWidth($shape, $carat) ?>"<?= ($k < count($allOptions['stone-carat'])) ? ',' : '' ?>
+                            <?php $k++; endforeach ?>
+                        }<?= ($i < count($allOptions['stone-shape'])) ? ',' : '' ?>
+                        <?php $i++; endforeach ?>
+                    },
+                    "unitprice": {
+                        <?php $i=1; foreach ($stonePrices as $key => $value): ?>
+                        "<?= $key ?>": "<?= $value ?>"<?= ($i < count($stonePrices)) ? ',' : '' ?>
+                        <?php $i++; endforeach ?>
+                    }
+                },
+                "isTypeChanged": false,
+                "ring_size": "<?= $defaultOptions['ring-size']->getCode() ?>",
+                "metal": {
+                    "type": "<?= $defaultOptions['metal']->getCode() ?>",
+                    "price": 0
+                },
+                "order_type": "<?= $defaultOptions['order-type']->getCode() ?>",
+                "current_price": <?= $_product->getPrice() ?>,
+                "option_skus": {
+                    <?php $i=1; foreach ($allOptions as $group => $optionGroup): ?>
+                    "<?= $group ?>": {
+                        <?php $k=1; foreach ($optionGroup as $code => $option): ?>
+                        "<?= $code ?>": "<?= $option->getSlug() ?>"<?= ($k < count($optionGroup)) ? ',' : '' ?>
+                        <?php $k++; endforeach ?>
+                    }<?= ($i < count($allOptions)) ? ',' : '' ?>
+                    <?php $i++; endforeach ?>
+                },
+                "default_options": {
+                    <?php $i=1; foreach ($defaultOptions as $group => $option): ?>
+                    "<?= $group ?>": "<?= $group ?>-<?= $option->getId() ?>"<?= ($i < count($defaultOptions)) ? ',' : '' ?>
+                    <?php $i++; endforeach ?>
+                }
+            }
+        }
+    }
+</script>

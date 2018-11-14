@@ -52,7 +52,7 @@ class Image extends Data
         }
 
         return $imagePath;
-    }
+    }    
 
     public function getProductImages($option)
     {
@@ -116,7 +116,7 @@ class Image extends Data
             }
             $resizedURL = $folderURL . "resized/" . str_replace(DIRECTORY_SEPARATOR, '/', $relativePath) . $width."x".$height."_".$fileName;
         } else {
-            $resizedURL = $imageURL;
+            $resizedURL = str_replace(DIRECTORY_SEPARATOR, '/', $imageURL);
         }
         return $resizedURL;
     }
