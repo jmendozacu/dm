@@ -20,25 +20,18 @@ class ReindexLikeDislike extends Command
 
     private $state;
 
-    protected $_objectManager;
     protected $_connection;
     protected $_eavConfig;
     protected $_productFactory;
     protected $_likedislikeCollectionFactory;
 
     public function __construct(
-        ObjectManagerFactory $objectManagerFactory,
         ResourceConnection $resource,
         \Magento\Eav\Model\Config $eavConfig,
         \Magento\Catalog\Model\ProductFactory $productFactory,
         \DiamondMansion\Extensions\Model\ResourceModel\LikeDislike\CollectionFactory $likedislikeCollectionFactory,
         \Magento\Framework\App\State $state
     ) {
-        $params = $_SERVER;
-        $params[StoreManager::PARAM_RUN_CODE] = 'admin';
-        $params[StoreManager::PARAM_RUN_TYPE] = 'store';
-
-        $this->_objectManager = $objectManagerFactory->create($params);
         $this->_connection = $resource->getConnection();
         $this->_eavConfig = $eavConfig;
         $this->_productFactory = $productFactory;
@@ -64,6 +57,8 @@ class ReindexLikeDislike extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->state->setAreaCode(\Magento\Framework\App\Area::AREA_GLOBAL);
+
         $output->writeln('<info>Starting...</info>');
 
         try {
