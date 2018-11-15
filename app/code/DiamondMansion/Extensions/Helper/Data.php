@@ -192,6 +192,15 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                         break;
                     }
                 }
+                if (!isset($defaultOptions[$group])) {
+                    $defaultOptions[$group] = current($optionGroup);
+                    foreach ($optionGroup as $code => $option) {
+                        if ($option->getIsDefault()) {
+                            $defaultOptions[$group] = $option;
+                            break;
+                        }
+                    }
+                }
                 $sku = next($skus);
             }
         } else {

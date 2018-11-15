@@ -257,7 +257,7 @@
                             <?php foreach($allOptions[$sideshape] as $sideshapeCode => $sideshapeOption): ?>
                             <?php if ($sideshapeCode == $defaultOptions[$sideshape]->getCode()): ?>
                                 <?php $sidevalues = json_decode($sideshapeOption->getValues(), true) ?>
-                                <li><a href="#" rel="<?= $sideshapeCode ?>" id="<?= $sideshape ?>-<?= $sideshapeOption->getId() ?>" data-group="<?= $sideshape ?>" data-code="<?= $sideshapeCode ?>" data-qty="<?php echo $sidevalues['qty'][0] ?>" data-qty2="<?php echo (int)$sidevalues['qty'][0] + (int)$sidevalues['qty'][1] ?>"><span class="caption"><?php echo $sideshapeOption->getTitle() ?></span><img src="<?php echo $this->getViewFileUrl("images/diamond/side/".$sideshapeCode.".jpg")?>" alt="<?= $sideshapeOption->getTitle() ?>" title="<?= $sideshapeOption->getTitle() ?>" class="default"></a></li>
+                                <li><a href="#" rel="<?= $sideshapeCode ?>" id="<?= $sideshape ?>-<?= $sideshapeOption->getId() ?>" data-group="<?= $sideshape ?>" data-code="<?= $sideshapeCode ?>" data-qty="<?php echo (int)$sidevalues['qty'][0] ?>" data-qty2="<?php echo (int)$sidevalues['qty'][0] + (int)$sidevalues['qty'][1] ?>"><span class="caption"><?php echo $sideshapeOption->getTitle() ?></span><img src="<?php echo $this->getViewFileUrl("images/diamond/side/".$sideshapeCode.".jpg")?>" alt="<?= $sideshapeOption->getTitle() ?>" title="<?= $sideshapeOption->getTitle() ?>" class="default"></a></li>
                             <?php break; endif; ?>
                             <?php endforeach; ?>
                             </ul>

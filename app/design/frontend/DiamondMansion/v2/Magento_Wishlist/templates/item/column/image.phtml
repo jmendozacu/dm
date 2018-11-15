@@ -1,0 +1,25 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Wishlist\Block\Customer\Wishlist\Item\Column\Image $block */
+
+/** @var \Magento\Wishlist\Model\Item $item */
+$item = $block->getItem();
+$product = $item->getProduct();
+
+$filters = $product->getFilters();
+?>
+<?php if (isset($filters['option'])): ?>
+<a class="product-item-photo" tabindex="-1" href="<?= $product->getProductUrl() ?>" title="<?= $product->getDmName() ?>">
+    <img src="<?= $product->getImage() ?>" alt="<?= $product->getDmName() ?>"/>
+</a>
+<?php else: ?>
+<a class="product-item-photo" tabindex="-1" href="<?= $block->escapeUrl($block->getProductUrl($item)) ?>" title="<?= $block->escapeHtmlAttr($product->getName()) ?>">
+    <?= $block->getImage($product, 'wishlist_thumbnail')->toHtml() ?>
+</a>
+<?php endif ?>

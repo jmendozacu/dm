@@ -117,6 +117,12 @@ define([
                 return false;
             });
 
+            $("a.btn-wishlist").on('click', function () {
+                var params = $(this).data('post');
+                params.data = $.extend({}, params.data, {"dm_options": $('input.dm_custom_options').val()});
+                $(this).data('post', params);
+            });
+
             config.isLoaded = true;
             $(".product-view").slideDown("slow");
         });

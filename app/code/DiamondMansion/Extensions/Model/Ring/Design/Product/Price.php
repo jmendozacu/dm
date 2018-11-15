@@ -106,9 +106,9 @@ class Price extends \Magento\Catalog\Model\Product\Type\Price
             if (strpos($group, 'side-stone-shape') !== false) {
                 $values = json_decode($allDmOptions[$group][$param]->getValues(), true);
                 if ($params["band"] == "bridal-set") {
-                    $sideStoneQty = $values["qty"][0] + $values["qty"][1];
+                    $sideStoneQty = (int)$values["qty"][0] + (int)$values["qty"][1];
                 } else {
-                    $sideStoneQty = $values["qty"][0];
+                    $sideStoneQty = (int)$values["qty"][0];
                 }
 
                 $sideIndex = str_replace('side-stone-shape-', '', $group);
@@ -151,5 +151,9 @@ class Price extends \Magento\Catalog\Model\Product\Type\Price
         ), 2);
 
         return $total; 
+    }
+
+    public function getFinalPrice($qty, $product) {
+        return $this->getPrice($product);
     }
 }

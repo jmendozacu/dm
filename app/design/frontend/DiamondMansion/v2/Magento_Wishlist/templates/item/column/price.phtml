@@ -1,0 +1,29 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Wishlist\Block\Customer\Wishlist\Item\Column\Cart $block */
+$item = $block->getItem();
+$product = $item->getProduct();
+
+$filters = $product->getFilters();
+?>
+<?php if (isset($filters['option'])): ?>
+<div class="price-box price-configured_price" data-role="priceBox" data-product-id="<?= $product->getId() ?>" data-price-box="product-id-<?= $product->getId() ?>">
+    <p class="price-as-configured">
+        <span class="price-container price-configured_price tax weee">
+            <span id="product-price-<?= $product->getId() ?>" data-price-amount="<?= $product->getPrice() ?>" data-price-type="finalPrice" class="price-wrapper ">
+                <span class="price">$<?= $product->getPrice() ?></span>
+            </span>
+        </span>
+    </p>
+</div>
+<?php else: ?>
+<?php foreach ($block->getChildNames() as $childName): ?>
+    <?= /* @noEscape */ $block->getLayout()->renderElement($childName, false) ?>
+<?php endforeach;?>
+<?php endif ?>

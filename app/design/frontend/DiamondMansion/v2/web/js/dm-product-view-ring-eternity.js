@@ -77,6 +77,12 @@ define([
                 return false;
             });
 
+            $("a.btn-wishlist").on('click', function () {
+                var params = $(this).data('post');
+                params.data = $.extend({}, params.data, {"dm_options": $('input.dm_custom_options').val()});
+                $(this).data('post', params);
+            });
+
             $('#quality-list li.item-f-g-vs label').html($('#item-f-g-vs').html()).addClass('quality-list-item');
             $('#quality-list li.item-g-h-si label').html($('#item-g-h-si').html()).addClass('quality-list-item');
             
