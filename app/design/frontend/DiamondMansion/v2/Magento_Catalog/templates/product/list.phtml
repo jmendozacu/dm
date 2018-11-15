@@ -61,7 +61,7 @@ require([
     <img id="view-more-products-loading" src="<?php echo $this->getViewFileUrl("images/amshopby-overlay.gif") ?>" class="no-display"/>
 </div>
 <?php 
-    $url = $this->getCurrentUrl();
+    $url = $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
     if ($this->getRequest()->getParam("p")) {
         $page = $this->getRequest()->getParam("p");
         $this->setViewedPage($url, $page);
@@ -69,6 +69,10 @@ require([
     } else {
         $page = $this->getViewedPage($url);
         $viewedItemIdentifier = $this->getViewedItem($url);
+    }
+
+    if (!$page) {
+        $page = 1;
     }
 ?>
 <?php /*** View More End ***/ ?>

@@ -53,4 +53,8 @@ class Product extends \Magento\Catalog\Model\Product
             return parent::getImage();
         }
     }
+
+    public function getDefaultImage() {
+        return parent::getImage();
+    }
 }

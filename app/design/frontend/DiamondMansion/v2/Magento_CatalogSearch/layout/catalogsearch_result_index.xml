@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <attribute name="class" value="catalog-category-view"/>
+        <referenceContainer name="content">
+            <referenceBlock name="search_result_list">
+                <action method="setDefaultDirection">
+                    <argument name="dir" xsi:type="string">desc</argument>
+                </action>
+                <block class="Magento\Catalog\Block\Product\AbstractProduct" name="category.product.item" as="item" template="Magento_Catalog::product/list/item.phtml"/>
+            </referenceBlock>
+        </referenceContainer>
+    </body>
+</page>
