@@ -48,7 +48,19 @@ class Product extends \Magento\Catalog\Model\Product
 
     public function getImage() {
         if (method_exists($this->getTypeInstance(), 'getImage')) {
-            return $this->getTypeInstance()->getImage($this);
+            $result = $this->getTypeInstance()->getImage($this);
+            if (strpos($result, 'placeholder')) {
+                $this->load('media_gallery');
+                $defaultImage = parent::getImage();
+                foreach ($this->getMediaGalleryImages() as $image) {
+                    if ($defaultImage == $image->getFile()) {
+                        $result = $image->getUrl();
+                        break;
+                    }
+                }
+            }
+        
+            return $result;
         } else {
             return parent::getImage();
         }
