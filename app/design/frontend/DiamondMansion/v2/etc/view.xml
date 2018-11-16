@@ -257,6 +257,14 @@
         <var name="bundle_size">1MB</var>
     </vars>
     <exclude>
+        <item type="file">js/cloudzoom.js</item>
+        <item type="file">js/dm-ajax.js</item>
+        <item type="file">js/dm-product-view-ring-design.js</item>
+        <item type="file">js/dm-product-view-ring-eternity.js</item>
+        <item type="file">js/dm-qazy.js</item>
+        <item type="file">js/dm-viewmore.js</item>
+        <item type="file">js/jquery.fancybox.js</item>
+        <item type="file">js/responsiveslides.min.js</item>
         <item type="file">Lib::jquery/jquery.min.js</item>
         <item type="file">Lib::jquery/jquery-ui-1.9.2.js</item>
         <item type="file">Lib::jquery/jquery.ba-hashchange.min.js</item>
