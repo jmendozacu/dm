@@ -50,7 +50,7 @@
                 <?php if (!$wrapOptions): ?>
                 <div class="top-filters">
                     <ul class="filter-options" id="narrow-by-list">
-                        <li class="filter-label collapsed" id="filter-title"><?= /* @escapeNotVerified */ __('Filter By') ?>:</li>
+                        <li class="filter-label collapsed" id="filter-title"><span><?= /* @escapeNotVerified */ __('Filter By') ?>:</span></li>
                 <?php $wrapOptions = true; endif; ?>
                     <?php if ($filter->getItemsCount()): ?>
                     <li class="filter-label <?= str_replace(' ', '-', strtolower($filter->getName())) ?>" id="filter-<?= str_replace(' ', '-', strtolower($filter->getName())) ?>">

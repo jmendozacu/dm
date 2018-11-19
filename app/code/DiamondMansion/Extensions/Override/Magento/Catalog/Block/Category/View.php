@@ -4,6 +4,52 @@ namespace DiamondMansion\Extensions\Override\Magento\Catalog\Block\Category;
 
 class View extends \Magento\Catalog\Block\Category\View
 {
+    /**
+     * Core registry
+     *
+     * @var \Magento\Framework\Registry
+     */
+    protected $_coreRegistry = null;
+
+    /**
+     * Catalog layer
+     *
+     * @var \Magento\Catalog\Model\Layer
+     */
+    protected $_catalogLayer;
+
+    /**
+     * @var \Magento\Catalog\Helper\Category
+     */
+    protected $_categoryHelper;
+
+    /** @var \Amasty\ShopbyPage\Model\PageFactory */
+    protected $_pageFactory;
+
+    protected $_eavConfig;
+
+    /**
+     * @param \Magento\Framework\View\Element\Template\Context $context
+     * @param \Magento\Catalog\Model\Layer\Resolver $layerResolver
+     * @param \Magento\Framework\Registry $registry
+     * @param \Magento\Catalog\Helper\Category $categoryHelper
+     * @param array $data
+     */
+    public function __construct(
+        \Magento\Framework\View\Element\Template\Context $context,
+        \Magento\Catalog\Model\Layer\Resolver $layerResolver,
+        \Magento\Framework\Registry $registry,
+        \Magento\Catalog\Helper\Category $categoryHelper,
+        array $data = [],
+        \Amasty\ShopbyPage\Model\PageFactory $pageFactory,
+        \Magento\Eav\Model\Config $eavConfig        
+    ) {
+        $this->_pageFactory = $pageFactory;
+        $this->_eavConfig = $eavConfig;
+
+        parent::__construct($context, $layerResolver, $registry, $categoryHelper, $data);
+    }
+
     protected function _prepareLayout()
     {
         parent::_prepareLayout();
@@ -33,6 +79,28 @@ class View extends \Magento\Catalog\Block\Category\View
             if (in_array($key, ["dm_stone_type", "dm_stone_shape", "dm_band", "dm_metal", "dm_setting_style", "dm_design_collection", "dm_designer"])) {
                 $params[$key] = $value;
             }
+        }
+
+        $eavOptions = [];
+        foreach (["dm_stone_type", "dm_stone_shape", "dm_band", "dm_metal", "dm_setting_style", "dm_design_collection"] as $attribute) {
+            if (!isset($params[$attribute])) {
+                continue;
+            }
+
+            $eavAttribute = $this->_eavConfig->getAttribute('catalog_product', $attribute);
+            $eavOptions[] = json_encode([
+                'filter' => $eavAttribute->getId(),
+                'value' => [$params[$attribute]]
+            ]);
+        }
+
+        $category = $this->getCurrentCategory();
+        $customPages = $this->_pageFactory->create()->getCollection()
+            ->addFieldToFilter('categories', $category->getId())
+            ->addFieldToFilter('conditions', serialize($eavOptions));
+
+        if ($customPages->getSize()) {
+            return $customPages->getFirstItem()->getTitle();
         }
 
         $pageTitle = "";
