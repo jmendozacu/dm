@@ -6,7 +6,7 @@ class Image extends \Mirasvit\Seo\Helper\Rewrite\Image
 {
     public function getUrl()
     {
-        if (method_exists($this->getProduct()->getTypeInstance(), 'getImage')) {
+        if ($this->getProduct()->getIsCustomized() && method_exists($this->getProduct()->getTypeInstance(), 'getImage')) {
             return $this->getProduct()->getTypeInstance()->getImage($this->getProduct());
         }
 

@@ -5,6 +5,7 @@ namespace DiamondMansion\Extensions\Override\Magento\Catalog\Model;
 class Product extends \Magento\Catalog\Model\Product
 {
     protected $_filters = [];
+    protected $_isCustomized = true;
 
     public function setFilters($filters) {
         $this->_filters = $filters;
@@ -47,7 +48,7 @@ class Product extends \Magento\Catalog\Model\Product
     }
 
     public function getImage() {
-        if (method_exists($this->getTypeInstance(), 'getImage')) {
+        if ($this->getIsCustomized() && method_exists($this->getTypeInstance(), 'getImage')) {
             $result = $this->getTypeInstance()->getImage($this);
             if (strpos($result, 'placeholder')) {
                 $this->load('media_gallery');
@@ -68,5 +69,13 @@ class Product extends \Magento\Catalog\Model\Product
 
     public function getDefaultImage() {
         return parent::getImage();
+    }
+
+    public function setIsCustomized($isCustomized) {
+        $this->_isCustomized = $isCustomized;
+    }
+
+    public function getIsCustomized() {
+        return $this->_isCustomized;
     }
 }

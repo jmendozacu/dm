@@ -27,7 +27,6 @@ class Gallery extends \Magento\Catalog\Block\Product\View\Gallery
     }
 
     public function getGalleryImagesJson() {
-        $images = json_decode(parent::getGalleryImagesJson(), true);
         
         $params = $this->getRequest()->getParams();
 
@@ -41,7 +40,16 @@ class Gallery extends \Magento\Catalog\Block\Product\View\Gallery
             'carat' => $defaultOptions['stone-carat']->getCode(),
             'metal' => $defaultOptions['metal']->getCode(),
         ]);
+
+        $product = $this->getProduct();
+        $product->setIsCustomized(false);
+        parent::setProduct($product);
         
+        $images = json_decode(parent::getGalleryImagesJson(), true);
+
+        $product->setIsCustomized(true);
+        parent::setProduct($product);
+
         $images = array_merge([[
             'thumb' => $defaultImage['thumb'],
             'img' => $defaultImage['main'],

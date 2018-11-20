@@ -1,6 +1,7 @@
 <?php 
 $jsonGallery =  $block->getGalleryImagesJson();
 $arrayJsonGallery = json_decode($jsonGallery, true);
+$isVideoExist = false;
 ?>
 <div class="gallery-placeholder product-image">
     <?php if (isset($arrayJsonGallery[0]) && isset($arrayJsonGallery[0]['img']) && isset($arrayJsonGallery[0]['full'])): ?>
@@ -24,6 +25,7 @@ $arrayJsonGallery = json_decode($jsonGallery, true);
             <div class="more-views-holder">
                 <ul>
                     <?php foreach ($arrayJsonGallery as $_image): ?>
+                    <?php if ($_image['type'] == 'video') { $isVideoExist = true; continue; } ?>
                     <li>
                         <a class="cloud-zoom-gallery" 
                             data-zoom='"useZoom":"zoom", "smallImage":"<?php echo str_replace('\\', '/', $_image['img']); ?>"' 
@@ -39,6 +41,22 @@ $arrayJsonGallery = json_decode($jsonGallery, true);
     </div>
     <?php endif; ?>
 </div>
+<?php if ($isVideoExist): ?>
+<div class="product-video-list">
+    <h2>Videos</h2>
+    <ul class="video-gallery-links">
+	    <?php foreach ($arrayJsonGallery as $_video): ?>
+        <?php if ($_video['type'] != 'video') { continue; } ?>
+	        <li>
+				<a class="video-thumb" modal="width=650;height=400" rel="videobox" href="<?= $_video['videoUrl'] ?>" target="_blank" title="<?= $_video['caption'] ?> " style="width:78px; height:56px">
+					<span></span>
+					<img style="margin-top:-11px" src="<?= $_video['thumb'] ?>" width="78" height="78" alt="<?= $_video['caption'] ?>"  title="<?= $_video['caption'] ?>"/>
+				</a>
+	        </li>
+	    <?php endforeach; ?>
+    </ul>
+</div>
+<?php endif ?>
 <script type="text/javascript">
 require([
     'jquery',
