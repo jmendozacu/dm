@@ -1,0 +1,61 @@
+<div class="slide">
+    <div class="container">
+        <div class="row">
+            <div class="span4 white">
+                <div class="eve404 white1">
+                    <h1>404</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span4 white">
+                <div class="description white1">
+                    <h3>sorry the page you are looking for does not exist.</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <nav class="span4 white">
+                <div class="navigation white1"><a href="/">Back To Home</a></div>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="span4 white">
+                <div class="socmed white1">
+                    <div class="twitter"><a href="#">Twitter</a></div>
+                    <div class="facebook"><a href="#">Facebook</a></div>
+                    <div class="tumblr"><a href="#">Tumblr</a></div>
+                    <div class="dribbble"><a href="#">Dribbble</a></div>
+                    <div class="linkedin"><a href="#">LinkedIn</a></div>
+                    <div class="rss"><a href="#">Rss</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'supersized'
+    ], function ($) {
+        $(document).ready(function() {
+            $.supersized({
+                // Functionality
+                "slide_interval": 3000,        // Length between transitions
+                "transition": 1,             // 0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
+                "transition_speed": 2000,        // Speed of transition
+                // Components                            
+                "slides": [
+                    {"image" : '<?= $this->getViewFileUrl("eve404/images/background/01.jpg") ?>'},
+                    {"image" : '<?= $this->getViewFileUrl("eve404/images/background/02.jpg") ?>'},
+                    {"image" : '<?= $this->getViewFileUrl("eve404/images/background/03.jpg") ?>'},
+                    {"image" : '<?= $this->getViewFileUrl("eve404/images/background/04.jpg") ?>'},
+                    {"image" : '<?= $this->getViewFileUrl("eve404/images/background/05.jpg") ?>'},
+                    {"image" : '<?= $this->getViewFileUrl("eve404/images/background/06.jpg") ?>'},
+                    {"image" : '<?= $this->getViewFileUrl("eve404/images/background/07.jpg") ?>'},
+                    {"image" : '<?= $this->getViewFileUrl("eve404/images/background/08.jpg") ?>'},
+                ]            
+            });
+        });
+    });
+</script>

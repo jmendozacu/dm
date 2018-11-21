@@ -16,6 +16,7 @@ var config = {
             'dm-product-view-ring-design': 'js/dm-product-view-ring-design',
             'dm-product-view-ring-eternity': 'js/dm-product-view-ring-eternity',
             'jquery-fancybox': 'js/jquery.fancybox',
+            'supersized': 'js/supersized',
         }
     },
     paths: {
