@@ -19,3 +19,24 @@
         <address><?php echo sprintf($this->getChildHtml('footer-copyright'), date('Y')); ?></address>
     </div>
 </footer>
+<a href="#" id="toTop" style="display: inline;"><span id="toTopHover" style="opacity: 0;"></span>To Top</a>
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {
+        $(document).ready(function() {
+            $('#toTop').on('click', function() {
+                $('html,body').animate({ scrollTop: 0 }, 'slow');
+                return false; 
+            });
+
+            $(window).scroll(function() {
+                if ($(window).scrollTop() < 100) {
+                    $('#toTop').fadeOut( "slow");
+                } else {
+                    $('#toTop').fadeIn( "slow");
+                }
+            });
+        });
+    });
+</script>

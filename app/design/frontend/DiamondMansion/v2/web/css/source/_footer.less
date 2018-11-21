@@ -244,3 +244,44 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
         padding: 0;
     }
 }
+
+#toTop {
+    z-index: 9999;
+    display: none;
+    text-decoration: none;
+    position: fixed;
+    bottom: 170px;
+    right: 40px;
+    width: 37px;
+    height: 37px;
+    border: none;
+    text-indent: -999999px;
+    background-image: url(../images/ui.totop.png);
+    background-position: 13px 14px;
+    background-repeat: no-repeat;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    background-color: #ff0030;
+}
+
+#toTopHover {
+    background-image: url(../images/ui.totop.png);
+    background-position: 16px 17px;
+    background-repeat: no-repeat;
+    background-color: #ff0030;
+    width: 43px;
+    height: 43px;
+    margin: -3px 0 0 -3px;
+    display: block;
+    overflow: hidden;
+    float: left;
+    opacity: 0;
+    -moz-opacity: 0;
+    filter: alpha(opacity=0);
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+}
+
+#toTop:active, #toTop:focus {
+    outline:none;
+}
