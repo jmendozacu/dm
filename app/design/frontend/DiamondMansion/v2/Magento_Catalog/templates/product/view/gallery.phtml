@@ -31,7 +31,7 @@ $isVideoExist = false;
                             data-zoom='"useZoom":"zoom", "smallImage":"<?php echo str_replace('\\', '/', $_image['img']); ?>"' 
                             href="<?php echo $_image['full']; ?>" 
                             title="<?php echo $_image['caption'] ?>">
-                            <img src="<?php echo $_image['thumb']; ?>" alt="<?php echo $_image['caption'] ?>" />
+                            <img src="<?php echo $_image['thumb']; ?>" alt="<?php echo $_image['caption'] ?>" style="max-width: 90px;" />
                         </a>
                     </li>
                     <?php endforeach; ?>

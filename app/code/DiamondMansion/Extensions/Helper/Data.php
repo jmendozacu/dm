@@ -9,15 +9,18 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
     protected $_imageFactory;
     protected $_variable;
+    protected $_productRepository;
 
     public function __construct(
         Context $context,
         \Magento\Framework\Image\AdapterFactory $imageFactory,
-        \Magento\Variable\Model\Variable $variable
+        \Magento\Variable\Model\Variable $variable,
+        \Magento\Catalog\Api\ProductRepositoryInterface $productRepository
     )
     {
         $this->_imageFactory = $imageFactory;
         $this->_variable = $variable;
+        $this->_productRepository = $productRepository;
 
         parent::__construct($context);
     }

@@ -519,7 +519,7 @@ define([
         
                         $("#zoom").attr("href", json[0].pop);
         
-                        $(".more-views-container ul li:first").html('<a title="" href="'+json[0].pop+'" data-zoom=\'"useZoom": "zoom", "smallImage": "'+json[0].main+'"\' class="cloud-zoom-gallery"><img alt="" src="'+json[0].thumb+'"></a>');
+                        $(".more-views-container ul li:first").html('<a title="" href="'+json[0].pop+'" data-zoom=\'"useZoom": "zoom", "smallImage": "'+json[0].main+'"\' class="cloud-zoom-gallery"><img alt="" src="'+json[0].thumb+'" style="max-width: 90px;"></a>');
                         
                         $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
 

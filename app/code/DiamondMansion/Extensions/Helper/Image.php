@@ -77,6 +77,17 @@ class Image extends Data
             }
         }
 
+        if (!isset($images)) {
+            $product = $this->_productRepository->get($option['sku']);
+            $mediaUrl = $this->getMediaUrl();
+            $images = [
+                "main" => $mediaUrl . 'catalog/product' . $product->getData('small_image'),
+                "pop" => $mediaUrl . 'catalog/product' . $product->getData('image'),
+                "thumb" => $mediaUrl . 'catalog/product' . $product->getData('thumbnail'),
+                "filename" => basename($product->getData('image')),
+            ];
+        }
+
         $placeholder = [
             "main" => $this->getPlaceholderImageUrl('_420x420'),
             "pop" => $this->getPlaceholderImageUrl(),

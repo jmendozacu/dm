@@ -18,5 +18,6 @@
                 </referenceBlock>
             </referenceBlock>
         </referenceContainer>
+        <move element="category.cms" destination="content" after="-"/>
     </body>
 </page>

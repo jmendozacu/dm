@@ -125,7 +125,7 @@
                     <?php if ($type != 'setting' && !isset($typeValues['children'])) { continue; } ?>
                     <ul class="shape-list <?php echo $type ?> dependent" rel="shape" data-group="main-stone-shape">
                         <?php foreach ($allOptions['main-stone-shape'] as $shape => $shapeOption): ?>
-                        <?php if ($type == 'setting' || in_array($shape, $typeValues["children"]["main-stone-shape"])): ?>
+                        <?php if ($type == 'setting' || (isset($typeValues["children"]["main-stone-shape"]) && in_array($shape, $typeValues["children"]["main-stone-shape"]))): ?>
                         <li><a style="width: 22px;" href="#" rel="<?= $shape ?>" id="main-stone-shape-<?= $shapeOption->getId() ?>" data-code="<?= $shape ?>"><img src="<?php echo $this->getViewFileUrl("images/diamond/shape/".$shape.".png")?>" alt="<?= $shapeOption->getTitle() ?>" title="<?= $shapeOption->getTitle() ?>" class="default"><img src="<?php echo $this->getViewFileUrl("images/diamond/shape/".$shape."_ac.png")?>" alt="<?= $shapeOption->getTitle() ?>" title="<?= $shapeOption->getTitle() ?>" class="active" width="21px" height="21px"><span class="caption"><?= $shapeOption->getTitle() ?></span></a></li>
                         <?php endif; ?>
                         <?php endforeach; ?>

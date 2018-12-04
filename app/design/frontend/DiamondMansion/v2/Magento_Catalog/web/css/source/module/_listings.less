@@ -399,6 +399,13 @@
     
             .product-name {
                 margin-bottom: 10px;
+
+                &:after {
+                    content: "";
+                    display: block;
+                    width: 37px;
+                    border-bottom: 1px solid #777;
+                }
             }
             
             .product-name a {
@@ -597,7 +604,7 @@
         }
     }
     
-    .description-section { 
+    .category-cms { 
         float: none; 
         clear: both;
         background-color: #fff; 
@@ -605,10 +612,7 @@
         display: block; 
         padding: 15px 20px 10px; 
         color: #333; 
-    
-        &#description-section-bottom {
-            border-top: 2px solid #333;
-        }
+        border-top: 2px solid #333;
     
         h1 {
             color: #000; 

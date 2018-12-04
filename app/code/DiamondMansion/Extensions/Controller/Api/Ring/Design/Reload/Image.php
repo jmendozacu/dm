@@ -23,21 +23,25 @@ class Image extends \Magento\Framework\App\Action\Action
 
         $product = $this->_productFactory->create()->load($params['product_id']);
 
+        $image['no-band'] = $this->_helper->getProductImages([
+            'sku' => $product->getSku(),
+            'type' => $params['main-stone-type'],
+            'shape' => $params['main-stone-shape'],
+            'band' => 'no-band',
+            'metal' => $params['metal'],
+        ]);
+
+        $image['bridal-set'] = $this->_helper->getProductImages([
+            'sku' => $product->getSku(),
+            'type' => $params['main-stone-type'],
+            'shape' => $params['main-stone-shape'],
+            'band' => 'bridal-set',
+            'metal' => $params['metal'],
+        ]);
+
         echo json_encode([
-            $this->_helper->getProductImages([
-                'sku' => $product->getSku(),
-                'type' => $params['main-stone-type'],
-                'shape' => $params['main-stone-shape'],
-                'band' => 'no-band',
-                'metal' => $params['metal'],
-            ]),
-            $this->_helper->getProductImages([
-                'sku' => $product->getSku(),
-                'type' => $params['main-stone-type'],
-                'shape' => $params['main-stone-shape'],
-                'band' => 'bridal-set',
-                'metal' => $params['metal'],
-            ]),
+            $image[$params['band']],
+            $image['bridal-set']
         ]);
     }
 }

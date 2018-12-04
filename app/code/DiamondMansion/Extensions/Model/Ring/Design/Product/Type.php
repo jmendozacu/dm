@@ -177,10 +177,10 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
                     break;
                 }
             }
-        }
 
-        if (!isset($result[$this->_map[$attributeKey]])) {
-            $result[$this->_map[$attributeKey]] = $defaultOptions[$this->_map[$attributeKey]]->getCode();
+            if (!isset($result[$this->_map[$attributeKey]])) {
+                $result[$this->_map[$attributeKey]] = $defaultOptions[$this->_map[$attributeKey]]->getCode();
+            }    
         }
 
         $attributeKey = 'dm_metal';
@@ -191,10 +191,10 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
                     break;
                 }
             }
-        }
 
-        if (!isset($result[$this->_map[$attributeKey]])) {
-            $result[$this->_map[$attributeKey]] = $defaultOptions[$this->_map[$attributeKey]]->getCode();
+            if (!isset($result[$this->_map[$attributeKey]])) {
+                $result[$this->_map[$attributeKey]] = $defaultOptions[$this->_map[$attributeKey]]->getCode();
+            }
         }
 
         $attributeKey = 'dm_band';
@@ -205,10 +205,10 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
                     break;
                 }
             }
-        }
 
-        if (!isset($result[$this->_map[$attributeKey]])) {
-            $result[$this->_map[$attributeKey]] = $defaultOptions[$this->_map[$attributeKey]]->getCode();
+            if (!isset($result[$this->_map[$attributeKey]])) {
+                $result[$this->_map[$attributeKey]] = $defaultOptions[$this->_map[$attributeKey]]->getCode();
+            }
         }
 
         foreach ($options as $group => $optionGroup) {
