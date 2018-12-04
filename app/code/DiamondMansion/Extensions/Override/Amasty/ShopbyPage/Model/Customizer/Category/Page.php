@@ -67,6 +67,7 @@ class Page extends \Amasty\ShopbyPage\Model\Customizer\Category\Page
 
     public function prepareData(\Magento\Catalog\Model\Category $category)
     {
+        return;
         $searchResults = $this->pageRepository->getList($category);
 
         if ($searchResults->getTotalCount() > 0) {
