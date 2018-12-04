@@ -67,9 +67,9 @@ class Page extends \Amasty\ShopbyPage\Model\Customizer\Category\Page
 
     public function prepareData(\Magento\Catalog\Model\Category $category)
     {
-        return;
+        //return;
         $searchResults = $this->pageRepository->getList($category);
-
+        
         if ($searchResults->getTotalCount() > 0) {
             foreach ($searchResults->getItems() as $pageData) {
                 if (($pageData->getTopBlockId()) && $this->matchCurrentFilters($pageData)) {
