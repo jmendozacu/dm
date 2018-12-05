@@ -71,3 +71,4 @@ atlassian*
 /.htaccess
 /pub/media/diamondmansion/product/*
 /pub/media/contact
+/index.php
