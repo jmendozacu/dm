@@ -16,6 +16,10 @@ class Url extends \Amasty\ShopbySeo\Helper\Url
 
     protected function injectAliases($routeUrl, array $aliases)
     {
+        if (isset($this->query['_'])) {
+            unset($this->query['_']);
+        }
+
         $result = rtrim($routeUrl, '/');
         if ($aliases) {
             $aliasesTmp = $aliases;
@@ -56,10 +60,6 @@ class Url extends \Amasty\ShopbySeo\Helper\Url
                     $result .= $delimiter . implode($this->aliasDelimiter, $alias);
                     $isFirstAlias = false;
                 }
-            }
-
-            if (isset($this->query['_'])) {
-                unset($this->query['_']);
             }
         }
 

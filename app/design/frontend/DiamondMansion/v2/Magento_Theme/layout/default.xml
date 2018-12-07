@@ -12,7 +12,7 @@
                     </arguments>
                 </referenceBlock>
                 <container name="nav-container-wrapper" as="nav-container-wrapper" htmlTag="div" htmlClass="nav-container-wrapper desktop-only">
-                    <block class="Magento\Framework\View\Element\Template" name="catalog.topnav.desktop" template="Magento_Theme::html/topmenu.phtml" cachable="false"/>
+                    <block class="Magento\Framework\View\Element\Template" name="catalog.topnav.desktop" template="Magento_Theme::html/topmenu.phtml" cacheable="false"/>
                 </container>
                 <container name="top-links-wrapper" as="top-links-wrapper" htmlTag="div" htmlClass="top-links-wrapper desktop-only" after="minicart">
                     <block class="Magento\Customer\Block\Account\Navigation" name="top.links">
@@ -27,7 +27,7 @@
                     <referenceBlock name="wish-list-link" remove="true"/>
                 </container>
             </referenceContainer>            
-            <block class="Magento\Framework\View\Element\Template" name="nav-container-mobile" as="nav-container-mobile" before="page.top" template="Magento_Theme::html/topmenu-m.phtml" cachable="false"/>
+            <block class="Magento\Framework\View\Element\Template" name="nav-container-mobile" as="nav-container-mobile" before="page.top" template="Magento_Theme::html/topmenu-m.phtml" cacheable="false"/>
         </referenceContainer>    
         <referenceContainer name="page.top">
             <referenceBlock name="navigation.sections" remove="true"/>
