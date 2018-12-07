@@ -16,10 +16,6 @@ class Url extends \Amasty\ShopbySeo\Helper\Url
 
     protected function injectAliases($routeUrl, array $aliases)
     {
-        if (isset($this->query['_'])) {
-            unset($this->query['_']);
-        }
-
         $result = rtrim($routeUrl, '/');
         if ($aliases) {
             $aliasesTmp = $aliases;
@@ -67,6 +63,77 @@ class Url extends \Amasty\ShopbySeo\Helper\Url
     }
 
     public function seofyUrl($url) {
-        return str_replace('/?', '?', parent::seofyUrl($url));
+        if (!$this->initialize($url) || $this->cmsManager->isCmsPageNavigation()) {
+            return $url;
+        }
+
+        $this->query = $this->parseQuery();
+        if (isset($this->query['_'])) {
+            unset($this->query['_']);
+        }
+
+        if (isset($this->query['options']) && $this->query['options'] == 'cart') {
+            return $url;
+        }
+
+        $routeUrl = $this->originalParts['route'];
+
+        $moduleName = $this->_getRequest()->getModuleName();
+        $settingCategory = $this->settingHelper->getSettingByAttributeCode(\Amasty\Shopby\Helper\Category::ATTRIBUTE_CODE);
+        $fromRootToCategory = isset($this->query['cat'])
+            && (in_array($moduleName, ['catalog', 'amshopby', 'cms', 'ambrand']))
+            && !$settingCategory->isMultiselect();
+        if ($fromRootToCategory) {
+            $routeUrl = $this->getCategoryRouteUrl() ?: $routeUrl;
+        }
+
+        if ($this->coreRegistry->registry('amasty_shopby_root_category_index')
+            && $this->query
+            && !$fromRootToCategory
+        ) {
+            $routeUrl = $this->rootRoute;
+            $isShopby = true;
+        } else {
+            $isShopby = false;
+        }
+
+        $routeUrlTrimmed = $this->removeCategorySuffix($routeUrl);
+        $endsWithLine = strlen($routeUrlTrimmed)
+            && $routeUrlTrimmed[strlen($routeUrlTrimmed) - 1] == DIRECTORY_SEPARATOR;
+        if ($endsWithLine) {
+            //if routeUrl is valid Magento route
+            //return $url;
+        }
+
+        $moveSuffix = $routeUrlTrimmed != $routeUrl;
+        $resultPath = $routeUrlTrimmed;
+
+        $seoAliases = $this->cutAliases();
+        foreach ($seoAliases as $aliases) {
+            foreach ($aliases as $key => $alias) {
+                if ($alias == $routeUrl) {
+                    unset($seoAliases[$key]);
+                }
+            }
+        }
+
+        if ($seoAliases) {
+            $resultPath = $this->injectAliases($resultPath, $seoAliases);
+        }
+
+        $resultPath = $this->cutReplaceExtraShopby($resultPath);
+        $resultPath = ltrim($resultPath, DIRECTORY_SEPARATOR);
+
+        if ($moveSuffix || ($isShopby && $this->appendShopbySuffix)) {
+            $resultPath = $this->addCategorySuffix($resultPath);
+        }
+
+        $result = $this->query ? ($resultPath . '?' . $this->query2Params($this->query)) : $resultPath;
+
+        if ($this->originalParts['hash']) {
+            $result .= '#' . $this->originalParts['hash'];
+        }
+
+        return str_replace('/?', '?', $this->originalParts['domain'] . $result);
     }
 }
