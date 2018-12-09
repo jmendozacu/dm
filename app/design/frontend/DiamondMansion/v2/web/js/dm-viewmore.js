@@ -15,7 +15,7 @@ define([
                 $('#view-more-products-wrapper').hide();
             }
 
-            $('#view-more-products-wrapper').on('click', onViewMoreProducts);
+            $('body').delegate('#view-more-products-wrapper', 'click', onViewMoreProducts);
     
             $(window).scroll(function () {
                 if (isStoppedLoad === true && (($(document).height() - $(this).scrollTop()) < ($('ul.products-grid li.item').height() * 9))) {
