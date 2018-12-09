@@ -14,14 +14,26 @@ class Url extends \Amasty\ShopbySeo\Helper\Url
         'dm_setting_style'
     ];
 
+    protected $unnecessaryParams = [
+        '_',
+        'band',
+        'metal',
+        'design-collection'
+    ];
+
     protected function injectAliases($routeUrl, array $aliases)
     {
         $result = rtrim($routeUrl, '/');
+        foreach ($this->unnecessaryParams as $param) {
+            if (isset($this->query[$param])) {
+                unset($this->query[$param]);
+            }
+        }
         if ($aliases) {
             $aliasesTmp = $aliases;
             $aliases= [];
             foreach ($this->filterOrders as $filter) {
-                if (!isset($aliasesTmp[$filter])) {
+                if (!isset($aliasesTmp[$filter]) || !$aliasesTmp[$filter]) {
                     continue;
                 }
 
@@ -48,10 +60,13 @@ class Url extends \Amasty\ShopbySeo\Helper\Url
                 $delimiter = $isFirstAlias ? '' : $this->aliasDelimiter;
 
                 if ((count($aliases) > 2 && in_array($code, array("dm_metal", "dm_band", "dm_design_collection")) && (count($diff) || count($aliases) != 3)) ||
-                (count($aliases) == 3 && in_array($code, array("dm_metal", "dm_design_collection")) && count($diff) == 0)
+                    (count($aliases) == 3 && in_array($code, array("dm_metal", "dm_design_collection")) && count($diff) == 0)
                 ) {
                     $code = str_replace(['dm_', '_'], ['', '-'], $code);
                     $this->query[$code] = implode($this->aliasDelimiter, $alias);
+                    if (!$this->query[$code]) {
+                        unset($this->query[$code]);
+                    }
                 } else {
                     $result .= $delimiter . implode($this->aliasDelimiter, $alias);
                     $isFirstAlias = false;
@@ -68,9 +83,6 @@ class Url extends \Amasty\ShopbySeo\Helper\Url
         }
 
         $this->query = $this->parseQuery();
-        if (isset($this->query['_'])) {
-            unset($this->query['_']);
-        }
 
         if (isset($this->query['options']) && $this->query['options'] == 'cart') {
             return $url;
@@ -126,6 +138,10 @@ class Url extends \Amasty\ShopbySeo\Helper\Url
 
         if ($moveSuffix || ($isShopby && $this->appendShopbySuffix)) {
             $resultPath = $this->addCategorySuffix($resultPath);
+        }
+
+        if (isset($this->query['_'])) {
+            unset($this->query['_']);
         }
 
         $result = $this->query ? ($resultPath . '?' . $this->query2Params($this->query)) : $resultPath;
