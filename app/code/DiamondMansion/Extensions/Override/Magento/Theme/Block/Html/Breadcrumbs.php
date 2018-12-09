@@ -74,7 +74,7 @@ class Breadcrumbs extends \Magento\Theme\Block\Html\Breadcrumbs
                     foreach ($urlParams as $uKey => $uValue) {
                         if ($uValue == "") continue;
                         $uLabel = strtolower(str_replace(" ", "-", $eavConfig->getAttribute('catalog_product', $uKey)->getSource()->getOptionText($uValue)));
-                        $uLabel = $uLabel != 'natural' ?: 'diamond';
+                        $uLabel = $uLabel != 'natural' ? $uLabel : 'diamond';
                         if ($index >= 2 && in_array($uKey, array("dm_band", "dm_design_collection", "dm_metal"))) {
                             if ($urlSuffix[1] == "") {
                                 $urlSuffix[1] = str_replace("_", "-", $uKey) . "=" . $uLabel;
@@ -115,7 +115,7 @@ class Breadcrumbs extends \Magento\Theme\Block\Html\Breadcrumbs
                     if ($urlSuffix[1] != "") { 
                         $link .= "?" . $urlSuffix[1];
                     }
-                    
+
                     $this->_crumbs['filter'.$index] = array ("label"=>$label, "link"=>$link, "title"=>"", "first"=>"", "last"=>"", "readonly"=>"");
                     
                     $index ++;
