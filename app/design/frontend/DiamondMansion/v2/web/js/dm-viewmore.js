@@ -4,10 +4,10 @@ define([
     'use strict';
 
     return function (config) {
-        var isLast = config.isLast;
         var isStoppedLoad = config.isStoppedLoad;
-        var currentUrl = config.currentUrl;
-        var page = parseInt(config.page);
+        var isLast = false;
+        var currentUrl;
+        var page;
 
         $(document).ready(function() {
             if (!$('.toolbar .pages').length) {
@@ -33,7 +33,10 @@ define([
             }
         });
     
-        function onViewMoreProducts() {    
+        function onViewMoreProducts() {            
+            currentUrl = $('#view-more-products-wrapper').data('current-url');
+            page = $('#view-more-products-wrapper').data('current-page');
+
             var nextUrl = currentUrl;
             var startPos = currentUrl.indexOf("p=");
             if (startPos > -1) {
@@ -83,6 +86,7 @@ define([
     
                         if (!isLast) {
                             page++;
+                            $('#view-more-products-wrapper').data('current-page', page);
                             if (($(document).height() - $(window).scrollTop()) < ($('ul.products-grid li.item').height() * 9)) {
                                 onViewMoreProducts();
                             } else {

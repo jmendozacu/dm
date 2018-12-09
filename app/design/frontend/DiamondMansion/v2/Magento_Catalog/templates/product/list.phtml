@@ -56,10 +56,6 @@ require([
 </script>
 
 <?php /*** View More ***/ ?>
-<div class="buttons-set a-center" id="view-more-products-wrapper">
-    <a id="view-more-products" class="button" style="float: none;" href="javascript:void(0)">View More</a>
-    <img id="view-more-products-loading" src="<?php echo $this->getViewFileUrl("images/amshopby-overlay.gif") ?>" class="no-display"/>
-</div>
 <?php 
     $url = $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
     if ($this->getRequest()->getParam("p")) {
@@ -75,6 +71,10 @@ require([
         $page = 1;
     }
 ?>
+<div class="buttons-set a-center" id="view-more-products-wrapper" data-current-page="<?= $page ?>" data-current-url="<?= $url ?>">
+    <a id="view-more-products" class="button" style="float: none;" href="javascript:void(0)">View More</a>
+    <img id="view-more-products-loading" src="<?php echo $this->getViewFileUrl("images/amshopby-overlay.gif") ?>" class="no-display"/>
+</div>
 <?php /*** View More End ***/ ?>
 <script type="text/x-magento-init">
     {
@@ -83,10 +83,7 @@ require([
                 "qazy_image" : "<?php echo $this->getViewFileUrl('images/default.jpg'); ?>"
             },
             "dm-viewmore": {
-                "isLast": false,
                 "isStoppedLoad": -1,
-                "currentUrl": "<?= $url ?>",
-                "page": "<?= $page ?>",
                 "viewItemIdentifier": "<?= $viewedItemIdentifier ?>"
             }
         }

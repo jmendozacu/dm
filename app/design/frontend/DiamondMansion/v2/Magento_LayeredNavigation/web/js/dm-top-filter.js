@@ -55,22 +55,15 @@ define([
                     $('.filter-label').each(function (index, elm) {
                         $(this).css('width', $(this).width());
                     });
-                    /*
-                    if (viewedPages[url]) {
-                        page = viewedPages[url];
-                    } else {
-                        page = 1;
-                    }
-                    currentUrl = url;
+
+                    $('#view-more-products-wrapper').data('current-url', url);
+                    $('#view-more-products-wrapper').data('current-page', 1);
     
-                    if (!$('.toolbar .pager .pages').length) {
-                        isLast = true;
+                    if (!$('.toolbar .pages .pages-item-next').length) {
                         $('#view-more-products-wrapper').hide();
                     } else {
-                        isLast = false;
                         $('#view-more-products-wrapper').show();
                     }
-                    */
 
                     widget.initialize();
     
