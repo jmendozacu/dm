@@ -150,6 +150,9 @@ class Url extends \Amasty\ShopbySeo\Helper\Url
             $result .= '#' . $this->originalParts['hash'];
         }
 
+        if (strpos($this->originalParts['domain'] . $result, '/?option=') !== false) {
+            return $this->originalParts['domain'] . $result;
+        }
         return str_replace('/?', '?', $this->originalParts['domain'] . $result);
     }
 }
