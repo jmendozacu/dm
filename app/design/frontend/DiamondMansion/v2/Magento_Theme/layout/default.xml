@@ -31,6 +31,7 @@
         </referenceContainer>    
         <referenceContainer name="page.top">
             <referenceBlock name="navigation.sections" remove="true"/>
+            <block class="DiamondMansion\Extensions\Block\Page\Notice" template="Magento_Theme::html/header_notice.phtml"/>
         </referenceContainer>
         <referenceContainer name="footer">
             <referenceBlock name="store_switcher" remove="true"/>

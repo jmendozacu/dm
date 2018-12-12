@@ -1,0 +1,45 @@
+<?php $notices = $this->getNotices() ?>
+<?php if (count($notices)): ?>
+<style type="text/css">
+	.header-notice {
+		padding: 10px;
+		background-color: #ed5842;
+		position: relative;
+		text-align: center;
+		color: #fff;
+		font-family: 'Futura LT';
+		font-size: 14px;
+	}
+
+	.header-notice a.close {
+		color: #fff;
+		position: absolute;
+		right: 20px;
+		top: 10px;
+		font-family: Arial;
+	}
+</style>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'jquery/jquery.cookie'
+    ], function ($) {
+        $(document).ready(function () {
+            $('.header-notice a.close').click(function () {
+                $('.header-notice').slideUp();
+                $.cookie('notice-viewed', 1);
+            });
+
+            if (!$.cookie('notice-viewed')) {
+                $('.header-notice').removeClass('no-display');
+            }
+        });
+    });
+</script>
+<div class="header-notice no-display">
+	<?php foreach ($notices as $notice): ?>
+	<p><?php echo $notice; ?></p>
+	<?php endforeach ?>
+	<a class="close" href="javascript:void(0);">X</a>
+</div>
+<?php endif ?>

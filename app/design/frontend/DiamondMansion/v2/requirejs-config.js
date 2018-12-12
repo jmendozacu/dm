@@ -9,14 +9,8 @@ var config = {
             'menu': 'js/dm-navigation-menu',
             'dm-ajax': 'js/dm-ajax',
             'dm-qazy': 'js/dm-qazy',
-            'jquery-isotope': 'js/jquery.isotope.min',
-            'dm-viewmore': 'js/dm-viewmore',
-            'cloudzoom': 'js/cloudzoom',
-            'responsiveslides': 'js/responsiveslides.min',
-            'dm-product-view-ring-design': 'js/dm-product-view-ring-design',
-            'dm-product-view-ring-eternity': 'js/dm-product-view-ring-eternity',
             'jquery-fancybox': 'js/jquery.fancybox',
-            'supersized': 'js/supersized',
+            'supersized': 'js/supersized'
         }
     },
     paths: {
