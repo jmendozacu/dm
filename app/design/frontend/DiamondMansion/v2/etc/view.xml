@@ -313,5 +313,7 @@
         <item type="directory">Lib::less</item>
         <item type="directory">Lib::mage/adminhtml</item>
         <item type="directory">Lib::mage/backend</item>
+        <item type="directory">philanthropy</item>
+        <item type="directory">wedding</item>
     </exclude>
 </view>
