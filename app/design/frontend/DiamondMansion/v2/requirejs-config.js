@@ -9,6 +9,7 @@ var config = {
             'menu': 'js/dm-navigation-menu',
             'dm-ajax': 'js/dm-ajax',
             'dm-qazy': 'js/dm-qazy',
+            'dm-wishlist': 'js/dm-wishlist',
             'jquery-fancybox': 'js/jquery.fancybox',
             'supersized': 'js/supersized'
         }

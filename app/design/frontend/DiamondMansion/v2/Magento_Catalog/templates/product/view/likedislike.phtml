@@ -3,20 +3,79 @@
 ?>
 <div class="like-dislike-buttons-set">
     <a class="button like <?= $status['liked'] ? 'active' : '' ?>" href="#" data-review="1"><?= $this->getProduct()->getDmLikes() ?: 0 ?></a>
-    <a class="button dislike <?= $status['disliked'] ? 'active' : '' ?>" href="#" data-review="0"><?= $this->getProduct()->getDmDislikes() ?: 0 ?></a>
+    <!-- <a class="button dislike <?= $status['disliked'] ? 'active' : '' ?>" href="#" data-review="0"><?= $this->getProduct()->getDmDislikes() ?: 0 ?></a> -->
 </div>
 <div class="clear"></div>
 <script type="text/javascript">
     require([
-        'jquery'
+        'jquery',
+        'jquery/jquery.cookie'
     ], function ($) {
         $(document).ready(function() {
             $(".like-dislike-buttons-set a").on('click', function () {
+
+                if ($(this).hasClass('like')) {
+                    <?php if ($this->isLoggedIn()): ?>
+                    var post = $('a.btn-wishlist').data('post');
+                    post.data['dm_options'] = dmOptions;
+                    post.data['form_key'] = $('input[name=\'form_key\']').val();
+                    new $.ajax(
+                        post.action,
+                        {
+                            method:'post',
+                            asynchronous: false,
+                            data: post.data,
+                            showLoader: true,
+                            complete : function(xhr) {
+                                console.log(xhr);
+                            }
+                        }
+                    );
+                    <?php else: ?>
+                    var wishlist = JSON.parse($.cookie('wishlist'));
+                    if (wishlist === null) {
+                        wishlist = {};
+                    }
+                    var key = '<?= $this->getProduct()->getId() ?>';
+                    var dmOptions = '';
+                    if ($('input[name=\'dm_options\']').length) {
+                        dmOptions = $('input[name=\'dm_options\']').val();
+                        key += '-' + dmOptions;
+                    }
+
+                    if (!wishlist.hasOwnProperty(key)) {
+                        wishlist[key] = {
+                            "id": '<?= $this->getProduct()->getId() ?>',
+                            "name": $('span[itemprop=\'name\']').eq(0).text(),
+                            "url": location.href,
+                            "dm_options": dmOptions,
+                            "price": $('#maincontent .price-box span.price').html(),
+                            "qty": 1,
+                            "image": $('#zoom').attr('href'),
+                            "data": $('a.btn-wishlist').data('post')
+                        };
+
+                        var html = '<li class="product-item" rel="' + key + '"><div class="product-item-info"><a class="product-item-photo" href="' + wishlist[key].url + '" title="' + wishlist[key].name + '"><span class="product-image-container"><span class="product-image-wrapper"><img class="product-image-photo" src="' + wishlist[key].image + '" alt="' + wishlist[key].name + '" style="width: 75px; height: 90px;"></span></span></a><div class="product-item-details"><strong class="product-item-name"><a  class="product-item-link" href="' + wishlist[key].url + '"><span>' + wishlist[key].name + '</span></a></strong><div><span class="price">' + wishlist[key].price + '</span></div><div class="product-item-actions"><div class="actions-primary no-display"></div><div class="actions-secondary"><a href="#" data-key="' + key + '" title="Remove This Item" class="btn-remove action delete"><span>Remove This Item</span></a></div></div></div></div></li>';
+
+                        if (!$('#miniwishlist').length) {
+                            $('.wishlist-content .item-list').html('<ol id="miniwishlist"></ol>');
+                        }
+
+                        $('#miniwishlist').prepend(html);
+
+                        $('.block-wishlist span.counter').html('(' + $('#miniwishlist > li').length + ')');
+                    }
+
+                    $.cookie('wishlist', JSON.stringify(wishlist));
+                    <?php endif ?>
+                }
+
+
                 if ($(this).hasClass('active')) {
                     if ($(this).hasClass('like')) {
-                        alert('You liked this product already. Thanks.');
+                        //alert('You liked this product already. Thanks.');
                     } else {
-                        alert('You disliked this product already. Thanks.');
+                        //alert('You disliked this product already. Thanks.');
                     }
                     return false;
                 }

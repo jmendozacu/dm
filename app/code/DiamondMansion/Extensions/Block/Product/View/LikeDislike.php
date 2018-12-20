@@ -87,4 +87,8 @@ class LikeDislike extends \Magento\Catalog\Block\Product\View
             'disliked' => $disliked
         ];
     }
+
+    public function isLoggedIn() {
+        return $this->customerSession->isLoggedIn();
+    }
 }

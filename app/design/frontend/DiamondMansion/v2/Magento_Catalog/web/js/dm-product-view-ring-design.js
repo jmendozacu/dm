@@ -427,7 +427,7 @@ define([
 
         function displayPrice() {
             if (config.current_price) {
-                $(".price-box span.price, #order-type-order-now").html('$'+parseFloat(Math.round(config.current_price / 10) * 10));
+                $("#maincontent .price-box span.price, #order-type-order-now").html('$'+parseFloat(Math.round(config.current_price / 10) * 10));
                 if ($('#order-type-down-payment').length) {
                     var downPrice = '$'+parseFloat(Math.round(config.current_price / 10));
                     $("#order-type-down-payment").html(downPrice);
@@ -442,7 +442,7 @@ define([
                 
                 $(".order-options").show();               
             } else {
-                $(".price-box span.price").html('SOLD OUT');
+                $("#maincontent .price-box span.price").html('SOLD OUT');
                 $(".product-options-bottom").css("visibility", "hidden");
                 //$(".btn-buy").css("visibility", "hidden");
                 //$(".btn-reserve").css("visibility", "hidden");            

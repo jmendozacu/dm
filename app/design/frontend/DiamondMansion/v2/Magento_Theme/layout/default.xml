@@ -33,6 +33,7 @@
             <referenceBlock name="navigation.sections" remove="true"/>
             <block class="DiamondMansion\Extensions\Block\Page\Notice" template="Magento_Theme::html/header_notice.phtml" before="-"/>
         </referenceContainer>
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
         <referenceContainer name="footer">
             <referenceBlock name="store_switcher" remove="true"/>
             <referenceBlock name="footer_links" remove="true"/>

@@ -17,7 +17,7 @@ $filters = $product->getFilters();
     <p class="price-as-configured">
         <span class="price-container price-configured_price tax weee">
             <span id="product-price-<?= $product->getId() ?>" data-price-amount="<?= $product->getPrice() ?>" data-price-type="finalPrice" class="price-wrapper ">
-                <span class="price">$<?= $product->getPrice() ?></span>
+                <span class="price">$<?= round($product->getPrice() / 10) * 10 ?></span>
             </span>
         </span>
     </p>
