@@ -6,21 +6,25 @@ define([
 
     return function (config) {
         $(document).ready(function() {
-            $('body').delegate('.miniwishlist-wrapper', 'mouseenter', function () {
+            $('body').delegate('.miniwishlist-wrapper', 'click', function () {
 
                 if ($('.action.show-cart').hasClass('active')) {
                     $('.action.show-cart').trigger('click');
                 }
 
-                $(this).addClass('active');
-                $('.wishlist-content').removeClass('no-display');
-            });
+                $(this).toggleClass('active');
+                $('.wishlist-content').toggleClass('no-display');
 
+                event.stopPropagation();
+                
+                return false;
+            });
+/*
             $('body').delegate('.miniwishlist-wrapper', 'mouseleave', function () {
                 $(this).removeClass('active');
                 $('.wishlist-content').addClass('no-display');
             });
-
+*/
             if (config.is_logged_in) {
                 var wishlist = JSON.parse($.cookie('wishlist'));
                 for (var key in wishlist) {
@@ -71,7 +75,9 @@ define([
             }
         });
     
-        $(window).load(function () {
+        $(window).click(function () {
+            $('.miniwishlist-wrapper').removeClass('active');
+            $('.wishlist-content').addClass('no-display');
         });
     }
 });
