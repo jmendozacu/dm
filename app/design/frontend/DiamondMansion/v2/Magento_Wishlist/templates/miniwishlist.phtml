@@ -74,7 +74,7 @@ $wishlistHelper = $this->helper('Magento\Wishlist\Helper\Data');
     <?php else: ?>
     <div class="block block-wishlist miniwishlist-wrapper">
         <div class="block-title">
-            <a class="action show-wishlist" href="/wishlist/">Wishlist</a>
+            <a class="action show-wishlist" href="/dm/wishlist/">Wishlist</a>
             <span class="counter"></span>
         </div>
         <div class="block-content wishlist-content no-display">
@@ -83,8 +83,8 @@ $wishlistHelper = $this->helper('Magento\Wishlist\Helper\Data');
             </div>
             <div class="actions-toolbar no-display">
                 <div class="primary">
-                    <a class="action details"
-                        href="<?= $block->escapeUrl($this->helper('Magento\Wishlist\Helper\Data')->getListUrl()) ?>"
+                    <a class="details"
+                        href="/dm/wishlist/"
                         title="<?= $block->escapeHtmlAttr(__('Go to Wish List')) ?>"><span><?= $block->escapeHtml(__('Go to Wish List')) ?></span></a>
                 </div>
             </div>

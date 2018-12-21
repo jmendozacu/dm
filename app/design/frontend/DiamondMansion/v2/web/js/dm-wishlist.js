@@ -26,7 +26,7 @@ define([
             });
 */
             if (config.is_logged_in) {
-                var wishlist = JSON.parse($.cookie('wishlist'));
+                var wishlist = JSON.parse(localStorage.getItem('guestwishlist'));
                 for (var key in wishlist) {
                     var post = wishlist[key].data;
                     post.data['dm_options'] = wishlist[key].dm_options;
@@ -44,9 +44,9 @@ define([
                         }
                     );
                 }
-                $.cookie('wishlist', null);
+                localStorage.removeItem('guestwishlist');
             } else {
-                var wishlist = JSON.parse($.cookie('wishlist'));
+                var wishlist = JSON.parse(localStorage.getItem('guestwishlist'));
                 for (var key in wishlist) {
                     var html = '<li class="product-item" rel="' + key + '"><div class="product-item-info"><a class="product-item-photo" href="' + wishlist[key].url + '" title="' + wishlist[key].name + '"><span class="product-image-container"><span class="product-image-wrapper"><img class="product-image-photo" src="' + wishlist[key].image + '" alt="' + wishlist[key].name + '" style="width: 75px; height: 90px;"></span></span></a><div class="product-item-details"><strong class="product-item-name"><a  class="product-item-link" href="' + wishlist[key].url + '"><span>' + wishlist[key].name + '</span></a></strong><div><span class="price">' + wishlist[key].price + '</span></div><div class="product-item-actions"><div class="actions-primary no-display"></div><div class="actions-secondary"><a href="#" data-key="' + key + '" title="Remove This Item" class="btn-remove action delete"><span>Remove This Item</span></a></div></div></div></div></li>';
 
@@ -65,13 +65,17 @@ define([
 
                 $('body').delegate('.miniwishlist-wrapper a.btn-remove', 'click', function () {
                     var key = $(this).data('key');
-                    var wishlist = JSON.parse($.cookie('wishlist'));
+                    var wishlist = JSON.parse(localStorage.getItem('guestwishlist'));
                     delete wishlist[key];
-                    $.cookie('wishlist', JSON.stringify(wishlist));
-                    $('#miniwishlist li.product-item[rel=\'' + key + '\']').remove();
+                    localStorage.setItem('guestwishlist', JSON.stringify(wishlist));
+                    $('li.product-item[rel=\'' + key + '\']').remove();
                     $('.block-wishlist span.counter').html('(' + $('#miniwishlist > li').length + ')');
                     return false;
                 });    
+
+                $('body').delegate('.miniwishlist-wrapper a.details', 'click', function () {
+                    location.href = $(this).attr('href');
+                });
             }
         });
     

@@ -8,8 +8,7 @@
 <div class="clear"></div>
 <script type="text/javascript">
     require([
-        'jquery',
-        'jquery/jquery.cookie'
+        'jquery'
     ], function ($) {
         $(document).ready(function() {
             $(".like-dislike-buttons-set a").on('click', function () {
@@ -32,7 +31,7 @@
                         }
                     );
                     <?php else: ?>
-                    var wishlist = JSON.parse($.cookie('wishlist'));
+                    var wishlist = JSON.parse(localStorage.getItem('guestwishlist'));
                     if (wishlist === null) {
                         wishlist = {};
                     }
@@ -63,10 +62,12 @@
 
                         $('#miniwishlist').prepend(html);
 
+                        $('.actions-toolbar').removeClass('no-display');
+
                         $('.block-wishlist span.counter').html('(' + $('#miniwishlist > li').length + ')');
                     }
 
-                    $.cookie('wishlist', JSON.stringify(wishlist));
+                    localStorage.setItem('guestwishlist', JSON.stringify(wishlist));
                     <?php endif ?>
                 }
 
