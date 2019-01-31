@@ -8,6 +8,7 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
     protected $_allDmOptions;
     protected $_defaultDmOptions;
     protected $_helper;
+    protected $_cache;
 
     protected $_map = [
         'dm_stone_type' => 'main-stone-type',
@@ -55,11 +56,13 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         \Magento\Framework\Serialize\Serializer\Json $serializer = null,
         \DiamondMansion\Extensions\Model\OptionsGroup $dmOptionGroupModel,
         \DiamondMansion\Extensions\Model\ProductOptions $dmOptionModel,
-        \DiamondMansion\Extensions\Helper\Image $helper
+        \DiamondMansion\Extensions\Helper\Image $helper,
+        \Magento\Framework\App\CacheInterface $cache
     ) {
         $this->_dmOptionModel = $dmOptionModel;
         $this->_dmOptionGroupModel = $dmOptionGroupModel;
         $this->_helper = $helper;
+        $this->_cache = $cache;
 
         $this->_loadDmAttributes($eavConfig);
         
@@ -78,7 +81,12 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
     }
 
     public function getAllDmOptions($product, $sort = false) {
+        if ($data = $this->_cache->load('all_dm_options_' . $product->getId())) {
+            $this->_allDmOptions[$product->getId()] = unserialize($data);
+        }
+
         if (!isset($this->_allDmOptions[$product->getId()])) {
+
             $collection = $this->_dmOptionModel->getCollection()
                 ->addFieldToFilter('product_id', $product->getId())
                 ->joinDetails($product->getTypeId());
@@ -91,6 +99,8 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
 
                 $this->_allDmOptions[$product->getId()][$item->getGroup()][$item->getCode()] = $item;
             }
+
+            $this->_cache->save(serialize($this->_allDmOptions[$product->getId()]), 'all_dm_options_' . $product->getId());
         }
 
         if ($sort) {
@@ -101,6 +111,10 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
     }
 
     public function getDefaultDmOptions($product, $sort = false) {
+        if ($data = $this->_cache->load('default_dm_options_' . $product->getId())) {
+            $this->_defaultDmOptions[$product->getId()] = unserialize($data);
+        }
+
         if (!isset($this->_defaultDmOptions[$product->getId()])) {
             $this->_defaultDmOptions[$product->getId()] = [];
             $options = $this->getAllDmOptions($product);
@@ -116,6 +130,8 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
                     $this->_defaultDmOptions[$product->getId()][$group] = current($options[$group]);
                 }
             }
+
+            $this->_cache->save(serialize($this->_defaultDmOptions[$product->getId()]), 'default_dm_options_' . $product->getId());            
         }
 
         if ($sort) {
