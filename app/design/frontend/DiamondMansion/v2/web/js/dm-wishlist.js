@@ -76,6 +76,12 @@ define([
                 $('body').delegate('.miniwishlist-wrapper a.details', 'click', function () {
                     location.href = $(this).attr('href');
                 });
+                $('body').delegate('.miniwishlist-wrapper a.product-item-link', 'click', function () {
+                    location.href = $(this).attr('href');
+                });
+                $('body').delegate('.miniwishlist-wrapper a.product-item-photo', 'click', function () {
+                    location.href = $(this).attr('href');
+                });
             }
         });
     
