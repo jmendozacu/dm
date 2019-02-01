@@ -111,10 +111,11 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
     }
 
     public function getDefaultDmOptions($product, $sort = false) {
+        /*
         if ($data = $this->_cache->load('default_dm_options_' . $product->getId())) {
             $this->_defaultDmOptions[$product->getId()] = unserialize($data);
         }
-
+        */
         if (!isset($this->_defaultDmOptions[$product->getId()])) {
             $this->_defaultDmOptions[$product->getId()] = [];
             $options = $this->getAllDmOptions($product);
@@ -131,7 +132,7 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
                 }
             }
 
-            $this->_cache->save(serialize($this->_defaultDmOptions[$product->getId()]), 'default_dm_options_' . $product->getId());            
+            //$this->_cache->save(serialize($this->_defaultDmOptions[$product->getId()]), 'default_dm_options_' . $product->getId());            
         }
 
         if ($sort) {
