@@ -111,28 +111,27 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
     }
 
     public function getDefaultDmOptions($product, $sort = false) {
-        /*
-        if ($data = $this->_cache->load('default_dm_options_' . $product->getId())) {
-            $this->_defaultDmOptions[$product->getId()] = unserialize($data);
-        }
-        */
         if (!isset($this->_defaultDmOptions[$product->getId()])) {
-            $this->_defaultDmOptions[$product->getId()] = [];
-            $options = $this->getAllDmOptions($product);
-            foreach ($options as $group => $optionGroup) {
-                foreach ($optionGroup as $option) {
-                    if ($option->getIsDefault()) {
-                        $this->_defaultDmOptions[$product->getId()][$group] = $option;
-                        break;
+            if ($data = $this->_cache->load('default_dm_options_' . $product->getId())) {
+                $this->_defaultDmOptions[$product->getId()] = unserialize($data);
+            } else {
+                $this->_defaultDmOptions[$product->getId()] = [];
+                $options = $this->getAllDmOptions($product);
+                foreach ($options as $group => $optionGroup) {
+                    foreach ($optionGroup as $option) {
+                        if ($option->getIsDefault()) {
+                            $this->_defaultDmOptions[$product->getId()][$group] = $option;
+                            break;
+                        }
+                    }
+
+                    if (!isset($this->_defaultDmOptions[$product->getId()][$group])) {
+                        $this->_defaultDmOptions[$product->getId()][$group] = current($options[$group]);
                     }
                 }
 
-                if (!isset($this->_defaultDmOptions[$product->getId()][$group])) {
-                    $this->_defaultDmOptions[$product->getId()][$group] = current($options[$group]);
-                }
+                $this->_cache->save(serialize($this->_defaultDmOptions[$product->getId()]), 'default_dm_options_' . $product->getId());            
             }
-
-            //$this->_cache->save(serialize($this->_defaultDmOptions[$product->getId()]), 'default_dm_options_' . $product->getId());            
         }
 
         if ($sort) {
