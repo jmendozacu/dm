@@ -2,7 +2,7 @@
     $status = $this->getLikeDislikeStatus();
 ?>
 <div class="like-dislike-buttons-set">
-    <a class="button like <?= $status['liked'] ? 'active' : '' ?>" href="#" data-review="1"><?= $this->getProduct()->getDmLikes() ?: 0 ?></a>
+    <a class="button like <?= $status['liked'] ? 'active' : '' ?>" href="#" data-key="<?= $this->getProduct()->getId() ?>" data-review="1"><?= $this->getProduct()->getDmLikes() ?: 0 ?></a>
     <!-- <a class="button dislike <?= $status['disliked'] ? 'active' : '' ?>" href="#" data-review="0"><?= $this->getProduct()->getDmDislikes() ?: 0 ?></a> -->
 </div>
 <div class="clear"></div>
@@ -124,23 +124,6 @@
             $(".like-dislike-buttons-set a").on('click', function () {
 
                 if ($(this).hasClass('like')) {
-                    <?php if ($this->isLoggedIn()): ?>
-                    var post = $('a.btn-wishlist').data('post');
-                    post.data['dm_options'] = dmOptions;
-                    post.data['form_key'] = $('input[name=\'form_key\']').val();
-                    new $.ajax(
-                        post.action,
-                        {
-                            method:'post',
-                            asynchronous: false,
-                            data: post.data,
-                            showLoader: true,
-                            complete : function(xhr) {
-                                console.log(xhr);
-                            }
-                        }
-                    );
-                    <?php else: ?>
                     var guestEmail = localStorage.getItem('guestemail');
                     if (guestEmail === null) {
                         $('.wishlist-popup').data('from', 'btn-like');
@@ -152,10 +135,14 @@
                             removeItemFromGuestWishlist();
                         }
                     }
-                    <?php endif ?>
                 }
 
                 return false;   
+            });
+
+            $('.btn-wishlist').on('click', function () {
+                $(".like-dislike-buttons-set a.like").trigger('click');
+                return false;
             });
 
             $('.wishlist-popup button.submit').on('click', function () {

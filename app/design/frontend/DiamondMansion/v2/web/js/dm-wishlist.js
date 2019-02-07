@@ -122,15 +122,19 @@ define([
                         complete : function(xhr) {
                             var result = JSON.parse(xhr.responseText);
 
-                            if ($('.like-dislike-buttons-set a.like').length) {
-                                $('.like-dislike-buttons-set a.like').html(result.likes);
-                                $('.like-dislike-buttons-set a.dislike').html(result.dislikes);
+                            if ($('.like-dislike-buttons-set a.like[data-key=\'' + key + '\']').length) {
+                                $('.like-dislike-buttons-set a.like[data-key=\'' + key + '\']').html(result.likes);
 
-                                $('.like-dislike-buttons-set a').toggleClass('active');
+                                $('.like-dislike-buttons-set a.like[data-key=\'' + key + '\']').toggleClass('active');
                             }
 
                             $('li.product-item[rel=\'' + key + '\']').remove();
                             $('.block-wishlist span.counter').html('(' + $('#miniwishlist > li').length + ')');
+
+                            if ($('#miniwishlist > li').length == 0) {
+                                $('#miniwishlist').parent().html('<strong class="empty subtitle">You have no items in your wish list</strong>');
+                                $('.actions-toolbar').addClass('no-display');
+                            }
                         }
                     }
                 );
