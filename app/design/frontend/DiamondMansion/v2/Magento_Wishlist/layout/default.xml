@@ -21,5 +21,6 @@
             <block class="Magento\Wishlist\Block\Customer\Sidebar" name="miniwishlist" as="miniwishlist" after="minicart" template="Magento_Wishlist::miniwishlist.phtml"/>
         </referenceContainer>
         <referenceBlock name="wishlist_sidebar" remove="true"/>
+        <referenceBlock name="customer-account-navigation-wish-list-link" remove="true"/>
     </body>
 </page>

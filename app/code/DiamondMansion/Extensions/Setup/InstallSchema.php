@@ -1244,21 +1244,28 @@ class InstallSchema implements InstallSchemaInterface
                     Table::TYPE_INTEGER,
                     11,
                     ['nullable' => false],
-                    'Customer Name'
+                    'Product Id'
                 )
                 ->addColumn(
-                    'customer_ip',
+                    'email',
                     Table::TYPE_TEXT,
                     255,
                     ['nullable' => false],
-                    'Customer Phone'
+                    'Customer Email'
+                )
+                ->addColumn(
+                    'product_options',
+                    Table::TYPE_TEXT,
+                    65535,
+                    ['nullable' => false],
+                    'Product Options'
                 )
                 ->addColumn(
                     'review',
                     Table::TYPE_INTEGER,
                     11,
                     ['nullable' => false],
-                    'Customer Email'
+                    ''
                 )
                 ->setComment('Product Likes and Dislikes');
             $setup->getConnection()->createTable($table);

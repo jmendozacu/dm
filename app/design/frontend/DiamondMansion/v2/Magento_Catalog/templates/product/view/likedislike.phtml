@@ -11,6 +11,116 @@
         'jquery'
     ], function ($) {
         $(document).ready(function() {
+            function addItemToGuestWishlist(reloadWishlist = false) {
+                var guestEmail = localStorage.getItem('guestemail');
+
+                var key = '<?= $this->getProduct()->getId() ?>';
+                var dmOptions = '';
+                if ($('input[name=\'dm_options\']').length) {
+                    dmOptions = $('input[name=\'dm_options\']').val();
+                    key += '-' + dmOptions;
+                }
+
+                var item = {
+                    "id": '<?= $this->getProduct()->getId() ?>',
+                    "name": $('span[itemprop=\'name\']').eq(0).text(),
+                    "url": location.href,
+                    "dm_options": dmOptions,
+                    "price": $('#maincontent .price-box span.price').html(),
+                    "qty": 1,
+                    "image": $('#zoom').attr('href'),
+                    "data": $('a.btn-wishlist').data('post')
+                };
+/*
+                var html = '<li class="product-item" rel="' + key + '"><div class="product-item-info"><a class="product-item-photo" href="' + item.url + '" title="' + item.name + '"><span class="product-image-container"><span class="product-image-wrapper"><img class="product-image-photo" src="' + item.image + '" alt="' + item.name + '" style="width: 75px; height: 90px;"></span></span></a><div class="product-item-details"><strong class="product-item-name"><a  class="product-item-link" href="' + item.url + '"><span>' + item.name + '</span></a></strong><div><span class="price">' + item.price + '</span></div><div class="product-item-actions"><div class="actions-primary no-display"></div><div class="actions-secondary"><a href="#" data-key="' + key + '" title="Remove This Item" class="btn-remove action delete"><span>Remove This Item</span></a></div></div></div></div></li>';
+
+                if (!$('#miniwishlist').length) {
+                    $('.wishlist-content .item-list').html('<ol id="miniwishlist"></ol>');
+                }
+
+                $('#miniwishlist').prepend(html);
+
+                $('.actions-toolbar').removeClass('no-display');
+
+                $('.block-wishlist span.counter').html('(' + $('#miniwishlist > li').length + ')');
+*/
+                new $.ajax(
+                    '/dm/api/likedislike/',
+                    {
+                        method:'post',
+                        data: {
+                            "email": guestEmail,
+                            "product_id": <?= $this->getProduct()->getId() ?>,
+                            "liked": 1,
+                            "data": item
+                        },
+                        showLoader: true,
+                        complete : function(xhr) {
+                            var result = JSON.parse(xhr.responseText);
+
+                            $('.like-dislike-buttons-set a.like').html(result.likes);
+                            $('.like-dislike-buttons-set a.dislike').html(result.dislikes);
+
+                            $('.like-dislike-buttons-set a').toggleClass('active');
+
+                            $('.wishlist-notice').fadeIn("fast");
+                            setTimeout(function () {
+                                $('.wishlist-notice').fadeOut("fast");
+                            }, 2000);
+
+                            if (!reloadWishlist) {
+                                if (!$('#miniwishlist').length) {
+                                    $('.wishlist-content .item-list').html('<ol id="miniwishlist"></ol>');
+                                }
+                                var html = '<li class="product-item" rel="' + item.id + '"><div class="product-item-info"><a class="product-item-photo" href="' + item.url + '" title="' + item.name + '"><span class="product-image-container"><span class="product-image-wrapper"><img class="product-image-photo" src="' + item.image + '" alt="' + item.name + '" style="width: 75px; height: 90px;"></span></span></a><div class="product-item-details"><strong class="product-item-name"><a  class="product-item-link" href="' + item.url + '"><span>' + item.name + '</span></a></strong><div><span class="price">' + item.price + '</span></div><div class="product-item-actions"><div class="actions-primary no-display"></div><div class="actions-secondary"><a href="#" data-key="' + item.id + '" title="Remove This Item" class="btn-remove action delete"><span>Remove This Item</span></a></div></div></div></div></li>';
+                                $('#miniwishlist').prepend(html);
+
+                                $('.actions-toolbar').removeClass('no-display');
+
+                                $('.block-wishlist span.counter').html('(' + $('#miniwishlist > li').length + ')');
+                                return true;
+                            }
+
+                            new $.ajax(
+                                '/dm/api/guestwishlist/',
+                                {
+                                    method: 'post',
+                                    data: {
+                                        email: guestEmail
+                                    },
+                                    showLoader: true,
+                                    complete: function (xhr) {
+                                        var result = JSON.parse(xhr.responseText);
+                                        if (result.length) {
+                                            if (!$('#miniwishlist').length) {
+                                                $('.wishlist-content .item-list').html('<ol id="miniwishlist"></ol>');
+                                            }
+                                        }
+
+                                        for (var i=0;i<result.length;i++) {
+                                            var item = result[i];
+                                            var html = '<li class="product-item" rel="' + item.id + '"><div class="product-item-info"><a class="product-item-photo" href="' + item.url + '" title="' + item.name + '"><span class="product-image-container"><span class="product-image-wrapper"><img class="product-image-photo" src="' + item.image + '" alt="' + item.name + '" style="width: 75px; height: 90px;"></span></span></a><div class="product-item-details"><strong class="product-item-name"><a  class="product-item-link" href="' + item.url + '"><span>' + item.name + '</span></a></strong><div><span class="price">' + item.price + '</span></div><div class="product-item-actions"><div class="actions-primary no-display"></div><div class="actions-secondary"><a href="#" data-key="' + item.id + '" title="Remove This Item" class="btn-remove action delete"><span>Remove This Item</span></a></div></div></div></div></li>';
+                                            $('#miniwishlist').prepend(html);
+                                        }
+
+                                        if (result.length) {
+                                            $('.actions-toolbar').removeClass('no-display');
+
+                                            $('.block-wishlist span.counter').html('(' + $('#miniwishlist > li').length + ')');
+                                        }
+                                    }
+                                }
+                            );
+                        }
+                    }
+                );
+            }
+
+            function removeItemFromGuestWishlist() {
+                var key = '<?= $this->getProduct()->getId() ?>';
+                $('.miniwishlist-wrapper a.btn-remove[data-key=\'' + key + '\']').trigger('click');
+            }
+
             $(".like-dislike-buttons-set a").on('click', function () {
 
                 if ($(this).hasClass('like')) {
@@ -31,77 +141,41 @@
                         }
                     );
                     <?php else: ?>
-                    var wishlist = JSON.parse(localStorage.getItem('guestwishlist'));
-                    if (wishlist === null) {
-                        wishlist = {};
-                    }
-                    var key = '<?= $this->getProduct()->getId() ?>';
-                    var dmOptions = '';
-                    if ($('input[name=\'dm_options\']').length) {
-                        dmOptions = $('input[name=\'dm_options\']').val();
-                        key += '-' + dmOptions;
-                    }
-
-                    if (!wishlist.hasOwnProperty(key)) {
-                        wishlist[key] = {
-                            "id": '<?= $this->getProduct()->getId() ?>',
-                            "name": $('span[itemprop=\'name\']').eq(0).text(),
-                            "url": location.href,
-                            "dm_options": dmOptions,
-                            "price": $('#maincontent .price-box span.price').html(),
-                            "qty": 1,
-                            "image": $('#zoom').attr('href'),
-                            "data": $('a.btn-wishlist').data('post')
-                        };
-
-                        var html = '<li class="product-item" rel="' + key + '"><div class="product-item-info"><a class="product-item-photo" href="' + wishlist[key].url + '" title="' + wishlist[key].name + '"><span class="product-image-container"><span class="product-image-wrapper"><img class="product-image-photo" src="' + wishlist[key].image + '" alt="' + wishlist[key].name + '" style="width: 75px; height: 90px;"></span></span></a><div class="product-item-details"><strong class="product-item-name"><a  class="product-item-link" href="' + wishlist[key].url + '"><span>' + wishlist[key].name + '</span></a></strong><div><span class="price">' + wishlist[key].price + '</span></div><div class="product-item-actions"><div class="actions-primary no-display"></div><div class="actions-secondary"><a href="#" data-key="' + key + '" title="Remove This Item" class="btn-remove action delete"><span>Remove This Item</span></a></div></div></div></div></li>';
-
-                        if (!$('#miniwishlist').length) {
-                            $('.wishlist-content .item-list').html('<ol id="miniwishlist"></ol>');
+                    var guestEmail = localStorage.getItem('guestemail');
+                    if (guestEmail === null) {
+                        $('.wishlist-popup').data('from', 'btn-like');
+                        $('.wishlist-popup').addClass('show');
+                    } else {
+                        if (!$(this).hasClass('active')) {
+                            addItemToGuestWishlist();
+                        } else {
+                            removeItemFromGuestWishlist();
                         }
-
-                        $('#miniwishlist').prepend(html);
-
-                        $('.actions-toolbar').removeClass('no-display');
-
-                        $('.block-wishlist span.counter').html('(' + $('#miniwishlist > li').length + ')');
                     }
-
-                    localStorage.setItem('guestwishlist', JSON.stringify(wishlist));
                     <?php endif ?>
                 }
 
-
-                if ($(this).hasClass('active')) {
-                    if ($(this).hasClass('like')) {
-                        //alert('You liked this product already. Thanks.');
-                    } else {
-                        //alert('You disliked this product already. Thanks.');
-                    }
-                    return false;
-                }
-                var review = $(this).data('review');
-                new $.ajax(
-                    '/dm/api/likedislike/',
-                    {
-                        method:'post',
-                        asynchronous: false,
-                        data: {
-                            "product_id": <?= $this->getProduct()->getId() ?>,
-                            "liked": review
-                        },
-                        complete : function(xhr) {
-                            result = JSON.parse(xhr.responseText);
-
-                            $('.like-dislike-buttons-set a.like').html(result.likes);
-                            $('.like-dislike-buttons-set a.dislike').html(result.dislikes);
-
-                            $('.like-dislike-buttons-set a').toggleClass('active');
-                        }
-                    }
-                );
-
                 return false;   
+            });
+
+            $('.wishlist-popup button.submit').on('click', function () {
+                if ($('.wishlist-popup').data('from') == 'btn-like') {
+                    var guestEmail = $('#wishlist-email').val().trim();
+
+                    if (guestEmail == '') {
+                        return false;
+                    }
+
+                    localStorage.setItem('guestemail', guestEmail);
+
+                    //if (!$(".like-dislike-buttons-set a.like").hasClass('active')) {
+                        addItemToGuestWishlist(true);
+                    //} else {
+                    //    removeItemFromGuestWishlist();
+                    //}
+
+                    $('.wishlist-popup').removeClass('show');
+                }
             });
         });
     });

@@ -9,6 +9,7 @@ class LikeDislike extends \Magento\Catalog\Block\Product\View
     protected $_likedislikeFactory;
     protected $_eavConfig;
     protected $_storeInfo;
+    protected $_session;
 
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
@@ -26,6 +27,7 @@ class LikeDislike extends \Magento\Catalog\Block\Product\View
         \Magento\Customer\Model\Session $customerSession,
         \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
         \Magento\Framework\Pricing\PriceCurrencyInterface $priceCurrency,
+        \Magento\Framework\Session\SessionManagerInterface $session,
         array $data = []
     ) {
         $this->_helper = $helper;
@@ -33,6 +35,7 @@ class LikeDislike extends \Magento\Catalog\Block\Product\View
         $this->_likedislikeFactory = $likedislikeFactory;
         $this->_eavConfig = $eavConfig;
         $this->_storeInfo = $storeInfo;
+        $this->_session = $session;
 
         parent::__construct(
             $context,
@@ -53,26 +56,11 @@ class LikeDislike extends \Magento\Catalog\Block\Product\View
     }
 
     public function getLikeDislikeStatus() {
-        $ipaddress = '';
-
-        if (isset($_SERVER['HTTP_CLIENT_IP']))
-            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-        else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
-            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        else if(isset($_SERVER['HTTP_X_FORWARDED']))
-            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-        else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
-            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-        else if(isset($_SERVER['HTTP_FORWARDED']))
-            $ipaddress = $_SERVER['HTTP_FORWARDED'];
-        else if(isset($_SERVER['REMOTE_ADDR']))
-            $ipaddress = $_SERVER['REMOTE_ADDR'];
-        else
-            $ipaddress = 'UNKNOWN';
+        $guestEmail = $this->_session->getGuestEmail();
 
         $item = $this->_likedislikeFactory->create()->getCollection()
             ->addFieldToFilter('product_id', $this->getProduct()->getId())
-            ->addFieldToFilter('customer_ip', $ipaddress)
+            ->addFieldToFilter('email', $guestEmail)
             ->getFirstItem();
 
         $liked = 0;

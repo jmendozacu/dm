@@ -1,9 +1,48 @@
-<div class="guestwishlist-notice section-item-content">
+<!-- <div class="guestwishlist-notice section-item-content">
     <p class="header links">To save your Wish List to view on different devices and browsers please <a href="/customer/account/create/">Create an Account</a> or <a href="#social-login-popup" class="social-login" data-effect="mfp-move-from-top">Log In</a>.</p>
-</div>
+</div> -->
+<?php $guestWishlist = $this->getGuestWishlist() ?>
 <div id="guestwishlist-wrapper" class="container">
     <ul class="products-grid" id="guestwishlist">
-
+        <?php foreach ($guestWishlist as $item): ?>
+        <li class="product-item grid_3 item" rel="<?= $item->id ?>">
+            <div class="product-item-info">
+                <a class="product-item-photo" href="<?= $item->url ?>" title="<?= $item->name ?>">
+                    <span class="product-image-container">
+                        <span class="product-image-wrapper">
+                            <img class="product-image-photo" src="<?= $item->image ?>" alt="<?= $item->name ?>">
+                        </span>
+                    </span>
+                </a>
+                <div class="product-item-details">
+                    <strong class="product-item-name">
+                        <a  class="product-item-link" href="<?= $item->url ?>">
+                            <span><?= $item->name ?></span>
+                        </a>
+                    </strong>
+                    <div>
+                        <span class="price"><?= $item->price ?></span>
+                    </div>
+                    <div class="product-item-actions">
+                        <div class="actions-secondary">
+                            <a href="#" data-key="<?= $item->id ?>" title="Remove This Item" class="btn-remove action delete">
+                                <span>Remove This Item</span>
+                            </a>
+                        </div>
+                        <div class="actions-primary">
+                            <a href="#" 
+                                data-key="<?= $item->id ?>" 
+                                data-uenc="<?= $item->data->data->uenc ?>" 
+                                data-dm-options="<?= $item->dm_options ?>" 
+                                class="btn-add-to-cart action">
+                                <span>Add To Cart</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <?php endforeach ?>
     </ul>
 </div>
 <form action="" method="post" id="guestwishlist-add-to-cart">
@@ -25,27 +64,15 @@ require([
 
         $('body').delegate('#guestwishlist-wrapper a.btn-add-to-cart', 'click', function () {
             var key = $(this).data('key');
-            var wishlist = JSON.parse(localStorage.getItem('guestwishlist'));
-            $('#guestwishlist-add-to-cart').attr('action', '/checkout/cart/add/uenc/' + wishlist[key].data.data.uenc + '/product/' + wishlist[key].id + '/');
-            $('#guestwishlist-add-to-cart input.dm_custom_options').val(wishlist[key].dm_options);
-            $('#guestwishlist-add-to-cart input.dm_product').val(wishlist[key].id);            
+            $('#guestwishlist-add-to-cart').attr('action', '/checkout/cart/add/uenc/' + $(this).data('uenc') + '/product/' + $(this).data('key') + '/');
+            $('#guestwishlist-add-to-cart input.dm_custom_options').val($(this).data('dm-options'));
+            $('#guestwishlist-add-to-cart input.dm_product').val($(this).data('key'));            
             $('#guestwishlist-add-to-cart input.dm_form_key').val($('input[name=\'form_key\']').eq(0).val());
-
-            delete wishlist[key];
-            localStorage.setItem('guestwishlist', JSON.stringify(wishlist));
 
             $('#guestwishlist-add-to-cart').submit();
             return false;
         });
 
-    });
-
-    $(window).load(function() {
-        var wishlist = JSON.parse(localStorage.getItem('guestwishlist'));
-        for (var key in wishlist) {
-            var html = '<li class="product-item grid_3 item" rel="' + key + '"><div class="product-item-info"><a class="product-item-photo" href="' + wishlist[key].url + '" title="' + wishlist[key].name + '"><span class="product-image-container"><span class="product-image-wrapper"><img class="product-image-photo" src="' + wishlist[key].image + '" alt="' + wishlist[key].name + '"></span></span></a><div class="product-item-details"><strong class="product-item-name"><a  class="product-item-link" href="' + wishlist[key].url + '"><span>' + wishlist[key].name + '</span></a></strong><div><span class="price">' + wishlist[key].price + '</span></div><div class="product-item-actions"><div class="actions-secondary"><a href="#" data-key="' + key + '" title="Remove This Item" class="btn-remove action delete"><span>Remove This Item</span></a></div><div class="actions-primary"><a href="#" data-key="' + key + '" class="btn-add-to-cart action"><span>Add To Cart</span></a></div></div></div></div></li>';
-            $('#guestwishlist').prepend(html);
-        }
     });
 });
 </script>

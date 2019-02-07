@@ -10,78 +10,58 @@
 ?>
 <?php
 $wishlistHelper = $this->helper('Magento\Wishlist\Helper\Data');
+$guestWishlist = [];
 ?>
 <?php if ($wishlistHelper->isAllow()) : ?>
-    <?php if($this->isLoggedIn()): ?>
-    <div class="block block-wishlist miniwishlist-wrapper" data-bind="scope: 'wishlist'">
-        <div class="block-title">
-            <a class="action show-wishlist" href="/wishlist/">Wishlist</a>
-            <!-- ko if: wishlist().counter -->
-            <span data-bind="text: wishlist().counter" class="counter"></span>
-            <!-- /ko -->
-        </div>
-        <div class="block-content wishlist-content no-display">
-            <!-- ko if: wishlist().counter -->
-                <ol class="product-items no-display" id="miniwishlist" data-bind="foreach: wishlist().items, css: {'no-display': null}">
-                    <li class="product-item">
-                        <div class="product-item-info">
-                            <a class="product-item-photo" data-bind="attr: { href: product_url, title: product_name }">
-                                <!-- ko template: {name: $data.image.template, data: $data.image} --><!-- /ko -->
-                            </a>
-                            <div class="product-item-details">
-                                <strong class="product-item-name">
-                                    <a data-bind="attr: { href: product_url }" class="product-item-link">
-                                        <span data-bind="text: product_name"></span>
-                                    </a>
-                                </strong>
-                                <div data-bind="html: product_price"></div>
-                                <div class="product-item-actions">
-                                    <!-- ko if: product_is_saleable_and_visible -->
-                                    <div class="actions-primary no-display">
-                                        <!-- ko if: product_has_required_options -->
-                                        <a href="#" data-bind="attr: {'data-post': add_to_cart_params}" class="action tocart primary"><span><?= $block->escapeHtml(__('Add to Cart')) ?></span></a>
-                                        <!-- /ko -->
-                                        <!-- ko ifnot: product_has_required_options -->
-                                            <button type="button" class="action tocart primary" data-bind="attr: {'data-post': add_to_cart_params}"><span><?= $block->escapeHtml(__('Add to Cart')) ?></span></button>
-                                        <!-- /ko -->
-                                    </div>
-                                    <!-- /ko -->
-                                    <div class="actions-secondary">
-                                        <a href="#"  data-bind="attr: {'data-post': delete_item_params}"
-                                           title="<?= $block->escapeHtmlAttr(__('Remove This Item')) ?>"
-                                           class="btn-remove action delete">
-                                            <span><?= $block->escapeHtml(__('Remove This Item')) ?></span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ol>
-                <div class="actions-toolbar no-display" data-bind="css: {'no-display': null}">
-                    <div class="primary">
-                        <a class="action details"
-                           href="<?= $block->escapeUrl($this->helper('Magento\Wishlist\Helper\Data')->getListUrl()) ?>"
-                           title="<?= $block->escapeHtmlAttr(__('Go to Wish List')) ?>"><span><?= $block->escapeHtml(__('Go to Wish List')) ?></span></a>
-                    </div>
-                </div>
-            <!-- /ko -->
-            <!-- ko ifnot: wishlist().counter -->
-                <strong class="empty subtitle"><?= $block->escapeHtml(__('You have no items in your wish list.')) ?></strong>
-            <!-- /ko -->
-        </div>
-    </div>
-    <?php else: ?>
     <div class="block block-wishlist miniwishlist-wrapper">
         <div class="block-title">
             <a class="action show-wishlist" href="/dm/wishlist/">Wishlist</a>
-            <span class="counter"></span>
+            <span class="counter">(<?php echo count($guestWishlist) ?>)</span>
+            <div class="wishlist-notice">
+                <span class="tooltip-content">Added to wishlist!</span>
+            </div>
         </div>
         <div class="block-content wishlist-content no-display">
+            <?php if (count($guestWishlist)): ?>
+            <ol id="miniwishlist">
+                <?php foreach ($guestWishlist as $item): ?>
+                <li class="product-item" rel="<?php echo $item->id ?>">
+                    <div class="product-item-info">
+                        <a class="product-item-photo" href="<?php echo $item->url ?>" title="<?php echo $item->name ?>">
+                            <span class="product-image-container">
+                                <span class="product-image-wrapper">
+                                    <img class="product-image-photo" src="<?php echo $item->image ?>" alt="<?php echo $item->name ?>" style="width: 75px; height: 90px;">
+                                </span>
+                            </span>
+                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a  class="product-item-link" href="<?php echo $item->url ?>">
+                                    <span><?php echo $item->name ?></span>
+                                </a>
+                            </strong>
+                            <div>
+                                <span class="price"><?php echo $item->price ?></span>
+                            </div>
+                            <div class="product-item-actions">
+                                <div class="actions-primary no-display"></div>
+                                <div class="actions-secondary">
+                                    <a href="#" data-key="<?php echo $item->id ?>" title="Remove This Item" class="btn-remove action delete">
+                                        <span>Remove This Item</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <?php endforeach ?>
+            </ol>
+            <?php else: ?>
             <div class="item-list">
                 <strong class="empty subtitle"><?= $block->escapeHtml(__('You have no items in your wish list.')) ?></strong>
             </div>
-            <div class="actions-toolbar no-display">
+            <?php endif ?>
+            <div class="actions-toolbar <?php if (!count($guestWishlist)): ?> no-display<?php endif ?>">
                 <div class="primary">
                     <a class="details"
                         href="/dm/wishlist/"
@@ -90,7 +70,22 @@ $wishlistHelper = $this->helper('Magento\Wishlist\Helper\Data');
             </div>
         </div>
     </div>
-    <?php endif; ?>
+    <div class="wishlist-popup">
+        <div class="wishlist-popup-content">
+            <div class="wishlist-popup-close"></div>
+            <div class="wishlist-popup-form">
+                <div class="wishlist-popup-form-title">Enter your email to store & recall your wishlist:</div>
+                <div class="wishlist-popup-form-fields">
+                    <input type="email" id="wishlist-email"/>
+                    <div class="actions">
+                        <button class="action primary submit" title="Submit" type="submit">
+                            <span>Submit</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <script type="text/x-magento-init">
     {
         "*": {
@@ -102,7 +97,8 @@ $wishlistHelper = $this->helper('Magento\Wishlist\Helper\Data');
                 }
             },
             "dm-wishlist": {
-                "is_logged_in": "<?= $this->isLoggedIn() ?>"
+                "is_logged_in": "<?= $this->isLoggedIn() ?>",
+                "guest_email": "<?= $this->getGuestEmail() ?>"
             }
         }
     }
