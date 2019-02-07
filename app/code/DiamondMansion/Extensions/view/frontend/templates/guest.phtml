@@ -1,7 +1,7 @@
 <!-- <div class="guestwishlist-notice section-item-content">
     <p class="header links">To save your Wish List to view on different devices and browsers please <a href="/customer/account/create/">Create an Account</a> or <a href="#social-login-popup" class="social-login" data-effect="mfp-move-from-top">Log In</a>.</p>
 </div> -->
-<?php $guestWishlist = $this->getGuestWishlist() ?>
+<?php $guestWishlist = []; //$this->getGuestWishlist() ?>
 <div id="guestwishlist-wrapper" class="container">
     <ul class="products-grid" id="guestwishlist">
         <?php foreach ($guestWishlist as $item): ?>

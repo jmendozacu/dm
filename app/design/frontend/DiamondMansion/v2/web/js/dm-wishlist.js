@@ -39,6 +39,11 @@ define([
                                 var item = result[i];
                                 var html = '<li class="product-item" rel="' + item.id + '"><div class="product-item-info"><a class="product-item-photo" href="' + item.url + '" title="' + item.name + '"><span class="product-image-container"><span class="product-image-wrapper"><img class="product-image-photo" src="' + item.image + '" alt="' + item.name + '" style="width: 75px; height: 90px;"></span></span></a><div class="product-item-details"><strong class="product-item-name"><a  class="product-item-link" href="' + item.url + '"><span>' + item.name + '</span></a></strong><div><span class="price">' + item.price + '</span></div><div class="product-item-actions"><div class="actions-primary no-display"></div><div class="actions-secondary"><a href="#" data-key="' + item.id + '" title="Remove This Item" class="btn-remove action delete"><span>Remove This Item</span></a></div></div></div></div></li>';
                                 $('#miniwishlist').prepend(html);
+
+                                if ($('#guestwishlist').length) {
+                                    html = '<li class="product-item grid_3 item" rel="' + item.id + '"><div class="product-item-info"><a class="product-item-photo" href="' + item.url + '" title="' + item.name + '"><span class="product-image-container"><span class="product-image-wrapper"><img class="product-image-photo" src="' + item.image + '" alt="' + item.name + '"></span></span></a><div class="product-item-details"><strong class="product-item-name"><a  class="product-item-link" href="' + item.url + '"><span>' + item.name + '</span></a></strong><div><span class="price">' + item.price + '</span></div><div class="product-item-actions"><div class="actions-secondary"><a href="#" data-key="' + item.id + '" title="Remove This Item" class="btn-remove action delete"><span>Remove This Item</span></a></div><div class="actions-primary"><a href="#" data-key="' + item.id + '" data-uenc="' + item.data.data.uenc + '" data-dm-options="' + item.dm_options + '" class="btn-add-to-cart action"><span>Add To Cart</span></a></div></div></div></div></li>';
+                                    $('#guestwishlist').append(html);
+                                }
                             }
 
                             if (result.length) {
