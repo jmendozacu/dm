@@ -277,7 +277,7 @@
         padding: 0 30px;
 
         #nav li {
-            padding-left: 40px;
+            padding-left: 30px;
         }
     }
 }
@@ -297,24 +297,49 @@
             padding: 0;
 
             li {
-                padding-right: 16px;
                 margin: 0;
                 display: inline-block;
     
                 a {
-                    padding: 15px 0;
-                    font-family: 'Futura LT';
+                    font-family: 'Avenir LT Std';
                     font-weight: 500;
-                    font-size: 11pt;
-                    line-height: 22pt;
+                    font-size: 14px;
                     text-transform: uppercase;
                     letter-spacing: 1px;
-                    display: block;
                     text-decoration: none;
+                    padding: 10px 0;
+
+                    border-bottom: 2px solid rgba(0,0,0,0);
+                    transition: border-color 0.25s;
+
+                    &:hover {
+                        border-color: #000;
+                    }
+
+                    .nav-link-arrow {
+                        margin-top: @v3-header-height / 2 - 7;
+                    }
                 }
 
                 .submenu-wrapper {
                     display: none;
+                }
+
+                &.level0 {
+                    line-height: @v3-header-height;
+                }
+
+                &:not(.over) {
+                    .nav-link-arrow {
+                        .nav-link-arrow();
+                        .nav-link-arrow-dropdown();
+                    }
+                }
+
+                &.over {
+                    .nav-link-arrow {
+                        .nav-link-arrow();
+                    }
                 }
             }
         } 
@@ -333,19 +358,53 @@
 }
 
 
-#shown-sub-wrapper { 
-    font-family: 'Futura LT';
-    font-weight: 500;
-    text-align: center;
+#shown-sub-wrapper {
+    border-top: 1px solid @v3-border-color;
+    font-family: 'Avenir LT Std';
+    font-weight: 300;
+    font-size: 15px;
     letter-spacing: 1px;
+    line-height: 30px;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
     clear: both;
+
+    .submenu-wrapper {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    ul.level0 li.tech {    
+        display: inline-block;
+        margin-right: 100px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        & > a {
+            font-size: 16px;
+            font-weight: 500;
+            display: block;
+        }
+
+        ul.tech {
+            display: inline-block;
+            margin-right: 80px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
 
     .submenu-title { 
         text-align: center; 
         font-size: 20pt; 
         color: @dm-color-red; 
         position: relative; 
-        letter-spacing: 3px; 
 
         span.title {
             background-color: #fff;
@@ -368,8 +427,8 @@
         }
     }
 }
-
-#shown-sub-wrapper ul.level0 li.tech { display: inline-block; margin: 0 35px; text-transform: uppercase; }
+/*
+#shown-sub-wrapper ul.level0 li.tech { display: inline-block; margin: 0 35px; }
 #shown-sub-wrapper ul.level0 li.tech > a { color: @dm-color-red; font-size: 14pt; margin-bottom: 15px; display: block; }
 #shown-sub-wrapper ul.level0 li.tech > a + ul.tech { width: 0; }
 #shown-sub-wrapper ul.level0 li.tech > ul.tech li { margin-bottom: 15px; }
@@ -377,16 +436,8 @@
 #shown-sub-wrapper ul.level0 li.tech.a-center > a + ul.tech { display: inline-block; margin-left: 10px; text-align: left; width: 60%; }
 #shown-sub-wrapper ul.level0 li.tech.a-center > a + ul.tech.a-center { width: 100%; }
 
-#shown-sub-wrapper ul.level0 li.tech a,
-.hscale125 { display: block; transform:scale(1.25,1); -webkit-transform: scale(1.25, 1); margin-left: 10%; letter-spacing: 1px; white-space: nowrap; }
-
 #shown-sub-wrapper ul.shop-engagement-ring { display: inline-block; }
 #shown-sub-wrapper ul.learn-about { display: inline-block; }
-
-#nav li a:hover { color:@dm-color-red; background-color: transparent; }
-#nav > li.over > a,
-#nav > li.active > a { color:@dm-color-red; }
-#nav li.over { background: url(../images/i_menu_over.png) no-repeat right center transparent; }
 
 .submenu-wrapper.style-tab li.tech a { text-align: center; letter-spacing: 0; }
 .submenu-wrapper.style-tab li.tech a span.tab-title { font-size: 11pt; color: @dm-color-red; margin-top: 15px; display: inline-block; letter-spacing: 0; }
@@ -395,3 +446,4 @@
 @media only screen and (min-width: 1366px) {   
     #shown-sub-wrapper ul.level0 li.tech { margin: 0 60px; }
 }
+*/

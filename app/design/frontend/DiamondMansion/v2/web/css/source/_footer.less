@@ -1,8 +1,5 @@
-#footer{padding:0; width:100%; overflow:hidden;}
-#footer .footer-bottom-wrapper{font-size:0.91em; padding:16px 0; border-top:1px solid #d2d2d2; background-color:#FFF;}
 
 #footer p { text-align:left; }
-#footer address{float:left; color:#474747;}
 #footer ul {float:left; margin-bottom:9px;}
 #footer ul li{padding:0 10px 0 8px; float:left; background:url(../images/footer_link_divider.gif) right 7px no-repeat;}
 #footer ul li:first-child{padding-left:0;}
@@ -49,10 +46,6 @@
 #footer .contacts-footer-content .required{display:none;}
 
 
-#footer { background: url(../images/footer_divider.png) repeat-x; padding-top: 18px; color: #333; }
-#footer a { color: #333; }
-#footer address { float: none; font: 16px/40px Arial; }
-#footer .footer-bottom-wrapper { padding-bottom: 70px; }
 #footer .footer-columns-wrapper { padding-top: 0; background-color: #e5e5e5; }
 #footer .ships-to .row-1 {border-bottom: 1px solid #666666; font-size: 18px; color: #666; padding: 20px 0; display: inline-block;}
 #footer .ships-to .row-2 {margin-top: -10px; background-color: #ccc; display: inline-block;}
@@ -284,4 +277,154 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
 
 #toTop:active, #toTop:focus {
     outline:none;
+}
+
+#footer.v3 {
+    .footer-top-wrapper {
+        max-width: @v3-container-max-width;
+        margin: 0 auto;
+        padding: 0 60px;
+
+        display: flex;
+
+        .help {
+            width: 18%;
+        }
+
+        & > div {
+            padding: 20px 0 40px;
+
+            .title {
+                font-family: 'Proxima Nova Lt';
+                font-size: 20px;
+                font-weight: 600;
+                line-height: 50px;
+                margin-bottom: 20px;
+                text-transform: uppercase;                
+            }
+
+            ul {
+                li {
+                    display: block;
+                    width: 100%;
+                    margin: 0;
+                    padding: 0;
+                    font-family: 'Avenir LT Std';
+                    font-weight: 300;
+                    font-size: 19px;
+                    line-height: 40px;
+
+                    &, a {
+                        vertical-align: middle;
+                        color: #080501;
+                    }
+                }
+            }
+        }
+
+        .shop {
+            width: 22%;
+        }
+
+        .company {
+            width: 18%;
+        }
+
+        .visit-us {
+            width: 18%;
+        }
+
+        .community {
+            width: 24%;
+            position: relative;
+
+            .form-subscribe-header label {
+                font-family: 'Avenir LT Std';
+                font-weight: 300;
+                font-size: 17px;
+                line-height: 40px;
+                margin-bottom: 10px;
+                display: block;
+            }
+
+            input#newsletter {
+                font-family: 'Avenir LT Std';
+                font-weight: 300;
+                font-size: 17px;
+                line-height: 30px;
+                padding: 10px 40px 10px 20px;
+                height: 50px;
+
+                color: #080501;
+                border-color: #080501;
+
+                &:focus {
+                    outline: none;
+                    box-shadow: none;
+                }
+            }
+
+            button.button {
+                width: 40px;
+                height: 50px;
+                line-height: 50px;
+                text-align: center;
+                margin-top: -50px;
+
+                font-family: 'Avenir LT Std';
+                font-weight: 300;
+                font-size: 17px;
+
+                color: #080501;
+
+                position: absolute;
+                right: 0;
+            }
+        }
+    }
+
+    .footer-bottom-wrapper {
+        background: #f4f4f4;
+        .content {
+            max-width: @v3-container-max-width;
+            margin: 0 auto;
+            padding: 0 60px;
+
+            font-family: 'Avenir LT Std';
+            font-weight: 300;
+            font-size: 17px;
+            line-height: 86px;
+            color: #080501;     
+
+            a {
+                color: #080501;
+            }
+
+            &:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+
+            > div {
+                float: left;
+                width: 33.33%;
+            }
+
+            .privacy-terms-conditions {
+                text-align: center;
+            }
+
+            .social-links {
+                text-align: right;
+
+                ul.social-links {
+                    float: none;
+                    display: inline-block;
+                    margin: 0;
+                    padding: 27px 0;
+                }
+            }
+        }
+    }
 }

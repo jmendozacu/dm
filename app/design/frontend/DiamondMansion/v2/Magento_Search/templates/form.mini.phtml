@@ -14,11 +14,9 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
 <div class="block block-search">
     <div class="block block-title"><strong><?= /* @escapeNotVerified */ __('Search') ?></strong></div>
     <div class="block block-content">
+        <div class="search-container">
         <form class="form minisearch" id="search_mini_form" action="<?= /* @escapeNotVerified */ $helper->getResultUrl() ?>" method="get">
             <div class="field search">
-                <label class="label" for="search" data-role="minisearch-label">
-                    <span><?= /* @escapeNotVerified */ __('Search') ?></span>
-                </label>
                 <div class="control">
                     <input id="search"
                            data-mage-init='{"quickSearch":{
@@ -29,7 +27,7 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
                            type="text"
                            name="<?= /* @escapeNotVerified */ $helper->getQueryParamName() ?>"
                            value="<?= /* @escapeNotVerified */ $helper->getEscapedQueryText() ?>"
-                           placeholder="<?= /* @escapeNotVerified */ __('Search entire store here...') ?>"
+                           placeholder="<?= /* @escapeNotVerified */ __('Find what you are looking for') ?>"
                            class="input-text"
                            maxlength="<?= /* @escapeNotVerified */ $helper->getMaxQueryLength() ?>"
                            role="combobox"
@@ -37,6 +35,16 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
                            aria-autocomplete="both"
                            autocomplete="off"/>
                     <div id="search_autocomplete" class="search-autocomplete"></div>
+                    <p class="comment">Search any products and/or materials</p>
+                    <div class="top-search">
+                        <label>Top Search</label>
+                        <ul>
+                            <li><a href="/all-designer/">Designer</a></li>
+                            <li><a href="/rose-gold/">Rose Gold</a></li>
+                            <li><a href="/yellow/">Yellow Diamond</a></li>
+                            <li><a href="/rings/engagement/">Personalized</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="actions">
@@ -47,6 +55,7 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
                 </button>
             </div>
         </form>
+        </div>
     </div>
 </div>
 <script>
@@ -54,6 +63,17 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
         'use strict';
         $('.block-search .block-title').click(function () {
             $('.block-search .block-content').toggle('fade', 'fast');
+            if ($('.page-header').hasClass('active') && $('#nav li.over').length) {
+                $('#shown-sub-wrapper').hide();
+                $('#shown-sub-wrapper').html("");
+                $('#shown-sub-wrapper').addClass('no-display');
+                $('#shown-sub-wrapper').css('height', 'auto');
+                $('#shown-sub-wrapper').css('paddingLeft', 0);
+
+                $('#nav li.over').removeClass('over');
+            } else {
+                $('.page-header').toggleClass('active');
+            }
         });
     });
 </script>

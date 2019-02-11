@@ -32,10 +32,10 @@ if ($block->isLoggedIn()) {
 <?php else: ?>
 <li class="authorization-link" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
     <a <?= /* @noEscape */ $block->getLinkAttributes() ?><?= /* @noEscape */ $dataPostParam ?>>
-        <?= $block->escapeHtml($block->getLabel()) ?>
+        LOGIN
     </a>
 </li>
 <?php endif; ?>
 <li class="phone-number">
-    <span>800-518-0240</span>
+    <a href="/contactus/"><span>Contact</span></a>
 </li>

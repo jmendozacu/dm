@@ -15,8 +15,9 @@ $guestWishlist = [];
 <?php if ($wishlistHelper->isAllow()) : ?>
     <div class="block block-wishlist miniwishlist-wrapper">
         <div class="block-title">
-            <a class="action show-wishlist" href="/dm/wishlist/">Wishlist</a>
-            <span class="counter">(<?php echo count($guestWishlist) ?>)</span>
+            <a class="action show-wishlist" href="/dm/wishlist/">
+                <span class="counter"><?php echo count($guestWishlist) ?></span>
+            </a>
             <div class="wishlist-notice">
                 <span class="tooltip-content">Added to wishlist!</span>
             </div>

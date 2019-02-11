@@ -49,7 +49,7 @@ define([
                             if (result.length) {
                                 $('.actions-toolbar').removeClass('no-display');
 
-                                $('.block-wishlist span.counter').html('(' + $('#miniwishlist > li').length + ')');                                
+                                $('.block-wishlist span.counter').html($('#miniwishlist > li').length);                                
                             }
                         }
                     }

@@ -16,10 +16,13 @@
 <?php else: ?>
     <a class="logo" href="<?= $block->getUrl('') ?>" title="<?= /* @escapeNotVerified */ $storeName ?>">
 <?php endif ?>
-        <img src="<?= /* @escapeNotVerified */ $block->getLogoSrc() ?>"
+        <img src="<?php echo $this->getViewFileUrl("images/v3/logo_white.png") ?>"
              alt="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
-             <?= $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>
-             <?= $block->getLogoHeight() ? 'height="' . $block->getLogoHeight() . '"' : '' ?>
+             class="logo-white"
+        />
+        <img src="<?php echo $this->getViewFileUrl("images/v3/logo_black.png") ?>"
+             alt="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+             class="logo-black"
         />
 <?php if ($block->isHomePage()):?>
     </strong>

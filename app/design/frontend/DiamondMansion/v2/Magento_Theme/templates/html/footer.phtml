@@ -1,6 +1,6 @@
-<footer id="footer">
-    <div class="footer-columns-wrapper">
-        <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_top')->toHtml(); ?>
+<footer id="footer" class="v3">
+    <!--<div class="footer-columns-wrapper">
+        <?php //echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_top')->toHtml(); ?>
         <div class="footer-middle">
             <section class="block-social-links">
                 <span class="f-left" style="font: bold 14px/32px Arial; margin-right: 10px;">Connect</span>
@@ -13,10 +13,60 @@
             <div class="clear"></div>
             <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_bottom')->toHtml(); ?>
         </div>
+    </div>-->
+
+    <div class="footer-top-wrapper">
+        <div class="help">
+            <div class="title">Help</div>
+            <ul>
+                <li>1-800-518-0240</li>
+                <li>help@diamondmansion.com</li>
+                <li>FAQ</li>
+                <li><a href="">Returns & Exchanges</a></li>
+                <li><a href="">Policies</a></li>
+            </ul>
+        </div>
+        <div class="shop">
+            <div class="title">Shop</div>
+            <ul>
+                <li><a href="/rings/engagement/">Engagement Rings</a></li>
+                <li><a href="/rings/wedding/her-eternity/">Wedding Rings</a></li>
+                <li><a href="/fine-jewelry/">Fine Jewelry</a></li>
+                <li><a href="">Men's Rings</a></li>
+                <li><a href="">Gifts</a></li>
+            </ul>
+        </div>
+        <div class="company">
+            <div class="title">Company</div>
+            <ul>
+                <li><a href="/history/">About Us</a></li>
+                <li><a href="">A+ BBB Rating</a></li>
+                <li><a href="">Customer Reviews</a></li>
+                <li><a href="">Our Materials</a></li>
+            </ul>
+        </div>
+        <div class="visit-us">
+            <div class="title">Visit Us</div>
+            <ul>
+                <li><a href="/contactus/">Los Angeles</a></li>
+            </ul>
+        </div>
+        <div class="community">
+            <div class="title">JOIN THE BRILLIANT COMMUNITY</div>
+            <div class="subscribe">
+                <?php echo $this->getChildHtml('footer-subscribe') ?>
+            </div>
+        </div>
     </div>
-    <div class="footer-bottom-wrapper a-center">
-        <img src="<?php echo $this->getViewFileUrl("images/logo.png"); ?>" alt="Diamond Mansion"><br/>
-        <address><?php echo sprintf($this->getChildHtml('footer-copyright'), date('Y')); ?></address>
+
+    <div class="footer-bottom-wrapper">
+        <div class="content">
+            <div class="copyright"><address><?php echo sprintf($this->getChildHtml('footer-copyright'), date('Y')); ?></address></div>
+            <div class="privacy-terms-conditions">
+                <a href="/about-diamondmansion?sel_cms=5">Privacy Policy</a>  |  <a href="/about-diamondmansion?sel_cms=7">Terms &amp; Conditions</a>
+            </div>
+            <div class="social-links"><?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_social_links')->toHtml(); ?></div>
+        </div>
     </div>
 </footer>
 <a href="#" id="toTop" style="display: inline;"><span id="toTopHover" style="opacity: 0;"></span>To Top</a>

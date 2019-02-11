@@ -17,3 +17,69 @@
 @breadcrumbs-link__hover__color: #ff0030;
 
 @font-size__s: 16px;
+
+/**
+* v3
+**/
+
+@v3-header-height: 94px;
+@v3-container-max-width: 1700px;
+@v3-border-color: #f1eff0;
+
+.icon-sprites-position(@icon) when (@icon = 'cart-black') {
+	background-position: -10px -10px;
+}
+
+.icon-sprites-position(@icon) when (@icon = 'cart-white') {
+	background-position: -60px -10px;
+}
+
+.icon-sprites-position(@icon) when (@icon = 'search-black') {
+	background-position: -110px -10px;
+}
+
+.icon-sprites-position(@icon) when (@icon = 'search-white') {
+	background-position: -160px -10px;
+}
+
+.icon-sprites-position(@icon) when (@icon = 'wishlist-black') {
+	background-position: -210px -10px;
+}
+
+.icon-sprites-position(@icon) when (@icon = 'wishlist-white') {
+	background-position: -260px -10px;
+}
+
+.icon-sprites-position(@icon) when (@icon = 'dropdown-black') {
+	background-position: -310px -10px;
+}
+
+.icon-sprites-position(@icon) when (@icon = 'dropdown-white') {
+	background-position:  -360px -10px;
+}
+
+.icon-sprites (@icon) {
+	width: 30px; height: 30px;
+	background-image: url('../images/v3/icons.png');
+	.icon-sprites-position(@icon);
+}
+
+.nav-link-arrow {
+	display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-left: 10px;
+    margin-bottom: 3px;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+}
+
+.nav-link-arrow-dropdown {
+	border-right-width: 2px;
+	border-right-style: solid;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);    
+}

@@ -47,6 +47,9 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
+    html {
+        margin: 0 !important;
+    }
 
     body {
         .lib-css(background-color, @page__background-color);
@@ -60,13 +63,13 @@
         .lib-css(background-color, @header__background-color);
         border-bottom: 1px solid @border-color__base;
         margin-bottom: @indent__base;
+        position: relative;        
     }
 
     .header {
         &.content {
             &:extend(.abs-add-clearfix all);
             padding-top: @indent__s;
-            position: relative;
 
             .minicart-wrapper .action.showcart:before {
                 content: '';
@@ -91,6 +94,15 @@
     .top-links-wrapper {
         float: right;
 
+        & > ul > li > a {
+            padding: 10px 0;
+            border-bottom: 2px solid rgba(0, 0, 0, 0);
+
+            &:hover {
+                border-bottom-color: #000;
+            }
+        }
+
         ul {
             margin: 0;
             padding: 0;
@@ -99,11 +111,14 @@
 
             li {
                 float: right;
-                padding: 20px 13px;
+                padding: 0 30px;
+                line-height: @v3-header-height;
                 margin: 0;
 
                 &, a {
-                    color: @dm-color-red;
+                    font-family: 'Avenir LT Std';
+                    font-size: 14px;
+                    font-weight: 500;
                 }
 
                 &.customer-link {
@@ -386,18 +401,25 @@
 
         &.content {
             &:extend(.abs-add-clearfix-desktop all);
-            padding: 8px 0;
-            box-shadow: 0 1px #FFFFFF inset, 0 1px 3px rgba(34, 25, 25, 0.4);            
+            padding: 0;
+            max-width: @v3-container-max-width;
+            height: @v3-header-height;
         }
     }
 
     .logo {
-        float: left;
+        position: absolute;
+        left: 50%;
+        margin-left: -157px;
+        top: @v3-header-height / 2;
+        margin-top: -10px;
     }
 
     .page-header {
         border: 0;
         margin-bottom: 0;
+        transition: background-color 0.25s;
+        z-index: 1;
 
         .panel.wrapper {
             border-bottom: 1px solid @secondary__color;
@@ -411,6 +433,42 @@
 
         .switcher {
             display: inline-block;
+        }
+
+        .logo-white {
+            display: inline;
+        }
+
+        .logo-black {
+            display: none;
+        }
+
+        a {
+            color: #fff;
+        }
+
+        .nav-link-arrow {
+            border-color: #fff;
+        }
+
+        &:hover, &.active {
+            background-color: #fff;
+
+            .logo-white {
+                display: none;
+            }
+
+            .logo-black {
+                display: inline;
+            }
+
+            a {
+                color: #000;
+            }
+
+            .nav-link-arrow {
+                border-color: #000;
+            }
         }
     }
 
@@ -427,3 +485,5 @@
         }
     }
 }
+
+
