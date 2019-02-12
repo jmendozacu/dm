@@ -269,36 +269,12 @@
     padding: 0px 20px;
     text-transform: uppercase;
 
+    @media only screen and (max-width: 639px) {
+        padding: 0;
+    }
+
     .block-title {
         margin: 0;
-    }
-
-    @media only screen and (max-width: 767px) {
-        padding: 0;
-        .block-title {
-            margin-left: 0;
-            margin-top: -28px;
-            margin-right: 56px;
-            margin-bottom: 0;
-
-            a.show-wishlist {
-                display: inline-block;
-                width: 20px;
-                height: 18px;
-                text-indent: 9999px;
-                background: url(../images/top_wishlist_mobile.png);
-            }
-        }
-    }
-
-    @media only screen and (max-width: 639px) {
-        .block-title {
-            margin-right: 40px;
-        }
-    }
-
-    @media only screen and (max-width: 479px) {
-        display: none !important;
     }
 
     .wishlist-content {
@@ -307,6 +283,7 @@
         height: 100%;
         left: 0;
         top: 0;
+        z-index: 9999;
         background-color: rgba(0, 0, 0, 0.25);
         padding: 0;
         margin: 0;

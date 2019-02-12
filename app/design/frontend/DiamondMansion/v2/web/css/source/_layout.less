@@ -65,10 +65,6 @@
             position: relative;
         }
     }
-
-    .desktop-only {
-        display: none !important;
-    }
 }
 
 //
@@ -144,7 +140,16 @@
     .panel.header {
         padding: 10px 20px;
     }
+}
 
+
+@media only screen and (max-width: 1365px) {
+    .desktop-only {
+        display: none !important;
+    }
+}
+
+@media only screen and (min-width: 1366px) {
     .mobile-only {
         display: none !important;
     }

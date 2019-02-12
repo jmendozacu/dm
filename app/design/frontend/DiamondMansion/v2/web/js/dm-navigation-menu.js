@@ -53,22 +53,14 @@ define([
 
 			$('#mobile-menu-open').on('click', function() {
                 if (!$('#mobile-menu-open').hasClass('active')) {
-                    $('#mobile-menu-shopby').animate({opacity: 0}, 1000, function () {
-                        $('#mobile-menu-shopby, #mobile-menu-shopby > .block').hide();
-                        $('#mobile-menu-shopby, #mobile-menu-shopby > .block').css('opacity', 1);
-                    });
-                    
                     $('.nav-container-mobile').slideDown('fast', function() {
-                        $('.nav-container-mobile').animate({height: $(window).height()}, 500, function() {
-                            $('.nav-footer-wrapper').show();
                             $('#mobile-menu-open').addClass('active');
-                        });
+                            $('.page-header').addClass('active');
                     });        
                 } else {
                     $('.nav-container-mobile').slideUp('fast', function() {
-                        $('.nav-container-mobile').height('auto');
-                        $('.nav-footer-wrapper').hide();
                         $('#mobile-menu-open').removeClass('active');
+                        $('.page-header').removeClass('active');
                     });        
                 }
                 return false;
@@ -85,12 +77,6 @@ define([
                         evtElm.removeClass('active');
                     });
                 }
-            });
-           
-            $('ul#nav-mobile li.level1.parent a').on('click', function() {
-                $($(this).attr('href')).show();
-                $('#mobile-menu-shopby').show();
-                $('#mobile-menu-open').trigger('click');
             });
         }
     });

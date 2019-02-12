@@ -91,10 +91,6 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
 
         display: flex;
 
-        .help {
-            width: 18%;
-        }
-
         & > div {
             padding: 20px 0 40px;
 
@@ -126,8 +122,12 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
             }
         }
 
-        .shop {
+        .help {
             width: 22%;
+        }
+
+        .shop {
+            width: 18%;
         }
 
         .company {
@@ -227,6 +227,53 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
                     display: inline-block;
                     margin: 0;
                     padding: 27px 0;
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 1699px) and (min-width: 1366px) {
+        .footer-top-wrapper {
+            padding: 0 30px;
+        }
+
+        .footer-bottom-wrapper {
+            padding: 0 30px;
+        }
+    }
+
+    @media only screen and (max-width: 1365px) {
+        text-align: center;
+        .footer-top-wrapper {
+            display: block;
+
+            .help,
+            .shop,
+            .company,
+            .visit-us,
+            .community {
+                width: auto;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        .footer-bottom-wrapper {
+            .content {
+                padding: 20px 0;
+                line-height: 50px;
+
+                & > div {
+                    width: 100%;
+                    float: none;
+                }
+
+                .social-links {
+                    text-align: center;
+
+                    ul.social-links {
+                        padding: 15px 0;
+                    }
                 }
             }
         }

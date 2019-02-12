@@ -1,118 +1,88 @@
-<a href="#" id="mobile-menu-open" class="mobile-only"><img src="<?php echo $this->getViewFileUrl('images/mobile/i_menu.png') ?>"/></a>
+<a href="#" id="mobile-menu-open" class="mobile-only">Menu</a>
 <div class="nav-mobile-container mobile-only">
     <div class="mobile-header-wrapper">
         <div class="nav-container-mobile" style="display: none;">
-            <div class="mobile-menu-title">
-                <span class="f-left">Menu</span>
-                <a id="mobile-menu-close" class="f-right" href="#" onclick="jQuery('#mobile-menu-open').trigger('click'); return false;"><img src="<?php echo $this->getViewFileUrl('images/mobile/i_menu_close.png') ?>"/></a>
-                <div class="clear"></div>
+            <div class="mobile-menu-search">
+                <form class="form minisearch active" id="search_mobile_form" action="/catalogsearch/result/" method="get">
+                    <input id="mobile_search" type="text" name="q" value="yellow" placeholder="Search" class="input-text" maxlength="128" role="combobox" aria-haspopup="false" aria-autocomplete="both" autocomplete="off">
+                    <button type="submit" title="Search" class="action search" disabled=""></button>
+                </form>                        
             </div>
             <div class="nav-mobile-wrapper">
-                <div class="nav-title"><span class="red"><b>SHOP</b></span></div>
                 <ul id="nav-mobile">
                     <li class="level0 nav-1 first level-top">
-                        <a href="#" class="level-top"><span>Engagement Rings</span></a>
+                        <a href="#" class="level-top"><span>Trending</span><span class="nav-link-arrow"></span></a>
                         <ul style="display: none;">
-                            <li class="level1 parent"><a href="#mobile-menu-shopby-style"><span class="red">BY STYLE</span></a></li>
-                            <li class="level1 parent"><a href="#mobile-menu-shopby-shape"><span class="red">BY DIAMOND SHAPE</span></a></li>
-                            <li class="level1 parent"><a href="#mobile-menu-shopby-type"><span class="red">BY DIAMOND TYPE</span></a></li>
+                            <li class="level1 nav-1-1"><a href="<?php echo $this->getUrl();?>">Specials</a></li>
+                            <li class="level1 nav-1-2"><a href="<?php echo $this->getUrl();?>">Best Sellers</a></li>
+                            <li class="level1 nav-1-3"><a href="<?php echo $this->getUrl();?>">New Arrivals</a></li>
+                            <li class="level1 nav-1-4"><a href="<?php echo $this->getUrl();?>">Shop Insta</a></li>
+                            <li class="level1 nav-1-5"><a href="<?php echo $this->getUrl();?>">Gifts</a></li>
                         </ul>
                     </li>
                     <li class="level0 nav-2 level-top">
-                        <a href="#" class="level-top"><span>Wedding Bands</span></a>
+                        <a href="#" class="level-top"><span>Engagement Rings</span><span class="nav-link-arrow"></span></a>
                         <ul style="display: none;">
-                            <li class="level1 parent"><a href="#mobile-menu-shopby-women"><span class="red">WOMEN</span></a></li>
-                            <li class="level1 parent"><a href="#mobile-menu-shopby-men"><span class="red">MEN</span></a></li>
+                            <li class="level1 nav-2-1"><a href="<?php echo $this->getUrl().'rings/engagement/halo/';?>">Halo</a></li>
+                            <li class="level1 nav-2-2"><a href="<?php echo $this->getUrl().'rings/engagement/three-stone/';?>">Three Stone</a></li>
+                            <li class="level1 nav-2-3"><a href="<?php echo $this->getUrl().'rings/engagement/solitaire/';?>">Solitaire</a></li>
+                            <li class="level1 nav-2-4"><a href="<?php echo $this->getUrl().'rings/engagement/all-designer/';?>">Designer</a></li>
+                            <li class="level1 nav-2-5"><a href="<?php echo $this->getUrl().'rings/engagement/rose-gold/';?>">Rose Gold</a></li>
+                            <li class="level1 nav-2-6"><a href="<?php echo $this->getUrl().'rings/engagement/yellow/';?>">Yellow Diamond</a></li>
+                            <li class="level1 nav-2-7"><a href="<?php echo $this->getUrl().'rings/engagement/round/';?>">Round</a></li>
+                            <li class="level1 nav-2-8"><a href="<?php echo $this->getUrl().'rings/engagement/cushion/';?>">Cushion</a></li>
+                            <li class="level1 nav-2-9"><a href="<?php echo $this->getUrl().'rings/engagement/oval/';?>">Oval</a></li>
+                            <li class="level1 nav-2-10"><a href="<?php echo $this->getUrl().'rings/engagement/emerald/';?>">Emerald</a></li>
+                            <li class="level1 nav-2-11"><a href="<?php echo $this->getUrl().'rings/engagement/pear/';?>">Pear</a></li>
+                            <li class="level1 nav-2-12"><a href="<?php echo $this->getUrl().'rings/engagement/';?>">All Engagement Rings</a></li>
                         </ul>
                     </li>
                     <li class="level0 nav-3 level-top">
-                        <a href="#" class="level-top"><span>Stud Earrings</span></a>
+                        <a href="#" class="level-top"><span>Wedding Rings</span><span class="nav-link-arrow"></span></a>
                         <ul style="display: none;">
-                            <li class="level1"><a href="<?php echo $this->getUrl().'earrings/her-diamond-stud/round-cut-stud-earrings/'; ?>"><span class="red">ROUND</span></a></li>
-                            <li class="level1"><a href="<?php echo $this->getUrl().'earrings/her-diamond-stud/princess-cut-stud-earrings/'; ?>"><span class="red">PRINCESS</span></a></li>
-                            <li class="level1"><a href="<?php echo $this->getUrl().'earrings/her-diamond-stud/emerald-cut-stud-earrings/'; ?>"><span class="red">EMERALD</span></a></li>
-                            <li class="level1"><a href="<?php echo $this->getUrl().'earrings/her-diamond-stud/asscher-cut-stud-earrings/'; ?>"><span class="red">ASSCHER</span></a></li>
+                            <li class="level1 nav-3-1"><a class="" href="<?php echo $this->getUrl().'rings/wedding/his-her-classic/';?>"><span>Classic</span></a></li>
+                            <li class="level1 nav-3-2"><a class="" href="<?php echo $this->getUrl().'rings/wedding/her-eternity/';?>"><span>Eternity</span></a></li>
+                            <li class="level1 nav-3-3"><a class="" href="<?php echo $this->getUrl().'rings/wedding/her-diamond-anniversary/';?>"><span>Diamond</span></a></li>                        
+                            <li class="level1 nav-3-4"><a class="" href="<?php echo $this->getUrl().'rings/wedding/his-diamond/';?>"><span>Mens</span></a></li>
                         </ul>
                     </li>                    
+                    <li class="level0 nav-4 level-top">
+                        <a href="#" class="level-top"><span>Jewelry</span><span class="nav-link-arrow"></span></a>
+                        <ul style="display: none;">
+                            <li class="level1 nav-4-1"><a href="<?php echo $this->getUrl().'rings/'; ?>"><span>Rings</span></a></li>
+                            <li class="level1 nav-4-2"><a href="<?php echo $this->getUrl().'earrings/'; ?>"><span>Earrings</span></a></li>
+                            <li class="level1 nav-4-3"><a href="<?php echo $this->getUrl().'fine-jewelry/necklaces/'; ?>"><span>Necklaces</span></a></li>
+                            <li class="level1 nav-4-4"><a href="<?php echo $this->getUrl().'fine-jewelry/bracelets/'; ?>"><span>Bracelets</span></a></li>
+                            <li class="level1 nav-4-5"><a href="<?php echo $this->getUrl().'rings/engagement/'; ?>"><span>Personalized</span></a></li>
+                        </ul>
+                    </li>                    
+                    <li class="level0 nav-5">
+                        <a href="#" class="level-top"><span>Custom Design</span></a>
+                    </li>                    
+                    <li class="level0 nav-6 level-top">
+                        <a href="#" class="level-top"><span>Learn</span><span class="nav-link-arrow"></span></a>
+                        <ul style="display: none;">
+                            <li><a href="<?php echo $this->getUrl().'diamond-education/' ?>"><span class="tab-title">Diamond Engagement Ring Guide</span></a></li>
+                            <li><a href="<?php echo $this->getUrl().'guides/ultimate-marriage-proposal-guide/';?>"><span class="tab-title">Proposal Guide</span></a></li>
+                            <li><a href="<?php echo $this->getUrl().'blog/';?>"><span class="tab-title">Blog</span></a></li>
+                        </ul>
+                    </li>                    
+                    <li class="level0 nav-7 level-top">
+                        <a href="#" class="level-top"><span>About</span><span class="nav-link-arrow"></span></a>
+                        <ul style="display: none;">
+                            <li><a href="<?php echo $this->getUrl().'history/' ?>"><span class="tab-title">Our history</span></a></li>
+                            <li><a href="<?php echo $this->getUrl().'/' ?>"><span class="tab-title">Fair Pricing</span></a></li>
+                            <li><a href="<?php echo $this->getUrl().'/' ?>"><span class="tab-title">Customer Reviews</span></a></li>
+                            <li><a href="<?php echo $this->getUrl().'/' ?>"><span class="tab-title">Satisfaction Gurantee</span></a></li>
+                            <li><a href="<?php echo $this->getUrl().'/' ?>"><span class="tab-title">Our Jewelrs</span></a></li>
+                            <li><a href="<?php echo $this->getUrl().'/' ?>"><span class="tab-title">Material & Care</span></a></li>
+                            <li><a href="<?php echo $this->getUrl().'/' ?>"><span class="tab-title">Life Time Upgrade</span></a></li>
+                        </ul>
+                    </li>                    
+                    <li class="level0 nav-8"><a href="/customer/account/login/"><span>LogIn</span></a></li>
+                    <li class="level0 nav-9"><a href="/contactus/"><span>Contact</span></a></li>
                 </ul>
                 <div class="clear"></div>
-            </div>
-            <div class="nav-footer-wrapper">
-                <p><span class="red"><b>NEED HELP?</b></span>&nbsp;WE'RE OPEN MON-FRI 9AM-6PM PST <span class="red">800-518-0240</span></p>
-                <ul class="nav-footer">
-                    <li><a href="/contactus/">Location</a></li>
-                    <li><a href="/contactus/">Contact Us</a></li>
-                    <li><a href="/history/">Our Story</a></li>
-                    <li><a href="/diamond-education/">Help</a></li>
-                    <li><a href="/customer/account/login">Log-In</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <?php $reserveKey = ""; ?>
-    <div id="mobile-menu-shopby">
-        <div class="a-center" id="title"><span class="red">SHOP BY</span></div>
-        <div id="mobile-menu-shopby-style" class="block">
-            <div class="block-title"><span class="red">STYLE</span></div>
-            <div class="block-content">
-                <ul>
-                    <li class="level1 nav-1-1 first"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'solitaire/';?>">Solitaire</a></li>
-                    <li class="level1 nav-1-2"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'halo/';?>">Halo</a></li>
-                    <li class="level1 nav-1-3"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'three-stone/';?>">3 Stone</a></li>
-                    <li class="level1 nav-1-4"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'pave/';?>">Pave</a></li>
-                    <li class="level1 nav-1-5"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'vintage/';?>">Vintage</a></li>
-                    <li class="level1 nav-1-6"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'gemstone/';?>">Gemstone</a></li>
-                    <li class="level1 nav-1-7"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'split-shank/';?>">Split Shank</a></li>
-                    <li class="level1 nav-1-8"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'bridal-set/';?>">Bridal Set</a></li>
-                </ul>
-            </div>
-        </div>
-        <div id="mobile-menu-shopby-shape" class="block">
-            <div class="block-title"><span class="red">DIAMOND SHAPE</span></div>
-            <div class="block-content">
-                <ul>
-                    <li class="level1 nav-1-9"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'round/';?>">Round</a></li>
-                    <li class="level1 nav-1-10"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'princess/';?>">Princess</a></li>
-                    <li class="level1 nav-1-11"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'cushion/';?>">Cushion</a></li>
-                    <li class="level1 nav-1-12"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'emerald/';?>">Emerald</a></li>
-                    <li class="level1 nav-1-13"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'asscher/';?>">Asscher</a></li>
-                    <li class="level1 nav-1-14"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'radiant/';?>">Radiant</a></li>
-                    <li class="level1 nav-1-15"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'heart/';?>">Heart</a></li>
-                    <li class="level1 nav-1-16"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'marquise/';?>">Marquise</a></li>
-                    <li class="level1 nav-1-17"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'pear/';?>">Pear</a></li>
-                    <li class="level1 nav-1-18"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'oval/';?>">Oval</a></li>
-                </ul>
-            </div>
-        </div>
-        <div id="mobile-menu-shopby-type" class="block">
-            <div class="block-title"><span class="red">DIAMOND TYPE</span></div>
-            <div class="block-content">
-                <ul>
-                    <li class="level1 nav-1-19"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'diamond/';?>">Natural Colorless</a></li>
-                    <li class="level1 nav-1-20"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'yellow/';?>">Natural Yellow</a></li>
-                    <li class="level1 nav-1-21"><a href="<?php echo $this->getUrl().'rings/engagement/'.$reserveKey.'black/';?>">Natural Black</a></li>
-                </ul>
-            </div>
-        </div>
-        <div id="mobile-menu-shopby-women" class="block">
-            <div class="block-title"><span class="red">WOMEN</span></div>
-            <div class="block-content">
-                <ul>
-                    <li class="level1 nav-2-1 first"><a class="" href="<?php echo $this->getUrl().'rings/wedding/her-eternity/';?>"><span>Eternity</span></a></li>
-                    <li class="level1 nav-2-2"><a class="" href="<?php echo $this->getUrl().'rings/wedding/her-diamond-anniversary/';?>"><span>Diamond</span></a></li>                        
-                    <li class="level1 nav-2-3"><a class="" href="<?php echo $this->getUrl().'rings/wedding/her-carved/';?>"><span>Carved</span></a></li>
-                    <li class="level1 nav-2-4"><a class="" href="<?php echo $this->getUrl().'rings/wedding/his-her-classic/';?>"><span>Plain</span></a></li>
-                </ul>
-            </div>
-        </div>
-        <div id="mobile-menu-shopby-men" class="block">
-            <div class="block-title"><span class="red">MEN</span></div>
-            <div class="block-content">
-                <ul>
-                    <li class="level1 nav-2-5"><a class="" href="<?php echo $this->getUrl().'rings/wedding/his-diamond/';?>"><span>Diamond</span></a></li>
-                    <li class="level1 nav-2-6 last"><a class="" href="<?php echo $this->getUrl().'rings/wedding/his-carved/';?>"><span>Carved</span></a></li>
-                    <li class="level1 nav-2-7"><a class="" href="<?php echo $this->getUrl().'rings/wedding/his-her-classic/';?>"><span>Plain</span></a></li>
-                </ul>
             </div>
         </div>
     </div>

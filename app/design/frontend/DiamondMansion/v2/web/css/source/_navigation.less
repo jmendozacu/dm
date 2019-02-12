@@ -28,7 +28,7 @@
 //  Mobile
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+@media only screen and (max-width: 1365px) {
     .nav-before-open {
         height: 100%;
         overflow-x: hidden;
@@ -79,219 +79,128 @@
         }
     }
 
-    #mobile-menu-open { position: absolute; left: 30px; top: 12px; display: block !important; width: 25px; }
-
-    #mobile-menu-shopby { 
-        display: none;
-    }
-    .nav-mobile-container {      
-        .mobile-header-wrapper {
-            position: absolute;
-            top: 0;
-            width: 90%;
-            padding-right: 10%;      
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 9999;
-        }
-    }
-
-    .nav-container-mobile {
-        background: #fff;  
-        color: #5b5b5b;    
-        font-family: 'Futura LT';
-        font-weight: 500;
-        min-height: 450px;    
-        
-        span.red {
-            color: @dm-color-red;
-            font-family: 'Futura LT';
-            font-weight: normal;
-            font-style: italic;
-            & > b {
-                font-weight: 500;
-            }
-        }
-        
-        .mobile-menu-title {
-            height: 52px;
-            line-height: 52px;
-            border-bottom: 1px solid #5b5b5b;
-            font-size: 24px;
-            text-transform: uppercase;
-            padding: 0 20px;
-            
-            & > #mobile-menu-close {
-                padding-top: 18px;
-            }
-        }
-        
-        .nav-mobile-wrapper {
-        
-            padding: 0 15px;
-            position: relative;
-            z-index: 99999;
-            background: #fff;
-        
-            .nav-title {
-                font-size: 30px;
-                line-height: 52px;
-            }
-            
-            & > #nav-mobile {
-                border-top: 3px solid #5b5b5b;
-                border-bottom: 3px solid #5b5b5b;
-                
-                & > li {
-                    display: block;
-                    border-bottom: 2px solid #5b5b5b;
-                    
-                    a {
-                        font-size: 22px;
-                        color: #5b5b5b;
-                        line-height: 40px;
-                        display: block;
-                        text-transform: uppercase;
-                        
-                        &.level-top {
-                            background: url(../images/mobile/i_menu_arrow_down.png) 98% center no-repeat;
-                            
-                            &.active {
-                                text-decoration: underline;
-                                background-image: url(../images/mobile/i_menu_arrow_up.png);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
-        .nav-footer-wrapper {
-            display: none;
-            position: absolute;
-            bottom: 0;
-            width: 90%;
-            font-size: 18px;
-            
-            & > p {
-                padding: 10px 15px;
-            }
-            
-            span.red > b {
-                font-family: 'Futura LT';
-                font-weight: bold; 
-                font-style: normal;
-                font-size: 18px;
-            }
-            
-            ul.nav-footer {
-                padding: 0 15px;
-                
-                li {
-                    font-size: 18px;
-                    line-height: 30px;
-                    border-top: 1px solid #959595;
-                    text-transform: uppercase;
-                }
-            }
-        }
-    }
-    
-    #mobile-menu-shopby {
-        width: 90%;
-        min-height: 100%;
+    #mobile-menu-open {
+        display: block;
+        text-indent: -9999px;
         position: absolute;
-        top: 52px;
-        background: #fff;
-        z-index: 9998;
-        padding: 30px 5% 0;
-        text-align: center;
-        font-family: 'Futura LT';        
+        left: 50px;
+        top: @v3-header-height-mobile / 2 - 15;
+
+        .icon-sprites('menu-white');
+
+        .page-header:hover &,
+        .page-header.active & {
+            .icon-sprites('menu-black');
+        }
+    }
+
+    .nav-mobile-container {      
+        position: absolute;
+        top: @v3-header-height-mobile;
+        width: 100%;
+        z-index: 99;
+        padding: 0 50px;
+        background-color: #fff;
+        box-shadow: 0px 15px 15px 0px rgba(0, 0, 0, 0.15);
+
+        font-family: 'Avenir LT Std';
+        font-size: 14px;
         font-weight: 500;
-        
-        #title { 
-            font-size: 22px;
-            line-height: 24px;
+        color: #000;
+
+        .mobile-header-wrapper {
         }
-        
-        span.red {
-            color: @dm-color-red;
-        }
-        
-        .block {
-            display: none;
-            
-            .block-title {
-                font-size: 40px;  
-                line-height: 60px;
+
+        .mobile-menu-search {
+            position: relative;
+
+            input {
+                font-size: 20px;
+                line-height: 40px;
+                height: 60px;
+                padding: 10px 0 10px 60px;
+                border: 0 none;
+                border-bottom: 1px solid #000;
+
+                &:focus {
+                    outline: none;
+                    box-shadow: none;
+                }
             }
-            
-            .block-content {
-                border-top: 1px solid #5b5b5b;
-                border-bottom: 1px solid #5b5b5b;
-                
-                ul {
-                    li {
-                        line-height: 40px;
-                        a {
-                            color: #5b5b5b;
-                            font-size: 24px;
-                            text-transform: uppercase;
-                        }
+
+            button {
+                text-indent: -9999px;
+                display: block;
+                position: absolute;
+                left: 15px;
+                top: 15px;
+                padding: 0;
+                background-color: transparent;
+
+                .icon-sprites('search-black');
+            }
+        }
+
+        .nav-mobile-wrapper {
+            li {
+                line-height: 60px;
+                border-bottom: 1px solid @v3-border-color;
+                text-align: center;
+                position: relative;
+                text-transform: uppercase;
+
+                &.level1:first-child {
+                    border-top: 1px solid @v3-border-color;
+                }
+
+                a {
+                    display: block;
+                }
+
+                .nav-link-arrow {
+                    position: absolute;
+                    right: 20px;
+                    top: 25px;
+                }
+            }
+
+            a.level-top {
+                &:not(.active) {
+                    .nav-link-arrow {
+                        .nav-link-arrow();
+                        .nav-link-arrow-dropdown();
+                    }
+                }
+
+                &.active {
+                    .nav-link-arrow {
+                        .nav-link-arrow();
                     }
                 }
             }
         }
-    }    
+    }
 }
 
 @media only screen and (max-width: 639px) {
     #mobile-menu-open {
-        width: 20px;
-        top: 15px !important;
-        left: 15px !important;
+        left: 10px;
     }
 }
 
-@media only screen and (max-width: 1365px) and (min-width: 768px) {
-    .nav-container-wrapper {
-        float: none;
-        clear: both;
-        width: 100%;
-        text-align: center;
-    }
-}
-@media only screen and (max-width: 1599px) and (min-width: 1366px) {
-    .nav-container-wrapper {
-        float: left;
-        padding: 0 10px;
-
-        #nav li {
-            padding-left: 13px;
-            padding-right: 13px;
-        }
-    }
-}
-@media only screen and (min-width: 1600px) {
-    .nav-container-wrapper {
-        float: left;
-        padding: 0 30px;
-
-        #nav li {
-            padding-left: 30px;
-        }
-    }
-}
 
 //
 //  Desktop
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+@media only screen and (min-width: 1366px) {
     .nav-toggle {
         display: none;
     }
 
     .nav-container-wrapper {
+        float: left;
+        
         #nav {
             margin: 0;
             padding: 0;

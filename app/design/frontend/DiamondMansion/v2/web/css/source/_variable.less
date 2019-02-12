@@ -23,6 +23,7 @@
 **/
 
 @v3-header-height: 94px;
+@v3-header-height-mobile: 94px;
 @v3-container-max-width: 1700px;
 @v3-border-color: #f1eff0;
 
@@ -56,6 +57,22 @@
 
 .icon-sprites-position(@icon) when (@icon = 'dropdown-white') {
 	background-position:  -360px -10px;
+}
+
+.icon-sprites-position(@icon) when (@icon = 'menu-black') {
+	background-position: -410px -10px;
+}
+
+.icon-sprites-position(@icon) when (@icon = 'menu-white') {
+	background-position: -460px -10px;
+}
+
+.icon-sprites-position(@icon) when (@icon = 'phone-black') {
+	background-position: -510px -10px;
+}
+
+.icon-sprites-position(@icon) when (@icon = 'phone-white') {
+	background-position: -560px -10px;
 }
 
 .icon-sprites (@icon) {

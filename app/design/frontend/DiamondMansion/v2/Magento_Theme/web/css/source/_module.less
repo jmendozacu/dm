@@ -77,17 +77,78 @@
         }
     }
 
-    .logo {
-        display: inline-block;
-        margin-left: 5px;
-        width: 340px;
+   .logo {
+        position: absolute;
+        left: 50%;
+        margin-left: -157px;
+        top: @v3-header-height / 2;
+        margin-top: -10px;
 
-        img {
-            display: block;
+        @media only screen and (max-width: 639px) {
+            width: 240px;
+            margin-left: -120px;
+            top: 50px;
+        }
+    }
+
+    .page-header {
+        border: 0;
+        margin-bottom: 0;
+        transition: background-color 0.25s;
+        z-index: 1;
+
+        .header {
+            &.content {
+                padding: 0;
+                max-width: @v3-container-max-width;
+                height: @v3-header-height;
+            }
         }
 
-        .page-print & {
-            float: none;
+        .panel.wrapper {
+            border-bottom: 1px solid @secondary__color;
+        }
+
+        .header.panel {
+            &:extend(.abs-add-clearfix-desktop all);
+            padding-bottom: @indent__s;
+            padding-top: @indent__s;
+        }
+
+        .logo-white {
+            display: inline;
+        }
+
+        .logo-black {
+            display: none;
+        }
+
+        a {
+            color: #fff;
+        }
+
+        .nav-link-arrow {
+            border-color: #fff;
+        }
+
+        &:hover, &.active {
+            background-color: #fff;
+
+            .logo-white {
+                display: none;
+            }
+
+            .logo-black {
+                display: inline;
+            }
+
+            a {
+                color: #000;
+            }
+
+            .nav-link-arrow {
+                border-color: #000;
+            }
         }
     }
 
@@ -324,29 +385,8 @@
 }
 
 //
-//  Mobile
+//  Desktop
 //  _____________________________________________
-@media only screen and (max-width: 767px) {
-    .header.content {
-        padding-top: 0;
-        box-shadow: 0 1px #FFFFFF inset, 0 1px 3px rgba(34, 25, 25, 0.4);            
-    }
-
-    .logo {
-        display: block;
-        margin: 0 auto;
-        padding-left: 45px;
-        padding-right: 45px;
-        img {
-            max-height: 52px;
-            margin: 0 auto;
-        }
-    }
-
-    .block-search {
-        display: none;
-    }
-}
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
 
@@ -401,76 +441,10 @@
 
         &.content {
             &:extend(.abs-add-clearfix-desktop all);
-            padding: 0;
-            max-width: @v3-container-max-width;
-            height: @v3-header-height;
         }
     }
 
-    .logo {
-        position: absolute;
-        left: 50%;
-        margin-left: -157px;
-        top: @v3-header-height / 2;
-        margin-top: -10px;
-    }
-
-    .page-header {
-        border: 0;
-        margin-bottom: 0;
-        transition: background-color 0.25s;
-        z-index: 1;
-
-        .panel.wrapper {
-            border-bottom: 1px solid @secondary__color;
-        }
-
-        .header.panel {
-            &:extend(.abs-add-clearfix-desktop all);
-            padding-bottom: @indent__s;
-            padding-top: @indent__s;
-        }
-
-        .switcher {
-            display: inline-block;
-        }
-
-        .logo-white {
-            display: inline;
-        }
-
-        .logo-black {
-            display: none;
-        }
-
-        a {
-            color: #fff;
-        }
-
-        .nav-link-arrow {
-            border-color: #fff;
-        }
-
-        &:hover, &.active {
-            background-color: #fff;
-
-            .logo-white {
-                display: none;
-            }
-
-            .logo-black {
-                display: inline;
-            }
-
-            a {
-                color: #000;
-            }
-
-            .nav-link-arrow {
-                border-color: #000;
-            }
-        }
-    }
+ 
 
     .page-main {
         > .page-title-wrapper {
@@ -487,3 +461,14 @@
 }
 
 
+@media only screen (min-width: 640px) and (max-width: 1365px) {
+    .page-header .header.content {
+        padding: 0 50px;
+    }
+}
+
+@media only screen and (max-width: 639px) {
+    .page-header .header.content {
+        padding: 0 10px;
+    }
+}

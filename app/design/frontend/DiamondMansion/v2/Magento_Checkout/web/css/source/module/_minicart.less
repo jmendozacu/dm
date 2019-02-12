@@ -402,144 +402,90 @@
     }
 }
 
-//
-//  Mobile
-//  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
-    .minicart-wrapper .block-minicart {
-        width: 290px;
-    }
-}
-
-@media only screen and (min-width: 640px) and (max-width: 767px) {
-    .minicart-wrapper {
-        position: absolute;
-        right: 30px;
-        top: 15px;
+.minicart-wrapper {
+    margin: 0;
+    padding: 0 0 0 20px;
+    line-height: @v3-header-height;
+    text-transform: uppercase;
+    .block-minicart {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: 9999;
+        background-color: rgba(0, 0, 0, 0.25);
+        border: 0 none;
         margin: 0;
+        padding: 0;
 
-        a.show-cart {
-            color: @dm-color-black-bright;
-            padding-left: 20px;
-            display: block;
-            line-height: 20px;
-            background: url(../images/top_cart_mobile.png) 5px top no-repeat;
-            .text {
-                display: none;
-            }
-        }        
-    }
-}
+        &:before, &:after {
+            display: none;
+        }
 
-@media only screen and (max-width: 639px) {
-    .minicart-wrapper {
-        position: absolute;
-        right: 15px;
-        top: 15px;
-        margin: 0;
-
-        a.show-cart {
-            color: @dm-color-black-bright;
-            padding-left: 20px;
-            display: block;
-            line-height: 20px;
-            background: url(../images/top_cart_mobile.png) 5px top no-repeat;
-            .text {
-                display: none;
-            }
-        }        
-    }
-}
-
-//
-//  Desktop
-//  _____________________________________________
-
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-    .minicart-wrapper {
-        margin: 0;
-        padding: 0 20px;
-        line-height: @v3-header-height;
-        text-transform: uppercase;
-        .block-minicart {
-            position: fixed;
-            width: 100%;
+        #minicart-content-wrapper {
+            position: absolute;
+            width: 300px;
             height: 100%;
-            left: 0;
             top: 0;
-            background-color: rgba(0, 0, 0, 0.25);
-            border: 0 none;
+            right: 0;
             margin: 0;
             padding: 0;
+            background-color: white;
+            font-family: 'Avenir LT Std';
+            font-weight: 500;                    
 
-            &:before, &:after {
-                display: none;
+            .block-title {
+                display: block;
+                line-height: @v3-header-height;
+                background-color: #000;
+                color: #fff;
+                text-align: center;
+                font-size: 14px;
             }
 
-            #minicart-content-wrapper {
-                position: absolute;
-                width: 300px;
-                height: 100%;
-                top: 0;
-                right: 0;
-                margin: 0;
-                padding: 0;
-                background-color: white;
-                font-family: 'Avenir LT Std';
-                font-weight: 500;                    
+            .block-content {
+                padding: 20px;
+                line-height: 20px;
 
-                .block-title {
-                    display: block;
-                    line-height: @v3-header-height;
-                    background-color: #000;
-                    color: #fff;
-                    text-align: center;
-                    font-size: 14px;
+                .items-total {
+                    float: none;
                 }
 
-                .block-content {
-                    padding: 20px;
-                    line-height: 20px;
+                .subtotal {
+                    line-height: 30px;
+                    text-align: left;
 
-                    .items-total {
-                        float: none;
+                    .price-container {
+                        display: inline-block;
                     }
+                }
 
-                    .subtotal {
-                        line-height: 30px;
-                        text-align: left;
+                .product-item {
+                    padding: 0;
+                }
 
-                        .price-container {
-                            display: inline-block;
+                .product-item-details {
+                    .product-item-name {
+                        font-size: 14px;
+                        margin-bottom: 10px;
+                        display: inline-block;
+
+                        a {
+                            color: #000;
                         }
                     }
 
-                    .product-item {
-                        padding: 0;
-                    }
+                    .item-qty {
+                        border: 0 none;
+                        height: 20px;
+                        line-height: 20px;
+                        cursor: pointer;
 
-                    .product-item-details {
-                        .product-item-name {
-                            font-size: 14px;
-                            margin-bottom: 10px;
-                            display: inline-block;
-
-                            a {
-                                color: #000;
-                            }
-                        }
-
-                        .item-qty {
-                            border: 0 none;
-                            height: 20px;
-                            line-height: 20px;
-                            cursor: pointer;
-
-                            &:focus {
-                                outline: none;
-                                box-shadow: none;
-                            }
+                        &:focus {
+                            outline: none;
+                            box-shadow: none;
                         }
                     }
                 }
@@ -547,3 +493,12 @@
         }
     }
 }
+
+//
+//  Mobile
+//  _____________________________________________
+
+//
+//  Desktop
+//  _____________________________________________
+
