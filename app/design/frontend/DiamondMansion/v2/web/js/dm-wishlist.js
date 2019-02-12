@@ -58,7 +58,7 @@ define([
 
             reloadGuestWishlist(false);
 
-            $('body').delegate('.miniwishlist-wrapper', 'click', function () {
+            $('body').delegate('.action.show-wishlist', 'click', function () {
 
                 if ($('.action.show-cart').hasClass('active')) {
                     $('.action.show-cart').trigger('click');
@@ -155,11 +155,11 @@ define([
             $('body').delegate('.miniwishlist-wrapper a.product-item-photo', 'click', function () {
                 location.href = $(this).attr('href');
             });
-        });
-    
-        $(window).click(function () {
-            $('.miniwishlist-wrapper').removeClass('active');
-            $('.wishlist-content').addClass('no-display');
+
+            $('body').delegate('.wishlist-content .action.close', 'click', function () {
+                $('.miniwishlist-wrapper').removeClass('active');
+                $('.wishlist-content').addClass('no-display');
+            });
         });
     }
 });

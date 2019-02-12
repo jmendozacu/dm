@@ -23,50 +23,56 @@ $guestWishlist = [];
             </div>
         </div>
         <div class="block-content wishlist-content no-display">
-            <?php if (count($guestWishlist)): ?>
-            <ol id="miniwishlist">
-                <?php foreach ($guestWishlist as $item): ?>
-                <li class="product-item" rel="<?php echo $item->id ?>">
-                    <div class="product-item-info">
-                        <a class="product-item-photo" href="<?php echo $item->url ?>" title="<?php echo $item->name ?>">
-                            <span class="product-image-container">
-                                <span class="product-image-wrapper">
-                                    <img class="product-image-photo" src="<?php echo $item->image ?>" alt="<?php echo $item->name ?>" style="width: 75px; height: 90px;">
-                                </span>
-                            </span>
-                        </a>
-                        <div class="product-item-details">
-                            <strong class="product-item-name">
-                                <a  class="product-item-link" href="<?php echo $item->url ?>">
-                                    <span><?php echo $item->name ?></span>
+            <div class="wishlist-content-wrapper">
+                <button type="button" id="btn-miniwishlist-close" class="action close" title="Close">
+                    <span>Close</span>
+                </button>
+                <div class="wishlist-content-title">Your Wishlist</div>
+                <div class="item-list">
+                    <?php if (count($guestWishlist)): ?>
+                    <ol id="miniwishlist">
+                        <?php foreach ($guestWishlist as $item): ?>
+                        <li class="product-item" rel="<?php echo $item->id ?>">
+                            <div class="product-item-info">
+                                <a class="product-item-photo" href="<?php echo $item->url ?>" title="<?php echo $item->name ?>">
+                                    <span class="product-image-container">
+                                        <span class="product-image-wrapper">
+                                            <img class="product-image-photo" src="<?php echo $item->image ?>" alt="<?php echo $item->name ?>" style="width: 75px; height: 90px;">
+                                        </span>
+                                    </span>
                                 </a>
-                            </strong>
-                            <div>
-                                <span class="price"><?php echo $item->price ?></span>
-                            </div>
-                            <div class="product-item-actions">
-                                <div class="actions-primary no-display"></div>
-                                <div class="actions-secondary">
-                                    <a href="#" data-key="<?php echo $item->id ?>" title="Remove This Item" class="btn-remove action delete">
-                                        <span>Remove This Item</span>
-                                    </a>
+                                <div class="product-item-details">
+                                    <strong class="product-item-name">
+                                        <a  class="product-item-link" href="<?php echo $item->url ?>">
+                                            <span><?php echo $item->name ?></span>
+                                        </a>
+                                    </strong>
+                                    <div>
+                                        <span class="price"><?php echo $item->price ?></span>
+                                    </div>
+                                    <div class="product-item-actions">
+                                        <div class="actions-primary no-display"></div>
+                                        <div class="actions-secondary">
+                                            <a href="#" data-key="<?php echo $item->id ?>" title="Remove This Item" class="btn-remove action delete">
+                                                <span>Remove This Item</span>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </li>
+                        <?php endforeach ?>
+                    </ol>
+                    <?php else: ?>
+                    <strong class="empty subtitle"><?= $block->escapeHtml(__('You have no items in your wish list.')) ?></strong>
+                <?php endif ?>
+                </div>
+                <div class="actions-toolbar <?php if (!count($guestWishlist)): ?> no-display<?php endif ?>">
+                    <div class="primary">
+                        <a class="details"
+                            href="/dm/wishlist/"
+                            title="<?= $block->escapeHtmlAttr(__('Go to Wish List')) ?>"><span><?= $block->escapeHtml(__('Go to Wish List')) ?></span></a>
                     </div>
-                </li>
-                <?php endforeach ?>
-            </ol>
-            <?php else: ?>
-            <div class="item-list">
-                <strong class="empty subtitle"><?= $block->escapeHtml(__('You have no items in your wish list.')) ?></strong>
-            </div>
-            <?php endif ?>
-            <div class="actions-toolbar <?php if (!count($guestWishlist)): ?> no-display<?php endif ?>">
-                <div class="primary">
-                    <a class="details"
-                        href="/dm/wishlist/"
-                        title="<?= $block->escapeHtmlAttr(__('Go to Wish List')) ?>"><span><?= $block->escapeHtml(__('Go to Wish List')) ?></span></a>
                 </div>
             </div>
         </div>
