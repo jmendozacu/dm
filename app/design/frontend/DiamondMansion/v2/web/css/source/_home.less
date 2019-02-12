@@ -1,3 +1,6 @@
+@import '_slick.less';
+@import '_slick-theme.less';
+
 .cms-home {
 
 	.page-main {
@@ -796,7 +799,7 @@
 				margin-left: 30px;
 				@media only screen and (min-width: 1700px) {
 					left: 50%;
-					margin-left: -@v3-container-max-width / 2 + 60;
+					margin-left: -@v3-container-max-width / 2 + 20;
 				}
 				margin-top: -200px;
 
@@ -1417,9 +1420,8 @@
 			background-color: #f4f4f4;
 
 			.content {
-				max-width: @v3-container-max-width;
-				margin: 0 auto;
-				padding: 0 30px;
+				margin: 0;
+				padding: 0 300px;
 
 				.title {
 					font-family: 'Proxima Nova Rg';
@@ -1434,10 +1436,122 @@
 						background-position: center bottom;
 					}
 				}
+
+				.review-slider {
+					li {
+						.review-wrapper {
+							padding: 30px 60px;
+							display: flex;
+
+							.review-avatar {
+								min-width: 100px;
+							}
+
+							.review-info {
+								text-align: left;
+								padding-left: 20px;
+
+								.review-content {
+									font-family: 'Avenir LT Std';
+									font-weight: 300;
+									font-size: 20px;
+									line-height: 30px;
+								}
+
+								.customer-name {
+									font-family: 'Proxima Nova Rg';
+									font-size: 19px;
+									font-weight: bold;
+									line-height: 30px;
+									text-transform: uppercase;
+								}
+
+								.customer-rate {
+									width: 80px;
+									height: 16px;
+									background: url(../images/v3/i_star_inactive.png);
+
+									span {
+										display: block;
+										height: 100%;
+										background: url(../images/v3/i_star_active.png)
+									}
+								}
+							}
+						}
+					}
+
+					.slick-prev,
+					.slick-next {
+						text-indent: -9999px;
+						background: #fff;
+						width: 70px;
+						height: 60px;
+						cursor: pointer;
+
+						&:before {
+							position: absolute;
+							width: 36px;
+							height: 36px;
+							left: 50%;
+							top: 50%;
+							margin-left: -18px;
+							margin-top: -18px;
+							background-image: url(../images/v3/arrows.png);
+						}
+					}
+
+					.slick-prev {
+						margin-left: -244px;
+						&:before {
+							background-position: left top;
+						}
+					}
+					.slick-next {
+						margin-right: -244px;
+						&:before {
+							background-position: right bottom;
+						}
+					}
+				}
 			}
 
 			@media only screen and (max-width: 1365px) {
 				padding: 60px 0 90px;
+				.content {
+					padding: 0 56px;
+
+					.review-slider {
+						li {
+							.review-wrapper {
+								display: block;			
+								text-align: center;		
+
+								.review-avatar {			
+									margin-bottom: 20px;
+
+									img {
+										display: inline-block;
+									}
+								}
+
+								.review-info {
+									text-align: center;
+
+									.customer-rate {
+										margin: 20px auto;
+									}
+								}
+							}
+						}
+						.slick-prev {
+							margin-left: 0px;
+						}
+						.slick-next {
+							margin-right: 0px;
+						}
+					}
+				}
 			}
 		}		
 

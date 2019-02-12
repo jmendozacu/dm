@@ -152,6 +152,49 @@
         <div class="row">
             <div class="content text-center">
                 <div class="title text-center">Happy Customers</div>
+                <ul class="review-slider">
+                    <li>
+                        <div class="review-wrapper">
+                            <div class='review-avatar'><img src="<?php echo $this->getViewFileUrl("images/v3/home/avatar-1.png") ?>" alt=""/></div>
+                            <div class="review-info">
+                                <div class="review-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the printer. a type specimen book.</div>
+                                <div class="customer-name">Petey Cruiser</div>
+                                <div class="customer-rate"><span class="rate-100" style="width: 100%;"></span></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="review-wrapper">
+                            <div class='review-avatar'><img src="<?php echo $this->getViewFileUrl("images/v3/home/avatar-2.png") ?>" alt=""/></div>
+                            <div class="review-info">
+                                <div class="review-content">Their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the. years.sometimes by accident</div>
+                                <div class="customer-name">Anna Sthesia</div>
+                                <div class="customer-rate"><span class="rate-80" style="width: 80%;"></span></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="review-wrapper">
+                            <div class='review-avatar'><img src="<?php echo $this->getViewFileUrl("images/v3/home/avatar-1.png") ?>" alt=""/></div>
+                            <div class="review-info">
+                                <div class="review-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the printer. a type specimen book.</div>
+                                <div class="customer-name">Nikita Franco</div>
+                                <div class="customer-rate"><span class="rate-100" style="width: 100%;"></span></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="review-wrapper">
+                            <div class='review-avatar'><img src="<?php echo $this->getViewFileUrl("images/v3/home/avatar-2.png") ?>" alt=""/></div>
+                            <div class="review-info">
+                                <div class="review-content">Their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the. years.sometimes by accident</div>
+                                <div class="customer-name">Peter Green</div>
+                                <div class="customer-rate"><span class="rate-80" style="width: 80%;"></span></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="slide-arrows"></div>
             </div>
         </div>
     </div>
@@ -177,3 +220,28 @@ Los Angeles, Ca 90013</p>
         <b>Did you know</b> All our diamonds come with a Life Time Warranty & 100% Satisfaction Guarantee
     </div>
 </section>
+
+<script type="text/javascript">
+    require([
+        'jquery',
+        'slick'
+    ], function (jQuery) {
+        jQuery(document).ready(function() {
+            jQuery('.review-slider').slick({
+                dots: false,
+                infinite: true,
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                responsive: [
+                    {
+                        breakpoint: 1366,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+        });
+    });
+</script>

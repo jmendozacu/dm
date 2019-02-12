@@ -11,7 +11,8 @@ var config = {
             'dm-qazy': 'js/dm-qazy',
             'dm-wishlist': 'js/dm-wishlist',
             'jquery-fancybox': 'js/jquery.fancybox',
-            'supersized': 'js/supersized'
+            'supersized': 'js/supersized',
+            'responsiveslides': 'js/responsiveslides.min',
         }
     },
     paths: {
@@ -38,7 +39,9 @@ var config = {
         'wedding-jquery-nav': 'wedding/js/vendor/jquery.nav.min',
         'wedding-jquery-flexslider': 'wedding/js/vendor/jquery.flexslider.min',
         'wedding-jquery-nouislider': 'wedding/js/vendor/jquery.nouislider.min',
-        'wedding-custom': 'wedding/js/custom'
+        'wedding-custom': 'wedding/js/custom',
+
+        'slick': 'js/slick.min'
     },
     shim: {
         'philanthropy-bootstrap': {
@@ -104,6 +107,10 @@ var config = {
         },
         'wedding-custom': {
             deps: ['jquery', 'wedding-foundation']
+        },
+
+        'slick': {
+            deps: ['jquery']
         }
     }
 };
