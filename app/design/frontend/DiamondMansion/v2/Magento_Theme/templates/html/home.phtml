@@ -224,8 +224,10 @@ Los Angeles, Ca 90013</p>
 <script type="text/javascript">
     require([
         'jquery',
-        'slick'
-    ], function (jQuery) {
+        'slick',
+        'scrollmagic',
+        'modernizr'
+    ], function (jQuery, slick, ScrollMagic) {
         jQuery(document).ready(function() {
             jQuery('.review-slider').slick({
                 dots: false,
@@ -242,6 +244,54 @@ Los Angeles, Ca 90013</p>
                     }
                 ]
             });
+
+            // Init ScrollMagic
+            var controller = new ScrollMagic.Controller();
+
+            // get all break up sections
+            var breakSections = [".banner", ".our-story", ".popular-collections", '.guarantee', '.section-ipc', '.instagram', '.section-steps', '.testimonials', '.visit-us'];
+
+            // Enable ScrollMagic only for desktop, disable on touch and mobile devices
+            if (!Modernizr.touch) {
+
+                // SCENE 1
+                // create scenes for each of the headers
+                breakSections.forEach(function (section, index) {
+                    
+                    // number for highlighting scenes
+                    var num = index+1;
+                    var header = section;
+
+                    // make scene
+                    var headerScene = new ScrollMagic.Scene({
+                        triggerElement: header, // trigger CSS animation when header is in the middle of the viewport 
+                        offset: -95 // offset triggers the animation 95 earlier then middle of the viewport, adjust to your liking
+                    })
+                    .setClassToggle(section, 'is-active') // set class to active slide
+                    //.addIndicators() // add indicators (requires plugin), use for debugging
+                    .addTo(controller);
+                });
+/*
+                // SCENE 2
+                // change color of the nav for dark content blocks
+                breakSections.forEach(function (breakSection, index) {
+                    
+                    // number for highlighting scenes
+                    var breakID = $(breakSection).attr('id');
+
+                    // make scene
+                    var breakScene = new ScrollMagic.Scene({
+                        triggerElement: breakSection, // trigger CSS animation when header is in the middle of the viewport 
+                        offset: -95 // offset triggers the animation 95 earlier then middle of the viewport, adjust to your liking
+                    })
+                    .setClassToggle('#'+breakID, 'is-active') // set class to active slide
+                    .on("enter", function (event) {
+                        $('nav').attr('class','is-light');
+                    })
+                    .addTo(controller);
+                });
+*/
+            }
         });
     });
 </script>

@@ -41,7 +41,9 @@ var config = {
         'wedding-jquery-nouislider': 'wedding/js/vendor/jquery.nouislider.min',
         'wedding-custom': 'wedding/js/custom',
 
-        'slick': 'js/slick.min'
+        'slick': 'js/slick.min',
+        'scrollmagic': 'js/scrollmagic.min',
+        'modernizr': 'js/modernizr.min'
     },
     shim: {
         'philanthropy-bootstrap': {
@@ -111,6 +113,12 @@ var config = {
 
         'slick': {
             deps: ['jquery']
+        },
+        'scrollmagic': {
+            deps: ['jquery']
+        },
+        'modernizr': {
+            deps: []
         }
     }
 };
