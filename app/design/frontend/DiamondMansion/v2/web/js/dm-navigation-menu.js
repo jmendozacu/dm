@@ -71,11 +71,11 @@ define([
                 if (!evtElm.hasClass('active')) {
                     $('ul#nav-mobile a.level-top.active').nextAll('ul').hide();
                     $('ul#nav-mobile a.level-top.active').removeClass('active');
-                    evtElm.nextAll('ul').slideDown(100, function() {
+                    evtElm.nextAll('ul').fadeIn(100, function() {
                         evtElm.addClass('active');
                     });
                 } else {
-                    evtElm.nextAll('ul').slideUp(100, function() {
+                    evtElm.nextAll('ul').fadeOut(100, function() {
                         evtElm.removeClass('active');
                     });
                 }
