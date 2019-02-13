@@ -62,16 +62,24 @@
             }
 
             .wishlist-popup-close {
+                .lib-button-icon(
+                @icon-remove,
+                @_icon-font-size: 32px,
+                @_icon-font-line-height: 32px,
+                @_icon-font-text-hide: true
+                );
+                .lib-button-reset();
+                text-indent: 0;
+
+                &:before {
+                    font-size: 40px;
+                    line-height: 40px;
+                }
+
                 cursor: pointer;
                 float: right;
-                margin-top: -15px;
-                margin-right: -15px;
-                display: block;
-                width: 15px;
-                height: 15px;
-                text-indent: -9999px;
-                background: url(../images/mobile_my_cart_remove.png) left top no-repeat;
-                background-size: 100%;
+                margin-top: -35px;
+                margin-right: -35px;
             }
 
             .wishlist-popup-form {
@@ -89,7 +97,7 @@
                     flex-direction: row;
 
                     input {
-                        height: 35px;
+                        height: 36px;
                     }
                 }
             }
