@@ -88,9 +88,22 @@
 
         .icon-sprites('menu-white');
 
-        .page-header:hover &,
         .page-header.active & {
-            .icon-sprites('menu-black');
+            .lib-button-icon(
+            @icon-remove,
+            @_icon-font-size: 32px,
+            @_icon-font-line-height: 32px,
+            @_icon-font-text-hide: true
+            );
+            .lib-button-reset();
+            text-indent: 0;
+
+            &:before {
+                font-size: 40px;
+                line-height: 40px;
+                margin-top: -5px;
+                margin-left: -5px;
+            }
         }
     }
 
@@ -143,7 +156,13 @@
         .nav-mobile-wrapper {
             li {
                 line-height: 60px;
-                border-bottom: 1px solid @v3-border-color;
+                &.level0 {
+                    border-bottom: 1px solid @v3-border-color;
+
+                    ul {
+                        background-color: #f4f4f4;
+                    }
+                }
                 text-align: center;
                 position: relative;
                 text-transform: uppercase;
