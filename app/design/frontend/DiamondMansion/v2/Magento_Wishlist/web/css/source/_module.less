@@ -190,18 +190,22 @@
             &:extend(.abs-block-title all);
         }
 
+        .text {
+            font-size: 24px;
+            display: inline-block;
+
+            i {
+                vertical-align: middle;
+            }
+        }
+
         .counter {
             display: inline-block;
             vertical-align: middle;
-            line-height: 30px;
+            line-height: 35px;
             font-size: 10px;
             text-align: center;
-            .icon-sprites('wishlist-white');
-
-            .page-header:hover &,
-            .page-header.active & {
-                .icon-sprites('wishlist-black');
-            }
+            margin-left: -19px;
         }
 
         .product-item-name {
@@ -268,6 +272,10 @@
     margin: 0;
     padding: 0px 20px;
     text-transform: uppercase;
+
+    @media only screen and (min-width: 640px) and (max-width: 767px) {
+        padding: 0px 10px;
+    }
 
     @media only screen and (max-width: 639px) {
         padding: 0;

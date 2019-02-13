@@ -129,15 +129,14 @@
             }
 
             button {
-                text-indent: -9999px;
+                color: #000;
                 display: block;
                 position: absolute;
                 left: 15px;
-                top: 15px;
+                top: 20px;
+                font-size: 24px;
                 padding: 0;
                 background-color: transparent;
-
-                .icon-sprites('search-black');
             }
         }
 
@@ -182,6 +181,12 @@
     }
 }
 
+@media only screen and (min-width: 640px) and (max-width: 1699px) {
+    #mobile-menu-open {
+        left: 30px;
+    }
+}
+
 @media only screen and (max-width: 639px) {
     #mobile-menu-open {
         left: 10px;
@@ -200,6 +205,7 @@
 
     .nav-container-wrapper {
         float: left;
+        margin-left: 40px;
         
         #nav {
             margin: 0;
@@ -264,6 +270,12 @@
         .switcher {
             display: inline-block;
         }
+    }
+}
+
+@media only screen and (max-width: 1699px) {
+    .nav-container-wrapper #nav li {
+        padding-right: 10px;
     }
 }
 

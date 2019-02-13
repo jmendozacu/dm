@@ -5,7 +5,7 @@
             <div class="mobile-menu-search">
                 <form class="form minisearch active" id="search_mobile_form" action="/catalogsearch/result/" method="get">
                     <input id="mobile_search" type="text" name="q" value="yellow" placeholder="Search" class="input-text" maxlength="128" role="combobox" aria-haspopup="false" aria-autocomplete="both" autocomplete="off">
-                    <button type="submit" title="Search" class="action search" disabled=""></button>
+                    <button type="submit" title="Search" class="action search" disabled=""><i class="icon-magnifier"></i></button>
                 </form>                        
             </div>
             <div class="nav-mobile-wrapper">
@@ -13,11 +13,11 @@
                     <li class="level0 nav-1 first level-top">
                         <a href="#" class="level-top"><span>Trending</span><span class="nav-link-arrow"></span></a>
                         <ul style="display: none;">
-                            <li class="level1 nav-1-1"><a href="<?php echo $this->getUrl();?>">Specials</a></li>
-                            <li class="level1 nav-1-2"><a href="<?php echo $this->getUrl();?>">Best Sellers</a></li>
-                            <li class="level1 nav-1-3"><a href="<?php echo $this->getUrl();?>">New Arrivals</a></li>
-                            <li class="level1 nav-1-4"><a href="<?php echo $this->getUrl();?>">Shop Insta</a></li>
-                            <li class="level1 nav-1-5"><a href="<?php echo $this->getUrl();?>">Gifts</a></li>
+                            <li class="level1 nav-1-1"><a href="<?php echo $this->getUrl() . 'sale/';?>">Specials</a></li>
+                            <li class="level1 nav-1-2"><a href="<?php echo $this->getUrl() . 'best-sellers/';?>">Best Sellers</a></li>
+                            <li class="level1 nav-1-3"><a href="<?php echo $this->getUrl() . 'new-arrivals/';?>">New Arrivals</a></li>
+                            <li class="level1 nav-1-4"><a href="<?php echo $this->getUrl() . 'insta/';?>">Shop Insta</a></li>
+                            <li class="level1 nav-1-5"><a href="<?php echo $this->getUrl() . 'diamond-jewelry-gifts/';?>">Gifts</a></li>
                         </ul>
                     </li>
                     <li class="level0 nav-2 level-top">
@@ -43,21 +43,21 @@
                             <li class="level1 nav-3-1"><a class="" href="<?php echo $this->getUrl().'rings/wedding/his-her-classic/';?>"><span>Classic</span></a></li>
                             <li class="level1 nav-3-2"><a class="" href="<?php echo $this->getUrl().'rings/wedding/her-eternity/';?>"><span>Eternity</span></a></li>
                             <li class="level1 nav-3-3"><a class="" href="<?php echo $this->getUrl().'rings/wedding/her-diamond-anniversary/';?>"><span>Diamond</span></a></li>                        
-                            <li class="level1 nav-3-4"><a class="" href="<?php echo $this->getUrl().'rings/wedding/his-diamond/';?>"><span>Mens</span></a></li>
+                            <li class="level1 nav-3-4"><a class="" href="<?php echo $this->getUrl().'rings/wedding/mens/';?>"><span>Mens</span></a></li>
                         </ul>
                     </li>                    
                     <li class="level0 nav-4 level-top">
                         <a href="#" class="level-top"><span>Jewelry</span><span class="nav-link-arrow"></span></a>
                         <ul style="display: none;">
-                            <li class="level1 nav-4-1"><a href="<?php echo $this->getUrl().'rings/'; ?>"><span>Rings</span></a></li>
-                            <li class="level1 nav-4-2"><a href="<?php echo $this->getUrl().'earrings/'; ?>"><span>Earrings</span></a></li>
-                            <li class="level1 nav-4-3"><a href="<?php echo $this->getUrl().'fine-jewelry/necklaces/'; ?>"><span>Necklaces</span></a></li>
-                            <li class="level1 nav-4-4"><a href="<?php echo $this->getUrl().'fine-jewelry/bracelets/'; ?>"><span>Bracelets</span></a></li>
-                            <li class="level1 nav-4-5"><a href="<?php echo $this->getUrl().'rings/engagement/'; ?>"><span>Personalized</span></a></li>
+                            <li class="level1 nav-4-1"><a href="<?php echo $this->getUrl().'jewelry/rings/'; ?>"><span>Rings</span></a></li>
+                            <li class="level1 nav-4-2"><a href="<?php echo $this->getUrl().'jewelry/earrings/'; ?>"><span>Earrings</span></a></li>
+                            <li class="level1 nav-4-3"><a href="<?php echo $this->getUrl().'jewelry/necklaces-pendants/'; ?>"><span>Necklaces</span></a></li>
+                            <li class="level1 nav-4-4"><a href="<?php echo $this->getUrl().'jewelry/bracelets/'; ?>"><span>Bracelets</span></a></li>
+                            <li class="level1 nav-4-5"><a href="<?php echo $this->getUrl().'jewelry/personalized/'; ?>"><span>Personalized</span></a></li>
                         </ul>
                     </li>                    
                     <li class="level0 nav-5">
-                        <a href="#" class="level-top"><span>Custom Design</span></a>
+                        <a href="<?php echo $this->getUrl().'custom-design-your-own-engagement-ring/'; ?>" class="level-top"><span>Custom Design</span></a>
                     </li>                    
                     <li class="level0 nav-6 level-top">
                         <a href="#" class="level-top"><span>Learn</span><span class="nav-link-arrow"></span></a>
@@ -71,12 +71,12 @@
                         <a href="#" class="level-top"><span>About</span><span class="nav-link-arrow"></span></a>
                         <ul style="display: none;">
                             <li><a href="<?php echo $this->getUrl().'history/' ?>"><span class="tab-title">Our history</span></a></li>
-                            <li><a href="<?php echo $this->getUrl().'/' ?>"><span class="tab-title">Fair Pricing</span></a></li>
-                            <li><a href="<?php echo $this->getUrl().'/' ?>"><span class="tab-title">Customer Reviews</span></a></li>
-                            <li><a href="<?php echo $this->getUrl().'/' ?>"><span class="tab-title">Satisfaction Gurantee</span></a></li>
-                            <li><a href="<?php echo $this->getUrl().'/' ?>"><span class="tab-title">Our Jewelrs</span></a></li>
-                            <li><a href="<?php echo $this->getUrl().'/' ?>"><span class="tab-title">Material & Care</span></a></li>
-                            <li><a href="<?php echo $this->getUrl().'/' ?>"><span class="tab-title">Life Time Upgrade</span></a></li>
+                            <li><a href="<?php echo $this->getUrl().'fair-pricing/' ?>"><span class="tab-title">Fair Pricing</span></a></li>
+                            <li><a href="<?php echo $this->getUrl().'customer-reviews/' ?>"><span class="tab-title">Customer Reviews</span></a></li>
+                            <li><a href="<?php echo $this->getUrl().'our-promises/' ?>"><span class="tab-title">Satisfaction Gurantee</span></a></li>
+                            <li><a href="<?php echo $this->getUrl().'design-craftsmanship/' ?>"><span class="tab-title">Our Jewelrs</span></a></li>
+                            <li><a href="<?php echo $this->getUrl().'ethical-diamonds/' ?>"><span class="tab-title">Material & Care</span></a></li>
+                            <li><a href="<?php echo $this->getUrl().'our-promises/' ?>"><span class="tab-title">Life Time Upgrade</span></a></li>
                         </ul>
                     </li>                    
                     <li class="level0 nav-8"><a href="/customer/account/login/"><span>LogIn</span></a></li>

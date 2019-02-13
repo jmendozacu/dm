@@ -12,7 +12,7 @@
 <div data-block="minicart" class="minicart-wrapper">
     <a class="action show-cart" href="<?= /* @escapeNotVerified */ $block->getShoppingCartUrl() ?>"
        data-bind="scope: 'minicart_content'">
-        <span class="text"><?= /* @escapeNotVerified */ __('Cart') ?></span>
+        <span class="text"><i class="dfd-icon-shopping_bag_2"></i></span>
         <span class="counter qty empty"
               data-bind="css: { empty: !!getCartParam('summary_count') == false }, blockLoader: isLoading">
             <span class="counter-number"><!-- ko text: getCartParam('summary_count') --><!-- /ko --></span>

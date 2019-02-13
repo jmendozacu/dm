@@ -104,22 +104,23 @@
 
     .minicart-wrapper {
         a.show-cart {
-            span.text {
-                display: none;
+            .text {
+                font-size: 24px;
+                display: inline-block;
+                margin-top: -3px;
+
+                i {
+                    vertical-align: middle;
+                }
             }
 
             span.counter-number {
                 display: inline-block;
                 vertical-align: middle;
-                line-height: 30px;
+                line-height: 35px;
                 font-size: 10px;
                 text-align: center;
-                .icon-sprites('cart-white');
-
-                .page-header:hover &,
-                .page-header.active & {
-                    .icon-sprites('cart-black');
-                }
+                margin-left: -19px;
             }
         }
 
@@ -502,8 +503,15 @@
 //  Desktop
 //  _____________________________________________
 
-@media only screen and (max-width: 1699px) {
+@media only screen and (min-width: 640px) and (max-width: 1699px) {
     .minicart-wrapper {
         padding-right: 30px;
+    }
+}
+
+@media only screen and (max-width: 639px) {
+    .minicart-wrapper {
+        padding-right: 0px;
+        padding-left: 10px;
     }
 }

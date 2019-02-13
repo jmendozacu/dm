@@ -77,6 +77,8 @@ define([
                         evtElm.removeClass('active');
                     });
                 }
+
+                return false;
             });
         }
     });
