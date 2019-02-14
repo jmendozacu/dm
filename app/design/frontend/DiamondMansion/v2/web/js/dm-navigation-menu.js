@@ -54,14 +54,18 @@ define([
 			$('#mobile-menu-open').on('click', function() {
                 if (!$('#mobile-menu-open').hasClass('active')) {
                     $('.page-header').addClass('active');
-                    $('.nav-container-mobile').fadeIn(100, function() {
+                    $('.nav-mobile-container').css('minHeight', $(window).height());
+                    $('.nav-mobile-container').fadeIn(100, function() {
                         $('#mobile-menu-open').addClass('active');
-                    });        
+                        $('.page-main, .page-footer').hide();
+                    });
                 } else {
-                    $('.nav-container-mobile').fadeOut(100, function() {
+                    $('.nav-mobile-container').css('minHeight', 'auto');
+                    $('.nav-mobile-container').fadeOut(100, function() {
                         $('#mobile-menu-open').removeClass('active');
                         $('.page-header').removeClass('active');
-                    });        
+                        $('.page-main, .page-footer').show();
+                    });
                 }
                 return false;
             });

@@ -80,25 +80,41 @@
    .header .logo {
         position: absolute;
         left: 50%;
-        margin-left: -157px;
-        top: @v3-header-height / 2;
-        margin-top: -10px;
+        width: 360px;
+        margin-left: -180px;
+        top: @v3-header-height / 2 + @v3-header-padding-v;
+        margin-top: -34px;
+        transition: top 0.5s;
+
+        body.sticky & {
+            top: @v3-header-height / 2;
+        }
 
         @media only screen and (max-width: 639px) {
-            width: 200px;
-            margin-left: -100px;
-            top: 50px;
+            width: 240px;
+            margin-left: -120px;
+            top: 60px;
         }
 
         @media only screen and (max-width: 400px) {
-            margin-left: -120px;
+            margin-left: -140px;
         }
     }
 
     .page-header {
         border: 0;
         margin-bottom: 0;
-        z-index: 1;
+        z-index: 9;
+
+        body:not(.sticky) & {
+            padding: @v3-header-padding-v 0;
+        }
+
+        body.sticky & {
+            position: fixed;
+            z-index: 9999;
+            width: 100%;
+        }
 
         .header {
             &.content {
@@ -134,8 +150,11 @@
             border-color: #fff;
         }
 
+        body:not(.cms-home) &,
+        body.sticky &,
         &.active {
             background-color: #fff;
+            box-shadow: 0px 1px 10px 0px rgba(0,0,0,0.1);
 
             .logo-white {
                 display: none;
@@ -155,7 +174,7 @@
         }
 
         @media only screen and (min-width: 1366px) {
-            transition: background-color 0.25s;
+            transition: background-color 0.25s, padding 0.5s;
 
             &:hover {
                 background-color: #fff;

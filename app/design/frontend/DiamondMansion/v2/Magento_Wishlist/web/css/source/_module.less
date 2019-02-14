@@ -321,7 +321,11 @@
 
             .wishlist-content-title {
                 display: block;
-                line-height: @v3-header-height;
+                line-height: @v3-header-height + @v3-header-padding-v * 2;
+                body.sticky & {
+                    line-height: @v3-header-height;
+                }
+                transition: line-height 0.5s;
                 background-color: #000;
                 color: #fff;
                 text-align: center;

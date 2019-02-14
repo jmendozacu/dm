@@ -84,9 +84,13 @@
         text-indent: -9999px;
         position: absolute;
         left: 50px;
-        top: @v3-header-height-mobile / 2 - 15;
+        top: @v3-header-height-mobile / 2 - 5;
 
         .icon-sprites('menu-white');
+
+        body:not(.cms-home) & {
+            .icon-sprites('menu-black');
+        }
 
         .page-header.active & {
             .lib-button-icon(
