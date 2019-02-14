@@ -56,7 +56,7 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
 
             .title {
                 font-family: 'Proxima Nova Lt';
-                font-size: 20px;
+                font-size: 13px;
                 font-weight: 600;
                 line-height: 50px;
                 margin-bottom: 20px;
@@ -71,7 +71,7 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
                     padding: 0;
                     font-family: 'Avenir LT Std';
                     font-weight: 300;
-                    font-size: 19px;
+                    font-size: 13px;
                     line-height: 40px;
 
                     &, a {
@@ -105,7 +105,7 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
             .form-subscribe-header label {
                 font-family: 'Avenir LT Std';
                 font-weight: 300;
-                font-size: 17px;
+                font-size: 13px;
                 line-height: 40px;
                 margin-bottom: 10px;
                 display: block;
@@ -114,7 +114,7 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
             input#newsletter {
                 font-family: 'Avenir LT Std';
                 font-weight: 300;
-                font-size: 17px;
+                font-size: 13px;
                 line-height: 30px;
                 padding: 10px 40px 10px 20px;
                 height: 50px;
@@ -137,7 +137,7 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
 
                 font-family: 'Avenir LT Std';
                 font-weight: 300;
-                font-size: 17px;
+                font-size: 13px;
 
                 color: #080501;
 
@@ -156,11 +156,13 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
 
             font-family: 'Avenir LT Std';
             font-weight: 300;
-            font-size: 17px;
+            font-size: 13px !important;
             line-height: 86px;
             color: #080501;     
 
-            a {
+            a, small {
+                font-weight: 300;
+                font-size: 13px !important;                
                 color: #080501;
             }
 
@@ -172,15 +174,20 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
 
             > div {
                 float: left;
-                width: 33.33%;
+            }
+
+            div.copyright {
+                width: 40%;
             }
 
             .privacy-terms-conditions {
                 text-align: center;
+                width: 20%;
             }
 
-            .social-links {
+            div.social-links {
                 text-align: right;
+                width: 40%;
 
                 ul.social-links {
                     float: none;
@@ -233,7 +240,7 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
                 line-height: 50px;
 
                 & > div {
-                    width: 100%;
+                    width: 100% !important;
                     float: none;
                 }
 
@@ -241,7 +248,7 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
                     line-height: 30px;
                 }
 
-                .social-links {
+                div.social-links {
                     text-align: center;
 
                     ul.social-links {
