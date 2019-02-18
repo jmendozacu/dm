@@ -298,6 +298,10 @@ define([
         }    
 
         function onStoneChange($elm) {
+            if (config.center_stone['type'] != 'setting') {
+                return;
+            }
+
             var code = $elm.data('code');
 
             $(".stone-list a.selected").removeClass("selected");
