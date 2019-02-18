@@ -22,6 +22,8 @@ define([
                     onViewMoreProducts();
                 }
             });
+
+            onViewMoreProducts();
         });
     
         $(window).load(function () {
