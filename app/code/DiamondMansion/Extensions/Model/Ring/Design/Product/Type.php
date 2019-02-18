@@ -88,8 +88,8 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         if (!isset($this->_allDmOptions[$product->getId()])) {
 
             $collection = $this->_dmOptionModel->getCollection()
-                ->addFieldToFilter('product_id', $product->getId())
-                ->joinDetails($product->getTypeId());
+                ->addFieldToFilter('product_id', $product->getId());
+                //->joinDetails($product->getTypeId());
 
             $this->_allDmOptions[$product->getId()] = [];
             foreach ($collection as $item) {

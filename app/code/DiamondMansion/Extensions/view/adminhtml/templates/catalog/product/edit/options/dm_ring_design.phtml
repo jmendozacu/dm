@@ -9,6 +9,10 @@ $productOptions = $this->getProductOptions();
 <div id="dm-options-group">
     <ul class="tabs-horiz">
         <?php foreach ($groups as $group => $options): ?>
+            <?php foreach ($options as $option): ?>
+            <input class="dm-option" type="hidden" name="[title][<?php echo $option['group'] ?>][<?php echo $option['code'] ?>]" value="<?php echo $option['title'] ?>"/>
+            <input class="dm-option" type="hidden" name="[slug][<?php echo $option['group'] ?>][<?php echo $option['code'] ?>]" value="<?php echo $option['slug'] ?>"/>
+            <?php endforeach ?>
             <?php if (in_array($group, $skipGroups)) { continue; }?>
             <li>
                 <a href="#tab_<?php echo $group ?>_content" id="tab_<?php echo $group ?>" title="<?php echo $group ?>" class="tab-item-link">

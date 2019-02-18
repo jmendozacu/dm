@@ -819,6 +819,20 @@ class InstallSchema implements InstallSchemaInterface
                     'Option Code'
                 )
                 ->addColumn(
+                    'title',
+                    Table::TYPE_TEXT,
+                    255,
+                    ['nullable' => false],
+                    'Option Name'
+                )
+                ->addColumn(
+                    'slug',
+                    Table::TYPE_TEXT,
+                    1,
+                    ['nullable' => false],
+                    'Option Slug - Must Be 1 lowercase letter (a ~ z)'
+                )
+                ->addColumn(
                     'is_default',
                     Table::TYPE_INTEGER,
                     1,

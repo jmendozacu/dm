@@ -77,6 +77,9 @@ class SaveDiamondMansionOptions implements ObserverInterface
 
         foreach ($dm['options'] as $group => $options) {
             switch ($group) {
+                case 'title':
+                case 'slug':
+                    break;
                 case 'side-stone-shape':
                     foreach ($options as $index => $subOptions) {
                         if ($index === 'is_default') {
@@ -92,6 +95,8 @@ class SaveDiamondMansionOptions implements ObserverInterface
                                 'product_id' => $product->getId(),
                                 'group' => $group . '-'. $index,
                                 'code' => $option,
+                                'title' => $dm['options']['title'][$group][$option],
+                                'slug' => $dm['options']['slug'][$group][$option],
                                 'is_default' => (isset($options['is_default']) && $options['is_default'] == $option),
                                 'values' => isset($subOptions[$option]['values']) ? json_encode($subOptions[$option]['values']) : "",
                             ]);
@@ -110,6 +115,8 @@ class SaveDiamondMansionOptions implements ObserverInterface
                                 'product_id' => $product->getId(),
                                 'group' => $group . '-' . $index,
                                 'code' => $option,
+                                'title' => $dm['options']['title'][$group][$option],
+                                'slug' => $dm['options']['slug'][$group][$option],
                                 'is_default' => (isset($options['is_default']) && $options['is_default'] == $option),
                                 'values' => "",
                             ]);
@@ -126,6 +133,8 @@ class SaveDiamondMansionOptions implements ObserverInterface
                             'product_id' => $product->getId(),
                             'group' => $group,
                             'code' => $option,
+                            'title' => $dm['options']['title'][$group][$option],
+                            'slug' => $dm['options']['slug'][$group][$option],
                             'is_default' => (isset($options['is_default']) && $options['is_default'] == $option),
                             'values' => isset($options[$option]['values'])?json_encode($options[$option]['values']):"",
                         ]);
@@ -141,6 +150,8 @@ class SaveDiamondMansionOptions implements ObserverInterface
                             'product_id' => $product->getId(),
                             'group' => $group,
                             'code' => is_array($option)?$code:$option,
+                            'title' => $dm['options']['title'][$group][is_array($option)?$code:$option],
+                            'slug' => $dm['options']['slug'][$group][is_array($option)?$code:$option],
                             'is_default' => (isset($options['is_default']) && $options['is_default'] == (is_array($option)?$code:$option)),
                             'values' => isset($option['values'])?json_encode($option['values']):"",
                         ]);
@@ -199,6 +210,9 @@ class SaveDiamondMansionOptions implements ObserverInterface
             }
 
             switch ($group) {
+                case 'title':
+                case 'slug':
+                    break;
                 case 'metal':
                     foreach ($options as $code => $option) {
                         if ($code === 'is_default' || is_array($option)) {
@@ -209,6 +223,8 @@ class SaveDiamondMansionOptions implements ObserverInterface
                             'product_id' => $product->getId(),
                             'group' => $group,
                             'code' => $option,
+                            'title' => $dm['options']['title'][$group][$option],
+                            'slug' => $dm['options']['slug'][$group][$option],
                             'is_default' => (isset($options['is_default']) && $options['is_default'] == $option),
                             'values' => isset($options[$option]['values'])?json_encode($options[$option]['values']):"",
                         ]);
@@ -224,6 +240,8 @@ class SaveDiamondMansionOptions implements ObserverInterface
                             'product_id' => $product->getId(),
                             'group' => $group,
                             'code' => $option,
+                            'title' => $dm['options']['title'][$group][$option],
+                            'slug' => $dm['options']['slug'][$group][$option],
                             'is_default' => (isset($options['is_default']) && $options['is_default'] == $option),
                             'values' => isset($dm['options']['stone-amount'][$option]['values'])?json_encode($dm['options']['stone-amount'][$option]['values']):"",
                         ]);
@@ -239,6 +257,8 @@ class SaveDiamondMansionOptions implements ObserverInterface
                             'product_id' => $product->getId(),
                             'group' => $group,
                             'code' => is_array($option)?$code:$option,
+                            'title' => $dm['options']['title'][$group][is_array($option)?$code:$option],
+                            'slug' => $dm['options']['slug'][$group][is_array($option)?$code:$option],
                             'is_default' => (isset($options['is_default']) && $options['is_default'] == (is_array($option)?$code:$option)),
                             'values' => isset($option['values'])?json_encode($option['values']):"",
                         ]);
