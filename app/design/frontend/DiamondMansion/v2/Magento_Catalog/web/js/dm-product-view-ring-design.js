@@ -458,7 +458,7 @@ define([
         }
     
         function updateImage() {
-            if (config.band == "" || config.center_stone["type"] == "" || config.metal == "" || config.center_stone["shape"] == "") {
+            if (config.band == "" || config.center_stone["type"] == "" || config.center_stone["type"] == "setting" || config.metal == "" || config.center_stone["shape"] == "") {
                 return;
             }
             
