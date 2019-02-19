@@ -5,14 +5,14 @@
  */
 namespace Magento\BundleImportExport\Model\Import\Product\Type;
 
-use Magento\Framework\App\Bootstrap;
+use Magento\TestFramework\Helper\Bootstrap;
 use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\ImportExport\Model\Import;
 
 /**
  * @magentoAppArea adminhtml
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class BundleTest extends \PHPUnit\Framework\TestCase
+class BundleTest extends \Magento\TestFramework\Indexer\TestCase
 {
     /**
      * Bundle product test Name
@@ -41,9 +41,22 @@ class BundleTest extends \PHPUnit\Framework\TestCase
      */
     protected $optionSkuList = ['Simple 1', 'Simple 2', 'Simple 3'];
 
+    public static function setUpBeforeClass()
+    {
+        $db = Bootstrap::getInstance()->getBootstrap()
+            ->getApplication()
+            ->getDbInstance();
+        if (!$db->isDbDumpExists()) {
+            throw new \LogicException('DB dump does not exist.');
+        }
+        $db->restoreFromDbDump();
+
+        parent::setUpBeforeClass();
+    }
+
     protected function setUp()
     {
-        $this->objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
+        $this->objectManager = Bootstrap::getObjectManager();
         $this->model = $this->objectManager->create(\Magento\CatalogImportExport\Model\Import\Product::class);
     }
 
@@ -104,38 +117,48 @@ class BundleTest extends \PHPUnit\Framework\TestCase
                 $optionSku = 'Simple ' . ($optionKey + 1 + $linkKey);
                 $this->assertEquals($optionIdList[$optionSku], $productLink->getData('entity_id'));
                 $this->assertEquals($optionSku, $productLink->getData('sku'));
+
+                switch ($optionKey + 1 + $linkKey) {
+                    case 1:
+                        $this->assertEquals(1, (int) $productLink->getCanChangeQuantity());
+                        break;
+                    case 2:
+                        $this->assertEquals(0, (int) $productLink->getCanChangeQuantity());
+                        break;
+                    case 3:
+                        $this->assertEquals(1, (int) $productLink->getCanChangeQuantity());
+                        break;
+                }
             }
         }
     }
 
     /**
      * @magentoDataFixture Magento/Store/_files/second_store.php
-     * @magentoAppArea adminhtml
      * @magentoDbIsolation disabled
+     * @magentoAppArea adminhtml
+     * @return void
      */
-    public function testBundleImportWithMultipleStoreViews()
+    public function testBundleImportWithMultipleStoreViews(): void
     {
         // import data from CSV file
         $pathToFile = __DIR__ . '/../../_files/import_bundle_multiple_store_views.csv';
-        $filesystem = $this->objectManager->create(
-            \Magento\Framework\Filesystem::class
-        );
+        $filesystem = $this->objectManager->create(\Magento\Framework\Filesystem::class);
         $directory = $filesystem->getDirectoryWrite(DirectoryList::ROOT);
         $source = $this->objectManager->create(
             \Magento\ImportExport\Model\Import\Source\Csv::class,
             [
                 'file' => $pathToFile,
-                'directory' => $directory
+                'directory' => $directory,
             ]
         );
-        $errors = $this->model->setSource(
-            $source
-        )->setParameters(
-            [
-                'behavior' => \Magento\ImportExport\Model\Import::BEHAVIOR_APPEND,
-                'entity' => 'catalog_product'
-            ]
-        )->validateData();
+        $errors = $this->model->setSource($source)
+            ->setParameters(
+                [
+                    'behavior' => \Magento\ImportExport\Model\Import::BEHAVIOR_APPEND,
+                    'entity' => 'catalog_product',
+                ]
+            )->validateData();
         $this->assertTrue($errors->getErrorsCount() == 0);
         $this->model->importData();
         $resource = $this->objectManager->get(\Magento\Catalog\Model\ResourceModel\Product::class);
@@ -155,7 +178,7 @@ class BundleTest extends \PHPUnit\Framework\TestCase
         foreach ($product->getStoreIds() as $storeId) {
             $bundleOptionCollection = $productRepository->get(self::TEST_PRODUCT_NAME, false, $storeId)
                 ->getExtensionAttributes()->getBundleProductOptions();
-            $this->assertEquals(2, count($bundleOptionCollection));
+            $this->assertCount(2, $bundleOptionCollection);
             $i++;
             foreach ($bundleOptionCollection as $optionKey => $option) {
                 $this->assertEquals('checkbox', $option->getData('type'));
@@ -172,26 +195,10 @@ class BundleTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @inheritdoc
+     * teardown
      */
-    protected function tearDown()
+    public function tearDown()
     {
-        $skus = [
-            'Simple 1',
-            'Simple 2',
-            'Simple 3',
-            'Bundle 1'
-        ];
-
-        $productRepository = $this->objectManager->get(\Magento\Catalog\Model\ProductRepository::class);
-
-        foreach ($skus as $sku) {
-            try {
-                $product = $productRepository->get($sku, false, null, true);
-                $productRepository->delete($product);
-            } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
-            }
-        }
         parent::tearDown();
     }
 }

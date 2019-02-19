@@ -3,9 +3,9 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
 
 use Magento\TestFramework\Helper\Bootstrap;
-use Magento\Config\Model\Config\Factory as ConfigFactory;
 use Magento\Store\Model\Website;
 use Magento\Store\Model\Store;
 use Magento\CatalogSearch\Model\Indexer\Fulltext as FulltextIndex;
@@ -44,9 +44,6 @@ if (!$store->getId()) {
     $store->save();
 }
 
-/* Refresh stores memory cache */
-$objectManager->get(\Magento\Store\Model\StoreManagerInterface::class)->reinitStores();
-
 //Setting up allowed countries
 $configResource = $objectManager->get(\Magento\Config\Model\ResourceModel\Config::class);
 //Allowed countries for default website.
@@ -59,7 +56,7 @@ $configResource->saveConfig(
 //Allowed countries for second website
 $configResource->saveConfig(
     'general/country/allow',
-    'ES',
+    'ES,US,UK,DE',
     \Magento\Store\Model\ScopeInterface::SCOPE_WEBSITES,
     $websiteId
 );

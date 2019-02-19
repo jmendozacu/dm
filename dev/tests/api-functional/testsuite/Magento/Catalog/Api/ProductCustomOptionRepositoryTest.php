@@ -5,8 +5,6 @@
  * See COPYING.txt for license details.
  */
 
-// @codingStandardsIgnoreFile
-
 namespace Magento\Catalog\Api;
 
 use Magento\Catalog\Model\ProductRepository;
@@ -210,7 +208,7 @@ class ProductCustomOptionRepositoryTest extends WebapiAbstract
         ];
 
         if (TESTS_WEB_API_ADAPTER == self::ADAPTER_SOAP) {
-            if (isset($optionDataPost['title']) && empty($optionDataPost['title'])) {
+            if ($optionDataPost['title'] === null || $optionDataPost['title'] === '') {
                 $this->expectException('SoapFault');
                 $this->expectExceptionMessage('Missed values for option required fields');
             } else {
@@ -219,7 +217,7 @@ class ProductCustomOptionRepositoryTest extends WebapiAbstract
             }
         } else {
             $this->expectException('Exception');
-            $this->expectExceptionMessage('', 400);
+            $this->expectExceptionCode(400);
         }
         $this->_webApiCall($serviceInfo, ['option' => $optionDataPost]);
     }

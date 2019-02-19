@@ -4,6 +4,8 @@
  * See COPYING.txt for license details.
  */
 
+declare(strict_types=1);
+
 /** @var \Magento\Catalog\Model\CategoryFactory $factory */
 $factory = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
     \Magento\Catalog\Model\CategoryFactory::class
@@ -41,11 +43,6 @@ if (!$store->load('second_category_store', 'code')->getId()) {
     );
     $store->save();
 }
-
-/* Refresh stores memory cache */
-\Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-    \Magento\Store\Model\StoreManagerInterface::class
-)->reinitStores();
 
 /** @var \Magento\Catalog\Model\Category $newCategory */
 $newCategory = $factory->create();

@@ -50,6 +50,7 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
     {
         $this->processor->getIndexer()->setScheduled(true);
         $this->assertTrue($this->processor->getIndexer()->isScheduled());
+
         $productRepository = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()
             ->create(\Magento\Catalog\Api\ProductRepositoryInterface::class);
         /** @var \Magento\Catalog\Api\Data\ProductInterface $product */
@@ -81,7 +82,6 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
         $product = reset($items);
         $this->assertCount(2, $items);
         $this->assertEquals(15, $product->getPrice());
-        $this->processor->getIndexer()->reindexList([1]);
 
         $this->processor->getIndexer()->setScheduled(false);
     }
@@ -186,5 +186,16 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
             . ' AND (alias.entity_type = \'product\')';
 
         self::assertContains($expected, str_replace(PHP_EOL, '', $sql));
+    }
+
+    /**
+     * @magentoDataFixture Magento/Catalog/Model/ResourceModel/_files/few_simple_products.php
+     * @magentoDbIsolation enabled
+     */
+    public function testAddAttributeToFilterAffectsGetSize(): void
+    {
+        $this->assertEquals(10, $this->collection->getSize());
+        $this->collection->addAttributeToFilter('sku', 'Product1');
+        $this->assertEquals(1, $this->collection->getSize());
     }
 }

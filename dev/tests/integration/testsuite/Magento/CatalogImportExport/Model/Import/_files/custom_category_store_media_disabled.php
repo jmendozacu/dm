@@ -3,6 +3,7 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
 
 $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 
@@ -46,8 +47,3 @@ $attributeSet->setData($data);
 
 $objectManager->create(\Magento\Eav\Model\AttributeSetManagement::class)
     ->create($entityTypeCode, $attributeSet, $defaultSetId);
-
-/* Refresh stores memory cache */
-\Magento\TestFramework\Helper\Bootstrap::getObjectManager()
-    ->get(\Magento\Store\Model\StoreManagerInterface::class)
-    ->reinitStores();

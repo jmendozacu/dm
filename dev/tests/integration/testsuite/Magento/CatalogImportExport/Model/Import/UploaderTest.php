@@ -4,13 +4,15 @@
  * See COPYING.txt for license details.
  */
 
+declare(strict_types=1);
+
 namespace Magento\CatalogImportExport\Model\Import;
 
 use Magento\Framework\App\Bootstrap;
 use Magento\Framework\App\Filesystem\DirectoryList;
 
 /**
- * Tests for the \Magento\CatalogImportExport\Model\Import\Uploader class
+ * Tests for the \Magento\CatalogImportExport\Model\Import\Uploader class.
  */
 class UploaderTest extends \Magento\TestFramework\Indexer\TestCase
 {
@@ -46,15 +48,23 @@ class UploaderTest extends \Magento\TestFramework\Indexer\TestCase
         $mediaPath = $appParams[DirectoryList::MEDIA][DirectoryList::PATH];
         $this->directory = $filesystem->getDirectoryWrite(DirectoryList::ROOT);
         $tmpDir = $this->directory->getRelativePath($mediaPath . '/import');
-        $this->uploader->setTmpDir($tmpDir);
+        if (!$this->directory->create($tmpDir)) {
+            throw new \RuntimeException('Failed to create temporary directory');
+        }
+        if (!$this->uploader->setTmpDir($tmpDir)) {
+            throw new \RuntimeException(
+                'Failed to set temporary directory for files.'
+            );
+        }
 
         parent::setUp();
     }
 
     /**
      * @magentoAppIsolation enabled
+     * @return void
      */
-    public function testMoveWithValidFile()
+    public function testMoveWithValidFile(): void
     {
         $fileName = 'magento_additional_image_one.jpg';
         $filePath = $this->directory->getAbsolutePath($this->uploader->getTmpDir() . '/' . $fileName);
@@ -65,9 +75,11 @@ class UploaderTest extends \Magento\TestFramework\Indexer\TestCase
 
     /**
      * @magentoAppIsolation enabled
+     * @return void
      * @expectedException \Exception
+     * @expectedExceptionMessage Disallowed file type
      */
-    public function testMoveWithInvalidFile()
+    public function testMoveWithInvalidFile(): void
     {
         $fileName = 'media_import_image.php';
         $filePath = $this->directory->getAbsolutePath($this->uploader->getTmpDir() . '/' . $fileName);
