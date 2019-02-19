@@ -22,6 +22,8 @@ define([
                     onViewMoreProducts();
                 }
             });
+
+            onViewMoreProducts();
         });
     
         $(window).load(function () {
@@ -31,8 +33,6 @@ define([
             } else {
                 $(window).scrollTop(0);
             }
-            
-            onViewMoreProducts();
         });
     
         function onViewMoreProducts() {            
@@ -83,7 +83,9 @@ define([
     
                         $("ul.products-grid").imagesLoaded(function() {
                             elms.css("visibility", "visible");
-                            $("ul.products-grid").isotope('appended', elms);
+                            if ($("ul.products-grid").data('isotope')) {
+                                $("ul.products-grid").isotope('appended', elms);
+                            }
                         });
     
                         if (!isLast) {
