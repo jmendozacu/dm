@@ -22,8 +22,6 @@ define([
                     onViewMoreProducts();
                 }
             });
-
-            onViewMoreProducts();
         });
     
         $(window).load(function () {
@@ -33,6 +31,8 @@ define([
             } else {
                 $(window).scrollTop(0);
             }
+            
+            onViewMoreProducts();
         });
     
         function onViewMoreProducts() {            
