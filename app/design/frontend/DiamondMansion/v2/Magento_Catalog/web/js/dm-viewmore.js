@@ -53,7 +53,7 @@ define([
     
         $(window).load(function () {
             var viewedItemIdentifier = config.viewedItemIdentifier;
-            if (viewedItemIdentifier) {
+            if (viewedItemIdentifier && $('li#item-' + viewedItemIdentifier).length) {
                 $(window).scrollTop($('li#item-' + viewedItemIdentifier).offset().top - $(window).height() / 2 + $('li#' + viewedItemIdentifier).height() / 2);
             } else {
                 $(window).scrollTop(0);
