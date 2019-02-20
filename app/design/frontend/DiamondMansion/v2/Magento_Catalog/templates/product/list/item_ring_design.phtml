@@ -15,7 +15,7 @@
 
     $recommendItems = [];//json_decode($product->getRecommendItems(), true);
 ?>
-<li class="grid_4 item design-ring" id="item-<?php echo $product->getId() ?>">
+<li class="grid_4 item design-ring" id="item-<?php echo $product->getId() ?>" data-id="<?= $product->getId() ?>">
     <div class="product-box">
         <div class="product-img-box">
             <a href="<?php echo $productUrl ?>" title="<?php echo $productName ?>" class="product-image"><div class="hover-box">

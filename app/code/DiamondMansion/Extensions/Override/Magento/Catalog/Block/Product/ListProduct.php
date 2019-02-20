@@ -5,6 +5,7 @@ namespace DiamondMansion\Extensions\Override\Magento\Catalog\Block\Product;
 class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
 {
     protected $_coreSession;
+    protected $_urlInterface;
 
     /**
      * @param Context $context
@@ -21,15 +22,17 @@ class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
         \Magento\Catalog\Api\CategoryRepositoryInterface $categoryRepository,
         \Magento\Framework\Url\Helper\Data $urlHelper,
         array $data = [],
-        \Magento\Framework\Session\SessionManagerInterface $coreSession
+        \Magento\Framework\Session\SessionManagerInterface $coreSession,
+        \Magento\Framework\UrlInterface $urlInterface
     ) {
         $this->_coreSession = $coreSession;
+        $this->_urlInterface = $urlInterface;
 
         parent::__construct($context, $postDataHelper, $layerResolver, $categoryRepository, $urlHelper, $data);
     }
 
     public function getCurrentUrl() {
-        return str_replace('\\', '/', $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]));
+        return $this->_urlInterface->getCurrentUrl();
     }
 
     public function getCurrentPage() {
@@ -37,7 +40,8 @@ class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
     }
 
     public function getViewedPage($url) {
-        $viewedPages = $this->_coreSession->getviewedPages();
+        $url = rtrim($url, '/');
+        $viewedPages = $this->_coreSession->getViewedPages();
         if (isset($viewedPages[$url])) {
             $page = $viewedPages[$url] ?: 1;
         } else {
@@ -49,7 +53,7 @@ class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
 
     public function setViewedPage($url, $page) {
         $this->excluedPageFromUrl($url, $page);
-        $viewedPages = $this->_coreSession->getviewedPages();
+        $viewedPages = $this->_coreSession->getViewedPages();
         $viewedPages[$url] = $page;
         $this->_coreSession->setViewedPages($viewedPages);
     }

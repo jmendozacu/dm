@@ -96,6 +96,7 @@
 
     <preference for="Magento\Theme\Block\Html\Breadcrumbs" type="DiamondMansion\Extensions\Override\Magento\Theme\Block\Html\Breadcrumbs"/>
     <preference for="Magento\Catalog\Controller\Category\View" type="DiamondMansion\Extensions\Override\Magento\Catalog\Controller\Category\View"/>
+    <!-- <preference for="Magento\Catalog\Controller\Product\View" type="DiamondMansion\Extensions\Override\Magento\Catalog\Controller\Product\View"/> -->
     <preference for="Magento\Catalog\Block\Category\View" type="DiamondMansion\Extensions\Override\Magento\Catalog\Block\Category\View"/>
     <preference for="Magento\Catalog\Block\Product\ListProduct" type="DiamondMansion\Extensions\Override\Magento\Catalog\Block\Product\ListProduct"/>
     <preference for="Magento\Catalog\Block\Product\ProductList\Toolbar" type="DiamondMansion\Extensions\Override\Magento\Catalog\Block\Product\ProductList\Toolbar"/>

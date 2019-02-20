@@ -5,6 +5,7 @@ namespace DiamondMansion\Extensions\Override\Magento\Catalog\Block\Product\Produ
 class Toolbar extends \Magento\Catalog\Block\Product\ProductList\Toolbar
 {
     protected $_coreSession;
+    protected $_urlInterface;
 
     /**
      * @param \Magento\Framework\View\Element\Template\Context $context
@@ -25,9 +26,11 @@ class Toolbar extends \Magento\Catalog\Block\Product\ProductList\Toolbar
         \Magento\Catalog\Helper\Product\ProductList $productListHelper,
         \Magento\Framework\Data\Helper\PostHelper $postDataHelper,
         array $data = [],
-        \Magento\Framework\Session\SessionManagerInterface $coreSession
+        \Magento\Framework\Session\SessionManagerInterface $coreSession,
+        \Magento\Framework\UrlInterface $urlInterface
     ) {
         $this->_coreSession = $coreSession;
+        $this->_urlInterface = $urlInterface;
 
         parent::__construct($context, $catalogSession, $catalogConfig, $toolbarModel, $urlEncoder, $productListHelper, $postDataHelper, $data);
     }
@@ -46,15 +49,20 @@ class Toolbar extends \Magento\Catalog\Block\Product\ProductList\Toolbar
         $page = $this->getRequest()->getParam('p');
 
         if (!$page) {
-	        $url = $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+            $url = $this->_urlInterface->getCurrentUrl();
+            $viewedItems = $this->_coreSession->getViewedItems();
 
-	        $viewedPages = $this->_coreSession->getViewedPages();
+            if (isset($viewedItems[$url])) {
+                $url = rtrim($url, '/');
 
-	        if (isset($viewedPages[$url]) && $viewedPages[$url] > 1) {
-	            return $this->getCollection()->getPageSize() * ($viewedPages[$url]);
-	        }
+                $viewedPages = $this->_coreSession->getViewedPages();
+
+                if (isset($viewedPages[$url]) && $viewedPages[$url] > 1) {
+                    return parent::getLimit() * ($viewedPages[$url]);
+                }
+            }
         }
 
-        return parent::getLimit();
+        return parent::getLimit();;
 	}
 }

@@ -57,14 +57,14 @@ require([
 
 <?php /*** View More ***/ ?>
 <?php 
-    $url = $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+    $url = $this->getCurrentUrl();
     if ($this->getRequest()->getParam("p")) {
         $page = $this->getRequest()->getParam("p");
         $this->setViewedPage($url, $page);
         $viewedItemIdentifier = 0;
     } else {
-        $page = $this->getViewedPage($url);
         $viewedItemIdentifier = $this->getViewedItem($url);
+        $page = ($viewedItemIdentifier > 0) ? $this->getViewedPage($url) : 1;
     }
 
     if (!$page) {
@@ -84,7 +84,7 @@ require([
             },
             "dm-viewmore": {
                 "isStoppedLoad": -1,
-                "viewItemIdentifier": "<?= $viewedItemIdentifier ?>"
+                "viewedItemIdentifier": "<?= $viewedItemIdentifier ?>"
             }
         }
     }

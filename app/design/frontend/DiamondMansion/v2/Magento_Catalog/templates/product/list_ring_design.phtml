@@ -65,8 +65,8 @@ require([
         $this->setViewedPage($url, $page);
         $viewedItemIdentifier = 0;
     } else {
-        $page = $this->getViewedPage($url);
         $viewedItemIdentifier = $this->getViewedItem($url);
+        $page = ($viewedItemIdentifier > 0) ? $this->getViewedPage($url) : 1;
     }
 ?>
 <div class="buttons-set a-center" id="view-more-products-wrapper" data-current-page="<?= $page ?>" data-current-url="<?= $url ?>">
@@ -82,7 +82,7 @@ require([
             },
             "dm-viewmore": {
                 "isStoppedLoad": -1,
-                "viewItemIdentifier": "<?= $viewedItemIdentifier ?>"
+                "viewedItemIdentifier": "<?= $viewedItemIdentifier ?>"
             }
         }
     }

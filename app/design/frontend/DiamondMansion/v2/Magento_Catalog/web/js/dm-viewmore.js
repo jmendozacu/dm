@@ -9,6 +9,8 @@ define([
         var currentUrl;
         var page;
 
+        console.log(config.viewedItemIdentifier);
+
         $(document).ready(function() {
             if (!$('.toolbar .pages').length) {
                 isLast = true;
@@ -16,6 +18,29 @@ define([
             }
 
             $('body').delegate('#view-more-products-wrapper', 'click', onViewMoreProducts);
+            $('body').delegate('ul.products-grid a', 'click', function () {
+                currentUrl = $('#view-more-products-wrapper').data('current-url');
+                var url = $(this).attr('href');
+                var productId = $(this).parents("li.item:first").data('id');
+
+                $.ajax({
+                    url: '/dm/api/savevieweditem',
+                    method: "POST",
+                    data: {
+                        'id': productId,
+                        'url': currentUrl
+                    },
+                    beforeSend: function () {
+                    },
+                    complete: function () {
+                    },
+                    success: function (xhr) {
+                        location.href = url;
+                    }
+                });
+
+                return false;
+            });
     
             $(window).scroll(function () {
                 if (isStoppedLoad === true && (($(document).height() - $(this).scrollTop()) < ($('ul.products-grid li.item').height() * 9))) {
