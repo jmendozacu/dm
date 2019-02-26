@@ -22,11 +22,20 @@
 * v3
 **/
 
+@v3-base-desktop-width: 1970;
+@v3-base-desktop-vw: 1vw * 100/@v3-base-desktop-width;
+
+@v3-base-mobile-width: 750;
+@v3-base-mobile-vw: 1vw * 100/@v3-base-mobile-width;
+
 @v3-header-height: 54px;
 @v3-header-padding-v: 20px;
 @v3-header-height-mobile: @v3-header-height + @v3-header-padding-v;
-@v3-container-max-width: 1700px;
+@v3-container-max-width: 100vw * 1632/@v3-base-desktop-width;
 @v3-border-color: #f1eff0;
+
+@v3-desktop-min-width: 1280px;
+@v3-mobile-max-width: 1279px;
 
 .icon-sprites-position(@icon) when (@icon = 'cart-black') {
 	background-position: -10px -10px;

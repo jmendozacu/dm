@@ -16,10 +16,11 @@
         .tooltip-content {
             min-width: 140px;
             padding: 10px 5px;
-            font-size: 10px;
+            font-size: 10em;
             display: block;
             text-align: center;
             color: #ed5842;
+            left: -54px;
 
             &:before, &:after {
                 left: 65px;
@@ -64,22 +65,22 @@
             .wishlist-popup-close {
                 .lib-button-icon(
                 @icon-remove,
-                @_icon-font-size: 32px,
-                @_icon-font-line-height: 32px,
+                @_icon-font-size: 32 * @v3-base-desktop-vw,
+                @_icon-font-line-height: 32 * @v3-base-desktop-vw,
                 @_icon-font-text-hide: true
                 );
                 .lib-button-reset();
                 text-indent: 0;
 
                 &:before {
-                    font-size: 40px;
-                    line-height: 40px;
+                    font-size: 40 * @v3-base-desktop-vw;
+                    line-height: 40 * @v3-base-desktop-vw;
                 }
 
                 cursor: pointer;
                 float: right;
-                margin-top: -35px;
-                margin-right: -35px;
+                margin-top: -35 * @v3-base-desktop-vw;
+                margin-right: -35 * @v3-base-desktop-vw;
             }
 
             .wishlist-popup-form {
@@ -87,7 +88,7 @@
                 padding: 20px 0 40px;
 
                 .wishlist-popup-form-title {
-                    font-size: 16px;
+                    font-size: 16em;
                     line-height: 24px;
                     margin-bottom: 10px;
                 }
@@ -199,7 +200,7 @@
         }
 
         .text {
-            font-size: 24px;
+            font-size: 24em;
             display: inline-block;
 
             i {
@@ -211,9 +212,11 @@
             display: inline-block;
             vertical-align: middle;
             line-height: 35px;
-            font-size: 10px;
+            font-size: 10em;
             text-align: center;
-            margin-left: -19px;
+            width: 25 * @v3-base-desktop-vw;
+            margin-top: 3 * @v3-base-desktop-vw;
+            margin-left: -25 * @v3-base-desktop-vw;
         }
 
         .product-item-name {
@@ -329,7 +332,7 @@
                 background-color: #000;
                 color: #fff;
                 text-align: center;
-                font-size: 14px;
+                font-size: 14em;
             }
 
             .action.close {
@@ -344,7 +347,7 @@
                 position: absolute;
                 right: 0;
                 top: 0;
-                width: 40px;            
+                width: 40px;
             }
 
             .item-list {
@@ -362,26 +365,29 @@
 
         .subtitle.empty {
             display: block;
-            font-size: 14px;
-            padding: 50px 20px;
+            font-size: 14em;
+            padding: 50px 20 * @v3-base-desktop-vw;
             text-align: center;            
         }
 
         .product-item {
             font-weight: normal;
-            font-size: 14px;
+            font-size: 14em;
             line-height: 20px;
-            padding: 15px;
+            padding: 15px 15 * @v3-base-desktop-vw;
             border-bottom: 1px solid @v3-border-color;
 
             .product-item-info {
                 width: 100%;
+                display: flex;
+                flex-direction: row;
+
+                .product-item-photo {
+                    width: 80px;
+                }
     
                 .product-item-details {
-                    float: right;
-                    display: inline-block;
-                    width: 160px;
-                    padding: 10px 0;
+                    padding: 10px;
 
                     .product-item-name {
                         margin-bottom: 10px;
@@ -399,7 +405,7 @@
                             &:before {
                                 -webkit-font-smoothing: antialiased;
                                 -moz-osx-font-smoothing: grayscale;
-                                font-size: 28px;
+                                font-size: 2em;
                                 line-height: 28px;
                                 color: #303030;
                                 content: '\e606';
@@ -450,13 +456,13 @@
         .product-item-name {
             a span {
                 font-weight: normal;
-                font-size: 16px;
+                font-size: 16em;
                 line-height: 24px;  
             }
         }
 
         .price {
-            font-size: 20px;
+            font-size: 20em;
             line-height: 40px;
         }
 
@@ -465,7 +471,7 @@
             padding: 10px 0;
             text-align: center;
             text-transform: uppercase;
-            font-size: 14px;
+            font-size: 14em;
             color: #fff;
             background-color: #999;
 
@@ -488,7 +494,7 @@
                 &:before {
                     -webkit-font-smoothing: antialiased;
                     -moz-osx-font-smoothing: grayscale;
-                    font-size: 28px;
+                    font-size: 28em;
                     line-height: 28px;
                     color: #303030;
                     content: '\e606';
@@ -623,6 +629,19 @@
             .product-item-actions {
                 margin: 0;
             }
+        }
+    }
+}
+
+@media only screen and (max-width: @v3-mobile-max-width) {
+    .miniwishlist-wrapper.block-wishlist {
+        padding-left: 10 * @v3-base-mobile-vw;
+        padding-right: 10 * @v3-base-mobile-vw;
+
+        .counter {
+            width: 25 * @v3-base-mobile-vw;
+            margin-left: -25 * @v3-base-mobile-vw;
+            margin-top: 6 * @v3-base-mobile-vw;
         }
     }
 }

@@ -43,23 +43,25 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
 
 #footer.v3 {
     border-top: 1px solid @v3-border-color;
+    margin-left: -15px;
+    margin-right: -15px;
 
     .footer-top-wrapper {
         max-width: @v3-container-max-width;
         margin: 0 auto;
-        padding: 0 60px;
+        padding: 0 30 * @v3-base-desktop-vw;
 
         display: flex;
 
         & > div {
-            padding: 40px 0 40px;
+            padding: 40 * @v3-base-desktop-vw 0;
 
             .title {
                 font-family: 'Proxima Nova Lt';
-                font-size: 14px;
+                font-size: 14em;
                 font-weight: 600;
-                line-height: 14px;
-                margin-bottom: 18px;
+                line-height: 14 * @v3-base-desktop-vw;
+                margin-bottom: 18 * @v3-base-desktop-vw;
                 text-transform: uppercase;                
             }
 
@@ -71,9 +73,9 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
                     padding: 0;
                     font-family: 'Avenir LT Std';
                     font-weight: 300;
-                    font-size: 14px;
-                    line-height: 14px;
-                    margin-bottom: 12px;
+                    font-size: 14em;
+                    line-height: 14 * @v3-base-desktop-vw;
+                    margin-bottom: 12 * @v3-base-desktop-vw;
 
                     &, a {
                         vertical-align: middle;
@@ -106,19 +108,19 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
             .form-subscribe-header label {
                 font-family: 'Avenir LT Std';
                 font-weight: 300;
-                font-size: 14px;
-                line-height: 14px;
-                margin-bottom: 12px;
+                font-size: 14em;
+                line-height: 14 * @v3-base-desktop-vw;
+                margin-bottom: 12 * @v3-base-desktop-vw;
                 display: block;
             }
 
             input#newsletter {
                 font-family: 'Avenir LT Std';
                 font-weight: 300;
-                font-size: 14px;
-                line-height: 20px;
-                padding: 10px 40px 10px 20px;
-                height: 40px;
+                font-size: 14em;
+                line-height: 20 * @v3-base-desktop-vw;
+                padding: 10 * @v3-base-desktop-vw 40 * @v3-base-desktop-vw 10 * @v3-base-desktop-vw 20 * @v3-base-desktop-vw;
+                height: 40 * @v3-base-desktop-vw;
 
                 color: #080501;
                 border-color: #080501;
@@ -130,15 +132,33 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
             }
 
             button.button {
-                width: 40px;
-                height: 40px;
-                line-height: 40px;
+
+                span.arrow {
+                    border-right: 2px solid #080501;
+                    border-bottom: 2px solid #080501;
+                    display: inline-block;
+                    width: 8px;
+                    height: 8px;
+                    padding: 0;
+                    margin: 0;
+                    background: transparent;
+                    -webkit-transform: rotate(-45deg);
+                    -moz-transform: rotate(-45deg);
+                    -ms-transform: rotate(-45deg);
+                    -o-transform: rotate(-45deg);
+                    transform: rotate(-45deg);    
+                    margin-left: 15 * @v3-base-desktop-vw;
+                }
+
+                width: 40 * @v3-base-desktop-vw;
+                height: 40 * @v3-base-desktop-vw;
+                line-height: 40 * @v3-base-desktop-vw;
                 text-align: center;
-                margin-top: -40px;
+                margin-top: -40 * @v3-base-desktop-vw;
 
                 font-family: 'Avenir LT Std';
                 font-weight: 300;
-                font-size: 13px;
+                font-size: 13em;
 
                 color: #080501;
 
@@ -153,17 +173,19 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
         .content {
             max-width: @v3-container-max-width;
             margin: 0 auto;
-            padding: 0 60px;
+            padding: 0 30 * @v3-base-desktop-vw;
 
             font-family: 'Avenir LT Std';
             font-weight: 300;
-            font-size: 14px !important;
-            line-height: 86px;
+            font-size: 14em !important;
+            line-height: 32px;
+            padding: 27px;
+
             color: #080501;     
 
             a, small {
                 font-weight: 300;
-                font-size: 14px !important;                
+                font-size: 1em !important;                
                 color: #080501;
             }
 
@@ -194,26 +216,33 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
                     float: none;
                     display: inline-block;
                     margin: 0;
-                    padding: 27px 0;
+                    padding: 0;
                 }
             }
         }
     }
 
-    @media only screen and (max-width: 1699px) and (min-width: 1366px) {
-        .footer-top-wrapper {
-            padding: 0 30px;
-        }
-
-        .footer-bottom-wrapper {
-            padding: 0 30px;
-        }
-    }
-
-    @media only screen and (max-width: 1365px) {
+    @media only screen and (max-width: @v3-mobile-max-width) {
         text-align: center;
         .footer-top-wrapper {
             display: block;
+            padding: 75 * @v3-base-mobile-vw;
+
+            & > div {
+                .title {
+                    font-size: 20em;
+                    line-height: 30 * @v3-base-mobile-vw;
+                    padding-bottom: 20 * @v3-base-mobile-vw;
+                }
+
+                ul {
+                    li {
+                        font-size: 17em;
+                        line-height: 20 * @v3-base-mobile-vw;
+                        margin-bottom: 12 * @v3-base-mobile-vw;
+                    }
+                }
+            }
 
             .help,
             .shop,
@@ -221,24 +250,41 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
             .visit-us,
             .community {
                 width: auto;
-                max-width: 500px;
+                max-width: 500 * @v3-base-mobile-vw;
                 margin: 0 auto;
+            }
 
-                .title {
-                    line-height: 30px;
-                    padding-bottom: 20px;
+            .community {
+                .form-subscribe-header label {
+                    font-size: 17em;
+                    line-height: 20 * @v3-base-mobile-vw;
+                    margin-bottom: 32 * @v3-base-mobile-vw;
                 }
 
-                .form-subscribe-header label {
-                    line-height: 20px;
+                input#newsletter {
+                    line-height: 20 * @v3-base-mobile-vw;
+                    padding: 10 * @v3-base-mobile-vw 40 * @v3-base-mobile-vw 10 * @v3-base-mobile-vw 20 * @v3-base-mobile-vw;
+                    height: 40 * @v3-base-mobile-vw;
+                }
+
+                button.button {
+                    width: 40 * @v3-base-mobile-vw;
+                    height: 40 * @v3-base-mobile-vw;
+                    line-height: 40 * @v3-base-mobile-vw;
+                    margin-top: -40 * @v3-base-mobile-vw;
+
+                    span.arrow {
+                        margin-left: 15 * @v3-base-mobile-vw;
+                    }
                 }
             }
+
         }
 
         .footer-bottom-wrapper {
             .content {
-                padding: 20px 0;
-                line-height: 50px;
+                padding: 20 * @v3-base-mobile-vw 0;
+                line-height: 50 * @v3-base-mobile-vw;
 
                 & > div {
                     width: 100% !important;
@@ -246,14 +292,14 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
                 }
 
                 .copyright {
-                    line-height: 30px;
+                    line-height: 30 * @v3-base-mobile-vw;
                 }
 
                 div.social-links {
                     text-align: center;
 
                     ul.social-links {
-                        padding: 15px 0;
+                        padding: 15 * @v3-base-mobile-vw 0;
                     }
                 }
             }
