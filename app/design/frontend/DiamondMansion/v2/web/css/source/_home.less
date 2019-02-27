@@ -51,7 +51,7 @@
 			.spec {
 				position: absolute;
 				left: 30 * @v3-base-desktop-vw;
-				width: 670 * @v3-base-desktop-vw;
+				width: 800 * @v3-base-desktop-vw;
 				top: 50%;
 				margin-top: -600 * @v3-base-desktop-vw;
 
@@ -93,9 +93,9 @@
 
 			@media only screen and (max-width: @v3-mobile-max-width) {
 				.spec {
-					width: 470 * @v3-base-mobile-vw;
-					left: 50%;
-					margin-left: -235 * @v3-base-mobile-vw;
+					width: 100%;
+					left: 0;
+					margin-left: 0;
 					text-align: center;
 					margin-top: -350 * @v3-base-mobile-vw;
 
@@ -117,6 +117,132 @@
 					}
 				}
 			}
+
+        	@media only screen and (max-width: 359px) {
+	        	overflow: hidden;
+
+	        	background: url('../images/v3/home/banner-mobile.jpg') center center no-repeat;
+	        	background-size: auto 100%;
+
+				img {
+					height: 590px;
+					width: auto;
+					max-width: 750px;
+					visibility: hidden;
+				}
+
+
+				.spec {
+					width: 100%;
+					padding: 0 8px;
+					left: 0;
+					margin-left: 0;
+					text-align: center;
+					margin-top: -290px;
+
+					p.h1 {
+						font-size: 19px;
+						line-height: 35px;
+					}
+
+					p.h2 {
+						font-size: 14px;
+						font-family: 'Proxima Nova Cn Lt';
+						line-height: 30px;
+					}
+
+					a.btn-link {
+						font-family: 'Proxima Nova Cn Lt';
+						font-size: 14px;
+						line-height: 60px;
+						padding: 0 35px;
+					}
+				}
+			}
+
+        	@media only screen and (min-width: 360px) and (max-width: 413px) {
+	        	overflow: hidden;
+
+	        	background: url('../images/v3/home/banner-mobile.jpg') center center no-repeat;
+	        	background-size: auto 100%;
+
+				img {
+					height: 590px;
+					width: auto;
+					max-width: 750px;
+					visibility: hidden;
+				}
+
+
+				.spec {
+					width: 100%;
+					padding: 0 8px;
+					left: 0;
+					margin-left: 0;
+					text-align: center;
+					margin-top: -290px;
+
+					p.h1 {
+						font-size: 22px;
+						line-height: 35px;
+					}
+
+					p.h2 {
+						font-size: 16px;
+						font-family: 'Proxima Nova Cn Lt';
+						line-height: 30px;
+					}
+
+					a.btn-link {
+						font-family: 'Proxima Nova Cn Lt';
+						font-size: 15px;
+						line-height: 60px;
+						padding: 0 35px;
+					}
+				}
+	        }
+
+	        @media only screen and (min-width: 414px) and (max-width: 639px) {
+	        	overflow: hidden;
+
+	        	background: url('../images/v3/home/banner-mobile.jpg') center center no-repeat;
+	        	background-size: auto 100%;
+
+				img {
+					height: 590px;
+					width: auto;
+					max-width: 750px;
+					visibility: hidden;
+				}
+
+				.spec {
+					width: 100%;
+					padding: 0 8px;
+					left: 0;
+					margin-left: 0;
+					text-align: center;
+					margin-top: -290px;
+
+					p.h1 {
+						font-size: 25px;
+						line-height: 35px;
+					}
+
+					p.h2 {
+						font-size: 17px;
+						font-family: 'Proxima Nova Cn Lt';
+						line-height: 30px;
+					}
+
+					a.btn-link {
+						font-family: 'Proxima Nova Cn Lt';
+						font-size: 17px;
+						line-height: 60px;
+						padding: 0 35px;
+					}
+				}
+	        }
+
 		}
 
 		.our-story {
