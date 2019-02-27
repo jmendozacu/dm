@@ -90,9 +90,17 @@
         height: 30px;
         background: url(../images/v3/i_menu_white.png) center center no-repeat;
 
-        body:not(.cms-home) & {
-            background: url(../images/v3/i_menu_black.png) center center no-repeat;
+        body:not(.cms-home) &,
+        body.sticky & {
+            background-image: url(../images/v3/i_menu_black.png);
         }
+
+        body.sticky & {
+            margin-top: -20px;
+        }
+
+        transition-delay: 0.25s;
+        transition: margin-top 0.5s;
 
         .page-header.active & {
             .lib-button-icon(
