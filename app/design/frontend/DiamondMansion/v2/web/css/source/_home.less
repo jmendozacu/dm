@@ -829,10 +829,11 @@
 					.slick-next {
 						text-indent: -9999px;
 						background: #fff;
-						width: 70px;
+						width: 60px;
 						height: 60px;
 						cursor: pointer;
 						z-index: 9998;
+						border-radius: 0;
 
 						&:before {
 							position: absolute;
@@ -844,16 +845,22 @@
 							margin-top: -18px;
 							background-image: url(../images/v3/arrows.png);
 						}
+
+						&:active {
+							box-shadow: none;
+						}
 					}
 
 					.slick-prev {
-						margin-left: -260 * @v3-base-desktop-vw;
+						left: 0;
+						margin-left: -300 * @v3-base-desktop-vw;						
 						&:before {
 							background-position: left top;
 						}
 					}
 					.slick-next {
-						margin-right: -260 * @v3-base-desktop-vw;
+						right: 0;
+						margin-right: -300 * @v3-base-desktop-vw;
 						&:before {
 							background-position: right bottom;
 						}
@@ -905,11 +912,16 @@
 							}
 						}
 
+						.slick-prev,
+						.slick-next {
+							width: 60 * @v3-base-mobile-vw;
+							height: 60 * @v3-base-mobile-vw;
+						}
 						.slick-prev {
-							margin-left: 26 * @v3-base-mobile-vw;
+							margin-left: 0;
 						}
 						.slick-next {
-							margin-right: 26 * @v3-base-mobile-vw;
+							margin-right: 0;
 						}
 					}
 				}
