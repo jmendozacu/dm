@@ -134,7 +134,7 @@ define([
                             }
 
                             $('li.product-item[rel=\'' + key + '\']').remove();
-                            $('.block-wishlist span.counter').html('(' + $('#miniwishlist > li').length + ')');
+                            $('.block-wishlist span.counter').html($('#miniwishlist > li').length);
 
                             if ($('#miniwishlist > li').length == 0) {
                                 $('#miniwishlist').parent().html('<strong class="empty subtitle">You have no items in your wish list</strong>');

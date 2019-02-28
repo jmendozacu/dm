@@ -16,7 +16,7 @@ if ($block->isLoggedIn()) {
 <?php if ($block->isLoggedIn()): ?>
 <li class="customer-link">
     <a href="#" class="anchor">
-        <span>Account</span>
+        <span>Account</span><span class="nav-link-arrow"></span>
     </a>
     <ul class="customer-sub-links">
         <li><a href="/customer/account/">Profile</a></li>
@@ -29,6 +29,37 @@ if ($block->isLoggedIn()) {
         </li>
     </ul>
 </li>
+<script>
+    require(['jquery'], function($){
+        'use strict';
+        $('.customer-link .anchor').click(function () {
+            $('.block-search .block-content').hide();
+            $('.block-search').removeClass('over');
+
+            $('.customer-link').toggleClass('over');
+            $('.customer-link .customer-sub-links').toggle('fade', 'fast');
+            $('.customer-link .customer-sub-links').css('paddingLeft', $(this).offset().left);
+
+            if ($('#nav li.over').length) {
+                $('#shown-sub-wrapper').hide();
+                $('#shown-sub-wrapper').html("");
+                $('#shown-sub-wrapper').addClass('no-display');
+                $('#shown-sub-wrapper').css('height', 'auto');
+                $('#shown-sub-wrapper').css('paddingLeft', 0);
+
+                $('#nav li.over').removeClass('over');
+            }
+
+            if ($('.customer-link').hasClass('over')) {
+                $('.page-header').addClass('active');
+            } else {
+                $('.page-header').removeClass('active');
+            }
+
+            return false;
+        });
+    });
+</script>
 <?php else: ?>
 <li class="authorization-link" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
     <a <?= /* @noEscape */ $block->getLinkAttributes() ?><?= /* @noEscape */ $dataPostParam ?>>

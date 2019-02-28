@@ -24,13 +24,13 @@ class Index extends \Magento\Framework\App\Action\Action
 
     public function execute()
     {
-/*
+
         if ($this->_customerSession->isLoggedIn()) {
             $resultRedirect = $this->_resultRedirect->create(ResultFactory::TYPE_REDIRECT);
             $resultRedirect->setPath('wishlist/');
             return $resultRedirect;
         }
-*/
+
         $resultPage = $this->_resultPageFactory->create();
         $resultPage->getConfig()->getTitle()->set(__('Wish List'));
         return $resultPage;

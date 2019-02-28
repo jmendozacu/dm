@@ -42,6 +42,14 @@
 
         .block-content {
             margin-bottom: 0;
+            margin-top: @v3-header-padding-v;
+            transition-delay: 0.25s;
+            transition: margin-top 0.5s;
+
+            body.sticky & {
+                margin-top: 0;
+            }
+
             display: none;
             position: absolute;
             z-index: 1;

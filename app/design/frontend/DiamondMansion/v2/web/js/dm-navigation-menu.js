@@ -12,6 +12,10 @@ define([
 
             $('#nav a.level-top').on('click', function() {
                 $('.block-search .block-content').hide();
+                $('.block-search').removeClass('over');
+
+                $('.customer-link .customer-sub-links').hide();
+                $('.customer-link').removeClass('over');
 
                 if ($(this).parent().hasClass('over')) {
                     $('#shown-sub-wrapper').slideUp('fast', function() {

@@ -62,8 +62,13 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
     require(['jquery'], function($){
         'use strict';
         $('.block-search .block-title').click(function () {
+            $('.customer-link .customer-sub-links').hide();
+            $('.customer-link').removeClass('over');
+
+            $('.block-search').toggleClass('over');
             $('.block-search .block-content').toggle('fade', 'fast');
-            if ($('.page-header').hasClass('active') && $('#nav li.over').length) {
+
+            if ($('#nav li.over').length) {
                 $('#shown-sub-wrapper').hide();
                 $('#shown-sub-wrapper').html("");
                 $('#shown-sub-wrapper').addClass('no-display');
@@ -71,9 +76,13 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
                 $('#shown-sub-wrapper').css('paddingLeft', 0);
 
                 $('#nav li.over').removeClass('over');
-            } else {
-                $('.page-header').toggleClass('active');
             }
+
+            if ($('.block-search').hasClass('over')) {
+                $('.page-header').addClass('active');
+            } else {
+                $('.page-header').removeClass('active');
+            }            
         });
     });
 </script>

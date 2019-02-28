@@ -356,6 +356,7 @@
             .actions-toolbar {
                 padding: 20px 0;
                 text-align: center;
+                font-size: 14em;
 
                 .primary {
                     float: none;
@@ -456,13 +457,13 @@
         .product-item-name {
             a span {
                 font-weight: normal;
-                font-size: 16em;
+                font-size: 16px;
                 line-height: 24px;  
             }
         }
 
         .price {
-            font-size: 20em;
+            font-size: 20px;
             line-height: 40px;
         }
 
@@ -471,7 +472,7 @@
             padding: 10px 0;
             text-align: center;
             text-transform: uppercase;
-            font-size: 14em;
+            font-size: 14px;
             color: #fff;
             background-color: #999;
 
@@ -494,7 +495,7 @@
                 &:before {
                     -webkit-font-smoothing: antialiased;
                     -moz-osx-font-smoothing: grayscale;
-                    font-size: 28em;
+                    font-size: 28px;
                     line-height: 28px;
                     color: #303030;
                     content: '\e606';
@@ -733,7 +734,7 @@
         .product {
             &-item {
                 &-info {
-                    width: 240px;
+                    max-width: 240px;
                 }
             }
         }
@@ -756,9 +757,10 @@
             }
 
             .product-item {
-                margin-left: calc(~'(100% - 4 * 24.439%) / 3');
-                padding: 0;
-                width: 24.439%;
+                margin: 0;
+                padding: 10px;
+                width: 25%;
+                box-sizing: border-box;
 
                 &:nth-child(4n + 1) {
                     margin-left: 0;
