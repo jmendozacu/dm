@@ -40,7 +40,7 @@ class Listing extends \Magento\Ui\DataProvider\AbstractDataProvider
             $options = json_decode($options, true);
 
             if (isset($options['image'])) {
-                $html = '<div style="display: inline-block; width: 70px; text-align: center; margin: 0 5px; border: 1px solid #e2e2e2;"><a href="' . $options['url'] . '" target="_blank" title="' . $options['name'] . '"><img style="width: 70px; height: 70px;" src="' . $options['image'] . '"/><span style="line-height: 30px;">' . $options['price'] . '</span></a></div>';
+                $html = '<div style="display: inline-block; width: 70px; text-align: center; margin: 0 5px; border: 1px solid #e2e2e2;"><a href="' . $options['url'] . '" target="_blank" title="' . $options['name'] . '"><img style="width: 70px; height: 70px;" src="' . $options['image'] . '"/><span style="line-height: 30px;">' . ($options['price'] ?: 'Sold Out') . '</span></a></div>';
             }
 
             if (!isset($items[$email])) {
