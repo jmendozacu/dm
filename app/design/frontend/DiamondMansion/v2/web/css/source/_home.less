@@ -371,9 +371,9 @@
 					}
 
 					a.btn-link-default {
-						font-size: 17px;
-						line-height: 60px;
-						padding: 0 55px;
+						font-size: 13px;
+						line-height: 50px;
+						padding: 0 45px;
 						margin-top: 25px;
 					}
 				}
@@ -487,6 +487,14 @@
 				}
 			}
 
+			@media only screen and (max-width: 413px) {
+				.content {
+					.title {
+						font-size: 22px;
+						line-height: 30px;
+					}
+				}
+			}
 		}
 
 		.guarantee {
@@ -592,12 +600,23 @@
 
 			@media only screen and (max-width: 413px) {
 				.content {
+					.title {
+						font-size: 22px;
+						line-height: 30px;
+					}
+
 					ul {
 						li {
 							font-size: 13px;
 							line-height: 28px;
 							margin-bottom: 0;
 						}
+					}
+
+					a.btn-link-default {
+						font-size: 13px;
+						line-height: 50px;
+						padding: 0 45px;
 					}
 				}
 			}		
@@ -720,9 +739,9 @@
 					}
 
 					a.btn-link-default {
-						font-size: 17px;
-						line-height: 60px;
-						padding: 0 55px;
+						font-size: 13px;
+						line-height: 50px;
+						padding: 0 45px;
 					}
 				}
 			}
@@ -835,6 +854,24 @@
 					}	
 				}			
 			}
+
+			@media only screen and (max-width: 413px) {
+				.content {
+					.title {
+						font-size: 22px;
+						line-height: 30px;
+					}
+
+					a.btn-link-default,
+					a.btn-link-second {
+						font-size: 13px;
+						line-height: 50px;
+						padding: 0 45px;
+						display: block;
+    					width: auto;
+					}
+				}
+			}			
 		}
 
 		.section-steps {
@@ -982,6 +1019,33 @@
 
 				}
 			}
+
+			@media only screen and (max-width: 413px) {
+				.content {
+					.title {
+						font-size: 22px;
+						line-height: 30px;
+
+						sub {
+							line-height: 30px;
+						}
+					}
+
+					.steps {
+						.step {
+							padding: 0 10px;
+							font-size: 13px;
+							line-height: 24px;
+						}
+					}
+
+					a.btn-link-default {
+						font-size: 13px;
+						line-height: 50px;
+						padding: 0 45px;
+					}
+				}
+			}						
 		}
 
 		.testimonials {
@@ -1152,6 +1216,33 @@
 					}
 				}
 			}
+
+			@media only screen and (max-width: 413px) {
+				.content-spec {
+					.title {
+						font-size: 22px;
+						line-height: 30px;
+					}
+
+					.review-slider {
+						li {
+							.review-wrapper {
+								.review-info {
+									.review-content {
+										font-size: 13px;
+										line-height: 24px;
+									}
+
+									.customer-name {
+										font-size: 13px;
+										line-height: 24px;
+									}
+								}
+							}
+						}
+					}
+				}
+			}					
 		}		
 
 		.visit-us {
@@ -1254,6 +1345,26 @@
 					}
 
 				}
+			}
+
+			@media only screen and (max-width: 413px) {
+				.content {
+					.title {
+						font-size: 22px;
+						line-height: 30px;
+					}
+
+					p.description {
+						font-size: 13px;
+						line-height: 24px;
+					}
+
+					a.btn-link-default {
+						font-size: 13px;
+						line-height: 50px;
+						padding: 0 45px;
+					}
+				}
 			}			
 		}
 
@@ -1273,6 +1384,11 @@
 				line-height: 30 * @v3-base-mobile-vw;
 				padding: 30 * @v3-base-mobile-vw;
 			}
+
+			@media only screen and (max-width: 413px) {
+				font-size: 13px;
+				line-height: 24px;
+			}			
 		}
 	}	
 }
