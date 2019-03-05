@@ -588,7 +588,19 @@
 						padding: 0 50 * @v3-base-mobile-vw;					
 					}
 				}
-			}			
+			}
+
+			@media only screen and (max-width: 413px) {
+				.content {
+					ul {
+						li {
+							font-size: 13px;
+							line-height: 28px;
+							margin-bottom: 0;
+						}
+					}
+				}
+			}		
 		}		
 
 		.section-ipc {
@@ -693,8 +705,28 @@
 						padding: 0 50 * @v3-base-mobile-vw;					
 					}
 				}
-			}						
-		}		
+			}			
+
+			@media only screen and (max-width: 413px) {
+				.content {
+					.title {
+						font-size: 22px;
+						line-height: 30px;
+					}
+
+					p.description {
+						font-size: 13px;
+						line-height: 24px;
+					}
+
+					a.btn-link-default {
+						font-size: 17px;
+						line-height: 60px;
+						padding: 0 55px;
+					}
+				}
+			}
+		}
 
 		.instagram {
 			padding: 140 * @v3-base-desktop-vw 0;
@@ -950,7 +982,7 @@
 
 				}
 			}
-		}		
+		}
 
 		.testimonials {
 			padding: 140 * @v3-base-desktop-vw 0;
