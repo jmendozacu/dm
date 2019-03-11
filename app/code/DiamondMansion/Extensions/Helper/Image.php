@@ -11,7 +11,7 @@ class Image extends Data
 
     public function getProductImageDir()
     {
-        return $this->getMediaDir() . 'diamondmansion' . DIRECTORY_SEPARATOR . 'product' . DIRECTORY_SEPARATOR;
+        return $this->getMediaDir() . 'catalog' . DIRECTORY_SEPARATOR . 'design' . DIRECTORY_SEPARATOR;
     }
 
     public function getProductImagePath($option) {
@@ -103,7 +103,7 @@ class Image extends Data
         if ($height == "") {
             $height = $width;
         }
-        $folderURL = $this->getMediaUrl() . 'diamondmansion/product/';
+        $folderURL = $this->getMediaUrl() . 'catalog/design/';
         $imageURL = $folderURL . $relativePath . $fileName;
 
         $basePath = $this->getProductImageDir() . $relativePath . $fileName;
