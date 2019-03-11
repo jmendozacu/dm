@@ -73,7 +73,7 @@ class Upload extends \DiamondMansion\Extensions\Controller\Adminhtml\Base
                     }
 
                     if(move_uploaded_file($_FILES[$elmId]['tmp_name'], $dir . $fileName)) {
-                        $url = $this->_imageHelper->getMediaUrl() . 'diamondmansion/product/' . str_replace(DIRECTORY_SEPARATOR, "/", $relativePath) . $fileName;
+                        $url = $this->_imageHelper->getMediaUrl() . 'catalog/design/' . str_replace(DIRECTORY_SEPARATOR, "/", $relativePath) . $fileName;
                     }
                 }
             }
