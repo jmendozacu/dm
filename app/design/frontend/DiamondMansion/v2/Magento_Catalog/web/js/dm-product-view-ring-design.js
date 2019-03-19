@@ -6,18 +6,67 @@ define([
 
     return function (config) {
 
+        function showOptionList($elm) {
+            $elm.parent().find('td.label').hide();
+            $elm.addClass('expanded');
+            $elm.find('.option').css('marginLeft', -1 * $elm.find('.option').outerWidth() / 2);
+            $elm.find('.option').css('left', '50%');
+            $elm.find('.option').css('marginTop', -1 * $elm.find('.option').outerHeight() / 2);
+        }
+
+        function hideOptionList($elm) {
+            $elm.parent().find('td.label').show();
+            $elm.removeClass('expanded');
+            $elm.find('.option').css('marginLeft', 'auto');
+            $elm.find('.option').css('left', '0');
+            $elm.find('.option').css('marginTop', 'auto');
+        }
+
         function initialize() {
 
+            $('td.collapsed li').on('click', function() {
+                if ($(this).closest('tr').attr('id') == 'size-list-wrapper') {
+                    return;
+                }
+
+                showOptionList($(this).closest('td'));
+            });
+
+            $('td.collapsed .list-title i').on('click', function() {
+                hideOptionList($(this).closest('td'));
+            });
+
             $('a[id^=\'main-stone-type-\']').on('click', function() {
-                onTypeChange($(this)); return false;
+                onTypeChange($(this));
+
+                var $parent = $(this).closest('td');
+                if ($parent.hasClass('expanded')) {
+                    hideOptionList($parent);
+                }
+
+                return false;
             });
 
             $('a[id^=\'main-stone-shape-\']').on('click', function() {
-                onShapeChange($(this)); return false;
+                onShapeChange($(this));
+
+                var $parent = $(this).closest('td');
+                if ($parent.hasClass('expanded')) {
+                    hideOptionList($parent);
+                }
+
+                return false;
             });
             
             $('a[id^=\'setting-options-stone-\']').on('click', function() {
-                onStoneChange($(this)); return false;
+                onStoneChange($(this));
+
+                var $parent = $(this).closest('td');
+                if ($parent.hasClass('expanded')) {
+                    hideOptionList($parent);
+                }
+               
+                return false;
             });
 
             $('input[id^=\'size-\']').on('change', function() {
@@ -29,7 +78,14 @@ define([
             });
 
             $('a.general-options').on('click', function() {
-                onOptionChange($(this)); return false;
+                onOptionChange($(this));
+
+                var $parent = $(this).closest('td');
+                if ($parent.hasClass('expanded')) {
+                    hideOptionList($parent);
+                }
+               
+                return false;
             });
 
             $('a[id^=\'metal-\']').on('click', function() {
@@ -41,15 +97,36 @@ define([
             });
 
             $('a[id^=\'side-stone-shape-\']').on('click', function() {
-                onSideStoneChange($(this)); return false;
+                onSideStoneChange($(this));
+
+                var $parent = $(this).closest('td');
+                if ($parent.hasClass('expanded')) {
+                    hideOptionList($parent);
+                }
+               
+                return false;
             });
 
             $('a[id^=\'side-stone-carat-\']').on('click', function() {
-                onSideCaratChange($(this)); return false;
+                onSideCaratChange($(this));
+
+                var $parent = $(this).closest('td');
+                if ($parent.hasClass('expanded')) {
+                    hideOptionList($parent);
+                }
+               
+                return false;
             });
 
             $('a[id^=\'side-stone-color-clarity-\']').on('click', function() {
-                onSideColorClarityChange($(this)); return false;
+                onSideColorClarityChange($(this));
+
+                var $parent = $(this).closest('td');
+                if ($parent.hasClass('expanded')) {
+                    hideOptionList($parent);
+                }
+               
+                return false;
             });
 
             $('a[id^=\'ring-size-\']').on('click', function() {
@@ -68,37 +145,26 @@ define([
         $(document).ready(function() {
             initialize();
 
-            $("#more-view-ideal10-section").bind("click", function () {
-                $("#ideal10-section-content").slideToggle('fast', function () {
-                    if ($("#more-view-ideal10-section").hasClass("more")) {
-                        $("#more-view-ideal10-section").removeClass("more");
-                        $("#more-view-ideal10-section").addClass("less");
-                    } else {
-                        $("#more-view-ideal10-section").removeClass("less");
-                        $("#more-view-ideal10-section").addClass("more");
-                    }
-                });
-                
-                return false;
-            });
-            
             $('img.product-image-current').attr('src', config.default_image);
             
             reloadPrice();    
             updateTotalCarat();
+
+            $('.options-details .block-title').on("click", function () {
+                var $parent = $(this).parent();
+                var isActive = $parent.hasClass('active');
+
+                $('.options-details.active .block-options').fadeOut(100, function () {
+                    $('.options-details.active').removeClass('active');
+                });
+
+                if (!isActive) {
+                    $parent.find('.block-options').fadeIn(100, function () {
+                        $parent.addClass('active');
+                    });
+                }
+            });
             
-            $(".prev-arrow").on("click", function () {
-                var tabIndex = $(".custom-options-tabs-mobile .custom-options-types a.active").index();
-                onChangeTab(tabIndex - 1);
-                return false;
-            });
-
-            $(".next-arrow").on("click", function () {
-                var tabIndex = $(".custom-options-tabs-mobile .custom-options-types a.active").index();
-                onChangeTab(tabIndex + 1);
-                return false;
-            });
-
             $(".custom-options-types a, #summary-details .option span a").on("click", function () {
                 $(".custom-options-types a.active").removeClass("active");
                 $(".custom-options-details div.active").removeClass("active");
@@ -127,18 +193,6 @@ define([
             $(".product-view").slideDown("slow");
         });
 
-        function onChangeTab(tabIndex) {
-            var elmId = $(".custom-options-tabs-mobile .custom-options-types a").eq(tabIndex).attr("href");
-            //$(".custom-options-tabs-mobile .custom-options-types a").eq(tabIndex).trigger("click");
-            $(".custom-options-types a.active").removeClass("active");
-            $(".custom-options-details div.active").removeClass("active");
-            $(".custom-options-types a[href='"+elmId+"']").addClass("active");
-            $(elmId).addClass("active");
-            
-            if (tabIndex == 0) { $(".prev-arrow").hide(); $(".prev-arrow-label").hide(); } else { $(".prev-arrow").show(); $(".prev-arrow-label").show(); }
-            if (tabIndex == $(".custom-options-tabs-mobile .custom-options-types a").length - 1) { $(".next-arrow").hide(); $(".next-arrow-label").hide(); } else { $(".next-arrow").show(); $(".next-arrow-label").show(); }
-        }
-
         function onTypeChange($elm) {
             var code = $elm.data('code');
             if (code == "") return;
@@ -150,16 +204,16 @@ define([
             
             if (config.center_stone["type"] == "setting") {
                 $("#stone-list-wrapper, #size-list-wrapper").show();
-                $("#carat-list-wrapper, #cert-list-wrapper").hide();
+                $("#carat-list-wrapper, #cert-list-wrapper").closest('tr').hide();
     
-                $("#summary-details .option.center-stone li.stone, #summary-details .option.center-stone li.size, #summary-details .option.center-stone span#center-diamond-setting-label").show();                
-                $("#summary-details .option.center-stone li.carat, #summary-details .option.center-stone li.cert, #summary-details .option.center-stone span#center-diamond-details-label").hide();
+                $("#center-diamond-details .block-summary li.stone, #center-diamond-details .block-summary li.size, #center-diamond-details .block-summary span#center-diamond-setting-label").show();                
+                $("#center-diamond-details .block-summary li.carat, #center-diamond-details .block-summary li.cert, #center-diamond-details .block-summary span#center-diamond-details-label").hide();
             } else {
                 $("#stone-list-wrapper, #size-list-wrapper").hide();
-                $("#carat-list-wrapper, #cert-list-wrapper, #color-list-wrapper, #clarity-list-wrapper").show();
+                $("#carat-list-wrapper, #cert-list-wrapper, #color-list-wrapper, #clarity-list-wrapper").closest('tr').show();
                 
-                $("#summary-details .option.center-stone li.stone, #summary-details .option.center-stone li.size, #summary-details .option.center-stone span#center-diamond-setting-label").hide();                
-                $("#summary-details .option.center-stone li.carat, #summary-details .option.center-stone li.color, #summary-details .option.center-stone li.clarity, #summary-details .option.center-stone li.cert, #summary-details .option.center-stone span#center-diamond-details-label").show();
+                $("#center-diamond-details .block-summary li.stone, #center-diamond-details .block-summary li.size, #center-diamond-details .block-summary span#center-diamond-setting-label").hide();                
+                $("#center-diamond-details .block-summary li.carat, #center-diamond-details .block-summary li.color, #center-diamond-details .block-summary li.clarity, #center-diamond-details .block-summary li.cert, #center-diamond-details .block-summary span#center-diamond-details-label").show();
             }
     
             $(".block-options .option ul.dependent").hide();
@@ -209,8 +263,7 @@ define([
 
             config.center_stone["shape"] = code;
             
-            $("#summary-details .option.center-stone li.shape a").html("<img/>");
-            $("#summary-details .option.center-stone li.shape a img").replaceWith($(".shape-list a.selected img.active").clone());
+            $("#center-diamond-details .block-summary li.shape a").html($(".shape-list a.selected span.caption").text());
 
             reloadPrice();
             updateImage();
@@ -224,7 +277,7 @@ define([
             $("." + list + "-list a.selected").removeClass("selected");
             $elm.addClass("selected");
 
-            $("#summary-details .option.center-stone li." + list + " a").html($("." + list + "-list a.selected").html());
+            $("#center-diamond-details .block-summary li." + list + " a").html($("." + list + "-list a.selected").html());
             
             config.center_stone[list] = code;
 
@@ -248,8 +301,7 @@ define([
 
             config.metal = code;
 
-            $("#summary-details .option.metal li.metal-type a").html("<img/>");
-            $("#summary-details .option.metal li.metal-type a img").replaceWith($(".metal-list a.selected img").clone());
+            $("#metal-details .block-summary li.metal-type a").html($(".metal-list a.selected").html());
 
             reloadPrice();
             updateImage();
@@ -263,7 +315,7 @@ define([
             $(".band-list a.selected").removeClass("selected");
             $elm.addClass("selected");
 
-            $("#summary-details .option.matching-band li.matching-band a").html($(".band-list a.selected").html());
+            $("#matching-band-details .block-summary li.matching-band a").html($(".band-list a.selected").html());
             config.band = code;
             
             $(".sub-block-options .sub-option .sidecarats.fixed ul a.selected").each(function(index, value) {
@@ -307,17 +359,17 @@ define([
             $(".stone-list a.selected").removeClass("selected");
             $elm.addClass("selected");
 
-            $("#summary-details .option.center-stone li.stone a").html($(".stone-list a.selected").html());
+            $("#center-diamond-details .block-summary li.stone a").html($(".stone-list a.selected").html());
             
             config.center_stone['stone'] = code;
             
             if (code == "white-diamond") {
-                $("#color-list-wrapper, #clarity-list-wrapper").show();
-                $("#summary-details .option.center-stone li.color, #summary-details .option.center-stone li.clarity").show();
+                $("#color-list-wrapper, #clarity-list-wrapper").closest('tr').show();
+                $("#center-diamond-details .block-summary li.color, #center-diamond-details .block-summary li.clarity").show();
     
             } else {
-                $("#color-list-wrapper, #clarity-list-wrapper").hide();
-                $("#summary-details .option.center-stone li.color, #summary-details .option.center-stone li.clarity").hide();
+                $("#color-list-wrapper, #clarity-list-wrapper").closest('tr').hide();
+                $("#center-diamond-details .block-summary li.color, #center-diamond-details .block-summary li.clarity").hide();
             }
             
             updateUrl();
@@ -329,7 +381,7 @@ define([
             var width = $("#size-width").val();
             var depth = $("#size-depth").val();
             
-            $("#summary-details .option.center-stone li.size a").html(height + " x " + width + " x " + depth);
+            $("#center-diamond-details .block-summary li.size a").html(height + " x " + width + " x " + depth);
             
             updateUrl();
         }
@@ -338,7 +390,7 @@ define([
             $(".ring-size-list a.selected").removeClass("selected");
             $elm.addClass("selected");
 
-            $("#summary-details .option.ring-size li.ring-size a").html($(".ring-size-list a.selected").html());
+            $("#ring-size-details .block-summary li.ring-size a").html($(".ring-size-list a.selected").html());
             updateUrl();
         }    
 
@@ -357,8 +409,8 @@ define([
                 config.side_stone["qty"][group] = $elm.data("qty");
             }
             
-            $("." + group + "-list").parent().find("sub").html("x " + config.side_stone["qty"][group]);
-            $("." + group + "-list").parent().parent().find(".sidecarats ul li a").each (function (index, value) {
+            $("." + group + "-list").closest('tr').find("sub").html("x " + config.side_stone["qty"][group]);
+            $("." + group + "-list").closest('tr').find(".sidecarats ul li a").each (function (index, value) {
                 $(this).html(Math.round(parseFloat($(this).attr("rel")) * parseFloat(config.side_stone["qty"][group])*10000)/10000);
             });
             
@@ -386,7 +438,7 @@ define([
             $(".sidecolorclarity-list a.selected").removeClass("selected");
             $elm.addClass("selected");
 
-            $("#summary-details .option.side-stones li.color-clarity a").html($(".sidecolorclarity-list a.selected").html());
+            $("#side-stones-details .block-summary li.color-clarity a").html($(".sidecolorclarity-list a.selected").html());
             
             config.side_stone[$elm.data('group')] = $elm.data('code');  
             
@@ -523,7 +575,7 @@ define([
         
                         $("#zoom").attr("href", json[0].pop);
         
-                        $(".more-views-container ul li:first").html('<a title="" href="'+json[0].pop+'" data-zoom=\'"useZoom": "zoom", "smallImage": "'+json[0].main+'"\' class="cloud-zoom-gallery"><img alt="" src="'+json[0].thumb+'" style="max-width: 90px;"></a>');
+                        $("#gallery li:first").html('<a title="" href="'+json[0].pop+'" data-zoom=\'"useZoom": "zoom", "smallImage": "'+json[0].main+'"\' class="cloud-zoom-gallery"><img src="'+json[0].pop+'"/></a>');
                         
                         $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
 
@@ -557,7 +609,7 @@ define([
                 sideStonesCarat += sideStoneQty * parseFloat($(this).parent().parent().find(".sidecarats ul a.selected").data("code"));
             });
             
-            $("#summary-details .option.side-stones li.carat a").html(Math.round(sideStonesCarat * 100) / 100);
+            $("#side-stones-details .block-summary li.carat a").html(Math.round(sideStonesCarat * 100) / 100);
             config.totalCarat = parseFloat($(".carat-list a.selected").data('code')) + sideStonesCarat;
             config.totalCarat = Math.round(config.totalCarat * 100) / 100;
             $("#total-carat").html(Math.round(config.totalCarat * 100) / 100 + " CT.");

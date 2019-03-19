@@ -2,7 +2,7 @@
     $status = $this->getLikeDislikeStatus();
 ?>
 <div class="like-dislike-buttons-set">
-    <a class="button like <?= $status['liked'] ? 'active' : '' ?>" href="#" data-key="<?= $this->getProduct()->getId() ?>" data-review="1"><?= $this->getProduct()->getDmLikes() ?: 0 ?></a>
+    <a class="fa fa-heart button like <?= $status['liked'] ? 'active' : '' ?>" href="#" data-key="<?= $this->getProduct()->getId() ?>" data-review="1"><?= $this->getProduct()->getDmLikes() ?: 0 ?></a>
     <!-- <a class="button dislike <?= $status['disliked'] ? 'active' : '' ?>" href="#" data-review="0"><?= $this->getProduct()->getDmDislikes() ?: 0 ?></a> -->
 </div>
 <div class="clear"></div>

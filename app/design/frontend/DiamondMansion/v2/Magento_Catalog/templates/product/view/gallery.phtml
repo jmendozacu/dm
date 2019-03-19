@@ -4,8 +4,24 @@ $arrayJsonGallery = json_decode($jsonGallery, true);
 $isVideoExist = false;
 ?>
 <div class="gallery-placeholder product-image">
+    <div id="gallery">
+        <?php foreach ($arrayJsonGallery as $_image): ?>
+        <?php if ($_image['type'] == 'video'): ?>
+        <?php else: ?>
+        <li>
+            <a class="cloud-zoom-gallery" 
+                data-zoom='"useZoom":"zoom", "smallImage":"<?php echo str_replace('\\', '/', $_image['img']); ?>"' 
+                href="<?php echo $_image['full']; ?>" 
+                title="<?php echo $_image['caption'] ?>">
+                <img src="<?php echo $_image['full']; ?>" alt="<?php echo $_image['caption'] ?>"/>
+            </a>
+        </li>
+        <?php endif ?>
+        <?php endforeach ?>
+    </div>
     <?php if (isset($arrayJsonGallery[0]) && isset($arrayJsonGallery[0]['img']) && isset($arrayJsonGallery[0]['full'])): ?>
-    <div id="wrap">
+    <!--
+    <div id="wrap" style="position: relative;">
         <a id="zoom" 
             class="cloud-zoom" 
             data-zoom='"showTitle": false, "adjustX": -5, "adjustY":-5, "tint": "#fff", "tintOpacity":0.6, "position":"inside"' 
@@ -39,9 +55,11 @@ $isVideoExist = false;
             </div>
         </div>
     </div>
+    -->
     <?php endif; ?>
 </div>
 <?php if ($isVideoExist): ?>
+<!--
 <div class="product-video-list">
     <h2>Videos</h2>
     <ul class="video-gallery-links">
@@ -56,13 +74,33 @@ $isVideoExist = false;
 	    <?php endforeach; ?>
     </ul>
 </div>
+-->
 <?php endif ?>
 <script type="text/javascript">
 require([
     'jquery',
+    'slick',
     'cloudzoom'
 ], function ($) {
     $(document).ready(function () {
+
+        $('#gallery').slick({
+            dots: true,
+            infinite: false,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 1280,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+
+
         if ($('#zoom').length) {
             $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
         }

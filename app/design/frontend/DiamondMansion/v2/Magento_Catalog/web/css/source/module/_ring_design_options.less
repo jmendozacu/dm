@@ -1,4 +1,505 @@
 .catalog-product-view {
+    @media only screen and (max-width: @v3-mobile-max-width) {
+        .columns {
+            font-family: "Avenir LT Std";
+            font-size: 100vw / @v3-base-mobile-width !important;
+        }
+
+        #maincontent {
+            box-sizing: border-box;
+            padding: 0 50 * @v3-base-mobile-vw;
+            width: 100%;
+        }
+
+        .breadcrumbs {
+            display: none;
+        }
+
+        .product-name.mobile {
+            display: block;
+            background: url(../images/v3/i_sharp_shape.png) center bottom no-repeat;
+            background-size: 55 * @v3-base-mobile-vw 9 * @v3-base-mobile-vw !important;
+            padding-bottom: 30 * @v3-base-mobile-vw;
+            margin-bottom: 30 * @v3-base-mobile-vw;
+
+            h1.page-title {
+                font-family: "Avenir LT Std";
+                font-weight: 900;
+                font-size: 50em;
+                line-height: 50 * @v3-base-mobile-vw;
+                text-transform: none;
+                text-align: center;
+                color: #000;
+            }
+
+            h2 {
+                padding: 9px 0;
+                color: #000;
+                font-weight: 900;
+                font-size: 18em;
+                line-height: 18 * @v3-base-mobile-vw;
+                text-transform: none;
+                text-align: center;
+            }
+        }
+
+        .like-dislike-buttons-set {
+            text-align: right;
+
+            a.like {
+                font-size: 16em;
+                color: #585f66;
+                padding-left: 30px;
+                line-height: 20 * @v3-base-mobile-vw;
+
+                &:before {
+                    color: #585f66;;
+                    font-size: 1.2em;
+                    padding-right: 5px;
+                    vertical-align: middle;
+                }
+                &:hover:before,
+                &.active:before {
+                    color: #ff2e2e;
+                }
+            }
+        }
+
+        .product.media {
+            position: inherit;
+            float: none;
+
+            #gallery {
+                margin-bottom: 60 * @v3-base-mobile-vw; 
+                .slick-dots li button:before {
+                    font-size: 10px;
+                }
+            }
+        }
+
+        .product-info-main {
+            position: inherit;
+            float: none;
+        }
+        
+        #design-ring-options {
+            .options-details {
+                .block-title {
+                    font-size: 23em;
+                    line-height: 60 * @v3-base-mobile-vw; 
+                    color: #000;
+                    position: relative;
+                    cursor: pointer;
+
+                    &:after {
+                        content: "";
+                        .nav-link-arrow();
+                        position: absolute;
+                        right: 0;
+                        top: 50%;
+                        margin-top: -10px;
+                        display: none;
+                    }
+
+                    i.fa {
+                        font-size: 12px;
+                        position: absolute;
+                        right: 0;
+                        top: 50%;
+                        margin-top: -6px;
+                    }
+                }
+
+                .block-options {
+                    display: none;
+                    padding: 0 40 * @v3-base-mobile-vw 40 * @v3-base-mobile-vw;
+
+                    table {
+                        tr > td {
+                            padding: 0 20 * @v3-base-mobile-vw;
+
+                            &.label {
+                                font-size: 16em;
+                                font-weight: 300;                            
+                                position: relative;
+                                color: #8b8f93;
+                                vertical-align: middle;
+                                white-space: nowrap;
+                                text-transform: uppercase;
+
+                                &:after {
+                                    content: ":";
+                                    position: absolute;
+                                    right: 0;
+                                    top: 50%;
+                                    margin-top: -12 * @v3-base-mobile-vw;
+                                }
+
+                                * {
+                                    vertical-align: middle;
+                                }    
+                            }
+
+                            &:not(.label) {
+                                width: 100%;
+
+                                ul {
+                                    li {
+                                        position: relative;
+                                        cursor: pointer;
+                                        &:after {
+                                            content: "";
+                                            display: block;
+                                            width: 100%;
+                                            height: 100%;
+                                            left: 0;
+                                            top: 0;
+                                            position: absolute;
+                                            z-index: 999;
+                                        }
+                                    }
+                                }
+                            }
+
+                            &.expanded {
+                                position: fixed;
+                                width: 100%;
+                                height: 100%;
+                                left: 0;
+                                top: 0;
+                                background: rgba(0,0,0,0.5);
+                                z-index: 9999;
+                                
+                                .option {
+                                    position: absolute;
+                                    top: 50%;
+                                    padding: 60 * @v3-base-mobile-vw;
+                                    background: #fff;
+
+                                    .list-title {
+                                        display: block;
+                                        font-size: 23em;
+                                        line-height: 65 * @v3-base-mobile-vw;
+                                        color: #000;
+                                        text-transform: uppercase;
+
+                                        i {
+                                            color: #fff;
+                                            background: #000;
+                                            padding: 10px;
+                                            position: absolute;
+                                            right: 2px;
+                                            top: 2px;
+                                            font-size: 14px;
+                                        }
+                                    }
+
+                                    ul {
+                                        li {
+                                            a {
+                                                padding-left: 0;
+
+                                                &:not(.selected) {
+                                                    display: block;
+                                                }
+
+                                                &.selected {
+                                                    &:after {
+                                                        display: none;
+                                                    }
+                                                }
+
+                                                span.caption {
+                                                    sub {
+                                                        display: block;
+                                                    }
+                                                }
+
+                                                img {
+                                                    &.i-first {
+                                                        display: none;
+                                                    }
+
+                                                    &.i-last {
+                                                        display: block;
+                                                    }
+                                                }
+                                            }
+
+                                            &:last-child a {
+                                                border-bottom: 0 none;
+                                            }
+
+                                            &:after {
+                                                display: none;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .option {
+                            .list-title {
+                                display: none;
+                            }
+                            
+                            ul {
+                                li {
+                                    font-size: 19em;
+                                    font-weight: 300;
+                                    line-height: 80 * @v3-base-mobile-vw;
+                                    color: #000;
+
+                                    * {
+                                        vertical-align: middle;
+                                    }
+
+                                    a {
+                                        color: #000;
+                                        display: block;
+                                        position: relative;
+                                        border-bottom: 1px solid #eaeaea;
+                                        padding-left: 20 * @v3-base-mobile-vw;
+
+                                        &:not(.selected) {
+                                            display: none;
+                                        }
+
+                                        &.selected {
+                                            &:after {
+                                                content: "";
+                                                .nav-link-arrow();
+                                                .nav-link-arrow-dropdown();
+                                                width: 6 * @v3-base-mobile-vw;
+                                                height: 6 * @v3-base-mobile-vw;
+                                                color: #878787;
+                                                position: absolute;
+                                                top: 50%;
+                                                right: 0;
+                                                margin-top: -3 * @v3-base-mobile-vw;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                
+                                &.type-list {
+                                    a {
+                                        span {
+                                            line-height: 30 * @v3-base-mobile-vw;
+                                            display: inline-block;
+
+                                            sub {
+                                                color: #878787;
+                                                line-height: 28 * @v3-base-mobile-vw;
+                                                display: none;
+                                            }
+                                        }
+                                    }
+
+                                    img {
+                                        width: 42 * @v3-base-mobile-vw;
+
+                                        &.i-first {
+                                            margin: 5 * @v3-base-mobile-vw 10 * @v3-base-mobile-vw 15 * @v3-base-mobile-vw;
+                                            margin-left: -7 * @v3-base-mobile-vw;
+                                        }
+
+                                        &.i-last {
+                                            display: none;
+                                            position: absolute;
+                                            right: 0;
+                                            top: 50%;
+                                            margin-top: -23 * @v3-base-mobile-vw;
+                                        }
+                                    }
+                                }
+
+                                &.shape-list {
+                                    img {
+                                        width: 40 * @v3-base-mobile-vw;
+                                        margin: 0 11 * @v3-base-mobile-vw;
+                                        margin-left: -8 * @v3-base-mobile-vw;
+                                    }
+                                }
+
+                                &.size-list {
+                                    li {
+                                        display: inline-block;
+                                        max-width: 32%;
+
+                                        input {
+                                            max-width: 60%;
+                                        }
+
+                                        &:after {
+                                            display: none;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .block-summary {
+                    margin-top: -10 * @v3-base-mobile-vw;
+                    font-size: 20em;
+                    color: #8b8f93;
+
+                    li {
+                        display: inline-block;
+                    }
+
+                    a {
+                        color: #8b8f93;
+                    }
+
+                    label {
+                        display: none;
+                    }
+                }
+
+                &.active {
+                    .block-title {
+                        &:after {
+                            display: block;
+                        }
+
+                        i.fa {
+                            display: none;
+                        }
+                    }
+
+                    .block-options {
+                        display: block;
+                    }
+
+                    .block-summary {
+                        visibility: hidden;
+                    }
+                }
+
+                &#metal-details {
+                    .block-options {
+                        padding-top: 40 * @v3-base-mobile-vw;
+
+                        ul {
+                            li {
+                                border: 2px solid #dedede;
+                                border-radius: 25 * @v3-base-mobile-vw;
+                                display: inline-block;
+                                margin: 10 * @v3-base-mobile-vw 10 * @v3-base-mobile-vw;
+                                overflow: hidden;
+
+                                a {
+                                    display: block;
+                                    font-size: 19em;
+                                    line-height: 50 * @v3-base-mobile-vw;
+                                    padding: 0 30 * @v3-base-mobile-vw;
+                                    color: #8b8f93;
+
+                                    &.selected {
+                                        background: #dedede;
+                                    }
+                                }
+
+                                &.rose-gold {
+                                    border-color: #eab5ae;
+                                }
+
+                                &.yellow-gold {
+                                    border-color: #f5c37d;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &#ring-size-details {
+                    .block-options {
+                        padding-top: 40 * @v3-base-mobile-vw;
+
+                        ul {
+                            li {
+                                display: inline-block;
+                                margin: 10 * @v3-base-mobile-vw;
+
+                                a {
+                                    display: block;
+                                    width: 60 * @v3-base-mobile-vw;
+                                    height: 60 * @v3-base-mobile-vw;
+                                    line-height: 60 * @v3-base-mobile-vw;
+                                    font-size: 18em;
+                                    text-align: center;
+                                    color: #8b8f93;
+                                    border: 2px solid #dedede;
+                                    border-radius: 50%;
+        
+                                    &.selected {
+                                        border-color: #000;
+                                        color: #000;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &#matching-band-details {
+                    .block-options {
+                        text-align: center;
+
+                        .band-image {
+                            img#band-image {
+                                max-width: 300 * @v3-base-mobile-vw;
+                                margin: 0 auto;
+                            }
+
+                            p {
+                                font-size: 26em;
+                                color: #8b8f93;
+                                padding: 20 * @v3-base-mobile-vw 0;
+
+                                b {
+                                    color: #000;
+                                }
+                            }
+                        }
+
+                        ul {
+                            li {
+                                display: inline-block;
+                                margin: 10 * @v3-base-mobile-vw 10 * @v3-base-mobile-vw;
+
+                                a {
+                                    display: block;
+                                    font-size: 16px;
+                                    font-weight: 500;
+                                    text-transform: uppercase;
+                                    line-height: 60 * @v3-base-mobile-vw;
+                                    border-radius: 30 * @v3-base-mobile-vw;
+                                    padding: 0 60 * @v3-base-mobile-vw;
+                                    border: 1px solid #000;
+                                    background: #fff;
+                                    color: #000;
+
+                                    &.selected {
+                                        background-color: #000;
+                                        color: #fff;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    
+
 
     #design-ring-custom-options { position: relative; }
     #design-ring-custom-options * {
@@ -48,39 +549,6 @@
     #design-ring-custom-options .order-options li span { float: right; padding-right: 10px; font-weight: bold; }
     #design-ring-custom-options .order-options .order-type { margin: 0; }
 
-    .metal-list li.wide { margin-left: 5px; }
-    .metal-list li.wide:first-child { margin-left: 0; }
-    .metal-list li.wide + li.wide { margin-left: 62px; }
-
-    #ring-size-details { padding-left: 20px; }
-    #ring-size-details .option span { width: auto; margin-bottom: 10px;}
-    #ring-size-details .ring-size-list li { margin-bottom: 5px; }
-    #ring-size-details .ring-size-list li:nth-child(4n+1) { clear: both; margin-left: 30px; }
-    #ring-size-details .ring-size-tips { border-top: 1px solid #c2c2c2; padding-top: 10px; }
-
-    #matching-band-details { text-align: center; padding-top: 20px; }
-    #matching-band-details .block-options .option { display: inline-block; }
-
-    #summary-details .block-options .option { padding: 15px 0; border-bottom: 1px solid #fff; border-top: 1px solid #eeeeee; margin: 0; }
-    #summary-details .option span a { display: block; color: #ff6460; font-size: 12px; }
-    #summary-details .option span.sub-price { float: right; width: 65px; display: none; }
-    #summary-details .option li { margin-right: 5px; text-align: center; }
-    #summary-details .option li a { display: block; color: #ffffff; background-color: #FF6460; border: 1px solid #9A3634; }
-
-    #summary-details .option.total-carat { display: none; }
-
-    #summary-details .option.center-stone { border-top: 0 none; }
-    #summary-details .option li.shape a { margin-top: -5px; }
-    #summary-details .option li.shape a img { margin: 5px 0; }
-    #summary-details .option.center-stone li.cert { padding: 5px 20px; }
-
-    #summary-details .option.center-stone li.stone a { margin-top: -5px; padding: 2.5px 6px; font: 11px/13px Arial; width: 50px; text-transform: capitalize; }
-    #summary-details .option.center-stone li.size a { font-size: 12px; text-transform: lowercase; }
-
-    #summary-details .option.metal li.metal-type a { background: none; padding: 0; }
-    #summary-details .option.metal li.metal-type a img { margin: 1px; width: 38px; }
-
-    #summary-details .option.matching-band { border-bottom: 0 none; }
 
 
     #design-ring-custom-options p { font-size: 14px; margin-bottom: 10px; }
@@ -91,37 +559,6 @@
     .metal-list li.wide { margin-left: 5px; }
     .metal-list li.wide:first-child { margin-left: 0; }
     .metal-list li.wide + li.wide { margin-left: 62px; }
-
-    #ring-size-details { padding-left: 20px; }
-    #ring-size-details .option span { width: auto; margin-bottom: 10px;}
-    #ring-size-details .ring-size-list li { margin-bottom: 5px; }
-    #ring-size-details .ring-size-list li:nth-child(4n+1) { clear: both; margin-left: 30px; }
-    #ring-size-details .ring-size-tips { border-top: 1px solid #c2c2c2; padding-top: 10px; }
-
-    #matching-band-details { text-align: center; padding-top: 20px; }
-    #matching-band-details .block-options .option { display: inline-block; }
-
-    #summary-details .block-options .option { padding: 15px 0; border-bottom: 1px solid #fff; border-top: 1px solid #eeeeee; margin: 0; }
-    #summary-details .option span a { display: block; color: #ff6460; font-size: 12px; }
-    #summary-details .option span.sub-price { float: right; width: 65px; display: none; }
-    #summary-details .option li { margin-right: 5px; text-align: center; }
-    #summary-details .option li a { display: block; color: #ffffff; background-color: #FF6460; border: 1px solid #9A3634; }
-
-    #summary-details .option.total-carat { display: none; }
-
-    #summary-details .option.center-stone { border-top: 0 none; }
-    #summary-details .option li.shape a { margin-top: -5px; }
-    #summary-details .option li.shape a img { margin: 5px 0; }
-    #summary-details .option.center-stone li.cert { padding: 5px 20px; }
-
-    #summary-details .option.center-stone li.stone a { margin-top: -5px; padding: 2.5px 6px; font: 11px/13px Arial; width: 50px; text-transform: capitalize; }
-    #summary-details .option.center-stone li.size a { font-size: 12px; text-transform: lowercase; }
-
-    #summary-details .option.metal li.metal-type a { background: none; padding: 0; }
-    #summary-details .option.metal li.metal-type a img { margin: 1px; width: 38px; }
-
-    #summary-details .option.matching-band { border-bottom: 0 none; }
-
 
     #design-ring-custom-options p { font-size: 14px; margin-bottom: 10px; }
     #design-ring-custom-options p b { font-weight: bold; }
@@ -214,177 +651,6 @@
     .buy-online .product-name h2 { font: normal 12px/16px Arial; color: #666666; }
     .buy-online .price-box { text-align: left; margin-bottom: 20px; font: bold 33px/60px Arial; color: #666666; }
 
-    .block-options {
-        padding: 10px;
-        margin-bottom: 20px;
-    }
-
-    .block-options .title {
-        font: normal 17px/24px 'Times New Roman';
-        text-align: center;
-        margin-top: -30px;
-        margin-bottom: 25px;
-    }
-
-    .block-options .title span {
-        padding: 0 10px; 
-        background-color: #fff;
-    }
-
-    .block-options .option {
-        margin: 10px 0;
-    }
-
-    .block-options .option .type-list {
-        margin-bottom: 25px;
-    }
-
-    .block-options .option .shape-list {
-        margin-bottom: 25px;
-    }
-
-    .block-options .option span {
-        font: normal 16px/28px 'Arial';
-        float: left;
-        width: 80px;
-    }
-
-    .block-options .option span.wide {
-        width: 150px;
-    }
-
-    .block-options .option ul.dependent {
-        display: none;  
-
-        &.color-list.setting,
-        &.clarity-list.setting {
-            height: 28px;
-            overflow: hidden;        
-        }
-    }
-
-    .block-options .option li {
-        display: inline-block;
-        float: left;
-    }
-
-    .block-options .option li a {
-        display: inline-block;
-        min-width: 25px;
-        position: relative;
-        text-align: center;
-        padding: 0 6px;
-        border: 1px solid #e4e4e4;
-        background-color: #fff;
-    }
-
-    .block-options .option li a:hover {
-        text-decoration: none;
-    }
-
-    .block-options .option li a:hover, .block-options .option li a.selected {
-    /*    background: url(../images/diamond/bg-active.jpg) no-repeat center 0;*/
-    }
-
-    .block-options .option .type-list li {
-        margin-right: 30px;
-    }
-
-    .block-options .option .type-list li a {
-        padding: 0 3px;
-        border-color: transparent;
-        background-color: transparent;
-    }
-
-    .block-options .option .type-list li a:hover, .block-options .option .type-list li a.selected {
-        border-color: transparent;
-    }
-
-    .block-options .option .type-list li a img.focus {
-        display: none;
-        position: absolute;
-    }
-
-    .block-options .option .type-list li a:hover img.focus, .block-options .option .type-list li a.selected  img.focus
-    {
-        display: inline;
-    }
-
-    .block-options .option li a:hover {
-        border: 1px solid #9a3634;    
-    }
-
-    .block-options .option li a.selected {
-        border: 1px solid #9a3634;
-        background-color: #ff6460;
-    }
-
-    .block-options #stone-list-wrapper { border-top: 1px solid #c2c2c2; }
-    .block-options #stone-list-wrapper .setting-description { font-size: 12px; color: #ed5843; text-align: center; }
-    .block-options .option .stone-list li a { font-size: 10px; text-transform: capitalize; width: 50px; height: 30px; line-height: 30px; vertical-align: middle; padding: 5px 2px; }
-    .block-options .option .stone-list li:nth-child(1) a,
-    .block-options .option .stone-list li:nth-child(2) a,
-    .block-options .option .stone-list li:nth-child(6) a { line-height: 15px; }
-
-    .block-options .option .size-list li { padding-right: 20px; }
-    .block-options .option .size-list li input { width: 60px; text-align: center; }
-
-    .block-options .option .shape-list li a img.active {
-        display: none;
-    }
-
-    .block-options .option li a.selected {
-        color: #fff;
-        font-weight: normal;
-    }
-
-    .block-options .option .shape-list li a.selected img.default {
-        display: none;
-    }
-
-    .block-options .option .shape-list li a.selected img.active {
-        display: inline;
-    }
-
-    .block-options .option .type-list li a:hover, .block-options .option .type-list li a.selected {
-    /*    background: url(../images/diamond/type/bg-active.png) no-repeat;*/
-        background-color: transparent;
-    }
-
-    .block-options .option .color-list.natural li a,
-    .block-options .option .color-list.pink li a,
-    .block-options .option .color-list.setting li a { padding: 0 14.3px; }
-    .block-options .option .clarity-list li a { padding: 0 11px; }
-    .block-options .option .cert-list { display: none !important; }
-    .block-options .option .cert-list li a { padding: 0 11px; }
-    .block-options .option .cert-icon { float: left; }
-    .block-options .option .cert-request { float: right; margin-right: 30px; }
-    .block-options .option .cert-request a { padding: 0 15px 0 25px; background: url(../images/i_request_cert.png) 4px center no-repeat #f0f0f0; font: normal 12px/30px arial; color: #666; border: 1px solid #e5e5e5; display: block; }
-    .block-options .option .cert-request a:hover { background-color: #f8f8f8; }
-
-    .block-options .option .metal-list li a:hover, .block-options .option .metal-list li a.selected {
-        background: none;
-    }
-
-    .block-options .option li a {font: normal 16px/26px 'Arial'; color: #666666; text-transform: uppercase;}
-    .block-options .option li a span.caption { display: block; position: absolute; text-align: center; visibility: hidden; color: #000; }
-    .block-options .option li a:hover span.caption, 
-    .block-options .option li a.selected span.caption { visibility: visible; }
-
-    .block-options .option .type-list li a span.caption { font-size: 11px; width: 68px; left: -11px; text-align: center; font-family: Arial; text-transform: capitalize; color: #666; margin-top: 3px; line-height: 12px; }
-    .block-options .option .type-list li a span.caption.setting { width: 140px; left: -44px; }
-    .block-options .option .shape-list li a span.caption { font-size: 11px; width: 200%; left: -50%; text-align: center; font-family: Arial; text-transform: capitalize; color: #666; margin-top: 3px; line-height: 12px; }
-
-    .block-options .option .type-list li img { width: 40px; }
-    .block-options .option .shape-list li img { width: 21px; margin: 5px 0; }
-    .block-options .option .shape-list li a.selected img { width: 21px; }
-    .block-options .option .metal-list li a { padding: 0; margin-right: 5px; }
-    .block-options .option .metal-list li:nth-child(2n) a { margin-right: 15px; }
-    .block-options .option .metal-list li img { width: 38px; margin: 1px; }
-    .block-options .option .band-list li a { padding: 0 10px;}
-    .block-options .option select { font-size: 14px; color: #7c7c7c; min-width:100px; height: 24px; }
-
-
     .func-box { margin-top: 20px; }
     .button.share { width: 81px; height: 27px; position: relative; display: inline-block; z-index: 8;}
     .button.share .box {
@@ -449,48 +715,10 @@
     #notice.block-options {width:300px; margin: 0 auto 10px;}
     #notice.block-options ul {color: #444444; font: bold 16px/32px Arial; padding: 0 30px;}
     
-    .sub-block-options { padding: 10px 0 10px 80px; }
-    .sub-block-options img { width: 28px; }
-    
-    .sub-block-options .sub-option .sideshapes { padding: 10px; position: relative; }
-    .sub-block-options .sub-option .sideshapes > img { float: left; cursor: pointer; }
-    .sub-block-options .sub-option .sideshapes > img + sub { padding-top: 16px; float: left; }
-    .sub-block-options .sub-option .sideshapes ul { border: 1px solid #e2e2e2; box-shadow: 0 1px #FFFFFF inset, 2px 2px 3px rgba(34, 25, 25, 0.4); float: left; padding: 5px; background-color: #fff; display: none; position: absolute; z-index: 999; }
-    .sub-block-options .sub-option .sideshapes li { display: inline-block; }
-    .sub-block-options .sub-option .sideshapes li a { position: relative; border: 1px solid #E4E4E4; display: block; }
-    .sub-block-options .sub-option .sideshapes li a:hover { border: 1px solid #9a3634; }
-    .sub-block-options .sub-option .sideshapes li a.selected { background-color: #FF6460; border: 1px solid #9A3634; }
-    .sub-block-options .sub-option .sideshapes li a span.caption { color: #000000; display: block; position: absolute; text-align: center; visibility: hidden; font-family: Arial; font-size: 14px; left: -50%; letter-spacing: -1px; text-transform:lowercase; top: -25px; width: 200%; }
-    /*.sub-block-options .sub-option .sideshapes li a:hover span.caption { visibility: visible; }*/
-    
-    .sub-block-options .sub-option .sidecarats li { display: inline-block; float: left; }
-    .sub-block-options .sub-option .sidecarats li a { 
-        color: #222222; 
-        font: 16px/26px 'Arial'; 
-        text-transform: uppercase; 
-        border: 1px solid #E4E4E4; 
-        display: inline-block; 
-        min-width: 25px;
-        padding: 0 6px;
-        position: relative;
-        text-align: center; 
-    }
-    .sub-block-options .sub-option .sidecarats li a:hover { border: 1px solid #9a3634; }
-    .sub-block-options .sub-option .sidecarats li a.selected { background-color: #FF6460; border: 1px solid #9A3634; color: #fff; }
-    
-    .sub-block-options .sub-option .sidecarats { margin: -35px 0 0 65px; }
-    .sub-block-options .sub-option .sidecarats ul { max-width: 400px; overflow: hidden; height: 28px; float: left; }
-    .sub-block-options .sub-option .sidecarats > span { float: left; font: 16px/28px 'Arial'; margin-right: 10px; }
-    
-    span.color-clarity { width: 115px !important; margin: 0 0 0 108px; }
     span.giant { width: 190px !important; }
     span#total-carat { font-weight: bold; }
 
     .product-name h2 {
-        color: #474747;
-        margin: 0 0 9px;
-        font: normal 16px/30px Arial;
-        text-transform: uppercase;
     }
 
     h3 {
@@ -506,15 +734,12 @@
     }
 
     .product-info-details {
+        font-size: 12px;
         clear: both;
     }
 
     .reserved-price.price-box {
         padding-top: 20px;
-    }
-
-    .product-name.mobile {
-        display: none;
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1279px) {
@@ -537,7 +762,6 @@
         #design-ring-custom-options #metal-details { padding: 0; }
         #design-ring-custom-options #metal-details .block-options .option ul { width: auto; }
         
-        .block-options .option .cert-request { margin-right: 0; float: left; text-align: center; }
         #more-view-ideal10-section { display: none !important; }        
         
         .buttons-mobile .buttons a.btn-buy { float: left; }
@@ -565,35 +789,12 @@
         #filter-design-collection li a { font-weight: normal; line-height: 16px; padding: 0 5px 10px; }
         #view-more-design-collection { margin-left: 0; }
         
-        .block-options { border-width: 5px; padding-right: 5px; }
-        .block-options .title { margin-top: -25px; }
-        .block-options .option span { font-size: 14px; width: 70px; }
-        .block-options .option ul { display: block; float: left; width: 269px; }
-        .block-options .option ul li { padding-bottom: 5px; }
-        .block-options .option li a { min-width: 24px; }
-        
-        .block-options .option .type-list, .block-options .option .shape-list { margin-bottom: 0; }
-        .block-options .option .type-list li { margin-right: 15px; padding-bottom: 35px; }
-        .block-options .option .shape-list li { padding-bottom: 20px; }
-    
-        .block-options .option .metal-list li { padding-top: 5px; }
-        .block-options .option .metal-list li img { width: 28px; }
-        .block-options .option .metal-list li:nth-child(2n) a { margin-right: 8px; }
-        
-        .block-options .option span.wide { width: 125px; }
-        .block-options .option .band-list { width: 240px; }
-    
         button.btn-wishlist span span { font-size: 12px; }
         #reserve-price { margin-left: 23px; }
         
         #notice.block-options {width: 275px;}
         #notice.block-options ul { font-size: 14px; }
     
-        .sub-block-options { padding-left: 20px; }
-        .sub-block-options .sub-option .sidecarats > span { font-size: 14px; }
-        span.color-clarity { margin-left: 48px; width: 106px !important; }
-        ul.sidecolorclarity-list { width: 140px !important; }
-        
         #design-ring-custom-options #metal-details .metal-label-list li { width: 82px; }
 
         .product-info-main {
@@ -603,34 +804,7 @@
 
     @media only screen and (max-width: 767px) {
         .mousetrap { max-height: 100%; }
-        .catalog-product-view .block-options .option ul.dependent.color-list.setting { height: 62px; }
-        .block-options { border-width: 5px; padding-right: 5px; }
-        .block-options .title { margin-top: -25px; }
-        .block-options .option span { font-size: 14px; width: 70px; }
-        .block-options .option ul { display: block; float: left; width: 269px; }
-        .block-options .option ul li { padding-bottom: 5px; }
-        .block-options .option li a { min-width: 24px; }
-        
-        .block-options .option .type-list, .block-options .option .shape-list { margin-bottom: 0; }
-        .block-options .option .type-list li { margin-right: 15px; padding-bottom: 35px; }
-        .block-options .option .shape-list li { padding-bottom: 20px; }
-        
-        .block-options .option .metal-list li { padding-top: 5px; }
-        .block-options .option .metal-list li img { width: 28px; }
-        .block-options .option .metal-list li:nth-child(2n) a { margin-right: 8px; }
-        
-        .block-options .option span.wide { width: 125px; }
-        .block-options .option .band-list { width: 240px; }
     
-        .sub-block-options { padding-left: 20px; }
-        .sub-block-options .sub-option .sidecarats > span { font-size: 14px; }
-        span.color-clarity { margin-left: 48px; width: 106px !important; }
-        ul.sidecolorclarity-list { width: 140px !important; }
-
-        .block-options .option .cert-request {
-            margin-top: 0 !important;
-        }
-        
         #middle { width: 100%; z-index: 0; }
         #middle .cho_diam { height: 242px; }
         #middle .cho_diam .c_diam .c_left { display: none; }
@@ -661,13 +835,6 @@
         .product-img-box { float: left; }
         #social-share-ver { display: none; }
         
-        .like-dislike-buttons-set { float: left; margin-bottom: 5px; }
-        
-        a.button.like { background-image: url(../images/mobile/bkg_button_like.png); width: 81px; height: 27px; padding: 0; text-indent: 9999px; overflow: hidden; margin-right: 2px; }
-        a.button.like:hover, a.button.like.active { background-image: url(../images/mobile/bkg_button_like_active.png); }
-        a.button.dislike { background-image: url(../images/mobile/bkg_button_dislike.png); width: 81px; height: 27px; padding: 0; text-indent: 9999px; overflow: hidden; margin-right: 2px; }
-        a.button.dislike:hover, a.button.dislike.active { background-image: url(../images/mobile/bkg_button_dislike_active.png); }
-             
         #btn-share-mobile { display: inline-block; }
 
         .more-views-container { display: none; }
@@ -730,18 +897,9 @@
         #design-ring-custom-options #metal-details .option { position: relative; }
         #design-ring-custom-options #metal-details .option .metal-list { position: absolute; top: 20px; }
         #design-ring-custom-options #metal-details .metal-label-list li { display: block; float: none; padding-bottom: 60px; }
-        .block-options .option .metal-list li.wide { clear: both; margin-left: 0; padding-bottom: 30px; }
-        .block-options .option .metal-list li a { min-width: 42px; width: 42px; height: 42px; }
-        .block-options .option .metal-list li a img { width: 40px; }
-        .block-options .option .type-list { margin-left: 0; }
-        #ring-size-details .ring-size-list li:nth-child(4n+1) { margin-left: 0; }
         .more-views { display: none; }
         
         #design-ring-custom-options span.color-clarity { margin-left: 0; }
-        ul.sidecolorclarity-list { width: 128px !important; }
-        .sub-block-options .sub-option .sideshapes { padding: 10px 0; }
-        .sub-block-options .sub-option .sidecarats { clear: both; margin-left: 0; }
-        .sub-block-options .sub-option .sidecarats > span { margin-right: 47px; }    
     }    
 
     .product-video-list {
