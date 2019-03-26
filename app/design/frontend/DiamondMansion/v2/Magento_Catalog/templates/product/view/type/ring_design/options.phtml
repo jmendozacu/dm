@@ -20,7 +20,7 @@
     } else {
         $imageDefaultWithBand = ['main' => $imageDefault];
     }
-    
+
     $mainStonePriceDefault = $_product->getPrice();
 
     $category = $this->getHelper()->getObjectManager()->get('Magento\Framework\Registry')->registry('current_category');
@@ -29,7 +29,12 @@
     <div>
         <div class="price-box">
             <span class="regular-price">
+                <span class="label">Price</span>
                 <span class="price"></span>
+            </span>
+            <span class="appraised-value">
+                <span class="label">Appraised Value</span>
+                <span class="value"></span>
             </span>
         </div>
     </div>
@@ -108,6 +113,12 @@
                                         <a href="#" rel="<?= $shape ?>" id="main-stone-shape-<?= $shapeOption->getId() ?>" data-code="<?= $shape ?>">
                                             <img src="<?php echo $this->getViewFileUrl("images/v3/diamond/shape/".$shape.".png")?>" alt="<?= $shapeOption->getTitle() ?>" title="<?= $shapeOption->getTitle() ?>" class="default">
                                             <span class="caption"><?= $shapeOption->getTitle() ?></span>&nbsp;<span class="cut"><?php echo ($shape == 'heart') ? 'Shape' : 'Cut' ?></span>
+                                            <?php if ($shape == 'round'): ?>
+                                                <label class="tag-label popular"><span>POPULAR</span><i class="fa fa-star"></i></label>
+                                            <?php endif; ?>
+                                            <?php if ($shape == 'oval'): ?>
+                                                <label class="tag-label trending"><span>TRENDING</span><i class="fa fa-fire"></i></label>
+                                            <?php endif ?>
                                         </a>
                                     </li>
                                     <?php endif; ?>
@@ -140,17 +151,106 @@
                     <?php foreach ($allOptions as $group => $options): ?>
                     <?php if (!in_array($group, array_keys($mainStone)) || in_array($group, ['main-stone-type', 'main-stone-shape', 'setting-options-stone', 'setting-options-size'])) { continue; }?>
                     <tr <?php if ($group == "main-stone-cert"): ?> style="display: none" <?php endif ?>>
-                        <td class="label"><span><?= $mainStone[$group] ?></span></td>
+                        <td class="label"><span><?= $mainStone[$group] != 'Cut' ? $mainStone[$group] : 'Cut & Brilliance' ?></span></td>
                         <td class="collapsed">
-                            <div class="option" id="<?= strtolower($mainStone[$group]) ?>-list-wrapper">
-                                <label class="list-title">Choose Your <?= $mainStone[$group] ?><i class="fa fa-times"></i></label>
+                            <div class="option" id="<?= str_replace(' ', '-', strtolower($mainStone[$group])) ?>-list-wrapper">
+                                <label class="list-title">Choose Your <?= $mainStone[$group] != 'Cut' ? $mainStone[$group] : 'Cut & Brilliance' ?><i class="fa fa-times"></i></label>
                                 <?php foreach ($allOptions['main-stone-type'] as $type => $typeOption): ?>
                                 <?php $typeValues = json_decode($typeOption->getValues(), true); ?>
                                 <?php if ($type != 'setting' && !isset($typeValues['children'])) { continue; } ?>
-                                <ul class="<?= strtolower($mainStone[$group]) ?>-list <?= $type ?> dependent" rel="<?= $typeOption->getTitle() ?>" data-group="<?= $group ?>">
-                                    <?php foreach($options as $code => $option): ?>
+                                <ul class="<?= str_replace(' ', '-', strtolower($mainStone[$group])) ?>-list <?= $type ?> dependent" rel="<?= $typeOption->getTitle() ?>" data-group="<?= $group ?>">
+                                    <?php foreach($options as $code => $option): $code = trim($code); ?>
                                     <?php if ($type == 'setting' || in_array($code, $typeValues["children"][$group])): ?>
-                                    <li><a href="#" rel="<?= $code ?>" id="<?= $group ?>-<?= $option->getId() ?>" class="general-options" data-list="<?= strtolower($mainStone[$group]) ?>" data-code="<?= $code ?>"><?php if ($group == "main-stone-carat") { echo (double)(substr($option->getTitle(), 0, 3)) . ' Ct'; } else { echo $option->getTitle(); } ?></a></li>
+                                    <li>
+                                        <a href="#" rel="<?= $code ?>" id="<?= $group ?>-<?= $option->getId() ?>" class="general-options" data-list="<?= strtolower($mainStone[$group]) ?>" data-code="<?= $code ?>">
+                                            <?php if ($group == "main-stone-carat"): ?>
+                                                <?php echo (double)(substr($option->getTitle(), 0, 3)) . ' Ct'; ?>
+                                            <?php elseif ($code == 'd-e'): ?>
+                                                <span class="caption color">
+                                                    Absolutely Colorless<sub>D-E GIA Certified</sub>
+                                                </span>
+                                            <?php elseif ($code == 'g-h'): ?>
+                                                <span class="caption color">
+                                                    Colorless<sub>G-H GIA Certified</sub>
+                                                </span>
+                                            <?php elseif ($code == 'i'): ?>
+                                                <span class="caption color">
+                                                    Near Colorless<sub>I GIA Certified</sub>
+                                                </span>
+                                            <?php elseif ($code == 'fancy-light'): ?>
+                                                <span class="caption color">
+                                                    Light Yellow<sub>Fancy Light GIA</sub>
+                                                </span>
+                                            <?php elseif ($code == 'fancy-yellow'): ?>
+                                                <span class="caption color">
+                                                    Yellow<sub>Fancy Yellow GIA</sub>
+                                                </span>
+                                            <?php elseif ($code == 'fancy-black'): ?>
+                                                <span class="caption color">
+                                                    Black<sub>Fancy Black GIA</sub>
+                                                </span>
+                                            <?php elseif ($code == 'vvs'): ?>
+                                                <span class="caption clarity">
+                                                Absolutely Clean<sub>VVS GIA Certified</sub>
+                                                </span>
+                                            <?php elseif ($code == 'vs1-vs2'): ?>
+                                                <span class="caption clarity">
+                                                    Very Clean<sub>VS1-VS2 GIA Certified</sub>
+                                                </span>
+                                            <?php elseif ($code == 'si1'): ?>
+                                                <span class="caption clarity">
+                                                    Clean<sub>SI1 GIA Certified</sub>
+                                                </span>
+                                            <?php elseif ($code == 'ideal-10'): ?>
+                                                <span class="caption cut">
+                                                    Ideal 10<sub>Excellent+ Cut, Polish,<br/>Symmetry &amp; More</sub>
+                                                </span>
+                                            <?php elseif ($code == 'excellent'): ?>
+                                                <span class="caption cut">
+                                                    Excellent<sub>Excellent Cut & Very-Good<br/>Polish Symmetry</sub>
+                                                </span>
+                                            <?php elseif ($code == 'very-good'): ?>
+                                                <span class="caption clarity">
+                                                    Very Good<sub>Very Good Cut, Polish<br/>&amp; Symmetry</sub>
+                                                </span>
+                                            <?php else: ?>
+                                                <?php echo $option->getTitle(); ?>
+                                            <?php endif ?>
+                                        </a>
+                                        <?php if ($code == 1): ?>
+                                            <label class="tag-label popular"><span>MOST POPULAR</span><i class="fa fa-star"></i></label>
+                                        <?php endif ?>
+                                        <?php if ($code == 2): ?>
+                                            <label class="tag-label popular"><span>POPULAR</span><i class="fa fa-star"></i></label>
+                                        <?php endif ?>
+                                        <?php if ($code == 'd-e'): ?>
+                                            <label class="tag-label highest-quality"><span>HIGHEST QUALITY</span><i class="fa fa-trophy"></i></label>
+                                        <?php endif ?>
+                                        <?php if ($code == 'g-h'): ?>
+                                            <label class="tag-label popular"><span>MOST POPULAR</span><i class="fa fa-star"></i></label>
+                                        <?php endif ?>
+                                        <?php if ($code == 'i'): ?>
+                                            <label class="tag-label best-value"><span>BEST VALUE</span><i class="fa fa-money"></i></label>
+                                        <?php endif ?>
+                                        <?php if ($code == 'vvs'): ?>
+                                            <label class="tag-label highest-quality"><span>HIGHEST QUALITY</span><i class="fa fa-trophy"></i></label>
+                                        <?php endif ?>
+                                        <?php if ($code == 'vs1-vs2'): ?>
+                                            <label class="tag-label popular"><span>MOST POPULAR</span><i class="fa fa-star"></i></label>
+                                        <?php endif ?>
+                                        <?php if ($code == 'si1'): ?>
+                                            <label class="tag-label best-value"><span>BEST VALUE</span><i class="fa fa-money"></i></label>
+                                        <?php endif ?>
+                                        <?php if ($code == 'ideal-10'): ?>
+                                            <label class="tag-label highest-quality"><span>HIGHEST QUALITY</span><i class="fa fa-trophy"></i></label>
+                                        <?php endif ?>
+                                        <?php if ($code == 'excellent'): ?>
+                                            <label class="tag-label popular"><span>MOST POPULAR</span><i class="fa fa-star"></i></label>
+                                        <?php endif ?>
+                                        <?php if ($code == 'very-good'): ?>
+                                            <label class="tag-label best-value"><span>BEST VALUE</span><i class="fa fa-money"></i></label>
+                                        <?php endif ?>
+                                    </li>
                                     <?php endif; ?>
                                     <?php endforeach; ?>
                                 </ul>
@@ -177,7 +277,8 @@
                     <li class="carat"><a href="#">1</a><label>CARAT</label>,</li>
                     <li class="size"><a href="#">0 x 0 x 0</a><label>SIZE</label>,</li>
                     <li class="color"><a href="#">G</a><label>COLOR</label>,</li>
-                    <li class="clarity"><a href="#">SI1</a><label>CLARITY</label></li>
+                    <li class="clarity"><a href="#">SI1</a><label>CLARITY</label>,</li>
+                    <li class="cut"><a href="#">Excellent</a><label>CUT</label></li>
                 </ul>
             </div>
         </div>
@@ -380,6 +481,7 @@
                 "product_id": <?= $_product->getId() ?>,
                 "sku": "<?= $_product->getSku() ?>",
                 "name": "<?= $_product->getName() ?>",
+                "subname": "<?= $_product->getDmcSubname() ?>",
                 "urlKey": "<?= $_product->getUrlKey() ?>",
                 "categoryUrl": "<?= ($category) ? $category->getUrl() : "" ?>",
                 "isReqeustedOptions": <?= $block->isRequestedOptions() ?>,
@@ -392,7 +494,8 @@
                     "carat": "",
                     "color": "",
                     "clarity": "",
-                    "cert": ""
+                    "cert": "",
+                    "cut": ""
                 },
                 "side_stone": {
                     "side-stone-shape-1": "",

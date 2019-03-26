@@ -41,6 +41,7 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         'ring-size',
         'setting-options-stone',
         'setting-options-size',
+        'main-stone-cut',
     ];
 
     public function __construct(
@@ -82,7 +83,7 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
 
     public function getAllDmOptions($product, $sort = false) {
         if ($data = $this->_cache->load('all_dm_options_' . $product->getId())) {
-            $this->_allDmOptions[$product->getId()] = unserialize($data);
+            //$this->_allDmOptions[$product->getId()] = unserialize($data);
         }
 
         if (!isset($this->_allDmOptions[$product->getId()])) {

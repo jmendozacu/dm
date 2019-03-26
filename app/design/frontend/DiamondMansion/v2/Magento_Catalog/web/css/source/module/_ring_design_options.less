@@ -19,26 +19,26 @@
             display: block;
             background: url(../images/v3/i_sharp_shape.png) center bottom no-repeat;
             background-size: 55 * @v3-base-mobile-vw 9 * @v3-base-mobile-vw !important;
-            padding-bottom: 30 * @v3-base-mobile-vw;
+            padding-bottom: 15 * @v3-base-mobile-vw;
             margin-bottom: 30 * @v3-base-mobile-vw;
 
-            h1.page-title {
+            h2 {
                 font-family: "Avenir LT Std";
                 font-weight: 900;
                 font-size: 50em;
                 line-height: 50 * @v3-base-mobile-vw;
-                text-transform: none;
+                text-transform: capitalize;
                 text-align: center;
                 color: #000;
             }
 
-            h2 {
+            h1.page-title {
                 padding: 9px 0;
                 color: #000;
                 font-weight: 900;
                 font-size: 18em;
-                line-height: 18 * @v3-base-mobile-vw;
-                text-transform: none;
+                line-height: 36 * @v3-base-mobile-vw;
+                text-transform: capitalize;
                 text-align: center;
             }
         }
@@ -83,6 +83,44 @@
         }
         
         #design-ring-options {
+
+            .price-box {
+                color: #8b8f93;
+
+                span {
+                    display: block;
+                }
+
+                .label {
+                    font-size: 20em;
+                    line-height: 30 * @v3-base-mobile-vw; 
+                }
+
+                .regular-price {
+                    float: left;
+
+                    .price {
+                        color: #000;
+                        font-size: 65em;
+                    }
+                }
+
+                .appraised-value {
+                    float: right;
+
+                    .value {
+                        font-size: 23em;
+                        line-height: 30 * @v3-base-mobile-vw; 
+                    }
+                }
+
+                &:after {
+                    content: "";
+                    display: block;
+                    clear: both;
+                }
+            }
+
             .options-details {
                 .block-title {
                     font-size: 23em;
@@ -167,6 +205,7 @@
                                 height: 100%;
                                 left: 0;
                                 top: 0;
+                                overflow: scroll;
                                 background: rgba(0,0,0,0.5);
                                 z-index: 9999;
                                 
@@ -234,6 +273,76 @@
                                                 display: none;
                                             }
                                         }
+
+                                        &.shape-list {
+                                            span.cut {
+                                                display: none;
+                                            }
+                                        }
+
+                                        &.carat-list {
+                                            li {
+                                                line-height: 40 * @v3-base-mobile-vw;
+
+                                                a {
+                                                    border-bottom: 0 none;
+                                                }
+                                            }
+
+                                            label.tag-label {
+                                                color: #000;
+                                                border-color: #000;
+                                                line-height: 22.5 * @v3-base-mobile-vw;
+                                            }
+                                        }
+
+                                        &.color-list {
+                                            min-width: 390 * @v3-base-mobile-vw;
+
+                                            li {
+                                                a {
+                                                    span {
+                                                        sub {
+                                                            display: block;
+                                                        }
+                                                    }            
+                                                }
+                                            }
+                                        }
+
+                                        &.clarity-list {
+                                            min-width: 390 * @v3-base-mobile-vw;
+
+                                            li {
+                                                a {
+                                                    span {
+                                                        sub {
+                                                            display: block;
+                                                        }
+                                                    }            
+                                                }
+                                            }
+                                        }
+
+                                        &.cut-list {
+                                            min-width: 390 * @v3-base-mobile-vw;
+
+                                            li {
+                                                line-height: 120 * @v3-base-mobile-vw;
+
+                                                a {
+                                                    span {
+                                                        sub {
+                                                            display: block;
+                                                        }
+                                                    }            
+                                                }
+                                            }
+                                        }
+
+                                        label.tag-label {
+                                            display: inline;
+                                        }        
                                     }
                                 }
                             }
@@ -317,6 +426,8 @@
                                 }
 
                                 &.shape-list {
+                                    min-width: 300 * @v3-base-mobile-vw;
+
                                     img {
                                         width: 40 * @v3-base-mobile-vw;
                                         margin: 0 11 * @v3-base-mobile-vw;
@@ -338,6 +449,101 @@
                                         }
                                     }
                                 }
+
+                                &.color-list {
+                                    li {
+                                        a {
+                                            span {
+                                                line-height: 30 * @v3-base-mobile-vw;
+                                                display: inline-block;
+    
+                                                sub {
+                                                    color: #878787;
+                                                    line-height: 28 * @v3-base-mobile-vw;
+                                                    display: none;
+                                                }
+                                            }            
+                                        }
+                                    }
+                                }
+
+                                &.clarity-list {
+                                    li {
+                                        a {
+                                            span {
+                                                line-height: 30 * @v3-base-mobile-vw;
+                                                display: inline-block;
+    
+                                                sub {
+                                                    color: #878787;
+                                                    line-height: 28 * @v3-base-mobile-vw;
+                                                    display: none;
+                                                }
+                                            }            
+                                        }
+                                    }
+                                }
+
+                                &.cut-list {
+                                    li {
+                                        a {
+                                            span {
+                                                line-height: 30 * @v3-base-mobile-vw;
+                                                display: inline-block;
+    
+                                                sub {
+                                                    color: #878787;
+                                                    line-height: 28 * @v3-base-mobile-vw;
+                                                    display: none;
+                                                }
+                                            }            
+                                        }
+                                    }
+                                }
+
+                                label.tag-label {
+                                    display: none;
+                                    position: absolute;
+                                    right: 0;
+                                    top: 50%;
+                                    font-size: 0.7em;
+                                    letter-spacing: 1px;
+                                    font-family: "Myriad Pro";
+                                    padding: 0 12 * @v3-base-mobile-vw;
+                                    line-height: 30 * @v3-base-mobile-vw;
+                                    margin-top: -15 * @v3-base-mobile-vw;
+                                    border-width: 1px;
+                                    border-style: solid;
+                                    
+                                    &.trending {
+                                        color: #71c479;
+                                        border-color: #71c479;
+                                    }
+
+                                    &.popular {
+                                        color: #97b3b7;
+                                        border-color: #97b3b7;
+                                    }
+
+                                    &.highest-quality {
+                                        color: #ff4a4a;
+                                        border-color: #ff4a4a;
+                                    }
+
+                                    &.best-value {
+                                        color: #f3aa64;
+                                        border-color: #f3aa64;
+                                    }
+
+                                    span {
+                                        display: inline-block;
+                                        margin-top: 4 * @v3-base-mobile-vw;
+                                    }
+
+                                    i {
+                                        margin-left: 12 * @v3-base-mobile-vw;
+                                    }
+                                }
                             }
                         }
                     }
@@ -357,6 +563,10 @@
                     }
 
                     label {
+                        display: none;
+                    }
+
+                    sub {
                         display: none;
                     }
                 }
@@ -501,68 +711,16 @@
     
 
 
-    #design-ring-custom-options { position: relative; }
-    #design-ring-custom-options * {
-        box-sizing: content-box;
-    }
-    #design-ring-custom-options .buttons-mobile { display: none; }
-    #design-ring-custom-options .custom-options-tabs-mobile { display: none; }
-    #design-ring-custom-options .block-options .option { margin: 25px 0 30px; }
-    #design-ring-custom-options .price-box{ }
-    #design-ring-custom-options .buttons { padding: 10px 0; }
-    #design-ring-custom-options .buttons a.btn-wishlist { display: inline-block; width: 85px; height: 27px; background: url(../images/button_wishlist.jpg) no-repeat; margin-right: 10px; border: 0 none; }
-    #design-ring-custom-options .buttons a.btn-wishlist span { display: none; }
-    #design-ring-custom-options .buttons a.btn-wishlist:hover { background: url(../images/button_wishlist_active.jpg) no-repeat; }
     .button.share a.btn-share { display: inline-block; width: 81px; height: 27px; background: url(../images/button_share.jpg) no-repeat; }
     .button.share a.btn-share:hover { background: url(../images/button_share_active.jpg) no-repeat; }
     .buttons a.btn-buy { display: block; width: 193px; height: 53px; background: url(../images/button_buy.jpg) no-repeat; margin-bottom: 10px; }
     .buttons a.btn-buy:hover { background: url(../images/button_buy_active.jpg) no-repeat; }
     .buttons a.btn-reserve { display: block; width: 193px; height: 53px; background: url(../images/button_reserve.jpg) no-repeat; }
     .buttons a.btn-reserve:hover { background: url(../images/button_reserve_active.jpg) no-repeat; }
-    #design-ring-custom-options #band-image { width: 220px; margin-bottom: 10px; }
-    #design-ring-custom-options .sub-block-options { padding-left: 0; }
-    #design-ring-custom-options span.color-clarity { margin-left: 28px; }
-
-    #design-ring-custom-options .custom-options-types { position: relative; }
-    #design-ring-custom-options .custom-options-types a { display: block; font: 16px/46px Arial; text-transform: uppercase; padding: 0 20px; background-color: #fff; border: 1px solid #fff; border-left-color: #e5e5e5; border-right-color: #e5e5e5; }
-    #design-ring-custom-options .custom-options-types a:first-child { border-top-color: #e5e5e5; }
-    #design-ring-custom-options .custom-options-types a:last-child { border-bottom-color: #e5e5e5; }
-    #design-ring-custom-options .custom-options-types a:hover,
-    #design-ring-custom-options .custom-options-types a.active { background-color: #f8f8f8; border-top-color: #e5e5e5; border-bottom-color: #e5e5e5; border-right-color: #f8f8f8; color: #FF0030; }
-
-    #design-ring-custom-options .custom-options-details { margin-left: -1px; width: 520px; }
-    #design-ring-custom-options .custom-options-details > div.options-details { display: none; border: 1px solid #e5e5e5; background-color: #f8f8f8; min-height: 286px; }
-    #design-ring-custom-options .custom-options-details > div.ideal10-section { display: block; text-align: center; }
-    #design-ring-custom-options .custom-options-details > div.ideal10-section img { display: none; }
-    #design-ring-custom-options .custom-options-details > div.ideal10-section #ideal10-section-content { border: 1px solid #e5e5e5; display: none; border-top: 0 none; padding: 10px; }
-    #design-ring-custom-options .custom-options-details > div.ideal10-section #ideal10-section-content p { font-size: 13px; }
-    #design-ring-custom-options .custom-options-details > div.ideal10-section #more-view-ideal10-section { display: inline-block; width: 290px; height: 50px; border: 1px solid #e5e5e5; border-top: 0 none; }
-    #design-ring-custom-options .custom-options-details > div.ideal10-section #more-view-ideal10-section.more { background: url(../images/button_ideal10_show.jpg) center center no-repeat #fff; }
-    #design-ring-custom-options .custom-options-details > div.ideal10-section #more-view-ideal10-section.less { background: url(../images/button_ideal10_hide.jpg) center center no-repeat #fff; }
-    #design-ring-custom-options .custom-options-details > div.active { display: block; }
-
-    #design-ring-custom-options #metal-details { padding: 55px 0 55px 45px; }
-    #design-ring-custom-options #metal-details .metal-label-list li { width: 110px; font: 14px/18px arial; padding-bottom: 10px; }
-
-    #design-ring-custom-options .order-options li { line-height: 20px; font-size: 14px; text-transform: uppercase; }
-    #design-ring-custom-options .order-options li:after { clear: both; }
-    #design-ring-custom-options .order-options li span { float: right; padding-right: 10px; font-weight: bold; }
-    #design-ring-custom-options .order-options .order-type { margin: 0; }
-
-
-
-    #design-ring-custom-options p { font-size: 14px; margin-bottom: 10px; }
-    #design-ring-custom-options p b { font-weight: bold; }
-    #design-ring-custom-options p a { color: #ed5843; }
-
 
     .metal-list li.wide { margin-left: 5px; }
     .metal-list li.wide:first-child { margin-left: 0; }
     .metal-list li.wide + li.wide { margin-left: 62px; }
-
-    #design-ring-custom-options p { font-size: 14px; margin-bottom: 10px; }
-    #design-ring-custom-options p b { font-weight: bold; }
-    #design-ring-custom-options p a { color: #ed5843; }
 
     .product-static-blocks { height: 181px; padding: 28px 0 48px; text-align: center; background-color: #666666; position: relative; z-index: 99; }
     .product-static-blocks ul { position: absolute; display: block; width: 100%; text-align: center; }
@@ -696,14 +854,9 @@
     
     .st_email .stButton { width: 60px !important; }
     
-    .price-box {text-align: center; margin: 0; font-size: 32px;}
     #price-box-2 .price-box { text-align: left; }
-    .price-box span.price { color: #222; }
     
     .product-view-default .price-box { margin: 9px 34px 9px 0; }
-    .price-box p.old-price, .price-box p.special-price { font-size: 16px; float: left; }
-    .price-box p.old-price .price-label, .price-box p.special-price .price-label { display: none; }
-    .price-box p.special-price span { color: #FF0030; margin-left: 20px; line-height: 1.5em; }
     
     button.btn-buy span { background: url("../images/button_left.jpg") no-repeat scroll left top transparent; display: block; height: 36px; padding: 0; }
     button.btn-buy span span { background: url("../images/button_right.jpg") no-repeat scroll right top transparent; color: #FFFFFF; display: block; font-size: 22px; font-weight: bold; line-height: 36px; padding: 0 30px; }

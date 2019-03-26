@@ -11,7 +11,7 @@ define([
             $elm.addClass('expanded');
             $elm.find('.option').css('marginLeft', -1 * $elm.find('.option').outerWidth() / 2);
             $elm.find('.option').css('left', '50%');
-            $elm.find('.option').css('marginTop', -1 * $elm.find('.option').outerHeight() / 2);
+            $elm.find('.option').css('marginTop', -1 * Math.min($elm.find('.option').outerHeight(), $elm.outerHeight() - 60) / 2);
         }
 
         function hideOptionList($elm) {
@@ -204,13 +204,13 @@ define([
             
             if (config.center_stone["type"] == "setting") {
                 $("#stone-list-wrapper, #size-list-wrapper").show();
-                $("#carat-list-wrapper, #cert-list-wrapper").closest('tr').hide();
+                $("#carat-list-wrapper, #cert-list-wrapper, #cut-list-wrapper").closest('tr').hide();
     
                 $("#center-diamond-details .block-summary li.stone, #center-diamond-details .block-summary li.size, #center-diamond-details .block-summary span#center-diamond-setting-label").show();                
                 $("#center-diamond-details .block-summary li.carat, #center-diamond-details .block-summary li.cert, #center-diamond-details .block-summary span#center-diamond-details-label").hide();
             } else {
                 $("#stone-list-wrapper, #size-list-wrapper").hide();
-                $("#carat-list-wrapper, #cert-list-wrapper, #color-list-wrapper, #clarity-list-wrapper").closest('tr').show();
+                $("#carat-list-wrapper, #cert-list-wrapper, #color-list-wrapper, #clarity-list-wrapper, #cut-list-wrapper").closest('tr').show();
                 
                 $("#center-diamond-details .block-summary li.stone, #center-diamond-details .block-summary li.size, #center-diamond-details .block-summary span#center-diamond-setting-label").hide();                
                 $("#center-diamond-details .block-summary li.carat, #center-diamond-details .block-summary li.color, #center-diamond-details .block-summary li.clarity, #center-diamond-details .block-summary li.cert, #center-diamond-details .block-summary span#center-diamond-details-label").show();
@@ -222,7 +222,7 @@ define([
             if (config.isLoaded) {
                 config.isTypeChanged = true;
 
-                ['.shape-list', '.carat-list', '.color-list', '.clarity-list', '.cert-list'].forEach(function(element) {
+                ['.shape-list', '.carat-list', '.color-list', '.clarity-list', '.cert-list', '.cut-list'].forEach(function(element) {
                     var list = $(element + "." + code);
                     var selectedId = $(element + " a.selected").attr("id");
                     $(element + " a.selected").removeClass("selected");
@@ -281,7 +281,7 @@ define([
             
             config.center_stone[list] = code;
 
-            if (list == "carat" || list == "color" || list == "clarity") {
+            if (list == "carat" || list == "color" || list == "clarity" || list == 'cut') {
                 reloadPrice();
             }
             
@@ -484,6 +484,8 @@ define([
         function displayPrice() {
             if (config.current_price) {
                 $("#maincontent .price-box span.price, #order-type-order-now").html('$'+parseFloat(Math.round(config.current_price / 10) * 10));
+                $("#maincontent .price-box span.value").html('$'+parseFloat(Math.round(config.current_price / 10) * 20));
+                $("#maincontent .price-box span.appraised-value").show();
                 if ($('#order-type-down-payment').length) {
                     var downPrice = '$'+parseFloat(Math.round(config.current_price / 10));
                     $("#order-type-down-payment").html(downPrice);
@@ -499,6 +501,7 @@ define([
                 $(".order-options").show();               
             } else {
                 $("#maincontent .price-box span.price").html('SOLD OUT');
+                $("#maincontent .price-box span.appraised-value").hide();
                 $(".product-options-bottom").css("visibility", "hidden");
                 //$(".btn-buy").css("visibility", "hidden");
                 //$(".btn-reserve").css("visibility", "hidden");            
@@ -538,7 +541,9 @@ define([
                         if (config.isLoaded) {
                             $('#image').fadeTo(500, 0, function() {
                                 $('#image').attr('src',json[0].main).bind('onreadystatechange load', function() {
-                                    if (this.complete) $(this).fadeTo(300, 1);
+                                    if (this.complete) {
+                                        $(this).fadeTo(300, 1);
+                                    }
                                 });
                             });
                         } else {
@@ -549,6 +554,8 @@ define([
                         
                         $('img.product-image-current').attr('src',json[0].main);
                 
+                        $('#gallery').slick('slickGoTo', 0);
+
                         if ($(".pinterest a").attr("href")) {
                             var pinterest_href = $(".pinterest a").attr("href").split("?");
                             var pinterest_params = pinterest_href[1].split("&");
@@ -626,6 +633,7 @@ define([
             var prefix = "";
             var available = true;
             
+            /*
             if ($(".carat-list .selected").length && $(".carat-list .selected").data('code') != "") {
                 if (url != "") url += "-";
                 url += $(".carat-list .selected").data('code') + "ctw";
@@ -666,8 +674,11 @@ define([
                 if (url != "") url += "-";
                 url += $(".cert-list .selected").data('code');
             }
+            */
             
             url = "option=";
+
+            var newOptions = "";
     
             $(".block-options .option ul, .sub-block-options .sub-option ul").each(function (index, value) {
                 var group = $(this).data("group");
@@ -678,14 +689,21 @@ define([
                 
                 if ($(this).find(".selected").length) {
                     var code = $(this).find(".selected").data("code");
-                    if (code)
-                        url += config.option_skus[group][code];
+                    if (code) {
+                        if (group == 'main-stone-cut') {
+                            newOptions += config.option_skus[group][code];
+                        } else {
+                            url += config.option_skus[group][code];
+                        }
+                    }
                 } else {
                     if (($(this).tagName == "UL" && $(this).hasClass(config.center_stone["type"])) || $(this).tagName == "SELECT") {
                         available = false;
                     }
                 }
             });
+
+            url += newOptions;
             
             if (config.center_stone["type"] == "setting") {
                 if ($(".stone-list").find(".selected").length) {
@@ -769,9 +787,9 @@ define([
             title = title.trim();
             if (title != "") {
                 title += " Diamond";
-                var titleHTML = "<h1 class=\"page-title\"><span class=\"base\" data-ui-id=\"page-title-wrapper\" itemprop=\"name\">" + config.name + "</span></h1><h2>" + title + "</h2>";
+                var titleHTML = "<h2>" + config.subname + "</h2><h1 class=\"page-title\"><span class=\"base\" data-ui-id=\"page-title-wrapper\" itemprop=\"name\">" + title + " " + config.name + "</span></h1>";
             } else {
-                var titleHTML = "<h1 class=\"page-title\"><span class=\"base\" data-ui-id=\"page-title-wrapper\" itemprop=\"name\">" + config.name + "</span></h1>";
+                var titleHTML = "<h2>" + config.subname + "</h2><h1 class=\"page-title\"><span class=\"base\" data-ui-id=\"page-title-wrapper\" itemprop=\"name\">" + title + " " + config.name + "</span></h1>";
             }
             
             $(".product-name").html(titleHTML);
@@ -871,6 +889,7 @@ define([
                 "main-stone-carat": config.center_stone["carat"], 
                 "main-stone-color": config.center_stone["color"], 
                 "main-stone-clarity": config.center_stone["clarity"],
+                "main-stone-cut": config.center_stone["cut"],
                 "side-stone-shape-1": config.side_stone["side-stone-shape-1"],
                 "side-stone-shape-2": config.side_stone["side-stone-shape-2"],
                 "side-stone-shape-3": config.side_stone["side-stone-shape-3"],

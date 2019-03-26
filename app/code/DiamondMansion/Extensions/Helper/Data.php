@@ -191,6 +191,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             foreach ($allOptions as $group => $optionGroup) {
                 foreach ($optionGroup as $code => $option) {
                     if ($option->getSlug() == $sku) {
+                        echo $group . ":" . $sku . "<br/>";
+
                         $defaultOptions[$group] = $option;
                         break;
                     }
@@ -216,7 +218,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return [
             'allOptions' => $allOptions,
             'defaultOptions' => $defaultOptions,
-            "mainStone"=>array("main-stone-type" => 'Type', "main-stone-shape" => 'Shape', "main-stone-carat" => 'Carat', "main-stone-color" => 'Color', "main-stone-clarity" => 'Clarity', "main-stone-cert" => 'Cert'),
+            "mainStone"=>array("main-stone-type" => 'Type', "main-stone-shape" => 'Shape', "main-stone-carat" => 'Carat', "main-stone-color" => 'Color', "main-stone-clarity" => 'Clarity', "main-stone-cert" => 'Cert', "main-stone-cut" => 'Cut'),
             "setting"=>array("metal", "band", "side-stone-color-clarity"),
             "sideStone"=>array("side-stone-shape", "side-stone-carat"),
             "settingSize"=>isset($optionParams[1])?explode("x", $optionParams[1]):[],

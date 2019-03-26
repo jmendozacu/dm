@@ -5,7 +5,7 @@ $isVideoExist = false;
 ?>
 <div class="gallery-placeholder product-image">
     <div id="gallery">
-        <?php foreach ($arrayJsonGallery as $_image): ?>
+        <?php $index = 0; foreach ($arrayJsonGallery as $_image): ?>
         <?php if ($_image['type'] == 'video'): ?>
         <?php else: ?>
         <li>
@@ -13,11 +13,11 @@ $isVideoExist = false;
                 data-zoom='"useZoom":"zoom", "smallImage":"<?php echo str_replace('\\', '/', $_image['img']); ?>"' 
                 href="<?php echo $_image['full']; ?>" 
                 title="<?php echo $_image['caption'] ?>">
-                <img src="<?php echo $_image['full']; ?>" alt="<?php echo $_image['caption'] ?>"/>
+                <img <?php echo ($index == 0) ? 'src' : 'data-lazy' ?>="<?php echo $_image['full']; ?>" alt="<?php echo $_image['caption'] ?>"/>
             </a>
         </li>
         <?php endif ?>
-        <?php endforeach ?>
+        <?php $index ++; endforeach ?>
     </div>
     <?php if (isset($arrayJsonGallery[0]) && isset($arrayJsonGallery[0]['img']) && isset($arrayJsonGallery[0]['full'])): ?>
     <!--
@@ -87,7 +87,7 @@ require([
         $('#gallery').slick({
             dots: true,
             infinite: false,
-            slidesToShow: 2,
+            slidesToShow: 1,
             slidesToScroll: 1,
             responsive: [
                 {

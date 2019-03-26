@@ -281,144 +281,8 @@ class InstallData implements InstallDataInterface
                 'label' => 'Can be set with'
             ],
             [
-                'code' => "dmz_stone_type_shape",
-                'label' => 'Stone Type & Shape'
-            ],
-            [
-                'code' => "dmz_stone_weight",
-                'label' => 'Stone Weight'
-            ],
-            [
-                'code' => "dmz_stone_color",
-                'label' => 'Stone Color'
-            ],
-            [
-                'code' => "dmz_stone_clarity",
-                'label' => 'Stone Clarity'
-            ],
-            [
-                'code' => "dmz_stone_quality",
-                'label' => 'Stone Quality'
-            ],
-            [
-                'code' => "dmz_stone_count",
-                'label' => 'Stone Count'
-            ],
-            [
-                'code' => "dmz_metal_primary",
-                'label' => 'Primary Metal'
-            ],
-            [
-                'code' => "dmz_metal_center_prong",
-                'label' => 'Center Prong Metal'
-            ],
-            [
-                'code' => "dmz_metal_weight",
-                'label' => 'Metal Weight'
-            ],
-            [
-                'code' => "dmz_diamond_shape",
-                'label' => 'Diamond Shape'
-            ],
-            [
-                'code' => "dmz_diamond_color",
-                'label' => 'Diamond Color'
-            ],
-            [
-                'code' => "dmz_diamond_clarity",
-                'label' => 'Diamond Clarity'
-            ],
-            [
-                'code' => "dmz_diamond_cert",
-                'label' => 'Diamond Certificate'
-            ],
-            [
-                'code' => "dmz_diamond_cert_image",
-                'label' => 'Diamond Image'
-            ],
-            [
-                'code' => "dmz_diamond_dimensions",
-                'label' => 'Diamond Measurements'
-            ],
-            [
-                'code' => "dmz_diamond_depth",
-                'label' => 'Diamond Depth'
-            ],
-            [
-                'code' => "dmz_diamond_table",
-                'label' => 'Diamond Table'
-            ],
-            [
-                'code' => "dmz_diamond_symmetry",
-                'label' => 'Diamond Symmetry'
-            ],
-            [
-                'code' => "dmz_diamond_fluorescence",
-                'label' => 'Diamond Fluorescence'
-            ],
-            [
-                'code' => "dmz_diamond_cutgrade",
-                'label' => 'Diamond Cutgrade'
-            ],
-            [
-                'code' => "dmz_diamond_polish",
-                'label' => 'Diamond Polish'
-            ],
-            [
-                'code' => "dmz_diamond_culet",
-                'label' => 'Diamond Culet'
-            ],
-            [
-                'code' => "dmz_diamond_girdle",
-                'label' => 'Diamond Girdle'
-            ],
-            [
-                'code' => "dmz_diamond_link",
-                'label' => 'Diamond Link'
-            ],
-            [
                 'code' => "dm_delivery_dates",
                 'label' => 'Delivery Dates'
-            ],
-            [
-                'code' => "dmz_fixed_side_carat_1",
-                'label' => 'Carat 1'
-            ],
-            [
-                'code' => "dmz_fixed_side_carat_2",
-                'label' => 'Carat 2'
-            ],
-            [
-                'code' => "dmz_fixed_side_carat_3",
-                'label' => 'Carat 3'
-            ],
-            [
-                'code' => "dmz_fixed_side_carat_4",
-                'label' => 'Carat 4'
-            ],
-            [
-                'code' => "dmz_fixed_side_carat_5",
-                'label' => 'Carat 5'
-            ],
-            [
-                'code' => "dmz_fixed_side_carat_band_1",
-                'label' => 'Carat 1 (Band)'
-            ],
-            [
-                'code' => "dmz_fixed_side_carat_band_2",
-                'label' => 'Carat 2 (Band)'
-            ],
-            [
-                'code' => "dmz_fixed_side_carat_band_3",
-                'label' => 'Carat 3 (Band)'
-            ],
-            [
-                'code' => "dmz_fixed_side_carat_band_4",
-                'label' => 'Carat 4 (Band)'
-            ],
-            [
-                'code' => "dmz_fixed_side_carat_band_5",
-                'label' => 'Carat 5 (Band)'
             ],
             [
                 'code' => "dmz_design_elements",
@@ -433,24 +297,8 @@ class InstallData implements InstallDataInterface
                 'label' => 'Certification'
             ],
             [
-                'code' => "dmz_fixed_side_shape_1",
-                'label' => 'Shape 1'
-            ],
-            [
-                'code' => "dmz_fixed_side_shape_2",
-                'label' => 'Shape 2'
-            ],
-            [
-                'code' => "dmz_fixed_side_shape_3",
-                'label' => 'Shape 3'
-            ],
-            [
-                'code' => "dmz_fixed_side_shape_4",
-                'label' => 'Shape 4'
-            ],
-            [
-                'code' => "dmz_fixed_side_shape_5",
-                'label' => 'Shape 5'
+                'code' => "dmc_subname",
+                'label' => 'Subname'
             ]
         ];
 

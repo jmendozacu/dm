@@ -143,12 +143,20 @@ class Price extends \Magento\Catalog\Model\Product\Type\Price
             }
         }
 
+        $appraised = 1;
+
+        if (isset($params['main-stone-cut']) && $params['main-stone-cut'] == 'excellent') {
+            $appraised = 1.1;             
+        } else if (isset($params['main-stone-cut']) && $params['main-stone-cut'] == 'ideal-10') {
+            $appraised = 1.2;
+        }
+
         $total = round((
             parent::getPrice($product) + 
             $mainStonePrice + 
             $metalPrice + 
             $sideStonePriceTotal
-        ), 2);
+        ) * $appraised, 2);
 
         return $total; 
     }
