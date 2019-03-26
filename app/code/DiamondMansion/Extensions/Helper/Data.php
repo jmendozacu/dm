@@ -191,8 +191,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             foreach ($allOptions as $group => $optionGroup) {
                 foreach ($optionGroup as $code => $option) {
                     if ($option->getSlug() == $sku) {
-                        echo $group . ":" . $sku . "<br/>";
-
                         $defaultOptions[$group] = $option;
                         break;
                     }
