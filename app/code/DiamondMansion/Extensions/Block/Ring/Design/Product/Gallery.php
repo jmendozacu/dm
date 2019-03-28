@@ -2,6 +2,8 @@
 
 namespace DiamondMansion\Extensions\Block\Ring\Design\Product;
 
+use Magento\Framework\DataObject;
+
 class Gallery extends \Magento\Catalog\Block\Product\View\Gallery
 {
     protected $_helper;
@@ -43,8 +45,40 @@ class Gallery extends \Magento\Catalog\Block\Product\View\Gallery
         $product = $this->getProduct();
         $product->setIsCustomized(false);
         parent::setProduct($product);
-        
-        $images = json_decode(parent::getGalleryImagesJson(), true);
+
+        $imagesItems = [];
+        /** @var DataObject $image */
+        foreach ($this->getGalleryImages() as $image) {
+            $imageItem = new DataObject([
+                'thumb' => $image->getData('small_image_url'),
+                'img' => $image->getData('medium_image_url'),
+                'full' => $image->getUrl(),
+                'caption' => ($image->getLabel() ?: $product->getName()),
+                'position' => $image->getData('position'),
+                'isMain'   => $this->isMainImage($image),
+                'type' => str_replace('external-', '', $image->getMediaType()),
+                'videoUrl' => $image->getVideoUrl(),
+            ]);
+            foreach ($this->getGalleryImagesConfig()->getItems() as $imageConfig) {
+                $imageItem->setData(
+                    $imageConfig->getData('json_object_key'),
+                    $image->getData($imageConfig->getData('data_object_key'))
+                );
+            }
+            $imagesItems[] = $imageItem->toArray();
+        }
+        if (empty($imagesItems)) {
+            $imagesItems[] = [
+                'thumb' => $this->_imageHelper->getDefaultPlaceholderUrl('thumbnail'),
+                'img' => $this->_imageHelper->getDefaultPlaceholderUrl('image'),
+                'full' => $this->_imageHelper->getDefaultPlaceholderUrl('image'),
+                'caption' => '',
+                'position' => '0',
+                'isMain' => true,
+                'type' => 'image',
+                'videoUrl' => null,
+            ];
+        }
 
         $product->setIsCustomized(true);
         parent::setProduct($product);
@@ -58,7 +92,7 @@ class Gallery extends \Magento\Catalog\Block\Product\View\Gallery
             'isMain' => true,
             'type' => 'image',
             'videoUrl' => '',
-        ]], $images);
+        ]], $imagesItems);
 
         return json_encode($images);
     }    
