@@ -28,7 +28,7 @@ class Price extends \Magento\Framework\App\Action\Action
         }
 
         $result = [];
-        if (isset($defaultOptions['band'])) {
+        if (isset($defaultOptions['band']) && isset($allOptions['band']['bridal-set'])) {
             $defaultOptions['band'] = $allOptions['band']['no-band'];
             $product->setDefaultDmOptions($defaultOptions);
             $priceNoBand = $product->getPrice();

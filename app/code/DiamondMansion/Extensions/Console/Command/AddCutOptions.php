@@ -56,6 +56,8 @@ class AddCutOptions extends Command
 
         $this->addCutOptionsDesigRing($output);
 
+        $this->assignCutOptionsToType($output);
+
         $output->writeln('<info>Finished.</info>');
 
         return 0;
@@ -72,6 +74,27 @@ class AddCutOptions extends Command
             $this->_connection->query($query);
             $query = "INSERT INTO dm_product_options (`product_id`, `group`, `code`, `title`, `slug`, `is_default`) VALUES (" . $productId . ", 'main-stone-cut', 'very-good', 'Very Good', 'c', 0)";
             $this->_connection->query($query);    
+        }
+    }
+
+    public function assignCutOptionsToType($output) {
+        $rows = $this->_connection->fetchAll("SELECT * from dm_product_options WHERE `group` = 'main-stone-type' AND code <> 'setting' AND product_id IN (SELECT product_id from dm_product_options WHERE `group` = 'main-stone-cut')");
+        foreach ($rows as $row) {
+            $productId = $row['product_id'];
+
+            $values = json_decode($row['values'], true);
+            if (!isset($values['children'])) {
+                continue;
+            }
+
+            $values['children']['main-stone-cut'] = [
+                'ideal-10',
+                'excellent',
+                'very-good'
+            ];
+
+            $query = "UPDATE dm_product_options SET `values`='" . json_encode($values) . "' WHERE `entity_id`=" . $row['entity_id'];
+            $this->_connection->query($query);
         }
     }
 }
