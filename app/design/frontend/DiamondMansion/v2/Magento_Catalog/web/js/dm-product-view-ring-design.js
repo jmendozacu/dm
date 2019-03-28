@@ -147,7 +147,6 @@ define([
 
             $('img.product-image-current').attr('src', config.default_image);
             
-            reloadPrice();    
             updateTotalCarat();
 
             $('.options-details .block-title').on("click", function () {
@@ -190,6 +189,9 @@ define([
             });
 
             config.isLoaded = true;
+
+            reloadPrice();    
+
             $(".product-view").slideDown("slow");
         });
 
@@ -315,10 +317,9 @@ define([
             $(".band-list a.selected").removeClass("selected");
             $elm.addClass("selected");
 
-            $("#matching-band-details .block-summary li.matching-band a").html($(".band-list a.selected").html());
             config.band = code;
             
-            $(".sub-block-options .sub-option .sidecarats.fixed ul a.selected").each(function(index, value) {
+            $(".sidecarats.fixed ul a.selected").each(function(index, value) {
                 if (code == "bridal-set") {
                     $(this).html($(this).attr("data-carat-band"));
                 } else {
@@ -327,7 +328,7 @@ define([
             });
         
             if (config.isLoaded) {
-                $(".sub-block-options .sub-option .sideshapes ul").each(function(index, value) {
+                $(".sideshapes ul").each(function(index, value) {
                     if (config.band == "bridal-set") {
                         config.side_stone["qty"][$(this).attr("rel")] = parseInt($(this).find("a.selected").attr("data-qty2"));
                     } else {
@@ -469,8 +470,14 @@ define([
                         asynchronous: false,
                         data: getOptionSet(),
                         complete : function(xhr) {
-                            
-                            config.current_price = parseFloat(xhr.responseText);
+                            var json = JSON.parse(xhr.responseText);
+                            config.current_price = parseFloat(json.price);
+
+                            if (json.diff_for_bridal_set > 0) {
+                                $('#matching-band-details li a b').html('+$' + json.diff_for_bridal_set);
+                            } else {
+                                $('#matching-band-details li a b').html('');
+                            }
 
                             displayPrice();
                         }
@@ -585,14 +592,6 @@ define([
                         $("#gallery li:first").html('<a title="" href="'+json[0].pop+'" data-zoom=\'"useZoom": "zoom", "smallImage": "'+json[0].main+'"\' class="cloud-zoom-gallery"><img src="'+json[0].pop+'"/></a>');
                         
                         $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
-
-                        if (json.length > 1 && $('#band-image').length) {
-                            $('#band-image').fadeOut(300, function(){
-                                $('#band-image').attr('src',json[1].main).bind('onreadystatechange load', function(){
-                                   if (this.complete) $(this).fadeIn(300);
-                                });
-                            });      
-                        }
                     }
                 }
             );
@@ -679,39 +678,23 @@ define([
             url = "option=";
 
             var newOptions = "";
-    
-            $(".block-options .option ul, .sub-block-options .sub-option ul").each(function (index, value) {
-                var group = $(this).data("group");
-                
-                if (group == "setting-options-stone" || group == "setting-options-size") {
+
+            config.optionsSortOrder.forEach(function (group, index) {
+                if ((config.center_stone["type"] != "setting" && group == "setting-options-stone") || group == "setting-options-size") {
                     return;
                 }
-                
-                if ($(this).find(".selected").length) {
-                    var code = $(this).find(".selected").data("code");
+
+                var $selected = $(".block-options .option ul[data-group='" + group + "'] .selected");
+                if ($selected.length) {
+                    var code = $selected.data('code');
                     if (code) {
-                        if (group == 'main-stone-cut') {
-                            newOptions += config.option_skus[group][code];
-                        } else {
-                            url += config.option_skus[group][code];
-                        }
-                    }
-                } else {
-                    if (($(this).tagName == "UL" && $(this).hasClass(config.center_stone["type"])) || $(this).tagName == "SELECT") {
-                        available = false;
+                        url += config.option_skus[group][code];
                     }
                 }
             });
 
-            url += newOptions;
-            
             if (config.center_stone["type"] == "setting") {
                 if ($(".stone-list").find(".selected").length) {
-                    var code = $(".stone-list").find(".selected").data("code");
-                    if (code) {
-                        url += config.option_skus["setting-options-stone"][code];
-                    }
-
                     var height = $("#size-height").val();
                     var width = $("#size-width").val();
                     var depth = $("#size-depth").val();

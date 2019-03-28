@@ -27,7 +27,26 @@ class Price extends \Magento\Framework\App\Action\Action
             }
         }
 
-        $product->setDefaultDmOptions($defaultOptions);
-        echo $product->getPrice();
+        $result = [];
+        if (isset($defaultOptions['band'])) {
+            $defaultOptions['band'] = $allOptions['band']['no-band'];
+            $product->setDefaultDmOptions($defaultOptions);
+            $priceNoBand = $product->getPrice();
+            $defaultOptions['band'] = $allOptions['band']['bridal-set'];
+            $product->setDefaultDmOptions($defaultOptions);
+            $priceBridalSet = $product->getPrice();
+
+            $result = [
+                'price' => (isset($params['band']) && $params['band'] == 'bridal-set') ? $priceBridalSet : $priceNoBand,
+                'diff_for_bridal_set' => round(($priceBridalSet - $priceNoBand) / 10) * 10
+            ];
+        } else {
+            $product->setDefaultDmOptions($defaultOptions);
+            $result = [
+                'price' => $product->getPrice(),
+                'diff_for_bridal_set' => 0
+            ];
+        }
+        echo json_encode($result);
     }
 }

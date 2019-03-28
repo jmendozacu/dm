@@ -339,6 +339,10 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
             $skus = [];
             
             foreach ($params as $group => $param) {
+                if ($params["main-stone-type"] != "setting" && $group == 'setting-options-stone') {
+                    continue;
+                }
+                
                 if (!empty($allDmOptions[$group][$param]->getSlug())) {
                     $skus[$group] = $allDmOptions[$group][$param]->getSlug();
                 }
@@ -368,6 +372,10 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         ]);
         
         return $images['main'];        
+    }
+
+    public function getDmOptionsSortOrder() {
+        return $this->_dmOptionSortOrder;
     }
 
     /**

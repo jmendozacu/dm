@@ -9,18 +9,6 @@
 
     $imageDefault = $_product->getImage();
 
-    if ($defaultOptions["band"]->getCode() == "no-band" && count($allOptions["band"]) >= 2) {
-        $imageDefaultWithBand = $_helper->getProductImages([
-            'sku' => $_product->getSku(),
-            'type' => $defaultOptions['main-stone-type']->getCode(),
-            'shape' => $defaultOptions['main-stone-shape']->getCode(),
-            'band' => 'bridal-set',
-            'metal' => $defaultOptions['metal']->getCode(),
-        ]);
-    } else {
-        $imageDefaultWithBand = ['main' => $imageDefault];
-    }
-
     $mainStonePriceDefault = $_product->getPrice();
 
     $category = $this->getHelper()->getObjectManager()->get('Magento\Framework\Registry')->registry('current_category');
@@ -427,27 +415,21 @@
             </div>
         </div>
         <div id="matching-band-details" class="options-details">
-            <div class="block-title">Matching Band <i class="fa fa-plus"></i></div>
             <div class="block-options">
                 <?php if (is_array($allOptions['band']) && count($allOptions['band']) > 0): ?>
-                <div class="band-image" <?php if (count($allOptions['band']) == 1 && isset($allOptions['band']["no-band"])): ?> style="display: none;" <?php endif; ?>>
-                    <a href="#"><img id="band-image" src="<?php echo isset($imageDefaultWithBand)?$imageDefaultWithBand['main']:"" ?>"/></a>
-                    <p>Include a matching band for just <b>$7950</b></p>
-                </div>
                 <div class="option" <?php if (count($allOptions['band']) == 1 && isset($allOptions['band']["no-band"])): ?> style="display: none;" <?php endif; ?>>
                     <ul class="band-list" rel="band" data-group="band">
                         <?php foreach ($allOptions['band'] as $band => $bandOption): ?>
-                        <li><a href="#" rel="<?= $band ?>" id="band-<?= $bandOption->getId() ?>" data-code="<?= $band ?>" class="<?php echo $band=="no-band"?"remove":"include"?>"><?php echo $band=="no-band"?"Remove":"Include"?></a></li>
+                        <li>
+                            <a href="#" rel="<?= $band ?>" id="band-<?= $bandOption->getId() ?>" data-code="<?= $band ?>" class="<?php echo $band=="no-band"?"remove":"include"?>">
+                                <i class="fa fa-check"></i>Add a Matching Band <b></b>
+                            </a>
+                        </li>
                         <?php endforeach; ?>
                     </ul>
                     <div class="clearer"></div>
                 </div>
                 <?php endif; ?>
-            </div>
-            <div class="block-summary">
-                <ul>
-                    <li class="matching-band"><a href="#">DON'T INCLUDE</a></li>
-                </ul>
             </div>
         </div>            
         <div class="buttons-mobile">
@@ -456,20 +438,27 @@
                     <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $_product->getId() ?>" />
                     <?= $block->getBlockHtml('formkey') ?>
                     <input type="hidden" name="dm_options" class="dm_custom_options" value="<?= isset($params['option']) ? $params['option'] : "" ?>"/>
-                    <a class="btn-buy" href="#" data-submit-url="<?= $block->getSubmitUrl($_product) ?>"></a>
                 </form>
-                <a class="btn-reserve" href="#form-reserve"></a>
+                <a class="btn-buy" href="#" data-submit-url="<?= $block->getSubmitUrl($_product) ?>">Add To Cart</a>
+                <a class="btn-reserve" href="#form-reserve">Reserve Today Price</a>
             </div>
-        </div>
-        <div class="ideal10-section no-display">
-            <div id="ideal10-section-content">
-                <h3>Diamond Mansion only carries IDEAL10 ultimate beauty diamonds.</h3>
-                <p>
-                other than the color and the clarity of a diamond there are 10 factors that effect the beauty of a diamond. When these 10 proportions &amp; elements are dynamicly within their sweetspot range, they support the diamond to emenate its hidden beauty. <br/>IDEAL10 is a GIA certified diamond that emenates its ultimate beauty!
-                </p>
-            </div>
-            <a href="#" id="more-view-ideal10-section" class="more"></a>
-            <img src="<?php echo $this->getViewFileUrl("images/mobile/button_ideal10.jpg") ?>"/>
+
+            <?php $facebookAppId = $this->getHelper()->getCustomValue('facebook_app_id'); ?>
+            <div class="share-links">
+                <!-- email -->
+                <div class="email">                
+                    <a href="#"><i class="fa fa-envelope-open-o"></i>Send to friend<span class='st_email' ></span></a>
+                </div>
+                <!-- email -->
+                <script type="text/javascript"  src="http://w.sharethis.com/button/buttons.js#publisher=ur-3d81a43c-ac71-af04-a968-eedf36db1166&amp;type=website&amp;onmouseover=false"></script>
+
+
+                <div id="fb-root"></div>
+                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.2&appId=<?= $facebookAppId ?>&autoLogAppEvents=1"></script>                
+                <div class="facebook">
+                    <a href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href)+'&src=sdkpreparse', 'facebook-share-dialog', 'width=626,height=436'); return false;"><i class="fa fa-share-square-o"></i>Share to: Facebook</a>
+                </div>              
+            </div>            
         </div>
     </div>
     <div class="clearer"></div>
@@ -545,6 +534,9 @@
                     "<?= $group ?>": "<?= $group ?>-<?= $option->getId() ?>"<?= ($i < count($defaultOptions)) ? ',' : '' ?>
                     <?php $i++; endforeach ?>
                 },
+                "optionsSortOrder": [
+                    "<?php echo implode('","', $_product->getTypeInstance()->getDmOptionsSortOrder()) ?>"
+                ],
                 "is_fixed_main_stone_price": <?= (isset($allOptions['others']) && isset($allOptions['others']['fixed-main-stone-price']) && $allOptions['others']['fixed-main-stone-price']) ? 1 : 0 ?>
             }
         }
