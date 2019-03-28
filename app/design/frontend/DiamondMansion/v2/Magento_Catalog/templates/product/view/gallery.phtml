@@ -1,12 +1,18 @@
 <?php 
 $jsonGallery =  $block->getGalleryImagesJson();
 $arrayJsonGallery = json_decode($jsonGallery, true);
+print_r($arrayJsonGallery);
 $isVideoExist = false;
 ?>
 <div class="gallery-placeholder product-image">
     <div id="gallery">
         <?php $index = 0; foreach ($arrayJsonGallery as $_image): ?>
         <?php if ($_image['type'] == 'video'): ?>
+        <li>
+            <div class="video-wrapper">
+                <iframe src="<?= $_image['videoUrl'] ?>"></iframe>
+            </div>
+        </li>
         <?php else: ?>
         <li>
             <a class="cloud-zoom-gallery" 
