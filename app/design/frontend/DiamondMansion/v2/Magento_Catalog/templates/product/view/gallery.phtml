@@ -3,6 +3,9 @@ $jsonGallery =  $block->getGalleryImagesJson();
 $arrayJsonGallery = json_decode($jsonGallery, true);
 $isVideoExist = false;
 ?>
+<div style="display:none;">
+<?php print_r($arrayJsonGallery); ?>
+</div>
 <div class="gallery-placeholder product-image">
     <div id="gallery">
         <?php $index = 0; foreach ($arrayJsonGallery as $_image): ?>
