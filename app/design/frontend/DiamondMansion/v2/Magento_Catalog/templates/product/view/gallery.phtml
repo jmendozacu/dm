@@ -1,16 +1,21 @@
 <?php 
 $jsonGallery =  $block->getGalleryImagesJson();
 $arrayJsonGallery = json_decode($jsonGallery, true);
-print_r($arrayJsonGallery);
 $isVideoExist = false;
 ?>
 <div class="gallery-placeholder product-image">
     <div id="gallery">
         <?php $index = 0; foreach ($arrayJsonGallery as $_image): ?>
         <?php if ($_image['type'] == 'video'): ?>
+        <?php
+            if (strpos($_image['videoUrl'], 'watch?v=') !== false) {
+                $videoUrlParams = explode('watch?v=', $_image['videoUrl']);
+                $_image['videoUrl'] = 'https://www.youtube.com/embed/' . $videoUrlParams[1] . '?controls=0';
+            }
+        ?>
         <li>
             <div class="video-wrapper">
-                <iframe src="<?= $_image['videoUrl'] ?>"></iframe>
+                <iframe src="<?= $_image['videoUrl'] ?>" width="100%"></iframe>
             </div>
         </li>
         <?php else: ?>
