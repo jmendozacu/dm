@@ -71,8 +71,17 @@
 
             #gallery {
                 margin-bottom: 60 * @v3-base-mobile-vw; 
-                .slick-dots li button:before {
-                    font-size: 10px;
+                .slick-dots li {
+                    padding: 0;
+                    margin: 0;
+
+                    button {
+
+                    }
+
+                    button:before {
+                        font-size: 10px;
+                    }
                 }
             }
         }
@@ -86,6 +95,9 @@
 
             .price-box {
                 color: #8b8f93;
+                padding-bottom: 40 * @v3-base-mobile-vw; 
+                margin-bottom: 40 * @v3-base-mobile-vw; 
+                border-bottom: 1px solid #eaeaea;
 
                 span {
                     display: block;
@@ -102,6 +114,8 @@
                     .price {
                         color: #000;
                         font-size: 65em;
+                        letter-spacing: -3px;
+                        line-height: 60 * @v3-base-mobile-vw; 
                     }
                 }
 
