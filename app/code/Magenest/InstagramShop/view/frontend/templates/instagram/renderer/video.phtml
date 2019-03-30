@@ -1,0 +1,23 @@
+<?php
+/**
+ *
+  * Copyright © 2018 Magenest. All rights reserved.
+  * See COPYING.txt for license details.
+  *
+  * Magenest_InstagramShop extension
+  * NOTICE OF LICENSE
+  *
+  * @category Magenest
+  * @package  Magenest_InstagramShop
+  * @author    dangnh@magenest.com
+
+ */
+
+/** @var $block \Magenest\InstagramShop\Block\Instagram\Renderer\Video */
+?>
+<div id="video-section" style="display: none;">
+    <?php if (($photo = $block->getPhoto()) && $photo->getVideoSource() !== null): ?>
+        <video controls="" class="widget-embed" poster="<?= $photo->getSource() ?>"
+               src="<?= $photo->getVideoSource() ?>"></video>
+    <?php endif; ?>
+</div>

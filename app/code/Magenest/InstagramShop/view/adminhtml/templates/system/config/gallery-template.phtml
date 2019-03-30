@@ -1,0 +1,92 @@
+<?php
+/**
+ *
+ * Copyright © 2018 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * Magenest_InstagramShop extension
+ * NOTICE OF LICENSE
+ *
+ * @category Magenest
+ * @package  Magenest_InstagramShop
+ * @author    dangnh@magenest.com
+ */
+
+/** @var $block \Magenest\InstagramShop\Block\Adminhtml\System\Config\Form\GalleryTemplate */
+$elementId            = $block->getElement()->getId();
+$defaultTemplateValue = \Magenest\InstagramShop\Model\Config\Source\GalleryTemplate::DEFAULT_VALUE_TEMPLATE;
+$mixTemplateValue     = \Magenest\InstagramShop\Model\Config\Source\GalleryTemplate::MIX_VALUE_TEMPLATE;
+?>
+<tr id="row_<?= $elementId ?>">
+    <td class="label">
+        <label for="<?= $elementId ?>">
+            <span data-config-scope="<?= $block->getElement()->getScopeLabel() ?>"><?= $block->getElement()->getLabel() ?></span>
+        </label>
+    </td>
+    <td class="value">
+        <div class="admin__field admin__field-option" style="display: inline;">
+            <input type="radio"
+                   name="<?= $block->getElement()->getName() ?>"
+                   value="<?= $defaultTemplateValue ?>"
+                   class="admin__control-radio"
+                   id="<?= $elementId . $defaultTemplateValue ?>"
+                <?= $block->getChecked($defaultTemplateValue) ?>>
+            <label class="admin__field-label" for="<?= $elementId . $defaultTemplateValue ?>">
+                <img class="zoomable"
+                     src="<?= $block->getViewFileUrl('Magenest_InstagramShop::images/default-grid.png') ?>"
+                     alt="Default Grid Template"/>
+            </label>
+        </div>
+        <div class="admin__field admin__field-option" style="display: inline;">
+            <input type="radio"
+                   name="<?= $block->getElement()->getName() ?>"
+                   value="<?= $mixTemplateValue ?>" class="admin__control-radio"
+                   id="<?= $elementId . $mixTemplateValue ?>"
+                <?= $block->getChecked($mixTemplateValue) ?>>
+            <label class="admin__field-label" for="<?= $elementId . $mixTemplateValue ?>">
+                <img class="zoomable" src="<?= $block->getViewFileUrl('Magenest_InstagramShop::images/mix-grid.png') ?>"
+                     alt="Mix Grid Template"/>
+            </label>
+        </div>
+    </td>
+</tr>
+<script type="text/javascript">
+    require(['jquery'], function ($) {
+        $('img.zoomable').css({width: '150px', height: '150px'}).on('click', function () {
+
+            var img = $(this);
+            console.log(img.attr('src'));
+            var bigImg = $('<img />').css({
+                'max-width': '100%',
+                'max-height': '100%',
+                'display': 'inline',
+                'position': 'fixed',
+                'top': '50%',
+                'left': '50%',
+                'transform': 'translate(-50%,-50%)'
+            });
+            bigImg.attr({
+                src: img.attr('src'),
+                alt: img.attr('alt')
+            });
+            var over = $('<div />').text(' ').css({
+                'height': '100%',
+                'width': '100%',
+                'background': 'rgba(0,0,0,.82)',
+                'position': 'fixed',
+                'top': 0,
+                'left': 0,
+                'opacity': 0.0,
+                'cursor': 'pointer',
+                'z-index': 9999,
+                'text-align': 'center'
+            }).append(bigImg).bind('click', function () {
+                $(this).fadeOut(300, function () {
+                    $(this).remove();
+                });
+            }).insertAfter(this).animate({
+                'opacity': 1
+            }, 300);
+        });
+    })
+</script>

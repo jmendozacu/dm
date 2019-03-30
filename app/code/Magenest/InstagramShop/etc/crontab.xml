@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+  /**
+   * Copyright © 2018 Magenest. All rights reserved.
+   * See COPYING.txt for license details.
+   *
+   * Magenest_InstagramShop extension
+   * NOTICE OF LICENSE
+   *
+   * @category Magenest
+   * @package  Magenest_InstagramShop
+   * @author    dangnh@magenest.com
+   */
+  -->
+
+<config	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="instagram">
+        <job name="magenest_check_tagged_photos" instance="Magenest\InstagramShop\Model\Cron" method="getTaggedPhotos">
+            <schedule>*/15 * * * *</schedule>
+        </job>
+        <job name="magenest_update_all_photos" instance="Magenest\InstagramShop\Model\Cron" method="getAllPhotos">
+            <schedule>*/15 * * * *</schedule>
+        </job>
+    </group>
+</config>

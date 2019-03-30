@@ -1,0 +1,55 @@
+<?php
+/**
+ *
+  * Copyright © 2018 Magenest. All rights reserved.
+  * See COPYING.txt for license details.
+  *
+  * Magenest_InstagramShop extension
+  * NOTICE OF LICENSE
+  *
+  * @category Magenest
+  * @package  Magenest_InstagramShop
+  * @author    dangnh@magenest.com
+
+ */
+
+/** @var $block \Magenest\InstagramShop\Block\Adminhtml\Hotspot\Edit\Form\View */
+$keys = $block->getKeyOrder();
+$x    = $block->getImageSize($block->getPhotoModel()->getSource())[0];
+$y    = $block->getImageSize($block->getPhotoModel()->getSource())[1];
+?>
+<center>
+    <div class="admin__field field field-Instagram Image "
+         data-ui-id="instagram-edit-form-fieldset-element-form-field-instagram-image"
+         style="display: inline-block;">
+        <label class="label admin__field-label" data-ui-id="instagram-edit-form-fieldset-element-instaimage-label">
+            <span>Instagram Image</span>
+        </label>
+        <div class="admin__field-control control">
+            <div id="instagram-image-div">
+                <div class="instagram-image left" ondrop="drop(event)" ondragover="allowDrop(event)"
+                     style="background-image: url(<?= $block->getPhotoModel()->getSource() ?>);width: <?= $x ?>px;height: <?= $y ?>px;">
+                    <?php foreach ($keys as $key => $value) :
+                        if (($style = $block->getHotspotStyle($key)) != ''): ?>
+                            <div class="instagrampin <?= $value ?>" id="hotspot<?= $key ?>_" draggable="true"
+                                 ondragstart="drag(event)"
+                                 style="<?= $style ?>"></div>
+                            <?php unset($keys[$key]) ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+                <div class="insta-pin right">
+                    <?php foreach ($keys as $key => $value) { ?>
+                        <div class="instagrampin <?= $value ?>" id="hotspot<?= $key ?>_" draggable="true"
+                             ondragstart="drag(event)"
+                             style="<?= $style ?>"></div>
+                    <?php } ?>
+                </div>
+                <input type="hidden" name="lastPostX" value="">
+                <input type="hidden" name="lastPostY" value="">
+                <input type="hidden" name="maxX" value="<?= $x ?>">
+                <input type="hidden" name="maxY" value="<?= $y ?>">
+            </div>
+        </div>
+    </div>
+</center>

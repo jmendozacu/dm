@@ -1,0 +1,79 @@
+<?php
+/**
+ *
+ * Copyright © 2018 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * Magenest_InstagramShop extension
+ * NOTICE OF LICENSE
+ *
+ * @category Magenest
+ * @package  Magenest_InstagramShop
+ * @author    dangnh@magenest.com
+ */
+
+/** @var $block \Magenest\InstagramShop\Block\Adminhtml\System\Config\Form\CreateWidget */
+$element = $block->getElement();
+?>
+<tr>
+    <td class="label"></td>
+    <td class="value">
+        <p></p>
+        <p>If you create widget from here, the widget will be located on the <b>Main Content Top</b> in the <b>CMS Home Page</b>.</p>
+        <p>You can set the position and the page where the widget will be displayed later.</p>
+    </td>
+</tr>
+<tr id="row_theme_id">
+    <td class="label"><label for="theme_id"><span>Theme</span></label></td>
+    <td class="value">
+        <select id="theme_id" name="theme_id" class=" select admin__control-select" required>
+            <?php foreach ($block->getThemes() as $id => $theme) { ?>
+                <option value="<?= $id ?>"><?= $theme->getThemeTitle() ?></option>
+            <?php } ?>
+        </select>
+    </td>
+    <td class=""></td>
+</tr>
+<tr id="row_layout">
+    <td class="label" style="vertical-align: middle;"><label for="widget_layout"><span>Widget Layout</span></label></td>
+    <td class="value">
+        <div class="admin__field admin__field-option" style="display:inline-block; max-width: 33.33%; float: left;">
+            <input type="radio" name="layout" value="default" class="admin__control-radio" id="layout_default" checked>
+            <label class="admin__field-label" for="layout_default">
+                <img class="zoomable" src="<?= $block->getViewFileUrl('Magenest_InstagramShop::images/widget/default.png') ?>" alt="Single row (default)"/>
+            </label>
+        </div>
+        <div class="admin__field admin__field-option" style="display:inline-block; max-width: 33.33%; float: left;">
+            <input type="radio" name="layout" value="nine" class="admin__control-radio" id="layout_33">
+            <label class="admin__field-label" for="layout_33">
+                <img class="zoomable" src="<?= $block->getViewFileUrl('Magenest_InstagramShop::images/widget/33.png') ?>" alt="3 x 3 with 2 bigger photos"/>
+            </label>
+        </div>
+        <div class="admin__field admin__field-option" style="display:inline-block; max-width: 33.33%; float: left;">
+            <input type="radio" name="layout" value="twelve" class="admin__control-radio" id="layout_43">
+            <label class="admin__field-label" for="layout_43">
+                <img class="zoomable" src="<?= $block->getViewFileUrl('Magenest_InstagramShop::images/widget/43.png') ?>" alt="4 x 3"/>
+            </label>
+        </div>
+    </td>
+</tr>
+<tr id="row_button">
+    <td class="label"></td>
+    <td class="value" style="text-align: center">
+        <button class="btn btn-secondary" id="create-widget">Create</button>
+    </td>
+    <td class=""></td>
+</tr>
+<script type="text/javascript">
+    require(['jquery'], function ($) {
+        $('#create-widget').on('click', function (e) {
+            e.preventDefault();
+            var themeId = $('select#theme_id').val(),
+                layout = $('input[name=layout]:checked').val();
+            if (themeId && layout) {
+                var createWidgetUrl = '<?=$block->getCreateWidgetUrl()?>' + '?theme_id=' + themeId + '&layout=' + layout;
+                window.location.href = createWidgetUrl;
+            }
+        })
+    })
+</script>

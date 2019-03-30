@@ -1,0 +1,78 @@
+<!--
+  /**
+   * Copyright © 2018 Magenest. All rights reserved.
+   * See COPYING.txt for license details.
+   *
+   * Magenest_InstagramShop extension
+   * NOTICE OF LICENSE
+   *
+   * @category Magenest
+   * @package  Magenest_InstagramShop
+   * @author    dangnh@magenest.com
+   */
+  -->
+
+<button class="button action-configure" data-role="get-report" data-bind="click: getReport"><span>Show</span></button>
+<button class="button action-configure" data-role="reset-report" data-bind="click: resetReport"><span>Reset</span></button>
+<br>
+<div class="report-detail-section">
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item">
+            <div class="admin__page-section-item-title">
+                <span class="title" data-bind="i18n: 'Detail'"></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary">
+                    <thead>
+                    <tr>
+                        <th data-bind="i18n: 'Total Clicks'"></th>
+                        <th data-bind="i18n: 'Total Conversion Rate'"></th>
+                        <th data-bind="i18n: 'Most View Image'"></th>
+                        <th data-bind="i18n: 'Most View Product from Instagram'"></th>
+                        <th data-bind="i18n: 'Highest Conversion Rate Image'"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td data-bind="text: totalClicks()"></td>
+                        <td data-bind="text: totalConversionRate()"></td>
+                        <td>
+                            <!--ko ifnot: isEmptyObject(mostViewImage())-->
+                            <!--ko text: getNotFoundMessage()--><!--/ko-->
+                            <!--/ko-->
+                            <!--ko if: isEmptyObject(mostViewImage())-->
+                            <img data-bind="attr: {src: mostViewImage().source, alt: mostViewImage().photo_id}" height="100px" width="100px">
+                            <p>ID: <span data-bind="text: mostViewImage().id"></span></p>
+                            <p>Photo ID: <span data-bind="text: mostViewImage().photo_id"></span></p>
+                            <p>Caption: <span data-bind="text: mostViewImage().caption"></span></p>
+                            <!--/ko-->
+                        </td>
+                        <td>
+                            <!--ko ifnot: isEmptyObject(mostViewProductFromImage())-->
+                            <!--ko text: getNotFoundMessage()--><!--/ko-->
+                            <!--/ko-->
+                            <!--ko if: isEmptyObject(mostViewProductFromImage())-->
+                            <a href="" data-bind="attr: {href: mostViewProductFromImage().edit_url}"><img data-bind="attr: {src: mostViewProductFromImage().thumbnail}"></a>
+                            <p>ID: <span data-bind="text: mostViewProductFromImage().entity_id"></span></p>
+                            <p>SKU: <a href="" data-bind="attr: {href: mostViewProductFromImage().edit_url}"><span data-bind="text: mostViewProductFromImage().sku"></span></a></p>
+                            <p>Name: <span data-bind="text: mostViewProductFromImage().name"></span></p>
+                            <!--/ko-->
+                        </td>
+                        <td>
+                            <!--ko ifnot: isEmptyObject(highestConversionRateImage())-->
+                            <!--ko text: getNotFoundMessage()--><!--/ko-->
+                            <!--/ko-->
+                            <!--ko if: isEmptyObject(highestConversionRateImage())-->
+                            <img data-bind="attr: {src: highestConversionRateImage().source, alt: highestConversionRateImage().photo_id}" height="100px" width="100px">
+                            <p>ID: <span data-bind="text: highestConversionRateImage().id"></span></p>
+                            <p>Photo ID: <span data-bind="text: highestConversionRateImage().photo_id"></span></p>
+                            <p>Caption: <span data-bind="text: highestConversionRateImage().caption"></span></p>
+                            <!--/ko-->
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

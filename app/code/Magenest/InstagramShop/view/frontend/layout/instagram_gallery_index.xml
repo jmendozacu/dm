@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+  /**
+   * Copyright © 2018 Magenest. All rights reserved.
+   * See COPYING.txt for license details.
+   *
+   * Magenest_InstagramShop extension
+   * NOTICE OF LICENSE
+   *
+   * @category Magenest
+   * @package  Magenest_InstagramShop
+   * @author    dangnh@magenest.com
+   */
+  -->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="instagram_slider_head_block"/>
+    <head>
+        <title>Gallery</title>
+        <css src="Magenest_InstagramShop::css/gallery/style.css"/>
+    </head>
+    <body>
+        <referenceBlock name="content">
+            <block class="Magenest\InstagramShop\Block\Gallery\Gallery" name="instagram_photo" template="gallery.phtml">
+                <block name="shared-popup" class="Magenest\InstagramShop\Block\Instagram\SharedPopup"/>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

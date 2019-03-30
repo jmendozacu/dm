@@ -1,0 +1,39 @@
+<?php
+/**
+ *
+  * Copyright © 2018 Magenest. All rights reserved.
+  * See COPYING.txt for license details.
+  *
+  * Magenest_InstagramShop extension
+  * NOTICE OF LICENSE
+  *
+  * @category Magenest
+  * @package  Magenest_InstagramShop
+  * @author    dangnh@magenest.com
+
+ */
+
+/** @var Magenest\InstagramShop\Block\Adminhtml\System\Config\Form\AuthButton $block */
+$buttonLabel  = $block->getButtonLabel();
+$url          = $block->getButtonUrl();
+$buttonHtmlId = $block->getHtmlId();
+?>
+<a data-ui-id="button-get-authorization-instagram" class="action-default scalable action-save action-secondary"
+   id="<?= $block->escapeHtml($buttonHtmlId) ?>"
+   style="cursor: pointer;"
+>
+    <?= $block->escapeHtml($buttonLabel) ?>
+</a>
+<script>
+    require(['jquery'], function ($) {
+        $('#<?=$buttonHtmlId?>').on('click', function () {
+            if ($(this).parents('form').valid()) {
+                var clientId = $('input#magenest_instagram_shop_instagram_client_id').val();
+                var clientSecret = $('input#magenest_instagram_shop_instagram_client_secret').val();
+
+                $('body').loader('show');
+                window.location.href = '<?= $block->getUrl('instagram/instagram/beforeConnect') ?>?client_id=' + clientId + '&client_secret=' + clientSecret;
+            }
+        })
+    })
+</script>

@@ -1,0 +1,28 @@
+/*
+ *
+  * Copyright © 2018 Magenest. All rights reserved.
+  * See COPYING.txt for license details.
+  *
+  * Magenest_InstagramShop extension
+  * NOTICE OF LICENSE
+  *
+  * @category Magenest
+  * @package  Magenest_InstagramShop
+  * @author    dangnh@magenest.com
+
+ */
+
+#from-date, #to-date, #date-used-control {
+    display: inline-block;
+}
+
+#report-request {
+    display: inline;
+}
+
+.report-detail-section {
+    display: block;
+    padding-top: 20px;
+    position: relative;
+    min-height: 200px;
+}

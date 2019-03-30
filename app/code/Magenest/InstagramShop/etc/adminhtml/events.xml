@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+  /**
+   * Copyright © 2018 Magenest. All rights reserved.
+   * See COPYING.txt for license details.
+   *
+   * Magenest_InstagramShop extension
+   * NOTICE OF LICENSE
+   *
+   * @category Magenest
+   * @package  Magenest_InstagramShop
+   * @author    dangnh@magenest.com
+   */
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="magenest_instagramshop_hotspot_save_after">
+        <observer name="add_photos_to_product" instance="Magenest\InstagramShop\Observer\AddPhotosToProduct"/>
+    </event>
+    <event name="instagram_controller_connect_before">
+        <observer name="flush_config_cache_before_connect" instance="Magenest\InstagramShop\Observer\Controller\BeforeConnect" />
+    </event>
+    <event name="instagram_controller_connect_successful">
+        <observer name="flush_config_cache_after_connect" instance="Magenest\InstagramShop\Observer\Controller\AfterConnect" />
+    </event>
+</config>

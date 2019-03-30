@@ -1,0 +1,165 @@
+/*
+ *
+  * Copyright © 2018 Magenest. All rights reserved.
+  * See COPYING.txt for license details.
+  *
+  * Magenest_InstagramShop extension
+  * NOTICE OF LICENSE
+  *
+  * @category Magenest
+  * @package  Magenest_InstagramShop
+  * @author    dangnh@magenest.com
+
+ */
+
+
+.instagram-pin.right {
+
+    float: left;
+
+    width: 5%;
+
+}
+
+#instagram-image-div {
+
+    width: 700px;
+
+    position: relative;
+
+    padding-top: 38px;
+
+    padding-left: 10px;
+
+}
+
+.instagrampin {
+
+    background-size: 100% 100%;
+
+    height: 32px;
+
+    cursor: pointer;
+
+    width: 32px;
+
+    float: left;
+
+}
+
+.instagram-image.left {
+
+    float: left;
+
+    width: 640px;
+
+    background-repeat: round;
+
+    height: 640px;
+
+    background-position: center center;
+
+}
+
+.add-instagram {
+
+    margin-bottom: 25px;
+
+    border-right: 1px solid #e3e3e3;
+
+}
+
+.instagram-approve {
+
+    background-image: url('../images/hotspot/checked.png');
+
+    height: 30px;
+
+    width: 30px;
+
+    float: left;
+
+    margin-left: 18px;
+
+}
+
+.instagram-delete {
+
+    background-image: url('../images/hotspot/delete.png');
+
+    height: 30px;
+
+    width: 30px;
+
+    float: right;
+
+    margin-right: 18px;
+
+}
+
+.processing {
+
+    display: inline;
+
+    top: 50%;
+
+    position: absolute;
+
+}
+
+#preloader {
+
+    width: 100%;
+
+    display: none;
+
+    background-color: #FEF4FE;
+
+    min-height: 100%;
+
+    position: fixed;
+
+    text-align: center;
+
+    opacity: 0.9;
+
+    z-index: 10000;
+
+}
+
+.page-actions-left {
+
+    float: left;
+
+}
+
+.instagram-links {
+
+    margin-bottom: 10px;
+
+    padding-left: 5px;
+
+    padding-right: 5px;
+
+}
+
+.one {
+    background-image: url('../images/hotspot/pin-1.png');
+}
+
+.two {
+    background-image: url('../images/hotspot/pin-2.png');
+}
+
+.three {
+    background-image: url('../images/hotspot/pin-3.png');
+}
+
+.four {
+    background-image: url('../images/hotspot/pin-4.png');
+}
+
+.five {
+    background-image: url('../images/hotspot/pin-5.png');
+}
+

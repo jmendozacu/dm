@@ -1,0 +1,32 @@
+/*
+ *
+  * Copyright © 2018 Magenest. All rights reserved.
+  * See COPYING.txt for license details.
+  *
+  * Magenest_InstagramShop extension
+  * NOTICE OF LICENSE
+  *
+  * @category Magenest
+  * @package  Magenest_InstagramShop
+  * @author    dangnh@magenest.com
+
+ */
+
+@instagramshop-icons-admin__font-name-path: 'Magenest_InstagramShop::fonts/icon';
+@instagramshop-icons-admin__font-name : 'InstagramShop';
+
+.lib-font-face(
+  @family-name: @instagramshop-icons-admin__font-name,
+  @font-path: @instagramshop-icons-admin__font-name-path,
+  @font-weight: normal,
+  @font-style: normal
+);
+
+.admin__menu .item-instagramshop.parent.level-0 > a:before,
+.admin__menu .item-instagramshop.level-0 > a:before {
+  font-family: @instagramshop-icons-admin__font-name;
+  font-size: 3rem;
+  line-height: 2px;
+  content: "\0041";
+  padding-top: 5px;
+}

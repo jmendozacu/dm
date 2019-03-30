@@ -1,0 +1,73 @@
+<?php
+/**
+ *
+  * Copyright © 2018 Magenest. All rights reserved.
+  * See COPYING.txt for license details.
+  *
+  * Magenest_InstagramShop extension
+  * NOTICE OF LICENSE
+  *
+  * @category Magenest
+  * @package  Magenest_InstagramShop
+  * @author    dangnh@magenest.com
+
+ */
+
+/** @var \Magenest\InstagramShop\Block\Instagram\Renderer\LinkedProducts $block */
+$productList = $block->getProductList();
+/** @var \Magenest\InstagramShop\Helper\Helper $helper */
+$helper = $this->helper(\Magenest\InstagramShop\Helper\Helper::class);
+$photo  = $block->getPhoto();
+?>
+<div id="linked-products" style="display: none;">
+    <?php foreach ($productList as $product) { ?>
+        <?php
+        $productUrl      = $product->getUrlModel()->getUrl($product);
+        $productImageUrl = $block->getProductImageUrl($product)->getUrl();
+        $productId       = $product->getId();
+        ?>
+        <a class="widget-<?= $block->getAdditionalClass() ?>text-product widget-<?= $block->getAdditionalClass() ?>link-list"
+           data-original-url="<?= $block->escapeHtml($productUrl) ?>"
+           id="product_link_<?= $productId ?>" target="_blank"
+           data-link-id="<?= $productId ?>"
+           href="<?= $helper->getEncodedLink($productUrl, [
+               'product_id' => $productId,
+               'photo_type' => $photo->getType(),
+               'photo_id' => $photo->getPhotoId()
+           ]) ?>">
+            <?php if (!$block->isLayoutList()): ?>
+                <img src="<?= $block->escapeHtml($productImageUrl) ?>" width="150px" height="150px" style=""/>
+            <?php endif ?>
+            <span class="widget-<?= $block->getAdditionalClass() ?>link-text-all">
+                    <span class="widget-link-text-number"></span>
+                    <span class="widget-<?= $block->getAdditionalClass() ?>link-text"><?= $block->escapeHtml($product->getName()) ?></span>
+                </span>
+            <div class="widget-<?= $block->getAdditionalClass() ?>text-product-cta"></div>
+        </a>
+    <?php } ?>
+    <?php if (!empty($productList)): ?>
+        <script>
+            require(['jquery'], function ($) {
+                let className = 'widget-overlink-active';
+                $('a.widget-<?= $block->getAdditionalClass() ?>text-product.widget-<?= $block->getAdditionalClass() ?>link-list').on('mouseover mouseout', function (e) {
+                    let linkId = $(this).data('link-id'),
+                        hotspotElement = $('div#widget_overlink_' + linkId);
+                    switch (e.type) {
+                        case 'mouseover':
+                            if (!hotspotElement.hasClass(className)) {
+                                hotspotElement.addClass(className);
+                            }
+                            return;
+                        case 'mouseout':
+                            if (hotspotElement.hasClass(className)) {
+                                hotspotElement.removeClass(className);
+                            }
+                            return;
+                    }
+                });
+            })
+
+
+    </script>
+<?php endif ?>
+</div>

@@ -1,0 +1,26 @@
+<?xml	version="1.0"?>
+<!--
+  /**
+   * Copyright © 2018 Magenest. All rights reserved.
+   * See COPYING.txt for license details.
+   *
+   * Magenest_InstagramShop extension
+   * NOTICE OF LICENSE
+   *
+   * @category Magenest
+   * @package  Magenest_InstagramShop
+   * @author    dangnh@magenest.com
+   */
+  -->
+
+<config	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magenest_InstagramShop::instagramshop" title="Instagram Shop" module="Magenest_InstagramShop" sortOrder="50" resource="Magenest_InstagramShop::instagramshop"/>
+        <add id="Magenest_InstagramShop::instagram" title="Instagram Photo" module="Magenest_InstagramShop" sortOrder="10" parent="Magenest_InstagramShop::instagramshop" action="instagram/instagram/" resource="Magenest_InstagramShop::instagram"/>
+        <add id="Magenest_InstagramShop::tag" title="Instagram Tagged Photo" module="Magenest_InstagramShop" sortOrder="20" parent="Magenest_InstagramShop::instagramshop" action="instagram/tag/" resource="Magenest_InstagramShop::tag"/>
+        <add id="Magenest_InstagramShop::configuration" title="Configuration" module="Magenest_InstagramShop" sortOrder="30" parent="Magenest_InstagramShop::instagramshop" action="adminhtml/system_config/edit/section/magenest_instagram_shop/" resource="Magenest_InstagramShop::configuration"/>
+        <add id="Magenest_InstagramShop::reports" title="Reports" module="Magenest_InstagramShop" sortOrder="35" parent="Magenest_InstagramShop::instagramshop" action="instagram/report" resource="Magenest_InstagramShop::reports"/>
+        <add id="Magenest_InstagramShop::hotspots" title="Hotspots" module="Magenest_InstagramShop" sortOrder="36" parent="Magenest_InstagramShop::instagramshop" action="instagram/hotspot" resource="Magenest_InstagramShop::hotspots"/>
+        <add id="Magenest_InstagramShop::widgets" title="Widgets" module="Magenest_InstagramShop" sortOrder="40" parent="Magenest_InstagramShop::instagramshop" action="adminhtml/widget_instance/" resource="Magenest_InstagramShop::widgets"/>
+    </menu>
+</config>

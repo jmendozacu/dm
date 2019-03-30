@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<!--
+  /**
+   * Copyright © 2018 Magenest. All rights reserved.
+   * See COPYING.txt for license details.
+   *
+   * Magenest_InstagramShop extension
+   * NOTICE OF LICENSE
+   *
+   * @category Magenest
+   * @package  Magenest_InstagramShop
+   * @author    dangnh@magenest.com
+   */
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magenest" translate="label" sortOrder="200">
+            <label>Magenest</label>
+        </tab>
+        <section id="magenest_instagram_shop" translate="label" type="button" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Instagram Shop</label>
+            <tab>magenest</tab>
+            <resource>Magenest_InstagramShop::config_instagramshop</resource>
+            <group id="instagram" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <fieldset_css>instagram-shop-connection</fieldset_css>
+                <label>Instagram</label>
+                <field id="client_id" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Client ID</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="client_secret" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Client Secret</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="valid_redirect_uri" translate="label comment" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Valid Redirect Uri</label>
+                    <frontend_model>Magenest\InstagramShop\Block\Adminhtml\System\Config\Form\ValidRedirectUri</frontend_model>
+                    <tooltip>
+                        <![CDATA[
+                        Valid Redirect Uri is used for "Valid redirect URIs" when Register new Client ID in InstagramDeveloper.<br />Click the text box to copy.
+                        ]]>
+                    </tooltip>
+                </field>
+                <field id="auth_button" translate="label" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <frontend_model>Magenest\InstagramShop\Block\Adminhtml\System\Config\Form\AuthButton</frontend_model>
+                </field>
+                <field id="account_id" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Account Id</label>
+                    <config_path>magenest_instagram_shop/instagram/account_id</config_path>
+                    <frontend_model>Magenest\InstagramShop\Block\Adminhtml\System\Config\Form\DisabledField</frontend_model>
+                </field>
+                <field id="access_token" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Access Token</label>
+                    <config_path>magenest_instagram_shop/instagram/access_token</config_path>
+                    <frontend_model>Magenest\InstagramShop\Block\Adminhtml\System\Config\Form\DisabledField</frontend_model>
+                </field>
+            </group>
+            <group id="general" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="add_link_to_frontend" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Add Link to Gallery in Frontend Main Menu</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>magenest_instagram_shop/general/add_link_to_frontend</config_path>
+                </field>
+                <field id="media_type" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Media Type Will Be Pulled From Instagram</label>
+                    <source_model>Magenest\InstagramShop\Model\Config\Source\MediaType</source_model>
+                </field>
+                <field id="add_to_product_detail" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Add Instagram Photos to Product View</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>magenest_instagram_shop/general/add_photos_to_product_view</config_path>
+                </field>
+                <field id="linked_products_layout" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Linked Products Layout</label>
+                    <source_model>Magenest\InstagramShop\Model\Config\Source\LinkedProductsLayout</source_model>
+                </field>
+                <field id="button_title" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Button Title</label>
+                </field>
+                <field id="button_css" translate="label" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Button CSS</label>
+                </field>
+                <field id="hover_text" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Hover Text</label>
+                </field>
+                <field id="hash_tag" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Hash Tag</label>
+                    <depends>
+                        <field id="add_to_product_detail">1</field>
+                    </depends>
+                </field>
+                <field id="block_title" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Block Title</label>
+                    <depends>
+                        <field id="add_to_product_detail">1</field>
+                    </depends>
+                </field>
+                <field id="block_content" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Block Content</label>
+                    <depends>
+                        <field id="add_to_product_detail">1</field>
+                    </depends>
+                </field>
+                <field id="gallery_template" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Gallery Layout</label>
+                    <frontend_model>Magenest\InstagramShop\Block\Adminhtml\System\Config\Form\GalleryTemplate</frontend_model>
+                </field>
+            </group>
+            <group id="instagram_tags" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Instagram Tags</label>
+                <field id="tags" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Tags</label>
+                    <comment>
+                        <![CDATA[
+                        Tags should be separated by commas. <br />E.g "fallcollection, justdoit, fashion" for "#fallcollection, #justdoit, #fashion
+                        <br/>Remember to Save Config before get tagged photos
+                        ]]>
+                    </comment>
+                    <validate>no-whitespace validate-no-html-tags</validate>
+                </field>
+                <field id="update_button" translate="label" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0" type="button">
+                    <button_label>Get Tagged Photos Now</button_label>
+                    <button_url>instagram/tag/getPhoto</button_url>
+                    <frontend_model>Magenest\InstagramShop\Block\Adminhtml\System\Config\Form\Button</frontend_model>
+                </field>
+            </group>
+            <group id="instagram_getphoto" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Get Photos on your Instagram Account</label>
+                <field id="getphoto_button" translate="label" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0" type="button">
+                    <button_label>Get Photos Now</button_label>
+                    <button_url>instagram/instagram/getPhoto</button_url>
+                    <frontend_model>Magenest\InstagramShop\Block\Adminhtml\System\Config\Form\Button</frontend_model>
+                </field>
+            </group>
+            <group id="widget" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Create Sample Widget</label>
+                <field id="create" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" type="text">
+                    <label>Create Sample Widget</label>
+                    <frontend_model>Magenest\InstagramShop\Block\Adminhtml\System\Config\Form\CreateWidget</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

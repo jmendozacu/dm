@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+  /**
+   * Copyright © 2018 Magenest. All rights reserved.
+   * See COPYING.txt for license details.
+   *
+   * Magenest_InstagramShop extension
+   * NOTICE OF LICENSE
+   *
+   * @category Magenest
+   * @package  Magenest_InstagramShop
+   * @author    dangnh@magenest.com
+   */
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Theme\Block\Html\Topmenu">
+        <plugin name="topmenu.gallery" type="Magenest\InstagramShop\Plugin\Topmenu" sortOrder="1" disabled="false"/>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="magenest_instagram_photos_listing_data_source" xsi:type="string">Magenest\Instagram\Model\ResourceModel\Photo\Grid\Collection</item>
+                <!--Hotspot DataSource-->
+                <item name="magenest_instagramshop_hotspot_grid_data_source" xsi:type="string">Magenest\InstagramShop\Model\ResourceModel\Hotspot\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Magenest\Instagram\Model\ResourceModel\Photo\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_instagram_photo</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\InstagramShop\Model\ResourceModel\Photo</argument>
+        </arguments>
+    </virtualType>
+
+    <!--Hotspot Component-->
+    <preference for="Magenest\InstagramShop\Api\HotspotRepositoryInterface" type="Magenest\InstagramShop\Model\HotspotRepository"/>
+    <preference for="Magenest\InstagramShop\Api\Data\HotspotInterface" type="Magenest\InstagramShop\Model\Hotspot"/>
+    <preference for="Magenest\InstagramShop\Api\Data\HotspotSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Magenest\InstagramShop\Model\ResourceModel\Hotspot\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_instagramshop_hotspot</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\InstagramShop\Model\ResourceModel\Hotspot\Collection</argument>
+        </arguments>
+    </virtualType>
+</config>

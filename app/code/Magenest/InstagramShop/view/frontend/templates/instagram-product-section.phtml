@@ -1,0 +1,103 @@
+<?php
+/**
+ *
+  * Copyright © 2018 Magenest. All rights reserved.
+  * See COPYING.txt for license details.
+  *
+  * Magenest_InstagramShop extension
+  * NOTICE OF LICENSE
+  *
+  * @category Magenest
+  * @package  Magenest_InstagramShop
+  * @author    dangnh@magenest.com
+
+ */
+
+/**
+ * @var $block \Magenest\InstagramShop\Block\Product\Photo
+ */
+if ($block->isAddInstagramToProduct() && count($block->getPhotosByProduct())):
+    ?>
+    <?php
+    $photos     = $block->getPhotosByProduct();
+    $photosData = [];
+    foreach ($photos as $photo) {
+        $photosData[] = $photo->getData();
+    }
+    ?>
+    <div id="instagram-product">
+        <div class="instagram-tab">
+            <?= $block->getChildHtml('shared-popup') ?>
+        </div>
+        <div class="instagram-details"
+             style="display: inline-block;border:1px solid #e2e2e2;width: 100%;padding-top: 25px;">
+            <div class="instagram-carousel">
+                <div class="flexslider carousel">
+                    <ul class="slides">
+                        <?php
+                        foreach ($photos as $photo) {
+                            echo '<li id="' . $photo->getPhotoId() . '">';
+                            echo '<a href="' . $photo->getUrl() . '" title="' . $photo->getUrl() . '" id="' . $photo->getPhotoId() . '">';
+                            echo '<img src="' . $photo->getSource() . '" alt="' . $photo->getCaption() . '" />';
+                            echo '</a>';
+                            echo $block->getLayout()->createBlock(\Magenest\InstagramShop\Block\Instagram\Renderer\LinkedProducts::class)->setPhoto($photo)->toHtml();
+                            echo $block->getLayout()->createBlock(\Magenest\InstagramShop\Block\Instagram\Renderer\Hotspot::class)->setPhoto($photo)->toHtml();
+                            if ($block->canShowVideo()) {
+                                echo $block->getLayout()->createBlock(\Magenest\InstagramShop\Block\Instagram\Renderer\Video::class)->setPhoto($photo)->toHtml();
+                            }
+                            echo '</li>';
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </div>
+            <div class="instagram-viewfull">
+                <div class="heading-title center" style="text-align: center;">
+                    <h4 style="font-size: 20px;">
+                        <strong style="font-weight: bolder!important;text-transform: initial;font-family: Brandon Regular;"><a
+                                    href="https://www.instagram.com/explore/tags/<?= $block->getHashTag() ?>/"
+                                    target="_blank">#<?= $block->getHashTag() ?></a>: </strong>
+                        <?= $block->getBlockTitle() ?></h4>
+                    <span class="center"><?= $block->getBlockContent() ?></span>
+                    <br>
+                    <a href="<?= $block->getBaseUrl() ?>instagram/gallery/" class="instagram-button"
+                       style="<?= $block->getViewFullGalleryCss() ?>">
+                        <?= $block->getViewFullGalleryTitle() ?>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <script>
+            require(['jquery', 'flexslider'], function ($) {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    itemWidth: 200,
+                    start: function (slider) {
+                        $('body').removeClass('loading');
+
+                        $('.flexslider').css('display', 'inline-block');
+                    },
+                    before: function (slider) {
+                        $('.flexslider').css('display', 'inline-block');
+                    }
+                });
+            });
+            require(['mage/url'], function (urlBuilder) {
+                return urlBuilder.setBaseUrl('<?=$block->getBaseUrl()?>');
+            });
+        </script>
+    </div>
+    <script type="text/x-magento-init">
+    {
+        "#instagram-product": {
+            "instagramPopup": {
+                "photos" : <?= json_encode($photosData) ?>,
+                "prefixContainer":".instagram-tab",
+                "prefixElement":".instagram-details ul li",
+                "currentProductUrl": "<?= $block->getCurrentProductUrl() ?>",
+                "canShowVideo": <?= $block->canShowVideo() ? 'true' : 'false' ?>
+            }
+        }
+    }
+    </script>
+<?php endif; ?>

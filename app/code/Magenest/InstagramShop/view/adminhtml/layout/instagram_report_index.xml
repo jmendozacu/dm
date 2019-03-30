@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+  /**
+   * Copyright © 2018 Magenest. All rights reserved.
+   * See COPYING.txt for license details.
+   *
+   * Magenest_InstagramShop extension
+   * NOTICE OF LICENSE
+   *
+   * @category Magenest
+   * @package  Magenest_InstagramShop
+   * @author    dangnh@magenest.com
+   */
+  -->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magenest_InstagramShop/css/report.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block name="full_report" class="Magenest\InstagramShop\Block\Adminhtml\Report\FullReport" template="Magenest_InstagramShop::report/full-report.phtml">
+                <block name="general_report" class="Magenest\InstagramShop\Block\Adminhtml\Report\General" template="Magenest_InstagramShop::report/general.phtml"/>
+                <block name="photo_grid_report" class="Magenest\InstagramShop\Block\Adminhtml\Report\PhotoGrid"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  /**
+   * Copyright © 2018 Magenest. All rights reserved.
+   * See COPYING.txt for license details.
+   *
+   * Magenest_InstagramShop extension
+   * NOTICE OF LICENSE
+   *
+   * @category Magenest
+   * @package  Magenest_InstagramShop
+   * @author    dangnh@magenest.com
+   */
+  -->
+
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="instagram_photo_slider" class="Magenest\InstagramShop\Block\Photo\Slider" placeholder_image="Magento_Widget::placeholder.gif">
+        <label>Instagram Slider</label>
+        <description>List of Photos on Instagram Account</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="true" visible="true">
+                <label>Title</label>
+                <description>
+                    <![CDATA[
+                    All options of the <b>FlexSlider</b> is <a href="https://github.com/woocommerce/FlexSlider/wiki/FlexSlider-Properties" target="_blank">here</a>
+                    ]]>
+                </description>
+            </parameter>
+            <!--<parameter name="easing" required="false" xsi:type="select">-->
+                <!--<label>Easing</label>-->
+                <!--<description>String: Determines the easing method used in jQuery transitions. Default: swing.</description>-->
+                <!--<options>-->
+                    <!--<option name="default" value="swing" selected="true">-->
+                        <!--<label>Swing</label>-->
+                    <!--</option>-->
+                    <!--<option name="easing" value="linear">-->
+                        <!--<label>Linear</label>-->
+                    <!--</option>-->
+                <!--</options>-->
+            <!--</parameter>-->
+            <parameter name="direction" required="false" xsi:type="select">
+                <label>Direction</label>
+                <description>Boolean: Controls the animation direction. Default: horizontal.</description>
+                <options>
+                    <option name="default" value="horizontal" selected="true">
+                        <label>Horizontal</label>
+                    </option>
+                    <option name="direction" value="vertical">
+                        <label>Vertical</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="reverse" required="false" xsi:type="select" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label>Reverse</label>
+                <description>Boolean: Reverse the animation direction. Default: false.</description>
+            </parameter>
+            <parameter name="animation_loop" required="false" xsi:type="select">
+                <label>Animation loop</label>
+                <description>Boolean: Gives the slider a seamless infinite loop. Default: true.</description>
+                <options>
+                    <option name="default" value="1" selected="true">
+                        <label>Yes</label>
+                    </option>
+                    <option name="animation_loop" value="0">
+                        <label>No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="smooth_height" required="false" xsi:type="select" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label>Smooth Height</label>
+                <description>Boolean: Animate the height of the slider smoothly for slides of varying height. Default: false.</description>
+            </parameter>
+            <parameter name="start_at" required="false" xsi:type="text">
+                <label>Start At</label>
+                <description>Number: The starting slide for the slider, in array notation. Default: 0.</description>
+            </parameter>
+            <parameter name="slideshow" required="false" xsi:type="select">
+                <label>Slide Show</label>
+                <description>Boolean: Setup a slideshow for the slider to animate automatically. Default: true.</description>
+                <options>
+                    <option name="default" value="1" selected="true">
+                        <label>Yes</label>
+                    </option>
+                    <option name="slideshow" value="0">
+                        <label>No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="slide_show_speed" required="false" xsi:type="text">
+                <label>Slide show speed (ms)</label>
+                <description>Number: Set the speed of the slideshow cycling, in milliseconds. Default: 7000.</description>
+            </parameter>
+            <parameter name="animation_speed" required="false" xsi:type="text">
+                <label>Animation speed (ms)</label>
+                <description>Number: Set the speed of animations, in milliseconds. Default: 600.</description>
+            </parameter>
+            <parameter name="init_delay" required="false" xsi:type="text">
+                <label>Init Delay(ms)</label>
+                <description>Number: Set an initialization delay, in milliseconds. Default: 0.</description>
+            </parameter>
+            <parameter name="randomize" required="false" xsi:type="select" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label>Randomize</label>
+                <description>Boolean: Randomize slide order, on load. Default: false.</description>
+            </parameter>
+            <parameter name="pause_on_action" required="false" xsi:type="select">
+                <label>Pause On Action</label>
+                <description>Boolean: Pause the slideshow when interacting with control elements. Default: true.</description>
+                <options>
+                    <option name="default" value="1" selected="true">
+                        <label>Yes</label>
+                    </option>
+                    <option name="pause_on_action" value="0">
+                        <label>No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="pause_on_hover" required="false" xsi:type="select" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label>Pause On Hover</label>
+                <description>Boolean: Pause the slideshow when hovering over slider, then resume when no longer hovering. Default: false.</description>
+            </parameter>
+            <parameter name="useCSS" required="false" xsi:type="select">
+                <label>Use CSS</label>
+                <description>Boolean: Slider will use CSS3 transitions, if available. Default: true.</description>
+                <options>
+                    <option name="default" value="1" selected="true">
+                        <label>Yes</label>
+                    </option>
+                    <option name="useCSS" value="0">
+                        <label>No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="touch" required="false" xsi:type="select">
+                <label>Allow touch swipe navigation</label>
+                <description>Boolean: Allow touch swipe navigation of the slider on enabled devices. Default: true.</description>
+                <options>
+                    <option name="default" value="1" selected="true">
+                        <label>Yes</label>
+                    </option>
+                    <option name="touch" value="0">
+                        <label>No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="video" required="false" xsi:type="select" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label>Video</label>
+                <description>Boolean: Will prevent use of CSS3 3D Transforms, avoiding graphical glitches. Default: false.</description>
+            </parameter>
+            <parameter name="control_nav" required="false" xsi:type="select">
+                <label>Control Nav</label>
+                <description>Boolean: Create navigation for paging control of each slide. Default: true.</description>
+                <options>
+                    <option name="default" value="1" selected="true">
+                        <label>Yes</label>
+                    </option>
+                    <option name="control_nav" value="0">
+                        <label>No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="direction_nav" required="false" xsi:type="select">
+                <label>Direction Nav</label>
+                <description>Boolean: Create previous/next arrow navigation. Default: true.</description>
+                <options>
+                    <option name="default" value="1" selected="true">
+                        <label>Yes</label>
+                    </option>
+                    <option name="direction_nav" value="0">
+                        <label>No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="keyboard" required="false" xsi:type="select">
+                <label>Keyboard</label>
+                <description>Boolean: Allow slider navigating via keyboard left/right keys. Default: true.</description>
+                <options>
+                    <option name="default" value="1" selected="true">
+                        <label>Yes</label>
+                    </option>
+                    <option name="keyboard" value="0">
+                        <label>No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="multiple_keyboard" required="false" xsi:type="select" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label>Multiple Keyboard</label>
+                <description>Boolean: Allow keyboard navigation to affect multiple sliders. Default: false.</description>
+            </parameter>
+            <parameter name="mousewheel" required="false" xsi:type="select" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label>Mousewheel</label>
+                <description>Boolean: (Dependency) Allows slider navigating via mousewheel. Default: false.</description>
+            </parameter>
+            <parameter name="pause_play" required="false" xsi:type="select" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label>Pause Play</label>
+                <description>Boolean: Create pause/play element to control slider slideshow. Default: false.</description>
+            </parameter>
+            <parameter name="pause_text" required="false" xsi:type="text">
+                <label>Pause Text</label>
+                <description>String: Set the text for the "pause" pausePlay item. Default: Pause.</description>
+            </parameter>
+            <parameter name="play_text" required="false" xsi:type="text">
+                <label>Play Text</label>
+                <description>String: Set the text for the "play" pausePlay item. Default: Play.</description>
+            </parameter>
+            <parameter name="item_width" required="false" xsi:type="text">
+                <label>Item Width</label>
+                <description>Number: Box-model width of individual carousel items, including horizontal borders and padding. Default: 0.</description>
+            </parameter>
+            <parameter name="item_margin" required="false" xsi:type="text">
+                <label>Item Margin</label>
+                <description>Number: Margin between carousel items. Default: 0.</description>
+            </parameter>
+            <parameter name="min_items" required="false" xsi:type="text">
+                <label>Min Items</label>
+                <description>Number: Minimum number of carousel items that should be visible. Default: 0.</description>
+            </parameter>
+            <parameter name="max_items" required="false" xsi:type="text">
+                <label>Max Items</label>
+                <description>Number: Maximum number of carousel items that should be visible. DefaultL 0.</description>
+            </parameter>
+            <parameter name="move" required="false" xsi:type="text">
+                <label>Move</label>
+                <description>Number: Number of carousel items that should move on animation. Default: 0.</description>
+            </parameter>
+            <parameter name="rtl" required="false" xsi:type="select" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label>RTL</label>
+                <description>Boolean: Supports RTL functionality in the slider. Default: false.</description>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="false">
+                <label>Template</label>
+                <options>
+                    <option name="default" value="slider/default.phtml" selected="true">
+                        <label>Single row (default)</label>
+                    </option>
+                    <option name="grid-nine" value="slider/grid-nine.phtml">
+                        <label>3 x 3 with 2 bigger photos</label>
+                    </option>
+                    <option name="grid-twelve" value="slider/grid-twelve.phtml">
+                        <label>4 x 3</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

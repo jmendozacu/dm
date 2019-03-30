@@ -1,0 +1,73 @@
+<?php
+/**
+ *
+  * Copyright © 2018 Magenest. All rights reserved.
+  * See COPYING.txt for license details.
+  *
+  * Magenest_InstagramShop extension
+  * NOTICE OF LICENSE
+  *
+  * @category Magenest
+  * @package  Magenest_InstagramShop
+  * @author    dangnh@magenest.com
+
+ */
+
+/** @var \Magenest\InstagramShop\Block\Adminhtml\Report\General $block */
+?>
+<section class="admin__page-section" data-role="instagram-report-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */
+            echo __('Full Report') ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="select-date" data-role="show-report-date">
+            <div class="" id="date-used-control" data-role="date-used-container">
+                <label for="date-used">
+                    <span>Date Used: </span>
+                </label>
+                <select class="select admin__control-select" name="date-used" id="date-used">
+                    <option value="clicked_at">Clicked At</option>
+                    <option value="ordered_at">Ordered At</option>
+                </select>
+            </div>
+            <div id="from-date" data-role="from-date" data-bind="scope: 'from-date'">
+                <?= __('From') ?>:
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            </div>
+            <div id="to-date" data-role="to-date" data-bind="scope: 'to-date'">
+                <?= __('To') ?>:
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            </div>
+            <div id="report-request" data-bind="scope:'report'">
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/x-magento-init">
+    {
+        "[data-role='instagram-report-section']": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "from-date": {
+                        "component": "Magenest_InstagramShop/js/form/element/report-datetime"
+                    },
+                    "to-date": {
+                        "component": "Magenest_InstagramShop/js/form/element/report-datetime"
+                    },
+                    "report": {
+                        "component": "Magenest_InstagramShop/js/view/report",
+                        "totalClicks": "<?= $block->getTotalClicks() ?>",
+                        "totalAddedToCart": "<?= $block->getTotalAddedToCart() ?>",
+                        "totalConversionRate": "<?= $block->getTotalConversionRate(true) ?>",
+                        "mostViewImage": <?= Zend_Json::encode($block->getMostViewImage()->getData()) ?>,
+                        "mostViewProductFromImage": <?= Zend_Json::encode($block->getMostViewProductFromImage()) ?>,
+                        "highestConversionRateImage": <?= Zend_Json::encode($block->getHighestConversionRateImage()->getData()) ?>,
+                        "getReportUrl": "<?= $block->getReportUrl() ?>"
+                    }
+                }
+            }
+        }
+    }
+</script>

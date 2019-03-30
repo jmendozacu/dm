@@ -1,0 +1,50 @@
+<?php
+/**
+ *
+  * Copyright © 2018 Magenest. All rights reserved.
+  * See COPYING.txt for license details.
+  *
+  * Magenest_InstagramShop extension
+  * NOTICE OF LICENSE
+  *
+  * @category Magenest
+  * @package  Magenest_InstagramShop
+  * @author    dangnh@magenest.com
+
+ */
+
+/** @var $block \Magenest\InstagramShop\Block\Instagram\Renderer\Hotspot */
+$counter = 1;
+/** @var \Magenest\InstagramShop\Helper\Helper $helper */
+$helper = $this->helper(\Magenest\InstagramShop\Helper\Helper::class);
+$photo  = $block->getPhoto();
+?>
+<div id="hotspot" class="hotspot-section" style="display: none;">
+    <?php foreach ($block->getHotspotData() as $datum) {
+        if (isset($datum['product']) && isset($datum['position']) && isset($datum['position']['x']) && isset($datum['position']['y'])) {
+            /** @var \Magento\Catalog\Model\Product $product */
+            $product    = $datum['product'];
+            $x          = $datum['position']['x'];
+            $y          = $datum['position']['y'];
+            $productUrl = $product->getUrlModel()->getUrl($product);
+            $productId  = $product->getId();
+            ?>
+            <a data-original-url="<?= $productUrl ?>" href="<?= $helper->getEncodedLink($productUrl, [
+                'product_id' => $productId,
+                'photo_type' => $photo->getType(),
+                'photo_id' => $photo->getPhotoId()
+            ]) ?>"
+               target="_blank">
+                <div id="widget_overlink_<?= $productId ?>" class="widget-overlink"
+                     data-link-id="<?= $productId ?>"
+                     style="position: absolute; color: rgb(34, 34, 34); top: <?= $y ?>%; left: <?= $x ?>%;">
+                    <div><?= $counter++ ?></div>
+                    <div class="widget-overlink-text widget-overlink-text-right">
+                        <div class="widget-arrow-up"></div>
+                        <?= $product->getName() ?>
+                    </div>
+                </div>
+            </a>
+        <?php }
+    } ?>
+</div>

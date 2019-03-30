@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<!--
+  /**
+   * Copyright © 2018 Magenest. All rights reserved.
+   * See COPYING.txt for license details.
+   *
+   * Magenest_InstagramShop extension
+   * NOTICE OF LICENSE
+   *
+   * @category Magenest
+   * @package  Magenest_InstagramShop
+   * @author    dangnh@magenest.com
+   */
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <magenest_instagram_shop>
+            <general>
+                <media_type>1</media_type>
+                <button_title>View Full Gallery</button_title>
+                <button_css>background-color: #383635;margin-top: 20px;color: #FFF;text-shadow: 1px 1px 1px rgba(0,0,0,0.2);border-radius: 3px;</button_css>
+                <hover_text>Shop Now</hover_text>
+                <add_photos_to_product_view>0</add_photos_to_product_view>
+                <hash_tag>magenest</hash_tag>
+                <block_title>STAY INSPIRED EVERYDAY WITH US</block_title>
+                <block_content>Hashtag us for a chance to be featured on our Instagram</block_content>
+                <gallery_template>default</gallery_template>
+            </general>
+        </magenest_instagram_shop>
+    </default>
+</config>
