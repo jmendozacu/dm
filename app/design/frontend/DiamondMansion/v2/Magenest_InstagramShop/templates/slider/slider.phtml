@@ -31,7 +31,7 @@ if ($sliderBlock = $block->getSliderBlock()) {
             </div>
             <div class="block-content">
                 <?php if ($totalItems) { ?>
-                    <div class="slickslider carousel" style="margin-bottom: 30px;">
+                    <div class="slickslider flexslider carousel" style="margin-bottom: 30px;">
                         <ul class="slides">
                             <?php
                             $count = 0;
@@ -82,6 +82,8 @@ if ($sliderBlock = $block->getSliderBlock()) {
         <script>
             require(['jquery'], function ($) {
                 $(function () {
+                    return;
+
                     require(['flexslider'], function () {
                         $('.flexslider').flexslider({
                             animation: "slide",

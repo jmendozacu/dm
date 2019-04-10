@@ -271,6 +271,15 @@ Los Angeles, Ca 90013</p>
                     }
                 ]
             });
+
+            var slickHeight = jQuery('li.slick-slide').width();
+            jQuery('li.slick-slide a').height(slickHeight);
+
+            jQuery(window).on('resize', function () {
+                var slickHeight = jQuery('li.slick-slide').width();
+                jQuery('li.slick-slide a').height(slickHeight);
+            });
+
             // Init ScrollMagic
             var controller = new ScrollMagic.Controller();
 
