@@ -1,0 +1,141 @@
+<?php
+/**
+ *
+  * Copyright © 2018 Magenest. All rights reserved.
+  * See COPYING.txt for license details.
+  *
+  * Magenest_InstagramShop extension
+  * NOTICE OF LICENSE
+  *
+  * @category Magenest
+  * @package  Magenest_InstagramShop
+  * @author    dangnh@magenest.com
+
+ */
+
+/** @var $block \Magenest\InstagramShop\Block\Photo\Renderer */
+if ($sliderBlock = $block->getSliderBlock()) {
+
+    $photos        = $sliderBlock->getPhotos();
+    $slickConfig   = $sliderBlock->getData();
+    $totalItems    = $photos->getSize();
+    $itemsPerSlide = $sliderBlock->getItemsPerSlide();
+    ?>
+    <div id="slider">
+        <div class="slider">
+            <?= $block->getLayout()->createBlock(\Magenest\InstagramShop\Block\Instagram\SharedPopup::class)->toHtml() ?>
+        </div>
+        <div class="block block-photo-slider slider-list container">
+            <div class="block-title">
+                <h2 style="text-align: center"><?php echo $sliderBlock->getTitle() ?></h2>
+            </div>
+            <div class="block-content">
+                <?php if ($totalItems) { ?>
+                    <div class="flexslider carousel">
+                        <ul class="slides">
+                            <?php
+                            $count = 0;
+                            /** @var \Magenest\InstagramShop\Model\Photo $photo */
+                            foreach ($photos as $photo) { ?>
+                                <?php
+                                if (!$sliderBlock->isDefaultTemplate() && $count % $itemsPerSlide == 0) {
+                                    echo('<li class="slide-item"><ul class="' . $block->getItemsPerSlideClass() . '-photo">');
+                                } ?>
+                                <li id="<?= $photo->getPhotoId() ?>">
+                                    <?php if (!$sliderBlock->isDefaultTemplate()){?>
+                                        <a class="instagram-link-photo" href="<?= $photo->getUrl() ?>" style="background-image: url(<?= $photo->getSource() ?>);">
+                                            <div class="overlay"></div>
+                                            <div class="text">
+                                                <img src="<?= $this->getViewFileUrl('Magenest_InstagramShop::images/instagram.png') ?>" alt=""/>
+                                                <button><?= $sliderBlock->getHoverText() ?></button>
+                                            </div>
+                                        </a>
+                                    <?php } else{ ?>
+                                        <a href="<?= $photo->getUrl() ?>" class="instagram-link" style="background-image:url(<?= $photo->getSource() ?>)">
+                                            <img src="<?= $photo->getSource() ?>" alt=""/>
+                                            <div class="overlay"></div>
+                                            <div class="text">
+                                                <img src="<?= $this->getViewFileUrl('Magenest_InstagramShop::images/instagram.png') ?>" alt=""/>
+                                                <button><?= $sliderBlock->getHoverText() ?></button>
+                                            </div>
+                                        </a>
+                                    <?php }?>
+                                    <?= $sliderBlock->getLayout()->createBlock(\Magenest\InstagramShop\Block\Instagram\Renderer\LinkedProducts::class)->setPhoto($photo)->toHtml() ?>
+                                    <?= $sliderBlock->getLayout()->createBlock(\Magenest\InstagramShop\Block\Instagram\Renderer\Hotspot::class)->setPhoto($photo)->toHtml() ?>
+                                    <?php if ($sliderBlock->canShowVideo()) {
+                                        echo $sliderBlock->getLayout()->createBlock(\Magenest\InstagramShop\Block\Instagram\Renderer\Video::class)->setPhoto($photo)->toHtml();
+                                    } ?>
+                                </li>
+                                <?php
+                                $count++;
+                                if (!$sliderBlock->isDefaultTemplate() && ($count % $itemsPerSlide == 0 || $count == $totalItems)) {
+                                    echo('</ul></li>');
+                                } ?>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+    <?php if ($photos->getSize()) : ?>
+        <script>
+            require(['jquery'], function ($) {
+                $(function () {
+                    require(['flexslider'], function () {
+                        $('.flexslider').flexslider({
+                            animation: "slide",
+                            easing: "swing",
+                            direction: "<?=$sliderBlock->getConfigSliderValue($sliderBlock->getDirection(), 'horizontal', true)?>",
+                            reverse: <?=$sliderBlock->getConfigSlider($sliderBlock->getReverse(), 'false')?>,
+                            animationLoop: <?=$sliderBlock->getConfigSlider($sliderBlock->getAnimationLoop())?>,
+                            smoothHeight: <?=$sliderBlock->getConfigSlider($sliderBlock->getSmoothHeight(), 'false')?>,
+                            startAt: <?=$sliderBlock->getConfigSliderValue($sliderBlock->getStartAt(), 0)?>,
+                            slideshow: <?=$sliderBlock->getConfigSlider($sliderBlock->getSlideshow())?>,
+                            slideshowSpeed: <?=$sliderBlock->getConfigSliderValue($sliderBlock->getSlideShowSpeed(), 7000)?>,
+                            animationSpeed: <?=$sliderBlock->getConfigSliderValue($sliderBlock->getAnimationSpeed(), 600)?>,
+                            initDelay: <?=$sliderBlock->getConfigSliderValue($sliderBlock->getInitDelay(), 0)?>,
+                            randomize: <?=$sliderBlock->getConfigSlider($sliderBlock->getRandomize(), 'false')?>,
+                            pauseOnAction: <?=$sliderBlock->getConfigSlider($sliderBlock->getPauseOnAction())?>,
+                            pauseOnHover: <?=$sliderBlock->getConfigSlider($sliderBlock->getPauseOnHover(), 'false')?>,
+                            useCSS: <?=$sliderBlock->getConfigSlider($sliderBlock->getUseCSS())?>,
+                            touch: <?=$sliderBlock->getConfigSlider($sliderBlock->getTouch())?>,
+                            video: <?=$sliderBlock->getConfigSlider($sliderBlock->getVideo(), 'false')?>,
+                            controlNav: <?=$sliderBlock->getConfigSlider($sliderBlock->getControlNav())?>,
+                            directionNav: false,
+                            keyboard: <?=$sliderBlock->getConfigSlider($sliderBlock->getKeyboard())?>,
+                            multipleKeyboard: <?=$sliderBlock->getConfigSlider($sliderBlock->getMultipleKeyboard(), 'false')?>,
+                            mousewheel: <?=$sliderBlock->getConfigSlider($sliderBlock->getMousewheel(), 'false')?>,
+                            pausePlay: <?=$sliderBlock->getConfigSlider($sliderBlock->getPausePlay(), 'false')?>,
+                            pauseText: "<?=$sliderBlock->getConfigSliderValue($sliderBlock->getPauseText(), 'Pause', true)?>",
+                            playText: "<?=$sliderBlock->getConfigSliderValue($sliderBlock->getPlayText(), 'Play', true)?>",
+                            itemWidth: <?=$sliderBlock->getConfigSliderValue($sliderBlock->getItemWidth(), 270)?>,
+                            itemMargin: <?=$sliderBlock->getConfigSliderValue($sliderBlock->getItemMargin(), 30)?>,
+                            minItems: <?=$sliderBlock->getConfigSliderValue($sliderBlock->getMinItems(), 0)?>,
+                            maxItems: <?=$sliderBlock->getConfigSliderValue($sliderBlock->getMaxItems(), 0)?>,
+                            move: <?=$sliderBlock->getConfigSliderValue($sliderBlock->getMove(), 0)?>,
+                            rtl: <?=$sliderBlock->getConfigSlider($sliderBlock->getRtl(), 'false')?>
+                        });
+                    });
+
+                });
+            });
+            require(['mage/url'], function (urlBuilder) {
+                return urlBuilder.setBaseUrl('<?=$sliderBlock->getBaseUrl()?>');
+            });
+        </script>
+        <script type="text/x-magento-init">
+        {
+            "#slider": {
+                "instagramPopup": {
+                    "photos" : <?= json_encode($photos->getData()) ?>,
+                    "canShowVideo": <?= $sliderBlock->canShowVideo() ? 'true' : 'false' ?>,
+                    "prefixContainer":".slider",
+                    "prefixElement":".flex-viewport ul li"
+                }
+            }
+        }
+
+        </script>
+    <?php endif; ?>
+<?php } ?>

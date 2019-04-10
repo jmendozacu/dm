@@ -1,5 +1,5 @@
 <section class="section-home">
-    <div class="banner">
+    <div class="banner scroll-magic">
         <div class="content-wrapper">
             <img src="<?php echo $this->getViewFileUrl("images/v3/home/banner.jpg") ?>" class="desktop-only" alt="" width="100%"/>
             <img src="<?php echo $this->getViewFileUrl("images/v3/home/banner-mobile.jpg") ?>" class="mobile-only" alt="" width="100%"/>
@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div class="our-story">
+    <div class="our-story scroll-magic">
         <div class="content-wrapper">
             <div class="content">
                 <div class="col left">
@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <div class="popular-collections">
+    <div class="popular-collections scroll-magic">
         <div class="content-wrapper">
             <div class="content">
                 <div class="title text-center">Popular Collections</div>
@@ -82,7 +82,7 @@
         </div>
     </div>
 
-    <div class="guarantee">
+    <div class="guarantee scroll-magic">
         <div class="content-wrapper">
             <div class="content">
                 <div class="col text-right desktop-only">
@@ -101,7 +101,7 @@
         </div>
     </div>    
 
-    <div class="section-ipc">
+    <div class="section-ipc scroll-magic">
         <div class="content-wrapper">
             <div class="content text-right">
                 <img src="<?php echo $this->getViewFileUrl("images/v3/home/section-ipc.jpg") ?>" alt=""/>
@@ -119,22 +119,17 @@
             <div class="content">
                 <div class="title text-center">SHOP OUR INSTAGRAM</div>
                 <div class="images">
-                    <div class="col"><a href=""><img src="<?php echo $this->getViewFileUrl("images/v3/home/instagram-1.jpg") ?>" alt=""/></a></div>
-                    <div class="col"><a href=""><img src="<?php echo $this->getViewFileUrl("images/v3/home/instagram-2.jpg") ?>" alt=""/></a></div>
-                    <div class="col"><a href=""><img src="<?php echo $this->getViewFileUrl("images/v3/home/instagram-3.jpg") ?>" alt=""/></a></div>
-                    <div class="col"><a href=""><img src="<?php echo $this->getViewFileUrl("images/v3/home/instagram-4.jpg") ?>" alt=""/></a></div>
-                    <div class="col"><a href=""><img src="<?php echo $this->getViewFileUrl("images/v3/home/instagram-5.jpg") ?>" alt=""/></a></div>
-                    <div class="col"><a href=""><img src="<?php echo $this->getViewFileUrl("images/v3/home/instagram-6.jpg") ?>" alt=""/></a></div>
+                    <?php echo $this->getChildHtml('instagram-slider') ?>
                 </div>
                 <div class="text-center">
-                    <a class="btn-link-default" href="/rings/engagement/">Follow@DIAMON...</a>
-                    <a class="btn-link-second" href="/rings/engagement/">View More</a>
+                    <a class="btn-link-default" href="https://www.instagram.com/diamondmansion/">Follow@DIAMON...</a>
+                    <a class="btn-link-second" href="/instagram/gallery">View More</a>
                 </div>
             </div>
         </div>
     </div>    
 
-    <div class="section-steps">
+    <div class="section-steps scroll-magic">
         <div class="content-wrapper">
             <div class="content text-center">
                 <div class="title text-center">Design your dream ring your way<br/><sub>Custom Design Services</sub></div>
@@ -150,7 +145,7 @@
         </div>
     </div>    
 
-    <div class="testimonials">
+    <div class="testimonials scroll-magic">
         <div class="content-wrapper">
             <div class="content-spec text-center">
                 <div class="title text-center">Happy Customers</div>
@@ -201,7 +196,7 @@
         </div>
     </div>
 
-    <div class="visit-us">
+    <div class="visit-us scroll-magic">
         <div class="content-wrapper">
             <div class="content">
                 <div class="col-5">
@@ -251,7 +246,7 @@ Los Angeles, Ca 90013</p>
             var controller = new ScrollMagic.Controller();
 
             // get all break up sections
-            var breakSections = [".banner", ".our-story", ".popular-collections", '.guarantee', '.section-ipc', '.instagram', '.section-steps', '.testimonials', '.visit-us'];
+            var breakSections = [".banner", ".our-story", ".popular-collections", '.guarantee', '.section-ipc'/*, '.instagram'*/, '.section-steps', '.testimonials', '.visit-us'];
 
             // Enable ScrollMagic only for desktop, disable on touch and mobile devices
             if (!Modernizr.touch) {
