@@ -42,7 +42,7 @@
         <move element="page.main.title" destination="product.info.main" as="product_name" before="-"/>
         <move element="view.addto.wishlist" destination="product.ring.design.options" as="wishlist"/>
         <referenceContainer name="content">
-            <container name="product.info.media" htmlTag="div" htmlClass="product media grid_5 alpha push_7" before="-">
+            <container name="product.info.media" htmlTag="div" htmlClass="product media" before="-">
                 <block class="Magento\Theme\Block\Html\Title" name="page.main.title.mobile" before="-" template="Magento_Catalog::product/view/type/ring_design/title.phtml">
                     <arguments>
                         <argument name="css_class" xsi:type="string">product mobile</argument>
@@ -64,6 +64,7 @@
                     </block>
                 </container>
                 <block class="DiamondMansion\Extensions\Block\Ring\Design\Product\Gallery" name="product.info.media.image" template="Magento_Catalog::product/view/gallery.phtml"/>
+                <block class="Magento\Catalog\Block\Product\View" name="product.info.media.description" template="Magento_Catalog::product/view/description.phtml"/>
                 <container name="skip_gallery_after.wrapper" htmlTag="div" htmlClass="action-skip-wrapper">
                     <block class="Magento\Framework\View\Element\Template" after="product.info.media.image" name="skip_gallery_after" template="Magento_Theme::html/skip.phtml">
                         <arguments>
@@ -78,7 +79,7 @@
                     </arguments>
                 </block>
             </container>
-            <container name="product.info.main" htmlTag="div" htmlClass="product-info-main grid_7 omega pull_5" after="product.info.media">
+            <container name="product.info.main" htmlTag="div" htmlClass="product-info-main" after="product.info.media">
                 <block class="DiamondMansion\Extensions\Block\Ring\Design\Product\Options" name="product.ring.design.options" template="Magento_Catalog::product/view/type/ring_design/options.phtml">
                     <block class="DiamondMansion\Extensions\Block\Ring\Design\Product\Options" name="product.ring.design.social.share" as="social_share" template="Magento_Catalog::product/view/type/ring_design/socialshare.phtml"/>
                 </block>

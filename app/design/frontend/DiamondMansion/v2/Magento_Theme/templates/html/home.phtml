@@ -242,6 +242,35 @@ Los Angeles, Ca 90013</p>
                 ]
             });
 
+            jQuery('.slickslider .slides').slick({
+                dots: false,
+                infinite: false,
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                responsive: [
+                    {
+                        breakpoint: 1280,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
             // Init ScrollMagic
             var controller = new ScrollMagic.Controller();
 

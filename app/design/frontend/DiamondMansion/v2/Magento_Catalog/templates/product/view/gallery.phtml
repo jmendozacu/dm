@@ -30,63 +30,7 @@ $isVideoExist = false;
         <?php endif ?>
         <?php $index ++; endforeach ?>
     </div>
-    <?php if (isset($arrayJsonGallery[0]) && isset($arrayJsonGallery[0]['img']) && isset($arrayJsonGallery[0]['full'])): ?>
-    <!--
-    <div id="wrap" style="position: relative;">
-        <a id="zoom" 
-            class="cloud-zoom" 
-            data-zoom='"showTitle": false, "adjustX": -5, "adjustY":-5, "tint": "#fff", "tintOpacity":0.6, "position":"inside"' 
-            href="<?php echo $arrayJsonGallery[0]['full']; ?>">
-            <img id="image" src="<?php echo $arrayJsonGallery[0]['img'] ?>" alt="<?php echo $arrayJsonGallery[0]['caption'] ?>"/>
-        </a>
-    </div>
-    <div class="item-image-arrows">
-        <a href="#" class="l-arrow f-left">Prev</a>
-        <a href="#" class="r-arrow f-right">Next</a>
-    </div>
-    <div class="more-views-container show-button">
-        <div class="more-views">
-            <div class="more-views-title">
-                <h2>More Views</h2>
-            </div>
-            <div class="more-views-holder">
-                <ul>
-                    <?php foreach ($arrayJsonGallery as $_image): ?>
-                    <?php if ($_image['type'] == 'video') { $isVideoExist = true; continue; } ?>
-                    <li>
-                        <a class="cloud-zoom-gallery" 
-                            data-zoom='"useZoom":"zoom", "smallImage":"<?php echo str_replace('\\', '/', $_image['img']); ?>"' 
-                            href="<?php echo $_image['full']; ?>" 
-                            title="<?php echo $_image['caption'] ?>">
-                            <img src="<?php echo $_image['thumb']; ?>" alt="<?php echo $_image['caption'] ?>" style="max-width: 90px;" />
-                        </a>
-                    </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        </div>
-    </div>
-    -->
-    <?php endif; ?>
 </div>
-<?php if ($isVideoExist): ?>
-<!--
-<div class="product-video-list">
-    <h2>Videos</h2>
-    <ul class="video-gallery-links">
-	    <?php foreach ($arrayJsonGallery as $_video): ?>
-        <?php if ($_video['type'] != 'video') { continue; } ?>
-	        <li>
-				<a class="video-thumb" modal="width=650;height=400" rel="videobox" href="<?= $_video['videoUrl'] ?>" target="_blank" title="<?= $_video['caption'] ?> " style="width:78px; height:56px">
-					<span></span>
-					<img style="margin-top:-11px" src="<?= $_video['thumb'] ?>" width="78" height="78" alt="<?= $_video['caption'] ?>"  title="<?= $_video['caption'] ?>"/>
-				</a>
-	        </li>
-	    <?php endforeach; ?>
-    </ul>
-</div>
--->
-<?php endif ?>
 <script type="text/javascript">
 require([
     'jquery',
