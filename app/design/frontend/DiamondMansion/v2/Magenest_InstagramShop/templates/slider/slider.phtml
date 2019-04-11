@@ -133,7 +133,7 @@ if ($sliderBlock = $block->getSliderBlock()) {
                     "photos" : <?= json_encode($photos->getData()) ?>,
                     "canShowVideo": <?= $sliderBlock->canShowVideo() ? 'true' : 'false' ?>,
                     "prefixContainer":".slider",
-                    "prefixElement":".flex-viewport ul li"
+                    "prefixElement":".slickslider ul li"
                 }
             }
         }
