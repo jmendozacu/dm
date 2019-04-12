@@ -109,7 +109,9 @@
                 </block>
             </container>
             <container name="product.info.details" htmlTag="div" htmlClass="product-info-details" after="product.info.main">
-                <block class="DiamondMansion\Extensions\Block\Ring\Design\Product\Details" name="product.ring.design.details" template="Magento_Catalog::product/view/type/ring_design/details.phtml"/>
+                <block class="DiamondMansion\Extensions\Block\Ring\Design\Product\Details" name="product.ring.design.details" template="Magento_Catalog::product/view/type/ring_design/details.phtml">
+                    <block class="Magento\Catalog\Block\Product\View" name="product.info.review" as="product_info_review" template="Magento_Catalog::product/view/review.phtml"/>
+                </block>
             </container>
             <block class="Magento\Cookie\Block\RequireCookie" name="require-cookie" template="Magento_Cookie::require_cookie.phtml">
                 <arguments>

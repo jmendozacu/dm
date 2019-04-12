@@ -54,6 +54,7 @@ $_product = $this->getProduct();
     <div class="clearer"></div>
 </div>
 <?php endif ?>
+<?php echo $block->getChildHtml('product_info_review'); ?>
 <?php 
     $_deliveryDate = strtotime('+' . ($_product->getDmDeliveryDates()==""?10:(int)$_product->getDmDeliveryDates()) . ' days'); 
     $_deliveryMM = date("M", $_deliveryDate);

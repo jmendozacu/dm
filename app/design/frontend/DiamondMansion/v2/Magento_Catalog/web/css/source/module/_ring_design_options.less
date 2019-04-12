@@ -1,4 +1,21 @@
 .catalog-product-view {
+    .slick-dots {
+        bottom: -50px;
+    }
+
+    .slick-dots li {
+        padding: 0;
+        margin: 0;
+
+        button {
+
+        }
+
+        button:before {
+            font-size: 10px;
+        }
+    }
+
     @media only screen and (min-width: @v3-desktop-min-width) {
         .columns {
             font-family: "Avenir LT Std";
@@ -1671,6 +1688,78 @@
         }
     }
 
+    .product-reviews {
+        padding: 100 * @v3-base-desktop-vw 0 150 * @v3-base-desktop-vw;
+        background: #f6f6f6;
+
+        .review-background {
+            position: absolute;
+            left: 0;
+            margin-top: -100 * @v3-base-desktop-vw;
+            width: 100%;
+            background: #f6f6f6;
+            z-index: 0;
+        }
+
+        .review-wrapper {
+            position: relative;
+            z-index: 1;
+
+            li.slick-slide {
+                background: #fff;
+                margin: 0 15 * @v3-base-desktop-vw;
+                padding: 50 * @v3-base-desktop-vw;
+
+                .customer-info {
+                    margin-bottom: 40 * @v3-base-desktop-vw;
+
+                    .customer-name {
+                        font-family: "Proxima Nova Lt";
+                        font-weight: 600;
+                        color: #000;
+                        text-transform: uppercase;
+                        font-size: 19em;
+                        line-height: 30px;
+                    }
+
+                    .customer-rate {
+                        width: 80px;
+                        height: 16px;
+                        background: url(../images/v3/i_star_inactive.png);
+
+                        span {
+                            display: block;
+                            height: 100%;
+                            background: url(../images/v3/i_star_active.png);
+                        }
+                    }
+                }
+
+                .review-content {
+                    font-family: "Avenir LT Std";
+                    color: #585f66;
+                    font-size: 20em;
+                    line-height: 32px;
+                    height: 215 * @v3-base-desktop-vw;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+
+        .block-title {
+            font-family: "Proxima Nova Rg";
+            font-weight: bold;
+            font-size: 33em;
+            line-height: 70 * @v3-base-desktop-vw;
+            text-transform: uppercase;
+            text-align: center;
+            color: #000;
+            padding-bottom: 20 * @v3-base-desktop-vw;
+            margin-bottom: 40 * @v3-base-desktop-vw;
+            background: url(../images/v3/i_sharp_shape.png) center bottom no-repeat;
+        }
+    }
+
     .product-designer { padding: 0; background-color: #fff; color: #666; }
     .product-designer .designer-image { float: left; width: 30%; margin-right: 5%; }
     .product-designer .designer-image img { width: 100%; }
@@ -1763,6 +1852,9 @@
     #btn-share { margin-right: 6px; }
     #btn-share-mobile { display: none; }
 */
+
+
+
     #social-share-ver .pinterest a { text-indent: -9999px; display: block; width: 32px !important; height: 40px !important; background: url(../images/social_share_icons_hor.png) no-repeat !important; background-position: 0 0; background-size: auto auto !important; }
     #social-share-ver .pinterest a:hover { background-position: right 0 !important; }
     
