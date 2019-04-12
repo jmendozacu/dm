@@ -306,7 +306,7 @@
 					font-family: @v3-title-font-family-rg;
 					font-weight: 700;
 					font-size: 14px;
-					line-height: 17px;
+					line-height: 22px;
 					text-transform: uppercase;
 					color: #000;
 				}
@@ -321,7 +321,7 @@
 					color: #000;
 					font-family: @v3-title-font-family-rg;
 					font-size: 14px;
-					line-height: 17px;
+					line-height: 22px;
 					margin-bottom: 34px;
 				}
 
@@ -490,13 +490,19 @@
 
 				.title {
 					font-family: @v3-title-font-family;
-					font-size: 33em;
-					font-weight: bold;
-					line-height: 40 * @v3-base-desktop-vw;
+					//font-size: 33em;
+					//font-weight: bold;
+					//line-height: 40 * @v3-base-desktop-vw;
 					padding: 30 * @v3-base-desktop-vw;
-					text-transform: uppercase;
+					//text-transform: uppercase;
 					margin-bottom: 40 * @v3-base-desktop-vw;
 					background: url(../images/v3/i_sharp_shape.png) left bottom no-repeat;
+
+					font-size: 28px;
+					font-weight: 700;
+					line-height: 39px;
+					text-transform: capitalize;
+					color: black;
 
 					&.text-center {
 						background-position: center bottom;
@@ -520,7 +526,7 @@
 
 					.title {
 						background-position: center bottom;
-						line-height: 40 * @v3-base-mobile-vw;
+						//line-height: 40 * @v3-base-mobile-vw;
 						padding: 0 0 30 * @v3-base-mobile-vw;
 						margin-bottom: 50 * @v3-base-mobile-vw;
 
@@ -531,8 +537,8 @@
 			@media only screen and (max-width: 413px) {
 				.content {
 					.title {
-						font-size: 22px;
-						line-height: 30px;
+						//font-size: 22px;
+						//line-height: 30px;
 					}
 				}
 			}
@@ -558,13 +564,18 @@
 
 				.title {
 					font-family: @v3-title-font-family;
-					font-size: 33em;
-					font-weight: bold;
-					line-height: 48 * @v3-base-desktop-vw;
+					//font-size: 33em;
+					//font-weight: bold;
+					//line-height: 48 * @v3-base-desktop-vw;
 					padding: 20* @v3-base-desktop-vw 0;
 					margin-bottom: 40 * @v3-base-desktop-vw;
-					text-transform: uppercase;
+					//text-transform: uppercase;
 					background: url(../images/v3/i_sharp_shape.png) left bottom no-repeat;
+
+					font-size: 28px;
+					font-weight: 700;
+					line-height: 39px;
+					text-transform: capitalize;
 				}
 
 				ul {
@@ -572,14 +583,19 @@
 						background: url(../images/v3/i_tick.png) left center no-repeat;
 						padding-left: 50px;
 
-						font-family: 'Avenir LT Std';
-						font-weight: 300;
-						font-size: 22em;
-						line-height: 30 * @v3-base-desktop-vw;
+						//font-family: 'Avenir LT Std';
+						//font-weight: 300;
+						//font-size: 22em;
+						//line-height: 30 * @v3-base-desktop-vw;
 						margin-bottom: 20 * @v3-base-desktop-vw;
 
+						font-family: @v3-title-font-family-rg;
+						font-size: 22px;
+						font-weight: 400;
+						line-height: 35px;
+
 						a {
-							color: #0d1d2c;
+							color: #000;
 						}
 					}
 				}
@@ -588,13 +604,20 @@
 					display: inline-block;
 					background-color: #000;
 					color: #fff;
-					font-family: 'Proxima Nova Lt';
-					font-size: 17em;
-					font-weight: 600;
+					//font-family: 'Proxima Nova Lt';
+					//font-size: 17em;
+					//font-weight: 600;
 					margin-top: 40 * @v3-base-desktop-vw;
-					line-height: 50 * @v3-base-desktop-vw;
-					padding: 0 50 * @v3-base-desktop-vw;
-					text-transform: uppercase;
+					//line-height: 50 * @v3-base-desktop-vw;
+					//padding: 0 50 * @v3-base-desktop-vw;
+					//text-transform: uppercase;
+
+					font-family: @v3-title-font-family-rg;
+					font-size: 14px;
+					font-weight: 700;
+					text-transform: capitalize;
+					line-height: 22px;
+					padding: 10px 35px;
 				}
 			}
 
@@ -612,7 +635,7 @@
 
 					.title {
 						background-position: center bottom;
-						line-height: 48 * @v3-base-mobile-vw;
+						//line-height: 48 * @v3-base-mobile-vw;
 						padding: 20* @v3-base-mobile-vw 0;
 						margin-bottom: 40 * @v3-base-mobile-vw;
 					}
@@ -622,7 +645,7 @@
 						margin: 0 auto;
 
 						li {
-							line-height: 30 * @v3-base-mobile-vw;
+							//line-height: 30 * @v3-base-mobile-vw;
 							margin-bottom: 20 * @v3-base-mobile-vw;
 							text-align: left;
 
@@ -633,8 +656,8 @@
 
 					a.btn-link-default {
 						margin-top: 40 * @v3-base-mobile-vw;
-						line-height: 60 * @v3-base-mobile-vw;
-						padding: 0 50 * @v3-base-mobile-vw;					
+//						line-height: 60 * @v3-base-mobile-vw;
+//						padding: 0 50 * @v3-base-mobile-vw;					
 					}
 				}
 			}
@@ -642,22 +665,22 @@
 			@media only screen and (max-width: 413px) {
 				.content {
 					.title {
-						font-size: 22px;
-						line-height: 30px;
+						//font-size: 22px;
+						//line-height: 30px;
 					}
 
 					ul {
 						li {
-							font-size: 13px;
-							line-height: 28px;
+							//font-size: 13px;
+							//line-height: 28px;
 							margin-bottom: 0;
 						}
 					}
 
 					a.btn-link-default {
-						font-size: 13px;
-						line-height: 50px;
-						padding: 0 45px;
+						//font-size: 13px;
+						//line-height: 50px;
+						//padding: 0 45px;
 					}
 				}
 			}		
@@ -675,13 +698,19 @@
 
 				.title {
 					font-family: @v3-title-font-family;
-					font-size: 33em;
-					font-weight: bold;
-					line-height: 40 * @v3-base-desktop-vw;
+					//font-size: 33em;
+					//font-weight: bold;
+					//line-height: 40 * @v3-base-desktop-vw;
 					padding: 30 * @v3-base-desktop-vw 0;
-					text-transform: uppercase;
+					//text-transform: uppercase;
 					margin-bottom: 40 * @v3-base-desktop-vw;
 					background: url(../images/v3/i_sharp_shape.png) left bottom no-repeat;
+
+					font-size: 28px;
+					font-weight: 700;
+					line-height: 39px;
+					text-transform: capitalize;
+					color: #000;
 
 					&.text-center {
 						background-position: center bottom;
@@ -700,13 +729,19 @@
 				}
 
 				p.description {
-					font-family: 'Avenir LT Std';
-					font-weight: 300;
-					font-size: 20em;
-					line-height: 30 * @v3-base-desktop-vw;
+					//font-family: 'Avenir LT Std';
+					//font-weight: 300;
+					//font-size: 20em;
+					//line-height: 30 * @v3-base-desktop-vw;
 					margin-bottom: 20 * @v3-base-desktop-vw;
 					letter-spacing: 0;
-					color: #585f66;
+					//color: #585f66;
+
+					font-family: @v3-title-font-family-rg;
+					font-size: 	14px;
+					font-weight: 400;
+					line-height: 22px;
+					color: #000;
 				}
 
 				a.btn-link-default {
@@ -714,12 +749,19 @@
 					display: inline-block;
 					background-color: #000;
 					color: #fff;
-					font-family: 'Proxima Nova Lt';
-					font-size: 17em;
-					font-weight: 600;
-					line-height: 50 * @v3-base-desktop-vw;
-					text-transform: uppercase;
-					padding: 0 50 * @v3-base-desktop-vw;
+					//font-family: 'Proxima Nova Lt';
+					//font-size: 17em;
+					//font-weight: 600;
+					//line-height: 50 * @v3-base-desktop-vw;
+					//text-transform: uppercase;
+					//padding: 0 50 * @v3-base-desktop-vw;
+
+					font-family: @v3-title-font-family-rg;
+					font-size: 14px;
+					font-weight: 700;
+					text-transform: capitalize;
+					line-height: 22px;
+					padding: 10px 35px;
 				}
 			}
 
@@ -742,7 +784,7 @@
 					}
 
 					.title {
-						line-height: 40 * @v3-base-mobile-vw;
+						//line-height: 40 * @v3-base-mobile-vw;
 						padding: 30 * @v3-base-mobile-vw 0;
 						margin-bottom: 40 * @v3-base-mobile-vw;
 					}
@@ -755,14 +797,14 @@
 					}
 
 					p.description {
-						line-height: 30 * @v3-base-mobile-vw;
+						//line-height: 30 * @v3-base-mobile-vw;
 						margin-bottom: 20 * @v3-base-mobile-vw;
 					}
 
 					a.btn-link-default {
 						margin-top: 40 * @v3-base-mobile-vw;
-						line-height: 60 * @v3-base-mobile-vw;
-						padding: 0 50 * @v3-base-mobile-vw;					
+						//line-height: 60 * @v3-base-mobile-vw;
+						//padding: 0 50 * @v3-base-mobile-vw;					
 					}
 				}
 			}			
@@ -770,19 +812,19 @@
 			@media only screen and (max-width: 413px) {
 				.content {
 					.title {
-						font-size: 22px;
-						line-height: 30px;
+						//font-size: 22px;
+						//line-height: 30px;
 					}
 
 					p.description {
-						font-size: 13px;
-						line-height: 24px;
+						//font-size: 13px;
+						//line-height: 24px;
 					}
 
 					a.btn-link-default {
-						font-size: 13px;
-						line-height: 50px;
-						padding: 0 45px;
+						//font-size: 13px;
+						//line-height: 50px;
+						//padding: 0 45px;
 					}
 				}
 			}
