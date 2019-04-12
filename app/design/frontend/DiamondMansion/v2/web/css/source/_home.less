@@ -332,6 +332,10 @@
 					text-transform: capitalize;
 					color: #000;
 					letter-spacing: 1px;
+
+					&.mobile {
+						display: none;
+					}
 				}
 
 				p.h1 {
@@ -414,6 +418,9 @@
 					p.description {
 						//line-height: 30 * @v3-base-mobile-vw;
 						//margin-bottom: 50 * @v3-base-mobile-vw;
+
+						padding-left: 30px;
+						padding-right: 30px;
 					}	
 
 					a.btn-link-default {
@@ -433,6 +440,10 @@
 					.title {
 						//font-size: 22px;
 						//line-height: 40px;
+						display: none;
+						&.mobile {
+							display: block;
+						}
 					}
 
 					p.h1 {
