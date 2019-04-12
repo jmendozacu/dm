@@ -58,19 +58,16 @@ $_product = $this->getProduct();
 <?php 
     $_deliveryDate = strtotime('+' . ($_product->getDmDeliveryDates()==""?10:(int)$_product->getDmDeliveryDates()) . ' days'); 
     $_deliveryMM = date("M", $_deliveryDate);
-    $_deliveryDD = date("j", $_deliveryDate);
+    $_deliveryDD = date("jS", $_deliveryDate);
 ?>
 <div class="product-delivery">
+    <div class="package-image">
+    </div>
     <div class="delivery-info">
-        <h2>Packaged to L<span class="heart">&hearts;</span>VE</h2>
+        <h2>Packaged to Love</h2>
         <p>Your order will be beautifully and securely packaged to fly over the skies of City of Angels (Los Angeles) to your door. Shipping is always free at DIAMOND MANSION.<br/>
-We ship to: United States, Canada, Australia, United Kingdom and Elsewhere!
-</p>
-        <p class="date-title">Order today and receive by</p>
-        <div class="date-info">
-            <div class="month"><?php echo $_deliveryMM ?></div>
-            <div class="date"><?php echo $_deliveryDD ?></div>
-        </div>
+We ship to: United States, Canada, Australia, United Kingdom and Elsewhere!</p>
+        <p class="date-title">Order today &amp; receive by <?php echo $_deliveryMM ?> <?php echo $_deliveryDD ?></p>
         <div class="contactus-link"><a class="btn-delivery" href="#form-delivery">Contact Us For Faster Delivery</a></div>
     </div>
 </div>
