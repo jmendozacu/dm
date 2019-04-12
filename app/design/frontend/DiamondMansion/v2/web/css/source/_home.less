@@ -60,6 +60,7 @@
 					//font-size: 50em;
 					//line-height: 60 * @v3-base-desktop-vw;
 
+					max-width: 480px;
 					font-size: 30px;
 					line-height: 42px;
 					margin-bottom: 20 * @v3-base-desktop-vw;
@@ -114,6 +115,9 @@
 					p.h1 {
 						//font-size: 34em;
 						//line-height: 40 * @v3-base-mobile-vw;
+
+						margin-left: auto;
+						margin-right: auto;
 					}
 
 					p.h2 {
@@ -381,7 +385,7 @@
 					a.btn-link-default {
 						margin-top: 40 * @v3-base-mobile-vw;
 						//line-height: 25 * @v3-base-mobile-vw;
-						padding: 15 * @v3-base-mobile-vw 60 * @v3-base-mobile-vw;
+						//padding: 15 * @v3-base-mobile-vw 60 * @v3-base-mobile-vw;
 					}
 				}
 			}
@@ -414,7 +418,7 @@
 					a.btn-link-default {
 						//font-size: 13px;
 						//line-height: 50px;
-						padding: 0 45px;
+						//padding: 0 45px;
 						margin-top: 25px;
 					}
 				}
@@ -448,7 +452,7 @@
 					a.btn-link-default {
 						//font-size: 17px;
 						//line-height: 60px;
-						padding: 0 55px;
+						//padding: 0 55px;
 						margin-top: 25px;
 					}
 				}
@@ -576,6 +580,7 @@
 					font-weight: 700;
 					line-height: 39px;
 					text-transform: capitalize;
+					color: #000;
 				}
 
 				ul {
@@ -641,7 +646,8 @@
 					}
 
 					ul {
-						width: 260 * @v3-base-mobile-vw;
+						//width: 260 * @v3-base-mobile-vw;
+						width: 230px;
 						margin: 0 auto;
 
 						li {
@@ -649,8 +655,8 @@
 							margin-bottom: 20 * @v3-base-mobile-vw;
 							text-align: left;
 
-							padding-left: 50 * @v3-base-mobile-vw;
-							background-size: 23 * @v3-base-mobile-vw 17 * @v3-base-mobile-vw;
+							//padding-left: 50 * @v3-base-mobile-vw;
+							//background-size: 23 * @v3-base-mobile-vw 17 * @v3-base-mobile-vw;
 						}
 					}
 
@@ -866,14 +872,20 @@
 
 				.title {
 					font-family: @v3-title-font-family;
-					font-size: 33em;
-					font-weight: bold;
-					line-height: 40 * @v3-base-desktop-vw;
+					//font-size: 33em;
+					//font-weight: bold;
+					//line-height: 40 * @v3-base-desktop-vw;
 					padding: 30 * @v3-base-desktop-vw 0;
 
-					text-transform: uppercase;
+					//text-transform: uppercase;
 					margin-bottom: 40 * @v3-base-desktop-vw;
 					background: url(../images/v3/i_sharp_shape.png) left bottom no-repeat;
+
+					font-size: 28px;
+					font-weight: 700;
+					line-height: 39px;
+					text-transform: capitalize;
+					color: #000;
 
 					&.text-center {
 						background-position: center bottom;
@@ -899,13 +911,20 @@
 					background-color: #000;
 					border: 1px solid #000;
 					color: #fff;
-					font-family: 'Proxima Nova Lt';
-					font-size: 17em;
-					font-weight: 600;
-					line-height: 50 * @v3-base-desktop-vw;
-					text-transform: uppercase;
+					//font-family: 'Proxima Nova Lt';
+					//font-size: 17em;
+					//font-weight: 600;
+					//line-height: 50 * @v3-base-desktop-vw;
+					//text-transform: uppercase;
 					width: 210 * @v3-base-desktop-vw;
 					margin: 10 * @v3-base-desktop-vw 15 * @v3-base-desktop-vw;
+
+					font-family: @v3-title-font-family-rg;
+					font-size: 14px;
+					font-weight: 700;
+					text-transform: capitalize;
+					line-height: 22px;
+					padding: 10px 0;
 				}
 
 				a.btn-link-second {
@@ -913,13 +932,20 @@
 					background-color: #fff;
 					border: 1px solid #000;
 					color: #000;
-					font-family: 'Proxima Nova Lt';
-					font-size: 17em;
-					font-weight: 600;
-					line-height: 50 * @v3-base-desktop-vw;
-					text-transform: uppercase;
+					//font-family: 'Proxima Nova Lt';
+					//font-size: 17em;
+					//font-weight: 600;
+					//line-height: 50 * @v3-base-desktop-vw;
+					//text-transform: uppercase;
 					width: 210 * @v3-base-desktop-vw;
 					margin: 10 * @v3-base-desktop-vw 15 * @v3-base-desktop-vw;
+
+					font-family: @v3-title-font-family-rg;
+					font-size: 14px;
+					font-weight: 700;
+					text-transform: capitalize;
+					line-height: 22px;
+					padding: 10px 0;
 				}
 			}
 
@@ -977,14 +1003,14 @@
 			@media only screen and (max-width: 413px) {
 				.content {
 					.title {
-						font-size: 22px;
-						line-height: 30px;
+						//font-size: 22px;
+						//line-height: 30px;
 					}
 
 					a.btn-link-default,
 					a.btn-link-second {
-						font-size: 13px;
-						line-height: 50px;
+						//font-size: 13px;
+						//line-height: 50px;
 						text-align: center;
 						display: block;
 						width: 180px;
@@ -1001,13 +1027,19 @@
 
 				.title {
 					font-family: @v3-title-font-family;
-					font-size: 33em;
-					font-weight: bold;
-					line-height: 30 * @v3-base-desktop-vw;
-					text-transform: uppercase;
+					//font-size: 33em;
+					//font-weight: bold;
+					//line-height: 30 * @v3-base-desktop-vw;
+					//text-transform: uppercase;
 					margin-bottom: 40 * @v3-base-desktop-vw;
 					padding-bottom: 30 * @v3-base-desktop-vw;
 					background: url(../images/v3/i_sharp_shape.png) left bottom no-repeat;
+
+					font-size: 28px;
+					font-weight: 700;
+					text-transform: capitalize;
+					line-height: 39px;
+					color: #000;
 
 					sub {
 						font-size: 0.6em;
@@ -1023,16 +1055,6 @@
 					position: relative;
 					margin-bottom: 20 * @v3-base-desktop-vw;
 
-					&:before {
-						content: "";
-						display: block;
-						border-top: 1px solid #000;
-						position: absolute;
-						width: 80%;
-						left: 10%;
-						top: 30 * @v3-base-desktop-vw;
-					}
-
 					&:after {
 						content: "";
 						display: block;
@@ -1046,14 +1068,19 @@
 						position: relative;
 						padding: 0 50 * @v3-base-desktop-vw;
 
-						font-family: 'Avenir LT Std';
-						font-weight: 300;
-						font-size: 20em;
-						line-height: 30 * @v3-base-desktop-vw;
+						//font-family: 'Avenir LT Std';
+						//font-weight: 300;
+						//font-size: 20em;
+						//line-height: 30 * @v3-base-desktop-vw;
 						margin-bottom: 20 * @v3-base-desktop-vw;
 						letter-spacing: 0;
-						color: #0d1d2c;						
+						//color: #0d1d2c;
 
+						font-family: @v3-title-font-family-rg;
+						font-size: 14px;
+						font-weight: 400;
+						line-height: 22px;
+	
 						.number {
 							text-align: center;
 							span {
@@ -1065,7 +1092,24 @@
 								line-height: 60 * @v3-base-desktop-vw;
 								border-radius: 50%;
 								margin-bottom: 40 * @v3-base-desktop-vw;
+
+								z-index: 2;
+								position: relative;								
 							}
+						}
+
+						&:before {
+							content: "";
+							display: block;
+							border-top: 1px solid #000;
+							position: absolute;
+							width: 100%;
+							left: 50%;
+							top: 30 * @v3-base-desktop-vw;
+						}
+
+						&:last-child:before {
+							display: none;
 						}
 					}
 				}
@@ -1075,12 +1119,19 @@
 					background-color: #000;
 					border: 1px solid #000;
 					color: #fff;
-					font-family: 'Proxima Nova Lt';
-					font-size: 17em;
-					font-weight: 600;
-					line-height: 50 * @v3-base-desktop-vw;
-					text-transform: uppercase;
-					padding: 0 50 * @v3-base-desktop-vw;
+					//font-family: 'Proxima Nova Lt';
+					//font-size: 17em;
+					//font-weight: 600;
+					//line-height: 50 * @v3-base-desktop-vw;
+					//text-transform: uppercase;
+					//padding: 0 50 * @v3-base-desktop-vw;
+
+					font-family: @v3-title-font-family-rg;
+					font-size: 14px;
+					font-weight: 700;
+					text-transform: capitalize;
+					line-height: 22px;
+					padding: 10px 35px;
 				}
 			}
 
@@ -1089,7 +1140,7 @@
 				.content {
 
 					.title {
-						line-height: 50 * @v3-base-mobile-vw;
+						//line-height: 50 * @v3-base-mobile-vw;
 						margin-bottom: 40 * @v3-base-mobile-vw;
 						padding-bottom: 20 * @v3-base-mobile-vw;
 
@@ -1104,17 +1155,10 @@
 						overflow: hidden;
 						margin-bottom: 20 * @v3-base-mobile-vw;
 
-						&:before {
-							width: 315 * 4 * @v3-base-mobile-vw;
-							left: 315 / 2 * @v3-base-mobile-vw;
-							top: 30 * @v3-base-mobile-vw;
-						}
-
-
 						.step {
 							width: 315 * @v3-base-mobile-vw;
 							padding: 0 50 * @v3-base-mobile-vw;
-							line-height: 30 * @v3-base-mobile-vw;
+							//line-height: 30 * @v3-base-mobile-vw;
 							margin-bottom: 20 * @v3-base-mobile-vw;
 							float: none;
 							display: inline-block;
@@ -1129,12 +1173,15 @@
 								}
 							}
 
+							&:before {
+								top: 30 * @v3-base-mobile-vw;
+							}
 						}
 					}
 
 					a.btn-link-default {
-						line-height: 50 * @v3-base-mobile-vw;
-						padding: 0 50 * @v3-base-mobile-vw;
+						//line-height: 50 * @v3-base-mobile-vw;
+						//padding: 0 50 * @v3-base-mobile-vw;
 					}
 
 				}
@@ -1143,8 +1190,8 @@
 			@media only screen and (max-width: 413px) {
 				.content {
 					.title {
-						font-size: 22px;
-						line-height: 30px;
+						//font-size: 22px;
+						//line-height: 30px;
 
 						sub {
 							line-height: 30px;
@@ -1154,15 +1201,15 @@
 					.steps {
 						.step {
 							padding: 0 10px;
-							font-size: 13px;
-							line-height: 24px;
+							//font-size: 13px;
+							//line-height: 24px;
 						}
 					}
 
 					a.btn-link-default {
-						font-size: 13px;
-						line-height: 50px;
-						padding: 0 45px;
+						//font-size: 13px;
+						//line-height: 50px;
+						//padding: 0 45px;
 					}
 				}
 			}						
@@ -1178,13 +1225,19 @@
 
 				.title {
 					font-family: @v3-title-font-family;
-					font-size: 33em;
-					font-weight: bold;
-					line-height: 40 * @v3-base-desktop-vw;
+					//font-size: 33em;
+					//font-weight: bold;
+					//line-height: 40 * @v3-base-desktop-vw;
 					padding: 30 * @v3-base-desktop-vw 0;
-					text-transform: uppercase;
+					//text-transform: uppercase;
 					margin-bottom: 40 * @v3-base-desktop-vw;
 					background: url(../images/v3/i_sharp_shape.png) left bottom no-repeat;
+
+					font-size: 28px;
+					font-weight: 700;
+					text-transform: capitalize;
+					line-height: 39px;
+					color: #000;
 
 					&.text-center {
 						background-position: center bottom;
@@ -1199,6 +1252,11 @@
 
 							.review-avatar {
 								min-width: 100 * @v3-base-desktop-vw;
+								img {
+									width: 90px;
+									height: 90px;
+									border-radius: 50%;
+								}
 							}
 
 							.review-info {
@@ -1206,10 +1264,16 @@
 								padding-left: 20 * @v3-base-desktop-vw;
 
 								.review-content {
-									font-family: 'Avenir LT Std';
-									font-weight: 300;
-									font-size: 20em;
-									line-height: 30 * @v3-base-desktop-vw;
+									//font-family: 'Avenir LT Std';
+									//font-weight: 300;
+									//font-size: 20em;
+									//line-height: 30 * @v3-base-desktop-vw;
+
+									font-family: @v3-title-font-family-rg;
+									font-weight: 400;
+									font-size: 14px;
+									line-height: 22px;
+									color: #000;
 								}
 
 								.customer-name {
@@ -1229,6 +1293,11 @@
 										display: block;
 										height: 100%;
 										background: url(../images/v3/i_star_active.png);
+									}
+
+									i {
+										color: #f5a82e;
+										font-size: 17px;
 									}
 								}
 							}
@@ -1388,25 +1457,38 @@
 
 				.title {
 					font-family: @v3-title-font-family;
-					font-size: 33em;
-					font-weight: bold;
-					line-height: 40 * @v3-base-desktop-vw;
+					//font-size: 33em;
+					//font-weight: bold;
+					//line-height: 40 * @v3-base-desktop-vw;
 					padding: 30 * @v3-base-desktop-vw 0;
-					text-transform: uppercase;
+					//text-transform: uppercase;
 					margin-bottom: 40 * @v3-base-desktop-vw;
 					background: url(../images/v3/i_sharp_shape.png) left bottom no-repeat;
+
+					font-size: 28px;
+					font-weight: 700;
+					text-transform: capitalize;
+					line-height: 39px;
+					color: #000;
 				}
 
 				p.description {
-					font-family: 'Avenir LT Std';
-					font-weight: 300;
-					font-size: 20em;
-					line-height: 30 * @v3-base-desktop-vw;
+					//font-family: 'Avenir LT Std';
+					//font-weight: 300;
+					//font-size: 20em;
+					//line-height: 30 * @v3-base-desktop-vw;
 					margin-bottom: 20 * @v3-base-desktop-vw;
-					color: #585f66;
+					//color: #585f66;
+
+					font-family: @v3-title-font-family-rg;
+					font-size: 14px;
+					font-weight: 400;
+					line-height: 22px;
+					color: #000;
 
 					strong {
 						color: #000;
+						font-weight: 700;
 					}
 				}
 
@@ -1415,12 +1497,19 @@
 					display: inline-block;
 					background-color: #000;
 					color: #fff;
-					font-family: 'Proxima Nova Lt';
-					font-size: 17em;
-					font-weight: 600;
-					line-height: 50 * @v3-base-desktop-vw;
-					text-transform: uppercase;
-					padding: 0 50 * @v3-base-desktop-vw;
+					//font-family: 'Proxima Nova Lt';
+					//font-size: 17em;
+					//font-weight: 600;
+					//line-height: 50 * @v3-base-desktop-vw;
+					//text-transform: uppercase;
+					//padding: 0 50 * @v3-base-desktop-vw;
+
+					font-family: @v3-title-font-family-rg;
+					font-size: 14px;
+					font-weight: 700;
+					text-transform: capitalize;
+					line-height: 22px;
+					padding: 10px 35px;
 				}
 			}
 
@@ -1445,7 +1534,7 @@
 					}
 
 					.title {
-						line-height: 40 * @v3-base-mobile-vw;
+						//line-height: 40 * @v3-base-mobile-vw;
 						padding: 60 * @v3-base-mobile-vw 0 30 * @v3-base-mobile-vw;
 						margin-bottom: 40 * @v3-base-mobile-vw;
 
@@ -1453,15 +1542,15 @@
 					}
 
 					p.description {
-						line-height: 30 * @v3-base-mobile-vw;
+						//line-height: 30 * @v3-base-mobile-vw;
 						margin-bottom: 20 * @v3-base-mobile-vw;
 						padding: 0 55 * @v3-base-mobile-vw;
 					}
 
 					a.btn-link-default {
 						margin-top: 40 * @v3-base-mobile-vw;
-						line-height: 50 * @v3-base-mobile-vw;
-						padding: 0 50 * @v3-base-mobile-vw;
+						//line-height: 50 * @v3-base-mobile-vw;
+						//padding: 0 50 * @v3-base-mobile-vw;
 					}
 
 				}
@@ -1470,45 +1559,51 @@
 			@media only screen and (max-width: 413px) {
 				.content {
 					.title {
-						font-size: 22px;
-						line-height: 30px;
+						//font-size: 22px;
+						//line-height: 30px;
 					}
 
 					p.description {
-						font-size: 13px;
-						line-height: 24px;
+						//font-size: 13px;
+						//line-height: 24px;
 						padding: 0;
 					}
 
 					a.btn-link-default {
-						font-size: 13px;
-						line-height: 50px;
-						padding: 0 45px;
+						//font-size: 13px;
+						//line-height: 50px;
+						//padding: 0 45px;
 					}
 				}
 			}			
 		}
 
 		.notice {
-			font-family: 'Avenir LT Std';
-			font-weight: 300;
-			font-size: 20em;
-			line-height: 30 * @v3-base-desktop-vw;
+			//font-family: 'Avenir LT Std';
+			//font-weight: 300;
+			//font-size: 20em;
+			//line-height: 30 * @v3-base-desktop-vw;
 			padding: 30 * @v3-base-desktop-vw;
-			color: #080501;
+			//color: #080501;
+
+			font-family: @v3-title-font-family-rg;
+			font-size: 14px;
+			font-weight: 400;
+			line-height: 22px;
+			color: #000;
 
 			b {
-				font-weight: normal;
+				//font-weight: normal;
 			}
 
 			@media only screen and (max-width: @v3-mobile-max-width) {
-				line-height: 30 * @v3-base-mobile-vw;
+				//line-height: 30 * @v3-base-mobile-vw;
 				padding: 30 * @v3-base-mobile-vw;
 			}
 
 			@media only screen and (max-width: 413px) {
-				font-size: 13px;
-				line-height: 24px;
+				//font-size: 13px;
+				//line-height: 24px;
 			}			
 		}
 	}	

@@ -5,7 +5,7 @@
             <img src="<?php echo $this->getViewFileUrl("images/v3/home/banner-mobile.jpg") ?>" class="mobile-only" alt="" width="100%"/>
             <div class="content">
                 <div class="spec">
-                    <p class="h1">Hand Crafted Engagement Rings<br/>Customized by You</p>
+                    <p class="h1">Hand Crafted Engagement Rings Customized by You</p>
                     <p class="h2">Start customizing by choosing from 101 unique engagement ring designs</p>
                     <a class="btn-link" href="/rings/engagement/">Shop Engagement Rings&nbsp;<i class="dfd-icon-right_6"></i></a>
                 </div>
@@ -89,7 +89,7 @@
                     <img src="<?php echo $this->getViewFileUrl("images/v3/home/guarantee.png") ?>" alt=""/>
                 </div>
                 <div class="col">
-                    <div class="title">LIFETIME SATIFACTION<br/>GUARANTEED</div>
+                    <div class="title">Lifetime Satisfaction<br/>Guaranteed</div>
                     <ul>
                         <li><a href="/customer-service/">45 Days Return</a></li>
                         <li><a href="/customer-service/?sel_cms=2">Lifetime Warranty</a></li>
@@ -108,7 +108,7 @@
                 <div class="text-block text-center">
                     <div class="title text-center">Hand Crafted In Los Angeles</div>
                     <p class="description">High-quality jewelry have long been defined by precise diamond setting and craftsmanship. Each ring requires atleast 80 hours of total labor. What you get in return is flawless craftsmanship that lasts a lifetime. Our rings are known for intricate details and stability. And we are proud of it!</p>
-                    <a class="btn-link-default" href="/rings/engagement/">OUR JEWELERS</a>
+                    <a class="btn-link-default" href="/rings/engagement/">Our Jewelers</a>
                 </div>
             </div>
         </div>
@@ -117,7 +117,7 @@
     <div class="instagram">
         <div class="content-wrapper">
             <div class="content">
-                <div class="title text-center">SHOP OUR INSTAGRAM</div>
+                <div class="title text-center">Shop Our Instagram</div>
                 <div class="images">
                     <?php echo $this->getChildHtml('instagram-slider') ?>
                 </div>
@@ -149,57 +149,16 @@
         <div class="content-wrapper">
             <div class="content-spec text-center">
                 <div class="title text-center">Happy Customers</div>
-                <ul class="review-slider">
-                    <li>
-                        <div class="review-wrapper">
-                            <div class='review-avatar'><img src="<?php echo $this->getViewFileUrl("images/v3/home/avatar-1.png") ?>" alt=""/></div>
-                            <div class="review-info">
-                                <div class="review-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the printer. a type specimen book.</div>
-                                <div class="customer-name">Petey Cruiser</div>
-                                <div class="customer-rate"><span class="rate-100" style="width: 100%;"></span></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="review-wrapper">
-                            <div class='review-avatar'><img src="<?php echo $this->getViewFileUrl("images/v3/home/avatar-2.png") ?>" alt=""/></div>
-                            <div class="review-info">
-                                <div class="review-content">Their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the. years.sometimes by accident</div>
-                                <div class="customer-name">Anna Sthesia</div>
-                                <div class="customer-rate"><span class="rate-80" style="width: 80%;"></span></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="review-wrapper">
-                            <div class='review-avatar'><img src="<?php echo $this->getViewFileUrl("images/v3/home/avatar-1.png") ?>" alt=""/></div>
-                            <div class="review-info">
-                                <div class="review-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the printer. a type specimen book.</div>
-                                <div class="customer-name">Nikita Franco</div>
-                                <div class="customer-rate"><span class="rate-100" style="width: 100%;"></span></div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="review-wrapper">
-                            <div class='review-avatar'><img src="<?php echo $this->getViewFileUrl("images/v3/home/avatar-2.png") ?>" alt=""/></div>
-                            <div class="review-info">
-                                <div class="review-content">Their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the. years.sometimes by accident</div>
-                                <div class="customer-name">Peter Green</div>
-                                <div class="customer-rate"><span class="rate-80" style="width: 80%;"></span></div>
-                            </div>
-                        </div>
-                    </li>
+                <ul class="review-slider" id="review-slider">
                 </ul>
                 <div class="slide-arrows"></div>
             </div>
-
             <script type="text/javascript"> 
-            var review_token = 'kUWbOHrlqjW91CC78eswMVhMZ7f6kygfckz9x3ARfFMmWewYat'; 
-            var review_target = 'review-container'; 
+                var review_token = 'kUWbOHrlqjW91CC78eswMVhMZ7f6kygfckz9x3ARfFMmWewYat'; 
+                var review_target = 'review-container'; 
             </script> 
             <script src="https://reviewsonmywebsite.com/js/embed.js?v=8" type="text/javascript"></script> 
-            <div id="review-container"></div>            
+            <div id="review-container" style="display: none;"></div>
         </div>
     </div>
 
@@ -208,7 +167,7 @@
             <div class="content">
                 <div class="col-5">
                     <img class="mobile-only" src="<?php echo $this->getViewFileUrl("images/v3/home/visitus.jpg") ?>" alt=""/>
-                    <div class="title">VISIT US IN LOS ANGELES</div>
+                    <div class="title">Visit Us In Los Angeles</div>
                     <p class="description">Although we ship our jewelry worldwide, we always enjoy meeting our customers in person.<br/>Make an appointment online or call us at <strong>1-800-518-0240</strong> to schedule a personalized visit  with a jewelry specialist.<br/><br/>Diamond Mansion. 550 S. Hill St. #710<br/>
 Los Angeles, Ca 90013</p>
                     <a class="btn-link-default" href="/rings/engagement/">Schedule My Appointment</a>
@@ -233,22 +192,6 @@ Los Angeles, Ca 90013</p>
         'modernizr'
     ], function (jQuery, slick, ScrollMagic) {
         jQuery(document).ready(function() {
-            jQuery('.review-slider').slick({
-                dots: false,
-                infinite: true,
-                slidesToShow: 2,
-                slidesToScroll: 1,
-                responsive: [
-                    {
-                        breakpoint: 1280,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
-                    }
-                ]
-            });
-
             jQuery('.slickslider .slides').slick({
                 dots: false,
                 infinite: false,
@@ -293,6 +236,66 @@ Los Angeles, Ca 90013</p>
                 var slickHeight = jQuery('li.slick-slide').width();
                 jQuery('li.slick-slide a').height(slickHeight);
             });
+
+            jQuery('.steps').slick({
+                dots: true,
+                infinite: false,
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                responsive: [
+                    {
+                        breakpoint: 1280,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+
+            var reviewSliderTimer = setInterval(() => {
+                if (jQuery('#review-container .romw-list').length) {
+
+                    jQuery('#review-container .romw-list .romw').each(function () {
+                        var html = '<li>';
+                        html += '<div class="review-wrapper">';
+                        html += '<div class="review-avatar">' + jQuery(this).find('.romw-author-photo').html() + '</div>';
+                        html += '<div class="review-info">';
+                        html += '<div class="review-content">' + jQuery(this).find('.romw-text').html() + '</div>';
+                        html += '<div class="customer-name">' + jQuery(this).find('.romw-author').html() + '</div>';
+                        html += '<div class="customer-rate">' + jQuery(this).find('.romw-stars').html() + '</div>';
+                        html += '</div></div></li>';
+
+                        jQuery('#review-slider').append(html);
+                    });
+
+                    jQuery('.review-slider').slick({
+                        dots: false,
+                        infinite: true,
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        adaptiveHeight: true,
+                        responsive: [
+                            {
+                                breakpoint: 1280,
+                                settings: {
+                                    slidesToShow: 1,
+                                    slidesToScroll: 1
+                                }
+                            }
+                        ]
+                    });
+
+                    clearInterval(reviewSliderTimer);
+                }
+            }, 500);
 
             // Init ScrollMagic
             var controller = new ScrollMagic.Controller();
