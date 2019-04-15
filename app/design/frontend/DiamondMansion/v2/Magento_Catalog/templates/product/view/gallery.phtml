@@ -41,12 +41,12 @@ $isVideoExist = false;
         ?>
         <li <?php echo ($index == 0) ? 'class="selected"' : '' ?>>
             <div class="video-wrapper">
-                <iframe src="<?= $_image['videoUrl'] ?>" width="100%"></iframe>
+                <iframe src="<?= $_image['videoUrl'] ?>" width="85px" height="85px"></iframe>
             </div>
         </li>
         <?php else: ?>
         <li <?php echo ($index == 0) ? 'class="selected"' : '' ?>>
-            <img <?php echo ($index == 0) ? 'src' : 'data-lazy' ?>="<?php echo $_image['full']; ?>" alt="<?php echo $_image['caption'] ?>"/>
+            <img src="<?php echo $_image['full']; ?>" alt="<?php echo $_image['caption'] ?>"/>
         </li>
         <?php endif ?>
         <?php $index ++; endforeach ?>
