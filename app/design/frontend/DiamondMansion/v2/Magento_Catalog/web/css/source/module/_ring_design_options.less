@@ -104,6 +104,10 @@
             }
 
             #gallery {
+                .slick-dots {
+                    display: none !important;
+                }
+
                 .slick-dots li {
                     padding: 0;
                     margin: 0;
@@ -119,6 +123,27 @@
 
                 .slick-slide img {
                     width: 100%;
+                }
+            }
+
+            .gallery-thumbnail {
+                display: flex;
+                justify-content: center;
+                padding-top: 30 * @v3-base-desktop-vw;
+                padding-bottom: 80 * @v3-base-desktop-vw;
+
+                li {
+                    width: 85px;
+                    margin: 0 10px;
+                    border: 1px solid #f2f2f2;
+                    cursor: pointer;
+
+                    &.selected {
+                        border-color: transparent;
+                        -webkit-box-shadow: 0px 19px 24px 0px rgba(0,0,0,0.06);
+                        -moz-box-shadow: 0px 19px 24px 0px rgba(0,0,0,0.06);
+                        box-shadow: 0px 19px 24px 0px rgba(0,0,0,0.06);        
+                    }
                 }
             }
 
@@ -996,6 +1021,10 @@
                 }
             }
 
+            .gallery-thumbnail {
+                display: none;
+            }
+
             .product-description {
                 display: none;
             }
@@ -1689,6 +1718,10 @@
                     }
                 }
             }
+        }
+
+        .product-info-details {
+            display: none;
         }
     }
 

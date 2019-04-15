@@ -590,6 +590,7 @@ define([
                         $("#zoom").attr("href", json[0].pop);
         
                         $("#gallery li:first").html('<a title="" href="'+json[0].pop+'" data-zoom=\'"useZoom": "zoom", "smallImage": "'+json[0].main+'"\' class="cloud-zoom-gallery"><img src="'+json[0].pop+'"/></a>');
+                        $(".gallery-thumbnail li:first img").attr('src', json[0].pop);
                         
                         $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
                     }

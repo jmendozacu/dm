@@ -31,7 +31,25 @@ $isVideoExist = false;
         <?php $index ++; endforeach ?>
     </div>
     <div class="gallery-thumbnail desktop">
-        
+        <?php $index = 0; foreach ($arrayJsonGallery as $_image): ?>
+        <?php if ($_image['type'] == 'video'): ?>
+        <?php
+            if (strpos($_image['videoUrl'], 'watch?v=') !== false) {
+                $videoUrlParams = explode('watch?v=', $_image['videoUrl']);
+                $_image['videoUrl'] = 'https://www.youtube.com/embed/' . $videoUrlParams[1] . '?controls=0';
+            }
+        ?>
+        <li <?php echo ($index == 0) ? 'class="selected"' : '' ?>>
+            <div class="video-wrapper">
+                <iframe src="<?= $_image['videoUrl'] ?>" width="100%"></iframe>
+            </div>
+        </li>
+        <?php else: ?>
+        <li <?php echo ($index == 0) ? 'class="selected"' : '' ?>>
+            <img <?php echo ($index == 0) ? 'src' : 'data-lazy' ?>="<?php echo $_image['full']; ?>" alt="<?php echo $_image['caption'] ?>"/>
+        </li>
+        <?php endif ?>
+        <?php $index ++; endforeach ?>
     </div>
 </div>
 <script type="text/javascript">
@@ -58,57 +76,27 @@ require([
             ]
         });
 
+        $('#gallery').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+            var mySlideNumber = nextSlide;
+            $('.gallery-thumbnail li.selected').removeClass('selected');
+            $('.gallery-thumbnail li').eq(mySlideNumber).addClass('selected');
+        });        
+
         $('#gallery iframe').height($('#gallery iframe').width());
+
+        $('.gallery-thumbnail li').on('click', function () {
+            event.stopPropagation();
+
+            $('.gallery-thumbnail li.selected').removeClass('selected');
+            $(this).addClass('selected');
+
+            $('#gallery').slick('slickGoTo', $(this).index());
+        });
 
 
         if ($('#zoom').length) {
             $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
         }
-        
-        $('.more-views h2').on('click', function () {
-            $('.more-views-container').toggleClass('show-button');
-        });
-
-        $('.item-image-arrows .l-arrow').on('click', function() {
-            changeGalleryImage(false);
-            return false;
-        });
-        $('.item-image-arrows .r-arrow').on('click', function() {
-            changeGalleryImage(true);
-            return false;
-        });
     });
-
-    var galleryIndex = 0;
-    
-    function changeGalleryImage(next) {
-        if (next) {
-            galleryIndex ++;
-            if (galleryIndex == $(".more-views-container ul li").length) {
-                galleryIndex = 0;
-            }
-        } else {
-            if (galleryIndex == 0) {
-                galleryIndex = $(".more-views-container ul li").length;
-            }
-            galleryIndex --;
-        }
-        
-        var galleryImageUrl = $(".more-views-container ul li a").eq(galleryIndex).attr("href");
-        var isReady = true;
-        $('#image').fadeTo(300, 0, function() {
-            $('#image').attr('src',galleryImageUrl).bind('onreadystatechange load', function(){
-                if (isReady && this.complete){
-                    $(".more-views-container ul li a").eq(galleryIndex).trigger("click");
-                    $(this).fadeTo(100, 1);
-                    isReady = false;
-                }
-            });
-            
-        });     
-        
-        return false;   
-    }
-
 });
 </script>
