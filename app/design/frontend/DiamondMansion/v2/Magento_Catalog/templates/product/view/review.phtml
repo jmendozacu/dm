@@ -4,55 +4,13 @@
         <div class="block-title">Product Reviews</div>
         <div class="block-content">
             <ul id="review-slider">
-                <li>
-                    <div class="customer-info">
-                        <div class="customer-name">Petey Cruiser</div>
-                        <div class="customer-rate"><span class="rate-100" style="width: 100%;"></span></div>
-                        <div class="customer-avatar"></div>
-                    </div>
-                    <div class="review-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the printer. a type specimen book.</div>
-                </li>
-                <li>
-                    <div class="customer-info">
-                        <div class="customer-name">Theressa Heft</div>
-                        <div class="customer-rate"><span class="rate-80" style="width: 100%;"></span></div>
-                        <div class="customer-avatar"></div>
-                    </div>
-                    <div class="review-content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the printer. a type specimen book.</div>
-                </li>
-                <li>
-                    <div class="customer-info">
-                        <div class="customer-name">Wendie Alongi</div>
-                        <div class="customer-rate"><span class="rate-100" style="width: 100%;"></span></div>
-                        <div class="customer-avatar"></div>
-                    </div>
-                    <div class="review-content">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don look even slightly</div>
-                </li>
-                <li>
-                    <div class="customer-info">
-                        <div class="customer-name">Dorie Dillon</div>
-                        <div class="customer-rate"><span class="rate-100" style="width: 100%;"></span></div>
-                        <div class="customer-avatar"></div>
-                    </div>
-                    <div class="review-content">Generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words</div>
-                </li>
-                <li>
-                    <div class="customer-info">
-                        <div class="customer-name">Wendie Alongi</div>
-                        <div class="customer-rate"><span class="rate-100" style="width: 100%;"></span></div>
-                        <div class="customer-avatar"></div>
-                    </div>
-                    <div class="review-content">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don look even slightly</div>
-                </li>
-                <li>
-                    <div class="customer-info">
-                        <div class="customer-name">Dorie Dillon</div>
-                        <div class="customer-rate"><span class="rate-100" style="width: 100%;"></span></div>
-                        <div class="customer-avatar"></div>
-                    </div>
-                    <div class="review-content">Generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words</div>
-                </li>
             </ul>
+            <script type="text/javascript"> 
+                var review_token = 'kUWbOHrlqjW91CC78eswMVhMZ7f6kygfckz9x3ARfFMmWewYat'; 
+                var review_target = 'review-container'; 
+            </script> 
+            <script src="https://reviewsonmywebsite.com/js/embed.js?v=8" type="text/javascript"></script> 
+            <div id="review-container" style="display: none;"></div>
         </div>
     </div>
 </div>
@@ -60,38 +18,61 @@
     require(['jquery'], function ($) {
         $(function () {
             require(['slick'], function () {
-                jQuery('#review-slider').slick({
-                    dots: true,
-                    infinite: false,
-                    adaptiveHeight: true,
-                    slidesToShow: 4,
-                    slidesToScroll: 1,
-                    responsive: [
-                        {
-                            breakpoint: 1280,
-                            settings: {
-                                slidesToShow: 3,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 768,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 480,
-                            settings: {
-                                slidesToShow: 1,
-                                slidesToScroll: 1
-                            }
-                        }
-                    ]
-                });
 
-                $('.review-background').height($('.product-reviews').outerHeight());
+                var reviewSliderTimer = setInterval(() => {
+                    if ($('#review-container .romw-list').length) {
+
+                        $('#review-container .romw-list .romw').each(function () {
+                            var html = '<li>';
+                            html += '<div class="customer-info">';
+                            html += '<div class="customer-name">' + $(this).find('.romw-author').html() + '</div>';
+                            html += '<div class="customer-rate">' + $(this).find('.romw-stars').html() + '</div>';
+                            html += '<div class="review-avatar">' + $(this).find('.romw-source-logo').html() + '</div>';
+                            html += '</div>';
+                            html += '<div class="review-content">' + $(this).find('.romw-text').html() + '</div>';
+                            html += '</li>';
+
+                            $('#review-slider').append(html);
+                        });
+
+                        $('#review-slider').slick({
+                            dots: true,
+                            infinite: false,
+                            adaptiveHeight: true,
+                            slidesToShow: 4,
+                            slidesToScroll: 1,
+                            responsive: [
+                                {
+                                    breakpoint: 1280,
+                                    settings: {
+                                        slidesToShow: 3,
+                                        slidesToScroll: 1
+                                    }
+                                },
+                                {
+                                    breakpoint: 768,
+                                    settings: {
+                                        slidesToShow: 2,
+                                        slidesToScroll: 1
+                                    }
+                                },
+                                {
+                                    breakpoint: 480,
+                                    settings: {
+                                        slidesToShow: 1,
+                                        slidesToScroll: 1
+                                    }
+                                }
+                            ]
+                        });
+
+                        $('.review-background').height($('.product-reviews').outerHeight());
+
+                        clearInterval(reviewSliderTimer);
+                    }
+                }, 500);
+
+
             });
         });
     });
