@@ -116,6 +116,10 @@
                         font-size: 10px;
                     }
                 }
+
+                .slick-slide img {
+                    width: 100%;
+                }
             }
 
             .product-description {
@@ -903,10 +907,6 @@
                     }
                 }
             }
-        }
-
-        .product-delivery {
-            padding: 100 * @v3-base-desktop-vw 0;
         }
     }
 
@@ -1764,6 +1764,214 @@
         }
     }
 
+    .product-delivery {
+        padding: 100 * @v3-base-desktop-vw 0;
+        display: flex;
+
+        .package-image {
+            width: 50%;
+            background: url(../images/v3/package.png) center center no-repeat;
+        }
+
+        .delivery-info {
+            width: 50%;
+            text-align: center;
+
+            h2 {
+                font-family: @v3-font-family-proxima-rg;
+                font-weight: bold;
+                font-size: 33em;
+                line-height: 70 * @v3-base-desktop-vw;
+                text-transform: uppercase;
+                text-align: center;
+                color: #000;
+                padding-bottom: 20 * @v3-base-desktop-vw;
+                margin-bottom: 40 * @v3-base-desktop-vw;
+                background: url(../images/v3/i_sharp_shape.png) center bottom no-repeat;
+            }
+
+            p {
+                font-family: "Avenir LT Std";
+                font-size: 20em;
+                line-height: 32 * @v3-base-desktop-vw;
+                max-width: 630px;
+                margin: 0 auto;
+                color: #585f66;
+            }
+
+            .date-title {
+                font-family: "Avenir LT Std";
+                font-size: 28em;
+                line-height: 36 * @v3-base-desktop-vw;
+                font-weight: 100;
+                color: #000;
+                margin: 30px 0;
+            }
+
+            .contactus-link {
+                a {
+                    font-family: @v3-font-family-proxima-rg;
+                    font-size: 17em;
+                    line-height: 60 * @v3-base-desktop-vw;
+                    padding: 0 35 * @v3-base-desktop-vw;
+                    text-transform: uppercase;
+                    color: #fff;
+                    background: #000;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    .product-footer {
+        padding: 100 * @v3-base-desktop-vw 0 150 * @v3-base-desktop-vw;
+
+        .product-footer-background {
+            position: absolute;
+            width: 100%;
+            background: #f6f6f6;
+            left: 0;
+            margin-top: -100 * @v3-base-desktop-vw;
+        }
+
+        .contact-form-expert-mini-wrap {
+            max-width: 976px;
+            margin: 0 auto;
+            position: relative;
+
+            h3 {
+                font-family: @v3-font-family-proxima-rg;
+                font-weight: bold;
+                font-size: 33em;
+                line-height: 70 * @v3-base-desktop-vw;
+                text-transform: uppercase;
+                text-align: center;
+                color: #000;
+                padding-bottom: 20 * @v3-base-desktop-vw;
+                margin-bottom: 40 * @v3-base-desktop-vw;
+                background: url(../images/v3/i_sharp_shape.png) center bottom no-repeat;
+            }
+
+            .fields {
+                display: flex;
+
+                .half {
+                    width: 50%;
+
+                    &.left {
+                        padding-right: 15px;
+                    }
+
+                    &.right {
+                        padding-left: 15px;
+                    }
+                }
+            }
+
+            input {
+                border: 0 none;
+                background: transparent;
+                font-family: "Avenir LT Std";
+                font-size: 19em;
+                line-height: 30px;
+                height: 60px;
+                padding: 15px 0;
+                border-bottom: 1px solid #dadada;
+
+                &::placeholder {
+                    color: #8b8f93;
+                }
+
+                &:focus {
+                    outline: none;
+                    -webkit-appearance:none; box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none;                    
+                }
+            }
+
+            textarea {
+                border: 0 none;
+                background: transparent;
+                font-family: "Avenir LT Std";
+                font-size: 19em;
+                line-height: 30px;
+                margin-top: 15px;
+                height: 130px;
+                padding: 15px 0;
+                border-bottom: 1px solid #dadada;
+
+                &::placeholder {
+                    color: #8b8f93;
+                }
+
+                &:focus {
+                    outline: none;
+                    -webkit-appearance:none; box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none;                    
+                }
+            }
+
+            .buttons-set {
+                margin-top: 40px;
+                display: flex;
+                justify-content: space-between;
+
+                button.button {
+                    font-family: @v3-font-family-proxima-rg;
+                    font-size: 17em;
+                    font-weight: normal;
+                    line-height: 60 * @v3-base-desktop-vw;
+                    padding: 0 35 * @v3-base-desktop-vw;
+                    text-transform: uppercase;
+                    color: #fff;
+                    background: #000;
+                    display: inline-block;
+                    border-radius: 0;
+                }
+
+                & > div {
+                    line-height: 60 * @v3-base-desktop-vw;
+                    font-family: "Avenir LT Std";
+                    font-size: 20em;
+
+                    b {
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+
+    .notice {
+        //font-family: 'Avenir LT Std';
+        //font-weight: 300;
+        //font-size: 20em;
+        //line-height: 30 * @v3-base-desktop-vw;
+        padding: 30 * @v3-base-desktop-vw;
+        //color: #080501;
+
+        font-family: @v3-title-font-family-rg;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+        color: #000;
+        text-align: center;
+
+        b {
+            //font-weight: normal;
+        }
+
+        @media only screen and (max-width: @v3-mobile-max-width) {
+            //line-height: 30 * @v3-base-mobile-vw;
+            padding: 30 * @v3-base-mobile-vw;
+        }
+
+        @media only screen and (max-width: 413px) {
+            //font-size: 13px;
+            //line-height: 24px;
+        }			
+    }
+
+
+
     .product-designer { padding: 0; background-color: #fff; color: #666; }
     .product-designer .designer-image { float: left; width: 30%; margin-right: 5%; }
     .product-designer .designer-image img { width: 100%; }
@@ -1787,20 +1995,6 @@
     .product-designer .designer-info .designer-links .social li.blog a { background-position: -108px top; }
     .product-designer .designer-info .designer-links .social li.blog a:hover { background-position: -108px bottom; }
 
-    .product-delivery { padding: 70px 150px 90px; background: url(../images/bkg_delivery_date.png) no-repeat; background-size: cover; color: #fff; }
-    .product-delivery .delivery-info { width: 40%; text-align: center; font-size: 14px; }
-    .product-delivery .delivery-info h2 { font: bold 24px/40px Arial; }
-    .product-delivery .delivery-info h2 span.heart { font-size: 40px; }
-    .product-delivery .delivery-info p.date-title { padding: 20px 0 0; text-transform: uppercase; }
-    .product-delivery .delivery-info .date-info { width: 60px; height: 72px; margin: 20px auto; background-color: #fff; border-radius: 3px; border:1px solid #fff; color: #666666; }
-    .product-delivery .delivery-info .date-info .month { font-size: 16px; text-transform: uppercase; line-height: 30px; }
-    .product-delivery .delivery-info .date-info .date { font-size: 30px; font-weight: bold; }
-    .product-delivery .delivery-info .contactus-link a { color: #fff; text-transform: uppercase; padding: 10px 20px 10px 50px; background: url(../images/i_delivery_contactus.png) 10px center no-repeat; border: 1px solid #fff; border-radius: 3px; display: inline-block; }
-    .product-delivery .delivery-info .contactus-link a:hover { background-color: #666; border-color: #666; }
-
-    .product-footer { padding: 20px 0; }
-    .contact-form-mini-wrap { border-right: 1px solid #cccccc; }
-    .contact-form-mini-wrap h3 { font: bold 24px/40px Arial; }
     .contact-form-mini span { line-height: 25px; display: inline-block; }
     .contact-form-mini .phone-number { padding-left: 20px; background: url(../images/i_phone.png) no-repeat; font-weight: bold; margin-left: 15px;  }
     .contact-form-mini input { width: 100%; }
