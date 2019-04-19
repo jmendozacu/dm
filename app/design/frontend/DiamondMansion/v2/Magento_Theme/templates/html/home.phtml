@@ -13,6 +13,17 @@
         </div>
     </div>
 
+    <div class="start-browsing scroll-magic">
+        <div class="content-wrapper">
+            <div class="content">
+                <div class="title text-center">Start Browsing</div>
+                <div class="categories-list">
+                    <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('homepage-start-browsing')->toHtml(); ?>
+                </div>
+            </div>
+        </div>
+    </div>    
+
     <div class="our-story scroll-magic">
         <div class="content-wrapper">
             <div class="content">
@@ -154,12 +165,6 @@
                 </ul>
                 <div class="slide-arrows"></div>
             </div>
-            <script type="text/javascript"> 
-                var review_token = 'kUWbOHrlqjW91CC78eswMVhMZ7f6kygfckz9x3ARfFMmWewYat'; 
-                var review_target = 'review-container'; 
-            </script> 
-            <script src="https://reviewsonmywebsite.com/js/embed.js?v=8" type="text/javascript"></script> 
-            <div id="review-container" style="display: none;"></div>
         </div>
     </div>
 
@@ -191,9 +196,46 @@ Los Angeles, Ca 90013</p>
         'slick',
         'scrollmagic',
         'modernizr'
-    ], function (jQuery, slick, ScrollMagic) {
-        jQuery(document).ready(function() {
-            jQuery('.slickslider .slides').slick({
+    ], function ($, slick, ScrollMagic) {
+        $(document).ready(function() {
+            $('.categories-list ul').slick({
+                dots: true,
+                infinite: false,
+                slidesToShow: 3.5,
+                slidesToScroll: 1,
+                responsive: [
+                    {
+                        breakpoint: 1280,
+                        settings: {
+                            slidesToShow: 3.5,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2.5,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 2.5,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 414,
+                        settings: {
+                            slidesToShow: 1.5,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+
+            $('.slickslider .slides').slick({
                 dots: false,
                 infinite: false,
                 slidesToShow: 4.5,
@@ -230,15 +272,15 @@ Los Angeles, Ca 90013</p>
                 ]
             });
 
-            var slickHeight = jQuery('li.slick-slide').width();
-            jQuery('li.slick-slide a').height(slickHeight);
+            var slickHeight = $('li.slick-slide').width();
+            $('li.slick-slide a').height(slickHeight);
 
-            jQuery(window).on('resize', function () {
-                var slickHeight = jQuery('li.slick-slide').width();
-                jQuery('li.slick-slide a').height(slickHeight);
+            $(window).on('resize', function () {
+                var slickHeight = $('li.slick-slide').width();
+                $('li.slick-slide a').height(slickHeight);
             });
 
-            jQuery('.steps').slick({
+            $('.steps').slick({
                 dots: true,
                 infinite: false,
                 slidesToShow: 5,
@@ -261,23 +303,23 @@ Los Angeles, Ca 90013</p>
                 ]
             });
 
-            var reviewSliderTimer = setInterval(() => {
-                if (jQuery('#review-container .romw-list').length) {
-
-                    jQuery('#review-container .romw-list .romw').each(function () {
+            $.get('https://reviewsonmywebsite.com/embed/kUWbOHrlqjW91CC78eswMVhMZ7f6kygfckz9x3ARfFMmWewYat?v=2', function (data) {
+                var $reviews = $(data.html).find('.romw');
+                if ($reviews.length) {
+                    $reviews.each(function () {
                         var html = '<li>';
                         html += '<div class="review-wrapper">';
-                        html += '<div class="review-avatar">' + jQuery(this).find('.romw-author-photo').html() + '</div>';
+                        html += '<div class="review-avatar">' + $(this).find('.romw-author-photo').html() + '</div>';
                         html += '<div class="review-info">';
-                        html += '<div class="review-content">' + jQuery(this).find('.romw-text').html() + '</div>';
-                        html += '<div class="customer-name">' + jQuery(this).find('.romw-author').html() + '</div>';
-                        html += '<div class="customer-rate">' + jQuery(this).find('.romw-stars').html() + '</div>';
+                        html += '<div class="review-content">' + $(this).find('.romw-text').html() + '</div>';
+                        html += '<div class="customer-name">' + $(this).find('.romw-author').html() + '</div>';
+                        html += '<div class="customer-rate">' + $(this).find('.romw-stars').html() + '</div>';
                         html += '</div></div></li>';
 
-                        jQuery('#review-slider').append(html);
+                        $('#review-slider').append(html);
                     });
 
-                    jQuery('.review-slider').slick({
+                    $('.review-slider').slick({
                         dots: false,
                         infinite: true,
                         slidesToShow: 2,
@@ -294,15 +336,28 @@ Los Angeles, Ca 90013</p>
                         ]
                     });
 
-                    clearInterval(reviewSliderTimer);
+                    var adjustReviewListHeight = function () {
+                        var height = 0;
+                        $('.review-slider .slick-active').each(function () {
+                            height = Math.max(height, $(this).outerHeight());
+                        });
+
+                        $('.review-slider').height(height);
+                    };
+
+                    adjustReviewListHeight();
+
+                    $('.review-slider').on('afterChange', function(event, slick, currentSlide, nextSlide){
+                        adjustReviewListHeight();
+                    });
                 }
-            }, 500);
+            });
 
             // Init ScrollMagic
             var controller = new ScrollMagic.Controller();
 
             // get all break up sections
-            var breakSections = [".banner", ".our-story", ".popular-collections", '.guarantee', '.section-ipc'/*, '.instagram'*/, '.section-steps', '.testimonials', '.visit-us'];
+            var breakSections = [".banner", ".start-browsing", ".our-story", ".popular-collections", '.guarantee', '.section-ipc'/*, '.instagram'*/, '.section-steps', '.testimonials', '.visit-us'];
 
             // Enable ScrollMagic only for desktop, disable on touch and mobile devices
             if (!Modernizr.touch) {

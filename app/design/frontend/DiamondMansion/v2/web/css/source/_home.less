@@ -1,4 +1,8 @@
 .cms-home {
+	.block-static-block.widget {
+		margin-bottom: 0;
+	}
+	
 	.page-main {
 		width: 100%;
 		margin-left: 0;
@@ -296,6 +300,63 @@
 					}
 				}
 	        }
+		}
+
+		.start-browsing {
+			padding: 140 * @v3-base-desktop-vw 0;
+			background: #f3f3f3;
+
+			.content {
+				.title {
+					font-family: @v3-title-font-family;
+					//font-size: 33em;
+					//font-weight: bold;
+					//line-height: 40 * @v3-base-desktop-vw;
+					padding: 30 * @v3-base-desktop-vw;
+					//text-transform: uppercase;
+					margin-bottom: 40 * @v3-base-desktop-vw;
+					background: url(../images/v3/i_sharp_shape.png) left bottom no-repeat;
+
+					font-size: 28px;
+					font-weight: 700;
+					line-height: 39px;
+					text-transform: capitalize;
+					color: black;
+
+					&.text-center {
+						background-position: center bottom;
+					}
+				}
+
+				li {
+					padding: 0 15px;
+					h3 {
+						padding-top: 10px;
+						margin-bottom: 10px;
+						font-family: @v3-title-font-family;
+						font-size: 22px;
+						font-weight: 700;
+						line-height: 30px;
+						text-transform: capitalize;
+						color: black;
+						text-align: center;
+					}
+
+					p {
+						margin-bottom: 15px;
+						font-family: @v3-title-font-family-rg;
+						font-size: 14px;
+						font-weight: 400;
+						line-height: 22px;
+						color: black;
+						text-align: center;
+					}
+				}
+
+				.slick-dots li button:before {
+					font-size: 10px;
+				}
+			}
 		}
 
 		.our-story {
@@ -640,7 +701,7 @@
 						margin-bottom: 20 * @v3-base-desktop-vw;
 
 						font-family: @v3-title-font-family-rg;
-						font-size: 22px;
+						font-size: 18px;
 						font-weight: 400;
 						line-height: 35px;
 
@@ -1349,7 +1410,10 @@
 
 									i {
 										color: #f5a82e;
-										font-size: 17px;
+										font: normal normal normal 17px/1 FontAwesome;
+										&:before {
+											content: '\f005';
+										}
 									}
 								}
 							}

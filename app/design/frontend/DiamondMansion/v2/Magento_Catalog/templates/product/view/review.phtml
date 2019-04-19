@@ -5,12 +5,6 @@
         <div class="block-content">
             <ul id="review-slider">
             </ul>
-            <script type="text/javascript"> 
-                var review_token = 'kUWbOHrlqjW91CC78eswMVhMZ7f6kygfckz9x3ARfFMmWewYat'; 
-                var review_target = 'review-container'; 
-            </script> 
-            <script src="https://reviewsonmywebsite.com/js/embed.js?v=8" type="text/javascript"></script> 
-            <div id="review-container" style="display: none;"></div>
         </div>
     </div>
 </div>
@@ -19,10 +13,10 @@
         $(function () {
             require(['slick'], function () {
 
-                var reviewSliderTimer = setInterval(() => {
-                    if ($('#review-container .romw-list').length) {
-
-                        $('#review-container .romw-list .romw').each(function () {
+                $.get('https://reviewsonmywebsite.com/embed/kUWbOHrlqjW91CC78eswMVhMZ7f6kygfckz9x3ARfFMmWewYat?v=2', function (data) {
+                    var $reviews = $(data.html).find('.romw');
+                    if ($reviews.length) {
+                        $reviews.each(function () {
                             var html = '<li>';
                             html += '<div class="customer-info">';
                             html += '<div class="customer-name">' + $(this).find('.romw-author').html() + '</div>';
@@ -66,12 +60,23 @@
                             ]
                         });
 
-                        $('.review-background').height($('.product-reviews').outerHeight());
+                        var adjustReviewListHeight = function () {
+                            var height = 0;
+                            jQuery('#review-slider .slick-active').each(function () {
+                                height = Math.max(height, jQuery(this).outerHeight());
+                            });
 
-                        clearInterval(reviewSliderTimer);
+                            jQuery('#review-slider').height(height);
+                            $('.review-background').height($('.product-reviews').outerHeight());
+                        };
+
+                        adjustReviewListHeight();
+
+                        jQuery('#review-slider').on('afterChange', function(event, slick, currentSlide, nextSlide){
+                            adjustReviewListHeight();
+                        });
                     }
-                }, 500);
-
+                });
 
             });
         });
