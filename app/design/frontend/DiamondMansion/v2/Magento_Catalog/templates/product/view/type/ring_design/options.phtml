@@ -446,11 +446,11 @@
             <?php $facebookAppId = $this->getHelper()->getCustomValue('facebook_app_id'); ?>
             <div class="share-links">
                 <!-- email -->
-                <div class="email">                
-                    <a href="#"><i class="fa fa-envelope-open-o"></i>Send to friend<span class='st_email' ></span></a>
+                <div data-network="email" class="email st-custom-button">                
+                    <a href="javascript:void" data-network="email"><i class="fa fa-envelope-open-o"></i>Send to friend</a>
                 </div>
                 <!-- email -->
-                <script type="text/javascript"  src="http://w.sharethis.com/button/buttons.js#publisher=ur-3d81a43c-ac71-af04-a968-eedf36db1166&amp;type=website&amp;onmouseover=false"></script>
+                <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5cb9dcafc7f6b60012eed764&product=custom-share-buttons"></script>
 
 
                 <div id="fb-root"></div>
