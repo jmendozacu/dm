@@ -24,7 +24,7 @@ $facebookAppId = $this->getHelper()->getCustomValue('facebook_app_id');
         </div>
         <div class="pinterest">
             <!-- Pin it -->
-            <a target="_blank" href="<?php echo "http://pinterest.com/pin/create/button/?media=".$_product->getImage()."&url=".str_replace("?","",$this->getHelper()->getStoreManager()->getStore()->getCurrentUrl(false))."&description=".substr(str_replace(array("'", "\"","\r\n"), "", strip_tags($_product->getShortDescription())), 0, 399);;?>" class="pin-it-button" count-layout="horizontal" width="36" height="40"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It"  /></a>
+            <a target="_blank" href="<?php echo "https://pinterest.com/pin/create/button/?media=".$_product->getImage()."&url=".str_replace("?","",$this->getHelper()->getStoreManager()->getStore()->getCurrentUrl(false))."&description=".substr(str_replace(array("'", "\"","\r\n"), "", strip_tags($_product->getShortDescription())), 0, 399);;?>" class="pin-it-button" count-layout="horizontal" width="36" height="40"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It"  /></a>
             <!-- Pin it -->
         </div>
     </div>
@@ -48,8 +48,8 @@ $facebookAppId = $this->getHelper()->getCustomValue('facebook_app_id');
                 url,'popUpWindow','height=400,width=650,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=yes');
         }
     </script>
-    <!--<script type="text/javascript" src="http://static.ak.fbcdn.net/connect.php/js/FB.Share"></script>-->
-    <!--<script type="text/javascript"  src="http://w.sharethis.com/button/buttons.js#publisher=ur-3d81a43c-ac71-af04-a968-eedf36db1166&amp;type=website&amp;onmouseover=false"></script>-->
+    <!--<script type="text/javascript" src="https://static.ak.fbcdn.net/connect.php/js/FB.Share"></script>-->
+    <!--<script type="text/javascript"  src="https://w.sharethis.com/button/buttons.js#publisher=ur-3d81a43c-ac71-af04-a968-eedf36db1166&amp;type=website&amp;onmouseover=false"></script>-->
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     <script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
     <div class="clear"></div>
