@@ -356,6 +356,24 @@
 				.slick-dots li button:before {
 					font-size: 10px;
 				}
+
+				@media only screen and (max-width: @v3-mobile-max-width) {
+					.title {
+						background-position: center bottom;
+						//line-height: 40 * @v3-base-mobile-vw;
+						padding: 0 0 30 * @v3-base-mobile-vw;
+						margin-bottom: 50 * @v3-base-mobile-vw;
+	
+					}
+
+					li {
+						padding: 0 3px;
+					}
+	
+					.slick-dots {
+						display: none !important;
+					}
+				}
 			}
 		}
 
