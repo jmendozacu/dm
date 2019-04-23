@@ -17,6 +17,10 @@
         <div class="content-wrapper">
             <div class="content">
                 <div class="title text-center">Start Browsing</div>
+                <div class="categories-slider-nav">
+                    <a class="nav-prev" href="javascript:void(0)"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                    <a class="nav-next" href="javascript:void(0)"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                </div>
                 <div class="categories-list">
                     <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('homepage-start-browsing')->toHtml(); ?>
                 </div>
@@ -49,46 +53,13 @@
     <div class="popular-collections scroll-magic">
         <div class="content-wrapper">
             <div class="content">
-                <div class="title text-center">Popular Collections</div>
-                <div class="row">
-                    <div class="col left">
-                        <div class="row top desktop-only">
-                            <a href="/rings/engagement/rose-gold/">
-                                <img src="<?php echo $this->getViewFileUrl("images/v3/home/collection-1.jpg") ?>" alt=""/>
-                            </a>
-                        </div>
-                        <div class="row">
-                            <div class="col left">
-                                <a href="/rings/engagement/bridal-set/">
-                                    <img src="<?php echo $this->getViewFileUrl("images/v3/home/collection-2.jpg") ?>" alt=""/>
-                                </a>
-                            </div>
-                            <div class="col right">
-                                <a href="/rings/engagement/three-stone/">
-                                    <img src="<?php echo $this->getViewFileUrl("images/v3/home/collection-3.jpg") ?>" alt=""/>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col right">
-                        <div class="row">
-                            <div class="col left">
-                                <a href="/rings/engagement/">
-                                    <img src="<?php echo $this->getViewFileUrl("images/v3/home/collection-4.jpg") ?>" alt=""/>
-                                </a>
-                            </div>
-                            <div class="col right">
-                                <a href="/rings/engagement/">
-                                    <img src="<?php echo $this->getViewFileUrl("images/v3/home/collection-5.jpg") ?>" alt=""/>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="row bottom desktop-only">
-                            <a href="/rings/engagement/">
-                                <img src="<?php echo $this->getViewFileUrl("images/v3/home/collection-6.jpg") ?>" alt=""/>
-                            </a>
-                        </div>
-                    </div>
+                <div class="title text-center">Our Favorites</div>
+                <div class="popular-items-slider-nav">
+                    <a class="nav-prev" href="javascript:void(0)"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                    <a class="nav-next" href="javascript:void(0)"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                </div>
+                <div class="popular-items-list">
+                    <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('homepage-popular-collection')->toHtml(); ?>
                 </div>
             </div>
         </div>
@@ -199,16 +170,19 @@ Los Angeles, Ca 90013</p>
     ], function ($, slick, ScrollMagic) {
         $(document).ready(function() {
             $('.categories-list ul').slick({
-                dots: true,
+                dots: false,
                 infinite: false,
-                slidesToShow: 3.5,
-                slidesToScroll: 1,
+                slidesToShow: 3.7,
+                slidesToScroll: 3,
+                arrows: true,
+                prevArrow: '.categories-slider-nav a.nav-prev',
+                nextArrow: '.categories-slider-nav a.nav-next',
                 responsive: [
                     {
                         breakpoint: 1280,
                         settings: {
-                            slidesToShow: 3.5,
-                            slidesToScroll: 1
+                            slidesToShow: 2.5,
+                            slidesToScroll: 2
                         }
                     },
                     {
@@ -220,6 +194,61 @@ Los Angeles, Ca 90013</p>
                     }
                 ]
             });
+
+            $('.categories-list ul').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+                if ($(window).width() <= 1280) {
+                    return;
+                }
+                var vw = $(window).width() / 1970;
+                if (nextSlide == 0) {
+                    $('.slick-track').css('marginLeft', 170 * vw);
+                } else if (nextSlide >= slick.slideCount - 3) {
+                    $('.slick-track').css('marginLeft', -170 * vw);
+                } else {
+                    $('.slick-track').css('marginLeft', 0);
+                }
+            });
+
+            $('.popular-items-list ul').slick({
+                dots: false,
+                infinite: false,
+                slidesToShow: 3.7,
+                slidesToScroll: 3,
+                arrows: true,
+                prevArrow: '.popular-items-slider-nav a.nav-prev',
+                nextArrow: '.popular-items-slider-nav a.nav-next',
+                responsive: [
+                    {
+                        breakpoint: 1280,
+                        settings: {
+                            slidesToShow: 2.5,
+                            slidesToScroll: 2
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1.5,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+
+            $('.popular-items-list ul').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+                if ($(window).width() <= 1280) {
+                    return;
+                }
+                var vw = $(window).width() / 1970;
+                if (nextSlide == 0) {
+                    $('.slick-track').css('marginLeft', 170 * vw);
+                } else if (nextSlide >= slick.slideCount - 3) {
+                    $('.slick-track').css('marginLeft', -170 * vw);
+                } else {
+                    $('.slick-track').css('marginLeft', 0);
+                }
+            });
+
 
             $('.slickslider .slides').slick({
                 dots: false,

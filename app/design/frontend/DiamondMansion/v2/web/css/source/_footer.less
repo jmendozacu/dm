@@ -55,12 +55,12 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
             padding: 40 * @v3-base-desktop-vw 0;
 
             .title {
-                font-family: 'Proxima Nova Lt';
-                font-size: 14em;
-                font-weight: 600;
-                line-height: 14 * @v3-base-desktop-vw;
-                margin-bottom: 18 * @v3-base-desktop-vw;
-                text-transform: uppercase;                
+                font-family: @v3-title-font-family;
+                font-size: 14px;
+                font-weight: 700;
+                line-height: 22px;
+                margin-bottom: 15px;
+                text-transform: capitalize;
             }
 
             ul {
@@ -69,15 +69,15 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
                     width: 100%;
                     margin: 0;
                     padding: 0;
-                    font-family: 'Avenir LT Std';
-                    font-weight: 300;
-                    font-size: 14em;
-                    line-height: 14 * @v3-base-desktop-vw;
-                    margin-bottom: 12 * @v3-base-desktop-vw;
+                    font-family: @v3-title-font-family-rg;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 22px;
+                    margin-bottom: 5px;
 
                     &, a {
                         vertical-align: middle;
-                        color: #080501;
+                        color: #767676;
                     }
                 }
             }
@@ -104,21 +104,21 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
             position: relative;
 
             .form-subscribe-header label {
-                font-family: 'Avenir LT Std';
-                font-weight: 300;
-                font-size: 14em;
-                line-height: 14 * @v3-base-desktop-vw;
-                margin-bottom: 12 * @v3-base-desktop-vw;
+                font-family: @v3-title-font-family-rg;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 22px;
+                margin-bottom: 10px;
                 display: block;
             }
 
             input#newsletter {
-                font-family: 'Avenir LT Std';
-                font-weight: 300;
-                font-size: 14em;
-                line-height: 20 * @v3-base-desktop-vw;
-                padding: 10 * @v3-base-desktop-vw 40 * @v3-base-desktop-vw 10 * @v3-base-desktop-vw 20 * @v3-base-desktop-vw;
-                height: 40 * @v3-base-desktop-vw;
+                font-family: @v3-title-font-family-rg;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 22px;
+                padding: 10px 40px 10px 20px;
+                height: 40px;
 
                 color: #080501;
                 border-color: #080501;
@@ -127,6 +127,10 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
                     outline: none;
                     box-shadow: none;
                 }
+            }
+
+            .actions {
+                position: relative;
             }
 
             button.button {
@@ -145,18 +149,18 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
                     -ms-transform: rotate(-45deg);
                     -o-transform: rotate(-45deg);
                     transform: rotate(-45deg);    
-                    margin-left: 15 * @v3-base-desktop-vw;
+                    margin-left: 15px;
                 }
 
-                width: 40 * @v3-base-desktop-vw;
-                height: 40 * @v3-base-desktop-vw;
-                line-height: 40 * @v3-base-desktop-vw;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
                 text-align: center;
-                margin-top: -40 * @v3-base-desktop-vw;
+                margin-top: -40px;
 
-                font-family: 'Avenir LT Std';
-                font-weight: 300;
-                font-size: 13em;
+                font-family: @v3-title-font-family-rg;
+                font-weight: 400;
+                font-size: 13px;
 
                 color: #080501;
 
@@ -173,9 +177,9 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
             margin: 0 auto;
             padding: 0 30 * @v3-base-desktop-vw;
 
-            font-family: 'Avenir LT Std';
-            font-weight: 300;
-            font-size: 14em !important;
+            font-family: @v3-title-font-family-rg;
+            font-weight: 400;
+            font-size: 14px !important;
             line-height: 32px;
             padding: 27px;
 
@@ -228,51 +232,41 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
 
             & > div {
                 .title {
-                    font-size: 20em;
-                    line-height: 30 * @v3-base-mobile-vw;
-                    padding-bottom: 20 * @v3-base-mobile-vw;
+                    //font-size: 20em;
+                    //line-height: 30 * @v3-base-mobile-vw;
+                    //padding-bottom: 20 * @v3-base-mobile-vw;
                 }
 
                 ul {
                     li {
-                        font-size: 17em;
-                        line-height: 20 * @v3-base-mobile-vw;
-                        margin-bottom: 12 * @v3-base-mobile-vw;
+                        //font-size: 17em;
+                        //line-height: 20 * @v3-base-mobile-vw;
+                        //margin-bottom: 12 * @v3-base-mobile-vw;
                     }
                 }
             }
 
-            .help,
-            .shop,
-            .company,
-            .visit-us,
-            .community {
-                width: auto;
-                max-width: 500 * @v3-base-mobile-vw;
-                margin: 0 auto;
-            }
-
             .community {
                 .form-subscribe-header label {
-                    font-size: 17em;
-                    line-height: 20 * @v3-base-mobile-vw;
-                    margin-bottom: 32 * @v3-base-mobile-vw;
+                    //font-size: 17em;
+                    //line-height: 20 * @v3-base-mobile-vw;
+                    //margin-bottom: 32 * @v3-base-mobile-vw;
                 }
 
                 input#newsletter {
-                    line-height: 20 * @v3-base-mobile-vw;
-                    padding: 10 * @v3-base-mobile-vw 40 * @v3-base-mobile-vw 10 * @v3-base-mobile-vw 20 * @v3-base-mobile-vw;
-                    height: 40 * @v3-base-mobile-vw;
+                    //line-height: 20 * @v3-base-mobile-vw;
+                    //padding: 10 * @v3-base-mobile-vw 40 * @v3-base-mobile-vw 10 * @v3-base-mobile-vw 20 * @v3-base-mobile-vw;
+                    //height: 40 * @v3-base-mobile-vw;
                 }
 
                 button.button {
-                    width: 40 * @v3-base-mobile-vw;
-                    height: 40 * @v3-base-mobile-vw;
-                    line-height: 40 * @v3-base-mobile-vw;
-                    margin-top: -40 * @v3-base-mobile-vw;
+                    width: 40px;
+                    height: 40px;
+                    line-height: 40px;
+                    margin-top: -40px;
 
                     span.arrow {
-                        margin-left: 15 * @v3-base-mobile-vw;
+                        margin-left: 15px;
                     }
                 }
             }
@@ -281,8 +275,8 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
 
         .footer-bottom-wrapper {
             .content {
-                padding: 20 * @v3-base-mobile-vw 0;
-                line-height: 50 * @v3-base-mobile-vw;
+                padding: 20px 0;
+                line-height: 50px;
 
                 & > div {
                     width: 100% !important;
@@ -290,17 +284,73 @@ ul.social-links li a.youtube:hover { background-position: -128px bottom; }
                 }
 
                 .copyright {
-                    line-height: 30 * @v3-base-mobile-vw;
+                    line-height: 30px;
                 }
 
                 div.social-links {
                     text-align: center;
 
                     ul.social-links {
-                        padding: 15 * @v3-base-mobile-vw 0;
+                        padding: 15px 0;
                     }
                 }
             }
         }
+    }
+
+    @media only screen and (min-width: 481px) and (max-width: @v3-mobile-max-width) {
+        .footer-top-wrapper {
+            .help,
+            .shop,
+            .company,
+            .visit-us {
+                width: 50%;
+                float: left;
+                text-align: left;
+            }
+
+            .community {
+                clear: both;
+                width: 100%;
+                max-width: 500 * @v3-base-mobile-vw;
+                margin: 0 auto;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 480px) {
+        .footer-top-wrapper {
+            margin: 0;
+            padding: 30px 0 0;
+            max-width: 100%;
+
+            .help,
+            .shop,
+            .company,
+            .visit-us,
+            .community {
+                text-align: left;
+                width: auto;
+                margin: 0 auto 30px;
+                padding: 0 30px 30px;
+
+                border-bottom: 1px solid #e6e6e6;
+            }
+
+            .community {
+                border-bottom: 0 none;
+            }
+        }
+
+        .footer-bottom-wrapper .content .copyright span {
+            width: 250px;
+            display: inline-block;
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .footer.content {
+        padding: 0;
     }
 }
