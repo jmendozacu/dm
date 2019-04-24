@@ -5,9 +5,7 @@
             <img src="<?php echo $this->getViewFileUrl("images/v3/home/banner-mobile.jpg") ?>" class="mobile-only" alt="" width="100%"/>
             <div class="content">
                 <div class="spec">
-                    <p class="h1">Hand Crafted Engagement Rings Customized by You</p>
-                    <p class="h2">Start customizing by choosing from 101 unique engagement ring designs</p>
-                    <a class="btn-link" href="/rings/engagement/">Shop Engagement Rings&nbsp;<i class="dfd-icon-right_6"></i></a>
+                    <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('homepage-banner')->toHtml(); ?>
                 </div>
             </div>
         </div>
@@ -34,12 +32,7 @@
                 <div class="col left">
                     <div class="title">Be Brilliant. In Every Way</div>
                     <div class="title mobile">Be Brilliant.<br/>In Every Way</div>
-                    <p class="h1">Hand-selected stones:</p>
-                    <p class="description">The 4C’s are only the beginning; our jewelers search the world for your perfect stone. No matter the size, we can find you a stone with a beautiful, brilliant luster.</p>
-                    <p class="h1">Customized perfection:</p>
-                    <p class="description">We work with you throughout the process and help you personalize every aspect. Get exactly what you want.</p>
-                    <p class="h1">Expert craftsmanship: </p>
-                    <p class="description">Our jewelers spend 80+ hours handcrafting each ring right here in Los Angeles. Our rings are known for fine detailed work.</p>
+                    <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('homepage-our-story')->toHtml(); ?>
                     <img class="mobile-only" src="<?php echo $this->getViewFileUrl("images/v3/home/our-story-mobile.jpg") ?>" alt=""/><br/>
                     <a class="btn-link-default" href="/history/">Our Story</a>
                 </div>
@@ -73,16 +66,11 @@
                 </div>
                 <div class="col">
                     <div class="title">Lifetime Satisfaction<br/>Guaranteed</div>
-                    <ul>
-                        <li><a href="/customer-service/">45 Days Return</a></li>
-                        <li><a href="/customer-service/?sel_cms=2">Lifetime Warranty</a></li>
-                        <li><a href="/customer-service/?sel_cms=2">Lifetime Upgrade</a></li>
-                    </ul>
-                    <a class="btn-link-default" href="/rings/engagement/">Get Started</a>
+                    <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('homepage-guarantee')->toHtml(); ?>
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 
     <div class="section-ipc scroll-magic">
         <div class="content-wrapper">
@@ -90,8 +78,7 @@
                 <img src="<?php echo $this->getViewFileUrl("images/v3/home/section-ipc.jpg") ?>" alt=""/>
                 <div class="text-block text-center">
                     <div class="title text-center">Hand Crafted In Los Angeles</div>
-                    <p class="description">High-quality jewelry have long been defined by precise diamond setting and craftsmanship. Each ring requires atleast 80 hours of total labor. What you get in return is flawless craftsmanship that lasts a lifetime. Our rings are known for intricate details and stability. And we are proud of it!</p>
-                    <a class="btn-link-default" href="/rings/engagement/">Our Jewelers</a>
+                    <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('homepage-hand-crafted')->toHtml(); ?>
                 </div>
             </div>
         </div>
@@ -116,14 +103,7 @@
         <div class="content-wrapper">
             <div class="content text-center">
                 <div class="title text-center">Design your dream ring your way<br/><sub>Custom Design Services</sub></div>
-                <div class="steps">
-                    <div class="step"><div class="number"><span>1</span></div>You describe your dream ring.</div>
-                    <div class="step"><div class="number"><span>2</span></div>We search the world for the right stone</div>
-                    <div class="step"><div class="number"><span>3</span></div>We design your customized ring</div>
-                    <div class="step"><div class="number"><span>4</span></div>We spend over 80 hours handcrafting it</div>
-                    <div class="step"><div class="number"><span>5</span></div>You enjoy a brilliant masterpiece</div>
-                </div>
-                <a class="btn-link-default" href="/rings/engagement/">Design My Ring</a>
+                <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('homepage-design-steps')->toHtml(); ?>
             </div>
         </div>
     </div>    
@@ -145,9 +125,7 @@
                 <div class="col-5">
                     <img class="mobile-only" src="<?php echo $this->getViewFileUrl("images/v3/home/visitus.jpg") ?>" alt=""/>
                     <div class="title">Visit Us In Los Angeles</div>
-                    <p class="description">Although we ship our jewelry worldwide, we always enjoy meeting our customers in person.<br/>Make an appointment online or call us at <strong>1-800-518-0240</strong> to schedule a personalized visit  with a jewelry specialist.<br/><br/>Diamond Mansion. 550 S. Hill St. #710<br/>
-Los Angeles, Ca 90013</p>
-                    <a class="btn-link-default" href="/rings/engagement/">Schedule My Appointment</a>
+                    <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('homepage-visit-us')->toHtml(); ?>
                 </div>
                 <div class="col-7 desktop-only">
                     <img src="<?php echo $this->getViewFileUrl("images/v3/home/visitus.jpg") ?>" alt=""/>
@@ -157,7 +135,7 @@ Los Angeles, Ca 90013</p>
     </div>
 
     <div class="notice text-center">
-        <b>Did you know</b> All our diamonds come with a Life Time Warranty & 100% Satisfaction Guarantee
+    <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('homepage-notice')->toHtml(); ?>
     </div>
 </section>
 
