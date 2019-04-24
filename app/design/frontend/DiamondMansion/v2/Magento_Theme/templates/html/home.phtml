@@ -88,6 +88,10 @@
         <div class="content-wrapper">
             <div class="content">
                 <div class="title text-center">Shop Our Instagram</div>
+                <div class="slickslider-nav">
+                    <a class="nav-prev" href="javascript:void(0)"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                    <a class="nav-next" href="javascript:void(0)"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                </div>
                 <div class="images">
                     <?php echo $this->getChildHtml('instagram-slider') ?>
                 </div>
@@ -231,8 +235,10 @@
             $('.slickslider .slides').slick({
                 dots: false,
                 infinite: false,
-                slidesToShow: 4.5,
+                slidesToShow: 4.75,
                 slidesToScroll: 1,
+                prevArrow: '.slickslider-nav a.nav-prev',
+                nextArrow: '.slickslider-nav a.nav-next',
                 responsive: [
                     {
                         breakpoint: 1280,
@@ -271,6 +277,21 @@
             $(window).on('resize', function () {
                 var slickHeight = $('li.slick-slide').width();
                 $('li.slick-slide a').height(slickHeight);
+            });
+
+            $('.slickslider .slides').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+                if ($(window).width() <= 1280) {
+                    return;
+                }
+                
+                var vw = $(window).width() / 1970;
+                if (nextSlide == 0) {
+                    $('.slick-track').css('marginLeft', 170 * vw);
+                } else if (nextSlide >= slick.slideCount - 4) {
+                    $('.slick-track').css('marginLeft', -170 * vw);
+                } else {
+                    $('.slick-track').css('marginLeft', 0);
+                }
             });
 
             $('.steps').slick({
