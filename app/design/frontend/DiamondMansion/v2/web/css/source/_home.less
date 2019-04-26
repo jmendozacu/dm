@@ -399,8 +399,7 @@
 					.title {
 						background-position: center bottom;
 						padding: 0 0 30 * @v3-base-mobile-vw;
-						margin-bottom: 50 * @v3-base-mobile-vw;
-	
+						margin-bottom: 50 * @v3-base-mobile-vw;	
 					}
 	
 					.slick-track {
@@ -421,8 +420,16 @@
 				}
 			}
 
-			@media only screen and (max-width: 768) {
+			@media only screen and (max-width: 768px) {
 				padding: 100 * @v3-base-mobile-vw 0;
+
+				.content {
+					li {
+						h3 {
+							font-size: 17px;
+						}
+					}
+				}
 			}
 		}
 
