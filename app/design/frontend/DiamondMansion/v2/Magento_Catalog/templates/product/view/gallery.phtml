@@ -15,7 +15,7 @@ $isVideoExist = false;
         ?>
         <li>
             <div class="video-wrapper">
-                <iframe src="<?= $_image['videoUrl'] ?>" width="100%"></iframe>
+                <iframe src="<?= $_image['videoUrl'] ?>&enablejsapi=1" width="100%"></iframe>
             </div>
         </li>
         <?php else: ?>
@@ -65,6 +65,7 @@ require([
             infinite: false,
             slidesToShow: 1,
             slidesToScroll: 1,
+            adaptiveHeight: true,
             responsive: [
                 {
                     breakpoint: 1280,
@@ -91,6 +92,17 @@ require([
             $(this).addClass('selected');
 
             $('#gallery').slick('slickGoTo', $(this).index());
+        });
+
+        $('#gallery .video-wrapper').on('click', function () {
+            var $video = $(this).find('iframe');
+            if ($video.hasClass('playing')) {
+                $video[0].contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');    
+                $video.removeClass('playing');
+            } else {
+                $video[0].contentWindow.postMessage('{"event":"command","func":"' + 'playVideo' + '","args":""}', '*');
+                $video.addClass('playing');
+            }
         });
 
 
