@@ -29,7 +29,9 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
             'd', 'e', 'f', 'g', 'h', 'i', 'j',
             'fancy-light', 'fancy-yellow', 'fancy-intense', 'fancy-black'
         ],
-        'main-stone-clarity' => false,
+        'main-stone-clarity' => [
+            'fl', 'vvs1', 'vvs1-vvs2', 'vvs2', 'vs1', 'vs1-vs2', 'vs2', 'si1+', 'si1', 'si1-si2', 'si2', 'aaa'
+        ],
         'main-stone-cert' => false,
         'metal' => false,
         'band' => false,
