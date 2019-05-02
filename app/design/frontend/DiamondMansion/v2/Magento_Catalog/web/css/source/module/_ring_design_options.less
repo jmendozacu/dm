@@ -65,28 +65,36 @@
         }
 
         .like-dislike-buttons-set {
-            text-align: right;
+            text-align: left;
             padding-right: 60 * @v3-base-desktop-vw;
 
             a.like {
                 font-size: 16em;
                 color: #585f66;
-                padding-left: 30px;
-                line-height: 20 * @v3-base-desktop-vw;
+                padding-left: 60px;
+                line-height: 24px;
+                display: inline-block;
+                margin-top: -230 * @v3-base-desktop-vw;
 
                 &:before {
-                    color: #585f66;;
-                    font-size: 1.2em;
-                    padding-right: 5px;
-                    vertical-align: middle;
+                    content: "";
+                    display: block;
+                    width: 24px;
+                    height: 24px;
+                    background: url(../images/v3/icons_instagram.png) no-repeat;
+                    background-size: 282px 273px;
+                    background-position: -50px -199px;
+                    margin-right: 5px;
                 }
 
                 &:after {
-                    content: ' likes';
+                    content: ' added to wishlist';
+                    vertical-align: top;
                 }
+
                 &:hover:before,
                 &.active:before {
-                    color: #ff2e2e;
+                    background-position: -25px -199px;
                 }
             }
         }
@@ -239,6 +247,9 @@
             }
 
             .options-details {
+                border-bottom: 1px solid #eaeaea;
+                padding-bottom: 10px;
+
                 .block-title {
                     font-size: 23em;
                     line-height: 60 * @v3-base-desktop-vw; 
@@ -1011,26 +1022,34 @@
         }
 
         .like-dislike-buttons-set {
-            text-align: right;
+            text-align: left;
 
             a.like {
                 //font-size: 16em;
                 color: #585f66;
-                padding-left: 30px;
                 //line-height: 20 * @v3-base-mobile-vw;
 
                 font-size: 14px;
-                line-height: 20px;
+                line-height: 24px;
 
                 &:before {
-                    color: #585f66;;
-                    font-size: 1.2em;
-                    padding-right: 5px;
-                    vertical-align: middle;
+                    content: "";
+                    display: block;
+                    width: 24px;
+                    height: 24px;
+                    background: url(../images/v3/icons_instagram.png) no-repeat;
+                    background-size: 282px 273px;
+                    background-position: -50px -199px;
+                    margin-right: 5px;
                 }
+
+                &:after {
+                    content: " added to wishlist";
+                }
+
                 &:hover:before,
                 &.active:before {
-                    color: #ff2e2e;
+                    background-position: -25px -199px;
                 }
             }
         }
@@ -1136,6 +1155,9 @@
             }
 
             .options-details {
+                border-bottom: 1px solid #eaeaea;
+                padding-bottom: 10px;
+
                 .block-title {
                     //font-size: 23em;
                     //line-height: 60 * @v3-base-mobile-vw; 
@@ -1772,7 +1794,7 @@
             .buttons-mobile {
                 margin-top: 20 * @v3-base-mobile-vw; 
                 padding-top: 60 * @v3-base-mobile-vw;
-                border-top: 1px solid #eaeaea;
+                //border-top: 1px solid #eaeaea;
 
                 .buttons {
                     margin-bottom: 40 * @v3-base-mobile-vw;
