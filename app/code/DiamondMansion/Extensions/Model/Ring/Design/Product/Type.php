@@ -18,30 +18,37 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
     ];
 
     protected $_dmOptionSortOrder = [
-        'main-stone-type',
-        'main-stone-shape',
-        'main-stone-carat',
-        'main-stone-color',
-        'main-stone-clarity',
-        'main-stone-cert',
-        'metal',
-        'band',
-        'side-stone-shape-1',
-        'side-stone-carat-1',
-        'side-stone-color-clarity-1',
-        'side-stone-shape-2',
-        'side-stone-carat-2',
-        'side-stone-color-clarity-2',
-        'side-stone-shape-3',
-        'side-stone-carat-3',
-        'side-stone-color-clarity-3',
-        'side-stone-shape-4',
-        'side-stone-carat-4',
-        'side-stone-color-clarity-4',
-        'ring-size',
-        'setting-options-stone',
-        'setting-options-size',
-        'main-stone-cut',
+        'main-stone-type' => false,
+        'main-stone-shape' => [
+            'round', 'cushion', 'oval', 'princess', 'emerald', 'radiant', 'pear', 'asscher', 'marquise', 'heart', 
+            'square-cushion', 'long-cushion', 'square-radiant', 'long-radiant'
+        ],
+        'main-stone-carat' => false,
+        'main-stone-color' => [
+            'd-e', 'e-f', 'f-g', 'g-h', 'i-j',
+            'd', 'e', 'f', 'g', 'h', 'i', 'j',
+            'fancy-light', 'fancy-yellow', 'fancy-intense', 'fancy-black'
+        ],
+        'main-stone-clarity' => false,
+        'main-stone-cert' => false,
+        'metal' => false,
+        'band' => false,
+        'side-stone-shape-1' => false,
+        'side-stone-carat-1' => false,
+        'side-stone-color-clarity-1' => false,
+        'side-stone-shape-2' => false,
+        'side-stone-carat-2' => false,
+        'side-stone-color-clarity-2' => false,
+        'side-stone-shape-3' => false,
+        'side-stone-carat-3' => false,
+        'side-stone-color-clarity-3' => false,
+        'side-stone-shape-4' => false,
+        'side-stone-carat-4' => false,
+        'side-stone-color-clarity-4' => false,
+        'ring-size' => false,
+        'setting-options-stone' => false,
+        'setting-options-size' => false,
+        'main-stone-cut' => false,
     ];
 
     public function __construct(
@@ -342,7 +349,7 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
                 if ($params["main-stone-type"] != "setting" && $group == 'setting-options-stone') {
                     continue;
                 }
-                
+
                 if (!empty($allDmOptions[$group][$param]->getSlug())) {
                     $skus[$group] = $allDmOptions[$group][$param]->getSlug();
                 }
@@ -375,7 +382,7 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
     }
 
     public function getDmOptionsSortOrder() {
-        return $this->_dmOptionSortOrder;
+        return array_keys($this->_dmOptionSortOrder);
     }
 
     /**
@@ -408,10 +415,21 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
 
     private function _sortDmOptions(&$options) {
         $newOptions = [];
-        foreach ($this->_dmOptionSortOrder as $key) {           
+        foreach ($this->_dmOptionSortOrder as $key => $codes) {
             foreach ($options as $group => $option) {
+                $newOption = [];
+                if ($codes && is_array($option)) {
+                    foreach ($codes as $code) {
+                        if (isset($option[$code])) {
+                            $newOption[$code] = $option[$code];
+                        }
+                    }
+                } else {
+                    $newOption = $option;
+                }
+
                 if ($key == $group || strpos($key, $group) !== false) {
-                    $newOptions[$group] = $option;
+                    $newOptions[$group] = $newOption;
                 }
             }
         }
