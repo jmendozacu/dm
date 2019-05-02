@@ -49,6 +49,7 @@
                         <argument name="add_base_attribute" xsi:type="string">itemprop="name"</argument>
                     </arguments>
                 </block> -->
+                <block class="DiamondMansion\Extensions\Block\Product\View\LikeDislike" name="product.info.likedislike" template="Magento_Catalog::product/view/likedislike.phtml"/>
                 <block class="Magento\Framework\View\Element\Template" name="skip_gallery_after.target" before="skip_gallery_before.wrapper" template="Magento_Theme::html/skiptarget.phtml">
                     <arguments>
                         <argument name="target_id" xsi:type="string">gallery-prev-area</argument>
@@ -63,7 +64,6 @@
                     </block>
                 </container>
                 <block class="DiamondMansion\Extensions\Block\Ring\Design\Product\Gallery" name="product.info.media.image" template="Magento_Catalog::product/view/gallery.phtml"/>
-                <block class="DiamondMansion\Extensions\Block\Product\View\LikeDislike" name="product.info.likedislike" template="Magento_Catalog::product/view/likedislike.phtml"/>
                 <block class="Magento\Catalog\Block\Product\View" name="product.info.media.description" template="Magento_Catalog::product/view/description.phtml"/>
                 <container name="skip_gallery_after.wrapper" htmlTag="div" htmlClass="action-skip-wrapper">
                     <block class="Magento\Framework\View\Element\Template" after="product.info.media.image" name="skip_gallery_after" template="Magento_Theme::html/skip.phtml">
