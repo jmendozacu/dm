@@ -102,7 +102,7 @@ require([
             if ($('.slick-current').find('iframe').length) {
                 var videoSrc = $('.slick-current').find('iframe').attr('src');
                 if (!videoSrc.includes('&autoplay=1')) {
-                    $(this).find('iframe').attr('src', videoSrc + "&autoplay=1");
+                    $('.slick-current').find('iframe').attr('src', videoSrc + "&autoplay=1");
                 }
             }
         });
