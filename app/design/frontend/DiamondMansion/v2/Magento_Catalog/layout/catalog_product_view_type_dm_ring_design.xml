@@ -43,12 +43,12 @@
         <move element="view.addto.wishlist" destination="product.ring.design.options" as="wishlist"/>
         <referenceContainer name="content">
             <container name="product.info.media" htmlTag="div" htmlClass="product media" before="-">
-                <block class="Magento\Theme\Block\Html\Title" name="page.main.title.mobile" before="-" template="Magento_Catalog::product/view/type/ring_design/title.phtml">
+                <!-- <block class="Magento\Theme\Block\Html\Title" name="page.main.title.mobile" before="-" template="Magento_Catalog::product/view/type/ring_design/title.phtml">
                     <arguments>
                         <argument name="css_class" xsi:type="string">product mobile</argument>
                         <argument name="add_base_attribute" xsi:type="string">itemprop="name"</argument>
                     </arguments>
-                </block>
+                </block> -->
                 <block class="DiamondMansion\Extensions\Block\Product\View\LikeDislike" name="product.info.likedislike" template="Magento_Catalog::product/view/likedislike.phtml"/>
                 <block class="Magento\Framework\View\Element\Template" name="skip_gallery_after.target" before="skip_gallery_before.wrapper" template="Magento_Theme::html/skiptarget.phtml">
                     <arguments>
