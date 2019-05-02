@@ -1428,17 +1428,16 @@
 
                                         &.selected {
                                             &:after {
-                                                content: "";
-                                                .nav-link-arrow();
-                                                .nav-link-arrow-dropdown();
-                                                width: 6 * @v3-base-mobile-vw;
-                                                height: 6 * @v3-base-mobile-vw;
+
+                                                content: "\f107";
+                                                display: inline-block;
                                                 color: #878787;
                                                 position: absolute;
                                                 top: 50%;
                                                 right: 0;
-                                                margin-top: -3 * @v3-base-mobile-vw;
-                                            }
+                                                font: normal normal normal 14px/1 FontAwesome;
+                                                margin-top: -7px;
+                                            }                                                
                                         }
                                     }
                                 }

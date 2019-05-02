@@ -59,9 +59,19 @@ require([
     'cloudzoom'
 ], function ($) {
     $(document).ready(function () {
+        var adjustGalleryWidth = function () {
+            if ($(window).width() < 768) {
+                var margin = ($(window).width() - $('#gallery').outerWidth()) / 2;
+                $('#gallery').css('marginLeft', -1 * margin);
+                $('#gallery').css('marginRight', -1 * margin);
+            }
+        }
+
+        adjustGalleryWidth();
 
         $('#gallery').slick({
             dots: true,
+            arrows: false,
             infinite: false,
             slidesToShow: 1,
             slidesToScroll: 1,
@@ -75,6 +85,11 @@ require([
                 }
             ]
         });
+
+        $(window).on('resize', function () {
+            adjustGalleryWidth();                        
+        });
+
 
         $('#gallery').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
             var mySlideNumber = nextSlide;
