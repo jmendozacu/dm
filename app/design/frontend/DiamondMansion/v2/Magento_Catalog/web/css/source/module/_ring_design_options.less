@@ -69,22 +69,20 @@
             padding-right: 60 * @v3-base-desktop-vw;
 
             a.like {
-                font-size: 16em;
-                color: #585f66;
-                padding-left: 60px;
-                line-height: 24px;
-                display: block;
-                margin-top: -30 * @v3-base-desktop-vw;
+                color: #909090;
+                line-height: 60 * @v3-base-desktop-vw;
 
                 &:before {
                     content: "";
-                    display: block;
+                    display: inline-block;
                     width: 24px;
                     height: 24px;
                     background: url(../images/v3/icons_instagram.png) no-repeat;
                     background-size: 282px 273px;
                     background-position: -50px -199px;
                     margin-right: 5px;
+                    margin-top: -5px;
+                    vertical-align: middle;
                 }
 
                 &:after {
@@ -1025,23 +1023,21 @@
             text-align: left;
 
             a.like {
-                display: block;
                 //font-size: 16em;
                 color: #585f66;
-                //line-height: 20 * @v3-base-mobile-vw;
-
+                line-height: 40px;
                 font-size: 14px;
-                line-height: 24px;
 
                 &:before {
                     content: "";
-                    display: block;
+                    display: inline-block;
                     width: 24px;
                     height: 24px;
                     background: url(../images/v3/icons_instagram.png) no-repeat;
                     background-size: 282px 273px;
                     background-position: -50px -199px;
                     margin-right: 5px;
+                    vertical-align: middle;
                 }
 
                 &:after {
@@ -1851,6 +1847,7 @@
                             vertical-align: middle;
                             margin-right: 10px;
                             color: #000;
+                            font-size: 22px;
                         }
                     }
 
