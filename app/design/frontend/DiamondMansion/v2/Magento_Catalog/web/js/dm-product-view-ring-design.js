@@ -25,6 +25,10 @@ define([
         function initialize() {
 
             $('td.collapsed ul').each(function () {
+                if ($(this).find('a.selected').length == 0) {
+                    $(this).find('li:first-child a').addClass('selected');
+                }
+
                 if ($(this).find('li').length == 1) {
                     $(this).addClass('only-one');
                 }
