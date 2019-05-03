@@ -131,6 +131,16 @@
                 .slick-slide img {
                     width: 100%;
                 }
+
+                img.lazy, .video-wrapper {
+                    visibility: hidden;
+                }
+
+                .slick-current {
+                    img.lazy, .video-wrapper {
+                        visibility: visible;
+                    }
+                }
             }
 
             .gallery-thumbnail {
@@ -1071,6 +1081,16 @@
 
                     button:before {
                         font-size: 10px;
+                    }
+                }
+
+                img.lazy, .video-wrapper {
+                    visibility: hidden;
+                }
+
+                .slick-current {
+                    img.lazy, .video-wrapper {
+                        visibility: visible;
                     }
                 }
 
