@@ -24,8 +24,18 @@ define([
 
         function initialize() {
 
+            $('td.collapsed ul').each(function () {
+                if ($(this).find('li').length == 1) {
+                    $(this).addClass('only-one');
+                }
+            })
+
             $('td.collapsed li').on('click', function() {
                 if ($(this).closest('tr').attr('id') == 'size-list-wrapper') {
+                    return;
+                }
+
+                if ($(this).parent().hasClass('only-one')) {
                     return;
                 }
 

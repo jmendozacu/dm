@@ -518,6 +518,11 @@
                                     }
                                 }
 
+                                &.only-one {
+                                    li a.selected:after {
+                                        display: none;
+                                    }
+                                }
                                 
                                 &.type-list {
                                     a {
@@ -1449,7 +1454,6 @@
 
                                         &.selected {
                                             &:after {
-
                                                 content: "\f107";
                                                 display: inline-block;
                                                 color: #878787;
@@ -1460,6 +1464,12 @@
                                                 margin-top: -7px;
                                             }                                                
                                         }
+                                    }
+                                }
+
+                                &.only-one {
+                                    li a.selected:after {
+                                        display: none;
                                     }
                                 }
 
@@ -2428,8 +2438,6 @@
         
         #design-ring-custom-options .custom-options-details { width: 100%; margin-left: 0; }
         #design-ring-custom-options .custom-options-details > div.options-details { border: 0 none; }
-        .block-options .option#cert-list-wrapper { margin-top: 10px; }
-        .block-options .option .cert-request { margin-right: 0; margin-top: 10px; float: left; text-align: center; }
         #more-view-ideal10-section { display: none !important; }
 
         .product-description { padding: 20px 10px; }
