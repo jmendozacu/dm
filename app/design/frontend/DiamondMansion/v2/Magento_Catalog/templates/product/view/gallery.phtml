@@ -2,6 +2,7 @@
 $jsonGallery =  $block->getGalleryImagesJson();
 $arrayJsonGallery = json_decode($jsonGallery, true);
 $isVideoExist = false;
+$videoList = [];
 ?>
 <div class="gallery-placeholder product-image">
     <div id="gallery">
@@ -14,8 +15,8 @@ $isVideoExist = false;
             }
         ?>
         <li>
-            <div class="video-wrapper">
-                <iframe id="video-<?= $index ?>" src="<?= $_image['videoUrl'] ?>" width="100%"></iframe>
+            <div class="video-wrapper" target="video-<?= $index ?>">
+                <div id="video-<?= $index ?>" src="<?= isset($videoUrlParams[1]) ? $videoUrlParams[1] : '' ?>" class="item-youtube-video"></div>
             </div>
         </li>
         <?php else: ?>
@@ -53,13 +54,52 @@ $isVideoExist = false;
     </div>
 </div>
 <script type="text/javascript">
+var tag = document.createElement('script');
+
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var videos = {};
+function onYouTubeIframeAPIReady() {
+    var elms = document.getElementsByClassName('item-youtube-video');
+    for (var i=0; i<elms.length; i++) {
+        var elmId = elms[i].getAttribute('id');
+        var elmSrc = elms[i].getAttribute('src');
+
+        var frameWidth = elms[i].parentElement.offsetWidth;
+
+        videos[elmId] = new YT.Player(elmId, {
+            width: frameWidth,
+            height: frameWidth,
+            videoId: elmSrc,
+            playerVars: {
+                'autoplay': 1, 
+                'enablejsapi': 1,
+                'controls': 1,
+                'fs': 0,
+                'rel': 0,
+                'loop': 1,
+                'modestbranding': 1
+            },
+            events: {
+                'onReady': function (event) {
+                    event.target.playVideo();
+                },
+                'onStateChange': function (event) {
+
+                }
+            }
+        });
+    };
+}        
+
 require([
     'jquery',
     'slick',
     'cloudzoom'
 ], function ($) {
     $(document).ready(function () {
-
         var adjustGalleryWidth = function () {
             if ($(window).width() < 768) {
                 var margin = ($(window).width() - $('#gallery').outerWidth()) / 2;
@@ -92,19 +132,21 @@ require([
             adjustGalleryWidth();                        
         });
 
-
         $('#gallery').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
             var mySlideNumber = nextSlide;
             $('.gallery-thumbnail li.selected').removeClass('selected');
             $('.gallery-thumbnail li').eq(mySlideNumber).addClass('selected');
+
+            var key = 'video-' + currentSlide;
+            if (key in videos) {
+                videos[key].pauseVideo();
+            }
         });
 
         $('#gallery').on('afterChange', function (event, slick, currentSlide, nextSlide) {
-            if ($('.slick-current').find('iframe').length) {
-                var videoSrc = $('.slick-current').find('iframe').attr('src');
-                if (!videoSrc.includes('&autoplay=1')) {
-                    $('.slick-current').find('iframe').attr('src', videoSrc + "&autoplay=1");
-                }
+            var key = 'video-' + currentSlide;
+            if (key in videos) {
+                videos[key].playVideo();
             }
         });
 
@@ -120,13 +162,10 @@ require([
         });
 
         $('#gallery .video-wrapper').on('click', function (ev) {
-            var videoSrc = $(this).find('iframe').attr('src');
-            if (videoSrc.includes('&autoplay=1')) {
-                $(this).find('iframe').attr('src', videoSrc.replace("&autoplay=1", ""));
-            } else {
-                $(this).find('iframe').attr('src', videoSrc + "&autoplay=1");
+            var key = $(this).attr('target');
+            if (key in videos) {
+                videos[key].playVideo();
             }
-
             ev.preventDefault();
         });
 
