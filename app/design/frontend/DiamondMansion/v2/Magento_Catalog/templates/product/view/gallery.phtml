@@ -79,8 +79,8 @@ function onYouTubeIframeAPIReady() {
                 'controls': 1,
                 'fs': 0,
                 'rel': 0,
-                'loop': 1,
-                'modestbranding': 1
+                'modestbranding': 1,
+                'origin': '<?= $block->getBaseUrl() ?>'
             },
             events: {
                 'onReady': function (event) {
