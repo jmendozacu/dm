@@ -111,6 +111,10 @@
             }
 
             #gallery {
+                li {
+                    list-style: none;
+                }
+
                 .slick-dots {
                     display: none !important;
                 }
@@ -1071,6 +1075,15 @@
 
             #gallery {
                 margin-bottom: 60 * @v3-base-mobile-vw; 
+
+                li {
+                    list-style: none;
+
+                    img {
+                        margin: 0 auto;
+                    }
+                }
+                
                 .slick-dots li {
                     padding: 0;
                     margin: 0;
@@ -1086,11 +1099,14 @@
 
                 img.lazy, .video-wrapper {
                     visibility: hidden;
+                    opacity: 0;
                 }
 
                 .slick-current {
                     img.lazy, .video-wrapper {
                         visibility: visible;
+                        opacity: 1;
+                        transition: opacity 0.5s;
                     }
                 }
 
@@ -1104,6 +1120,27 @@
                         position: absolute;
                         left: 0;
                         top: 0;
+                    }
+                }
+
+                .zoom-wrapper {
+                    display: block;
+
+                    a.zoom {
+                        display: block;
+                        width: 40px;
+                        height: 40px;
+                        font: normal normal normal 40px/1 FontAwesome;
+                        position: absolute;
+                        right: 30px;
+                        bottom: 10px;
+                        text-align: center;
+                        border-radius: 50%;
+                        background: #fff;
+    
+                        &:after {
+                            content: "\f055";
+                        }
                     }
                 }
             }
@@ -1909,6 +1946,40 @@
         .product-info-details {
             display: none;
         }
+
+        #dm-zoom {
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 99999;
+            overflow: scroll;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+
+            img {
+                max-width: none;
+                position: absolute;
+            }
+
+            a#zoom-out {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                font: normal normal normal 40px/1 FontAwesome;
+                position: fixed;
+                bottom:50px;
+                left: 50%;
+                margin-left: -20px;
+                border-radius: 50%;
+                background: #fff;
+                text-align: center;
+
+                &:after {
+                    content: "\f057";
+                }
+            }
+        }        
     }
 
     @media only screen and (max-width: 414px) {

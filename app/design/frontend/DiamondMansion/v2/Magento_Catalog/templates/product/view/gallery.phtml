@@ -21,12 +21,10 @@ $videoList = [];
         </li>
         <?php else: ?>
         <li>
-            <a class="cloud-zoom-gallery" 
-                data-zoom='"useZoom":"zoom", "smallImage":"<?php echo str_replace('\\', '/', $_image['img']); ?>"' 
-                href="<?php echo $_image['full']; ?>" 
-                title="<?php echo $_image['caption'] ?>">
+            <div class="zoom-wrapper">
                 <img <?php echo ($index == 0) ? 'src' : 'data-lazy' ?>="<?php echo $_image['full']; ?>" <?php echo ($index == 0) ? 'src' : 'class="lazy"' ?> alt="<?php echo $_image['caption'] ?>"/>
-            </a>
+                <a class="zoom" href="javascript:void(0)"></a>
+            </div>
         </li>
         <?php endif ?>
         <?php $index ++; endforeach ?>
@@ -37,7 +35,7 @@ $videoList = [];
         <?php
             if (strpos($_image['videoUrl'], 'watch?v=') !== false) {
                 $videoUrlParams = explode('watch?v=', $_image['videoUrl']);
-                $_image['videoUrl'] = 'https://www.youtube.com/embed/' . $videoUrlParams[1] . '?controls=0&origin=' . $block->getBaseUrl();
+                $_image['videoUrl'] = 'https://www.youtube.com/embed/' . $videoUrlParams[1] . '?controls=1&modestbranding=1&origin=' . $block->getBaseUrl();
             }
         ?>
         <li <?php echo ($index == 0) ? 'class="selected"' : '' ?>>
@@ -114,18 +112,10 @@ require([
             dots: true,
             arrows: false,
             infinite: false,
-            slidesToShow: 1,
-            slidesToScroll: 1,
             lazyLoad: 'ondemand',
-            responsive: [
-                {
-                    breakpoint: 1280,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
-            ]
+            fade: true,
+            cssEase: 'linear',
+            adaptiveHeight: true
         });
 
         $(window).on('resize', function () {
@@ -150,7 +140,8 @@ require([
             }
         });
 
-        $('#gallery iframe').height($('#gallery iframe').width());
+        $('#gallery iframe').width($('#gallery').width());
+        $('#gallery iframe').height($('#gallery').width());
 
         $('.gallery-thumbnail li').on('click', function () {
             event.stopPropagation();
@@ -169,9 +160,22 @@ require([
             ev.preventDefault();
         });
 
-        if ($('#zoom').length) {
-            $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
-        }
+        $('a.zoom').on('click', function () {
+            var $image = $(this).parent().find('img');
+
+            $('body').prepend('<div id="dm-zoom"><img id="dm-zoom-image" style="max-width: none; position: absolute;" src="' + $image.attr('src') + '"><a id="zoom-out" href="javascript:void(0)"></a></div>');
+
+            $('#dm-zoom-image').width($image.prop('naturalWidth'));
+            $('#dm-zoom-image').height($image.prop('naturalHeight'));
+            $('#dm-zoom-image').css('left', ($(window).width() - $('#dm-zoom-image').width()) / 2);
+            $('#dm-zoom-image').css('top', ($(window).height() - $('#dm-zoom-image').height()) / 2);
+            $("body").css('overflow', 'hidden');
+        });
+
+        $('body').delegate('a#zoom-out', 'click', function () {
+            $('#dm-zoom').remove();
+            $("body").css('overflow', 'unset');
+        });
     });
 });
 </script>
