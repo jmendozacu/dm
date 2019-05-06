@@ -60,7 +60,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var videos = {};
 function onYouTubeIframeAPIReady() {
-    var autoplay = ($(window).width() >= 1280);
+    var autoplay = (window.innerWidth >= 1280);
     var elms = document.getElementsByClassName('item-youtube-video');
     for (var i=0; i<elms.length; i++) {
         var elmId = elms[i].getAttribute('id');
