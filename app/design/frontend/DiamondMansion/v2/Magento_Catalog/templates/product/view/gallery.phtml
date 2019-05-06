@@ -37,7 +37,7 @@ $videoList = [];
         <?php
             if (strpos($_image['videoUrl'], 'watch?v=') !== false) {
                 $videoUrlParams = explode('watch?v=', $_image['videoUrl']);
-                $_image['videoUrl'] = 'https://www.youtube.com/embed/' . $videoUrlParams[1] . '?controls=0';
+                $_image['videoUrl'] = 'https://www.youtube.com/embed/' . $videoUrlParams[1] . '?controls=0&origin=' . $block->getBaseUrl();
             }
         ?>
         <li <?php echo ($index == 0) ? 'class="selected"' : '' ?>>
