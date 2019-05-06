@@ -23,12 +23,12 @@ $videoList = [];
         <li>
             <div class="zoom-wrapper">
                 <img <?php echo ($index == 0) ? 'src' : 'data-lazy' ?>="<?php echo $_image['full']; ?>" <?php echo ($index == 0) ? 'src' : 'class="lazy"' ?> alt="<?php echo $_image['caption'] ?>"/>
-                <a class="zoom" href="javascript:void(0)"></a>
             </div>
         </li>
         <?php endif ?>
         <?php $index ++; endforeach ?>
     </div>
+    <a id="zoom-in" href="javascript:void(0)"></a>
     <div class="gallery-thumbnail desktop">
         <?php $index = 0; foreach ($arrayJsonGallery as $_image): ?>
         <?php if ($_image['type'] == 'video'): ?>
@@ -115,7 +115,7 @@ require([
             lazyLoad: 'ondemand',
 //            fade: true,
 //            cssEase: 'linear',
-            adaptiveHeight: true
+//            adaptiveHeight: true
         });
 
         $(window).on('resize', function () {
@@ -137,6 +137,10 @@ require([
             var key = 'video-' + currentSlide;
             if (key in videos) {
                 videos[key].playVideo();
+
+                $('a#zoom-in').fadeOut();
+            } else {
+                $('a#zoom-in').fadeIn();
             }
         });
 
@@ -160,15 +164,26 @@ require([
             ev.preventDefault();
         });
 
-        $('a.zoom').on('click', function () {
-            var $image = $(this).parent().find('img');
+        $('a#zoom-in').on('click', function () {
+            var $image = $('.slick-current').find('img');
 
             $('body').prepend('<div id="dm-zoom"><img id="dm-zoom-image" style="max-width: none; position: absolute;" src="' + $image.attr('src') + '"><a id="zoom-out" href="javascript:void(0)"></a></div>');
 
             $('#dm-zoom-image').width($image.prop('naturalWidth'));
             $('#dm-zoom-image').height($image.prop('naturalHeight'));
-            $('#dm-zoom-image').css('left', ($(window).width() - $('#dm-zoom-image').width()) / 2);
-            $('#dm-zoom-image').css('top', ($(window).height() - $('#dm-zoom-image').height()) / 2);
+
+            if ($('#dm-zoom-image').width() > $(window).width()) {
+                $('#dm-zoom').scrollLeft(($('#dm-zoom-image').width() - $(window).width()) / 2);
+            } else {
+                $('#dm-zoom-image').css('left', ($(window).width() - $('#dm-zoom-image').width()) / 2);
+            }
+
+            if ($('#dm-zoom-image').height() > $(window).height()) {
+                $('#dm-zoom').scrollTop(($('#dm-zoom-image').height() - $(window).height()) / 2);
+            } else {
+                $('#dm-zoom-image').css('top', ($(window).height() - $('#dm-zoom-image').height()) / 2);
+            }
+
             $("body").css('overflow', 'hidden');
         });
 
