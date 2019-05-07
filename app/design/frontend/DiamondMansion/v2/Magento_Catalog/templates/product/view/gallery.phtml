@@ -101,7 +101,7 @@ require([
     $(document).ready(function () {
         var adjustGalleryWidth = function () {
             if ($(window).width() < 768) {
-                var margin = ($(window).width() - $('#gallery').outerWidth()) / 2;
+                var margin = ($(window).width() - $('#gallery').width()) / 2;
                 $('#gallery').css('marginLeft', -1 * margin);
                 $('#gallery').css('marginRight', -1 * margin);
             }
