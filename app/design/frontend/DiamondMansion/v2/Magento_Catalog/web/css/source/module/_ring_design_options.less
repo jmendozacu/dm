@@ -389,9 +389,19 @@
                                                 }
 
                                                 span.caption {
+                                                    display: inline-block;
+
                                                     sub {
                                                         display: block;
                                                     }
+                                                }
+
+                                                span.internal {
+                                                    display: inline-block;
+                                                }
+
+                                                span.ad-label {
+                                                    display: none;
                                                 }
 
                                                 img {
@@ -523,6 +533,14 @@
                                                 top: 50%;
                                                 right: 0;
                                                 margin-top: -3 * @v3-base-desktop-vw;
+                                            }
+
+                                            span.internal {
+                                                display: none;
+                                            }
+
+                                            span.ad-label {
+                                                display: inline-block;
                                             }
                                         }
                                     }
@@ -1358,6 +1376,14 @@
                                                     }
                                                 }
 
+                                                span.internal {
+                                                    display: inline-block;
+                                                }
+
+                                                span.ad-label {
+                                                    display: none;
+                                                }
+
                                                 img {
                                                     &.i-first {
                                                         display: none;
@@ -1524,8 +1550,17 @@
                                                 right: 0;
                                                 font: normal normal normal 14px/1 FontAwesome;
                                                 margin-top: -7px;
-                                            }                                                
-                                        }
+                                            }
+
+                                            span.internal {
+                                                display: none;
+                                            }
+
+                                            span.ad-label {
+                                                display: internal;
+                                            }
+
+                                        }                                        
                                     }
                                 }
 

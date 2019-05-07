@@ -293,7 +293,7 @@ define([
             $("." + list + "-list a.selected").removeClass("selected");
             $elm.addClass("selected");
 
-            $("#center-diamond-details .block-summary li." + list + " a").html($("." + list + "-list a.selected").html());
+            $("#center-diamond-details .block-summary li." + list + " a").html($("." + list + "-list a.selected span.caption").html());
             
             config.center_stone[list] = code;
 
@@ -504,11 +504,11 @@ define([
 
         function displayPrice() {
             if (config.current_price) {
-                $("#maincontent .price-box span.price, #order-type-order-now").html('$'+parseFloat(Math.round(config.current_price / 10) * 10));
-                $("#maincontent .price-box span.value").html('$'+parseFloat(Math.round(config.current_price / 10) * 20));
+                $("#maincontent .price-box span.price, #order-type-order-now").html('$'+parseFloat(Math.round(config.current_price / 10) * 10).toLocaleString());
+                $("#maincontent .price-box span.value").html('$'+parseFloat(Math.round(config.current_price / 10) * 20).toLocaleString());
                 $("#maincontent .price-box span.appraised-value").show();
                 if ($('#order-type-down-payment').length) {
-                    var downPrice = '$'+parseFloat(Math.round(config.current_price / 10));
+                    var downPrice = '$'+parseFloat(Math.round(config.current_price / 10)).toLocaleString();
                     $("#order-type-down-payment").html(downPrice);
                 }
     
@@ -634,6 +634,9 @@ define([
             config.totalCarat = parseFloat($(".carat-list a.selected").data('code')) + sideStonesCarat;
             config.totalCarat = Math.round(config.totalCarat * 100) / 100;
             $("#total-carat").html(Math.round(config.totalCarat * 100) / 100 + " CT.");
+            //if (sideStonesCarat > 0) {
+                $("span.ad-total-carat").html("(" + Math.round(config.totalCarat * 100) / 100 + " total)");
+            //}
 
             updateTitle();    
         }

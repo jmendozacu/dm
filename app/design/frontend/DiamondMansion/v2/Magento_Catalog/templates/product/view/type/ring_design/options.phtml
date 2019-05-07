@@ -85,7 +85,7 @@
                         </td>
                     </tr>
                     <?php endif ?>
-                    <tr>                        
+                    <tr>
                         <td class="label"><span>SHAPE</span></td>
                         <td class="collapsed">
                             <?php if (is_array($allOptions['main-stone-shape']) && count($allOptions['main-stone-shape']) > 0): ?>
@@ -137,12 +137,12 @@
                         </td>
                     </tr>
                     <?php foreach ($allOptions as $group => $options): ?>
-                    <?php if (!in_array($group, array_keys($mainStone)) || in_array($group, ['main-stone-type', 'main-stone-shape', 'setting-options-stone', 'setting-options-size'])) { continue; }?>
+                    <?php if (!in_array($group, array_keys($mainStone)) || in_array($group, ['main-stone-type', 'main-stone-shape', 'main-stone-cert', 'setting-options-stone', 'setting-options-size'])) { continue; }?>
                     <tr <?php if ($group == "main-stone-cert"): ?> style="display: none" <?php endif ?>>
                         <td class="label"><span><?= $mainStone[$group] != 'Cut' ? $mainStone[$group] : 'Cut & Brilliance' ?></span></td>
                         <td class="collapsed">
                             <div class="option" id="<?= str_replace(' ', '-', strtolower($mainStone[$group])) ?>-list-wrapper">
-                                <label class="list-title">Choose Your <?= $mainStone[$group] != 'Cut' ? $mainStone[$group] : 'Cut & Brilliance' ?><i class="fa fa-times"></i></label>
+                                <label class="list-title">Choose <?= $mainStone[$group] != 'Cut' ? 'Your ' . $mainStone[$group] : 'Cut & Brilliance' ?><i class="fa fa-times"></i></label>
                                 <?php foreach ($allOptions['main-stone-type'] as $type => $typeOption): ?>
                                 <?php $typeValues = json_decode($typeOption->getValues(), true); ?>
                                 <?php if ($type != 'setting' && !isset($typeValues['children'])) { continue; } ?>
@@ -152,57 +152,71 @@
                                     <li>
                                         <a href="#" rel="<?= $code ?>" id="<?= $group ?>-<?= $option->getId() ?>" class="general-options" data-list="<?= strtolower($mainStone[$group]) ?>" data-code="<?= $code ?>">
                                             <?php if ($group == "main-stone-carat"): ?>
-                                                <?php echo (double)(substr($option->getTitle(), 0, 3)) . ' Ct'; ?>
+                                                <span class="internal caption carat"><?php echo (double)(substr($option->getTitle(), 0, 3)) . ' Ct'; ?></span>
+                                                <span class="ad-label"><?php echo $option->getTitle(); ?> Carat Center</span>&nbsp;<span class="ad-total-carat"></span>
                                             <?php elseif ($code == 'd-e'): ?>
-                                                <span class="caption color">
+                                                <span class="internal caption color">
                                                     Absolutely Colorless<sub>D-E GIA Certified</sub>
                                                 </span>
+                                                <span class="ad-label">Absolutely Colorless (D-E GIA Certified)</span>
                                             <?php elseif ($code == 'g-h'): ?>
-                                                <span class="caption color">
+                                                <span class="internal caption color">
                                                     Colorless<sub>G-H GIA Certified</sub>
                                                 </span>
+                                                <span class="ad-label">Colorless (G-H GIA Certified)</span>
                                             <?php elseif ($code == 'i'): ?>
-                                                <span class="caption color">
+                                                <span class="internal caption color">
                                                     Near Colorless<sub>I GIA Certified</sub>
                                                 </span>
+                                                <span class="ad-label">Near Colorless (I GIA Certified)</span>
                                             <?php elseif ($code == 'fancy-light'): ?>
-                                                <span class="caption color">
+                                                <span class="internal caption color">
                                                     Light Yellow<sub>Fancy Light GIA</sub>
                                                 </span>
+                                                <span class="ad-label">Light Yellow (Fancy Light GIA)</span>
                                             <?php elseif ($code == 'fancy-yellow'): ?>
-                                                <span class="caption color">
+                                                <span class="internal caption color">
                                                     Yellow<sub>Fancy Yellow GIA</sub>
                                                 </span>
+                                                <span class="ad-label">Yellow (Fancy Yellow GIA)</span>
                                             <?php elseif ($code == 'fancy-black'): ?>
-                                                <span class="caption color">
+                                                <span class="internal caption color">
                                                     Black<sub>Fancy Black GIA</sub>
                                                 </span>
-                                            <?php elseif ($code == 'vvs'): ?>
-                                                <span class="caption clarity">
-                                                Absolutely Clean<sub>VVS GIA Certified</sub>
+                                                <span class="ad-label">Black (Fancy Black GIA)</span>
+                                            <?php elseif ($code == 'vvs1-vvs2'): ?>
+                                                <span class="internal caption clarity">
+                                                    Absolutely Clean<sub>VVS1-VVS2 GIA Certified</sub>
                                                 </span>
+                                                <span class="ad-label">Absolutely Clean (VVS1-VVS2 GIA Certified)</span>
                                             <?php elseif ($code == 'vs1-vs2'): ?>
-                                                <span class="caption clarity">
+                                                <span class="internal caption clarity">
                                                     Very Clean<sub>VS1-VS2 GIA Certified</sub>
                                                 </span>
+                                                <span class="ad-label">Very Clean (VS1-VS2 GIA Certified)</span>
                                             <?php elseif ($code == 'si1'): ?>
-                                                <span class="caption clarity">
+                                                <span class="internal caption clarity">
                                                     Clean<sub>SI1 GIA Certified</sub>
                                                 </span>
+                                                <span class="ad-label">Clean (SI1 GIA Certified)</span>
                                             <?php elseif ($code == 'ideal-10'): ?>
-                                                <span class="caption cut">
+                                                <span class="internal caption cut">
                                                     Ideal 10<sub>Excellent+ Cut, Polish,<br/>Symmetry &amp; More</sub>
                                                 </span>
+                                                <span class="ad-label">Ideal Cut & Brilliance (best of the best)</span>
                                             <?php elseif ($code == 'excellent'): ?>
-                                                <span class="caption cut">
+                                                <span class="internal caption cut">
                                                     Excellent<sub>Excellent Cut & Very-Good<br/>Polish Symmetry</sub>
                                                 </span>
+                                                <span class="ad-label">Excellent Cut & Very Good</span>
                                             <?php elseif ($code == 'very-good'): ?>
-                                                <span class="caption clarity">
+                                                <span class="internal caption clarity">
                                                     Very Good<sub>Very Good Cut, Polish<br/>&amp; Symmetry</sub>
                                                 </span>
+                                                <span class="ad-label">Very Good Cut</span>
                                             <?php else: ?>
-                                                <?php echo $option->getTitle(); ?>
+                                                <span class="internal caption"><?php echo $option->getTitle(); ?></span>
+                                                <span class="ad-label"><?php echo $option->getTitle(); ?></span>
                                             <?php endif ?>
                                         </a>
                                         <?php if ($code == 1): ?>
@@ -243,19 +257,44 @@
                                     <?php endforeach; ?>
                                 </ul>
                                 <?php endforeach; ?>
-                                <?php if ($group == "main-stone-cert" && false): ?>
-                                <div class="cert-icon">
-                                    <img src="<?php echo $this->getViewFileUrl("images/i_cert_gia.png") ?>" title="GIA" alt="GIA"/>
-                                </div>
-                                <div class="cert-request">
-                                    <a class="btn-certificate" href="#form-certificate">Diamond Picture and Certificate</a>
-                                </div>
-                                <?php endif; ?>
                                 <div class="clearer"></div>
                             </div>
                         </td>
                     </tr>
                     <?php endforeach; ?>
+                    <tr>
+                        <td class="label"><span>CERT</span></td>
+                        <td class="collapsed">
+                            <?php if (is_array($allOptions['main-stone-cert']) && count($allOptions['main-stone-cert']) > 0): ?>
+                            <div class="option" id="cert-list-wrapper">
+                                <label class="list-title">Choose Your Cert<i class="fa fa-times"></i></label>
+                                <?php foreach ($allOptions['main-stone-type'] as $type => $typeOption): ?>
+                                <?php $typeValues = json_decode($typeOption->getValues(), true); ?>
+                                <?php if ($type != 'setting' && !isset($typeValues['children'])) { continue; } ?>
+                                <ul class="cert-list <?php echo $type ?> dependent" rel="cert" data-group="main-stone-cert">
+                                    <?php foreach ($allOptions['main-stone-cert'] as $cert => $certOption): ?>
+                                    <?php if ($type == 'setting' || (isset($typeValues["children"]["main-stone-cert"]) && in_array($cert, $typeValues["children"]["main-stone-cert"]))): ?>
+                                    <li>
+                                        <a href="#" rel="<?= $cert ?>" id="main-stone-cert-<?= $certOption->getId() ?>" data-code="<?= $cert ?>">
+                                            <img src="<?php echo $this->getViewFileUrl("images/v3/diamond/cert/".$cert.".jpg")?>" width="30px" style="margin-left: -5px;" alt="<?= $certOption->getTitle() ?>" title="<?= $certOption->getTitle() ?>" class="default">
+                                            <span class="caption"><?= $certOption->getTitle() ?></span>
+                                        </a>
+                                    </li>
+                                    <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </ul>
+                                <?php endforeach; ?>
+                                <!-- <div class="cert-icon">
+                                    <img src="<?php echo $this->getViewFileUrl("images/i_cert_gia.png") ?>" title="GIA" alt="GIA"/>
+                                </div>
+                                <div class="cert-request">
+                                    <a class="btn-certificate" href="#form-certificate">Diamond Picture and Certificate</a>
+                                </div> -->
+                                <div class="clearer"></div>
+                            </div>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
                 </table>
             </div>
             <div class="block-summary">
