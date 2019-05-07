@@ -275,7 +275,7 @@
                                     <?php foreach ($allOptions['main-stone-cert'] as $cert => $certOption): ?>
                                     <?php if ($type == 'setting' || (isset($typeValues["children"]["main-stone-cert"]) && in_array($cert, $typeValues["children"]["main-stone-cert"]))): ?>
                                     <li>
-                                        <a href="#" rel="<?= $cert ?>" id="main-stone-cert-<?= $certOption->getId() ?>" data-code="<?= $cert ?>">
+                                        <a href="#" rel="<?= $cert ?>" id="main-stone-cert-<?= $certOption->getId() ?>" data-code="<?= $cert ?>" class="general-options">
                                             <img src="<?php echo $this->getViewFileUrl("images/v3/diamond/cert/".$cert.".jpg")?>" width="30px" style="margin-left: -5px;" alt="<?= $certOption->getTitle() ?>" title="<?= $certOption->getTitle() ?>" class="default">
                                             <span class="caption"><?= $certOption->getTitle() ?></span>
                                         </a>
@@ -290,6 +290,7 @@
                                 <div class="cert-request">
                                     <a class="btn-certificate" href="#form-certificate">Diamond Picture and Certificate</a>
                                 </div> -->
+                                <a class="btn-certificate" href="#form-certificate" style="display: none;">Diamond Picture and Certificate</a>
                                 <div class="clearer"></div>
                             </div>
                             <?php endif; ?>

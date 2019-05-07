@@ -136,7 +136,7 @@ $_product = $this->getProduct();
                             <input type="hidden" name="productname" class="productname" value="" style="display:none !important;" />
                             <input type="hidden" name="productlink" class="productlink" value="" style="display:none !important;" />
                             <input type="hidden" name="productprice" class="productprice" value="" style="display:none !important;" />
-                            <button type="submit" title="RESERVE" class="button"><span><span>RESERVE</span></span></button>
+                            <button type="submit" title="RESERVE" class="button">RESERVE</button>
                         </div>
                     </form>
                 </div>
@@ -214,7 +214,7 @@ $_product = $this->getProduct();
                             <input type="hidden" name="productname" class="productname" value="" style="display:none !important;" />
                             <input type="hidden" name="productlink" class="productlink" value="" style="display:none !important;" />
                             <input type="hidden" name="productprice" class="productprice" value="" style="display:none !important;" />
-                            <button type="submit" title="SUBMIT" class="button"><span><span>SUBMIT</span></span></button>
+                            <button type="submit" title="SUBMIT" class="button">SUBMIT</button>
                         </div>
                     </form>
                 </div>
@@ -236,6 +236,10 @@ $_product = $this->getProduct();
             $(".btn-delivery").fancybox();
             $(".btn-certificate").fancybox();
             $(".video-thumb").fancybox();
+
+            $('#cert-list-wrapper').on('click', function (){
+                $(".btn-certificate").trigger('click');
+            });
 
             $('.product-footer-background').height($('.product-footer').outerHeight());
         });

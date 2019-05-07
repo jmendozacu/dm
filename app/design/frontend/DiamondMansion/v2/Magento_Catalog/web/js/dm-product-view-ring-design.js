@@ -91,7 +91,9 @@ define([
                 onSizeChange();
             });
 
-            $('a.general-options').on('click', function() {
+            $('a.general-options').on('click', function(event) {
+                event.stopPropagation();
+                
                 onOptionChange($(this));
 
                 var $parent = $(this).closest('td');
@@ -488,7 +490,7 @@ define([
                             config.current_price = parseFloat(json.price);
 
                             if (json.diff_for_bridal_set > 0) {
-                                $('#matching-band-details li a b').html('+$' + json.diff_for_bridal_set);
+                                $('#matching-band-details li a b').html('+$' + json.diff_for_bridal_set.toLocaleString());
                             } else {
                                 $('#matching-band-details li a b').html('');
                             }
@@ -634,9 +636,9 @@ define([
             config.totalCarat = parseFloat($(".carat-list a.selected").data('code')) + sideStonesCarat;
             config.totalCarat = Math.round(config.totalCarat * 100) / 100;
             $("#total-carat").html(Math.round(config.totalCarat * 100) / 100 + " CT.");
-            //if (sideStonesCarat > 0) {
-                $("span.ad-total-carat").html("(" + Math.round(config.totalCarat * 100) / 100 + " total)");
-            //}
+            if (sideStonesCarat > 0) {
+                $("span.ad-total-carat").html("(" + (Math.round(config.totalCarat * 100) / 100).toFixed(2) + " total)");
+            }
 
             updateTitle();    
         }
