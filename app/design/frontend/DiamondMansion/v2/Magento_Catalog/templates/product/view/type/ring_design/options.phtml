@@ -152,7 +152,7 @@
                                     <li>
                                         <a href="#" rel="<?= $code ?>" id="<?= $group ?>-<?= $option->getId() ?>" class="general-options" data-list="<?= strtolower($mainStone[$group]) ?>" data-code="<?= $code ?>">
                                             <?php if ($group == "main-stone-carat"): ?>
-                                                <span class="internal caption carat"><?php echo (double)(substr($option->getTitle(), 0, 3)) . ' Carat Center'; ?></span>
+                                                <span class="internal caption carat"><?php echo (double)(substr($option->getTitle(), 0, 3)) . ' Ct.'; ?></span>
                                                 <span class="ad-label"><?php echo (double)(substr($option->getTitle(), 0, 3)) . ' Carat Center'; ?></span>&nbsp;<span class="ad-total-carat"></span>
                                             <?php elseif ($code == 'd-e'): ?>
                                                 <span class="internal caption color">
