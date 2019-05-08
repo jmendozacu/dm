@@ -152,23 +152,23 @@
                                     <li>
                                         <a href="#" rel="<?= $code ?>" id="<?= $group ?>-<?= $option->getId() ?>" class="general-options" data-list="<?= strtolower($mainStone[$group]) ?>" data-code="<?= $code ?>">
                                             <?php if ($group == "main-stone-carat"): ?>
-                                                <span class="internal caption carat"><?php echo (double)(substr($option->getTitle(), 0, 3)) . ' Ct'; ?></span>
-                                                <span class="ad-label"><?php echo $option->getTitle(); ?> Carat Center</span>&nbsp;<span class="ad-total-carat"></span>
+                                                <span class="internal caption carat"><?php echo (double)(substr($option->getTitle(), 0, 3)) . ' Carat Center'; ?></span>
+                                                <span class="ad-label"><?php echo (double)(substr($option->getTitle(), 0, 3)) . ' Carat Center'; ?></span>&nbsp;<span class="ad-total-carat"></span>
                                             <?php elseif ($code == 'd-e'): ?>
                                                 <span class="internal caption color">
                                                     Absolutely Colorless<sub>D-E GIA Certified</sub>
                                                 </span>
-                                                <span class="ad-label">Absolutely Colorless (D-E GIA Certified)</span>
+                                                <span class="ad-label">Absolutely Colorless (D-E GIA)</span>
                                             <?php elseif ($code == 'g-h'): ?>
                                                 <span class="internal caption color">
                                                     Colorless<sub>G-H GIA Certified</sub>
                                                 </span>
-                                                <span class="ad-label">Colorless (G-H GIA Certified)</span>
+                                                <span class="ad-label">Colorless (G-H GIA)</span>
                                             <?php elseif ($code == 'i'): ?>
                                                 <span class="internal caption color">
                                                     Near Colorless<sub>I GIA Certified</sub>
                                                 </span>
-                                                <span class="ad-label">Near Colorless (I GIA Certified)</span>
+                                                <span class="ad-label">Near Colorless (I GIA)</span>
                                             <?php elseif ($code == 'fancy-light'): ?>
                                                 <span class="internal caption color">
                                                     Light Yellow<sub>Fancy Light GIA</sub>
@@ -186,34 +186,34 @@
                                                 <span class="ad-label">Black (Fancy Black GIA)</span>
                                             <?php elseif ($code == 'vvs1-vvs2'): ?>
                                                 <span class="internal caption clarity">
-                                                    Absolutely Clean<sub>VVS1-VVS2 GIA Certified</sub>
+                                                    Absolutely Clean<sub>VVS GIA Certified</sub>
                                                 </span>
-                                                <span class="ad-label">Absolutely Clean (VVS1-VVS2 GIA Certified)</span>
+                                                <span class="ad-label">Absolutely Clean (VVS GIA)</span>
                                             <?php elseif ($code == 'vs1-vs2'): ?>
                                                 <span class="internal caption clarity">
                                                     Very Clean<sub>VS1-VS2 GIA Certified</sub>
                                                 </span>
-                                                <span class="ad-label">Very Clean (VS1-VS2 GIA Certified)</span>
+                                                <span class="ad-label">Very Clean (VS1-VS2 GIA)</span>
                                             <?php elseif ($code == 'si1'): ?>
                                                 <span class="internal caption clarity">
                                                     Clean<sub>SI1 GIA Certified</sub>
                                                 </span>
-                                                <span class="ad-label">Clean (SI1 GIA Certified)</span>
+                                                <span class="ad-label">Clean (SI1 GIA)</span>
                                             <?php elseif ($code == 'ideal-10'): ?>
                                                 <span class="internal caption cut">
                                                     Ideal 10<sub>Excellent+ Cut, Polish,<br/>Symmetry &amp; More</sub>
                                                 </span>
-                                                <span class="ad-label">Ideal Cut & Brilliance (best of the best)</span>
+                                                <span class="ad-label">Ideal Cut & Brilliance</span>
                                             <?php elseif ($code == 'excellent'): ?>
                                                 <span class="internal caption cut">
                                                     Excellent<sub>Excellent Cut & Very-Good<br/>Polish Symmetry</sub>
                                                 </span>
-                                                <span class="ad-label">Excellent Cut & Very Good</span>
+                                                <span class="ad-label">Excellent Cut & Brilliance</span>
                                             <?php elseif ($code == 'very-good'): ?>
                                                 <span class="internal caption clarity">
                                                     Very Good<sub>Very Good Cut, Polish<br/>&amp; Symmetry</sub>
                                                 </span>
-                                                <span class="ad-label">Very Good Cut</span>
+                                                <span class="ad-label">Very Good Cut & Brilliance</span>
                                             <?php else: ?>
                                                 <span class="internal caption"><?php echo $option->getTitle(); ?></span>
                                                 <span class="ad-label"><?php echo $option->getTitle(); ?></span>

@@ -93,7 +93,7 @@ define([
 
             $('a.general-options').on('click', function(event) {
                 event.stopPropagation();
-                
+
                 onOptionChange($(this));
 
                 var $parent = $(this).closest('td');
@@ -633,11 +633,15 @@ define([
             });
             
             $("#side-stones-details .block-summary li.carat a").html(Math.round(sideStonesCarat * 100) / 100);
-            config.totalCarat = parseFloat($(".carat-list a.selected").data('code')) + sideStonesCarat;
+            config.totalCarat = parseFloat(Math.floor($(".carat-list a.selected").data('code') * 10) / 10) + sideStonesCarat;
             config.totalCarat = Math.round(config.totalCarat * 100) / 100;
             $("#total-carat").html(Math.round(config.totalCarat * 100) / 100 + " CT.");
             if (sideStonesCarat > 0) {
-                $("span.ad-total-carat").html("(" + (Math.round(config.totalCarat * 100) / 100).toFixed(2) + " total)");
+                $("span.ad-total-carat").each (function () {
+                    var centerStoneCarat = parseFloat(Math.floor($(this).parent().data('code') * 10) / 10) + sideStonesCarat;
+                    centerStoneCarat = Math.round(centerStoneCarat * 100) / 100;
+                    $(this).html("(" + centerStoneCarat + " total)");
+                });
             }
 
             updateTitle();    
