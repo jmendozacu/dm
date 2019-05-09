@@ -578,6 +578,7 @@ define([
                         $('img.product-image-current').attr('src',json[0].main);
                 
                         $('#gallery').slick('slickGoTo', 0);
+                        $(window).scrollTop(0);
 
                         if ($(".pinterest a").attr("href")) {
                             var pinterest_href = $(".pinterest a").attr("href").split("?");
