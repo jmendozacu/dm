@@ -133,7 +133,7 @@
                                 </ul>
                                 <div class="clearer"></div>                                    
                             </div>
-                            <?php endif ?>                                
+                            <?php endif ?>
                         </td>
                     </tr>
                     <?php foreach ($allOptions as $group => $options): ?>
@@ -142,7 +142,16 @@
                         <td class="label"><span><?= $mainStone[$group] != 'Cut' ? $mainStone[$group] : 'Cut & Brilliance' ?></span></td>
                         <td class="collapsed">
                             <div class="option" id="<?= str_replace(' ', '-', strtolower($mainStone[$group])) ?>-list-wrapper">
-                                <label class="list-title">Choose <?= $mainStone[$group] != 'Cut' ? 'Your ' . $mainStone[$group] : 'Cut & Brilliance' ?><i class="fa fa-times"></i></label>
+                                <label class="list-title">
+                                    <?php if ($mainStone[$group] == 'Cut'): ?>
+                                    Choose Cut & Brilliance
+                                    <?php elseif ($mainStone[$group] == 'Carat'): ?>
+                                    Choose Center Carat Size
+                                    <?php else: ?>
+                                    Choose Your <?= $mainStone[$group] ?>
+                                    <?php endif ?>
+                                    <i class="fa fa-times"></i>
+                                </label>
                                 <?php foreach ($allOptions['main-stone-type'] as $type => $typeOption): ?>
                                 <?php $typeValues = json_decode($typeOption->getValues(), true); ?>
                                 <?php if ($type != 'setting' && !isset($typeValues['children'])) { continue; } ?>
@@ -277,7 +286,7 @@
                                     <li>
                                         <a href="#" rel="<?= $cert ?>" id="main-stone-cert-<?= $certOption->getId() ?>" data-code="<?= $cert ?>" class="general-options">
                                             <img src="<?php echo $this->getViewFileUrl("images/v3/diamond/cert/".$cert.".jpg")?>" width="30px" style="margin-left: -5px;" alt="<?= $certOption->getTitle() ?>" title="<?= $certOption->getTitle() ?>" class="default">
-                                            <span class="caption"><?= $certOption->getTitle() ?></span>
+                                            <span class="caption"><?= $certOption->getTitle() ?> CERTIFIED</span>
                                         </a>
                                     </li>
                                     <?php endif; ?>

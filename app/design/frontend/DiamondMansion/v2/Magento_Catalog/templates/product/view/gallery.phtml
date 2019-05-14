@@ -28,7 +28,6 @@ $videoList = [];
         <?php endif ?>
         <?php $index ++; endforeach ?>
     </div>
-    <a id="zoom-in" href="javascript:void(0)"></a>
     <div class="gallery-thumbnail desktop">
         <?php $index = 0; foreach ($arrayJsonGallery as $_image): ?>
         <?php if ($_image['type'] == 'video'): ?>
@@ -165,7 +164,7 @@ require([
             ev.preventDefault();
         });
 
-        $('a#zoom-in').on('click', function () {
+        $('#gallery .zoom-wrapper').on('click', function () {
             var $image = $('.slick-current').find('img');
 
             $('body').prepend('<div id="dm-zoom"><img id="dm-zoom-image" style="max-width: none; position: absolute;" src="' + $image.attr('src') + '"><a id="zoom-out" href="javascript:void(0)"></a></div>');
