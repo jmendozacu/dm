@@ -65,6 +65,7 @@ $_product = $this->getProduct();
     </div>
     <div class="delivery-info">
         <h2>Packaged to Love</h2>
+        <div class="package-image-mobile"></div>
         <p>Your order will be beautifully and securely packaged to fly over the skies of City of Angels (Los Angeles) to your door. Shipping is always free at DIAMOND MANSION. We ship to: United States, Canada, Australia, United Kingdom and Elsewhere!</p>
         <div class="date-title">Order today &amp;<br/>receive by <?php echo $_deliveryMM ?> <?php echo $_deliveryDD ?></div>
         <div class="contactus-link"><a class="btn-delivery" href="#form-delivery">Contact Us For Faster Delivery</a></div>
@@ -175,7 +176,7 @@ $_product = $this->getProduct();
                             <input type="hidden" name="productname" class="productname" value="" style="display:none !important;" />
                             <input type="hidden" name="productlink" class="productlink" value="" style="display:none !important;" />
                             <input type="hidden" name="productprice" class="productprice" value="" style="display:none !important;" />
-                            <button type="submit" title="SUBMIT" class="button"><span><span>SUBMIT</span></span></button>
+                            <button type="submit" title="SUBMIT" class="button">SUBMIT</button>
                         </div>
                     </form>
                 </div>
@@ -242,6 +243,14 @@ $_product = $this->getProduct();
             });
 
             $('.product-footer-background').height($('.product-footer').outerHeight());
+
+            $('.product-static-blocks a').on('click', function () {
+                var isShow = $(this).hasClass('show');
+                $('.product-static-blocks a.show').removeClass('show');
+                if (!isShow) {
+                    $(this).addClass('show');
+                }
+            });
         });
     });
 </script>

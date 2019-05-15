@@ -109,6 +109,7 @@
                 </block>
             </container>
             <container name="product.info.details" htmlTag="div" htmlClass="product-info-details" after="product.info.main">
+                <block class="Magento\Catalog\Block\Product\View" name="product.info.details.description" template="Magento_Catalog::product/view/description.phtml"/>                
                 <block class="DiamondMansion\Extensions\Block\Ring\Design\Product\Details" name="product.ring.design.details" template="Magento_Catalog::product/view/type/ring_design/details.phtml">
                     <block class="Magento\Catalog\Block\Product\View" name="product.info.review" as="product_info_review" template="Magento_Catalog::product/view/review.phtml"/>
                 </block>
