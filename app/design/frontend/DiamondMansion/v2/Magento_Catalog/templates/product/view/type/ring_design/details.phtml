@@ -3,7 +3,7 @@ $_product = $this->getProduct();
 ?>
 <div class="product-static-blocks">    
     <ul>
-        <li class="block-title"><b>Features</b></li>
+        <li class="block-title"><b>Our Promise</b></li>
         <li class="life-time-care"><a href="javascript:void"><i class="dfd-icon-umbrella"></i> Life Time Care<span>Free lifetime maintenance. Includes polishing, deep 3D cleaning & securing of stones. You also get one free resizing. All you pay for is Shipping</span></a></li>
         <li class="forty-five-day-returns"><a href="javascript:void"><i class="dfd-icon-back_to_start"></i> 45 Day Returns<span>Our ultimate goal is that you fall in love with your piece. If you don't, you can send it back for a 100% full refund. Even if it's a customized piece. 45 Days begins from the day you receive the item.</span></a></li>
         <li class="life-time-upgrade"><a href="javascript:void"><i class="dfd-icon-user_upgrade"></i> Life Time Upgrade<span>You should continue to celebrate your engagement every year. To do that, we offer a life time CENTER STONE  upgrade policy, so we can be a part of your celebration. When you are ready to upgrade, we will take back your diamond for the full amount it was purchased, and apply the credit towards your new diamond. You won't lose a penny!</span></a></li>
@@ -14,7 +14,7 @@ $_product = $this->getProduct();
 </div>
 <?php $_designer = $this->getDesigner() ?>
 <?php if ($_designer && ($_designer->getPhoto() || $_designer->getDescription())): ?>
-<div class="product-designer">
+<div class="product-designer" style="display: none;">
     <div class="designer-image">
         <img src="<?= $this->getHelper()->getDesignerPhotoUrl($_designer->getPhoto()); ?>" />
     </div>

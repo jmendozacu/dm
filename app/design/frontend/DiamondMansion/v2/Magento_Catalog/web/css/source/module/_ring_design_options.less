@@ -203,7 +203,7 @@
                     font-family: @v3-title-font-family-rg;
                     font-size: 20em;
                     line-height: 38 * @v3-base-desktop-vw;
-                    color: #585f66;
+                    color: #000;
                 }
             }
         }
@@ -840,11 +840,11 @@
                                     font-size: 22em;
                                     font-weight: normal;
                                     line-height: 60 * @v3-base-desktop-vw;
-                                    color: #585f66;
+                                    color: #000;
 
                                     i {
                                         vertical-align: middle;
-                                        border: 1px solid #585f66;
+                                        border: 1px solid #000;
                                         margin-right: 10px;
                                     }
 
@@ -947,7 +947,7 @@
             margin-bottom: 20 * @v3-base-desktop-vw;
             border-top: 1px solid #eaeaea;
             position: relative;
-            z-index: 1;
+            z-index: 9;
 
             ul {
                 display: flex;
@@ -967,14 +967,14 @@
                     &:not(.block-title) {
                         font-family: "Avenir LT Std";
                         font-size: 20em;
-                        color: #585f66;
+                        color: #000;
                     }
 
                     a {
                         line-height: 43 * @v3-base-desktop-vw;
                         position: relative;
                         display: inline-block;
-                        padding: 0 40 * @v3-base-desktop-vw;
+                        padding: 0 30 * @v3-base-desktop-vw;
                         border: 1px solid transparent;
                         border-bottom: none;
                         white-space: nowrap;
@@ -1089,7 +1089,7 @@
     
                     .review-content {
                         font-family: @v3-title-font-family-rg;
-                        color: #585f66;
+                        color: #000;
                         font-size: 20em;
                         line-height: 32px;
                         text-overflow: ellipsis;
@@ -1147,7 +1147,7 @@
                     line-height: 32 * @v3-base-desktop-vw;
                     max-width: 630px;
                     margin: 0 auto;
-                    color: #585f66;
+                    color: #000;
                 }
     
                 .date-title {
@@ -1346,7 +1346,7 @@
 
             a.like {
                 //font-size: 16em;
-                color: #585f66;
+                color: #000;
                 line-height: 40px;
                 font-size: 14px;
 
@@ -2157,6 +2157,8 @@
                 }
 
                 &#matching-band-details {
+                    border-bottom: 0 none;
+
                     .block-options {
                         display: block;
                         padding-left: 0;
@@ -2169,14 +2171,14 @@
                                     //font-size: 22em;
                                     font-weight: normal;
                                     //line-height: 60 * @v3-base-mobile-vw;
-                                    color: #585f66;
+                                    color: #000;
 
                                     font-size: 14px;
                                     line-height: 40px;
 
                                     i {
                                         vertical-align: middle;
-                                        border: 1px solid #585f66;
+                                        border: 1px solid #000;
                                         margin-right: 10px;
                                     }
 
@@ -2207,7 +2209,7 @@
 
             .buttons-mobile {
                 margin-top: 20 * @v3-base-mobile-vw; 
-                padding-top: 60 * @v3-base-mobile-vw;
+                padding-top: 20 * @v3-base-mobile-vw;
                 //border-top: 1px solid #eaeaea;
 
                 .buttons {
@@ -2222,7 +2224,8 @@
                         border: 1px solid #000;
                         background: #000;
                         color: #fff;
-                        width: 320 * @v3-base-mobile-vw;
+                        width: 414px;
+                        max-width: 100%;
                         //height: 60 * @v3-base-mobile-vw;
                         text-transform: uppercase;
                         text-align: center;
@@ -2240,7 +2243,8 @@
                         border: 1px solid #000;
                         background: #fff;
                         color: #000;
-                        width: 320 * @v3-base-mobile-vw;
+                        width: 414px;
+                        max-width: 100%;
                         //height: 60 * @v3-base-mobile-vw;
                         text-transform: uppercase;
                         text-align: center;
@@ -2278,7 +2282,7 @@
 
         .product-info-details {
             .product-description {
-                padding: 100 * @v3-base-mobile-vw 0;
+                padding-bottom: 60 * @v3-base-mobile-vw;
 
                 h2 {
                     font: 700 16px/60px @v3-title-font-family;
@@ -2299,7 +2303,6 @@
                         line-height: 30px;
     
                         &.block-title {
-                            text-transform: uppercase;
                             font-family: @v3-title-font-family;
                             font-size: 16px;
                             line-height: 60px;
@@ -2429,7 +2432,7 @@
     
                     .review-content {
                         font-family: @v3-title-font-family-rg;
-                        color: #585f66;
+                        color: #000;
                         font-size: 14px;
                         line-height: 30px;
                         text-overflow: ellipsis;
@@ -2440,9 +2443,8 @@
             .block-title {
                 font-family: @v3-title-font-family;
                 font-weight: 700;
-                font-size: 16px;
+                font-size: 28px;
                 line-height: 30px;
-                text-transform: uppercase;
                 text-align: center;
                 color: #000;
                 padding-bottom: 20px;
@@ -2464,9 +2466,8 @@
                 h2 {
                     font-family: @v3-title-font-family;
                     font-weight: 700;
-                    font-size: 16px;
+                    font-size: 28px;
                     line-height: 30px;
-                    text-transform: uppercase;
                     text-align: center;
                     color: #000;
                     padding-bottom: 20px;
@@ -2487,12 +2488,12 @@
                     line-height: 30px;
                     max-width: 630px;
                     margin: 0 auto;
-                    color: #585f66;
+                    color: #000;
                 }
     
                 .date-title {
-                    font-family: @v3-title-font-family-rg;
-                    font-size: 16px;
+                    font-family: @v3-title-font-family;
+                    font-size: 22px;
                     line-height: 30px;
                     font-weight: 100;
                     color: #000;
@@ -2504,7 +2505,8 @@
                         font-family: @v3-title-font-family;
                         font-size: 14px;
                         line-height: 40px;
-                        padding: 0 35 * @v3-base-mobile-vw;
+                        width: 414px;
+                        max-width: 100%;
                         text-transform: uppercase;
                         color: #fff;
                         background: #000;
@@ -2535,7 +2537,6 @@
                     font-weight: 700;
                     font-size: 16px;
                     line-height: 30px;
-                    text-transform: uppercase;
                     text-align: center;
                     color: #000;
                     padding-bottom: 20px;
