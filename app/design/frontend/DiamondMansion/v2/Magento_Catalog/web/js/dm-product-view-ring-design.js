@@ -280,8 +280,8 @@ define([
             $elm.addClass("selected");
 
             config.center_stone["shape"] = code;
-            
-            $("#center-diamond-details .block-summary li.shape a").html($(".shape-list a.selected span.caption").text());
+
+            $("#center-diamond-details .block-summary li.shape a").html($(".shape-list a.selected span.caption").text() + ' ' + $(".shape-list a.selected span.cut").text());
 
             reloadPrice();
             updateImage();
@@ -295,7 +295,13 @@ define([
             $("." + list + "-list a.selected").removeClass("selected");
             $elm.addClass("selected");
 
-            $("#center-diamond-details .block-summary li." + list + " a").html($("." + list + "-list a.selected span.caption").html());
+            if (list == 'carat') {
+                $("#center-diamond-details .block-summary li." + list + " a").html(code * 100 / 100 + ' Carat');
+            } else if (list == 'cut') {
+                $("#center-diamond-details .block-summary li." + list + " a").html($("." + list + "-list a.selected span.caption").html() + ' Cut');
+            } else {
+                $("#center-diamond-details .block-summary li." + list + " a").html($("." + list + "-list a.selected span.caption").html());
+            }
             
             config.center_stone[list] = code;
 
@@ -428,7 +434,7 @@ define([
             
             $("." + group + "-list").closest('tr').find("sub").html("x " + config.side_stone["qty"][group]);
             $("." + group + "-list").closest('tr').find(".sidecarats ul li a").each (function (index, value) {
-                $(this).html(Math.round(parseFloat($(this).attr("rel")) * parseFloat(config.side_stone["qty"][group])*10000)/10000);
+                $(this).html(Math.round(parseFloat($(this).attr("rel")) * parseFloat(config.side_stone["qty"][group])*10000)/10000 + ' Carat');
             });
             
             config.side_stone[group] = $elm.data('code');
@@ -633,7 +639,7 @@ define([
                 sideStonesCarat += sideStoneQty * parseFloat($(this).parent().parent().find(".sidecarats ul a.selected").data("code"));
             });
             
-            $("#side-stones-details .block-summary li.carat a").html(Math.round(sideStonesCarat * 100) / 100);
+            $("#side-stones-details .block-summary li.carat a").html(Math.round(sideStonesCarat * 100) / 100 + ' Carat');
             config.totalCarat = parseFloat(Math.floor($(".carat-list a.selected").data('code') * 10) / 10) + sideStonesCarat;
             config.totalCarat = Math.round(config.totalCarat * 100) / 100;
             $("#total-carat").html(Math.round(config.totalCarat * 100) / 100 + " CT.");
