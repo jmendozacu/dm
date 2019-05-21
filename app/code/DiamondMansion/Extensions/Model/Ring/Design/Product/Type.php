@@ -163,8 +163,8 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
             $options = $optionSet['allOptions'];
             $defaultOptions = $optionSet['defaultOptions'];
         } else {
-            $options = $this->getAllDmOptions($product);
-            $defaultOptions = $this->getDefaultDmOptions($product);
+            $options = $this->getAllDmOptions($product, true);
+            $defaultOptions = $this->getDefaultDmOptions($product, true);
         }
 
         $result = [];
