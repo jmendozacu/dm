@@ -165,15 +165,17 @@ jQuery(document).ready(function() {
 
     function handleScroll() {
         scrollTimer = null;
-        var headerBottom = jQuery(".header").height()+25;
+        var headerBottom = jQuery(".page-header").outerHeight();
         var footerTop = jQuery(document).height() - jQuery(window).height() -  jQuery(".footer").height();
 
         var scrollTop = jQuery(window).scrollTop();
 
-        if (scrollTop <= headerBottom) {
+        if (scrollTop == 0) {
+            jQuery(".cms-diamond-education aside.columns").css("margin-top", "94px");
+        } else if (scrollTop <= headerBottom) {
             jQuery(".cms-diamond-education aside.columns").css("margin-top", (headerBottom - scrollTop) + "px");
         } else if (scrollTop > headerBottom && scrollTop <= footerTop) {
-            jQuery(".cms-diamond-education aside.columns").css("margin-top", "0px");
+            jQuery(".cms-diamond-education aside.columns").css("margin-top", headerBottom + "px");
         } else {
             jQuery(".cms-diamond-education aside.columns").css("margin-top", (footerTop - scrollTop) + "px");
         }
@@ -235,7 +237,12 @@ jQuery(document).ready(function() {
     jQuery(".top-links-section a").bind("click", function() {
         jQuery(".primary-nav a[href='"+jQuery(this).attr("href")+"']").trigger("click");
         return false;
-    });    
+    });
+
+    jQuery(".primary-nav a").on('click', function () {
+        jQuery(window).scrollTop(jQuery(jQuery(this).attr('href')).offset().top - 150);
+        return false;
+    });
 });
 
 jQuery(document).foundation();

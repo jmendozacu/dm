@@ -1012,6 +1012,7 @@ option{
 /* Photo Divider ----------------------- */
 .photo_divider {
 	background-attachment: scroll !important;
+	background-size: cover;
 }
 }
 
@@ -1051,8 +1052,8 @@ h3{
 /* Logo ------------------------------*/	
 #logo {
 	width:70px;
-	height:60px;
-	padding-top:15px;
+	height:62px;
+	padding-top:0;
 	font-size: 16px;
 }	
 	
@@ -1062,18 +1063,24 @@ h3{
 }
 
 #slide_text1{
-	font-size:38px;
+	font-size:30px;
 	line-height:34px;
+	width: 100%;
+	display: inline-block;
 }
 
 #slide_text2{
-	font-size:30px;
+	font-size:20px;
 	line-height:26px;
+	width: 100%;
+	display: inline-block;
 }
 
 #slide_text3{
-	font-size:32px;
+	font-size:40px;
 	line-height:46px;
+	width: 100%;
+	display: inline-block;
 }
 
 #slide_text4{
@@ -1170,4 +1177,18 @@ h3{
 #theme_options > span{
 	font-size:24px;
 	margin: 0 5px 0 10px
+}
+
+@media only screen and (max-width: 480px) {
+	#header_social-sticky-wrapper {
+		display: none;
+	}
+
+	#logo {
+		width: 60px;
+		height: 54px;
+	}
+	#logo img {
+		max-width: 100%;
+	}
 }

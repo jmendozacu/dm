@@ -537,9 +537,18 @@ button:hover > span {
 .cms-diamond-education {
     .breadcrumbs { display: none; }    
     #maincontent { max-width: 100%; padding: 0; margin: 0; margin-top: 5px !important; }
+    #maincontent:after {
+        display: block;
+        content: "";
+        clear: both;
+    }
     #maincontent .logo { max-width: 100%; }
 
-    #maincontent aside.columns {margin-top: 82px; }
+    #maincontent aside.columns {
+        margin-top: 54px; 
+        transition: all 0.1s ease-in-out;
+        z-index: 8 !important;
+    }
     #maincontent .column.main,
     #maincontent .columns {
         padding: 0 !important;
