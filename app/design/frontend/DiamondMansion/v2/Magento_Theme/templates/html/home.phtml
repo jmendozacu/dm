@@ -148,7 +148,8 @@
         'jquery',
         'slick',
         'scrollmagic',
-        'modernizr'
+        'modernizr',
+        'jquery-fancybox'
     ], function ($, slick, ScrollMagic) {
         $(document).ready(function() {
             $('.categories-list ul').slick({
@@ -366,6 +367,8 @@
                     });
                 }
             });
+
+            $(".visit-us .btn-link-default").fancybox();            
 
             // Init ScrollMagic
             var controller = new ScrollMagic.Controller();
