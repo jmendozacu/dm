@@ -9,8 +9,6 @@ define([
         var currentUrl;
         var page;
 
-        console.log(config.viewedItemIdentifier);
-
         $(document).ready(function() {
             if (!$('.toolbar .pages').length) {
                 isLast = true;
@@ -60,7 +58,11 @@ define([
             }
         });
     
-        function onViewMoreProducts() {            
+        function onViewMoreProducts() {
+            if (!$('.toolbar .pages').length) {
+                return;
+            }
+
             currentUrl = $('#view-more-products-wrapper').data('current-url');
             page = $('#view-more-products-wrapper').data('current-page');
 
