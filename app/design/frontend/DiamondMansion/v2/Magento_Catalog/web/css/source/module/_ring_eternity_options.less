@@ -9,7 +9,7 @@
     opacity: 1;
 }
 
-.product-view-eternity {
+.catalog-product-view .product-view-eternity {
     position: relative;
 
     #social-share-ver { display: none; }
@@ -20,11 +20,15 @@
 
     font-family: 'Futura LT';
     
-    .media {
+    .product.media {
         float: none;
+        width: 100%;
     
         .product-image {
             text-align: center;
+            margin: 0 auto;
+            max-width: 600px;
+            box-shadow: none;
             
             #wrap {
                 display: inline-block; 
@@ -97,6 +101,25 @@
         a.image-arrow-right {
             float: right;
         }
+    }
+
+    .product-info-main {
+        clear: both;
+        padding: 0 0 20px;
+        width: 100%;
+        max-width: 1252px;
+        margin: 0 auto;
+        float: none;
+
+        &:after {
+            clear: both;
+            content: "";
+            display: block;
+        }
+    }    
+
+    .product-info-details {
+        display: none;
     }
     
     #eternity-ring-custom-options {
