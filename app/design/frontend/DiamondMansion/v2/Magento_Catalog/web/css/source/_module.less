@@ -44,6 +44,37 @@
 
     #maincontent {
         padding: 60 * @v3-base-desktop-vw 30 * @v3-base-desktop-vw 0;
+
+        .column.main {
+            .product.media.grid_6 {
+                @media only screen and (min-width: @v3-desktop-min-width) {                
+                    float: right;
+                    left: 0;
+                }
+
+                .like-dislike-buttons-set {
+                    font-size: 16px;
+                    padding-left: 30px;
+
+                     a {
+                         line-height: 24px;
+                     }
+                }
+            }
+
+            .product-info-main.grid_6 {
+                @media only screen and (min-width: @v3-desktop-min-width) {
+                    float: left;
+                    left: 0;
+                }
+            }
+
+            &:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+        }
     }
 
     .breadcrumbs{
@@ -66,6 +97,7 @@
         color: #909090;
         padding-top: 10px;
         padding-bottom: 20px;
+        font-size: 12px;
 
         .availability {
             float: right;
@@ -183,6 +215,11 @@
 
     .diamond-education-link {
         padding: 10px 0;
+        font-size: 12px;
+    }
+
+    p {
+        font-size: 12px;
     }
 
     /* Product Options */
