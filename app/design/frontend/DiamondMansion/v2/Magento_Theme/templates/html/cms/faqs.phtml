@@ -1,0 +1,12 @@
+<script type="text/javascript">
+require([
+    'jquery'
+], function ($) {
+    $(document).ready(function() {
+        $('.faqs-container > ul > li > a').on('click', function () {
+            $(this).parent().toggleClass('over');
+            return false;
+        });
+    });
+});
+</script>
