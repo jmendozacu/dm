@@ -307,16 +307,19 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         if (isset($params["main-stone-carat"])) { $carat = (double) floor($params["main-stone-carat"] * 10) / 10 ; }
         
         foreach ($params as $group => $param) {
-            if (strpos($group, 'side-stone-carat') !== false && isset($allDmOptions[$group])) {
+            if (strpos($group, 'side-stone-shape') !== false && isset($allDmOptions[$group])) {
                 foreach ($allDmOptions[$group] as $option) {
-                    $values = json_decode($option->getValues());
+                    $values = json_decode($option->getValues(), true);
                     if (isset($values['qty']) && count($values['qty']) == 2) {
                         $qty = (double)$values['qty'][0];
                         if (isset($params["band"]) && $params["band"] == "bridal-set") {
                             $qty += (double)$values['qty'][1];
                         }
-                        
-                        $carat += $qty * (double)$param;
+
+                        $sideStoneCaratGroup = str_replace('-shape', '-carat', $group);
+                        if (isset($params[$sideStoneCaratGroup])) {
+                            $carat += $qty * (double)$params[$sideStoneCaratGroup];
+                        }
                     }
                 }
             }
