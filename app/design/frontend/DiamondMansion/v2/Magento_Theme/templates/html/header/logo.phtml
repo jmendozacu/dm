@@ -29,21 +29,13 @@ window._fbq.push(['track', 'PixelInitialized', {}]);
 
 
 <?php $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt();?>
-<?php if ($block->isHomePage()):?>
-    <strong class="logo">
-<?php else: ?>
-    <a class="logo" href="<?= $block->getUrl('') ?>" title="<?= /* @escapeNotVerified */ $storeName ?>">
-<?php endif ?>
-        <img src="<?php echo $this->getViewFileUrl("images/v3/logo_white.png") ?>"
-             alt="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
-             class="logo-white"
-        />
-        <img src="<?php echo $this->getViewFileUrl("images/v3/logo_black.png") ?>"
-             alt="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
-             class="logo-black"
-        />
-<?php if ($block->isHomePage()):?>
-    </strong>
-<?php else:?>
-    </a>
-<?php endif?>
+<a class="logo" href="<?= $block->getUrl('') ?>" title="<?= /* @escapeNotVerified */ $storeName ?>">
+    <img src="<?php echo $this->getViewFileUrl("images/v3/logo_white.png") ?>"
+          alt="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+          class="logo-white"
+    />
+    <img src="<?php echo $this->getViewFileUrl("images/v3/logo_black.png") ?>"
+          alt="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+          class="logo-black"
+    />
+</a>

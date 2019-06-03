@@ -22,7 +22,7 @@ $videoList = [];
         <?php else: ?>
         <li>
             <div class="zoom-wrapper">
-                <img <?php echo ($index == 0) ? 'src' : 'data-lazy' ?>="<?php echo $_image['full']; ?>" <?php echo ($index == 0) ? 'src' : 'class="lazy"' ?> alt="<?php echo $_image['caption'] ?>"/>
+                <img <?php echo ($index == 0) ? 'src' : 'data-lazy' ?>="<?php echo $_image['full']; ?>" class="<?php echo ($index == 0) ? '' : 'lazy' ?>" alt="<?php echo $_image['caption'] ?>"/>
             </div>
         </li>
         <?php endif ?>
@@ -50,6 +50,7 @@ $videoList = [];
         <?php $index ++; endforeach ?>
     </div>
 </div>
+
 <script type="text/javascript">
 var tag = document.createElement('script');
 
@@ -90,13 +91,13 @@ function onYouTubeIframeAPIReady() {
             }
         });
     };
-}        
+}
 
 require([
     'jquery',
     'slick',
     'cloudzoom'
-], function ($) {
+], function ($, slick, CloudZoom) {
     $(document).ready(function () {
         var adjustGalleryWidth = function () {
             if ($(window).width() < 768) {
@@ -165,6 +166,10 @@ require([
         });
 
         $('#gallery .zoom-wrapper').on('click', function () {
+            if ($(window).width() >= 1280) {
+                return;
+            }
+
             var $image = $('.slick-current').find('img');
 
             $('body').prepend('<div id="dm-zoom"><img id="dm-zoom-image" style="max-width: none; position: absolute;" src="' + $image.attr('src') + '"><a id="zoom-out" href="javascript:void(0)"></a></div>');
