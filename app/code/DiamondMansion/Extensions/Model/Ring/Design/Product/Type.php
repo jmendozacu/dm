@@ -144,7 +144,8 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
 
                     if (!isset($this->_defaultDmOptions[$product->getId()][$group])) {
                         $this->_defaultDmOptions[$product->getId()][$group] = current($options[$group]);
-                        if (($this->_defaultDmOptions[$product->getId()]['main-stone-shape'] == 'emerald' || 
+                        if (isset($this->_defaultDmOptions[$product->getId()]['main-stone-shape']) && 
+                            ($this->_defaultDmOptions[$product->getId()]['main-stone-shape'] == 'emerald' || 
                             $this->_defaultDmOptions[$product->getId()]['main-stone-shape'] == 'asscher') && 
                             $this->_defaultDmOptions[$product->getId()][$group]->getCode() == 'si1'
                         ) {
