@@ -208,7 +208,7 @@ define([
 
             reloadPrice();    
 
-            $(".product-view").slideDown("slow");
+            $("#design-ring-options").fadeIn("fast");
         });
 
         function onTypeChange($elm) {
@@ -282,6 +282,27 @@ define([
             config.center_stone["shape"] = code;
 
             $("#center-diamond-details .block-summary li.shape a").html($(".shape-list a.selected span.caption").text() + ' ' + $(".shape-list a.selected span.cut").text());
+
+            var $si1Elm = $("#center-diamond-details .clarity-list.natural a[data-code='si1']");
+            if ($si1Elm.length) {
+                var $si1ElmParent = $si1Elm.closest('li');
+                if (code == 'asscher' || code == 'emerald') {
+                    $si1ElmParent.addClass('skip');
+                    $si1ElmParent.hide();
+                    if ($si1Elm.hasClass('selected')) {
+                        updateImage();
+                        if ($si1ElmParent.prev().length) {
+                            $si1ElmParent.prev().find('a').trigger('click');
+                        } else if ($si1ElmParent.next().length) {
+                            $si1ElmParent.next().find('a').trigger('click');
+                        }
+                        return;
+                    }
+                } else {
+                    $si1ElmParent.removeClass('skip');
+                    $si1ElmParent.show();
+                }    
+            }
 
             reloadPrice();
             updateImage();
