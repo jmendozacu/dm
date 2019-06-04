@@ -53,6 +53,37 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         'main-stone-cut' => false,
     ];
 
+    protected $_dmOptionExclude = [
+        'main-stone-type' => false,
+        'main-stone-shape' => [
+            'emerald', 'asscher'
+        ],
+        'main-stone-carat' => false,
+        'main-stone-color' => false,
+        'main-stone-clarity' => [
+            'si1'
+        ],
+        'main-stone-cert' => false,
+        'metal' => false,
+        'band' => false,
+        'side-stone-shape-1' => false,
+        'side-stone-carat-1' => false,
+        'side-stone-color-clarity-1' => false,
+        'side-stone-shape-2' => false,
+        'side-stone-carat-2' => false,
+        'side-stone-color-clarity-2' => false,
+        'side-stone-shape-3' => false,
+        'side-stone-carat-3' => false,
+        'side-stone-color-clarity-3' => false,
+        'side-stone-shape-4' => false,
+        'side-stone-carat-4' => false,
+        'side-stone-color-clarity-4' => false,
+        'ring-size' => false,
+        'setting-options-stone' => false,
+        'setting-options-size' => false,
+        'main-stone-cut' => false,
+    ];
+
     public function __construct(
         \Magento\Catalog\Model\Product\Option $catalogProductOption,
         \Magento\Eav\Model\Config $eavConfig,
@@ -107,7 +138,9 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
                     $this->_allDmOptions[$product->getId()][$item->getGroup()] = [];
                 }
 
-                $this->_allDmOptions[$product->getId()][$item->getGroup()][$item->getCode()] = $item;
+                if (!is_array($this->_dmOptionExclude[$item->getGroup()]) || !in_array($item->getCode(), $this->_dmOptionExclude[$item->getGroup()])) {
+                    $this->_allDmOptions[$product->getId()][$item->getGroup()][$item->getCode()] = $item;
+                }
             }
 
             $this->_cache->save(serialize($this->_allDmOptions[$product->getId()]), 'all_dm_options_' . $product->getId());
