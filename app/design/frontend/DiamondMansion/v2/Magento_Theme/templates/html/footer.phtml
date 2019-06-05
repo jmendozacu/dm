@@ -1,40 +1,6 @@
 <footer id="footer" class="v3">
     <div class="footer-top-wrapper">
-        <div class="help">
-            <div class="title">Help</div>
-            <ul>
-                <li>1-800-518-0240</li>
-                <li>help@diamondmansion.com</li>
-                <li>FAQ</li>
-                <li><a href="">Returns & Exchanges</a></li>
-                <li><a href="">Policies</a></li>
-            </ul>
-        </div>
-        <div class="shop">
-            <div class="title">Shop</div>
-            <ul>
-                <li><a href="/rings/engagement/">Engagement Rings</a></li>
-                <li><a href="/rings/wedding/her-eternity/">Wedding Rings</a></li>
-                <li><a href="/fine-jewelry/">Fine Jewelry</a></li>
-                <li><a href="">Men's Rings</a></li>
-                <li><a href="">Gifts</a></li>
-            </ul>
-        </div>
-        <div class="company">
-            <div class="title">Company</div>
-            <ul>
-                <li><a href="/history/">About Us</a></li>
-                <li><a href="">A+ BBB Rating</a></li>
-                <li><a href="">Customer Reviews</a></li>
-                <li><a href="">Our Materials</a></li>
-            </ul>
-        </div>
-        <div class="visit-us">
-            <div class="title">Visit Us</div>
-            <ul>
-                <li><a href="/contactus/">Los Angeles</a></li>
-            </ul>
-        </div>
+        <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_links')->toHtml(); ?>
         <div class="community">
             <div class="title">Join The Brilliant Community</div>
             <div class="subscribe">
