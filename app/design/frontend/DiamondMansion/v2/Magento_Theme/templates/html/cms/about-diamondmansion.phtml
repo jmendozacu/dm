@@ -1,0 +1,88 @@
+<?php 
+$cms_page = $this->getRequest()->getParam('sel_cms');
+$url_cms = $_SERVER['REQUEST_URI'];
+$res_url = explode("?", $url_cms);
+if(isset($res_url[1]) && $res_url[1] != ''){
+	$current_url = "http://".$_SERVER['HTTP_HOST'].$res_url[0];
+} else {
+	$current_url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+}
+if(!isset($cms_page)){
+    $cms_page = 0;
+}
+$cmsName = array("About<br/>US", "Philanthropy", "Conflict Free<br/>Diamonds", "100% Natural<br/>Diamonds", "Trust &<br/>Security", "Privacy<br/>Policy", /*"Connect<br/>With Us", "Your<br/>Feed Back",*/ "Contact<br/>Us", "Terms & Conditions")
+?>
+<div class="gallery">
+    <div class="content_holder">
+        <div class="picture_links"> 
+            <h2>About Diamond Mansion</h2>
+            <div class="title-divider"><span>&nbsp;</span></div>
+            <form method="post" action="<?php echo $current_url; ?>">
+                <div class="white" style="width: 96.5%;padding:15px 0;">
+          	    <ul>
+                    <?php for($intD= 0; $intD<count($cmsName) ; $intD++){ 
+                        if($intD == $cms_page) {
+                            $sel = "checked=checked";
+                        }else {
+                            $sel = '';
+                        }
+                    ?>
+                    <li style="margin: 0 1%; width: 9%" class="f-left">
+		      	        <ul>
+                            <li class="title" style="font-size: 15px; height: 65px;"><?php echo $cmsName[$intD]; ?></li>
+                            <input type="radio" <?php echo $sel; ?> onclick="submit()" name="sel_cms" value="<?php echo $intD; ?>"/>
+                        </ul>
+                    </li>
+                    <?php } ?>
+                </ul>
+                <div class="clear"></div>
+            </div>
+        </form>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="title-divider"><span>&nbsp;</span></div>    
+
+<div style="padding: 20px;">
+<?php 
+switch ($cms_page) {
+    case 0:
+        $cms_id = "about-us";
+        break;
+    case 1:
+        $cms_id = "philanthropy-block";
+        break;
+    case 2:
+        $cms_id = "conflict-free-block";
+        break;
+    case 3:
+        $cms_id = "natural-diamonds-block";
+        break;
+    case 4:
+        $cms_id = "trust-security-block";
+        break;
+    case 5:
+        $cms_id = "your-privacy-rights-block";
+        break;
+    /*
+    case 6:
+        $cms_id = "connect-with-us-block";
+        break;
+    case 7:
+        $cms_id = "feedback-block";
+        break;
+    */
+    case 6:			
+        $cms_id = "contactus_block";        
+        break;
+    case 7:
+        $cms_id = "terms-conditions-block";
+        break;
+    default:
+       $cms_id = "about-us";
+}
+echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($cms_id)->toHtml(); ?>
+</div>
+<div class="line"></div>
+</div>

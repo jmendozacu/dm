@@ -72,3 +72,120 @@
         }
     }
 }
+
+.cms-about {
+    .breadcrumbs {
+        display: none;
+    }
+
+    .about-video-wrapper {
+        min-height: 420px;
+        position: relative;
+        overflow: hidden;
+    
+        #about-video {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            min-width: 756px;
+        }
+    
+        &:after {
+            content: "";
+            display: block;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 1;
+        }
+    }
+
+    .about-content {
+        padding-top: 100px;
+        color: #000;
+        margin-bottom: 50px;
+
+        h1 {
+            text-align: center;
+            font-family: @v3-title-font-family;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            line-height: 40px;
+        }
+
+        p {
+            font-family: @v3-title-font-family-rg;
+            font-size: 20px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        @media only screen and (min-width: 1280px) {
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media only screen and (max-width: 1279px) {
+            padding-left: 30px;
+            padding-right: 30px;
+            width: 100%;
+        }
+    }
+
+    .links {
+        padding: 50px 30px 100px;
+
+        ul {
+            display: flex;
+            align-items: stretch;
+
+            li {
+                width: 33.33%;
+                a {
+                    display: block;
+                    height: 340px;
+                    background-position: center center;
+                    background-size: cover;
+                    border: 3px solid #909090;
+                    position: relative;
+
+                    span {
+                        text-align: center;
+                        color: #fff;
+                        font-family: @v3-title-font-family-rg;
+                        font-size: 22px;
+                        line-height: 30px;
+                        display: block;
+                        width: 100%;
+                        background: rgba(0, 0, 0, 0.3);
+                        text-transform: uppercase;
+                        padding-top: 140px;
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        width: 100%;
+                        height: 100%;
+                    }
+
+                    img {
+                        display: none;
+                    }
+                }
+            }
+
+            @media only screen and (max-width: 639px) {
+                flex-direction: column;
+
+                li {
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+}
