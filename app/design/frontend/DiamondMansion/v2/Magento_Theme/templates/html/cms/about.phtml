@@ -3,7 +3,7 @@ require([
     'jquery'
 ], function ($) {
     $(document).ready(function() {
-        $('.links li a img').each(function() {
+        $('.about-wrapper .links li a img').each(function() {
             $(this).parent().css('backgroundImage', 'url(' + $(this).attr('src') + ')');
         });
 
