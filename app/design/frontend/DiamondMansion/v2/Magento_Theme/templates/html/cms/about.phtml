@@ -1,7 +1,14 @@
 <script type="text/javascript">
+require.config({
+    map: {
+        '*': {
+            'vimeo-api': 'https://player.vimeo.com/api/player.js'
+        }
+    }
+});
 require([
     'jquery',
-    'https://player.vimeo.com/api/player.js'
+    'vimeo-api'
 ], function ($, VimeoPlayer) {
     $(document).ready(function() {
         
@@ -28,14 +35,12 @@ require([
             if ($(window).width() < 1280) {
                 var player = new VimeoPlayer($('#about-video'));
 
-                player.on('loaded', function (data) {
+                player.ready().then(function() {
                     player.play();
                 });
 
-                player.on('error', function (data) {
-                    setTimeout(function () {
-                        player.play();
-                    }, 1000);
+                player.on('ready', function (data) {
+                    player.play();
                 });
 
                 $('.about-video-wrapper').on('click', function () {
