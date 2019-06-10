@@ -3,19 +3,6 @@ require([
     'jquery'
 ], function ($) {
     $(document).ready(function() {
-
-        var iframe = document.querySelector('iframe');
-        var player = new Vimeo.Player(iframe);
-
-        player.on('loaded', function (data) {
-            player.play();
-        });
-
-        player.on('error', function (data) {
-            setTimeout(function () {
-                player.play();
-            }, 500);
-        });
         
         var margin = ($('.about-wrapper').width() - $(window).width()) / 2;
         $('.about-wrapper').css('marginLeft', margin);
@@ -34,12 +21,26 @@ require([
             $(this).attr('src', $(this).attr('src').replace(/\"/g, ""));
             $parent.css('backgroundImage', 'url(' + $(this).attr('src') + ')');
         });
-/*
+
         setTimeout(function () {
             $('#about-video').prop('allow', 'autoplay');
-            $('#about-video').attr('src', $('#about-video').attr('src') + '&start');
+            if ($(window).width() < 1280) {
+                var iframe = document.querySelector('iframe');
+                var player = new Vimeo.Player(iframe);
+
+                player.on('loaded', function (data) {
+                    player.play();
+                });
+
+                player.on('error', function (data) {
+                    setTimeout(function () {
+                        player.play();
+                    }, 500);
+                });
+            } else {
+                $('#about-video').attr('src', $('#about-video').attr('src') + '&start');
+            }
         }, 500);
-*/
     });
 });
 </script>
