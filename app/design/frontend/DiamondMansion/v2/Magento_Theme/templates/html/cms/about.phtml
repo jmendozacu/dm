@@ -1,7 +1,8 @@
 <script type="text/javascript">
 require([
-    'jquery'
-], function ($) {
+    'jquery',
+    'https://player.vimeo.com/api/player.js'
+], function ($, VimeoPlayer) {
     $(document).ready(function() {
         
         var margin = ($('.about-wrapper').width() - $(window).width()) / 2;
@@ -24,8 +25,26 @@ require([
 
         setTimeout(function () {
             $('#about-video').prop('allow', 'autoplay');
-            $('#about-video').attr('src', $('#about-video').attr('src') + '&muted=1');
-        }, 500);
+            if ($(window).width() < 1280) {
+                var player = new VimeoPlayer($('#about-video'));
+
+                player.on('loaded', function (data) {
+                    player.play();
+                });
+
+                player.on('error', function (data) {
+                    setTimeout(function () {
+                        player.play();
+                    }, 1000);
+                });
+
+                $('.about-video-wrapper').on('click', function () {
+                    player.play();
+                });
+            } else {
+                $('#about-video').attr('src', $('#about-video').attr('src') + '&start');
+            }
+        }, 100);
     });
 });
 </script>
