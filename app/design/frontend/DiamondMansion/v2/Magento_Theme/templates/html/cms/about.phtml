@@ -16,6 +16,7 @@ require([
         $('.about-wrapper').css('marginLeft', margin);
         $('.about-wrapper').css('marginRight', margin);
 
+        $('#about-video').css('marginLeft', ($(window).width() - $('#about-video').width()) / 2);
         $('#about-video').height($('#about-video').width() * 0.75);
         $('#about-video').css('marginTop', -1 * $('#about-video').height() / 2);
         $('#about-video').prop('allow', 'autoplay');
@@ -31,7 +32,6 @@ require([
         });
 
         setTimeout(function () {
-            $('#about-video').prop('allow', 'autoplay');
             if ($(window).width() < 1280) {
                 var player = new VimeoPlayer($('#about-video'));
 
@@ -39,8 +39,10 @@ require([
                     player.play();
                 });
 
-                player.on('ready', function (data) {
-                    player.play();
+                player.on('error', function (data) {
+                    setTimeout(function () {
+                        player.play();
+                    }, 1000);
                 });
 
                 $('.about-video-wrapper').on('click', function () {
