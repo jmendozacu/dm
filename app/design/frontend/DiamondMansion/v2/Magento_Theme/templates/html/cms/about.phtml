@@ -1,25 +1,18 @@
 <script type="text/javascript">
-require.config({
-    map: {
-        '*': {
-            'vimeo-api': 'https://player.vimeo.com/api/player.js'
-        }
-    }
-});
 require([
-    'jquery',
-    'vimeo-api'
-], function ($, VimeoPlayer) {
+    'jquery'
+], function ($) {
     $(document).ready(function() {
         
         var margin = ($('.about-wrapper').width() - $(window).width()) / 2;
         $('.about-wrapper').css('marginLeft', margin);
         $('.about-wrapper').css('marginRight', margin);
 
-        $('#about-video').css('marginLeft', ($(window).width() - $('#about-video').width()) / 2);
-        $('#about-video').height($('#about-video').width() * 0.75);
-        $('#about-video').css('marginTop', -1 * $('#about-video').height() / 2);
-        $('#about-video').prop('allow', 'autoplay');
+        var $video = $('.about-video-wrapper stream');
+
+        $video.css('marginLeft', ($(window).width() - $video.width()) / 2);
+        $video.height($video.width() * 0.6);
+        $video.css('marginTop', -1 * $video.height() / 2);
 
         $('.about-wrapper .links li a img').each(function() {
             var $parent = $(this).parent();
@@ -30,28 +23,6 @@ require([
             $(this).attr('src', $(this).attr('src').replace(/\"/g, ""));
             $parent.css('backgroundImage', 'url(' + $(this).attr('src') + ')');
         });
-
-        setTimeout(function () {
-            if ($(window).width() < 1280) {
-                var player = new VimeoPlayer($('#about-video'));
-
-                player.ready().then(function() {
-                    player.play();
-                });
-
-                player.on('error', function (data) {
-                    setTimeout(function () {
-                        player.play();
-                    }, 1000);
-                });
-
-                $('.about-video-wrapper').on('click', function () {
-                    player.play();
-                });
-            } else {
-                $('#about-video').attr('src', $('#about-video').attr('src') + '&start');
-            }
-        }, 100);
     });
 });
 </script>
