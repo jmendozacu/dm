@@ -143,6 +143,50 @@ class MigrateAttribute extends Command
                     }
                 }
             }
+        } else if ($type == 'multiple') {
+            $query = "SELECT a.attribute_id, o.`option_id`, v.`value` FROM eav_attribute AS a LEFT JOIN eav_attribute_option AS o ON a.`attribute_id`=o.`attribute_id` LEFT JOIN eav_attribute_option_value AS v ON o.`option_id`=v.`option_id` WHERE a.`attribute_code`='" . $src . "';";
+            $result = $m1Connect->query($query);
+            $srcAttributeId = 0;
+            $srcAttributeOptions = [];
+            while ($row = $result->fetch_assoc()) {
+                $srcAttributeId = $row['attribute_id'];
+                $srcAttributeOptions[$row['option_id']] = $row['value'];
+            }
+
+            $query = "SELECT a.attribute_id, o.`option_id`, v.`value` FROM eav_attribute AS a LEFT JOIN eav_attribute_option AS o ON a.`attribute_id`=o.`attribute_id` LEFT JOIN eav_attribute_option_value AS v ON o.`option_id`=v.`option_id` WHERE a.`attribute_code`='" . $dst . "';";
+            $rows = $this->_connection->fetchAll($query);
+            $dstAttributeId = 0;
+            $dstAttributeOptions = [];
+            foreach ($rows as $row) {
+                $dstAttributeId = $row['attribute_id'];
+                $dstAttributeOptions[$row['value']] = $row['option_id'];
+            }
+
+            $query = "SELECT c.* FROM catalog_product_entity_varchar as c LEFT JOIN eav_attribute AS e ON c.attribute_id=e.attribute_id WHERE c.`value` IS NOT NULL AND e.attribute_code='" . $src . "'";
+            $result = $m1Connect->query($query);
+
+            if ($result->num_rows > 0) {
+                $query = "DELETE FROM catalog_product_entity_varchar WHERE attribute_id=" . $dstAttributeId;
+                $this->_connection->query($query);
+    
+                while ($row = $result->fetch_assoc()) {
+                    try {
+                        $srcValues = explode(',', $row['value']);
+                        $dstValues = [];
+                        foreach ($srcValues as $srcValue) {
+                            $dstValues[] = $dstAttributeOptions[$srcAttributeOptions[$srcValue]];
+                        }
+
+                        $dstValues = array_unique($dstValues);
+
+                        $query = "INSERT INTO catalog_product_entity_varchar (`attribute_id`, `store_id`, `entity_id`, `value`) VALUES (" . $dstAttributeId . ", 0, " . $row['entity_id'] . ", '" . implode(',', $dstValues) . "')";
+                        $this->_connection->query($query);
+                        $count ++;
+                    } catch (\Exception $e) {
+                        $output->writeln('<error>Product ' . $row['entity_id'] . ' Error.</error>');
+                    }
+                }
+            }
         } else {
             $query = "SELECT c.* FROM catalog_product_entity_" . $type . " as c LEFT JOIN eav_attribute AS e ON c.attribute_id=e.attribute_id WHERE c.`value` IS NOT NULL AND e.attribute_code='" . $src . "'";
             $result = $m1Connect->query($query);

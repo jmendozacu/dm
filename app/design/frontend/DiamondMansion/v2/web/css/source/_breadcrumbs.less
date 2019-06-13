@@ -1,3 +1,16 @@
 .breadcrumbs {
     visibility: hidden;
+    font-family: @v3-title-font-family-rg;
+
+    a {
+        &:after {
+            content: ">";
+            color: #000 !important;
+            padding: 0 5px;
+        }
+    }
+}
+
+.catalog-category-view .breadcrumbs {
+    visibility: visible;
 }
