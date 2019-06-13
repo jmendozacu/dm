@@ -174,7 +174,11 @@ class MigrateAttribute extends Command
                         $srcValues = explode(',', $row['value']);
                         $dstValues = [];
                         foreach ($srcValues as $srcValue) {
-                            $dstValues[] = $dstAttributeOptions[$srcAttributeOptions[$srcValue]];
+                            if ($dst == 'dm_stone_type' && $srcAttributeOptions[$srcValue] == 'Diamond') {
+                                $dstValues[] = $dstAttributeOptions['Natural'];
+                            } else {
+                                $dstValues[] = $dstAttributeOptions[$srcAttributeOptions[$srcValue]];
+                            }
                         }
 
                         $dstValues = array_unique($dstValues);
