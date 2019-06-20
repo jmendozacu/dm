@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jexcel/2.0.0/css/jquery.jexcel.min.css" type="text/css" />
 <?php
 $shapes = $this->helper->getDesignRingStoneShapes();
 $carats = $this->helper->getDesignRingStoneCarats();
@@ -9,7 +10,7 @@ $prices = $this->getAllPrices();
 <style type="text/css">
     .entry-edit {
         display: inline-block;
-        margin-right: 30px;
+        margin-right: 10px;
         margin-bottom: 20px;
         padding: 10px;
         background: #eee;
@@ -27,15 +28,31 @@ $prices = $this->getAllPrices();
         width: 50px;
         text-align: center;
     }
+    .entry-edit .fieldset {
+        overflow: hidden;
+    }
+    .entry-edit .jexcel {
+        margin-left: -30px;
+    }
+    .entry-edit .jexcel tr td:first-child {
+        visibility: hidden;
+    }
+    .entry-edit .jexcel tr td {
+        font-size: 12px;
+    }
+    .entry-edit .jexcel tr td.c0 {
+        color: #000;
+        background-color: #f3f3f3;
+    }
 </style>
 <div class="page-main-actions">
     <div class="page-actions-placeholder" style=""></div>
     <div class="page-actions" data-ui-id="page-actions-toolbar-content-header">
         <div class="page-actions-inner" data-title="New Product">
             <div class="page-actions-buttons">
-                <button id="import" title="Import" type="button" class="action- scalable action-secondary" data-ui-id="import-button" onclick="importPrices()">
+                <!-- <button id="import" title="Import" type="button" class="action- scalable action-secondary" data-ui-id="import-button" onclick="importPrices()">
                     <span>Load gia.xls</span>
-                </button>
+                </button> -->
 
                 <button id="save-button" title="Save" class="action-default primary" data-ui-id="save-button" onclick="savePrices()">
                     <span>Save</span>
@@ -60,28 +77,7 @@ $prices = $this->getAllPrices();
                             <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $carat ?> Carat</h4>
                         </div>
                         <div class="fieldset fieldset-wide">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <td class="label"></td>
-                                        <?php foreach ($clarities as $clarity): ?>
-                                            <td class="label" style="width: 50px;"><?php echo strtoupper($clarity) ?></td>
-                                        <?php endforeach; ?>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <?php foreach ($colors as $color): ?>
-                                    <tr>
-                                        <td class="label"><?php echo strtoupper($color) ?></td>
-                                        <?php foreach ($clarities as $clarity): ?>
-                                        <?php $price = isset($prices[$shape][$carat][str_replace(" ", "-", $color)][$clarity])?$prices[$shape][$carat][str_replace(" ", "-", $color)][$clarity]:""; ?>
-                                            <td class="value">
-                                                <input type="text" name="price[<?php echo $shape ?>][<?php echo $carat ?>][<?php echo str_replace(" ", "-", $color) ?>][<?php echo $clarity ?>]" id="price[<?php echo $shape ?>][<?php echo $carat ?>][<?php echo str_replace(" ", "-", $color) ?>][<?php echo $clarity ?>]" value="<?php echo ($price == 0)?"":(double)$price ?>"></td>
-                                        <?php endforeach; ?>
-                                    </tr>
-                                <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                            <div id="excel-<?php echo $shape ?>-<?php echo str_replace('.', '-', $carat) ?>" data-shape="<?php echo $shape ?>" data-carat="<?php echo $carat ?>"></div>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -91,6 +87,74 @@ $prices = $this->getAllPrices();
 </div>
 </form>
 <script type="text/javascript">
+var prices = <?php echo json_encode($prices) ?>;
+var excelData = {};
+<?php foreach ($shapes as $shape): ?>
+excelData['<?php echo $shape ?>'] = {};
+<?php foreach ($carats as $carat): ?>
+excelData['<?php echo $shape ?>']['<?php echo $carat ?>'] = {
+    colHeaders: [
+        "-",
+        <?php foreach ($clarities as $clarity): ?>
+        "<?php echo strtoupper($clarity) ?>",
+        <?php endforeach; ?>
+    ],
+    columns: [
+        {type: "text", readOnly: true},
+        <?php foreach ($clarities as $clarity): ?>
+        { type: "number" },
+        <?php endforeach ?>
+    ],
+    colWidths: [
+        120,
+        <?php foreach ($clarities as $clarity): ?>
+        60,
+        <?php endforeach ?>
+    ],
+    data: [
+        <?php foreach ($colors as $color): ?>
+        [
+            "<?php echo strtoupper($color) ?>",
+            <?php foreach ($clarities as $clarity): ?>
+            <?php $price = isset($prices[$shape][$carat][str_replace(" ", "-", $color)][$clarity])?$prices[$shape][$carat][str_replace(" ", "-", $color)][$clarity]:""; ?>
+            "<?php echo ($price == 0)?"":(double)$price ?>",
+            <?php endforeach; ?>
+        ],
+        <?php endforeach ?>
+    ],
+    contextMenu: function() { return false; },
+    onchange: function (object, cell, value) {
+        var col_row = cell.attr('id').split('-');
+        var col = col_row[0];
+        var row = col_row[1];
+
+        var shape = object.data('shape');
+        var carat = object.data('carat');
+        var clarity = object.find('#col-' + col).text().toLowerCase();
+        var color = cell.parent().find('.c0').text().replace(' ', '-').toLowerCase();
+
+        prices[shape][carat][color][clarity] = value;
+    }
+};
+<?php endforeach ?>
+<?php endforeach ?>
+
+require([
+    'jquery',
+    'https://cdnjs.cloudflare.com/ajax/libs/jexcel/2.0.0/js/jquery.jexcel.js'
+], function ($, jexcel) {
+
+    $(document).ready(function () {
+        for (var shape in excelData) {
+            for (var carat in excelData[shape]) {
+                $('#excel-' + shape + '-' + carat.replace('.', '-')).jexcel(excelData[shape][carat]);
+            }
+        }
+    });
+});
+</script>
+<script type="text/javascript">
+/*
     function importPrices() {
         require(['jquery'],
         function () {
@@ -127,13 +191,15 @@ $prices = $this->getAllPrices();
             });
         });
     }
-
+*/
     function savePrices() {
         require(['jquery'],
             function () {
                 jQuery.ajax ({
                     url: '<?php echo $this->getUrl("*/*/save"); ?>',
-                    data: jQuery('form').serialize(),
+                    data: {
+                        price: prices
+                    },
                     type: 'post',
                     showLoader: true
                 }).done(function(json) {
