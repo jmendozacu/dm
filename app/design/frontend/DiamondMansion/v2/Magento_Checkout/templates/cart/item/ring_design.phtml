@@ -61,7 +61,7 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                                             <label>SHAPE</label>
                                         </li>
                                         <li class="carat">
-                                            <a href="javascript:void"><?= $allOptions['main-stone-carat'][$dmOptions['main-stone-carat']]->getTitle() ?></a>
+                                            <a href="javascript:void"><?= (double)(substr($allOptions['main-stone-carat'][$dmOptions['main-stone-carat']]->getTitle(), 0, 3)) ?></a>
                                             <label>CARAT</label>
                                         </li>
                                         <li class="color">
