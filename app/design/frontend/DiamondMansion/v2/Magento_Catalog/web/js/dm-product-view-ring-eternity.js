@@ -416,6 +416,9 @@ define([
                         
                         jQuery('img.product-image-current').attr('src',json[0].main);
 
+                        $('#gallery').slick('slickGoTo', 0);
+                        $(window).scrollTop(0);
+
                         if ($(".pinterest a").attr("href")) {
                             var pinterest_href = $(".pinterest a").attr("href").split("?");
                             var pinterest_params = pinterest_href[1].split("&");
@@ -440,11 +443,8 @@ define([
                             $(".pinterest a").attr("data-pin-href", pinterest_href[0]+"?"+pinterest_params.join("&"));
                         }
                                 
-                        jQuery("#zoom").attr("href", json[0].pop);
-        
-                        $(".more-views-container ul li:first").html('<a title="" href="'+json[0].pop+'" data-zoom=\'"useZoom": "zoom", "smallImage": "'+json[0].main+'"\' class="cloud-zoom-gallery"><img alt="" src="'+json[0].thumb+'"></a>');
-                        
-                        jQuery('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
+                        $("#gallery li:first img").attr('src', json[0].pop);
+                        $(".gallery-thumbnail li:first img").attr('src', json[0].pop);
 
                         jQuery('#loading-screen').remove();
                     },

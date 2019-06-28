@@ -14,6 +14,11 @@
 
     #social-share-ver { display: none; }
 
+    .product-name {
+        background: none;
+        margin-bottom: 0;
+    }
+
     .product-name.page-title-wrapper.product {
         display: none;
     }
@@ -496,6 +501,8 @@
             }
             
             .buttons {
+                margin-bottom: 20px;
+
                 a.btn-buy {
                     background: #ed5842;
                     color: #fff;
@@ -512,6 +519,7 @@
                     font-size: 16px;
                     color: #ed5842;
                     margin-left: 20px;
+                    background: none;
                 }
                 
                 #btn-share {
@@ -523,6 +531,12 @@
                         background: none;
                         text-align: right;
                     }
+                }
+
+                &:after {
+                    content: "";
+                    display: block;
+                    clear: both;
                 }
             }
             
@@ -589,7 +603,7 @@
 }
 
 @media only screen and (max-width: 1279px) {
-    .product-view-eternity {
+    .catalog-product-view .product-view-eternity {
         #eternity-ring-custom-options {
             .custom-options-lists {
                 .custom-options-list {
@@ -637,7 +651,7 @@
 }
 
 @media only screen and (max-width: 977px) {
-    .product-view-eternity {
+    .catalog-product-view .product-view-eternity {
         #eternity-ring-custom-options {
             width: 100%;
             
@@ -668,11 +682,9 @@
 }
 
 @media only screen and (max-width: 767px) {
-    .product-view-eternity {
+    .catalog-product-view .product-view-eternity {
         .mobile { display: block !important; }
         .desktop { display: none !important; } 
-        
-        .product-image { display: none; }
         
         .product-name.mobile {
             margin-bottom: 0;
@@ -888,10 +900,14 @@
                 }
             }
         }
+
+        .slick-dots {
+            bottom: -30px;
+        }
         
         .price-box.mobile {
             position: absolute;
-            margin-top: -110px;
+            top: -100px;
             right: 0;
             text-align: right;
             z-index: 999;
@@ -917,7 +933,7 @@
 }
 
 @media only screen and (max-width: 639px) {
-    .product-view-eternity {
+    .catalog-product-view .product-view-eternity {
         #eternity-ring-custom-options .custom-options-lists .custom-options-list {
             position: relative;
             
@@ -1033,7 +1049,7 @@
                 padding-right: 0;
                 
                 .product-available {
-                    padding: 0 10%;
+                    padding: 0;
                     margin-bottom: 20px;
                 }
                 
@@ -1051,6 +1067,14 @@
                 .buttons a.btn-wishlist, 
                 .buttons #btn-share a.btn-share {
                     font-size: 16px;
+                    line-height: 30px;
+                    padding: 0;
+                }
+
+                .buttons #btn-share {
+                    .box {
+                        display: none;
+                    }
                 }
                 
                 .option {
@@ -1062,7 +1086,7 @@
 }
 
 @media only screen and (max-width: 479px) {
-    .product-view-eternity {
+    .catalog-product-view .product-view-eternity {
         .product-name.mobile h1 {
             font-size: 12px;
         }
@@ -1082,7 +1106,7 @@
         
         #eternity-ring-custom-options .custom-options-lists .custom-options-list.carat-list li label {
             font-size: 16px;
-            width: 60px;            
+            width: 85px;            
         }
         
         #eternity-ring-custom-options .custom-options-lists .custom-options-list.quality-list li label {
