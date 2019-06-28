@@ -74,6 +74,10 @@ class View extends \Magento\Catalog\Block\Category\View
     }
 
     protected function _getDmRingDesignPageTitle() {
+        if ($this->getCurrentCategory()->getId() != 26) {
+            return "";
+        }
+
         $params = array();
         foreach ($this->getRequest()->getParams() as $key=>$value) {
             if (in_array($key, ["dm_stone_type", "dm_stone_shape", "dm_band", "dm_metal", "dm_setting_style", "dm_design_collection", "dm_designer"])) {

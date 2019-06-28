@@ -48,9 +48,9 @@ class Price extends \Magento\Catalog\Model\Product\Type\Price
         if (strpos($params['metal'], "14k") !== false) {
             $metalWeight = ($values["weight"][0] == 0) ? ($metalBaseWeightTotal):$values["weight"][0];
         } else if (strpos($params['metal'], "18k") !== false) {
-            $metalWeight = ($values["weight"][0] == 0) ? ($metalBaseWeightTotal * 1.16):$values["weight"][0];
+            $metalWeight = ($values["weight"][0] == 0) ? ((float)$metalBaseWeightTotal * 1.16):$values["weight"][0];
         } else if (strpos($params['metal'], "platinum") !== false) {
-            $metalWeight = ($values["weight"][0] == 0) ? ($metalBaseWeightTotal * 1.64):$values["weight"][0];
+            $metalWeight = ($values["weight"][0] == 0) ? ((float)$metalBaseWeightTotal * 1.64):$values["weight"][0];
         }
         $metalFixedPrice = $values["price"][0];
 
