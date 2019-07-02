@@ -89,6 +89,7 @@
                 <item name="dm:reindex:likedislike" xsi:type="object">DiamondMansion\Extensions\Console\Command\ReindexLikeDislike</item>
                 <item name="dm:migrate:attribute" xsi:type="object">DiamondMansion\Extensions\Console\Command\MigrateAttribute</item>
                 <item name="dm:migrate:media" xsi:type="object">DiamondMansion\Extensions\Console\Command\MigrateMedia</item>
+                <item name="dm:adjust:media" xsi:type="object">DiamondMansion\Extensions\Console\Command\AdjustMedia</item>
             </argument>
         </arguments>
     </type>
