@@ -206,7 +206,11 @@ $productOptions = $this->getProductOptions();
                                         <select class="dm-option" name="[<?php echo $group2; ?>][is_default]">
                                             <?php foreach ($options2 as $option2): ?>
                                             <?php if ((!$productOptions && $option2['is_default'])
-                                                || ($productOptions && isset($productOptions[$group2][$option2['code']]) && $productOptions[$group2][$option2['code']]['is_default'])): ?>
+                                                || ($productOptions && isset($productOptions[$group2][$option2['code']]) && $productOptions[$group2][$option2['code']]['is_default'])
+                                                || ($productOptions && isset($productOptions[$group2 . '-1'][$option2['code']]) && $productOptions[$group2 . '-1'][$option2['code']]['is_default'])
+                                                || ($productOptions && isset($productOptions[$group2 . '-2'][$option2['code']]) && $productOptions[$group2 . '-2'][$option2['code']]['is_default'])
+                                                || ($productOptions && isset($productOptions[$group2 . '-3'][$option2['code']]) && $productOptions[$group2 . '-3'][$option2['code']]['is_default'])
+                                                || ($productOptions && isset($productOptions[$group2 . '-4'][$option2['code']]) && $productOptions[$group2 . '-4'][$option2['code']]['is_default'])): ?>
                                             <option value="<?php echo $option2['code'] ?>" selected><?php echo $option2['title'] ?></option>
                                             <?php else: ?>
                                             <option value="<?php echo $option2['code'] ?>"><?php echo $option2['title'] ?></option>
