@@ -77,7 +77,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function getDesignRingStoneColors()
     {
-        return ["d", "e", "f", "g", "h", "i", "j", "fancy light", "fancy yellow", "fancy intense", "fancy black", "d-e", "e-f", "f-g", "g-h", "i-j"];
+        return ["d", "e", "f", "g", "h", "i", "j", "fancy light", "fancy yellow", "fancy intense", "fancy black", "d-e", "e-f", "f-g", "g-h", "i-j", "i+"];
     }
 
     public function getDesignRingStoneClarities()

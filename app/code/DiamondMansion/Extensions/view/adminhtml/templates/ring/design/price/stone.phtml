@@ -123,6 +123,12 @@ excelData['<?php echo $shape ?>']['<?php echo $carat ?>'] = {
         <?php endforeach ?>
     ],
     contextMenu: function() { return false; },
+    allowInsertRow: false,
+    allowManualInsertRow: false,
+    allowInsertColumn: false,
+    allowManualInsertColumn: false,
+    allowDeleteRow: false,
+    allowDeleteColumn: false,
     onchange: function (object, cell, value) {
         var col_row = cell.attr('id').split('-');
         var col = col_row[0];
@@ -132,6 +138,18 @@ excelData['<?php echo $shape ?>']['<?php echo $carat ?>'] = {
         var carat = object.data('carat');
         var clarity = object.find('#col-' + col).text().toLowerCase();
         var color = cell.parent().find('.c0').text().replace(' ', '-').toLowerCase();
+
+        if (!(shape in prices)) {
+            prices[shape] = {};
+        }
+
+        if (!(carat in prices[shape])) {
+            prices[shape][carat] = {};
+        }
+
+        if (!(color in prices[shape][carat])) {
+            prices[shape][carat][color] = {};
+        }
 
         prices[shape][carat][color][clarity] = value;
     }

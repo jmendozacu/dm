@@ -43,7 +43,7 @@ class SaveDiamondMansionOptions implements ObserverInterface
         $dm = [];
         $tmp = [];
         foreach ($options as $option) {
-            $tmp[] = "options".$option['name'] . '=' . $option['value'];
+            $tmp[] = urlencode("options".$option['name']) . '=' . urlencode($option['value']);
         }
         parse_str(implode("&", $tmp), $dm);
 

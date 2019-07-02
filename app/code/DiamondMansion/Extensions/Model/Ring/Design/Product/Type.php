@@ -25,7 +25,7 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         ],
         'main-stone-carat' => false,
         'main-stone-color' => [
-            'd-e', 'e-f', 'f-g', 'g-h', 'i-j',
+            'd-e', 'e-f', 'f-g', 'g-h', 'i-j', 'i+',
             'd', 'e', 'f', 'g', 'h', 'i', 'j',
             'fancy-light', 'fancy-yellow', 'fancy-intense', 'fancy-black'
         ],
