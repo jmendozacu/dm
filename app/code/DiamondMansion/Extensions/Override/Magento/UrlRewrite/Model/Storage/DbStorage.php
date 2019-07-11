@@ -58,6 +58,7 @@ class DbStorage extends \Magento\UrlRewrite\Model\Storage\DbStorage
             } else {
                 // If we have 2 results - return the row that matches request path
                 foreach ($resultsFromDb as $resultFromDb) {
+                    $resultFromDb[UrlRewrite::REQUEST_PATH] = rtrim($resultFromDb[UrlRewrite::REQUEST_PATH], '/') . '/';
                     if ($resultFromDb[UrlRewrite::REQUEST_PATH] === $requestPath) {
                         $result = $resultFromDb;
                         break;
