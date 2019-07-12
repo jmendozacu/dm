@@ -52,7 +52,7 @@ class Price extends \Magento\Catalog\Model\Product\Type\Price
         } else if (strpos($params['metal'], "platinum") !== false) {
             $metalWeight = ($values["weight"][0] == 0) ? ((float)$metalBaseWeightTotal * 1.64):$values["weight"][0];
         }
-        $metalFixedPrice = $values["price"][0];
+        $metalFixedPrice = isset($values["price"]) ? $values["price"][0] : 0.0;
 
         $metalPrice = ($metalFixedPrice > 0) ? $metalFixedPrice : (double)$this->_helper->getMetalPrice($this->config, $params["metal"]) * (double)$metalWeight;
 
