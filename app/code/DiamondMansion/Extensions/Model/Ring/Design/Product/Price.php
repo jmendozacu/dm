@@ -56,7 +56,7 @@ class Price extends \Magento\Catalog\Model\Product\Type\Price
             } else if (strpos($params['metal'], "platinum") !== false) {
                 $metalWeight = ($values["weight"][0] == 0) ? ($metalBaseWeightTotal * 1.64):$values["weight"][0];
             }
-            $metalFixedPrice = $values["price"][0];
+            $metalFixedPrice = (isset($values["price"])) ? $values["price"][0] : 0.0;
         } else if ($params["band"] == "bridal-set") {
             if (strpos($params['metal'], "14k") !== false) {
                 $metalWeight = ($values["weight"][1] == 0) ? ($metalBaseWeight):$values["weight"][1];
@@ -65,7 +65,7 @@ class Price extends \Magento\Catalog\Model\Product\Type\Price
             } else if (strpos($params['metal'], "platinum") !== false) {
                 $metalWeight = ($values["weight"][1] == 0) ? ($metalBaseWeight * 1.64):$values["weight"][1];
             }
-            $metalFixedPrice = $values["price"][1];
+            $metalFixedPrice = (isset($values["price"])) ? $values["price"][1] : 0.0;
         }
 
         $metalPrice = ($metalFixedPrice > 0) ? $metalFixedPrice : (double)$this->_helper->getMetalPrice($this->config, $params["metal"]) * (double)$metalWeight;
