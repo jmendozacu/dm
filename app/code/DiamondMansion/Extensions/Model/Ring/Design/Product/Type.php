@@ -258,6 +258,12 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
 
             if (is_array($children) && isset($children[$group]) && !in_array($defaultOptions[$group]->getCode(), $children[$group])) {
                 $result[$group] = $children[$group][0];
+            } else if ($group == 'others') {
+                $otherCodes = [];
+                foreach ($optionGroup as $code => $option) {
+                    $otherCodes[] = $code;
+                }
+                $result[$group] = implode(',', $otherCodes);
             } else if (isset($defaultOptions[$group])) {
                 $result[$group] = $defaultOptions[$group]->getCode();
             }
@@ -453,7 +459,7 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
             }
         }
 
-        $options = $newOptions;
+        $options = array_merge($newOptions, array_diff_key($options, $newOptions));
     }
 
     protected function _prepareProduct(\Magento\Framework\DataObject $buyRequest, $product, $processMode) {

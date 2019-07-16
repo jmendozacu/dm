@@ -38,12 +38,21 @@ class Price extends \Magento\Catalog\Model\Product\Type\Price
         foreach ($allDmOptions['metal'] as $option) {
             if (strpos($option->getCode(), '14k') !== false) {
                 $values = json_decode($option->getValues(), true);
+                if (isset($values["weight"])) {
+                    $values["weight"][0] = floatval($values["weight"][0]);
+                    $values["weight"][1] = floatval($values["weight"][1]);
+                }
+        
                 if ($metalBaseWeight == 0) { $metalBaseWeight = $values["weight"][0]; }
                 if ($metalBaseWeightTotal == 0) { $metalBaseWeightTotal = $values["weight"][1]; }
             }
         }
 
         $values = json_decode($allDmOptions['metal'][$params['metal']]->getValues(), true);        
+        if (isset($values["weight"])) {
+            $values["weight"][0] = floatval($values["weight"][0]);
+            $values["weight"][1] = floatval($values["weight"][1]);
+        }
 
         if (strpos($params['metal'], "14k") !== false) {
             $metalWeight = ($values["weight"][0] == 0) ? ($metalBaseWeightTotal):$values["weight"][0];

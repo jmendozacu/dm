@@ -41,12 +41,20 @@ class Price extends \Magento\Catalog\Model\Product\Type\Price
         foreach ($allDmOptions['metal'] as $option) {
             if (strpos($option->getCode(), '14k') !== false) {
                 $values = json_decode($option->getValues(), true);
+                if (isset($values["weight"])) {
+                    $values["weight"][0] = floatval($values["weight"][0]);
+                    $values["weight"][1] = floatval($values["weight"][1]);
+                }
                 if ($metalBaseWeight == 0) { $metalBaseWeight = $values["weight"][0]; }
                 if ($metalBaseWeightTotal == 0) { $metalBaseWeightTotal = $values["weight"][1]; }
             }
         }
 
         $values = json_decode($allDmOptions['metal'][$params['metal']]->getValues(), true);        
+        if (isset($values["weight"])) {
+            $values["weight"][0] = floatval($values["weight"][0]);
+            $values["weight"][1] = floatval($values["weight"][1]);
+        }
 
         if (!isset($params['band']) || $params["band"] == "no-band") {
             if (strpos($params['metal'], "14k") !== false) {
@@ -69,8 +77,10 @@ class Price extends \Magento\Catalog\Model\Product\Type\Price
         }
 
         $metalPrice = ($metalFixedPrice > 0) ? $metalFixedPrice : (double)$this->_helper->getMetalPrice($this->config, $params["metal"]) * (double)$metalWeight;
+
+        $others = isset($params['others']) ? explode(',', $params['others']) : [];
         
-        $isFixedMainStonePrice = isset($params['others']) && isset($params['others']['fixed-main-stone-price']) && $params['others']['fixed-main-stone-price'];
+        $isFixedMainStonePrice = in_array('fixed-main-stone-price', $others);
         if ($params["main-stone-type"] == "setting") {
             $mainStonePrice = $isFixedMainStonePrice ? 0 : 0.0000001;
         } else {
@@ -101,7 +111,7 @@ class Price extends \Magento\Catalog\Model\Product\Type\Price
         }
 
         $sideStonePriceTotal = 0;
-        $isExcludeSideStonePrice = isset($params['others']) && isset($params['others']['exclude-side-stone-price']) && $params['others']['exclude-side-stone-price'];
+        $isExcludeSideStonePrice = in_array('exclude-side-stone-price', $others);
         foreach ($params as $group => $param) {
             if (strpos($group, 'side-stone-shape') !== false) {
                 $values = json_decode($allDmOptions[$group][$param]->getValues(), true);
