@@ -13,9 +13,7 @@ require([
         var urlInfo = location.href.split('#');
         if (urlInfo.length == 2) {
             $('.faqs-container > ul > li > a[href="#' + urlInfo[1] + '"]').trigger('click');
-            setTimeout(function () {
-                $(window).scrollTop($('.faqs-container > ul > li > a[href="#' + urlInfo[1] + '"]').offset().top - 200);
-            }, 500);
+            $(window).scrollTop($('.faqs-container > ul > li > a[href="#' + urlInfo[1] + '"]').offset().top - 200);
         }
     });
 });
