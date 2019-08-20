@@ -22,7 +22,7 @@
                         <argument name="template" xsi:type="string">Magento_Catalog::product/list_ring_design.phtml</argument>
                     </action>
                     <action method="setDefaultDirection">
-                        <argument name="dir" xsi:type="string">desc</argument>
+                        <argument name="dir" xsi:type="string">asc</argument>
                     </action>
                     <referenceBlock name="category.product.item">
                         <action method="setTemplate">
