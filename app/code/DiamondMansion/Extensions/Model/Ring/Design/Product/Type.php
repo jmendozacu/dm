@@ -397,10 +397,10 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         
         $images = $this->_helper->getProductImages([
             'sku' => $product->getSku(),
-            'type' => $param['main-stone-type'],
-            'shape' => $param['main-stone-shape'],
-            'band' => $param['band'],
-            'metal' => $param['metal'],
+            'type' => isset($param['main-stone-type']) ? $param['main-stone-type'] : "",
+            'shape' => isset($param['main-stone-shape']) ? $param['main-stone-shape'] : "",
+            'band' => isset($param['band']) ? $param['band'] : "",
+            'metal' => isset($param['metal']) ? $param['metal'] : "",
         ]);
         
         return $images['main'];        
