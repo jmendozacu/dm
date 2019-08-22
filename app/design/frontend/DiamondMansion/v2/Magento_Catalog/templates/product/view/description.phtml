@@ -6,6 +6,8 @@
         <h2>Description & Details</h2>
         <div class="box-collateral">
             <?= $_product->getDescription() ?>
+
+            <p class="product-sku">SKU: <?= strtoupper($_product->getSku()) ?></p>
         </div>
     </div>
 </div>

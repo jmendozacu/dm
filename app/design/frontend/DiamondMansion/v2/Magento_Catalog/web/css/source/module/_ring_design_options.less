@@ -200,10 +200,14 @@
                 }
 
                 .box-collateral {
-                    font-family: @v3-title-font-family-rg;
                     font-size: 20em;
+                    font-family: @v3-title-font-family-rg;
                     line-height: 38 * @v3-base-desktop-vw;
                     color: #000;
+
+                    * {
+                        font-size: 1em;
+                    }
                 }
             }
         }
@@ -2294,7 +2298,9 @@
                 }
 
                 .box-collateral {
-                    font: 400 14px/24px @v3-title-font-family-rg;
+                    &, * {
+                        font: 400 14px/24px @v3-title-font-family-rg;
+                    }
                 }
             }
 

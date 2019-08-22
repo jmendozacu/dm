@@ -818,9 +818,9 @@ define([
             title = title.trim();
             if (title != "") {
                 title += " Diamond";
-                var titleHTML = "<h2>" + config.subname + "</h2><h1 class=\"page-title\"><span class=\"base\" data-ui-id=\"page-title-wrapper\" itemprop=\"name\">" + title + " " + config.name + "</span></h1>";
+                var titleHTML = "<h2>" + config.subname + "</h2><h1 class=\"page-title\"><span class=\"base\" data-ui-id=\"page-title-wrapper\" itemprop=\"name\">" + title + " " + config.name + " (GIA Certified)</span></h1>";
             } else {
-                var titleHTML = "<h2>" + config.subname + "</h2><h1 class=\"page-title\"><span class=\"base\" data-ui-id=\"page-title-wrapper\" itemprop=\"name\">" + title + " " + config.name + "</span></h1>";
+                var titleHTML = "<h2>" + config.subname + "</h2><h1 class=\"page-title\"><span class=\"base\" data-ui-id=\"page-title-wrapper\" itemprop=\"name\">" + title + " " + config.name + " (GIA Certified)</span></h1>";
             }
             
             $(".product-name").html(titleHTML);

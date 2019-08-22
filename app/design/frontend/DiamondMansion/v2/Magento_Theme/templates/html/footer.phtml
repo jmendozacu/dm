@@ -13,15 +13,24 @@
         <div class="content">
             <div class="copyright"><address><?php echo sprintf($this->getChildHtml('footer-copyright'), date('Y')); ?></address></div>
             <div class="privacy-terms-conditions">
-                <a href="/about-diamondmansion?sel_cms=5">Privacy Policy</a>  |  <a href="/about-diamondmansion?sel_cms=7">Terms &amp; Conditions</a>
+                <a href="#cms-privacy-policy-container" id="cms-privacy-policy">Privacy Policy</a>  |  <a href="#cms-terms-conditions-container" id="cms-terms-conditions">Terms &amp; Conditions</a>
             </div>
             <div class="social-links"><?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_social_links')->toHtml(); ?></div>
+        </div>
+    </div>
+    <div class="cms-popups" style="display: none;">
+        <div class="privacy-policy" id="cms-privacy-policy-container" style="max-width: 800px;">
+            <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('your-privacy-rights-block')->toHtml(); ?>
+        </div>
+        <div class="terms-conditions" id="cms-terms-conditions-container" style="max-width: 800px;">
+            <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('terms-conditions-block')->toHtml(); ?>
         </div>
     </div>
 </footer>
 <script type="text/javascript">
     require([
-        'jquery'
+        'jquery',
+        'jquery-fancybox'
     ], function ($) {
         $(document).ready(function() {
             $(window).scroll(function () {
@@ -47,6 +56,9 @@
                     $('body').addClass( "sticky");
                 }
             });
+
+            $('#cms-privacy-policy').fancybox();
+            $('#cms-terms-conditions').fancybox();
         });
     });
 </script>
