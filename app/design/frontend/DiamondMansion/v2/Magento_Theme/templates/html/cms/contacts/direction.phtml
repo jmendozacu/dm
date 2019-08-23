@@ -27,11 +27,13 @@ function directionPopup(value2){
 </script>
 
 <object style="width:365px; max-width: 100%;height:265px;margin-bottom: 20px;frameborder:0px;scrolling:no;marginheight:0px; marginwidth:0px;" data="http://maps.google.co.in/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=550+S+Hill+St+%23+710,+Los+Angeles,+CA,&amp;aq=&amp;sll=33.941081,-118.208771&amp;sspn=0.435212,0.883026&amp;vpsrc=0&amp;ie=UTF8&amp;hq=&amp;hnear=550+S+Hill+St,+Los+Angeles,+California+90013,+United+States&amp;ll=34.047605,-118.252345&amp;spn=0.007236,0.013797&amp;z=14&amp;output=embed"></object>
-<h4>Get Driving Directions</h4>
-<div class="buttons-set">
-    <div class="input-zipcode">
-        <label for="search2">Your ZIP Code:</label>
-        <input id="search2" name="search2" type="text" placeholder="Your ZIP Code" />
-    </div>   
-	<button class="button" onclick="directionPopup()"><span><span>GET DIRECTIONS</span></span></button>
-</div>
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {
+        $('#btn-start-chat').click(function () {
+            $('.click-desk-closed-container').trigger('click');
+            return false;
+        });
+    });
+</script>
