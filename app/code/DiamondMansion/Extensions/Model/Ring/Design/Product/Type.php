@@ -315,13 +315,50 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
             $name[] = $allDmOptions['main-stone-cert'][$params["main-stone-cert"]]->getTitle(); 
         }
 
-        $name[] = ' (GIA Certified)';
+        //$name[] = '(GIA Certified)';
 
         return implode(" ", $name);
     }
 
     public function getMetaTitle($product, $mainName = "") {
-        return $this->getName($product, $mainName);
+
+        $allDmOptions = $this->getAllDmOptions($product);
+        $params = $this->getDmOptions($product);
+
+        if ($params["main-stone-type"] == "setting") {
+            
+            $name = $mainName . " Setting";
+            
+            if (isset($params["metal"])) { 
+                $name .= $allDmOptions["metal"][$params["metal"]]->getTitle();
+            }
+            
+            return $name;
+        }
+
+        $name = [];
+        if (isset($params["main-stone-carat"])) { 
+            $name[] = (double)($this->getTotalCarat($product))."ct.";
+        }
+
+        if (isset($params["main-stone-shape"])) { 
+            $name[] = ($params["main-stone-shape"] == "heart") ? $allDmOptions['main-stone-shape'][$params["main-stone-shape"]]->getTitle() . " shape" : $allDmOptions['main-stone-shape'][$params["main-stone-shape"]]->getTitle() . " cut";
+        }
+        
+        if (isset($params["main-stone-type"])) { 
+            $name[] = $allDmOptions['main-stone-type'][$params["main-stone-type"]]->getTitle();
+        }
+        $name[] = "Diamond";
+
+        $name[] = $mainName;
+        
+        //if (isset($params["metal"])) { 
+        //    $name[] = $allDmOptions['metal'][$params["metal"]]->getTitle(); 
+        //}
+
+        $name[] = '(GIA Certified)'; 
+
+        return implode(" ", $name);
     }
 
 	public function getTotalCarat($product) {

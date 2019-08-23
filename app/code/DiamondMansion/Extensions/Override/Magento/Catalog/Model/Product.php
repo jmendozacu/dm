@@ -130,7 +130,7 @@ class Product extends \Magento\Catalog\Model\Product
             if (isset($params['option'])) {
                 $this->setFilters($params);
             }
-            return $this->getTypeInstance()->getName($this, parent::getName());
+            return $this->getTypeInstance()->getMetaTitle($this, parent::getName());
             $this->setFilters($oldFilters);
         } else {
             return parent::getMetaTitle();

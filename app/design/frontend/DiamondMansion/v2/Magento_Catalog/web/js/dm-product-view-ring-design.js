@@ -822,7 +822,8 @@ define([
             } else {
                 var titleHTML = "<h2>" + config.subname + "</h2><h1 class=\"page-title\"><span class=\"base\" data-ui-id=\"page-title-wrapper\" itemprop=\"name\">" + title + " " + config.name + " (GIA Certified)</span></h1>";
             }
-            
+
+            document.title = title + " " + config.name + " (GIA Certified)";
             $(".product-name").html(titleHTML);
             $("input.productname").val(config.name + " - " + title);
         }
