@@ -13,17 +13,9 @@
         <div class="content">
             <div class="copyright"><address><?php echo sprintf($this->getChildHtml('footer-copyright'), date('Y')); ?></address></div>
             <div class="privacy-terms-conditions">
-                <a href="#cms-privacy-policy-container" id="cms-privacy-policy">Privacy Policy</a>  |  <a href="#cms-terms-conditions-container" id="cms-terms-conditions">Terms &amp; Conditions</a>
+                <a href="/privacy-policy" id="cms-privacy-policy">Privacy Policy</a>  |  <a href="/terms-conditions" id="cms-terms-conditions">Terms &amp; Conditions</a>
             </div>
             <div class="social-links"><?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_social_links')->toHtml(); ?></div>
-        </div>
-    </div>
-    <div class="cms-popups" style="display: none;">
-        <div class="privacy-policy" id="cms-privacy-policy-container" style="max-width: 800px;">
-            <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('your-privacy-rights-block')->toHtml(); ?>
-        </div>
-        <div class="terms-conditions" id="cms-terms-conditions-container" style="max-width: 800px;">
-            <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('terms-conditions-block')->toHtml(); ?>
         </div>
     </div>
 </footer>
@@ -57,8 +49,27 @@
                 }
             });
 
-            $('#cms-privacy-policy').fancybox();
-            $('#cms-terms-conditions').fancybox();
+            $('#cms-privacy-policy').fancybox({
+                src  : $(this).attr('href'),
+                type : 'iframe',
+                iframe : {
+                    css : {
+                        width : '800px',
+                        maxHeight: '90%'
+                    }
+                }
+            });
+
+            $('#cms-terms-conditions').fancybox({
+                src  : $(this).attr('href'),
+                type : 'iframe',
+                iframe : {
+                    css : {
+                        width : '800px',
+                        maxHeight: '90%'
+                    }
+                }
+            });
         });
     });
 </script>
