@@ -314,8 +314,14 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         if (isset($params["main-stone-cert"])) { 
             $name[] = $allDmOptions['main-stone-cert'][$params["main-stone-cert"]]->getTitle(); 
         }
-        
+
+        $name[] = ' (GIA Certified)';
+
         return implode(" ", $name);
+    }
+
+    public function getMetaTitle($product, $mainName = "") {
+        return $this->getName($product, $mainName);
     }
 
 	public function getTotalCarat($product) {
