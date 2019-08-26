@@ -380,8 +380,8 @@ define([
                     
                     var sidestones_qty = config.side_stone["qty"][$(this).attr("rel")];
                     
-                    $(this).parent().find("sub").html("x " + config.side_stone["qty"][$(this).attr("rel")]);
-                    $(this).parent().parent().find(".sidecarats ul li a").each (function (index, value) {
+                    $(this).closest('table').find("sub").html("x " + config.side_stone["qty"][$(this).attr("rel")]);
+                    $(this).closest('table').find(".sidecarats ul li a").each (function (index, value) {
                         $(this).html(Math.round(parseFloat($(this).attr("rel")) * parseFloat(sidestones_qty) * 10000)/10000);
                     });
                 });
