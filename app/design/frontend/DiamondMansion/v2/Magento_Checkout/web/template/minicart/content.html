@@ -75,23 +75,23 @@
         />
         <if args="getCartParam('cart_empty_message')">
             <p class="minicart empty text" text="getCartParam('cart_empty_message')"/>
-            <div class="actions">
+            <!-- <div class="actions">
                 <div class="secondary">
                     <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
                         <span translate="'View and Edit Cart'"/>
                     </a>
                 </div>
-            </div>
+            </div> -->
         </if>
     </ifnot>
 
-    <div class="actions" if="getCartParam('summary_count')">
+    <!-- <div class="actions" if="getCartParam('summary_count')">
         <div class="secondary">
             <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
                 <span translate="'View and Edit Cart'"/>
             </a>
         </div>
-    </div>
+    </div> -->
 
     <div id="minicart-widgets" class="minicart-widgets">
         <each args="getRegion('promotion')" render=""/>
