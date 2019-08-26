@@ -651,7 +651,7 @@ define([
             $(".sideshapes ul").each (function (index, value) {
                 var sideStoneQty = parseInt($(this).find('a.selected').data('qty'));
                 if (config.band == 'bridal-set') {
-                    sideStoneQty += parseInt($(this).find('a.selected').data('qty2'));
+                    sideStoneQty = parseInt($(this).find('a.selected').data('qty2'));
                 }
                 sideStonesCarat += sideStoneQty * parseFloat($(this).parent().parent().find(".sidecarats ul a.selected").data("code"));
             });
