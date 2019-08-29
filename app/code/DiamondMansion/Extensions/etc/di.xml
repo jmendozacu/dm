@@ -107,6 +107,7 @@
     <preference for="Magento\Catalog\Model\Category\Attribute\Source\Mode" type="DiamondMansion\Extensions\Override\Magento\Catalog\Model\Category\Attribute\Source\Mode"/>
     <preference for="Magento\Catalog\Model\Product" type="DiamondMansion\Extensions\Override\Magento\Catalog\Model\Product"/>
     <preference for="Magento\Customer\Model\Plugin\CustomerFlushFormKey" type="DiamondMansion\Extensions\Override\Magento\Customer\Model\Plugin\CustomerFlushFormKey"/>
+    <preference for="Magento\Contact\Controller\Index\Post" type="DiamondMansion\Extensions\Override\Magento\Contact\Controller\Index\Post"/>
     <preference for="Magento\Checkout\Controller\Cart\Index" type="DiamondMansion\Extensions\Override\Magento\Checkout\Controller\Cart\Index"/>
     <preference for="Magento\Quote\Model\Quote\Item" type="DiamondMansion\Extensions\Override\Magento\Quote\Model\Quote\Item"/>
     <preference for="Magento\Wishlist\Block\Customer\Sidebar" type="DiamondMansion\Extensions\Override\Magento\Wishlist\Block\Customer\Sidebar"/>
