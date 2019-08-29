@@ -347,7 +347,7 @@
                     <?php foreach (array("side-stone-shape-1"=>"side-stone-carat-1", "side-stone-shape-2"=>"side-stone-carat-2", "side-stone-shape-3"=>"side-stone-carat-3", "side-stone-shape-4"=>"side-stone-carat-4") as $sideshape => $sidecarat): ?>
                     <?php if (isset($allOptions[$sideshape])): ?>
                     <tr>
-                        <td class="label"><img id="<?php echo $sideshape ?>-selected" src="<?php echo $this->getViewFileUrl("images/v3/diamond/shape/".$defaultOptions[$sideshape]->getCode().".png") ?>"><sub></sub>&nbsp;<span>Carats</span></td>
+                        <td class="label"><span>Carats</span></td>
                         <td class="collapsed">
                             <div class="option">
                                 <div class="sideshapes no-display">
