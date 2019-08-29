@@ -191,9 +191,9 @@ class AmshopbyCustomPages extends Command
                         } else if (isset($params["dm_stone_shape"]) && isset($params["dm_band"])) {
                             $attrLabel1 = $this->_eavConfig->getAttribute('catalog_product', "dm_stone_shape")->getSource()->getOptionText($params["dm_stone_shape"]);
                             if ($attrLabel1 == "Heart") {
-                                $pageTitle = $attrLabel1 . " Shape Bridal Wedduing Ring Sets";
+                                $pageTitle = $attrLabel1 . " Shape Bridal Wedding Ring Sets";
                             } else {
-                                $pageTitle = $attrLabel1 . " cut Bridal Wedduing Ring Sets";
+                                $pageTitle = $attrLabel1 . " cut Bridal Wedding Ring Sets";
                             }
                         } else if (isset($params["dm_stone_type"]) && isset($params["dm_design_collection"])) {
                             $attrLabel1 = $this->_eavConfig->getAttribute('catalog_product', "dm_stone_type")->getSource()->getOptionText($params["dm_stone_type"]);
