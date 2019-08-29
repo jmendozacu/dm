@@ -722,6 +722,13 @@ define([
                 url += $(".cert-list .selected").data('code');
             }
             */
+
+            var prefix = config.center_stone["shape"];
+            if (prefix == 'heart') {
+                prefix += '-shape-';
+            } else {
+                prefix += '-cut-';
+            }
             
             url = "option=";
 
