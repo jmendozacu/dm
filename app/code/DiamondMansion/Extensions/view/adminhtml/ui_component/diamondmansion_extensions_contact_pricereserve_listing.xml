@@ -8,7 +8,7 @@
     </argument>
     <dataSource name="nameOfDataSource">
         <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">DiamondMansion\Extensions\Ui\Component\DataProvider\Contact\pricereserve\Listing</argument>
+            <argument name="class" xsi:type="string">DiamondMansion\Extensions\Ui\Component\DataProvider\Contact\PriceReserve\Listing</argument>
             <argument name="name" xsi:type="string">diamondmansion_extensions_contact_pricereserve_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>

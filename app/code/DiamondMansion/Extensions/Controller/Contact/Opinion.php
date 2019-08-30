@@ -58,8 +58,8 @@ class Opinion extends \Magento\Contact\Controller\Index\Post
         try {
             $params = $this->validatedParams();
             $sender = [
-                'name' => 'DiamondMansion',
-                'email' => $this->_scopeConfig->getValue(self::XML_PATH_EMAIL_SENDER, \Magento\Store\Model\ScopeInterface::SCOPE_STORE)
+                'name' => 'Sales',
+                'email' => 'service@diamondmansion.com'
             ];
 
             $contact = $this->_contactFactory->create();
