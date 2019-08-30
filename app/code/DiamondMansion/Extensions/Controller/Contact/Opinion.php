@@ -58,8 +58,8 @@ class Opinion extends \Magento\Contact\Controller\Index\Post
         try {
             $params = $this->validatedParams();
             $sender = [
-                'name' => $params['name'],
-                'email' => $params['email']
+                'name' => 'DiamondMansion',
+                'email' => $this->_scopeConfig->getValue(self::XML_PATH_EMAIL_SENDER, \Magento\Store\Model\ScopeInterface::SCOPE_STORE)
             ];
 
             $contact = $this->_contactFactory->create();
@@ -83,6 +83,7 @@ class Opinion extends \Magento\Contact\Controller\Index\Post
                 ->setTemplateOptions(['area' => 'frontend', 'store' => $storeId])
                 ->setTemplateVars($params)
                 ->setFrom($sender)
+                ->setReplyTo($params['email'], $params['name'])
                 // you can config general email address in Store -> Configuration -> General -> Store Email Addresses
                 ->addTo($this->_scopeConfig->getValue(self::XML_PATH_EMAIL_RECIPIENT, \Magento\Store\Model\ScopeInterface::SCOPE_STORE))
                 ->getTransport();
