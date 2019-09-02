@@ -1,25 +1,28 @@
 <?php
 /**
  *
-  * Copyright © 2018 Magenest. All rights reserved.
-  * See COPYING.txt for license details.
-  *
-  * Magenest_InstagramShop extension
-  * NOTICE OF LICENSE
-  *
-  * @category Magenest
-  * @package  Magenest_InstagramShop
-  * @author    dangnh@magenest.com
-
+ * Copyright © 2018 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * Magenest_InstagramShop extension
+ * NOTICE OF LICENSE
+ *
+ * @category Magenest
+ * @package  Magenest_InstagramShop
+ * @author    dangnh@magenest.com
  */
 
 namespace Magenest\InstagramShop\Block\Gallery;
 
+use Magenest\InstagramShop\Block\Instagram\Renderer\Hotspot;
+use Magenest\InstagramShop\Block\Instagram\Renderer\LinkedProducts;
+use Magenest\InstagramShop\Block\Instagram\Renderer\Video;
 use Magenest\InstagramShop\Helper\Helper;
 use Magenest\InstagramShop\Model\Client;
 use Magenest\InstagramShop\Model\Config\Source\GalleryTemplate;
 use Magenest\InstagramShop\Model\PhotoFactory;
 use Magenest\InstagramShop\Model\TaggedPhotoFactory;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 use Magento\Framework\View\Element\Template;
 
@@ -54,7 +57,7 @@ class Gallery extends Template
      */
     protected $helper;
 
-    protected $photoPerPages = 18;
+    protected $photoPerPages = 16;
 
     /**
      * PhotoList constructor.
@@ -85,6 +88,17 @@ class Gallery extends Template
     {
         parent::_construct();
         $this->setCollection($this->getViewParam());
+        if (!$this->isDefaultGalleryTemplate()) {
+            $this->setPhotoPerPages(18);
+        }
+    }
+
+    /**
+     * @param int $photoPerPages
+     */
+    public function setPhotoPerPages($photoPerPages)
+    {
+        $this->photoPerPages = $photoPerPages;
     }
 
     /**
@@ -136,6 +150,9 @@ class Gallery extends Template
             $collection = $this->_taggedPhotoFactory->create()->getCollection()->addTagFilter($tag);
         }
         $collection->setOrder('id', 'DESC');
+
+        $collection->addFieldToFilter('show_in_gallery', 1);
+
         $this->_collection = $collection;
         return $this;
     }
@@ -196,5 +213,44 @@ class Gallery extends Template
     public function isDefaultGalleryTemplate()
     {
         return $this->helper->getGalleryTemplate() == GalleryTemplate::DEFAULT_VALUE_TEMPLATE;
+    }
+
+    /**
+     * @param $photo
+     * @return mixed
+     */
+    public function getHotspotHtml($photo)
+    {
+        try {
+            return $this->getLayout()->createBlock(Hotspot::class)->setPhoto($photo)->toHtml();
+        } catch (LocalizedException $e) {
+            return '';
+        }
+    }
+
+    /**
+     * @param $photo
+     * @return mixed
+     */
+    public function getLinkedProductsHtml($photo)
+    {
+        try {
+            return $this->getLayout()->createBlock(LinkedProducts::class)->setPhoto($photo)->toHtml();
+        } catch (LocalizedException $e) {
+            return '';
+        }
+    }
+
+    /**
+     * @param $photo
+     * @return mixed
+     */
+    public function getVideoHtml($photo)
+    {
+        try {
+            return $this->getLayout()->createBlock(Video::class)->setPhoto($photo)->toHtml();
+        } catch (LocalizedException $e) {
+            return '';
+        }
     }
 }

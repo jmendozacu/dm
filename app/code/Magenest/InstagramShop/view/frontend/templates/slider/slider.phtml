@@ -20,19 +20,21 @@ if ($sliderBlock = $block->getSliderBlock()) {
     $slickConfig   = $sliderBlock->getData();
     $totalItems    = $photos->getSize();
     $itemsPerSlide = $sliderBlock->getItemsPerSlide();
+
+    $prefixElementClass = uniqid();
     ?>
-    <div id="slider">
+    <div id="slider-<?=$prefixElementClass?>">
         <div class="slider">
-            <?= $block->getLayout()->createBlock(\Magenest\InstagramShop\Block\Instagram\SharedPopup::class)->toHtml() ?>
+            <?= $block->getSharedPopupHtml() ?>
         </div>
         <div class="block block-photo-slider slider-list container">
             <div class="block-title">
-                <h2 style="text-align: center"><?php echo $sliderBlock->getTitle() ?></h2>
+                <h2 class="title"><?php echo $sliderBlock->getTitle() ?></h2>
             </div>
-            <div class="block-content" style="overflow-x: hidden;">
+            <div class="block-content">
                 <?php if ($totalItems) { ?>
                     <div class="flexslider carousel">
-                        <ul class="slides">
+                        <ul class="slides <?=$prefixElementClass?>">
                             <?php
                             $count = 0;
                             /** @var \Magenest\InstagramShop\Model\Photo $photo */
@@ -60,10 +62,10 @@ if ($sliderBlock = $block->getSliderBlock()) {
                                             </div>
                                         </a>
                                     <?php }?>
-                                    <?= $sliderBlock->getLayout()->createBlock(\Magenest\InstagramShop\Block\Instagram\Renderer\LinkedProducts::class)->setPhoto($photo)->toHtml() ?>
-                                    <?= $sliderBlock->getLayout()->createBlock(\Magenest\InstagramShop\Block\Instagram\Renderer\Hotspot::class)->setPhoto($photo)->toHtml() ?>
+                                    <?=  $sliderBlock->getLinkedProductsHtml($photo) ?>
+                                    <?= $sliderBlock->getHotspotHtml($photo) ?>
                                     <?php if ($sliderBlock->canShowVideo()) {
-                                        echo $sliderBlock->getLayout()->createBlock(\Magenest\InstagramShop\Block\Instagram\Renderer\Video::class)->setPhoto($photo)->toHtml();
+                                        echo $sliderBlock->getVideoHtml($photo);
                                     } ?>
                                 </li>
                                 <?php
@@ -74,7 +76,7 @@ if ($sliderBlock = $block->getSliderBlock()) {
                             <?php } ?>
                         </ul>
                     </div>
-                    <div style="text-align:center">
+                    <div class="gallery-btn-block">
                         <a href="<?= $sliderBlock->getUrl('instagram/gallery/') ?>" class="instagram-button"
                            style="<?= $sliderBlock->getViewFullGalleryCss() ?>">
                             <?= $sliderBlock->getViewFullGalleryTitle() ?>
@@ -132,12 +134,12 @@ if ($sliderBlock = $block->getSliderBlock()) {
         </script>
         <script type="text/x-magento-init">
         {
-            "#slider": {
+            "#slider-<?=$prefixElementClass?>": {
                 "instagramPopup": {
                     "photos" : <?= json_encode($photos->getData()) ?>,
                     "canShowVideo": <?= $sliderBlock->canShowVideo() ? 'true' : 'false' ?>,
                     "prefixContainer":".slider",
-                    "prefixElement":".flex-viewport ul li"
+                    "prefixElement":".flex-viewport ul.<?=$prefixElementClass?> li"
                 }
             }
         }

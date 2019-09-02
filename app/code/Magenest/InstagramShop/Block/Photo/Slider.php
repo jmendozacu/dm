@@ -14,10 +14,12 @@
 
 namespace Magenest\InstagramShop\Block\Photo;
 
+use Magenest\InstagramShop\Helper\Helper;
 use Magenest\InstagramShop\Model\Config\Source\MediaType;
 use Magenest\InstagramShop\Model\Photo;
 use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\ProductFactory;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Registry;
 use Magento\Widget\Block\BlockInterface;
 
@@ -47,6 +49,10 @@ class Slider extends \Magento\Framework\View\Element\Template implements BlockIn
      * @var Registry
      */
     protected $_registry;
+    /**
+     * @var Helper
+     */
+    protected $helper;
 
     /**
      * Slider constructor.
@@ -54,6 +60,7 @@ class Slider extends \Magento\Framework\View\Element\Template implements BlockIn
      * @param \Magenest\InstagramShop\Model\PhotoFactory $photoFactory
      * @param ProductFactory $productFactory
      * @param Registry $registry
+     * @param Helper $helper
      * @param array $data
      */
     public function __construct(
@@ -61,12 +68,13 @@ class Slider extends \Magento\Framework\View\Element\Template implements BlockIn
         \Magenest\InstagramShop\Model\PhotoFactory $photoFactory,
         ProductFactory $productFactory,
         Registry $registry,
+        Helper $helper,
         array $data = []
-    )
-    {
+    ) {
         $this->_registry       = $registry;
         $this->_productFactory = $productFactory;
         $this->_photoFactory   = $photoFactory;
+        $this->helper          = $helper;
         parent::__construct($context, $data);
     }
 
@@ -75,11 +83,16 @@ class Slider extends \Magento\Framework\View\Element\Template implements BlockIn
      */
     public function getPhotos()
     {
-        return $this->_photoFactory->create()
+        $collection = $this->_photoFactory->create()
             ->getCollection()
             ->addFieldToFilter('show_in_widget', 1)//only visibility items are selected
             ->setOrder('position', 'DESC')
             ->setCurPage(1);
+        $totalPages = empty($this->getTotalPages()) ? 0 : intval($this->getTotalPages() * 1);
+        if ($totalPages)
+            $collection->getSelect()->limit($this->getItemsPerSlide() * $totalPages);
+
+        return $collection;
     }
 
     /**
@@ -95,7 +108,7 @@ class Slider extends \Magento\Framework\View\Element\Template implements BlockIn
      */
     public function getMediaType()
     {
-        return (int)$this->_scopeConfig->getValue('magenest_instagram_shop/general/media_type');
+        return $this->helper->getMediaType();
     }
 
     /**
@@ -136,9 +149,17 @@ class Slider extends \Magento\Framework\View\Element\Template implements BlockIn
     /**
      * @return string
      */
+    public function getBaseGalleryUrl()
+    {
+        return $this->helper->getBaseGalleryUrl();
+    }
+
+    /**
+     * @return string
+     */
     public function getViewFullGalleryTitle()
     {
-        return $this->_scopeConfig->getValue('magenest_instagram_shop/general/button_title');
+        return $this->helper->getViewFullGalleryTitle();
     }
 
     /**
@@ -146,7 +167,7 @@ class Slider extends \Magento\Framework\View\Element\Template implements BlockIn
      */
     public function getViewFullGalleryCss()
     {
-        return $this->_scopeConfig->getValue('magenest_instagram_shop/general/button_css');
+        return $this->helper->getViewFullGalleryCss();
     }
 
     /**
@@ -154,7 +175,7 @@ class Slider extends \Magento\Framework\View\Element\Template implements BlockIn
      */
     public function getHoverText()
     {
-        return $this->_scopeConfig->getValue('magenest_instagram_shop/general/hover_text');
+        return $this->helper->getHoverText();
     }
 
     /**
@@ -191,5 +212,56 @@ class Slider extends \Magento\Framework\View\Element\Template implements BlockIn
     {
         $this->isDefaultTemplate = $isDefaultTemplate;
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSliderHtml()
+    {
+        try {
+            return $this->getLayout()->createBlock(\Magenest\InstagramShop\Block\Photo\Renderer::class)->setSliderBlockName($this->getNameInLayout())->toHtml();
+        } catch (LocalizedException $e) {
+            return '';
+        }
+    }
+
+    /**
+     * @param $photo
+     * @return string
+     */
+    public function getLinkedProductsHtml($photo)
+    {
+        try {
+            return $this->getLayout()->createBlock(\Magenest\InstagramShop\Block\Instagram\Renderer\LinkedProducts::class)->setPhoto($photo)->toHtml();
+        } catch (LocalizedException $e) {
+            return '';
+        }
+    }
+
+    /**
+     * @param $photo
+     * @return string
+     */
+    public function getHotspotHtml($photo)
+    {
+        try {
+            return $this->getLayout()->createBlock(\Magenest\InstagramShop\Block\Instagram\Renderer\Hotspot::class)->setPhoto($photo)->toHtml();
+        } catch (LocalizedException $e) {
+            return '';
+        }
+    }
+
+    /**
+     * @param $photo
+     * @return string
+     */
+    public function getVideoHtml($photo)
+    {
+        try {
+            return $this->getLayout()->createBlock(\Magenest\InstagramShop\Block\Instagram\Renderer\Video::class)->setPhoto($photo)->toHtml();
+        } catch (LocalizedException $e) {
+            return '';
+        }
     }
 }

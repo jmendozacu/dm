@@ -127,6 +127,13 @@ class Grid extends Extended
             ]
         );
         $this->addColumn(
+            'show_in_gallery',
+            [
+                'header' => __('Show in Gallery'),
+                'index' => 'show_in_gallery',
+            ]
+        );
+        $this->addColumn(
             'caption',
             [
                 'header' => __('Caption'),
@@ -141,6 +148,13 @@ class Grid extends Extended
     {
         $this->setMassactionIdField('id');
         $this->getMassactionBlock()->setFormFieldName('id');
+        $this->getMassactionBlock()->addItem(
+            'hide',
+            array(
+                'label' => __('Show/Hide'),
+                'url' => $this->getUrl('*/*/masshide'),
+            )
+        );
         $this->getMassactionBlock()->addItem(
             'delete',
             array(

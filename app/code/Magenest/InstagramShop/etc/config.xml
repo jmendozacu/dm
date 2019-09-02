@@ -13,11 +13,12 @@
    */
   -->
 
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
         <magenest_instagram_shop>
             <general>
+                <menu_title>Instagram Gallery</menu_title>
+                <gallery_url>instagram/gallery</gallery_url>
                 <media_type>1</media_type>
                 <button_title>View Full Gallery</button_title>
                 <button_css>background-color: #383635;margin-top: 20px;color: #FFF;text-shadow: 1px 1px 1px rgba(0,0,0,0.2);border-radius: 3px;</button_css>

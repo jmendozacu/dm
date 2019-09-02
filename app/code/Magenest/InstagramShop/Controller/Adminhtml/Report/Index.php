@@ -37,7 +37,7 @@ class Index extends Report
     {
         /** @var Page $resultPage */
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-        $resultPage->setActiveMenu('Magenest_InstagramShop::report');
+        $resultPage->setActiveMenu('Magenest_InstagramShop::reports');
         $resultPage->addBreadcrumb(__('Magenest'), __('Magenest'));
         $resultPage->addBreadcrumb(__('Instagram Shop'), __('Instagram Shop'));
         $resultPage->getConfig()->getTitle()->prepend(__('Report'));

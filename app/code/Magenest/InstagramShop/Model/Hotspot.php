@@ -1,21 +1,21 @@
 <?php
 /**
  *
-  * Copyright © 2018 Magenest. All rights reserved.
-  * See COPYING.txt for license details.
-  *
-  * Magenest_InstagramShop extension
-  * NOTICE OF LICENSE
-  *
-  * @category Magenest
-  * @package  Magenest_InstagramShop
-  * @author    dangnh@magenest.com
-
+ * Copyright © 2018 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * Magenest_InstagramShop extension
+ * NOTICE OF LICENSE
+ *
+ * @category Magenest
+ * @package  Magenest_InstagramShop
+ * @author    dangnh@magenest.com
  */
 
 namespace Magenest\InstagramShop\Model;
 
 use Magenest\InstagramShop\Api\Data\HotspotInterface;
+use Magenest\InstagramShop\Helper\Helper;
 use Magento\Framework\DataObject\IdentityInterface;
 
 class Hotspot extends \Magento\Framework\Model\AbstractModel implements HotspotInterface, IdentityInterface
@@ -26,6 +26,70 @@ class Hotspot extends \Magento\Framework\Model\AbstractModel implements HotspotI
     protected $_eventPrefix = 'magenest_instagramshop_hotspot';
 
     protected $_eventObject = 'hotspot';
+
+    protected $photoFactory;
+
+    protected $productFactory;
+
+    /**
+     * Hotspot constructor.
+     * @param \Magento\Framework\Model\Context $context
+     * @param \Magento\Framework\Registry $registry
+     * @param PhotoFactory $photoFactory
+     * @param \Magento\Catalog\Model\ProductFactory $productFactory
+     * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
+     * @param \Magento\Framework\Data\Collection\AbstractDb|null $resourceCollection
+     * @param array $data
+     */
+    public function __construct(
+        \Magento\Framework\Model\Context $context,
+        \Magento\Framework\Registry $registry,
+        PhotoFactory $photoFactory,
+        \Magento\Catalog\Model\ProductFactory $productFactory,
+        \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
+        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+        array $data = []
+    )
+    {
+        $this->photoFactory   = $photoFactory;
+        $this->productFactory = $productFactory;
+        parent::__construct($context, $registry, $resource, $resourceCollection, $data);
+    }
+
+    /**
+     * Prepare deleting photo product ids and linked products
+     *
+     * @return \Magento\Framework\Model\AbstractModel
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function beforeDelete()
+    {
+        $photo = $this->photoFactory->create()->loadByPhotoId($this->getPhotoId());
+        if ($photo && $photo->getProductIds()) {
+            $productIds = $photo->getExplodedProductId();
+            foreach ($productIds as $productId) {
+                $product = $this->productFactory->create()->load($productId);
+                $product->setHasDataChanges(false);
+                if ($product->getCustomAttribute(Helper::INSTAGRAM_PHOTOS_ATTRIBUTE_CODE) &&
+                    ($photoIds = $product->getCustomAttribute(Helper::INSTAGRAM_PHOTOS_ATTRIBUTE_CODE)->getValue())) {
+                    $photoIds = explode(', ', $photoIds);
+                    foreach ($photoIds as $key => $photoId) {
+                        if (in_array($photo->getId(), $photoIds)) {
+                            unset($photoIds[$key]);
+                            $product->setHasDataChanges(true);
+                        }
+                    }
+                    if ($product->hasDataChanges()) {
+                        $product->setCustomAttribute(Helper::INSTAGRAM_PHOTOS_ATTRIBUTE_CODE, implode(', ', $photoIds));
+                        $product->save();
+                    }
+                }
+            }
+            $photo->setProductId(null)->save();
+        }
+
+        return parent::beforeDelete();
+    }
 
     /**
      * @return void
@@ -53,14 +117,18 @@ class Hotspot extends \Magento\Framework\Model\AbstractModel implements HotspotI
     {
         $result = [];
         for ($i = 1; $i <= 5; $i++) {
-            $funcX      = sprintf('getHotspot%sX', $i);
-            $funcY      = sprintf('getHotspot%sY', $i);
-            $funcSku    = sprintf('getHotspot%sSku', $i);
-            $result[$i] = [
-                'x' => $this->{$funcX}(),
-                'y' => $this->{$funcY}(),
-                'sku' => $this->{$funcSku}(),
-            ];
+            $funcX   = sprintf('getHotspot%sX', $i);
+            $funcY   = sprintf('getHotspot%sY', $i);
+            $funcSku = sprintf('getHotspot%sSku', $i);
+            $x       = $this->{$funcX}();
+            $y       = $this->{$funcY}();
+            $sku     = $this->{$funcSku}();
+            if (($sku && $x && $y) || ($sku && !$x && !$y))
+                $result[$i] = [
+                    'x'   => $this->{$funcX}(),
+                    'y'   => $this->{$funcY}(),
+                    'sku' => $this->{$funcSku}(),
+                ];
         }
         return $result;
     }

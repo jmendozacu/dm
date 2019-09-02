@@ -38,18 +38,18 @@
                     <!--</option>-->
                 <!--</options>-->
             <!--</parameter>-->
-            <parameter name="direction" required="false" xsi:type="select">
-                <label>Direction</label>
-                <description>Boolean: Controls the animation direction. Default: horizontal.</description>
-                <options>
-                    <option name="default" value="horizontal" selected="true">
-                        <label>Horizontal</label>
-                    </option>
-                    <option name="direction" value="vertical">
-                        <label>Vertical</label>
-                    </option>
-                </options>
-            </parameter>
+            <!--<parameter name="direction" required="false" xsi:type="select">-->
+                <!--<label>Direction</label>-->
+                <!--<description>Boolean: Controls the animation direction. Default: horizontal.</description>-->
+                <!--<options>-->
+                    <!--<option name="default" value="horizontal" selected="true">-->
+                        <!--<label>Horizontal</label>-->
+                    <!--</option>-->
+                    <!--<option name="direction" value="vertical">-->
+                        <!--<label>Vertical</label>-->
+                    <!--</option>-->
+                <!--</options>-->
+            <!--</parameter>-->
             <parameter name="reverse" required="false" xsi:type="select" source_model="Magento\Config\Model\Config\Source\Yesno">
                 <label>Reverse</label>
                 <description>Boolean: Reverse the animation direction. Default: false.</description>
@@ -216,7 +216,11 @@
             </parameter>
             <parameter name="max_items" required="false" xsi:type="text">
                 <label>Max Items</label>
-                <description>Number: Maximum number of carousel items that should be visible. DefaultL 0.</description>
+                <description>Number: Maximum number of carousel items that should be visible. Default: 0.</description>
+            </parameter>
+            <parameter name="total_pages" required="false" xsi:type="text">
+                <label>Total Pages</label>
+                <description>Number: Total pages of carousel. Default: Maximum.</description>
             </parameter>
             <parameter name="move" required="false" xsi:type="text">
                 <label>Move</label>

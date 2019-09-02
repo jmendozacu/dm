@@ -15,6 +15,7 @@
 namespace Magenest\InstagramShop\Model;
 
 use Magento\Backend\App\ConfigInterface;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\HTTP\Adapter\Curl;
@@ -29,16 +30,16 @@ class Client
     const REDIRECT_URI_PATH                    = 'instagram/instagram/connect/';
     const INSTAGRAM_SHOP_CONFIGURATION_SECTION = 'adminhtml/system_config/edit/section/magenest_instagram_shop';
 
-    protected $path_client_id = 'magenest_instagram_shop/instagram/client_id';
-    protected $path_client_secret = 'magenest_instagram_shop/instagram/client_secret';
-    protected $path_access_token = 'magenest_instagram_shop/instagram/access_token';
-    protected $path_account_id = 'magenest_instagram_shop/instagram/account_id';
-
-    protected $path_tags = 'magenest_instagram_shop/instagram_tags/tags';
+    const XML_PATH_CLIENT_ID     = 'magenest_instagram_shop/instagram/client_id';
+    const XML_PATH_CLIENT_SECRET = 'magenest_instagram_shop/instagram/client_secret';
+    const XML_PATH_ACCESS_TOKEN  = 'magenest_instagram_shop/instagram/access_token';
+    const XML_PATH_ACCOUNT       = 'magenest_instagram_shop/instagram/account';
+    const XML_PATH_ACCOUNT_ID    = 'magenest_instagram_shop/instagram/account_id';
+    const XML_PATH_TAGS          = 'magenest_instagram_shop/instagram_tags/tags';
 
     protected $oauth2_service_uri = 'https://api.instagram.com/v1';
-    protected $oauth2_auth_uri = 'https://api.instagram.com/oauth/authorize';
-    protected $oauth2_token_uri = 'https://api.instagram.com/oauth/access_token';
+    protected $oauth2_auth_uri    = 'https://api.instagram.com/oauth/authorize';
+    protected $oauth2_token_uri   = 'https://api.instagram.com/oauth/access_token';
 
     protected $scope = ['basic', 'public_content'];
 
@@ -46,6 +47,12 @@ class Client
      * @var CurlFactory
      */
     protected $_curlFactory;
+
+    /**
+     * @var ScopeConfigInterface
+     */
+    protected $_scopeConfig;
+
     /**
      * @var ConfigInterface
      */
@@ -76,33 +83,22 @@ class Client
     protected $token;
 
     /**
-     * @var TaggedPhotoFactory
-     */
-    protected $_taggedPhotoFactory;
-
-    /**
      * Client constructor.
      * @param CurlFactory $curlFactory
-     * @param ConfigInterface $config
+     * @param ScopeConfigInterface $scopeConfig
      * @param UrlInterface $url
-     * @param TaggedPhotoFactory $taggedPhotoFactory
      */
     public function __construct(
         CurlFactory $curlFactory,
-        ConfigInterface $config,
-        UrlInterface $url,
-        TaggedPhotoFactory $taggedPhotoFactory
-    )
-    {
-        $this->_taggedPhotoFactory = $taggedPhotoFactory;
-        $this->_curlFactory        = $curlFactory;
-        $this->_config             = $config;
-        $this->_url                = $url;
-        $this->_config             = $config;
+        ScopeConfigInterface $scopeConfig,
+        UrlInterface $url
+    ) {
+        $this->_curlFactory = $curlFactory;
+        $this->_scopeConfig = $scopeConfig;
+        $this->_url         = $url;
         $this->initAppInformation();
         $this->initAppRedirectUri();
     }
-
 
     private function initAppInformation()
     {
@@ -120,10 +116,10 @@ class Client
      * @param string $clientId
      * @return string
      */
-    public function createAuthUrl($clientId = '')
+    public function createAuthUrl($clientId)
     {
         $query = [
-            'client_id'     => $clientId ? $clientId : $this->getClientId(),
+            'client_id'     => $clientId,
             'redirect_uri'  => $this->getRedirectUri(),
             'scope'         => implode(' ', $this->getScope()),
             'response_type' => "code"
@@ -151,9 +147,6 @@ class Client
             'access_token' => $this->token
         ], $params);
         $response = $this->_httpRequest($url, $method, $params);
-        if (isset($response['meta']['error_type']) && $response['meta']['error_type'] == 'OAuthAccessTokenError') {
-            $this->_config->setValue($this->getPathAccessToken(), 'Expired');
-        }
 
         return $response;
     }
@@ -185,29 +178,26 @@ class Client
     }
 
     /**
-     * @param null $code
+     * @param string $clientId
+     * @param string $clientSecret
+     * @param string $code
      * @return array
      * @throws LocalizedException
      */
-    public function fetchAccessToken($code = null)
+    public function fetchAccessToken($clientId, $clientSecret, $code)
     {
-        $token_array = [
-            'client_id'     => $this->getClientId(),
-            'client_secret' => $this->getClientSecret(),
+        $data = [
+            'client_id'     => $clientId,
+            'client_secret' => $clientSecret,
             'grant_type'    => 'authorization_code',
             'redirect_uri'  => $this->getRedirectUri(),
             'code'          => $code,
         ];
 
-        if (empty($code)) {
-            throw new LocalizedException(
-                __('Unable to retrieve access code.')
-            );
-        }
         return $this->_httpRequest(
             $this->oauth2_token_uri,
             'POST',
-            $token_array
+            $data
         );
     }
 
@@ -249,6 +239,9 @@ class Client
             if (isset($resultResponse['code']) && $resultResponse['code'] != 200) {
                 throw new LocalizedException(__(implode(', ', $resultResponse)));
             }
+            if (isset($decodedResponse['pagination']['next_url'])) {
+                $decodedResponse = array_merge_recursive($decodedResponse, $this->_httpRequest($decodedResponse['pagination']['next_url']));
+            }
             return $decodedResponse;
         } else {
             throw new LocalizedException(__('Empty response.'));
@@ -278,22 +271,6 @@ class Client
     /**
      * @return null|string
      */
-    public function getClientId()
-    {
-        return $this->clientId;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getClientSecret()
-    {
-        return $this->clientSecret;
-    }
-
-    /**
-     * @return null|string
-     */
     public function getRedirectUri()
     {
         return $this->redirectUri;
@@ -312,7 +289,7 @@ class Client
      */
     public function getTags()
     {
-        $str  = preg_replace('/\s+/', '', $this->_getStoreConfig($this->path_tags));
+        $str  = preg_replace('/\s+/', '', $this->_getStoreConfig(self::XML_PATH_TAGS));
         $tags = $str ? explode(',', $str) : [];
         foreach ($tags as $key => &$tag) {
             $tag = preg_replace('/[^A-Za-z0-9]/', '', $tag);
@@ -328,7 +305,7 @@ class Client
      */
     public function _getAccessToken()
     {
-        $this->setAccessToken($this->_getStoreConfig($this->path_access_token));
+        $this->setAccessToken($this->_getStoreConfig(self::XML_PATH_ACCESS_TOKEN));
     }
 
     /**
@@ -336,7 +313,7 @@ class Client
      */
     protected function _getClientId()
     {
-        return $this->_getStoreConfig($this->path_client_id);
+        return $this->_getStoreConfig(self::XML_PATH_CLIENT_ID);
     }
 
     /**
@@ -344,7 +321,7 @@ class Client
      */
     protected function _getClientSecret()
     {
-        return $this->_getStoreConfig($this->path_client_secret);
+        return $this->_getStoreConfig(self::XML_PATH_CLIENT_SECRET);
     }
 
     /**
@@ -353,39 +330,6 @@ class Client
      */
     protected function _getStoreConfig($xmlPath)
     {
-        return $this->_config->getValue($xmlPath);
-    }
-
-    /**
-     * @return string
-     */
-    public function getPathClientId()
-    {
-        return $this->path_client_id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPathClientSecret()
-    {
-        return $this->path_client_secret;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPathAccessToken()
-    {
-        return $this->path_access_token;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getPathAccountId()
-    {
-        return $this->path_account_id;
+        return $this->_scopeConfig->getValue($xmlPath);
     }
 }

@@ -23,5 +23,5 @@ use Magento\Backend\App\Action;
  */
 abstract class Report extends Action
 {
-    const ADMIN_RESOURCE = 'Magenest_InstagramShop::report';
+    const ADMIN_RESOURCE = 'Magenest_InstagramShop::reports';
 }

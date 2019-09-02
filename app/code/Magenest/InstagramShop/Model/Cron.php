@@ -101,6 +101,24 @@ class Cron
     }
 
     /**
+     * Get tagged photo info from Instagram
+     */
+    public function getPhotoByTags() {
+        $tags = $this->_client->getTags();
+        $allPhotos = $this->_client->getAllMedias();
+
+        foreach ($tags as $tag) {
+            foreach ($allPhotos as $photo) {
+                if (array_key_exists('tags', $photo) && !empty($photo['tags']) && in_array($tag, $photo['tags'])) {
+                    $photoModel = $this->getTaggedPhoto($photo['id']);
+                    $photoModel->setDataViaServer($photo, $tag, null);
+                    $photoModel->save();
+                }
+            }
+        }
+    }
+
+    /**
      * @param $photoId
      * @return TaggedPhoto
      */

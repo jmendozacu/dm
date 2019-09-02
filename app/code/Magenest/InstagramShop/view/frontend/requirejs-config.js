@@ -16,10 +16,5 @@ var config = {
     paths: {
         flexslider: 'Magenest_InstagramShop/js/jquery.flexslider',
         instagramPopup: 'Magenest_InstagramShop/js/shared-popup'
-    },
-    shim: {
-        flexslider: {
-            deps: ['jquery']
-        }
     }
 };

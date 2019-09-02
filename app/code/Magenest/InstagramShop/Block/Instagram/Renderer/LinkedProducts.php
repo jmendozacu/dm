@@ -1,16 +1,15 @@
 <?php
 /**
  *
-  * Copyright © 2018 Magenest. All rights reserved.
-  * See COPYING.txt for license details.
-  *
-  * Magenest_InstagramShop extension
-  * NOTICE OF LICENSE
-  *
-  * @category Magenest
-  * @package  Magenest_InstagramShop
-  * @author    dangnh@magenest.com
-
+ * Copyright © 2018 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * Magenest_InstagramShop extension
+ * NOTICE OF LICENSE
+ *
+ * @category Magenest
+ * @package  Magenest_InstagramShop
+ * @author    dangnh@magenest.com
  */
 
 namespace Magenest\InstagramShop\Block\Instagram\Renderer;
@@ -48,6 +47,9 @@ class LinkedProducts extends Template
      */
     protected $helper;
 
+    /**
+     * @var string
+     */
     protected $additionalClass;
 
     /**
@@ -63,8 +65,8 @@ class LinkedProducts extends Template
         ProductRepositoryInterface $productRepository,
         \Magento\Catalog\Helper\Image $image,
         Helper $helper,
-        array $data = [])
-    {
+        array $data = []
+    ) {
         parent::__construct($context, $data);
         $this->productRepository = $productRepository;
         $this->imageHelper       = $image;
@@ -77,7 +79,8 @@ class LinkedProducts extends Template
      */
     public function setPhoto($photo)
     {
-        $this->photo = $photo;
+        $this->productList = [];
+        $this->photo       = $photo;
         if ($photo)
             $this->setProductList($photo->getExplodedProductId());
         return $this;
@@ -115,7 +118,7 @@ class LinkedProducts extends Template
         if (is_array($productIds)) {
             foreach ($productIds as $productId) {
                 try {
-                    $this->productList[] = $this->productRepository->getById($productId);
+                    $this->productList[$productId] = $this->productRepository->getById($productId);
                 } catch (NoSuchEntityException $e) {
                     continue;
                 }
@@ -159,7 +162,7 @@ class LinkedProducts extends Template
      */
     public function getLinkedProductsLayout()
     {
-        return $this->_scopeConfig->getValue('magenest_instagram_shop/general/linked_products_layout');
+        return $this->helper->getFeaturedProductLayout();
     }
 
     /**

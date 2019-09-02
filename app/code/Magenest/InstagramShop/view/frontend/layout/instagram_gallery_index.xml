@@ -15,7 +15,6 @@
 
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <update handle="instagram_slider_head_block"/>
     <head>
         <title>Gallery</title>
         <css src="Magenest_InstagramShop::css/gallery/style.css"/>
@@ -24,6 +23,9 @@
         <referenceBlock name="content">
             <block class="Magenest\InstagramShop\Block\Gallery\Gallery" name="instagram_photo" template="gallery.phtml">
                 <block name="shared-popup" class="Magenest\InstagramShop\Block\Instagram\SharedPopup"/>
+                <block name="linked-products" class="Magenest\InstagramShop\Block\Instagram\Renderer\LinkedProducts"/>
+                <block name="hotspot" class="Magenest\InstagramShop\Block\Instagram\Renderer\Hotspot"/>
+                <block name="video" class="Magenest\InstagramShop\Block\Instagram\Renderer\Video"/>
             </block>
         </referenceBlock>
     </body>

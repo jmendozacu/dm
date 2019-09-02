@@ -14,20 +14,23 @@
 
 namespace Magenest\InstagramShop\Block\Adminhtml\System\Config\Form;
 
+use Magento\Config\Block\System\Config\Form\Field;
+
 /**
- * Class ValidRedirectUri
+ * Class DisabledField
  * @package Magenest\InstagramShop\Block\Adminhtml\System\Config\Form
  */
-class ValidRedirectUri extends ReadonlyField
+class ReadonlyField extends Field
 {
     /**
+     * create element for Access token field in store configuration
      * @param \Magento\Framework\Data\Form\Element\AbstractElement $element
      * @return string
      */
     protected function _getElementHtml(\Magento\Framework\Data\Form\Element\AbstractElement $element)
     {
-        $redirectUri = $this->_urlBuilder->getUrl(\Magenest\InstagramShop\Model\Client::REDIRECT_URI_PATH);
-        $element->setValue($redirectUri);
+        $element->setReadonly(true);
+        $element->setClass('readonly-field');
         return parent::_getElementHtml($element);
     }
 }

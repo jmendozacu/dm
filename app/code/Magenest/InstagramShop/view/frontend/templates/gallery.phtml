@@ -1,16 +1,15 @@
 <?php
 /**
  *
-  * Copyright © 2018 Magenest. All rights reserved.
-  * See COPYING.txt for license details.
-  *
-  * Magenest_InstagramShop extension
-  * NOTICE OF LICENSE
-  *
-  * @category Magenest
-  * @package  Magenest_InstagramShop
-  * @author    dangnh@magenest.com
-
+ * Copyright © 2018 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * Magenest_InstagramShop extension
+ * NOTICE OF LICENSE
+ *
+ * @category Magenest
+ * @package  Magenest_InstagramShop
+ * @author    dangnh@magenest.com
  */
 
 /** @var $block Magenest\InstagramShop\Block\Gallery\Gallery */
@@ -21,6 +20,8 @@ $view = $block->getViewParam();
 /** get page param */
 $page         = $block->getPageParam();
 $canShowVideo = $block->canShowVideo();
+$photos       = $block->getCollection();
+$helper       = $this->helper(\Magenest\InstagramShop\Helper\Helper::class);
 ?>
 <div id="instagram-gallery">
     <div class="gallery">
@@ -29,8 +30,8 @@ $canShowVideo = $block->canShowVideo();
     <!-- gallery view navigation, includes gallery & tags   -->
     <div class="gallery-nav">
         <!-- gallery button   -->
-        <a href="<?php echo $block->getUrl('instagram/gallery/') ?>">
-            <div class="gallery-url <?php if (empty($view)) echo 'chosen' ?>">Gallery</div>
+        <a href="<?= $helper->getBaseGalleryUrl() ?>">
+            <div class="gallery-url <?php if (empty($view)) echo 'chosen' ?>"><?= __('Gallery') ?></div>
         </a>
         <?php
 
@@ -39,7 +40,7 @@ $canShowVideo = $block->canShowVideo();
                 if (!empty($tag)) {
                     ?>
                     <!-- tags button  -->
-                    <a href="<?php echo $block->getUrl('instagram/' . $tag) ?>">
+                    <a href="<?= $helper->getBaseGalleryUrl() . '/' . $tag ?>">
                         <div class='gallery-url <?php if (!empty($view) && $tag == $view) echo 'chosen' ?>'>
                             <?php echo "#" . $tag ?>
                         </div>
@@ -50,13 +51,9 @@ $canShowVideo = $block->canShowVideo();
         }
         ?>
     </div>
-    <?php
-    /** @var $block \Magenest\InstagramShop\Block\Gallery\Gallery */
-    $photos = $block->getCollection();
-    if ($photos->getSize() == 0) {
-        echo '<br/><br/><h2>There are no photo to display yet, please comeback later.</h2>';
-    } else {
-        ?>
+    <?php if ($photos->getSize() == 0) { ?>
+        <h2><?= __('There are no photo to display yet, please comeback later.') ?></h2>
+    <?php } else { ?>
 
         <div class="widget-normal-timeline widget-desktop widget-wrapper widget-lookbook <?= $block->isDefaultGalleryTemplate() ?: 'gallery-grid' ?>">
             <?php
@@ -72,18 +69,18 @@ $canShowVideo = $block->canShowVideo();
                                     <div class="widget-entry-title"><?= $block->escapeHtml($photo->getCaption()) ?></div>
                                 </div>
                             </div>
-                            <?= $block->getLayout()->createBlock(\Magenest\InstagramShop\Block\Instagram\Renderer\LinkedProducts::class)->setPhoto($photo)->toHtml() ?>
-                            <?= $block->getLayout()->createBlock(\Magenest\InstagramShop\Block\Instagram\Renderer\Hotspot::class)->setPhoto($photo)->toHtml() ?>
+                            <?= $block->getLinkedProductsHtml($photo) ?>
+                            <?= $block->getHotspotHtml($photo) ?>
                             <?php
                             if ($canShowVideo) {
-                                echo $block->getLayout()->createBlock(\Magenest\InstagramShop\Block\Instagram\Renderer\Video::class)->setPhoto($photo)->toHtml();
+                                echo $block->getVideoHtml($photo);
                             } ?>
                         </div>
                     </div>
                 </div>
             <?php } ?>
             <div style="clear: both"></div>
-            <div class="toolbar-bottom" style="margin-top: 15px;">
+            <div class="toolbar-bottom">
                 <div class="toolbar">
                     <?php echo $block->getPagerHtml(); ?>
                 </div>
@@ -101,6 +98,8 @@ $canShowVideo = $block->canShowVideo();
                 }
             }
         }
+
+
         </script>
     <?php } ?>
 </div>

@@ -20,6 +20,14 @@
             <item name="deps" xsi:type="string">magenest_instagram_photos_listing.magenest_instagram_photos_listing_data_source</item>
         </item>
         <item name="spinner" xsi:type="string">instagram_photos_columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="update" xsi:type="array">
+                <item name="name" xsi:type="string">update</item>
+                <item name="label" xsi:type="string" translate="true">Update All Photos</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/getPhoto</item>
+            </item>
+        </item>
     </argument>
     <listingToolbar name="listing_top">
         <component name="columns_controls">
@@ -34,6 +42,9 @@
             </argument>
         </component>
         <filterSearch name="fulltext"/>
+        <button>
+
+        </button>
         <massaction name="listing_massaction">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -47,9 +58,8 @@
                         <item name="label" xsi:type="string" translate="true">Delete</item>
                         <item name="url" xsi:type="url" path="instagram/instagram/massDelete"/>
                         <item name="confirm" xsi:type="array">
-                            <item name="title" xsi:type="string" translate="true">Delete Post</item>
-                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected items?
-                            </item>
+                            <item name="title" xsi:type="string" translate="true">Delete items</item>
+                            <item name="message" xsi:type="string" translate="true">Delete selected items?</item>
                         </item>
                     </item>
                 </argument>
@@ -58,8 +68,17 @@
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">show_in_widget</item>
-                        <item name="label" xsi:type="string" translate="true">Show/Hide</item>
+                        <item name="label" xsi:type="string" translate="true">Show/Hide in Widget</item>
                         <item name="url" xsi:type="url" path="instagram/instagram/massShowInWidget"/>
+                    </item>
+                </argument>
+            </action>
+            <action name="show_in_gallery">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">show_in_gallery</item>
+                        <item name="label" xsi:type="string" translate="true">Show/Hide in Gallery</item>
+                        <item name="url" xsi:type="url" path="instagram/instagram/massShowInGallery"/>
                     </item>
                 </argument>
             </action>
@@ -148,7 +167,7 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Photo ID on Instagram</item>
+                    <item name="label" xsi:type="string" translate="true">Photo ID On Instagram</item>
                 </item>
             </argument>
         </column>
@@ -187,7 +206,7 @@
                         </item>
                     </item>
                     <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Position On Slider</item>
+                    <item name="label" xsi:type="string" translate="true">Position on Slider</item>
                 </item>
             </argument>
         </column>
@@ -195,7 +214,15 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Show in widget</item>
+                    <item name="label" xsi:type="string" translate="true">Show in Widget</item>
+                </item>
+            </argument>
+        </column>
+        <column name="show_in_gallery" class="Magenest\InstagramShop\Ui\Component\Listing\Columns\ShowInGallery">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Show in Gallery</item>
                 </item>
             </argument>
         </column>

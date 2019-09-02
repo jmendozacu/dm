@@ -15,7 +15,7 @@
 
 namespace Magenest\InstagramShop\Block\Product;
 
-use Magenest\InstagramShop\Model\Config\Source\MediaType;
+use Magenest\InstagramShop\Helper\Helper;
 use Magenest\InstagramShop\Model\PhotoFactory;
 use Magenest\InstagramShop\Ui\DataProvider\Product\Form\Modifier\InstagramPhotos;
 use Magento\Catalog\Model\Product;
@@ -45,11 +45,17 @@ class Photo extends Template
     protected $_registry;
 
     /**
+     * @var Helper
+     */
+    protected $_helper;
+
+    /**
      * Photo constructor.
      * @param Template\Context $context
      * @param PhotoFactory $photoFactory
      * @param ProductFactory $productFactory
      * @param Registry $registry
+     * @param Helper $helper
      * @param array $data
      */
     public function __construct(
@@ -57,11 +63,13 @@ class Photo extends Template
         PhotoFactory $photoFactory,
         ProductFactory $productFactory,
         Registry $registry,
+        Helper $helper,
         array $data = [])
     {
         $this->_photoFactory   = $photoFactory;
         $this->_productFactory = $productFactory;
         $this->_registry       = $registry;
+        $this->_helper=$helper;
         parent::__construct($context, $data);
     }
 
@@ -107,7 +115,7 @@ class Photo extends Template
      */
     public function canShowVideo()
     {
-        return (int)$this->_scopeConfig->getValue('magenest_instagram_shop/general/media_type') === MediaType::BOTH_IMAGE_AND_VIDEO;
+        return $this->_helper->canShowVideo();
     }
 
     /**
@@ -115,7 +123,7 @@ class Photo extends Template
      */
     public function isAddInstagramToProduct()
     {
-        return (bool)$this->_scopeConfig->getValue('magenest_instagram_shop/general/add_photos_to_product_view');
+        return $this->_helper->isAddInstagramToProduct();
     }
 
     /**
@@ -123,7 +131,7 @@ class Photo extends Template
      */
     public function getViewFullGalleryTitle()
     {
-        return (string)$this->_scopeConfig->getValue('magenest_instagram_shop/general/button_title');
+        return $this->_helper->getViewFullGalleryTitle();
     }
 
     /**
@@ -131,7 +139,7 @@ class Photo extends Template
      */
     public function getViewFullGalleryCss()
     {
-        return (string)$this->_scopeConfig->getValue('magenest_instagram_shop/general/button_css');
+        return $this->_helper->getViewFullGalleryCss();
     }
 
     /**
@@ -139,7 +147,7 @@ class Photo extends Template
      */
     public function getBlockTitle()
     {
-        return (string)$this->_scopeConfig->getValue('magenest_instagram_shop/general/block_title');
+        return $this->_helper->getBlockTitle();
     }
 
     /**
@@ -147,7 +155,7 @@ class Photo extends Template
      */
     public function getBlockContent()
     {
-        return (string)$this->_scopeConfig->getValue('magenest_instagram_shop/general/block_content');
+        return $this->_helper->getBlockContent();
     }
 
     /**
@@ -155,6 +163,6 @@ class Photo extends Template
      */
     public function getHashTag()
     {
-        return (string)$this->_scopeConfig->getValue('magenest_instagram_shop/general/hash_tag');
+        return $this->_helper->getHashTag();
     }
 }

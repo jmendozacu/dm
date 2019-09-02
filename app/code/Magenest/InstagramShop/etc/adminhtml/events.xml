@@ -17,10 +17,4 @@
     <event name="magenest_instagramshop_hotspot_save_after">
         <observer name="add_photos_to_product" instance="Magenest\InstagramShop\Observer\AddPhotosToProduct"/>
     </event>
-    <event name="instagram_controller_connect_before">
-        <observer name="flush_config_cache_before_connect" instance="Magenest\InstagramShop\Observer\Controller\BeforeConnect" />
-    </event>
-    <event name="instagram_controller_connect_successful">
-        <observer name="flush_config_cache_after_connect" instance="Magenest\InstagramShop\Observer\Controller\AfterConnect" />
-    </event>
 </config>

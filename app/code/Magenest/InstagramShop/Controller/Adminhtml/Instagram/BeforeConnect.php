@@ -1,21 +1,22 @@
 <?php
 /**
  *
-  * Copyright © 2018 Magenest. All rights reserved.
-  * See COPYING.txt for license details.
-  *
-  * Magenest_InstagramShop extension
-  * NOTICE OF LICENSE
-  *
-  * @category Magenest
-  * @package  Magenest_InstagramShop
-  * @author    dangnh@magenest.com
-
+ * Copyright © 2018 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * Magenest_InstagramShop extension
+ * NOTICE OF LICENSE
+ *
+ * @category Magenest
+ * @package  Magenest_InstagramShop
+ * @author    dangnh@magenest.com
  */
 
 namespace Magenest\InstagramShop\Controller\Adminhtml\Instagram;
 
+use Magenest\InstagramShop\Model\Client;
 use Magento\Backend\App\Action;
+use Magento\Framework\App\Config\Storage\WriterInterface;
 
 class BeforeConnect extends Action
 {
@@ -35,12 +36,10 @@ class BeforeConnect extends Action
     public function __construct(
         Action\Context $context,
         \Magenest\InstagramShop\Model\Client $client,
-        \Magento\Config\Model\ResourceModel\Config $config,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig)
-    {
-        $this->_config      = $config;
-        $this->client       = $client;
-        $this->_scopeConfig = $scopeConfig;
+        \Magento\Config\Model\ResourceModel\Config $config
+    ) {
+        $this->_config = $config;
+        $this->client  = $client;
         parent::__construct($context);
     }
 
@@ -49,23 +48,26 @@ class BeforeConnect extends Action
      */
     public function execute()
     {
-        $clientId     = $this->getRequest()->getParam('client_id');
-        $clientSecret = $this->getRequest()->getParam('client_secret');
-        if ($clientId == '' || $clientSecret == '') {
+        $clientId     = $this->filterSpace($this->getRequest()->getParam('client_id', ''));
+        $clientSecret = $this->filterSpace($this->getRequest()->getParam('client_secret', ''));
+        if (empty($clientId) || empty($clientSecret)) {
             $this->messageManager->addErrorMessage(__("Please fill in ClientId and ClientSecret."));
-            return $this->_redirect(\Magenest\InstagramShop\Model\Client::INSTAGRAM_SHOP_CONFIGURATION_SECTION);
+            return $this->_redirect(Client::INSTAGRAM_SHOP_CONFIGURATION_SECTION);
         } else {
-            $this->_config->saveConfig($this->client->getPathClientId(), $clientId, 'default', 0);
-            $this->_config->saveConfig($this->client->getPathClientSecret(), $clientSecret, 'default', 0);
-
-            $this->_eventManager->dispatch('instagram_controller_connect_before',
-                [
-                    'client_id'     => $clientId,
-                    'client_secret' => $clientSecret
-                ]);
+            $this->_session->setClientId($clientId);
+            $this->_session->setClientSecret($clientSecret);
 
             $requestUrl = $this->client->createAuthUrl($clientId);
             return $this->_redirect($requestUrl);
         }
+    }
+
+    /**
+     * @param $string
+     * @return string
+     */
+    private function filterSpace($string)
+    {
+        return str_replace(' ', '', $string);
     }
 }

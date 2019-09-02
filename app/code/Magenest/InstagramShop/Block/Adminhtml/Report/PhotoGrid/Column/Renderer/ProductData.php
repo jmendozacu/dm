@@ -1,16 +1,15 @@
 <?php
 /**
  *
-  * Copyright © 2018 Magenest. All rights reserved.
-  * See COPYING.txt for license details.
-  *
-  * Magenest_InstagramShop extension
-  * NOTICE OF LICENSE
-  *
-  * @category Magenest
-  * @package  Magenest_InstagramShop
-  * @author    dangnh@magenest.com
-
+ * Copyright © 2018 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * Magenest_InstagramShop extension
+ * NOTICE OF LICENSE
+ *
+ * @category Magenest
+ * @package  Magenest_InstagramShop
+ * @author    dangnh@magenest.com
  */
 
 namespace Magenest\InstagramShop\Block\Adminhtml\Report\PhotoGrid\Column\Renderer;
@@ -43,38 +42,41 @@ class ProductData extends AbstractRenderer
     /**
      * @param \Magento\Framework\DataObject|Report $row
      * @return string
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function render(\Magento\Framework\DataObject $row)
     {
         $html            = '';
         $unserializeData = $row->getUnserializeProductData();
         if (is_array($unserializeData) && !empty($unserializeData)) {
-            $html .= '<table width="100%">';
-            $html .= '<thead><tr><th>ID</th><th>SKU</th><th>Viewed</th><th>Ordered / Rate</th><th>Dropped / Rate</th></tr></thead>';
-            $html .= '<tbody>';
+            $html2 = '';
             foreach ($unserializeData as $productId => $datum) {
                 try {
-                    $html    .= '<tr>';
                     $product = $this->_productRepository->getById($productId);
+                    $html2   .= '<tr>';
                     if ($product->getId()) {
                         $viewed  = $this->getDefaultDataFromProductData(Report::TOTAL_PRODUCTS_CLICK_KEY, $datum);
                         $ordered = $this->getDefaultDataFromProductData(Report::TOTAL_CONVERSION_RATE_KEY, $datum);
                         $dropped = $this->getDefaultDataFromProductData(Report::TOTAL_DROP_RATE_KEY, $datum);
                         $added   = $this->getDefaultDataFromProductData(Report::TOTAL_ADDED_TO_CART_KEY, $datum);
-                        $html    .= '<td>' . $productId . '</td>
+                        $html2   .= '<td>' . $productId . '</td>
                                     <td><a target="_blank" href="' . $this->_urlBuilder->getUrl('catalog/product/edit', ['id' => $productId]) . '">' . $product->getSku() . '</a></td>
                                     <td>' . $viewed . '</td>
                                     <td>' . $ordered . ' / ' . $row->getRate($ordered, $viewed, true) . '</td >
                                     <td > ' . $dropped . ' / ' . $row->getRate($dropped, $viewed, true) . '</td > ';
                     }
-                    $html .= '</tr > ';
-                } catch (NotFoundException $e) {
+                    $html2 .= '</tr > ';
+                } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
                     continue;
                 }
             }
-            $html .= '</tbody>';
-            $html .= '</table>';
+            if ($html2 != '') {
+                $html .= '<table width="100%">';
+                $html .= '<thead><tr><th>ID</th><th>SKU</th><th>Viewed</th><th>Ordered / Rate</th><th>Dropped / Rate</th></tr></thead>';
+                $html .= '<tbody>';
+                $html .= $html2;
+                $html .= '</tbody>';
+                $html .= '</table>';
+            }
         }
         return $html;
     }

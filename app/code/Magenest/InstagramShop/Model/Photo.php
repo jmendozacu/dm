@@ -1,16 +1,15 @@
 <?php
 /**
  *
-  * Copyright © 2018 Magenest. All rights reserved.
-  * See COPYING.txt for license details.
-  *
-  * Magenest_InstagramShop extension
-  * NOTICE OF LICENSE
-  *
-  * @category Magenest
-  * @package  Magenest_InstagramShop
-  * @author    dangnh@magenest.com
-
+ * Copyright © 2018 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * Magenest_InstagramShop extension
+ * NOTICE OF LICENSE
+ *
+ * @category Magenest
+ * @package  Magenest_InstagramShop
+ * @author    dangnh@magenest.com
  */
 
 namespace Magenest\InstagramShop\Model;
@@ -42,8 +41,10 @@ class Photo extends \Magento\Framework\Model\AbstractModel
     protected $_comments = 'comments';
 
     const SHOW_IN_WIDGET   = 'show_in_widget';
+    const SHOW_IN_GALLERY   = 'show_in_gallery';
     const CREATED_AT       = 'created_at';
     const VIDEO_SOURCE_KEY = 'video_source';
+    const RESPONSE         = 'response';
 
     protected $_eventPrefix = 'magenest_instagramshop_photo';
 
@@ -69,8 +70,7 @@ class Photo extends \Magento\Framework\Model\AbstractModel
         AbstractResource $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
         array $data = []
-    )
-    {
+    ) {
         $this->_scopeConfig = $scopeConfig;
         parent::__construct($context, $registry, $resource, $resourceCollection, $data);
     }
@@ -97,7 +97,7 @@ class Photo extends \Magento\Framework\Model\AbstractModel
     public function setDataViaServer($mediaInfo)
     {
         if (!$this->getId()) {
-            $this->setPhotoId($mediaInfo['id'])->setUrl($mediaInfo['link'])->setCreatedAt(date('Y-m-d',$mediaInfo['created_time']));
+            $this->setPhotoId($mediaInfo['id'])->setUrl($mediaInfo['link'])->setCreatedAt(date('Y-m-d', $mediaInfo['created_time']));
         }
         // update likes, comments, caption
         $this->setLikes($mediaInfo['likes']['count'])
@@ -106,6 +106,7 @@ class Photo extends \Magento\Framework\Model\AbstractModel
 
         // fix url signature expired
         $this->setSource($mediaInfo['images']['standard_resolution']['url']);
+        $this->setResponse(json_encode($mediaInfo));
 
         if ($this->canGetVideo() && isset($mediaInfo['videos']['standard_resolution'])) {
             $this->setVideoSource($mediaInfo['videos']['standard_resolution']['url']);
@@ -319,11 +320,29 @@ class Photo extends \Magento\Framework\Model\AbstractModel
     }
 
     /**
+     * @param mixed $visibility
+     * @return $this
+     */
+    public function setShowInGallery($visibility)
+    {
+        $this->setData(self::SHOW_IN_GALLERY, $visibility);
+        return $this;
+    }
+
+    /**
      * @return boolean
      */
     public function isShowedInWidget()
     {
         return $this->getData(self::SHOW_IN_WIDGET);
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isShowedInGallery()
+    {
+        return $this->getData(self::SHOW_IN_GALLERY);
     }
 
     /**
@@ -342,5 +361,22 @@ class Photo extends \Magento\Framework\Model\AbstractModel
     public function getCreatedAt()
     {
         return $this->getData(self::CREATED_AT);
+    }
+
+    /**
+     * @param string $response
+     * @return $this
+     */
+    public function setResponse($response)
+    {
+        return $this->setData(self::RESPONSE, $response);
+    }
+
+    /**
+     * @return string
+     */
+    public function getResponse()
+    {
+        return $this->getData(self::RESPONSE);
     }
 }

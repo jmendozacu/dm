@@ -262,15 +262,18 @@ strong.logo, .block.block-search, nav.navigation {
     .gallery-grid .widget-timeline:nth-child(12n+10),
     .gallery-grid .widget-timeline:nth-child(12n+11),
     .gallery-grid .widget-timeline:nth-child(12n){
-        width: 33.3%;
+        width: 33.33333333333333333333333333333333333%;
         float: left;
     }
     .gallery-grid .widget-timeline:nth-child(12n+7){
         width: 66.6%;
         float: right;
     }
+    .gallery-grid .widget-timeline:nth-child(12n+7) .widget-entry-container{
+        padding-bottom: calc(100% + 1px);
+    }
     .gallery-grid .widget-timeline:nth-child(12n+8){
-        width: 33.3%;
+        width: 33.33333333333333333333333333333333333%;
         float: right;
     }
 }

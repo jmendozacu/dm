@@ -1,16 +1,15 @@
 <?php
 /**
  *
-  * Copyright © 2018 Magenest. All rights reserved.
-  * See COPYING.txt for license details.
-  *
-  * Magenest_InstagramShop extension
-  * NOTICE OF LICENSE
-  *
-  * @category Magenest
-  * @package  Magenest_InstagramShop
-  * @author    dangnh@magenest.com
-
+ * Copyright © 2018 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * Magenest_InstagramShop extension
+ * NOTICE OF LICENSE
+ *
+ * @category Magenest
+ * @package  Magenest_InstagramShop
+ * @author    dangnh@magenest.com
  */
 
 namespace Magenest\InstagramShop\Setup;
@@ -65,7 +64,25 @@ class UpgradeSchema implements UpgradeSchemaInterface
         if (version_compare($context->getVersion(), '4.3.2') < 0) {
             $this->addVideoSourceTypeColumn($installer);
         }
+        if (version_compare($context->getVersion(), '4.3.4') < 0) {
+            $this->addShowInGalleryColumn($installer);
+            $this->addResponseColumn($installer);
+        }
         $installer->endSetup();
+    }
+
+    /**
+     * @param SchemaSetupInterface $setup
+     */
+    private function addResponseColumn(SchemaSetupInterface $setup)
+    {
+        $tableName = $setup->getTable('magenest_instagram_photo');
+        $setup->getConnection()->addColumn($tableName, 'response', [
+            'type'     => Table::TYPE_TEXT,
+            'size'     => '64k',
+            'nullable' => true,
+            'comment'  => 'Media Response'
+        ]);
     }
 
     /**
@@ -75,10 +92,10 @@ class UpgradeSchema implements UpgradeSchemaInterface
     {
         $tableName = $setup->getTable('magenest_instagram_photo');
         $setup->getConnection()->addColumn($tableName, 'video_source', [
-            'type' => Table::TYPE_TEXT,
-            'size' => '64k',
+            'type'     => Table::TYPE_TEXT,
+            'size'     => '64k',
             'nullable' => true,
-            'comment' => 'Video Source URL'
+            'comment'  => 'Video Source URL'
         ]);
     }
 
@@ -113,7 +130,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                         'identity' => true,
                         'unsigned' => true,
                         'nullable' => false,
-                        'primary' => true
+                        'primary'  => true
                     ],
                     'Template ID'
                 )
@@ -130,7 +147,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     null,
                     [
                         'nullable' => false,
-                        'default' => Table::TIMESTAMP_INIT
+                        'default'  => Table::TIMESTAMP_INIT
                     ],
                     'Created At'
                 )
@@ -140,7 +157,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     null,
                     [
                         'nullable' => false,
-                        'default' => Table::TIMESTAMP_INIT
+                        'default'  => Table::TIMESTAMP_INIT
                     ],
                     'Clicked At'
                 )
@@ -150,7 +167,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     null,
                     [
                         'nullable' => false,
-                        'default' => Table::TIMESTAMP_INIT
+                        'default'  => Table::TIMESTAMP_INIT
                     ],
                     'Added To Cart At'
                 )
@@ -160,7 +177,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     null,
                     [
                         'nullable' => false,
-                        'default' => Table::TIMESTAMP_INIT
+                        'default'  => Table::TIMESTAMP_INIT
                     ],
                     'Ordered At'
                 )->addForeignKey(
@@ -189,22 +206,22 @@ class UpgradeSchema implements UpgradeSchemaInterface
             $tableName,
             'created_at',
             [
-                'type' => Table::TYPE_TIMESTAMP,
-                'size' => null,
+                'type'     => Table::TYPE_TIMESTAMP,
+                'size'     => null,
                 'nullable' => false,
-                'default' => Table::TIMESTAMP_INIT,
-                'comment' => 'Created At'
+                'default'  => Table::TIMESTAMP_INIT,
+                'comment'  => 'Created At'
             ]
         );
         $installer->getConnection()->addColumn(
             $tableName,
             'updated_at',
             [
-                'type' => Table::TYPE_TIMESTAMP,
-                'size' => null,
+                'type'     => Table::TYPE_TIMESTAMP,
+                'size'     => null,
                 'nullable' => false,
-                'default' => Table::TIMESTAMP_INIT_UPDATE,
-                'comment' => 'Updated At'
+                'default'  => Table::TIMESTAMP_INIT_UPDATE,
+                'comment'  => 'Updated At'
             ]
         );
     }
@@ -219,11 +236,11 @@ class UpgradeSchema implements UpgradeSchemaInterface
             $tableName,
             'position',
             [
-                'type' => Table::TYPE_INTEGER,
-                'size' => null,
+                'type'     => Table::TYPE_INTEGER,
+                'size'     => null,
                 'nullable' => true,
-                'default' => 0,
-                'comment' => 'Position'
+                'default'  => 0,
+                'comment'  => 'Position'
             ]
         );
     }
@@ -237,8 +254,8 @@ class UpgradeSchema implements UpgradeSchemaInterface
             $installer->getTable('magenest_instagramshop_report'),
             'product_data',
             [
-                'type' => Table::TYPE_TEXT,
-                'size' => null,
+                'type'    => Table::TYPE_TEXT,
+                'size'    => null,
                 'comment' => 'Product Data JSON'
             ]
         );
@@ -471,7 +488,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 'identity' => true,
                 'unsigned' => true,
                 'nullable' => false,
-                'primary' => true
+                'primary'  => true
             ],
             'Id'
         )->addColumn(
@@ -540,7 +557,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 'identity' => true,
                 'unsigned' => true,
                 'nullable' => false,
-                'primary' => true
+                'primary'  => true
             ],
             'Id'
         )->addColumn(
@@ -609,7 +626,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
             $installer->getTable('magenest_instagram_photo'),
             'show_in_widget',
             [
-                'type' => Table::TYPE_SMALLINT,
+                'type'    => Table::TYPE_SMALLINT,
                 'comment' => 'Show in widget',
                 'default' => 1
             ]
@@ -625,8 +642,35 @@ class UpgradeSchema implements UpgradeSchemaInterface
             $installer->getTable('magenest_instagram_photo'),
             'created_at',
             [
-                'type' => Table::TYPE_DATE,
+                'type'    => Table::TYPE_DATE,
                 'comment' => 'Created At'
+            ]
+        );
+    }
+
+    /**
+     * @param $installer
+     */
+    private function addShowInGalleryColumn($installer)
+    {
+        $installer->getConnection()->addColumn(
+            $installer->getTable('magenest_instagram_photo'),
+            'show_in_gallery',
+            [
+                'type' => Table::TYPE_SMALLINT,
+                'comment' => 'Show in gallery',
+                'default' => 1,
+                'after' => 'show_in_widget'
+            ]
+        );
+
+        $installer->getConnection()->addColumn(
+            $installer->getTable('magenest_instagram_taggedphoto'),
+            'show_in_gallery',
+            [
+                'type' => Table::TYPE_SMALLINT,
+                'comment' => 'Show in gallery',
+                'default' => 1,
             ]
         );
     }

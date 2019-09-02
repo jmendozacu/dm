@@ -87,7 +87,7 @@ class AddPhotosToProduct implements ObserverInterface
                         }
 
                         if ($hasDataChange) {
-                            $product->setData(InstagramPhotos::INSTAGRAM_PHOTOS_ATTRIBUTE_CODE, implode(', ', $ids));
+                            $product->setCustomAttribute(InstagramPhotos::INSTAGRAM_PHOTOS_ATTRIBUTE_CODE, implode(', ', $ids));
                             $product->save();
                         }
                     } catch (\Exception $e) {

@@ -136,11 +136,20 @@ class Hotspot extends Template
         return $this;
     }
 
-    public function getPositionXY($photoSource, $x, $y)
+    /**
+     * @param Photo $photo
+     * @param $x
+     * @param $y
+     * @return array
+     */
+    public function getPositionXY($photo, $x, $y)
     {
-        return $this->helper->getPercentResolution($photoSource, $x, $y);
+        return $this->helper->getPercentResolution($photo, $x, $y);
     }
 
+    /**
+     * @return array
+     */
     public function getHotspotData()
     {
         $data = [];
@@ -155,7 +164,7 @@ class Hotspot extends Template
                         $product = $this->productRepository->get($sku);
                         $data[]  = [
                             'product' => $product,
-                            'position' => $this->getPositionXY($photoModel->getSource(), $x, $y)
+                            'position' => $this->getPositionXY($photoModel, $x, $y)
                         ];
                     } catch (NoSuchEntityException $e) {
                         continue;

@@ -1,16 +1,15 @@
 <?php
 /**
  *
-  * Copyright © 2018 Magenest. All rights reserved.
-  * See COPYING.txt for license details.
-  *
-  * Magenest_InstagramShop extension
-  * NOTICE OF LICENSE
-  *
-  * @category Magenest
-  * @package  Magenest_InstagramShop
-  * @author    dangnh@magenest.com
-
+ * Copyright © 2018 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * Magenest_InstagramShop extension
+ * NOTICE OF LICENSE
+ *
+ * @category Magenest
+ * @package  Magenest_InstagramShop
+ * @author    dangnh@magenest.com
  */
 
 namespace Magenest\InstagramShop\Block\Adminhtml\Report;
@@ -221,15 +220,17 @@ class FullReport extends Template
         $data   = $product->getData();
         $result = [];
         foreach ($this->getSelectedProductFields() as $fieldName) {
-            switch ($fieldName) {
-                case 'thumbnail':
-                    $result[$fieldName] = $this->getThumbnail($product);
-                    break;
-                case 'url_key':
-                    $result['edit_url'] = $this->getProductUrl($product);
-                    break;
-                default:
-                    $result[$fieldName] = $data[$fieldName];
+            if (isset($data[$fieldName])) {
+                switch ($fieldName) {
+                    case 'thumbnail':
+                        $result[$fieldName] = $this->getThumbnail($product);
+                        break;
+                    case 'url_key':
+                        $result['edit_url'] = $this->getProductUrl($product);
+                        break;
+                    default:
+                        $result[$fieldName] = $data[$fieldName];
+                }
             }
         }
         return $result;

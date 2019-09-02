@@ -1,0 +1,60 @@
+<?php
+// @codingStandardsIgnoreFile
+?>
+<?php /** @var \Magenest\InstagramShop\Block\Adminhtml\System\Config\Form\Account $block */ ?>
+<?php
+$account = $block->getInstagramAccount();
+?>
+<?php if ($account->getId() and $account->getFullName() and $account->getProfilePicture() and $account->getUsername()) : ?>
+    <div id="account-preview">
+        <div class="account-wrapper">
+            <div class="account-title"></div>
+            <div class="account-content">
+                <a href="<?= $block->escapeUrl('https://instagram.com/' . $account->getUsername()) ?>" title="<?= $block->escapeHtml($account->getFullName()) ?>" target="_blank">
+                    <img src="<?= $account->getProfilePicture() ?>" alt="<?= $block->escapeHtml($account->getFullName()) ?>"/>
+                    <div class="account-name">
+                        <?= $block->escapeHtml($account->getFullName()); ?>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        require(['jquery', 'domReady!'], function ($) {
+            'use strict';
+            var s = $('#account-preview'),
+                pos = s.position();
+
+            _init(s);
+
+            $(window).scroll(function () {
+                var windowpos = $(window).scrollTop();
+                if (windowpos >= pos.top) {
+                    s.attr('style', ''); //kill absolute positioning
+                    s.css({
+                        position: 'fixed', top: '200px', left: $(document).innerWidth() - 250
+                    });
+                } else {
+                    s.css({
+                        position: 'absolute',
+                        top: pos.top + 'px',
+                        left: $(document).innerWidth() - 250
+                    });
+                }
+            });
+
+            $(window).resize(function () {
+                $('#account-preview').css({
+                    left: $(document).innerWidth() - 250
+                });
+            });
+
+            function _init(s) {
+                s.attr('style', '');
+                s.css({
+                    position: 'fixed', top: '200px', left: $(document).innerWidth() - 250
+                });
+            }
+        });
+    </script>
+<?php endif ?>

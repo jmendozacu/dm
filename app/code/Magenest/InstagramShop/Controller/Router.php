@@ -1,16 +1,15 @@
 <?php
 /**
  *
-  * Copyright © 2018 Magenest. All rights reserved.
-  * See COPYING.txt for license details.
-  *
-  * Magenest_InstagramShop extension
-  * NOTICE OF LICENSE
-  *
-  * @category Magenest
-  * @package  Magenest_InstagramShop
-  * @author    dangnh@magenest.com
-
+ * Copyright © 2018 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * Magenest_InstagramShop extension
+ * NOTICE OF LICENSE
+ *
+ * @category Magenest
+ * @package  Magenest_InstagramShop
+ * @author    dangnh@magenest.com
  */
 
 namespace Magenest\InstagramShop\Controller;
@@ -38,24 +37,34 @@ class Router implements \Magento\Framework\App\RouterInterface
     protected $tags = null;
 
     /**
+     * @var \Magenest\InstagramShop\Helper\Helper
+     */
+    protected $helper;
+
+    /**
+     * Router constructor.
      * @param \Magento\Framework\App\ActionFactory $actionFactory
      * @param \Magento\Framework\App\ResponseInterface $response
+     * @param \Magenest\InstagramShop\Model\Client $client
+     * @param \Magenest\InstagramShop\Helper\Helper $helper
      */
     public function __construct(
         \Magento\Framework\App\ActionFactory $actionFactory,
         \Magento\Framework\App\ResponseInterface $response,
-        \Magenest\InstagramShop\Model\Client $client
+        \Magenest\InstagramShop\Model\Client $client,
+        \Magenest\InstagramShop\Helper\Helper $helper
     ) {
         $this->actionFactory = $actionFactory;
-        $this->_response = $response;
-        $this->tags = $client->getTags();
+        $this->_response     = $response;
+        $this->helper        = $helper;
+        $this->tags          = $client->getTags();
     }
 
     /**
      * Validate and Match Instagram Gallery page and modify request
      *
      * @param \Magento\Framework\App\RequestInterface $request
-     * @return bool
+     * @return \Magento\Framework\App\ActionInterface|null
      */
     public function match(\Magento\Framework\App\RequestInterface $request)
     {
@@ -67,11 +76,12 @@ class Router implements \Magento\Framework\App\RouterInterface
 
         $_identifier = trim($request->getPathInfo(), '/');
 
-        if (strpos($_identifier, 'instagram') !== 0) {
+        $key = $this->helper->getGalleryUrl();
+        if (strpos($_identifier, $key) !== 0) {
             return null;
         }
 
-        $identifier = str_replace(['instagram/', 'instagram'], '', $_identifier);
+        $identifier = preg_replace('/\/+/', '', str_replace($key, '', $_identifier));
 
         $condition = new \Magento\Framework\DataObject(['identifier' => $identifier, 'continue' => true]);
 

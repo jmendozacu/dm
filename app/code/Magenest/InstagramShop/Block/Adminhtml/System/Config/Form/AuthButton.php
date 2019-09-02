@@ -73,13 +73,6 @@ class AuthButton extends \Magento\Config\Block\System\Config\Form\Field
     {
         return self::BUTTON_LABEL;
     }
-    /**
-     * @return string
-     */
-    public function getButtonUrl()
-    {
-        return $this->_client->createAuthUrl();
-    }
 
     /**
      * create element for authorization button in store configuration

@@ -2,6 +2,14 @@
 All notable changes to this extension will be documented in this file.
 This extension adheres to [Magenest](http://magenest.com/).
 
+## [4.3.4] - 2019-06-19
+1. Add new option Show/Hide photo in gallery page
+2. Limit number of pages in carousel
+3. Fix performance loading when loading hotspot 
+4. Show connected account in configuration
+5. Delete all data after changed account
+6. Fix get featured products
+
 ## [4.3.3] - 2018-01-22
 1. Fix thumbnail issue after saving product on Magento 2.2.x 
 2. Fix create/edit hotspot on Magento 2.1.x

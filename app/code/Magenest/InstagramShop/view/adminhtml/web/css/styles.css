@@ -18,3 +18,58 @@
     line-height: 23px;
     background-size: 60px 60px;
 }
+
+.account-title {
+    font-weight: bold;
+    padding: 3px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.account-content {
+    padding: 5px;
+    border: solid 1px black;
+}
+
+.account-content a img {
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.account-preview-details-title {
+    margin-top: 20px;
+    font-weight: bold;
+    padding: 3px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.account-preview-details-text {
+    width: 200px;
+    height: auto;
+    border: solid 1px black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.account-content div {
+    border-top: 1px solid black;
+    text-align: center;
+}
+
+.readonly-field {
+    cursor: pointer !important;
+}
+
+.instagram-tooltip {
+    position: absolute;
+    top: -15px;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+}

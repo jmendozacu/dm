@@ -76,4 +76,16 @@ class Renderer extends \Magento\Framework\View\Element\Template
         }
         return '';
     }
+
+    /**
+     * @return string
+     */
+    public function getSharedPopupHtml()
+    {
+        try {
+            return $this->getLayout()->createBlock(\Magenest\InstagramShop\Block\Instagram\SharedPopup::class)->toHtml();
+        } catch (LocalizedException $e) {
+            return '';
+        }
+    }
 }
