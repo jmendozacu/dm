@@ -58,8 +58,8 @@ class PriceReserve extends \Magento\Contact\Controller\Index\Post
         try {
             $params = $this->validatedParams();
             $sender = [
-                'name' => 'Sales',
-                'email' => 'service@diamondmansion.com'
+                'name' => $params['name'],
+                'email' => $params['email']
             ];
 
             $contact = $this->_contactFactory->create();
