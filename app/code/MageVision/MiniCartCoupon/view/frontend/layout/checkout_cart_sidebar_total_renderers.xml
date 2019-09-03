@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageVision Mini Cart Coupon Extension
+ *
+ * @category     MageVision
+ * @package      MageVision_MiniCartCoupon
+ * @author       MageVision Team
+ * @copyright    Copyright (c) 2018 MageVision (http://www.magevision.com)
+ * @license      LICENSE_MV.txt or http://www.magevision.com/license-agreement/
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="minicart">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="minicart_content" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="total.container" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="total" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="total.discount" xsi:type="array">
+                                                    <item name="component" xsi:type="string">MageVision_MiniCartCoupon/js/view/checkout/minicart/total/totals</item>
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="template" xsi:type="string">MageVision_MiniCartCoupon/minicart/total/discount</item>
+                                                    </item>
+                                                </item>
+                                                <item name="total.grand-total" xsi:type="array">
+                                                    <item name="component" xsi:type="string">MageVision_MiniCartCoupon/js/view/checkout/minicart/total/totals</item>
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="template" xsi:type="string">MageVision_MiniCartCoupon/minicart/total/grand-total</item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

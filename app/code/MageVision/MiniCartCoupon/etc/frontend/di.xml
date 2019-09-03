@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageVision Mini Cart Coupon Extension
+ *
+ * @category     MageVision
+ * @package      MageVision_MiniCartCoupon
+ * @author       MageVision Team
+ * @copyright    Copyright (c) 2018 MageVision (http://www.magevision.com)
+ * @license      LICENSE_MV.txt or http://www.magevision.com/license-agreement/
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\CustomerData\Cart">
+        <plugin name="minicart_private_data_totals" type="MageVision\MiniCartCoupon\Plugin\Checkout\CustomerData\Cart"/>
+    </type>
+</config>

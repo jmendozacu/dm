@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageVision Mini Cart Coupon Extension
+ *
+ * @category     MageVision
+ * @package      MageVision_MiniCartCoupon
+ * @author       MageVision Team
+ * @copyright    Copyright (c) 2018 MageVision (http://www.magevision.com)
+ * @license      LICENSE_MV.txt or http://www.magevision.com/license-agreement/
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="minicart" frontName="minicart">
+            <module name="MageVision_MiniCartCoupon" />
+        </route>
+    </router>
+</config>

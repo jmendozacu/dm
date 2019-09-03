@@ -1,0 +1,22 @@
+<!--
+/**
+ * MageVision Mini Cart Coupon Extension
+ *
+ * @category     MageVision
+ * @package      MageVision_MiniCartCoupon
+ * @author       MageVision Team
+ * @copyright    Copyright (c) 2018 MageVision (http://www.magevision.com)
+ * @license      LICENSE_MV.txt or http://www.magevision.com/license-agreement/
+ */
+-->
+<!-- ko if: (cart().discountAmount != 0 && cart().displayGrandTotal) -->
+<div class="grand-total">
+    <span class="label">
+        <!-- ko i18n: 'Cart Total' --><!-- /ko -->
+    </span>
+    <div class="amount">
+        <span class="price-wrapper" data-bind="html: cart().grand_total"></span>
+    </div>
+</div>
+<!-- /ko -->
+

@@ -1,0 +1,18 @@
+/**
+ * MageVision Mini Cart Coupon Extension
+ *
+ * @category     MageVision
+ * @package      MageVision_MiniCartCoupon
+ * @author       MageVision Team
+ * @copyright    Copyright (c) 2018 MageVision (http://www.magevision.com)
+ * @license      LICENSE_MV.txt or http://www.magevision.com/license-agreement/
+ */
+.block-minicart .discount,
+.block-minicart .grand-total {
+    margin: 0 10px;
+    text-align: right;
+}
+
+.block-minicart .block.discount {
+    text-align: left;
+}

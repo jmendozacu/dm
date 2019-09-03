@@ -451,25 +451,79 @@
                 background-color: #000;
                 color: #fff;
                 text-align: center;
-                font-size: 14em;
+                font-size: 14px;
             }
 
             .block-content {
                 padding: 20px;
                 line-height: 20px;
-                font-size: 14em;
+                font-size: 14px;
 
                 .items-total {
                     float: none;
                 }
 
                 .subtotal {
-                    line-height: 30px;
+                    line-height: 24px;
                     text-align: left;
+                    margin-bottom: 0;
 
                     .price-container {
                         display: inline-block;
                     }
+                }
+
+                .discount,
+                .grand-total {
+                    text-align: left;
+                    line-height: 24px;
+
+                    .amount {
+                        display: inline-block;
+                    }
+                }
+
+                span.label {
+                    display: inline-block;
+                    min-width: 120px;
+                }
+                
+                .block.discount {
+                    text-align: left;
+                }
+
+                #block-minicart-discount {
+                    margin-left: -20px;
+                    margin-right: -20px;
+                    padding: 20px;
+
+                    .label {
+                        width: 100%;
+                        float: none;
+                        padding: 0;
+                        text-align: left;
+                    }
+
+                    .control {
+                        width: 100%;
+                        float: none;
+                        padding: 0;
+
+                        input#minicart-coupon-code {
+                            width: calc(~"100% - 126px");
+                            line-height: 36px;
+                            height: 36px;
+                        }
+
+                        .primary {
+                            display: inline-block;
+                        }
+                    }
+                }
+
+                .actions > .primary {
+                    margin-left: 0;
+                    margin-right: 0;
                 }
 
                 .product-item {
@@ -500,7 +554,7 @@
                 }
 
                 #top-cart-btn-checkout {
-                    font-size: 1.2em;
+                    font-size: 16px;
                 }
             }
         }
@@ -519,12 +573,12 @@
         .block-minicart {
             #minicart-content-wrapper {
                 .block-title {
-                    font-size: 22em;
+                    font-size: 14px;
                 }
 
                 .block-content {
-                    font-size: 12em;
-                    line-height: 20 * @v3-base-mobile-vw;
+                    font-size: 12px;
+                    line-height: 20px;
                 }
             }
         }

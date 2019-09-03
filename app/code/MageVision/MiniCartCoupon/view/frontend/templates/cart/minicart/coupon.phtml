@@ -1,0 +1,59 @@
+<?php
+/**
+ * MageVision Mini Cart Coupon Extension
+ *
+ * @category     MageVision
+ * @package      MageVision_MiniCartCoupon
+ * @author       MageVision Team
+ * @copyright    Copyright (c) 2018 MageVision (http://www.magevision.com)
+ * @license      LICENSE_MV.txt or http://www.magevision.com/license-agreement/
+ */
+?>
+<?php $helper = $this->helper('MageVision\MiniCartCoupon\Helper\Data') ?>
+<?php if($helper->isEnabled()) : ?>
+<div class="block discount" id="block-minicart-discount" data-mage-init='{"collapsible":{"openedState": "false", "saveState": false}}'>
+    <div class="content" data-role="content" aria-labelledby="block-discount-heading">
+        <form id="minicart-discount-coupon-form"
+              action="<?php /* @escapeNotVerified */ echo $block->getUrl('minicart/index/couponPost') ?>"
+              method="post"
+              data-mage-init='{"minicartDiscountCode":{"minicartCouponCodeSelector": "#minicart-coupon-code",
+                                               "minicartRemoveCouponSelector": "#minicart-remove-coupon",
+                                               "minicartApplyButton": "button.minicart.apply",
+                                               "minicartCancelButton": "button.minicart.cancel"}}'>
+            <div id="mini-cart-coupon-message"></div>
+            <div class="fieldset coupon<?php strlen($block->getCouponCode()) ? ' applied' : ''?>">
+                <input type="hidden" name="minicart_remove" id="minicart-remove-coupon" value="0" />
+                <div class="field">
+                    <label for="coupon_code" class="label"><span><?php /* @escapeNotVerified */ echo __('Apply discount code') ?></span></label>
+                    <div class="control">
+                        <input type="text" class="input-text" id="minicart-coupon-code" name="minicart_coupon_code" value="<?php echo $block->escapeHtml($block->getCouponCode()) ?>" placeholder="<?php echo $block->escapeHtml(__('Enter discount code'));?>" />
+                    </div>
+                </div>
+                <div class="actions-toolbar">
+                    <?php if (!strlen($block->getCouponCode())): ?>
+                    <div class="primary">
+                        <button type="button" class="minicart apply primary" value="<?php /* @escapeNotVerified */ echo __('Apply Discount') ?>">
+                            <span><?php /* @escapeNotVerified */ echo __('Apply Discount') ?></span>
+                        </button>
+                    </div>
+                    <?php else: ?>
+                        <div class="primary">
+                            <button type="button" class="minicart cancel primary" value="<?php /* @escapeNotVerified */ echo __('Cancel Coupon') ?>">
+                                <span><?php /* @escapeNotVerified */ echo __('Cancel Coupon') ?></span>
+                            </button>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<?php endif; ?>
+<script>
+    require([
+        'Magento_Customer/js/customer-data'
+    ], function (customerData) {
+        var sections = ['cart'];
+        customerData.invalidate(sections);
+    });
+</script>
