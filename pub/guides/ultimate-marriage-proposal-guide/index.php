@@ -63,27 +63,6 @@
              
     	<!--HOME SECTION START-->
         <section id="home">
-			<div id="logo_wrapper" class="container">
-				<div class="row">
-					<div class="col-md-1">
-                    	<a id="logo_link" href="http://www.diamondmansion.com/">
-                    		<span id="logo" class="animation">
-                        		<img src="images/logo.png"/>
-                        	</span>
-                        </a>
-                    </div>
-                    <div class="col-md-8"></div>
-                    <div class="col-md-3">
-                        <ul id="header_social" class="social-links">
-                            <li><a target="_blank" href="http://www.facebook.com/diamondmansion"><img src="images/social_facebook.jpg"/></a></li>
-                            <li><a target="_blank" href="http://twitter.com/diamondmansion"><img src="images/social_twitter.jpg"/></a></li>
-                            <li><a target="_blank" href="http://instagram.com/diamondmansion"><img src="images/social_instagram.jpg"/></a></li>
-                            <li><a target="_blank" href="http://pinterest.com/diamondmansion/"><img src="images/social_pinterest.jpg"/></a></li>
-                            <li><a target="_blank" href="http://www.youtube.com/diamondmansion"><img src="images/social_youtube.jpg"/></a></li>
-                        </ul>
-                    </div>
-				</div>
-            </div>
             <div class="container">
             	<div id="slide_content" class="row">
                 	<div class="col-md-4 pull-right text-center">
@@ -123,9 +102,6 @@
 
     					<!-- Collect the nav links, forms, and other content for toggling -->
    					 	<div class="collapse navbar-collapse" id="nav_menu">
-                            <ul id="nav_shop" class="nav navbar-nav navbar-left">
-                                <li class="active"><a href="http://www.diamondmansion.com/">shop diamondmansion.com</a></li>
-                            </ul>
      						<ul id="nav_list" class="nav navbar-nav navbar-right">
         						<li class="active"><a href="#introduction">Introduction</a></li>
                                 <li><a href="#bride">Bride</a></li>	
@@ -1160,29 +1136,6 @@ Please drop us a comment if you have any proposal tips, or if you have already p
         	</div>
         </section><!--END of BLOG SECTION-->
         
-        <!--FOOTER SECTION START-->
-        <section id="footer">
-        	<div class="container-fluid">
-        		<div class="row">
-                    <div id="footer_text" class="col-md-12">
-                        <div class="col-md-4 text-center"><a href="http://www.diamondmansion.com">shop diamondmansion.com</a></div>
-            		    <div class="col-md-4 text-center">Copyright 2014</div>
-                        <div class="col-md-4 text-center">
-                            <ul id="footer_social" class="social-links">
-                                <li><a target="_blank" href="http://www.facebook.com/diamondmansion"><img src="images/social_facebook.jpg"/></a></li>
-                                <li><a target="_blank" href="http://twitter.com/diamondmansion"><img src="images/social_twitter.jpg"/></a></li>
-                                <li><a target="_blank" href="http://instagram.com/diamondmansion"><img src="images/social_instagram.jpg"/></a></li>
-                                <li><a target="_blank" href="http://pinterest.com/diamondmansion/"><img src="images/social_pinterest.jpg"/></a></li>
-                                <li><a target="_blank" href="http://www.youtube.com/diamondmansion"><img src="images/social_youtube.jpg"/></a></li>
-                            </ul>
-                        </div>
-                    </div>
-            	</div>
-            </div>
-        </section><!--END of FOOTER SECTION-->
-        
-        
-
 		<!-- jQuery -->
     	<script src="js/jquery-1.9.1.js"></script>
         <!-- Device -->
