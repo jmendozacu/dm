@@ -91,6 +91,11 @@
                     }
                 }
             }
+
+            .action-braintree-paypal-logo {
+                width: 100%;
+                background: #019CDE;
+            }
         }
 
         .block-category-link,
@@ -320,7 +325,13 @@
         }
 
         .product-item-details {
-            padding-left: 88px;
+            padding-left: 168px;
+
+            padding-top: 20px;
+
+            .product-item-pricing {
+                margin-top: 20px;
+            }
 
             .price {
                 font-weight: @font-weight__bold;
@@ -430,8 +441,10 @@
 
         #minicart-content-wrapper {
             position: absolute;
-            width: 300px;
+            width: 600px;
+            max-width: 100%;
             height: 100%;
+            overflow-y: auto;
             top: 0;
             right: 0;
             margin: 0;

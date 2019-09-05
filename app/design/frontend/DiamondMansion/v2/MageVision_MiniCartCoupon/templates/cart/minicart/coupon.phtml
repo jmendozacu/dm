@@ -24,9 +24,9 @@
             <div class="fieldset coupon<?php strlen($block->getCouponCode()) ? ' applied' : ''?>">
                 <input type="hidden" name="minicart_remove" id="minicart-remove-coupon" value="0" />
                 <div class="field">
-                    <label for="coupon_code" class="label"><span><?php /* @escapeNotVerified */ echo __('Apply discount code') ?></span></label>
+                    <!--<label for="coupon_code" class="label"><span><?php /* @escapeNotVerified */ echo __('Apply discount code') ?></span></label>-->
                     <div class="control">
-                        <input type="text" class="input-text" id="minicart-coupon-code" name="minicart_coupon_code" value="<?php echo $block->escapeHtml($block->getCouponCode()) ?>" placeholder="<?php echo $block->escapeHtml(__('Enter discount code'));?>" />
+                        <input type="text" class="input-text" id="minicart-coupon-code" name="minicart_coupon_code" value="<?php echo $block->escapeHtml($block->getCouponCode()) ?>" placeholder="<?php echo $block->escapeHtml(__('Promo code'));?>" />
                         <?php if (!strlen($block->getCouponCode())): ?>
                             <div class="primary">
                                 <button type="button" class="minicart apply primary" value="<?php /* @escapeNotVerified */ echo __('Apply Discount') ?>">
