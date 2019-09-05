@@ -14,7 +14,7 @@ class DefaultItem extends \Magento\Checkout\CustomerData\DefaultItem
             'options' => $this->getOptionList(),
             'qty' => $this->item->getQty() * 1,
             'item_id' => $this->item->getId(),
-            'configure_url' => $this->getConfigureUrl(),
+            'configure_url' => $product->getProductUrl(), //$this->getConfigureUrl(),
             'is_visible_in_site_visibility' => $this->item->getProduct()->isVisibleInSiteVisibility(),
             'product_id' => $this->item->getProduct()->getId(),
             'product_name' => $productName,
