@@ -451,7 +451,11 @@
             padding: 0;
             background-color: white;
             font-family: 'Avenir LT Std';
-            font-weight: 500;                    
+            font-weight: 500;         
+            
+            &::-webkit-scrollbar {
+                width: 0px;
+            }
 
             .block-title {
                 display: block;
@@ -543,6 +547,10 @@
                     padding: 0;
                 }
 
+                .minicart-items-wrapper {
+                    height: auto !important;
+                }
+
                 .product-item-details {
                     .product-item-name {
                         margin-bottom: 10px;
@@ -551,6 +559,10 @@
                         a {
                             color: #000;
                         }
+                    }
+
+                    .product.options.list {
+                        margin-top: 10px;
                     }
 
                     .item-qty {

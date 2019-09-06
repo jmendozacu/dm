@@ -33,4 +33,17 @@ class DefaultItem extends \Magento\Checkout\CustomerData\DefaultItem
                 && $this->msrpHelper->isMinimalPriceLessMsrp($this->item->getProduct()),
         ];
     }
+
+    protected function getOptionList()
+    {
+        $buyRequest = $this->item->getBuyRequest();
+        if (isset($buyRequest['dm_options'])) {
+            $product = $this->item->getProduct();
+            if (method_exists($product->getTypeInstance(), 'getDmOptionListForCart')) {
+                return $product->getTypeInstance()->getDmOptionListForCart($product);
+            }
+        }
+
+        return parent::getOptionList();
+    }
 }

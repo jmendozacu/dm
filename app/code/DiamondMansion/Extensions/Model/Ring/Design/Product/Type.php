@@ -276,6 +276,109 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         return $result;
     }
 
+    public function getDmOptionListForCart($product) {
+        $result = [];
+
+        $allDmOptions = $this->getAllDmOptions($product);
+        $params = $this->getDmOptions($product);
+
+        // Center Stone Options
+        $optionCenterStone = [];
+
+        if ($params["main-stone-type"] == "setting" && isset($params['setting-options-stone'])) {
+            $optionCenterStone[] = $allDmOptions['setting-options-stone'][$params["setting-options-stone"]]->getTitle();
+        } else if (isset($params['main-stone-carat'])) {
+            $optionCenterStone[] = ((double) floor($allDmOptions['main-stone-carat'][$params["main-stone-carat"]]->getTitle() * 10) / 10) . ' Carat';
+        }
+
+        if (isset($params['main-stone-shape'])) {
+            $optionCenterStone[] = $allDmOptions['main-stone-shape'][$params["main-stone-shape"]]->getTitle() . (($params['main-stone-shape'] == 'heart') ? ' shape' : ' cut');
+        }
+
+        if (isset($params['main-stone-color']) && isset($params['main-stone-clarity'])) {
+            $optionCenterStone[] = $allDmOptions['main-stone-color'][$params["main-stone-color"]]->getTitle() . ' / ' . $allDmOptions['main-stone-clarity'][$params["main-stone-clarity"]]->getTitle();
+        }
+
+        if (isset($params['main-stone-cut'])) {
+            $optionCenterStone[] = $allDmOptions['main-stone-cut'][$params["main-stone-cut"]]->getTitle();
+        }
+
+        if (isset($params['main-stone-cert'])) {
+            $optionCenterStone[] = $allDmOptions['main-stone-cert'][$params["main-stone-cert"]]->getTitle();
+        }
+
+        if (count($optionCenterStone)) {
+            $result[] = [
+                'label' => 'Center Stone',
+                'value' => implode(', ', $optionCenterStone)
+            ];
+        }
+
+        //Side Stone Options
+        $optionSideStone = [];
+
+        $carat = 0;
+        foreach ($params as $group => $param) {
+            if (strpos($group, 'side-stone-shape') !== false && isset($allDmOptions[$group])) {
+                foreach ($allDmOptions[$group] as $option) {
+                    $values = json_decode($option->getValues(), true);
+                    if (isset($values['qty']) && count($values['qty']) == 2) {
+                        $qty = (double)$values['qty'][0];
+                        if (isset($params["band"]) && $params["band"] == "bridal-set") {
+                            $qty += (double)$values['qty'][1];
+                        }
+
+                        $sideStoneCaratGroup = str_replace('-shape', '-carat', $group);
+                        if (isset($params[$sideStoneCaratGroup])) {
+                            $carat += $qty * (double)$params[$sideStoneCaratGroup];
+                        }
+                    }
+                }
+            }
+        }
+
+        if ($carat) {
+            $optionSideStone[] = $carat . ' Carat';
+        }
+
+        foreach ($params as $group => $param) {
+            if (strpos($group, 'side-stone-color-clarity') !== false && isset($allDmOptions[$group])) {
+                $optionSideStone[] = $allDmOptions[$group][$param]->getTitle();
+                break;
+            }
+        }
+
+        if (count($optionSideStone)) {
+            $result[] = [
+                'label' => 'Side Stone',
+                'value' => implode(', ', $optionSideStone)
+            ];
+        }
+
+        if (isset($params["metal"])) { 
+            $result[] = [
+                'label' => 'Metal',
+                'value' => $allDmOptions['metal'][$params["metal"]]->getTitle()
+            ];
+        }
+
+        if (isset($params["ring-size"])) { 
+            $result[] = [
+                'label' => 'Ring Size',
+                'value' => $allDmOptions['ring-size'][$params["ring-size"]]->getTitle()
+            ];
+        }
+
+        if (isset($params["band"]) && $params["band"] == 'bridal-set') { 
+            $result[] = [
+                'label' => 'Matching Band',
+                'value' => 'Include'
+            ];
+        }
+
+        return $result;
+    }
+
     public function getName($product, $mainName = "") {
         $allDmOptions = $this->getAllDmOptions($product);
         $params = $this->getDmOptions($product);
