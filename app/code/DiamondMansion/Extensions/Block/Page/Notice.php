@@ -29,14 +29,22 @@ class Notice extends \Magento\Backend\Block\Template
         $variables = $this->variable->getCollection();
         foreach ($variables as $variable) {
             $variable = $variable->load($variable->getId());
-            $duration = explode('~', $variable->getValue(Variable::TYPE_TEXT));
+            $options = explode(',', $variable->getValue(Variable::TYPE_TEXT));
+            if (!count($options)) {
+                continue;
+            }
+
+            $duration = explode('~', $options[0]);
             if (count($duration) != 2) {
                 continue;
             }
 
             $today = date('Y-m-d H:i:s');
             if (strpos($variable->getCode(), 'notice-header') !== false && $today > $duration[0] && $today < $duration[1]) {
-                $notices[] = $variable->getValue();
+                $notices[] = [
+                    'message' => $variable->getValue(),
+                    'options' => $options
+                ];
             }
         }
 

@@ -1,12 +1,14 @@
-<?php $notices = $this->getNotices() ?>
+<?php $notices = $this->getNotices(); print_r($notices) ?>
 <?php if (count($notices)): ?>
+<?php $backgroundColor = (isset($notices[0]['options']) && isset($notices[0]['options'][1])) ? $notices[0]['options'][1] : '#FFB5A5' ?>
+<?php $textColor = (isset($notices[0]['options']) && isset($notices[0]['options'][2])) ? $notices[0]['options'][2] : '#000' ?>
 <style type="text/css">
 	.header-notice {
 		padding: 10px;
-		background-color: #ed5842;
+		background-color: <?php echo $backgroundColor ?>;
 		position: relative;
 		text-align: center;
-		color: #000;
+		color: <?php echo $textColor ?>;
 		font-family: 'Neuzeit Office Pro';
 		font-size: 14px;
 	}
@@ -39,7 +41,7 @@
 </script>
 <div class="header-notice no-display">
 	<?php foreach ($notices as $notice): ?>
-	<p><?php echo $notice; ?></p>
+	<p><?php echo $notice['message']; ?></p>
 	<?php endforeach ?>
 	<a class="close" href="javascript:void(0);">X</a>
 </div>
