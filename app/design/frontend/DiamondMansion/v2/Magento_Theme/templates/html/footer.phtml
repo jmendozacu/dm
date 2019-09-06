@@ -31,7 +31,12 @@
                     return;
                 }
 
-                if ($(window).scrollTop() > 0) {
+                var navPosition = 0;
+                if ($('.header-notice').length) {
+                    navPosition = $('.header-notice').outerHeight();
+                }
+
+                if ($(window).scrollTop() > navPosition) {
                     $('body').addClass( "sticky");
                 } else {
                     $('body').removeClass( "sticky");
@@ -44,7 +49,12 @@
                     return;
                 }
 
-                if ($(window).scrollTop() > 0) {
+                var navPosition = 0;
+                if ($('.header-notice').length) {
+                    navPosition = $('.header-notice').outerHeight();
+                }
+
+                if ($(window).scrollTop() > navPosition) {
                     $('body').addClass( "sticky");
                 }
             });
