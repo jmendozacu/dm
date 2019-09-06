@@ -1,4 +1,4 @@
-<?php $notices = $this->getNotices(); print_r($notices) ?>
+<?php $notices = $this->getNotices(); ?>
 <?php if (count($notices)): ?>
 <?php $backgroundColor = (isset($notices[0]['options']) && isset($notices[0]['options'][1])) ? $notices[0]['options'][1] : '#FFB5A5' ?>
 <?php $textColor = (isset($notices[0]['options']) && isset($notices[0]['options'][2])) ? $notices[0]['options'][2] : '#000' ?>
