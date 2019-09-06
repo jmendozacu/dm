@@ -31,6 +31,8 @@
         </referenceContainer>    
         <referenceContainer name="page.top">
             <referenceBlock name="navigation.sections" remove="true"/>
+        </referenceContainer>
+        <referenceContainer name="after.body.start">
             <block class="DiamondMansion\Extensions\Block\Page\Notice" template="Magento_Theme::html/header_notice.phtml" before="-"/>
         </referenceContainer>
         <referenceBlock name="catalog.compare.sidebar" remove="true"/>
