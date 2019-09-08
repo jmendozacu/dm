@@ -116,7 +116,7 @@
     <preference for="Magento\Wishlist\Model\Item" type="DiamondMansion\Extensions\Override\Magento\Wishlist\Model\Item"/>
     <preference for="Magento\UrlRewrite\Model\Storage\DbStorage" type="DiamondMansion\Extensions\Override\Magento\UrlRewrite\Model\Storage\DbStorage"/>
 
-    <preference for="Magento\Sales\Block\Adminhtml\Items\Column\Name" type="DiamondMansion\Extensions\Override\Magento\Sales\Block\Adminhtml\Items\Column\Name"/>
+    <preference for="Magento\Sales\Model\Order\Item" type="DiamondMansion\Extensions\Override\Magento\Sales\Model\Order\Item"/>
 
     <preference for="Mirasvit\Seo\Observer\SeoDataObserver" type="DiamondMansion\Extensions\Override\Mirasvit\Seo\Observer\SeoDataObserver"/>
     <preference for="Mirasvit\Seo\Helper\Rewrite\Image" type="DiamondMansion\Extensions\Override\Mirasvit\Seo\Helper\Rewrite\Image"/>
