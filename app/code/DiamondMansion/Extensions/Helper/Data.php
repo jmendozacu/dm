@@ -189,7 +189,18 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             reset($skus);
             $sku = current($skus);
             foreach ($allOptions as $group => $optionGroup) {
+                if (isset($defaultOptions['main-stone-type']) && 
+                    $defaultOptions['main-stone-type']->getCode() != 'setting' && 
+                    strpos($group, 'setting-options') !== false) {
+                    continue;
+                }
+
                 foreach ($optionGroup as $code => $option) {
+                    if ($option->getCode() == 'si1' &&
+                        isset($defaultOptions['main-stone-shape']) &&
+                        ($defaultOptions['main-stone-shape']->getCode() == 'asscher' || $defaultOptions['main-stone-shape']->getCode() == 'emerald')) {
+                        continue;
+                    }
                     if ($option->getSlug() == $sku) {
                         $defaultOptions[$group] = $option;
                         break;
@@ -198,12 +209,17 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                 if (!isset($defaultOptions[$group])) {
                     $defaultOptions[$group] = current($optionGroup);
                     foreach ($optionGroup as $code => $option) {
-                        if ($option->getIsDefault()) {
+                        if ($option->getCode() == 'si1' &&
+                            isset($defaultOptions['main-stone-shape']) &&
+                            ($defaultOptions['main-stone-shape']->getCode() == 'asscher' || $defaultOptions['main-stone-shape']->getCode() == 'emerald')) {
+                            continue;
+                        } else if ($option->getIsDefault()) {
                             $defaultOptions[$group] = $option;
                             break;
                         }
                     }
                 }
+
                 $sku = next($skus);
             }
         } else {
