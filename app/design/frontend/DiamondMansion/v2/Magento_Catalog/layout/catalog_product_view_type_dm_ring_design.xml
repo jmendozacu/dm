@@ -41,7 +41,7 @@
         </referenceBlock>
         <move element="page.main.title" destination="product.info.main" as="product_name" before="-"/>
         <move element="view.addto.wishlist" destination="product.ring.design.options" as="wishlist"/>
-        <referenceContainer name="content">
+        <referenceContainer name="content" htmlTag="div" htmlClass="product-view-design">
             <container name="product.info.media" htmlTag="div" htmlClass="product media" before="-">
                 <!-- <block class="Magento\Theme\Block\Html\Title" name="page.main.title.mobile" before="-" template="Magento_Catalog::product/view/type/ring_design/title.phtml">
                     <arguments>
@@ -62,7 +62,7 @@
                         </arguments>
                     </block>
                 </container>
-                <block class="DiamondMansion\Extensions\Block\Ring\Design\Product\Gallery" name="product.info.media.image" template="Magento_Catalog::product/view/gallery.phtml"/>
+                <block class="DiamondMansion\Extensions\Block\Ring\Design\Product\Gallery" name="product.info.media.image" template="Magento_Catalog::product/view/type/ring_design/gallery.phtml"/>
                 <block class="Magento\Catalog\Block\Product\View" name="product.info.media.description" template="Magento_Catalog::product/view/description.phtml"/>
                 <container name="skip_gallery_after.wrapper" htmlTag="div" htmlClass="action-skip-wrapper">
                     <block class="Magento\Framework\View\Element\Template" after="product.info.media.image" name="skip_gallery_after" template="Magento_Theme::html/skip.phtml">
@@ -109,7 +109,7 @@
                 </block>
             </container>
             <container name="product.info.details" htmlTag="div" htmlClass="product-info-details" after="product.info.main">
-                <block class="Magento\Catalog\Block\Product\View" name="product.info.details.description" template="Magento_Catalog::product/view/description.phtml"/>                
+                <block class="Magento\Catalog\Block\Product\View" name="product.info.details.description" template="Magento_Catalog::product/view/description.phtml" before="-"/>
                 <block class="DiamondMansion\Extensions\Block\Ring\Design\Product\Details" name="product.ring.design.details" template="Magento_Catalog::product/view/type/ring_design/details.phtml">
                     <block class="Magento\Catalog\Block\Product\View" name="product.info.review" as="product_info_review" template="Magento_Catalog::product/view/review.phtml"/>
                 </block>

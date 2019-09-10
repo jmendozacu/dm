@@ -22,8 +22,29 @@ $videoList = [];
         <?php else: ?>
         <li>
             <div class="zoom-wrapper">
-                <img src="<?php echo $_image['full']; ?>" class="" alt="<?php echo $_image['caption'] ?>"/>
+                <img <?php echo ($index == 0) ? 'src' : 'data-lazy' ?>="<?php echo $_image['full']; ?>" class="<?php echo ($index == 0) ? '' : 'lazy' ?>" alt="<?php echo $_image['caption'] ?>"/>
             </div>
+        </li>
+        <?php endif ?>
+        <?php $index ++; endforeach ?>
+    </div>
+    <div class="gallery-thumbnail desktop">
+        <?php $index = 0; foreach ($arrayJsonGallery as $_image): ?>
+        <?php if ($_image['type'] == 'video'): ?>
+        <?php
+            if (strpos($_image['videoUrl'], 'watch?v=') !== false) {
+                $videoUrlParams = explode('watch?v=', $_image['videoUrl']);
+                $_image['videoUrl'] = 'https://www.youtube.com/embed/' . $videoUrlParams[1] . '?controls=1&modestbranding=1&origin=' . $block->getBaseUrl();
+            }
+        ?>
+        <li <?php echo ($index == 0) ? 'class="selected"' : '' ?>>
+            <div class="video-wrapper">
+                <iframe src="<?= $_image['videoUrl'] ?>" width="80px" height="80px"></iframe>
+            </div>
+        </li>
+        <?php else: ?>
+        <li <?php echo ($index == 0) ? 'class="selected"' : '' ?>>
+            <img src="<?php echo $_image['full']; ?>" alt="<?php echo $_image['caption'] ?>"/>
         </li>
         <?php endif ?>
         <?php $index ++; endforeach ?>
@@ -74,15 +95,12 @@ function onYouTubeIframeAPIReady() {
 
 require([
     'jquery',
-    'slick'
-], function ($, slick) {
+    'slick',
+    'cloudzoom'
+], function ($, slick, CloudZoom) {
     $(document).ready(function () {
-        if ($(window).width() >= 1280) {
-            return;
-        }
-        
         var adjustGalleryWidth = function () {
-            if ($(window).width() < 1280) {
+            if ($(window).width() < 768) {
                 var margin = ($(window).width() - $('#gallery').width()) / 2;
                 $('#gallery').css('marginLeft', -1 * margin);
                 $('#gallery').css('marginRight', -1 * margin);
@@ -107,6 +125,9 @@ require([
 
         $('#gallery').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
             var mySlideNumber = nextSlide;
+            $('.gallery-thumbnail li.selected').removeClass('selected');
+            $('.gallery-thumbnail li').eq(mySlideNumber).addClass('selected');
+
             var key = 'video-' + currentSlide;
             if (key in videos) {
                 videos[key].pauseVideo();
@@ -117,11 +138,24 @@ require([
             var key = 'video-' + currentSlide;
             if (key in videos) {
                 videos[key].playVideo();
+
+                $('a#zoom-in').fadeOut();
+            } else {
+                $('a#zoom-in').fadeIn();
             }
         });
 
         $('#gallery iframe').width($('#gallery').width());
         $('#gallery iframe').height($('#gallery').width());
+
+        $('.gallery-thumbnail li').on('click', function () {
+            event.stopPropagation();
+
+            $('.gallery-thumbnail li.selected').removeClass('selected');
+            $(this).addClass('selected');
+
+            $('#gallery').slick('slickGoTo', $(this).index());
+        });
 
         $('#gallery .video-wrapper').on('click', function (ev) {
             var key = $(this).attr('target');
@@ -129,6 +163,38 @@ require([
                 videos[key].playVideo();
             }
             ev.preventDefault();
+        });
+
+        $('#gallery .zoom-wrapper').on('click', function () {
+            if ($(window).width() >= 1280) {
+                return;
+            }
+
+            var $image = $('.slick-current').find('img');
+
+            $('body').prepend('<div id="dm-zoom"><img id="dm-zoom-image" style="max-width: none; position: absolute;" src="' + $image.attr('src') + '"><a id="zoom-out" href="javascript:void(0)"></a></div>');
+
+            $('#dm-zoom-image').width($image.prop('naturalWidth'));
+            $('#dm-zoom-image').height($image.prop('naturalHeight'));
+
+            if ($('#dm-zoom-image').width() > $(window).width()) {
+                $('#dm-zoom').scrollLeft(($('#dm-zoom-image').width() - $(window).width()) / 2);
+            } else {
+                $('#dm-zoom-image').css('left', ($(window).width() - $('#dm-zoom-image').width()) / 2);
+            }
+
+            if ($('#dm-zoom-image').height() > $(window).height()) {
+                $('#dm-zoom').scrollTop(($('#dm-zoom-image').height() - $(window).height()) / 2);
+            } else {
+                $('#dm-zoom-image').css('top', ($(window).height() - $('#dm-zoom-image').height()) / 2);
+            }
+
+            $("body").css('overflow', 'hidden');
+        });
+
+        $('body').delegate('a#zoom-out', 'click', function () {
+            $('#dm-zoom').remove();
+            $("body").css('overflow', 'unset');
         });
     });
 });

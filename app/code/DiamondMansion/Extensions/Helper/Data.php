@@ -209,10 +209,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                 if (!isset($defaultOptions[$group])) {
                     $defaultOptions[$group] = current($optionGroup);
                     foreach ($optionGroup as $code => $option) {
-                        if ($option->getCode() == 'si1' &&
-                            isset($defaultOptions['main-stone-shape']) &&
+                        if (isset($defaultOptions['main-stone-shape']) &&
                             ($defaultOptions['main-stone-shape']->getCode() == 'asscher' || $defaultOptions['main-stone-shape']->getCode() == 'emerald')) {
-                            continue;
+                            if ($option->getCode() == 'si1') {
+                                continue;
+                            } else if ($option->getCode() == 'vs1-vs2') {
+                                $defaultOptions[$group] = $option;
+                                break;    
+                            }
                         } else if ($option->getIsDefault()) {
                             $defaultOptions[$group] = $option;
                             break;

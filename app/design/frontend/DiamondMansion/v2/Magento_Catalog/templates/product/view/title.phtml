@@ -24,7 +24,6 @@ if (trim($block->getPageHeading())) {
             aria-labelledby="<?= /* @escapeNotVerified */ $block->getAddBaseAttributeAria() ?>"
         <?php endif; ?>>
         <?= /* @escapeNotVerified */ $title ?>
-        <div class="title-divider"><span>&nbsp;</span></div>
     </h1>
     <?= $block->getChildHtml() ?>
 </div>
