@@ -118,6 +118,7 @@
         </referenceContainer>
         <referenceContainer name="main.content">
             <container name="content.bottom" htmlTag="div" htmlClass="content-bottom default" after="-">
+                <block class="Magento\Framework\View\Element\Template" name="our-promise" template="Magento_Catalog::product/view/promise.phtml" before="-"/>
                 <block class="Magento\Catalog\Block\Product\View" name="product.info.review" as="product_info_review" template="Magento_Catalog::product/view/review.phtml"/>
             </container>
         </referenceContainer>

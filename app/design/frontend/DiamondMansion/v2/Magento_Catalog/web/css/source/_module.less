@@ -294,12 +294,6 @@
     }
 
     .content-bottom {
-        .product-reviews {
-            background: #fff;
-            .review-background {
-                display: none;
-            }
-        }
     }
 
     .slick-dots {
@@ -350,6 +344,83 @@
 
             .product-add-form {
                 margin-bottom: 30px;
+            }
+        }
+
+        .product-static-blocks {
+            padding: 30 * @v3-base-desktop-vw 0;
+            margin-bottom: 20 * @v3-base-desktop-vw;
+            border-top: 1px solid #eaeaea;
+            position: relative;
+            z-index: 9;
+
+            ul {
+                display: flex;
+                justify-content: space-between;
+
+                li {
+                    line-height: 41 * @v3-base-desktop-vw;
+
+                    &.block-title {
+                        text-transform: uppercase;
+                        font-family: "Proxima Nova Rg";
+                        font-size: 20em;
+                        color: #000;
+                        padding-right: 40 * @v3-base-desktop-vw;
+                    }
+
+                    &:not(.block-title) {
+                        font-family: "Avenir LT Std";
+                        font-size: 20em;
+                        color: #000;
+                    }
+
+                    a {
+                        line-height: 43 * @v3-base-desktop-vw;
+                        position: relative;
+                        display: inline-block;
+                        padding: 0 30 * @v3-base-desktop-vw;
+                        border: 1px solid transparent;
+                        border-bottom: none;
+                        white-space: nowrap;
+
+                        i {
+                            font-size: 1.5em;
+                            color: #000;
+                            vertical-align: middle;
+                        }
+                        
+                        span {
+                            display: none;
+                            position: absolute;
+                            font-size: 0.8em;
+                            line-height: 24 * @v3-base-desktop-vw;
+                            width: 100%;
+                            background: #fff;
+                            padding: 20px;
+                            border: 1px solid #eaeaea;
+                            border-top: 0 none;
+                            left: 0;
+                            white-space: normal;
+                        }
+
+                        &:hover {
+                            color: inherit;
+
+                            padding-top: 20px;
+                            margin-top: -20px;
+
+                            border-color: #eaeaea;
+
+                            span {
+                                display: block;
+                            }
+                        }
+                    }
+
+                    &.six-months-financing a i {
+                    }
+                }
             }
         }
 
@@ -522,6 +593,73 @@
             }
         }
 
+        .product-static-blocks {
+            padding-bottom: 100 * @v3-base-mobile-vw;
+            position: relative;
+            z-index: 1;
+
+            ul {
+                li {
+                    line-height: 30px;
+
+                    &.block-title {
+                        font-family: @v3-title-font-family;
+                        font-size: 16px;
+                        line-height: 60px;
+                        color: #000;
+                        padding-right: 40 * @v3-base-desktop-vw;
+                    }
+
+                    &:not(.block-title) {
+                        font-family: @v3-title-font-family-rg;
+                        font-size: 14px;
+                        padding: 10px 0;
+                    }
+
+                    a {
+                        line-height: 30px;
+                        position: relative;
+                        display: block;
+                        border-bottom: none;
+                        white-space: nowrap;
+                        color: #000;
+
+                        i {
+                            font-size: 30px;
+                            color: #000;
+                            vertical-align: middle;
+                            display: inline-block;
+                            width: 30px;
+                            text-align: center;
+                            margin-right: 20px;
+                        }
+                        
+                        span {
+                            display: none;
+                            font-size: 14px;
+                            line-height: 24px;
+                            width: 100%;
+                            background: #fff;
+                            padding: 20px;
+                            border-top: 0 none;
+                            left: 0;
+                            white-space: normal;
+                        }
+
+                        &.show {
+                            color: inherit;
+
+                            span {
+                                display: block;
+                            }
+                        }
+                    }
+
+                    &.six-months-financing a i {
+                    }
+                }
+            }                
+        }
 
         .product-reviews {
             padding: 100 * @v3-base-mobile-vw 0 150 * @v3-base-mobile-vw;
