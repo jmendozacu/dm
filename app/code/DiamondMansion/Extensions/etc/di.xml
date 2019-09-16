@@ -125,4 +125,7 @@
     <preference for="Amasty\ShopbySeo\Helper\Url" type="DiamondMansion\Extensions\Override\Amasty\ShopbySeo\Helper\Url"/>
     <preference for="Amasty\ShopbyPage\Model\Customizer\Category\Page" type="DiamondMansion\Extensions\Override\Amasty\ShopbyPage\Model\Customizer\Category\Page"/>
     <preference for="Amasty\ShopbyPage\Model\ResourceModel\PageRepository" type="DiamondMansion\Extensions\Override\Amasty\ShopbyPage\Model\ResourceModel\PageRepository"/>
+
+    <preference for="Mageplaza\ProductFeed\Helper\Data" type="DiamondMansion\Extensions\Override\Mageplaza\ProductFeed\Helper\Data"/>
+
 </config>

@@ -464,6 +464,39 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         return implode(" ", $name);
     }
 
+    public function getFeedTitle($product, $mainName = "") {
+        $allDmOptions = $this->getAllDmOptions($product);
+        $params = $this->getDmOptions($product);
+
+        $name = ['Unique Diamond ' . $mainName . ' - With a'];
+        if (isset($params["main-stone-carat"])) { 
+            $name[] = (double)($this->getTotalCarat($product))."ct.";
+        }
+
+        if (isset($params["main-stone-shape"])) { 
+            $name[] = ($params["main-stone-shape"] == "heart") ? $allDmOptions['main-stone-shape'][$params["main-stone-shape"]]->getTitle() . " shape" : $allDmOptions['main-stone-shape'][$params["main-stone-shape"]]->getTitle() . " cut";
+        }
+
+        $name[] = 'GIA';
+        
+        if (isset($params["main-stone-type"])) { 
+            $name[] = $allDmOptions['main-stone-type'][$params["main-stone-type"]]->getTitle();
+        }
+        $name[] = "Diamond";
+
+        if (isset($params["metal"])) {
+            if (strpos($params["metal"], 'white-gold') !== false) {
+                $name[] = 'in White Gold';
+            } else if (strpos($params["metal"], 'yellow-gold') !== false) {
+                $name[] = 'in Yellow Gold';
+            } else if (strpos($params["metal"], 'rose-gold') !== false) {
+                $name[] = 'in Rose Gold';
+            }
+        }
+
+        return implode(" ", $name);        
+    }
+
 	public function getTotalCarat($product) {
         $allDmOptions = $this->getAllDmOptions($product);
         $params = $this->getDmOptions($product);
