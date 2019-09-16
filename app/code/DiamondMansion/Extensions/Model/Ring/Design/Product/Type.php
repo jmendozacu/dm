@@ -470,7 +470,7 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
 
         $name = ['Unique Diamond ' . $mainName . ' - With a'];
         if (isset($params["main-stone-carat"])) { 
-            $name[] = (double)($this->getTotalCarat($product))."ct.";
+            $name[] = (double) ($allDmOptions['main-stone-carat'][$params["main-stone-carat"]]->getTitle()) ." Ct Center";
         }
 
         if (isset($params["main-stone-shape"])) { 

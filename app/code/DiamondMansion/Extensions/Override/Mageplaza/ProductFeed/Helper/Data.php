@@ -100,6 +100,7 @@ class Data extends \Mageplaza\ProductFeed\Helper\Data
                                 $newProduct->setData('link', $newProduct->getProductUrl());
                                 $newProduct->setData('image_link', $newProduct->getImage());
                                 $newProduct->setData('feed_title', $newProduct->getFeedTitle());
+                                $newProduct->setData('feed_sku', $newProduct->getSku() . '-' . implode('', $sku));
 
                                 if ($newProduct->getPrice() <= 0.001) {
                                     continue;
@@ -112,6 +113,8 @@ class Data extends \Mageplaza\ProductFeed\Helper\Data
                 }
             }
         } else {
+            $product->setData('feed_title', $product->getName());
+            $product->setData('feed_sku', $product->getSku());
             $variations[] = $product;
         }
 
