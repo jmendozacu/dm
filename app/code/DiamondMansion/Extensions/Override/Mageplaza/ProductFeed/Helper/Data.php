@@ -96,15 +96,15 @@ class Data extends \Mageplaza\ProductFeed\Helper\Data
                                 $newProduct->setFilters(['option' => implode('', $sku)]);
                                 $newProduct->setIsCustomized(true);
     
-                                $newProduct->setData('final_price', $newProduct->getPrice());
+                                if ($newProduct->getPrice() <= 0.001) {
+                                    continue;
+                                }
+
+                                $newProduct->setData('final_price', round($newProduct->getPrice() / 10) * 10);
                                 $newProduct->setData('link', $newProduct->getProductUrl());
                                 $newProduct->setData('image_link', $newProduct->getImage());
                                 $newProduct->setData('feed_title', $newProduct->getFeedTitle());
                                 $newProduct->setData('feed_sku', $newProduct->getSku() . '-' . implode('', $sku));
-
-                                if ($newProduct->getPrice() <= 0.001) {
-                                    continue;
-                                }
 
                                 $variations[] = $newProduct;
                             }
