@@ -85,22 +85,6 @@
                 $('.show-cart').trigger('click');
                 return false;
             });
-
-            var tryCount = 10;
-            var dmTimer = setInterval(function() {
-                if (!tryCount) {
-                    clearInterval(dmTimer);
-                    return;
-                }
-
-                tryCount --;
-
-                var cartLinkInMessage = $('.page.messages a[href*=\'/checkout/cart\']');
-                if (cartLinkInMessage.length) {
-                    cartLinkInMessage.trigger('click');
-                    tryCount = 0;
-                }
-            }, 1000);            
         });
     });
 </script>
