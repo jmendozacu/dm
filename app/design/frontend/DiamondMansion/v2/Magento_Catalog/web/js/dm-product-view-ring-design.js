@@ -763,12 +763,12 @@ define([
                 updateTitle();
                 updateBreadcrumbs();
     
+                $("input.dm_custom_options").val(url.toLowerCase().replace('option=', ''));
+                
                 if (!config.isRequestedOptions && !config.isLoaded) {
                     return;
                 }
 
-                $("input.dm_custom_options").val(url.toLowerCase().replace('option=', ''));
-                
                 $("input.productlink").val("/" + config.urlKey + "?" + url.toLowerCase());
                 
                 window.history.replaceState({},"","/"+prefix+config.urlKey+"/?"+url.toLowerCase());

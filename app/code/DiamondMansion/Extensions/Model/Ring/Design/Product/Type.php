@@ -172,14 +172,9 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
     public function getDmOptions($product, $sort = false) {
         $filters = $product->getFilters();
 
-        if (isset($filters['option'])) {
-            $optionSet = $this->_helper->getRingDesignOptions($product, $filters);
-            $options = $optionSet['allOptions'];
-            $defaultOptions = $optionSet['defaultOptions'];
-        } else {
-            $options = $this->getAllDmOptions($product, true);
-            $defaultOptions = $this->getDefaultDmOptions($product, true);
-        }
+        $optionSet = $this->_helper->getRingDesignOptions($product, $filters);
+        $options = $optionSet['allOptions'];
+        $defaultOptions = $optionSet['defaultOptions'];
 
         $result = [];
 
