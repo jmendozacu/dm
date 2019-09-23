@@ -167,8 +167,7 @@ class Price extends \Magento\Catalog\Model\Product\Type\Price
             $metalPrice + 
             $sideStonePriceTotal
         ) * $appraised, 2);
-
-        return $total; 
+        return round($total / 10) * 10;
     }
 
     public function getFinalPrice($qty, $product) {

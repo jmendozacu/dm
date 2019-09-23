@@ -102,7 +102,7 @@ class Price extends \Magento\Catalog\Model\Product\Type\Price
             parent::getPrice($product) + 
             $stonePrice + 
             $metalPrice
-        ), 2);
+        ) / 10) * 10;
 
         if (!$product->getExcludeOrderType() && isset($params['order-type'])) {
             if ($params['order-type'] == '10%-deposit') {
