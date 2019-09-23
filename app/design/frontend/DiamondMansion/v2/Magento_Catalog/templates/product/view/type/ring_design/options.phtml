@@ -530,9 +530,11 @@
 <script type="text/javascript">
 require(['jquery'], function($) {
     $('body').on('afterAddToCart', function() {
-        $(window).scrollTop(0);
-        $('.show-cart').trigger('click');
         $('body').trigger('processStop');
+        setTimeout(function() {
+            $(window).scrollTop(0);
+            $('.show-cart').trigger('click');
+        }, 1000);
     });
 });
 </script>
