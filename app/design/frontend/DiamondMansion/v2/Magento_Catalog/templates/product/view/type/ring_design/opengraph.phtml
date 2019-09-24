@@ -10,8 +10,10 @@
 ?>
 
 <?php 
-    $this->getProduct()->setFilters($this->getRequest()->getParams());
+    $params = $this->getRequest()->getParams();
+    $this->getProduct()->setFilters($params);
     $url = $block->escapeUrl($block->getProduct()->getProductUrl());
+    $skuSuffix = isset($params['option']) ? '-' . $params['option'] : '';
 ?>
 <link rel="canonical" href="<?= strtok($url, '?') ?>">
 <meta property="og:type" content="product" />
@@ -39,11 +41,16 @@
         "@type": "Offer",
         "availability": "http://schema.org/InStock",
         "price": "<?= $priceAmount ?>",
-        "priceCurrency": "USD"
+        "priceCurrency": "USD",
+        "priceValidUntil": "Always",
+        "url": "<?= $url ?>"
     },
     <?php endif ?>
     "description": "<?= $block->escapeHtmlAttr($block->stripTags($block->getProduct()->getDescription())) ?>",
     "name": "<?= $block->escapeHtmlAttr($block->stripTags($block->getProduct()->getDmName())) ?>",
-    "image": "<?= $block->escapeUrl($block->getProduct()->getImage()) ?>"
+    "image": "<?= $block->escapeUrl($block->getProduct()->getImage()) ?>",
+    "brand": "Diamond Mansion",
+    "sku": "<?= $block->getProduct()->getSku() . $skuSuffix ?>",
+    "review": []
 }
 </script>
