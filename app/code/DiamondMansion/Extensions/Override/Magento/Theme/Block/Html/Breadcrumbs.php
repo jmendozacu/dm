@@ -7,6 +7,10 @@ class Breadcrumbs extends \Magento\Theme\Block\Html\Breadcrumbs
 
     protected function _toHtml()
     {
+        foreach ($this->_crumbs as $index => $crumb) {
+            $this->_crumbs[$index]['link'] = rtrim($crumb['link'], '/') . '/';
+        }
+
         if ($this->getRequest()->getControllerName() == "product" && count($this->_crumbs) == 0) {
             $this->_crumbs[] = array(
                 'label' => 'Home',
@@ -25,13 +29,13 @@ class Breadcrumbs extends \Magento\Theme\Block\Html\Breadcrumbs
                 $this->_crumbs[] = array(
                     'label' => $category->getName(),
                     'title' => $category->getName(),
-                    'link' => $category->getUrl()
+                    'link' => rtrim($category->getUrl(), '/') . '/'
                 );
             }
             $this->_crumbs[] = array(
                 'label' => $product->getName(),
                 'title' => $product->getName(),
-                'link' => $product->getUrl()
+                'link' => rtrim($product->getUrl(), '/') . '/'
             );
         }
 
@@ -48,7 +52,7 @@ class Breadcrumbs extends \Magento\Theme\Block\Html\Breadcrumbs
             $eavConfig = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Eav\Model\Config');
             
             end($this->_crumbs);
-            $this->_crumbs[key($this->_crumbs)]['link'] = $registry->registry('current_category')->getUrl();
+            $this->_crumbs[key($this->_crumbs)]['link'] = rtrim($registry->registry('current_category')->getUrl(), '/') . '/';
             $this->_crumbs[key($this->_crumbs)]['last'] = false;
             
             $params = array();
@@ -111,7 +115,7 @@ class Breadcrumbs extends \Magento\Theme\Block\Html\Breadcrumbs
                             break;
                     }
                     
-                    $link = $registry->registry("current_category")->getUrl() . $urlSuffix[0];
+                    $link = rtrim($registry->registry("current_category")->getUrl(), '/') . '/' . $urlSuffix[0];
                     if ($urlSuffix[1] != "") { 
                         $link .= "?" . $urlSuffix[1];
                     }

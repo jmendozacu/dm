@@ -547,7 +547,7 @@ require(['jquery'], function($) {
                 "name": "<?= $_product->getName() ?>",
                 "subname": "<?= $_product->getDmcSubname() ?>",
                 "urlKey": "<?= $_product->getUrlKey() ?>",
-                "categoryUrl": "<?= ($category) ? $category->getUrl() : "" ?>",
+                "categoryUrl": "<?= ($category) ? rtrim($category->getUrl(), '/') . '/' : "" ?>",
                 "isReqeustedOptions": <?= $block->isRequestedOptions() ?>,
                 "isLoaded": false,
                 "default_image": "<?= isset($imageDefault) ? $imageDefault : "" ?>",

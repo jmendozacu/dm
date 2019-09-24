@@ -906,13 +906,13 @@ define([
                 html += '<li class="filter"><a title="" href="'+config.categoryUrl+breadcrumbList["type"]["param"]+'/">'+breadcrumbList["type"]["label"]+"</a><span>&gt;</span></li>";
             }
             if (breadcrumbList.hasOwnProperty("band")) {
-                html += '<li class="filter"><a title="" href="'+config.categoryUrl+breadcrumbList["band"]["param"]+'/'+breadcrumbList["type"]["param"]+'">'+breadcrumbList["band"]["label"]+"</a><span>&gt;</span></li>";
+                html += '<li class="filter"><a title="" href="'+config.categoryUrl+breadcrumbList["band"]["param"]+'/'+breadcrumbList["type"]["param"]+'/">'+breadcrumbList["band"]["label"]+"</a><span>&gt;</span></li>";
             }
             if (breadcrumbList.hasOwnProperty("shape")) {
                 if (breadcrumbList.hasOwnProperty("band")) {
                     html += '<li class="filter"><a title="" href="'+config.categoryUrl+breadcrumbList["shape"]["param"]+'/'+breadcrumbList["type"]["param"]+'?band='+breadcrumbList["band"]["param"]+'">'+breadcrumbList["shape"]["label"]+"</a><span>&gt;</span></li>";                
                 } else {
-                    html += '<li class="filter"><a title="" href="'+config.categoryUrl+breadcrumbList["shape"]["param"]+'/'+breadcrumbList["type"]["param"]+'">'+breadcrumbList["shape"]["label"]+"</a><span>&gt;</span></li>";                
+                    html += '<li class="filter"><a title="" href="'+config.categoryUrl+breadcrumbList["shape"]["param"]+'/'+breadcrumbList["type"]["param"]+'/">'+breadcrumbList["shape"]["label"]+"</a><span>&gt;</span></li>";                
                 }
             }
             
