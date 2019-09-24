@@ -23,3 +23,27 @@
     <meta property="product:price:amount" content="<?= /* @escapeNotVerified */ $priceAmount ?>"/>
     <?= $block->getChildHtml('meta.currency') ?>
 <?php endif;?>
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Product",
+    <?php if ($block->getProduct()->getDmLikes()): ?>
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "<?= $block->getProduct()->getDmLikes() ?>"
+    },
+    <?php endif ?>
+    <?php if ($priceAmount): ?>
+    "offers": {
+        "@type": "Offer",
+        "availability": "http://schema.org/InStock",
+        "price": "<?= $priceAmount ?>",
+        "priceCurrency": "USD"
+    },
+    <?php endif ?>
+    "description": "<?= $block->escapeHtmlAttr($block->stripTags($block->getProduct()->getDescription())) ?>",
+    "name": "<?= $block->escapeHtmlAttr($block->stripTags($block->getProduct()->getDmName())) ?>",
+    "image": "<?= $block->escapeUrl($block->getProduct()->getImage()) ?>"
+}
+</script>

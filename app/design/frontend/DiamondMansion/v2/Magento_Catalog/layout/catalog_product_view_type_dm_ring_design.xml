@@ -42,6 +42,7 @@
         <move element="page.main.title" destination="product.info.main" as="product_name" before="-"/>
         <move element="view.addto.wishlist" destination="product.ring.design.options" as="wishlist"/>
         <referenceContainer name="content" htmlTag="div" htmlClass="product-view-design">
+            <referenceBlock name="m_product_snippets" remove="true"/>
             <container name="product.info.media" htmlTag="div" htmlClass="product media" before="-">
                 <!-- <block class="Magento\Theme\Block\Html\Title" name="page.main.title.mobile" before="-" template="Magento_Catalog::product/view/type/ring_design/title.phtml">
                     <arguments>
