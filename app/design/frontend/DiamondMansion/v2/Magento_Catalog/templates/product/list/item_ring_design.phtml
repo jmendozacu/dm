@@ -19,7 +19,7 @@
     <div class="product-box">
         <div class="product-img-box">
             <a href="<?php echo $productUrl ?>" title="<?php echo $productName ?>" class="product-image"><div class="hover-box">
-                <img id="<?php echo 'img-'.$product->getSku(); ?>" data-qazy="false" data-qazy-placeholder="<?php echo $defaultImage ?>" class="lazy" src="<?php echo $productImage ?>" alt="<?php echo $this->getImageAlt() ?>"/>
+                <img loading="lazy" id="<?php echo 'img-'.$product->getSku(); ?>" class="lazy" src="<?php echo $productImage ?>" alt="<?php echo $this->getImageAlt() ?>"/>
             </div></a>
         </div>
         <div class="product-info">
@@ -56,9 +56,9 @@
                         ?>
                         <a href="<?php echo $recommendItemUrl ?>" title="<?php echo $recommendItemName ?>" data-price="<?php echo $recommendItemPrice ?>" data-image="<?php echo $recommendItemtImage ?>">
                             <?php if (!$useDirectImage): ?>
-                            <img data-qazy="true" data-qazy-placeholder="<?php echo $defaultImage ?>" class="lazy" src="<?php echo $recommendItemtImage ?>" />
+                            <img loading="lazy" class="lazy" src="<?php echo $recommendItemtImage ?>" />
                             <?php else: ?>
-                            <img src="<?php echo $recommendItemtImage ?>" />
+                            <img loading="lazy" src="<?php echo $recommendItemtImage ?>" />
                             <?php endif ?>
                         </a>
                     </div>

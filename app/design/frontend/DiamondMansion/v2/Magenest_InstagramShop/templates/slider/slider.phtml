@@ -46,16 +46,16 @@ if ($sliderBlock = $block->getSliderBlock()) {
                                         <a class="instagram-link-photo" href="<?= $photo->getUrl() ?>" style="background-image: url(<?= $photo->getSource() ?>);">
                                             <div class="overlay"></div>
                                             <div class="text">
-                                                <img src="<?= $this->getViewFileUrl('Magenest_InstagramShop::images/instagram.png') ?>" alt=""/>
+                                                <img loading="lazy" src="<?= $this->getViewFileUrl('Magenest_InstagramShop::images/instagram.png') ?>" alt=""/>
                                                 <button><?= $sliderBlock->getHoverText() ?></button>
                                             </div>
                                         </a>
                                     <?php } else{ ?>
                                         <a href="<?= $photo->getUrl() ?>" class="instagram-link" style="background-image:url(<?= $photo->getSource() ?>)">
-                                            <img src="<?= $photo->getSource() ?>" alt=""/>
+                                            <img loading="lazy" src="<?= $photo->getSource() ?>" alt=""/>
                                             <div class="overlay"></div>
                                             <div class="text">
-                                                <img src="<?= $this->getViewFileUrl('Magenest_InstagramShop::images/instagram.png') ?>" alt=""/>
+                                                <img loading="lazy" src="<?= $this->getViewFileUrl('Magenest_InstagramShop::images/instagram.png') ?>" alt=""/>
                                                 <button><?= $sliderBlock->getHoverText() ?></button>
                                             </div>
                                         </a>
