@@ -7,8 +7,10 @@ class Breadcrumbs extends \Magento\Theme\Block\Html\Breadcrumbs
 
     protected function _toHtml()
     {
-        foreach ($this->_crumbs as $index => $crumb) {
-            $this->_crumbs[$index]['link'] = rtrim($crumb['link'], '/') . '/';
+        if (is_array($this->_crumbs)) {
+            foreach ($this->_crumbs as $index => $crumb) {
+                $this->_crumbs[$index]['link'] = rtrim($crumb['link'], '/') . '/';
+            }
         }
 
         if ($this->getRequest()->getControllerName() == "product" && count($this->_crumbs) == 0) {
