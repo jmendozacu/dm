@@ -12,8 +12,8 @@
     <update handle="catalog_product_opengraph" />
     <update handle="page_calendar"/>
     <body>
-        <attribute name="itemtype" value="http://schema.org/Product" />
-        <attribute name="itemscope" value="itemscope"/>
+        <attribute name="itemtype" value=""/>
+        <attribute name="itemscope" value=""/>
         <referenceBlock name="head.components">
             <block class="Magento\Framework\View\Element\Js\Components" name="checkout_page_head_components" template="Magento_Catalog::js/components.phtml"/>
         </referenceBlock>
@@ -36,6 +36,7 @@
         </referenceBlock>
         <move element="page.main.title" destination="product.info.main" as="product_name" before="-"/>
         <referenceContainer name="content" htmlTag="div" htmlClass="product-view-default">
+            <referenceBlock name="m_product_snippets" remove="true"/>
             <container name="product.info.media" htmlTag="div" htmlClass="product media default grid_7" before="-">
                 <block class="Magento\Framework\View\Element\Template" name="skip_gallery_after.target" before="skip_gallery_before.wrapper" template="Magento_Theme::html/skiptarget.phtml">
                     <arguments>
