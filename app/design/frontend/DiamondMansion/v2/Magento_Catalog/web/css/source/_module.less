@@ -761,6 +761,18 @@
         }
     }
 
+    .fancybox-slide {
+        @media screen and (max-width: 768px) {
+            height: auto;
+        }
+    }
+
+    .fancybox-is-open .fancybox-stage {
+        @media screen and (max-width: 768px) {
+            overflow-y: auto;
+        }
+    }
+
     .fancybox-inner {
         h2 {
             border-bottom: 1px solid #000;
@@ -771,6 +783,11 @@
         .grid_3 {
             width: 44%;
             margin: 0 2%;
+
+            @media screen and (max-width: 768px) {
+                width: 100%;
+                margin: 0;                
+            }
 
             input {
                 border-color: #000;
