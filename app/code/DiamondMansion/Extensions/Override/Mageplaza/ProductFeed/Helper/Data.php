@@ -105,6 +105,7 @@ class Data extends \Mageplaza\ProductFeed\Helper\Data
                                 $newProduct->setData('image_link', $newProduct->getImage());
                                 $newProduct->setData('feed_title', $newProduct->getFeedTitle());
                                 $newProduct->setData('feed_sku', $newProduct->getSku() . '-' . implode('', $sku));
+                                $newProduct->setData('feed_category_path', $newProduct->getFeedCategoryPath());
 
                                 $variations[] = $newProduct;
                             }

@@ -492,6 +492,38 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         return implode(" ", $name);        
     }
 
+    public function getFeedCategoryPath($product) {
+        $allDmOptions = $this->getAllDmOptions($product);
+        $params = $this->getDmOptions($product);
+
+        $mapping = ['Engagement Rings'];
+
+        if (isset($params["main-stone-shape"])) { 
+            $mapping[] = (($params["main-stone-shape"] == "heart") ? $allDmOptions['main-stone-shape'][$params["main-stone-shape"]]->getTitle() . " Shape" : $allDmOptions['main-stone-shape'][$params["main-stone-shape"]]->getTitle() . " Cut") . ' Engagement Ring';
+        }
+
+        if ($settingStyle = $product->getDmSettingStyle()) {
+            $mapping[] = $settingStyle . ' Engagement Ring';
+        }
+
+
+        if (isset($params["main-stone-carat"])) { 
+            $mapping[] = (double) ($allDmOptions['main-stone-carat'][$params["main-stone-carat"]]->getTitle()) ." Carat Engagement Ring";
+        }
+
+        if (isset($params["metal"])) {
+            if (strpos($params["metal"], 'white-gold') !== false) {
+                $mapping[] = 'White Gold Engagement Ring';
+            } else if (strpos($params["metal"], 'yellow-gold') !== false) {
+                $mapping[] = 'Yellow Gold Engagement Ring';
+            } else if (strpos($params["metal"], 'rose-gold') !== false) {
+                $mapping[] = 'Rose Gold Engagement Ring';
+            }
+        }
+
+        return implode(" > ", $mapping);
+    }
+
 	public function getTotalCarat($product) {
         $allDmOptions = $this->getAllDmOptions($product);
         $params = $this->getDmOptions($product);

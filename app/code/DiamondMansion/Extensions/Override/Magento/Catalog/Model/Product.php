@@ -145,6 +145,14 @@ class Product extends \Magento\Catalog\Model\Product
         }
     }
 
+    public function getFeedCategoryPath() {
+        if (method_exists($this->getTypeInstance(), 'getFeedCategoryPath')) {
+            return $this->getTypeInstance()->getFeedCategoryPath($this);
+        } else {
+            return '';
+        }
+    }
+
     public function getProductUrl($useSid = NULL) {
         if (method_exists($this->getTypeInstance(), 'getProductUrl')) {
             return $this->getTypeInstance()->getProductUrl($this);
