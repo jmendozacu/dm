@@ -503,7 +503,7 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         }
 
         if ($settingStyle = $product->getDmSettingStyle()) {
-            $mapping[] = $settingStyle . ' Engagement Ring';
+            $mapping[] = str_replace(',', ' ', $settingStyle) . ' Engagement Ring';
         }
 
 
