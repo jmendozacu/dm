@@ -37,6 +37,14 @@ class Base extends \Magento\Framework\View\Element\Template
     }
 
     /**
+     * @return mixed
+     */
+    public function isUsedGtm()
+    {
+        return $this->_helper->isUsedGtm();
+    }
+
+    /**
      * @return string
      */
     public function getCustomerEmail()

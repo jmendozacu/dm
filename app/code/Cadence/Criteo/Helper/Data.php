@@ -12,4 +12,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
     public function getAccountId() {
         return $this->scopeConfig->getValue('criteo/tags/account_id', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
     }
+
+    public function isUsedGtm() {
+        return $this->scopeConfig->getValue('criteo/tags/used_gtm', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+    }
 }

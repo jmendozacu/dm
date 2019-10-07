@@ -4,6 +4,20 @@
  * @var Cadence\Criteo\Block\Cart $block
  */
 ?>
+<?php if ($block->isUsedGtm()): ?>
+<!-- Criteo Basket/Cart dataLayer -->
+<script type="text/javascript">
+    var dataLayer = dataLayer || [];
+    dataLayer.push({
+        event: 'crto_basketpage',
+        crto: {             
+            email: '<?php echo $block->getCustomerEmail() ?>',  //can be empty string if email not known
+            products: <?php echo $block->getItemsJson() ?> //add new object for each product added to cart.
+        }
+    });
+</script>
+<!-- END Criteo Basket/Cart dataLayer -->
+<?php else: ?>
 <script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
 <script type="text/javascript">
     (function() {
@@ -19,3 +33,4 @@
             {event: "viewBasket", item: <?php echo $block->getItemsJson() ?>});
     })();
 </script>
+<?php endif ?>

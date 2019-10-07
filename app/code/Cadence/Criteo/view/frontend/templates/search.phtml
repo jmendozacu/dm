@@ -4,6 +4,20 @@
  * @var Cadence\Criteo\Block\Category $block
  */
 ?>
+<?php if ($block->isUsedGtm()): ?>
+<!-- Criteo Category / Listing dataLayer -->
+<script type="text/javascript">
+    var dataLayer = dataLayer || [];
+    dataLayer.push({
+        event: 'crto_listingpage',
+        crto: {
+            email: '<?php echo $block->getCustomerEmail() ?>', //can be empty string if email not known
+            products: <?php echo $block->getItemsJson() ?>
+        }
+    });
+</script>
+<!-- END Criteo Category / Listing dataLayer -->
+<?php else: ?>
 <script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
 <script type="text/javascript">
     (function() {
@@ -20,3 +34,4 @@
         );
     })();
 </script>
+<?php endif ?>

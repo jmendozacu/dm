@@ -17,6 +17,10 @@
                 <field id="account_id" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Account ID</label>
                 </field>
+                <field id="used_gtm" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>GTM Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
             </group>
         </section>
     </system>

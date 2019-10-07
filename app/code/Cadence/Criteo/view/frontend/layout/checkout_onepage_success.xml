@@ -2,7 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="order.success.additional.info">
-            <block ifconfig="criteo/tags/enabled" template="Cadence_Criteo::checkout_success.phtml" class="Cadence\Criteo\Block\Checkoutsuccess" name="criteo.checkout_success" after="-" />
+            <block ifconfig="criteo/tags/enabled" template="Cadence_Criteo::checkout_success.phtml" class="Cadence\Criteo\Block\Checkoutsuccess" name="criteo.checkout_success" before="google_analytics" />
         </referenceContainer>
     </body>
 </page>

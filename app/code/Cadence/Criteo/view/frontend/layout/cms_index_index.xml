@@ -2,7 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="head.additional">
-            <block ifconfig="criteo/tags/enabled" template="Cadence_Criteo::homepage.phtml" class="Cadence\Criteo\Block\Base" name="criteo.hompage" after="-" />
+            <block ifconfig="criteo/tags/enabled" template="Cadence_Criteo::homepage.phtml" class="Cadence\Criteo\Block\Base" name="criteo.hompage" before="google_analytics" />
         </referenceBlock>
     </body>
 </page>

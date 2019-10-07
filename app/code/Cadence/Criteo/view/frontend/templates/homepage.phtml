@@ -4,6 +4,19 @@
  * @var Cadence\Criteo\Block\Base $block
  */
 ?>
+<?php if ($block->isUsedGtm()): ?>
+<!-- Criteo Homepage dataLayer -->
+<script type="text/javascript">
+    var dataLayer = dataLayer || [];
+    dataLayer.push({
+        event: 'crto_homepage',
+        crto: {
+            email: '<?php echo $block->getCustomerEmail() ?>' //can be empty string if email not known
+        }
+    });
+</script>
+<!-- END Criteo Homepage dataLayer -->
+<?php else: ?>
 <script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
 <script type="text/javascript">
     (function() {
@@ -20,3 +33,4 @@
         );
     })();
 </script>
+<?php endif ?>
