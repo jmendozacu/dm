@@ -19,6 +19,10 @@ class Data extends \Mageplaza\ProductFeed\Helper\Data
                 continue;
             }
 
+            if (strpos($feed->getName(), '(exclude design rings)') !== false) {
+                continue;
+            }
+
             $variations = $this->_getVariationsByProduct($product);
 
             foreach ($variations as $variation) {

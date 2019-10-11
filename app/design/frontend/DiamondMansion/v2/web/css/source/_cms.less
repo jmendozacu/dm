@@ -76,7 +76,8 @@
 .cms-about,
 .cms-fair-pricing,
 .cms-our-jewelers,
-.cms-our-material {
+.cms-our-material,
+.cms-visit-us {
     .breadcrumbs {
         display: none;
     }
@@ -106,8 +107,11 @@
         }
     }
 
-    .about-content {
+    .about-wrapper > .about-content {
         padding-top: 100px;
+    }
+
+    .about-content {
         color: #000;
         margin-bottom: 50px;
 
@@ -188,6 +192,411 @@
                     width: 100%;
                     margin-bottom: 20px;
                 }
+            }
+        }
+    }
+}
+
+.cms-visit-us {
+    font-family: @v3-title-font-family;
+
+    @media only screen and (max-width: @v3-mobile-max-width) {
+        .about-content p {
+            font-size: 16px;
+        }
+    }
+
+    h2 {
+        font-weight: bold;
+        font-size: 24px;
+        @media only screen and (max-width: @v3-mobile-max-width) {
+            font-size: 20px;
+        }
+    }
+
+    sub {
+        font-size: 18px;
+        line-height: 32px;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    .section-address {
+        .about-content {
+            @media only screen and (min-width: 768px) {
+                .shop-images {
+                    padding-right: 10px;
+                    width: 400px;
+                    margin-bottom: 20px;
+                    float: left;
+                }
+
+                .shop-map {
+                    float: left;
+                    padding-left: 10px;
+                    width: calc(~'100% - 400px');
+                }
+
+                &:after {
+                    content: "";
+                    display: block;
+                    clear: both;
+                }
+            }
+
+            dl {
+                margin-top: 20px;
+                font-size: 16px;
+
+                &:after {
+                    content: "";
+                    display: block;
+                    clear: both;
+                }
+            }
+
+            dt {
+                width: 40px;
+                float: left;
+                clear: both;
+            }
+
+            dd {
+                float: left;
+            }
+
+            @media only screen and (max-width: @v3-mobile-max-width) {
+                .shop-images {
+                    margin-bottom: 20px;
+                }
+
+                dl {
+                    font-size: 16px;
+                    dt {
+                        width: 40px;
+                    }
+                }
+            }
+        }
+    }
+
+    .section-schedule {
+        .about-content {
+            position: relative;
+            padding: 100px 30px;
+            margin-bottom: 0;
+        }
+
+        .contact-form-wrapper {
+            max-width: 500px;
+            margin: 30px auto;
+            text-align: left;
+
+            .form-list input.input-text {
+                width: 100%;
+            }
+
+            li {
+                margin-bottom: 20px;
+            }
+
+            label {
+                font-size: 16px;
+                font-weight: 500;
+                position: relative;
+
+                em {
+                    font-weight: bold;
+                    position: absolute;
+                    right: -10px;
+                    top: 0;
+                }
+            }
+
+            .buttons-set {
+                text-align: center;
+            }
+
+            button {
+                background: #000;
+                font-family: @v3-title-font-family;
+                font-size: 16px;
+                font-weight: 300;
+                padding: 20px 30px;
+                max-width: 100%;
+                text-align: center;
+            }
+        }
+    }
+
+    .section-experience {
+        .about-content {
+            padding: 100px 30px;
+            margin-bottom: 0;
+
+            h2 {
+                margin-bottom: 20px;
+            }
+
+            .exp-list {
+                margin-top: 20px;
+                display: flex;
+
+                li {
+                    width: 100%;
+
+                    &.consultation {
+                        padding-right: 20px;
+                    }
+    
+                    &.dream-ring {
+                        padding-left: 10px;
+                        padding-right: 10px;
+                    }
+    
+                    &.educated {
+                        padding-left: 20px;
+                    }
+    
+                    img {
+                        width: 93px;
+                        height: 93px;
+                    }
+
+                    h4 {
+                        font-size: 14px;
+                        line-height: 20px;
+                        padding: 20px 0;
+                        height: 60px;
+                    }
+
+                    p {
+                        font-size: 14px;
+                    }
+                }
+                @media only screen and (max-width: @v3-mobile-max-width) {
+                    display: block;
+
+                    li {
+                        margin-bottom: 20px;
+                        padding: 0 !important;
+
+                        h4 {
+                            font-size: 16px;
+                            br {
+                                display: none;
+                            }
+                        }
+
+                        p {
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .section-background-grey {
+        background: rgba(226,226,226,1);
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    @media only screen and (min-width: @v3-desktop-min-width) {
+        .product-reviews {
+            font-size: 1px;
+            padding: 100 * @v3-base-desktop-vw 0 150 * @v3-base-desktop-vw;
+            background: #f6f6f6;
+
+            .review-background {
+                position: absolute;
+                left: 0;
+                margin-top: -100 * @v3-base-desktop-vw;
+                width: 100%;
+                background: #f6f6f6;
+                z-index: 0;
+            }
+
+            .review-wrapper {
+                width: 120%;
+                margin-left: -10%;
+                position: relative;
+                z-index: 1;
+
+                li.slick-slide {
+                    background: #fff;
+                    margin: 0 15 * @v3-base-desktop-vw;
+                    padding: 50 * @v3-base-desktop-vw;
+
+                    .customer-info {
+                        margin-bottom: 40 * @v3-base-desktop-vw;
+                        position: relative;
+
+                        .customer-name {
+                            font-family: @v3-title-font-family;
+                            font-weight: 700;
+                            color: #000;
+                            text-transform: uppercase;
+                            font-size: 19em;
+                            line-height: 30px;
+                        }
+
+                        .customer-rate {
+                            width: 80px;
+                            height: 16px;
+                            background: url(../images/v3/i_star_inactive.png);
+
+                            span {
+                                display: block;
+                                height: 100%;
+                                background: url(../images/v3/i_star_active.png);
+                            }
+
+                            i {
+                                color: #f5a82e;
+                                font: normal normal normal 17px/1 FontAwesome;
+                                &:before {
+                                    content: '\f005';
+                                }
+                            }
+                        }
+
+                        .review-avatar {
+                            position: absolute;
+                            display: inline-block;
+                            right: 0;
+                            top: 5px;
+
+                            img {
+                                width: 40px;
+                                height: 40px;
+                            }
+                        }
+                    }
+
+                    .review-content {
+                        font-family: @v3-title-font-family-rg;
+                        color: #000;
+                        font-size: 20em;
+                        line-height: 32px;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
+
+            .block-title {
+                font-family: @v3-title-font-family;
+                font-weight: 700;
+                font-size: 33em;
+                line-height: 70 * @v3-base-desktop-vw;
+                text-transform: uppercase;
+                text-align: center;
+                color: #000;
+                padding-bottom: 20 * @v3-base-desktop-vw;
+                margin-bottom: 40 * @v3-base-desktop-vw;
+                background: url(../images/v3/i_sharp_shape.png) center bottom no-repeat;
+            }
+        }
+    }
+
+    @media only screen and (max-width: @v3-mobile-max-width) {
+        .product-reviews {
+            font-size: 1px;
+            padding: 100 * @v3-base-mobile-vw 0 150 * @v3-base-mobile-vw;
+            background: #f6f6f6;
+    
+            .review-background {
+                position: absolute;
+                left: 0;
+                margin-top: -100 * @v3-base-mobile-vw;
+                width: 100%;
+                background: #f6f6f6;
+                z-index: 0;
+            }
+    
+            .review-wrapper {
+                position: relative;
+                z-index: 1;
+    
+                li.slick-slide {
+                    background: #fff;
+                    margin: 0 15 * @v3-base-mobile-vw;
+                    padding: 50 * @v3-base-mobile-vw;
+    
+                    .customer-info {
+                        margin-bottom: 40 * @v3-base-mobile-vw;
+                        position: relative;
+    
+                        .customer-name {
+                            font-family: @v3-title-font-family;
+                            font-weight: 700;
+                            color: #000;
+                            text-transform: uppercase;
+                            font-size: 16px;
+                            line-height: 30px;
+                        }
+    
+                        .customer-rate {
+                            width: 80px;
+                            height: 16px;
+                            background: url(../images/v3/i_star_inactive.png);
+    
+                            span {
+                                display: block;
+                                height: 100%;
+                                background: url(../images/v3/i_star_active.png);
+                            }
+    
+                            i {
+                                color: #f5a82e;
+                                font: normal normal normal 17px/1 FontAwesome;
+                                &:before {
+                                    content: '\f005';
+                                }
+                            }
+                        }
+    
+                        .review-avatar {
+                            position: absolute;
+                            display: inline-block;
+                            right: 0;
+                            top: 5px;
+    
+                            img {
+                                width: 40px;
+                                height: 40px;
+                            }
+                        }
+                    }
+    
+                    .review-content {
+                        font-family: @v3-title-font-family-rg;
+                        color: #000;
+                        font-size: 14px;
+                        line-height: 24px;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
+    
+            .block-title {
+                font-family: @v3-title-font-family;
+                font-weight: 700;
+                font-size: 28px;
+                line-height: 30px;
+                text-align: center;
+                color: #000;
+                padding-bottom: 30 * @v3-base-mobile-vw;
+                margin-bottom: 40 * @v3-base-mobile-vw;
+                background: url(../images/v3/i_sharp_shape.png) center bottom no-repeat;
+                background-size: 55 * @v3-base-mobile-vw 9 * @v3-base-mobile-vw !important;
             }
         }
     }

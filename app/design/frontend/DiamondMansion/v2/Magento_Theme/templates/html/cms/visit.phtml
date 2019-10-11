@@ -1,0 +1,189 @@
+<div class="about-wrapper">
+    <div class="about-content">
+        <h1>Visit Us</h1>
+    </div>
+    <div class="section-address">
+        <div class="about-content">
+            <div class="shop-images">
+                <img src="<?php echo $block->getViewFileUrl('images/v3/cms/visit-shop.jpg') ?>"/>
+            </div>
+            <div class="shop-map">
+                <!--<object style="min-width:365px; max-width: 100%;min-height:265px;margin-bottom: 20px;frameborder:0px;scrolling:no;marginheight:0px; marginwidth:0px;" data="http://maps.google.co.in/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=550+S+Hill+St+%23+710,+Los+Angeles,+CA,&amp;aq=&amp;sll=33.941081,-118.208771&amp;sspn=0.435212,0.883026&amp;vpsrc=0&amp;ie=UTF8&amp;hq=&amp;hnear=550+S+Hill+St,+Los+Angeles,+California+90013,+United+States&amp;ll=34.047605,-118.252345&amp;spn=0.007236,0.013797&amp;z=14&amp;output=embed"></object>-->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.8568648681235!2d-118.25462318478507!3d34.04754258060712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb0b0a0866eab7455!2sDiamond+Mansion!5e0!3m2!1sen!2sus!4v1543354988727"
+                    width="100%"
+                    height="250px"></iframe>
+
+                <dl class="open-close-table">
+                    <dt>Mon</dt><dd>9:00 am - 6:00 pm</dd>
+                    <dt>Tue</dt><dd>9:00 am - 6:00 pm</dd>
+                    <dt>Wed</dt><dd>9:00 am - 6:00 pm</dd>
+                    <dt>Thu</dt><dd>9:00 am - 6:00 pm</dd>
+                    <dt>Fri</dt><dd>9:00 am - 6:00 pm</dd>
+                    <dt>Sat</dt><dd>Closed</dd>
+                    <dt>Sun</dt><dd>Closed</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="section-schedule">
+        <div class="section-background-grey"></div>
+        <div class="about-content text-center">
+            <h2>Schedule an appointment</h2>
+            <sub>to meet & feel our jewelry</sub>
+            <p>Please use the form below or call us at 1.800.518.0240 to schedule your personalized one hour visit with a jewelry specialist. We recommend you make your appointment at least three business days in advance and specify the items that you would like to see during your visit. Please note that the full collection may not be available in our showroom.</p>
+            <div class="contact-form-wrapper">
+                <form action="/contact/index/post/" id="contactForm" method="post">
+                    <ul class="form-list">
+                        <li>
+                            <label for="name" class="required"><em>*</em>Name</label>
+                            <div class="input-box">
+                                <input name="name" id="name" placeholder="Name" title="Name" class="input-text required-entry" type="text" />
+                            </div>
+                        </li>
+                        <li>
+                            <label for="email" class="required"><em>*</em>Email</label>
+                            <div class="input-box">
+                                <input name="email" id="email" placeholder="Email" title="Email" class="input-text required-entry validate-email" type="text" />
+                            </div>
+                        </li>
+                        <li>
+                            <label for="telephone">Telephone</label>
+                            <div class="input-box">
+                                <input name="telephone" id="telephone" title="Telephone" placeholder="Telephone" class="input-text" type="text" />
+                            </div>
+                        </li>
+                        <li>
+                            <label for="comment" class="required"><em>*</em>Comment</label>
+                            <div class="input-box">
+                                <textarea name="comment" id="comment" placeholder="Comment" title="Comment" class="required-entry input-text" cols="5" rows="3"></textarea>
+                            </div>
+                        </li>
+                    </ul>           
+                    <div class="buttons-set">
+                        <button type="submit" title="Schedule My Appointment Now" class="button">Schedule My Appointment Now</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="section-experience">
+        <div class="about-content text-center">
+            <h2>Diamond Mansion Experience</h2>
+            <p>Our goal is to help you find the unique piece of  jewelry in a fun, relaxing environment. Here is what you can expect from an appointment at one of our showrooms:</p>
+
+            <ul class="exp-list">
+                <li class="consultation">
+                    <div class="block-icon"><img src="<?php echo $block->getViewFileUrl('images/v3/cms/visit-consultation.svg') ?>" alt="Personalized Consultation"/></div>
+                    <h4>Personalized Consultation</h4>
+                    <p>Visits are by appointment only, and consist of a one hour session with one of our friendly jewelry experts, tailored to your specific interests.</p>
+                </li>
+                <li class="dream-ring">
+                    <div class="block-icon"><img src="<?php echo $block->getViewFileUrl('images/v3/cms/visit-dream-ring.png') ?>" alt="Find or Customize Your Dream Ring"/></div>
+                    <h4>Find or Customize Your&nbsp;<br/>Dream Ring</h4>
+                    <p>You will also have the opportunity to browse through our collections of new and vintage rings and learn about our custom design process.</p>
+                </li>
+                <li class="educated">
+                    <div class="block-icon"><img src="<?php echo $block->getViewFileUrl('images/v3/cms/visit-educated.png') ?>" alt="Get Educated"/></div>
+                    <h4>Get Educated</h4>
+                    <p>Our jewelry specialists will gladly get you acquainted with diamonds and the “four Cs” so you can discover the ideal diamond for your preferences.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="section-testimonials">
+        <div class="product-reviews">
+            <div class="review-background section-background-grey"></div>
+            <div class="review-wrapper">
+                <div class="block-title">Happy Customers</div>
+                <div class="block-content">
+                    <ul id="review-slider">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    require(['jquery'], function ($) {
+        $(function () {
+            require(['slick'], function () {
+
+                $.get('https://reviewsonmywebsite.com/embed/kUWbOHrlqjW91CC78eswMVhMZ7f6kygfckz9x3ARfFMmWewYat?v=2', function (data) {
+                    var $reviews = $(data.html).find('.romw');
+                    if ($reviews.length) {
+                        $reviews.each(function () {
+                            var html = '<li>';
+                            html += '<div class="customer-info">';
+                            html += '<div class="customer-name">' + $(this).find('.romw-author').html() + '</div>';
+                            html += '<div class="customer-rate">' + $(this).find('.romw-stars').html() + '</div>';
+                            html += '<div class="review-avatar">' + $(this).find('.romw-source-logo').html() + '</div>';
+                            html += '</div>';
+                            html += '<div class="review-content">' + $(this).find('.romw-text').html() + '</div>';
+                            html += '</li>';
+
+                            $('#review-slider').append(html);
+                        });
+
+                        $('#review-slider').slick({
+                            dots: true,
+                            infinite: false,
+                            adaptiveHeight: true,
+                            slidesToShow: 4,
+                            slidesToScroll: 1,
+                            responsive: [
+                                {
+                                    breakpoint: 1280,
+                                    settings: {
+                                        slidesToShow: 2,
+                                        slidesToScroll: 1
+                                    }
+                                },
+                                {
+                                    breakpoint: 768,
+                                    settings: {
+                                        slidesToShow: 2,
+                                        slidesToScroll: 1
+                                    }
+                                },
+                                {
+                                    breakpoint: 480,
+                                    settings: {
+                                        slidesToShow: 1,
+                                        slidesToScroll: 1
+                                    }
+                                }
+                            ]
+                        });
+
+                        var adjustReviewListHeight = function () {
+                            var height = 0;
+                            jQuery('#review-slider .slick-active').each(function () {
+                                height = Math.max(height, jQuery(this).outerHeight());
+                            });
+
+                            jQuery('#review-slider').height(height);
+                            $('.review-background').height($('.product-reviews').outerHeight());
+                        };
+
+                        adjustReviewListHeight();
+
+                        jQuery('#review-slider').on('afterChange', function(event, slick, currentSlide, nextSlide){
+                            adjustReviewListHeight();
+                        });
+                    }
+                });
+
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+require([
+    'jquery'
+], function($) {
+    $('.section-background-grey').each(function(idx, elm) {
+        $(this).height($(this).parent().height());
+    });
+});
+</script>
