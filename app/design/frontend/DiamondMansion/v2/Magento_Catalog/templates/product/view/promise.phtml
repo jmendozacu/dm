@@ -7,12 +7,18 @@
         'jquery'
     ], function ($) {
         $(document).ready(function() {
-            $('.product-static-blocks a').on('click', function () {
+            $('.product-static-blocks a').on('click', function() {
                 var isShow = $(this).hasClass('show');
                 $('.product-static-blocks a.show').removeClass('show');
                 if (!isShow) {
                     $(this).addClass('show');
                 }
+            });
+
+            $('.product-static-blocks a .learn-more').on('click', function(e) {
+                e.stopPropagation();
+                $(this).parent().find('.learn-more-content').show();
+                $(this).hide();
             });
         });
     });

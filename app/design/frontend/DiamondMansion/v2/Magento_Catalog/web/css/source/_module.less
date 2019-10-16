@@ -397,7 +397,7 @@
                             vertical-align: middle;
                         }
                         
-                        span {
+                        & > span {
                             display: none;
                             position: absolute;
                             font-size: 0.8em;
@@ -409,6 +409,14 @@
                             border-top: 0 none;
                             left: 0;
                             white-space: normal;
+
+                            .learn-more {
+                                text-decoration: underline;
+                            }
+
+                            .learn-more-content {
+                                display: none;
+                            }
                         }
 
                         &:hover {
@@ -419,7 +427,7 @@
 
                             border-color: #eaeaea;
 
-                            span {
+                            & > span {
                                 display: block;
                             }
                         }
@@ -641,7 +649,7 @@
                             margin-right: 20px;
                         }
                         
-                        span {
+                        & > span {
                             display: none;
                             font-size: 14px;
                             line-height: 24px;
@@ -651,12 +659,20 @@
                             border-top: 0 none;
                             left: 0;
                             white-space: normal;
+
+                            .learn-more {
+                                text-decoration: underline;
+                            }
+
+                            .learn-more-content {
+                                display: none;
+                            }
                         }
 
                         &.show {
                             color: inherit;
 
-                            span {
+                            & > span {
                                 display: block;
                             }
                         }
