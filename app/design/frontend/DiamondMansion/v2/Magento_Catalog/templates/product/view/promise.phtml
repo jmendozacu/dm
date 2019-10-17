@@ -1,24 +1,78 @@
 <div class="product-static-blocks">
     <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('product-view-promises')->toHtml() ?>
+    <div class="modal-contents-wrapper" style="display: none;">
+        <a class="btn-paypal-offers" href="#paypal-offers">PayPal Offers</a>
+        <div id="paypal-offers">
+            <div class="top-content">
+                <div class="credit-title">No Interest if paid in full in 6 months on purchases of $99 or more when you checkout with PayPal and choose PayPal Credit</div>
+                <div class="credit-subtitle">Interest will be charged to your account from the purchase date if the balance is not paid in full within 6 months. Minimum monthly payments required.</div>
+                <a class="terms-and-conditions-link" href="https://www.paypal.com/us/webapps/mpp/terms/paypal-credit" target="_blank">See terms</a>
+            </div>
+            <div class="hiw-box">
+                <div class="hiw-top-banner">
+                    <div class="hiw-top-banner-text">How It Works</div>
+                </div>
+                <div class="hiw-directions-box">
+                    <div class="hiw-step">
+                        <div class="hiw-step-icon-container">
+                            <img class="hiw-step-icon" src="https://www.paypalobjects.com/muse/img/add-to-cart.png"/>
+                        </div>
+                        <div class="hiw-step-title-container">
+                            <div class="hiw-step-title">Add to Cart</div>
+                        </div>
+                        <div class="hiw-step-text">Add the product you wish to purchase to your cart</div>
+                    </div>
+                    <div class="hiw-step">
+                        <div class="hiw-step-icon-container">
+                            <img class="hiw-step-icon" src="https://www.paypalobjects.com/muse/img/checkout.png"/>
+                        </div>
+                        <div class="hiw-step-title-container">
+                            <div class="hiw-step-title">Checkout with PayPal</div>
+                        </div>
+                        <div class="hiw-step-text">Choose PayPal Credit as your payment option.</div>                    
+                    </div>
+                    <div class="hiw-step">
+                        <div class="hiw-step-icon-container">
+                            <img class="hiw-step-icon" src="https://www.paypalobjects.com/muse/img/get-credit.png"/>
+                        </div>
+                        <div class="hiw-step-title-container">
+                            <div class="hiw-step-title">Apply for your PayPal Credit</div>
+                        </div>
+                        <div class="hiw-step-text">Upon approval, your order will be on its way.</div>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="clearer"></div>
 </div>
 <script type="text/javascript">
     require([
-        'jquery'
+        'jquery',
+        'jquery-fancybox'
     ], function ($) {
         $(document).ready(function() {
+            $('.btn-paypal-offers').fancybox();
+            $('.btn-paypal-offers').trigger('click');
+
             $('.product-static-blocks a').on('click', function() {
                 var isShow = $(this).hasClass('show');
                 $('.product-static-blocks a.show').removeClass('show');
                 if (!isShow) {
                     $(this).addClass('show');
                 }
+                return false;
             });
 
             $('.product-static-blocks a .learn-more').on('click', function(e) {
-                e.stopPropagation();
-                $(this).parent().find('.learn-more-content').show();
-                $(this).hide();
+                if ($(this).hasClass('paypal-offers-anchor')) {
+                    $('.btn-paypal-offers').trigger('click');
+                } else {
+                    e.stopPropagation();
+                    $(this).parent().find('.learn-more-content').show();
+                    $(this).hide();
+                }
+                return false;
             });
         });
     });
