@@ -73,6 +73,11 @@
                 }
                 return false;
             });
+
+            $('a.terms-and-conditions-link').on('click', function() {
+                window.open($(this).attr('href'), "PayPal Credit", "toolbar=no,status=no,menubar=no,height=600,width=700,top=" + ($(window).height() / 2 - 300) + ",left=" + ($(window).width() / 2 - 350));
+                return false;
+            });
         });
     });
 </script>
