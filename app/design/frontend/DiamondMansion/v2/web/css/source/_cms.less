@@ -22,7 +22,7 @@
         }
     
         &.over {
-            &:after {
+            &:after {/
                 content: "";
                 .nav-link-arrow();
             }
@@ -751,6 +751,14 @@
                     margin: 0 auto 15px;
                 }
             }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .customer-account-create {
+        .g-recaptcha {
+            padding-left: 25.8%;
         }
     }
 }
