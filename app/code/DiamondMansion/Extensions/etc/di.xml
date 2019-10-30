@@ -98,6 +98,8 @@
         <plugin name="dm_plugin_add_catalog_breadcrumb_block" type="DiamondMansion\Extensions\Plugin\Catalog\Block\Product\View" />
     </type>
 
+    <preference for="Magento\Reports\Block\Adminhtml\Shopcart\Abandoned\Grid" type="DiamondMansion\Extensions\Override\Magento\Reports\Block\Adminhtml\Shopcart\Abandoned\Grid"/>
+    
     <preference for="Magento\Theme\Block\Html\Breadcrumbs" type="DiamondMansion\Extensions\Override\Magento\Theme\Block\Html\Breadcrumbs"/>
     <preference for="Magento\Catalog\Controller\Category\View" type="DiamondMansion\Extensions\Override\Magento\Catalog\Controller\Category\View"/>
     <!-- <preference for="Magento\Catalog\Controller\Product\View" type="DiamondMansion\Extensions\Override\Magento\Catalog\Controller\Product\View"/> -->
