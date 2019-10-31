@@ -250,7 +250,7 @@
                     <input type="hidden" name="dm_options" class="dm_custom_options" value="<?= isset($params['option']) ? $params['option'] : "" ?>"/>
                     <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $_product->getId() ?>" />
                     <?= $block->getBlockHtml('formkey') ?>
-                    <a class="btn-buy" href="#" onclick="productAddToCartForm.submit(this); return false;">ORDER</a>
+                    <a class="btn-buy" href="#">ORDER</a>
                 </form>
             </div>                        
             <div class="buttons" style="text-transform: uppercase;">
@@ -281,6 +281,17 @@
         </div>                        
     </div>                    
 </div>
+<script type="text/javascript">
+require(['jquery'], function($) {
+    $('body').on('afterAddToCart', function() {
+        setTimeout(function() {
+            $(window).scrollTop(0);
+            $('.show-cart').trigger('click');
+            $('body').trigger('processStop');
+        }, 1000);
+    });
+});
+</script>
 <script type="text/x-magento-init">
     {
         "*": {
@@ -347,6 +358,13 @@
                     "<?= $group ?>": "<?= $group ?>-<?= $option->getId() ?>"<?= ($i < count($defaultOptions)) ? ',' : '' ?>
                     <?php $i++; endforeach ?>
                 }
+            }
+        },
+        "#form_add_product": {
+            "catalogAddToCart": {
+                "processStart": "processStart",
+                "processStop": "afterAddToCart",
+                "bindSubmit": true
             }
         }
     }

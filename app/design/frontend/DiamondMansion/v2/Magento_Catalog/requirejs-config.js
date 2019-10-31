@@ -11,7 +11,8 @@ var config = {
             'dm-viewmore': 'Magento_Catalog/js/dm-viewmore',
             'responsiveslides': 'Magento_Catalog/js/responsiveslides.min',
             'dm-product-view-ring-design': 'Magento_Catalog/js/dm-product-view-ring-design',
-            'dm-product-view-ring-eternity': 'Magento_Catalog/js/dm-product-view-ring-eternity'
+            'dm-product-view-ring-eternity': 'Magento_Catalog/js/dm-product-view-ring-eternity',
+            'dm-validate-product': 'Magento_Catalog/js/dm-validate-product'
         }
     }
 };

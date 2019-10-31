@@ -40,10 +40,21 @@
     </div>
 </div>
 <?php endif; ?>
+<script type="text/javascript">
+require(['jquery'], function($) {
+    $('body').on('afterAddToCart', function() {
+        setTimeout(function() {
+            $(window).scrollTop(0);
+            $('.show-cart').trigger('click');
+            $('body').trigger('processStop');
+        }, 1000);
+    });
+});
+</script>
 <script type="text/x-magento-init">
     {
         "#product_addtocart_form": {
-            "Magento_Catalog/js/validate-product": {}
+            "Magento_Catalog/js/dm-validate-product": {}
         }
     }
 </script>
