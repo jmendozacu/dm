@@ -11,6 +11,8 @@ class Product extends Base {
      */
     protected $_registry;
 
+    protected $_request;
+
     /**
      * Product constructor.
      * @param \Magento\Framework\View\Element\Template\Context $context
@@ -22,9 +24,11 @@ class Product extends Base {
         \Magento\Framework\View\Element\Template\Context $context,
         \Cadence\Criteo\Helper\Data $helper,
         \Magento\Framework\Registry $registry,
+        \Magento\Framework\App\Request\Http $request,
         array $data
     ) {
         $this->_registry = $registry;
+        $this->_request = $request;
         parent::__construct($context, $helper, $data);
     }
 
@@ -32,7 +36,11 @@ class Product extends Base {
      * @return string|null
      */
     public function getProductId() {
+
+        $sku = $this->_request->getParam('option');
+
         $product = $this->_registry->registry('current_product');
-        return $product->getSku();
+
+        return $product->getSku() . (empty($sku) ? '' : '-' . $sku);
     }
 }
