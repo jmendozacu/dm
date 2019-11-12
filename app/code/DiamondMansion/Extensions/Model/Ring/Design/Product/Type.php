@@ -302,7 +302,7 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
             $optionCenterStone[] = $allDmOptions['main-stone-cert'][$params["main-stone-cert"]]->getTitle();
         }
 
-        if (count($optionCenterStone)) {
+        if ($params["main-stone-type"] != "setting" && count($optionCenterStone)) {
             $result[] = [
                 'label' => 'Center Stone',
                 'value' => implode(', ', $optionCenterStone)
@@ -378,9 +378,11 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         $allDmOptions = $this->getAllDmOptions($product);
         $params = $this->getDmOptions($product);
 
+        $mainName = trim($mainName);
+
         if ($params["main-stone-type"] == "setting") {
             
-            $name = $mainName . " Setting";
+            $name = $mainName . " Setting ";
             
             if (isset($params["metal"])) { 
                 $name .= $allDmOptions["metal"][$params["metal"]]->getTitle();
@@ -423,9 +425,11 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         $allDmOptions = $this->getAllDmOptions($product);
         $params = $this->getDmOptions($product);
 
+        $mainName = trim($mainName);
+
         if ($params["main-stone-type"] == "setting") {
             
-            $name = $mainName . " Setting";
+            $name = $mainName . " Setting ";
             
             if (isset($params["metal"])) { 
                 $name .= $allDmOptions["metal"][$params["metal"]]->getTitle();
@@ -454,7 +458,9 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         //    $name[] = $allDmOptions['metal'][$params["metal"]]->getTitle(); 
         //}
 
-        $name[] = '(GIA Certified)'; 
+        if ($params["main-stone-type"] != "setting") {
+            $name[] = '(GIA Certified)'; 
+        }
 
         return implode(" ", $name);
     }

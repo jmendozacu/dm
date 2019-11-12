@@ -21,9 +21,24 @@
                 <span class="price"></span>
             </span>
             <span class="appraised-value">
-                <span class="label">Appraised Value</span>
+                <span class="label">Appraised Retail Value<span class="icon-info appraised-value-comment"><span><?php echo $block->getLayout()->createBlock('\Magento\Cms\Block\Block')->setBlockId('appraised-retail-value-comment')->toHtml() ?></span></span></span>
                 <span class="value"></span>
             </span>
+            <script>
+                require([
+                    'jquery'
+                ], function($) {
+                    $(document).ready(function() {
+                        $('body').on('click', function(e) {
+                            if ($(e.target).hasClass('appraised-value-comment')) {
+                                $('.appraised-value-comment').addClass('active');
+                            } else {
+                                $('.appraised-value-comment').removeClass('active');
+                            }
+                        });
+                    });
+                });
+            </script>
         </div>
     </div>
     <div class="custom-options-details">
@@ -40,7 +55,7 @@
                                 <?php if (is_array($allOptions['main-stone-type']) && count($allOptions['main-stone-type']) > 0): ?>
                                     <?php foreach ($allOptions['main-stone-type'] as $type => $typeOption): ?>
                                     <li>
-                                        <a href="#" rel="<?= $type ?>" id="main-stone-type-<?= $typeOption->getId() ?>" data-code="<?= $type ?>">
+                                        <a href="#" rel="<?= $type ?>" id="main-stone-type-<?= $typeOption->getId() ?>" data-code="<?= $type ?>" <?php if ($type == "setting"): ?>style="border-bottom: 0 none;"<?php endif ?>>
                                             <?php if ($type != "setting"): ?>
                                             <img class="i-first" src="<?php echo $this->getViewFileUrl("images/v3/diamond/type/".$type.".png")?>" alt="<?= $type ?>" title="<?php echo $typeOption->getTitle() ?>">
                                             <?php endif ?>
@@ -89,7 +104,7 @@
                         <td class="label"><span>SHAPE</span></td>
                         <td class="collapsed">
                             <?php if (is_array($allOptions['main-stone-shape']) && count($allOptions['main-stone-shape']) > 0): ?>
-                            <div class="option" <?php if (count($allOptions['main-stone-shape']) == 1 && isset($allOptions['main-stone-shape']['no-shape'])): ?>style="display: none;"<?php endif; ?>>
+                            <div class="option" id="shape-list-wrapper" <?php if (count($allOptions['main-stone-shape']) == 1 && isset($allOptions['main-stone-shape']['no-shape'])): ?>style="display: none;"<?php endif; ?>>
                                 <label class="list-title">Choose Your Shape<i class="fa fa-times"></i></label>
                                 <?php foreach ($allOptions['main-stone-type'] as $type => $typeOption): ?>
                                 <?php $typeValues = json_decode($typeOption->getValues(), true); ?>
@@ -328,10 +343,11 @@
             </div>
             <div class="block-summary">
                 <ul>
-                    <li class="stone"><a href="#"></a><label>STONE</label>,</li>
+                    <li class="setting"><a href="#">I have my own stone</a><label>I have my own stone</label></li>
+                    <!--<li class="stone"><a href="#"></a><label>STONE</label>,</li>-->
                     <li class="carat"><a href="#">1</a><label>CARAT</label>&nbsp;</li>
                     <li class="shape"><a href="#"></a><label>SHAPE</label>,</li>
-                    <li class="size"><a href="#">0 x 0 x 0</a><label>SIZE</label>,</li>
+                    <!-- <li class="size"><a href="#">0 x 0 x 0</a><label>SIZE</label>,</li> -->
                     <li class="color"><a href="#">G</a><label>COLOR</label>&nbsp;/</li>
                     <li class="clarity"><a href="#">SI1</a><label>CLARITY</label>,</li>
                     <li class="cut"><a href="#">Excellent</a><label>CUT</label>,</li>
@@ -483,7 +499,7 @@
                 </ul>
             </div>
         </div>
-        <div id="matching-band-details" class="options-details">
+        <div id="matching-band-details" class="options-details" <?php if (count($allOptions['band']) == 1 && isset($allOptions['band']["no-band"])): ?> style="display: none;" <?php endif; ?>>
             <div class="block-options">
                 <?php if (is_array($allOptions['band']) && count($allOptions['band']) > 0): ?>
                 <div class="option" <?php if (count($allOptions['band']) == 1 && isset($allOptions['band']["no-band"])): ?> style="display: none;" <?php endif; ?>>
@@ -502,6 +518,9 @@
             </div>
         </div>            
         <div class="buttons-mobile">
+            <div class="add-to-cart-message">
+                <?php echo $block->getLayout()->createBlock('\Magento\Cms\Block\Block')->setBlockId('product-view-add-to-cart-message')->toHtml() ?>
+            </div>
             <div class="buttons">
                 <form action="<?= $block->getSubmitUrl($_product) ?>" method="post" id="form_add_product">
                     <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $_product->getId() ?>" />

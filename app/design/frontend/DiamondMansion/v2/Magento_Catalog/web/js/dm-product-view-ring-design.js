@@ -225,17 +225,21 @@ define([
             config.center_stone["type"] = code;
             
             if (config.center_stone["type"] == "setting") {
-                $("#stone-list-wrapper, #size-list-wrapper").show();
-                $("#carat-list-wrapper, #cert-list-wrapper, #cut-list-wrapper").closest('tr').hide();
+                //$("#stone-list-wrapper, #size-list-wrapper").show();
+                $("#shape-list-wrapper, #color-list-wrapper, #clarity-list-wrapper, #carat-list-wrapper, #cert-list-wrapper, #cut-list-wrapper").each(function() {
+                    $(this).closest('tr').hide();
+                });
     
-                $("#center-diamond-details .block-summary li.stone, #center-diamond-details .block-summary li.size, #center-diamond-details .block-summary span#center-diamond-setting-label").show();                
-                $("#center-diamond-details .block-summary li.carat, #center-diamond-details .block-summary li.cert, #center-diamond-details .block-summary span#center-diamond-details-label").hide();
+                $("#center-diamond-details .block-summary li").hide();
+                $("#center-diamond-details .block-summary li.setting").show();
             } else {
                 $("#stone-list-wrapper, #size-list-wrapper").hide();
-                $("#carat-list-wrapper, #cert-list-wrapper, #color-list-wrapper, #clarity-list-wrapper, #cut-list-wrapper").closest('tr').show();
+                $("#shape-list-wrapper, #color-list-wrapper, #clarity-list-wrapper, #carat-list-wrapper, #cert-list-wrapper, #cut-list-wrapper").each(function() {
+                    $(this).closest('tr').show();
+                });
                 
-                $("#center-diamond-details .block-summary li.stone, #center-diamond-details .block-summary li.size, #center-diamond-details .block-summary span#center-diamond-setting-label").hide();                
-                $("#center-diamond-details .block-summary li.carat, #center-diamond-details .block-summary li.color, #center-diamond-details .block-summary li.clarity, #center-diamond-details .block-summary li.cert, #center-diamond-details .block-summary span#center-diamond-details-label").show();
+                $("#center-diamond-details .block-summary li").show();
+                $("#center-diamond-details .block-summary li.setting").hide();
             }
     
             $(".block-options .option ul.dependent").hide();
@@ -411,6 +415,7 @@ define([
             
             config.center_stone['stone'] = code;
             
+            /*
             if (code == "white-diamond") {
                 $("#color-list-wrapper, #clarity-list-wrapper").closest('tr').show();
                 $("#center-diamond-details .block-summary li.color, #center-diamond-details .block-summary li.clarity").show();
@@ -419,6 +424,7 @@ define([
                 $("#color-list-wrapper, #clarity-list-wrapper").closest('tr').hide();
                 $("#center-diamond-details .block-summary li.color, #center-diamond-details .block-summary li.clarity").hide();
             }
+            */
             
             updateUrl();
         }
@@ -810,6 +816,7 @@ define([
 
         function updateTitle() {
             var title = "";
+            var suffix = " (GIA Certified)";
             if (config.totalCarat > 0) {
                 title = config.totalCarat + " Ct.";
             }
@@ -830,17 +837,18 @@ define([
                 title += " Pink";
             } else if (config.center_stone["type"] == "setting") {
                 title = "";
+                suffix = " (Setting Only)";
             }
             
             title = title.trim();
             if (title != "") {
                 title += " Diamond";
-                var titleHTML = "<h2>" + config.subname + "</h2><h1 class=\"page-title\"><span class=\"base\" data-ui-id=\"page-title-wrapper\" itemprop=\"name\">" + title + " " + config.name + " (GIA Certified)</span></h1>";
+                var titleHTML = "<h2>" + config.subname + "</h2><h1 class=\"page-title\"><span class=\"base\" data-ui-id=\"page-title-wrapper\" itemprop=\"name\">" + title + " " + config.name + suffix + "</span></h1>";
             } else {
-                var titleHTML = "<h2>" + config.subname + "</h2><h1 class=\"page-title\"><span class=\"base\" data-ui-id=\"page-title-wrapper\" itemprop=\"name\">" + title + " " + config.name + " (GIA Certified)</span></h1>";
+                var titleHTML = "<h2>" + config.subname + "</h2><h1 class=\"page-title\"><span class=\"base\" data-ui-id=\"page-title-wrapper\" itemprop=\"name\">" + title + " " + config.name + suffix + "</span></h1>";
             }
 
-            document.title = title + " " + config.name + " (GIA Certified)";
+            document.title = title + " " + config.name + suffix;
             $(".product-name").html(titleHTML);
             $("input.productname").val(config.name + " - " + title);
         }

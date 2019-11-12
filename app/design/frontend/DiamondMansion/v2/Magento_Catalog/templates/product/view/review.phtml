@@ -61,6 +61,17 @@
                         });
 
                         var adjustReviewListHeight = function () {
+                            jQuery('.review-content').css('height', 'auto');
+
+                            jQuery('.review-content').each(function() {
+                                jQuery(this).find('a.read-more').remove();
+
+                                if (jQuery(this).height() > 448) {
+                                    jQuery(this).css('height', 448);
+                                    jQuery(this).append('<a href="#" class="read-more">Read More</a>');
+                                }
+                            });
+
                             var height = 0;
                             jQuery('#review-slider .slick-active').each(function () {
                                 height = Math.max(height, jQuery(this).outerHeight());
@@ -74,6 +85,21 @@
 
                         jQuery('#review-slider').on('afterChange', function(event, slick, currentSlide, nextSlide){
                             adjustReviewListHeight();
+                        });
+
+                        jQuery('body').delegate('.review-content a.read-more', 'click', function() {
+                            jQuery(this).parent().css('height', 'auto');
+                            jQuery(this).remove();
+
+                            var height = 0;
+                            jQuery('#review-slider .slick-active').each(function () {
+                                height = Math.max(height, jQuery(this).outerHeight());
+                            });
+
+                            jQuery('#review-slider').height(height);
+                            $('.review-background').height($('.product-reviews').outerHeight());
+                            $('.slick-list').height($('.product-reviews').outerHeight());
+                            return false;
                         });
                     }
                 });
