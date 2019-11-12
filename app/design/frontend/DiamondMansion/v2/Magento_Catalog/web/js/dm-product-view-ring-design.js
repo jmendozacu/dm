@@ -169,14 +169,14 @@ define([
                 var $parent = $(this).parent();
                 var isActive = $parent.hasClass('active');
 
-                $('.options-details.active .block-options').fadeOut(100, function () {
-                    $('.options-details.active').removeClass('active');
-                });
-
                 if (!isActive) {
                     $parent.find('.block-options').fadeIn(100, function () {
                         $parent.addClass('active');
                     });
+                } else {
+                    $('.options-details.active .block-options').fadeOut(100, function () {
+                        $('.options-details.active').removeClass('active');
+                    });    
                 }
             });
             
