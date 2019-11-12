@@ -174,9 +174,9 @@ define([
                         $parent.addClass('active');
                     });
                 } else {
-                    $('.options-details.active .block-options').fadeOut(100, function () {
-                        $('.options-details.active').removeClass('active');
-                    });    
+                    $parent.find('.block-options').fadeOut(100, function () {
+                        $parent.removeClass('active');
+                    });
                 }
             });
             
