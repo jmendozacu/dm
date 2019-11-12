@@ -54,7 +54,7 @@ class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
     public function setViewedPage($url, $page) {
         $this->excluedPageFromUrl($url, $page);
         $viewedPages = $this->_coreSession->getViewedPages();
-        $viewedPages[$url] = $page;
+        $viewedPages[rtrim($url, '/')] = $page;
         $this->_coreSession->setViewedPages($viewedPages);
     }
 

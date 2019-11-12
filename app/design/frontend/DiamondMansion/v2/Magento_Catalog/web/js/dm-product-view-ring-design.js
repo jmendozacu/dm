@@ -656,6 +656,12 @@ define([
                 sideStonesCarat += sideStoneQty * parseFloat($(this).parent().parent().find(".sidecarats ul a.selected").data("code"));
             });
             
+            if (Math.round(sideStonesCarat * 100) / 100 > 0) {
+                $("#side-stones-details").show();
+            } else {
+                $("#side-stones-details").hide();
+            }
+            
             $("#side-stones-details .block-summary li.carat a").html(Math.round(sideStonesCarat * 100) / 100 + ' Carat');
             config.totalCarat = parseFloat(Math.floor($(".carat-list a.selected").data('code') * 10) / 10) + sideStonesCarat;
             config.totalCarat = Math.round(config.totalCarat * 100) / 100;
