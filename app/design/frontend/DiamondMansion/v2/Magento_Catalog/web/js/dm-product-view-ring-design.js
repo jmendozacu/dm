@@ -7,7 +7,10 @@ define([
     return function (config) {
 
         function showOptionList($elm) {
-            $elm.parent().find('td.label').hide();
+            //$elm.parent().find('td.label').hide();
+            var $clone = $elm.clone();
+            $clone.addClass('clone');
+            $elm.before($clone);
             $elm.addClass('expanded');
             $elm.find('.option').css('marginLeft', -1 * $elm.find('.option').outerWidth() / 2);
             $elm.find('.option').css('left', '50%');
@@ -15,7 +18,8 @@ define([
         }
 
         function hideOptionList($elm) {
-            $elm.parent().find('td.label').show();
+            //$elm.parent().find('td.label').show();
+            $elm.parent().find('.clone').remove();
             $elm.removeClass('expanded');
             $elm.find('.option').css('marginLeft', 'auto');
             $elm.find('.option').css('left', '0');
@@ -661,7 +665,7 @@ define([
             } else {
                 $("#side-stones-details").hide();
             }
-            
+
             $("#side-stones-details .block-summary li.carat a").html(Math.round(sideStonesCarat * 100) / 100 + ' Carat');
             config.totalCarat = parseFloat(Math.floor($(".carat-list a.selected").data('code') * 10) / 10) + sideStonesCarat;
             config.totalCarat = Math.round(config.totalCarat * 100) / 100;
