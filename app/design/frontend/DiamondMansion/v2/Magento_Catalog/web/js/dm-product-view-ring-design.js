@@ -327,7 +327,7 @@ define([
             if (list == 'carat') {
                 $("#center-diamond-details .block-summary li." + list + " a").html(code * 100 / 100 + ' Carat');
             } else if (list == 'cut') {
-                $("#center-diamond-details .block-summary li." + list + " a").html($("." + list + "-list a.selected span.caption").html() + ' Cut');
+                $("#center-diamond-details .block-summary li." + list + " a").html($("." + list + "-list a.selected span.caption").html().replace('Ideal 10', 'Ideal Plus') + ' Cut');
             } else {
                 $("#center-diamond-details .block-summary li." + list + " a").html($("." + list + "-list a.selected span.caption").html());
             }

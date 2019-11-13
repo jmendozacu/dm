@@ -291,11 +291,11 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         }
 
         if (isset($params['main-stone-color']) && isset($params['main-stone-clarity'])) {
-            $optionCenterStone[] = $allDmOptions['main-stone-color'][$params["main-stone-color"]]->getTitle() . ' / ' . $allDmOptions['main-stone-clarity'][$params["main-stone-clarity"]]->getTitle();
+            $optionCenterStone[] = $allDmOptions['main-stone-color'][$params["main-stone-color"]]->getTitle() . ' | ' . $allDmOptions['main-stone-clarity'][$params["main-stone-clarity"]]->getTitle();
         }
 
         if (isset($params['main-stone-cut'])) {
-            $optionCenterStone[] = $allDmOptions['main-stone-cut'][$params["main-stone-cut"]]->getTitle();
+            $optionCenterStone[] = str_replace('Ideal 10', 'Ideal Plus', $allDmOptions['main-stone-cut'][$params["main-stone-cut"]]->getTitle()) . ' Cut';
         }
 
         if (isset($params['main-stone-cert'])) {
@@ -305,7 +305,7 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         if ($params["main-stone-type"] != "setting" && count($optionCenterStone)) {
             $result[] = [
                 'label' => 'Center Stone',
-                'value' => implode(', ', $optionCenterStone)
+                'value' => implode(' | ', $optionCenterStone)
             ];
         }
 
@@ -346,7 +346,7 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         if (count($optionSideStone)) {
             $result[] = [
                 'label' => 'Side Stone',
-                'value' => implode(', ', $optionSideStone)
+                'value' => implode(' | ', $optionSideStone)
             ];
         }
 
