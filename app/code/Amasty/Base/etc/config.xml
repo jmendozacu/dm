@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2018 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
  * @package Amasty_Base
  */
 -->
@@ -14,7 +14,11 @@
             <notifications>
                 <type>INFO,PROMO,INSTALLED_UPDATE,TIPS_TRICKS</type>
                 <frequency>5</frequency>
+                <ads_enable>1</ads_enable>
             </notifications>
+            <menu>
+                <enable>1</enable>
+            </menu>
         </amasty_base>
     </default>
 </config>

@@ -1,32 +1,26 @@
 <?php
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2018 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
  * @package Amasty_Base
  */
 
 
 namespace Amasty\Base\Controller\Adminhtml\Notification;
 
-use Amasty\Base\Model\Feed;
+use Amasty\Base\Model\Config;
 use Magento\Backend\App\Action;
 
+/**
+ * Class Frequency
+ * @package Amasty\Base\Controller\Adminhtml\Notification
+ */
 class Frequency extends \Magento\Backend\App\Action
 {
     /**
-     * @var \Magento\Backend\App\ConfigInterface
+     * @var \Amasty\Base\Model\Config
      */
     private $config;
-
-    /**
-     * @var \Magento\Framework\App\Config\ReinitableConfigInterface
-     */
-    private $reinitableConfig;
-
-    /**
-     * @var \Magento\Framework\App\Config\Storage\WriterInterface
-     */
-    private $configWriter;
 
     /**
      * @var \Amasty\Base\Model\Source\Frequency
@@ -35,15 +29,11 @@ class Frequency extends \Magento\Backend\App\Action
 
     public function __construct(
         Action\Context $context,
-        \Magento\Backend\App\ConfigInterface $config,
-        \Magento\Framework\App\Config\ReinitableConfigInterface $reinitableConfig,
-        \Magento\Framework\App\Config\Storage\WriterInterface $configWriter,
+        \Amasty\Base\Model\Config $config,
         \Amasty\Base\Model\Source\Frequency $frequency
     ) {
         parent::__construct($context);
         $this->config = $config;
-        $this->reinitableConfig = $reinitableConfig;
-        $this->configWriter = $configWriter;
         $this->frequency = $frequency;
     }
 
@@ -81,9 +71,9 @@ class Frequency extends \Magento\Backend\App\Action
         );
     }
 
-    private function decreaseFrequency()
+    protected function decreaseFrequency()
     {
-        $currentValue = $this->getCurrentValue();
+        $currentValue = $this->config->getCurrentFrequencyValue();
         $allValues = $this->frequency->toOptionArray();
         $resultValue = null;
         foreach ($allValues as $option) {
@@ -91,7 +81,7 @@ class Frequency extends \Magento\Backend\App\Action
                 $resultValue = $option['value'];
             } else {
                 if ($resultValue) {
-                    $this->changeFrequency($resultValue);
+                    $this->config->changeFrequency($resultValue);
                 }
 
                 break;
@@ -105,9 +95,9 @@ class Frequency extends \Magento\Backend\App\Action
         );
     }
 
-    private function increaseFrequency()
+    protected function increaseFrequency()
     {
-        $currentValue = $this->getCurrentValue();
+        $currentValue = $this->config->getCurrentFrequencyValue();
         $allValues = $this->frequency->toOptionArray();
         $resultValue = null;
         foreach ($allValues as $option) {
@@ -116,7 +106,7 @@ class Frequency extends \Magento\Backend\App\Action
             }
 
             if ($resultValue && $option['value'] != $resultValue) {
-                $this->changeFrequency($option['value']);//save next option
+                $this->config->changeFrequency($option['value']);//save next option
                 break;
             }
         }
@@ -126,18 +116,5 @@ class Frequency extends \Magento\Backend\App\Action
                 'You will get less messages of this type. Notification frequency has been updated.'
             )
         );
-    }
-
-    private function changeFrequency($value)
-    {
-        $this->configWriter->save(Feed::XML_FREQUENCY_PATH, $value);
-        $this->reinitableConfig->reinit();
-
-        return $this;
-    }
-
-    private function getCurrentValue()
-    {
-        return $this->config->getValue(Feed::XML_FREQUENCY_PATH);
     }
 }

@@ -2,7 +2,7 @@
 <!--
 /**
  * @author Amasty Team
- * @copyright Copyright (c) 2018 Amasty (https://www.amasty.com)
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
  * @package Amasty_Base
  */
 -->
@@ -14,5 +14,9 @@
     <event name="controller_action_predispatch">
         <observer name="amasty_base_admin_notification"
                   instance="Amasty\Base\Observer\PreDispatchAdminActionController" />
+    </event>
+
+    <event name="admin_system_config_save">
+        <observer name="amasty_base_config_save" instance="Amasty\Base\Observer\SaveConfig"/>
     </event>
 </config>
