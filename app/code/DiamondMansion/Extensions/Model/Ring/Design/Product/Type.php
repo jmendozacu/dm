@@ -387,7 +387,8 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
             if (isset($params["metal"])) { 
                 $name .= $allDmOptions["metal"][$params["metal"]]->getTitle();
             }
-            
+
+            $name .= ' (Setting Only)';            
             return $name;
         }
 
@@ -435,6 +436,7 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
                 $name .= $allDmOptions["metal"][$params["metal"]]->getTitle();
             }
             
+            $name .= ' (Setting Only)';
             return $name;
         }
 
