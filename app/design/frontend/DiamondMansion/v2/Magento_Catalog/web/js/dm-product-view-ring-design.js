@@ -289,7 +289,8 @@ define([
 
             config.center_stone["shape"] = code;
 
-            $("#center-diamond-details .block-summary li.shape a").html($(".shape-list a.selected span.caption").text() + ' ' + $(".shape-list a.selected span.cut").text());
+            //$("#center-diamond-details .block-summary li.shape a").html($(".shape-list a.selected span.caption").text() + ' ' + $(".shape-list a.selected span.cut").text());
+            $("#center-diamond-details .block-summary li.shape a").html($(".shape-list a.selected span.caption").text());
 
             var $si1Elm = $("#center-diamond-details .clarity-list.natural a[data-code='si1']");
             if ($si1Elm.length) {
