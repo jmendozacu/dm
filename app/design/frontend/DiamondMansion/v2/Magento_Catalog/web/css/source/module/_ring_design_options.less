@@ -386,11 +386,11 @@
 
                                                 img {
                                                     &.i-first {
-                                                        display: none;
+                                                        display: none !important;
                                                     }
 
                                                     &.i-last {
-                                                        display: block;
+                                                        display: block !important;
                                                     }
                                                 }
                                             }
@@ -556,7 +556,7 @@
                                         }
 
                                         &.i-last {
-                                            display: none;
+                                            display: none !important;
                                             position: absolute;
                                             right: 0;
                                             top: 50%;
@@ -1660,11 +1660,11 @@
 
                                                 img {
                                                     &.i-first {
-                                                        display: none;
+                                                        display: none !important;
                                                     }
 
                                                     &.i-last {
-                                                        display: block;
+                                                        display: block !important;
                                                     }
                                                 }
                                             }
@@ -1880,7 +1880,7 @@
                                         }
 
                                         &.i-last {
-                                            display: none;
+                                            display: none !important;
                                             position: absolute;
                                             right: 0;
                                             top: 50%;
@@ -2062,6 +2062,18 @@
 
                     .block-summary {
                         visibility: hidden;
+                    }
+                }
+
+                &#center-diamond-details {
+                    .block-options {
+                        padding-bottom: 0;
+                    }
+                }
+
+                &#side-stones-details {
+                    .block-options {
+                        padding-bottom: 0;
                     }
                 }
 
