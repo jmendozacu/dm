@@ -173,10 +173,10 @@ require([
 
             var $image = $('.slick-current').find('img');
 
-            $('body').prepend('<div id="dm-zoom"><img id="dm-zoom-image" style="max-width: none; position: absolute;" src="' + $image.attr('src') + '"><a id="zoom-out" href="javascript:void(0)"></a></div>');
+            $('body').prepend('<div id="dm-zoom" style="background: white;"><img id="dm-zoom-image" style="max-width: none; position: absolute;" src="' + $image.attr('src') + '"><a id="zoom-out" href="javascript:void(0)"></a></div>');
 
-            $('#dm-zoom-image').width($image.prop('naturalWidth'));
-            $('#dm-zoom-image').height($image.prop('naturalHeight'));
+            $('#dm-zoom-image').width(max([$image.prop('naturalWidth') / 2, 450]);
+            $('#dm-zoom-image').height(max([$image.prop('naturalHeight') / 2, 450]);
 
             if ($('#dm-zoom-image').width() > $(window).width()) {
                 $('#dm-zoom').scrollLeft(($('#dm-zoom-image').width() - $(window).width()) / 2);
