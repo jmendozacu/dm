@@ -63,7 +63,7 @@ require([
 
                 var frameWidth = elms[i].parentElement.offsetWidth;
 
-                var iframeHtml = '<iframe id="' + elmId + '" src="https://www.youtube.com/embed/' + elmSrc + '?autoplay=' + autoplay + '&enablejsapi=1&controls=1&fs=0&rel=0&loop=1&modestbranding=1&origin=<?= $origin ?>" class="item-youtube-video" frameborder="0" allowfullscreen="1" width="' + frameWidth + '" height="' + frameWidth + '" style="width: ' + frameWidth + 'px; height: ' + frameWidth + 'px;"></iframe>';
+                var iframeHtml = '<iframe id="' + elmId + '" src="https://www.youtube.com/embed/' + elmSrc + '?autoplay=' + autoplay + '&enablejsapi=1&controls=1&fs=0&rel=0&loop=1&playlist=' + elmSrc + '&modestbranding=1&origin=<?= $origin ?>" class="item-youtube-video" frameborder="0" allowfullscreen="1" width="' + frameWidth + '" height="' + frameWidth + '" style="width: ' + frameWidth + 'px; height: ' + frameWidth + 'px;"></iframe>';
 
                 $('#' + elmId).replaceWith(iframeHtml);
                 $('#' + elmId).on('load', function() {
