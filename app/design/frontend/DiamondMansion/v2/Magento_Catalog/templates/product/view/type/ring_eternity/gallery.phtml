@@ -79,8 +79,9 @@ function onYouTubeIframeAPIReady() {
                 'fs': 0,
                 'rel': 0,
                 'loop': 1,
+                'playlist': elmSrc,
                 'modestbranding': 1,
-                'origin': '<?= $block->getBaseUrl() ?>'
+                'origin': '<?= rtrim($block->getBaseUrl(), '/') ?>'
             },
             events: {
                 'onReady': function (event) {
