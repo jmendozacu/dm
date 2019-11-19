@@ -3,6 +3,7 @@ $jsonGallery =  $block->getGalleryImagesJson();
 $arrayJsonGallery = json_decode($jsonGallery, true);
 $isVideoExist = false;
 $videoList = [];
+$origin = rtrim($block->getBaseUrl(), '/');
 ?>
 <div class="gallery-placeholder product-image">
     <div id="gallery">
@@ -37,40 +38,11 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+var isYouTubeIframeAPIReady = false;
 var videos = {};
+
 function onYouTubeIframeAPIReady() {
-    var autoplay = (window.innerWidth >= 1280);
-    var elms = document.getElementsByClassName('item-youtube-video');
-    for (var i=0; i<elms.length; i++) {
-        var elmId = elms[i].getAttribute('id');
-        var elmSrc = elms[i].getAttribute('src');
-
-        var frameWidth = elms[i].parentElement.offsetWidth;
-
-        videos[elmId] = new YT.Player(elmId, {
-            width: frameWidth,
-            height: frameWidth,
-            videoId: elmSrc,
-            playerVars: {
-                'autoplay': autoplay, 
-                'enablejsapi': 1,
-                'controls': 1,
-                'fs': 0,
-                'rel': 0,
-                'modestbranding': 1,
-                'loop': 1,
-                'origin': '<?= $block->getBaseUrl() ?>'
-            },
-            events: {
-                'onReady': function (event) {
-                    event.target.playVideo();
-                },
-                'onStateChange': function (event) {
-
-                }
-            }
-        });
-    };
+    isYouTubeIframeAPIReady = true;
 }
 
 require([
@@ -78,6 +50,37 @@ require([
     'slick'
 ], function ($, slick) {
     $(document).ready(function () {
+        var youtubeApiCaller = setInterval(() => {
+            if (!isYouTubeIframeAPIReady) {
+                return;                
+            }
+
+            var autoplay = (window.innerWidth >= 1280) ? 1 : 0;
+            var elms = document.getElementsByClassName('item-youtube-video');
+            for (var i=0; i<elms.length; i++) {
+                var elmId = elms[i].getAttribute('id');
+                var elmSrc = elms[i].getAttribute('src');
+
+                var frameWidth = elms[i].parentElement.offsetWidth;
+
+                var iframeHtml = '<iframe id="' + elmId + '" src="https://www.youtube.com/embed/' + elmSrc + '?autoplay=' + autoplay + '&enablejsapi=1&controls=1&fs=0&rel=0&loop=1&modestbranding=1&origin=<?= $origin ?>" class="item-youtube-video" frameborder="0" allowfullscreen="1" width="' + frameWidth + '" height="' + frameWidth + '" style="width: ' + frameWidth + 'px; height: ' + frameWidth + 'px;"></iframe>';
+
+                $('#' + elmId).replaceWith(iframeHtml);
+                $('#' + elmId).on('load', function() {
+                    videos[elmId] = new YT.Player(elmId, {
+                        events: {
+                            'onReady': function (event) {
+                            },
+                            'onStateChange': function (event) {
+                            }
+                        }
+                    });
+                });
+            }
+
+            clearInterval(youtubeApiCaller);
+        }, 100);
+
         if ($(window).width() >= 1280) {
             return;
         }
