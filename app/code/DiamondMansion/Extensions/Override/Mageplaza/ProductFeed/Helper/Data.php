@@ -12,10 +12,24 @@ class Data extends \Mageplaza\ProductFeed\Helper\Data
 
         $index = 0;
         foreach ($productCollection as $product) {
+            if ($product->getVisibility() == "Not Visible Individually") {
+                continue;
+            }
+
             if (strpos($product->getTypeId(), 'dm_ring') === false) {
+                if ($product->getTypeId() == 'configurable') {
+                    $children = $product->getTypeInstance()->getUsedProducts($product);
+                    foreach ($children as $child) {
+                        $product->setData('final_price', $child->getFinalPrice());
+                        break;
+                    }
+                }
+
                 $index ++;
                 $product->setId($index);
+
                 $newCollection->addItem($product);
+
                 continue;
             }
 
