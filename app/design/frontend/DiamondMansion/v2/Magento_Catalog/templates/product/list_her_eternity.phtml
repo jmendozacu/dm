@@ -1,0 +1,87 @@
+<div class="her-eternity-items-banner">
+    <div class="content-wrapper">
+        <img loading="lazy" src="<?php echo $this->getViewFileUrl("images/v3/home/Engagement Rings and Proposal.jpg") ?>" class="desktop-only" alt="Girl Getting Proposed with Engagement Ring" width="100%"/>
+        <img loading="lazy" src="<?php echo $this->getViewFileUrl("images/v3/home/Engagement Rings and Proposal M.jpg") ?>" class="mobile-only" alt="Girl Getting Proposed with Engagement Ring" width="100%"/>
+        <div class="content">
+            <div class="spec">
+                <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('homepage-banner')->toHtml(); ?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php
+    $currentCategory = $this->getLayer()->getCurrentCategory();
+    $subCategories = $currentCategory->getChildrenCategories();
+?>
+<div class="product-collections her-eternity-items">
+<?php foreach ($subCategories as $subCategory): ?>
+    <?php $collection = $subCategory->getProductCollection(); ?>
+    <?php if (count($collection)): ?>
+    <div class="content-wrapper" data-category-id="<?= $subCategory->getId() ?>">
+        <div class="content">
+            <div class="title text-center"><?= $subCategory->getName() ?></div>
+            <div class="sub-category-items-slider-nav slider-<?= $subCategory->getId() ?>">
+                <a class="nav-prev" href="javascript:void(0)"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                <a class="nav-next" href="javascript:void(0)"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            </div>
+            <div class="sub-category-items-list">
+                <ul>
+                    <?php foreach ($collection as $item): ?>
+                    <?php echo $this->getChildBlock('item')->setProduct($item->load($item->getId()))->toHtml(); ?>
+                    <?php endforeach ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <?php endif ?>
+<?php endforeach ?>
+</div>
+
+<script type="text/javascript">
+    require([
+        'jquery',
+        'slick'
+    ], function ($, slick) {
+        $('.sub-category-items-list ul').each(function() {
+            $(this).slick({
+                dots: false,
+                infinite: false,
+                slidesToShow: 3.7,
+                slidesToScroll: 3,
+                arrows: true,
+                prevArrow: $(this).closest('.content').find('.sub-category-items-slider-nav a.nav-prev'),
+                nextArrow: $(this).closest('.content').find('.sub-category-items-slider-nav a.nav-next'),
+                responsive: [
+                    {
+                        breakpoint: 1280,
+                        settings: {
+                            slidesToShow: 2.5,
+                            slidesToScroll: 2
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1.5,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+        });
+
+        $('.sub-category-items-list ul').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+            if ($(window).width() <= 1280) {
+                return;
+            }
+            var vw = $(window).width() / 1970;
+            if (nextSlide == 0) {
+                $(this).closest('.content').find('.slick-track').css('marginLeft', 170 * vw);
+            } else if (nextSlide >= slick.slideCount - 3) {
+                $(this).closest('.content').find('.slick-track').css('marginLeft', -170 * vw);
+            } else {
+                $(this).closest('.content').find('.slick-track').css('marginLeft', 0);
+            }
+        });        
+    });
+</script>

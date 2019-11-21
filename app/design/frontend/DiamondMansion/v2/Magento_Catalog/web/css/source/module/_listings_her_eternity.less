@@ -1,0 +1,430 @@
+.catalog-category-view {
+    &.category-her-eternity {
+        #maincontent {
+            max-width: 100%;
+            padding: 0;
+        }
+
+        .breadcrumbs {
+            display: none;
+        }
+
+        .page-title-wrapper {
+            display: none;
+        }
+    }
+
+    .her-eternity-items-banner {
+        .content {
+            position: relative;
+            
+			max-width: @v3-container-max-width;
+			margin: 0 auto;
+			padding: 0 30 * @v3-base-desktop-vw;
+
+			@media only screen and (max-width: @v3-mobile-max-width) {
+				max-width: 100%;
+				padding: 0 50 * @v3-base-mobile-vw;
+			}
+        }
+
+        .spec {
+            position: absolute;
+            left: 30 * @v3-base-desktop-vw;
+            width: 800 * @v3-base-desktop-vw;
+            top: 50%;
+            margin-top: -600 * @v3-base-desktop-vw;
+
+            color: #fff;
+
+            h2 {
+                font-family: @v3-title-font-family;
+                font-weight: bold;
+                //font-size: 50em;
+                //line-height: 60 * @v3-base-desktop-vw;
+
+                max-width: 480px;
+                font-size: 30px;
+                line-height: 42px;
+                margin-bottom: 20 * @v3-base-desktop-vw;
+                letter-spacing: 1px;
+            }
+
+            h1 {
+                font-family: @v3-title-font-family-rg;
+                //font-size: 22em;
+                //font-weight: bold;
+                //line-height: 36 * @v3-base-desktop-vw;
+
+                max-width: 380px;
+                font-size: 22px;
+                font-weight: 400;
+                line-height: 35px;
+                margin-bottom: 60 * @v3-base-desktop-vw;
+            }
+
+            a.btn-link {
+                display: inline-block;
+                color: #fff;
+                border: 1px solid #fff;
+
+                //line-height: 60 * @v3-base-desktop-vw;
+                //padding: 0 30 * @v3-base-desktop-vw;
+                //font-family: 'Proxima Nova Lt';
+                //font-size: 17em;
+                //font-weight: 600;
+                //text-transform: uppercase;
+
+                font-family: @v3-title-font-family-rg;
+                font-size: 14px;
+                font-weight: 700;
+                text-transform: capitalize;
+                line-height: 22px;
+                padding: 10px 35px;
+
+                i {
+                    vertical-align: middle;
+                }
+            }
+        }
+
+        @media only screen and (max-width: @v3-mobile-max-width) {
+            .spec {
+                width: 100%;
+                left: 0;
+                margin-left: 0;
+                text-align: center;
+                margin-top: -350 * @v3-base-mobile-vw;
+
+                h2 {
+                    //font-size: 34em;
+                    //line-height: 40 * @v3-base-mobile-vw;
+
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                h1 {
+                    //font-size: 18em;
+                    //font-family: 'Proxima Nova Cn Lt';
+                    //line-height: 30 * @v3-base-mobile-vw;
+
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                a.btn-link {
+                    //font-family: 'Proxima Nova Cn Lt';
+                    //line-height: 60 * @v3-base-mobile-vw;
+                    //padding: 0 30 * @v3-base-mobile-vw;
+                }
+            }
+        }
+
+        @media only screen and (max-width: 359px) {
+            overflow: hidden;
+
+            background: url('../images/v3/home/banner-mobile.jpg') center center no-repeat;
+            background-size: auto 100%;
+
+            img {
+                height: 590px;
+                width: auto;
+                max-width: 750px;
+                visibility: hidden;
+            }
+
+
+            .spec {
+                width: 100%;
+                padding: 0 8px;
+                left: 0;
+                margin-left: 0;
+                text-align: center;
+                margin-top: -290px;
+
+                h2 {
+                    //font-size: 19px;
+                    //line-height: 35px;
+
+                    font-size: 24px;
+                    line-height: 33px;
+
+                    padding-left: 30px;
+                    padding-right: 30px;
+                }
+
+                h1 {
+                    //font-size: 14px;
+                    //font-family: 'Proxima Nova Cn Lt';
+                    //line-height: 30px;
+
+                    font-size: 18px;
+                    line-height: 28px;
+                    margin-bottom: 20px;
+                    padding-left: 30px;
+                    padding-right: 30px;
+                }
+
+                a.btn-link {
+                    //font-family: 'Proxima Nova Cn Lt';
+                    //font-size: 14px;
+                    //line-height: 60px;
+                    //padding: 0 35px;
+                }
+            }
+        }
+
+        @media only screen and (min-width: 360px) and (max-width: 413px) {
+            overflow: hidden;
+
+            background: url('../images/v3/home/banner-mobile.jpg') center center no-repeat;
+            background-size: auto 100%;
+
+            img {
+                height: 590px;
+                width: auto;
+                max-width: 750px;
+                visibility: hidden;
+            }
+
+
+            .spec {
+                width: 100%;
+                padding: 0 8px;
+                left: 0;
+                margin-left: 0;
+                text-align: center;
+                margin-top: -290px;
+
+                h2 {
+                    //font-size: 22px;
+                    //line-height: 35px;
+
+                    font-size: 24px;
+                    line-height: 33px;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                }
+
+                h1 {
+                    //font-size: 16px;
+                    //font-family: 'Proxima Nova Cn Lt';
+                    //line-height: 30px;
+
+                    font-size: 18px;
+                    line-height: 28px;
+                    margin-bottom: 20px;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                }
+
+                a.btn-link {
+                    //font-family: 'Proxima Nova Cn Lt';
+                    //font-size: 15px;
+                    //line-height: 60px;
+                    //padding: 0 35px;
+                }
+            }
+        }
+
+        @media only screen and (min-width: 414px) and (max-width: 639px) {
+            overflow: hidden;
+
+            background: url('../images/v3/home/banner-mobile.jpg') center center no-repeat;
+            background-size: auto 100%;
+
+            img {
+                height: 590px;
+                width: auto;
+                max-width: 750px;
+                visibility: hidden;
+            }
+
+            .spec {
+                width: 100%;
+                padding: 0 8px;
+                left: 0;
+                margin-left: 0;
+                text-align: center;
+                margin-top: -290px;
+
+                h2 {
+                    //font-size: 25px;
+                    //line-height: 35px;
+
+                    font-size: 24px;
+                    line-height: 33px;
+                    padding-left: 50px;
+                    padding-right: 50px;
+                }
+
+                h1 {
+                    //font-size: 17px;
+                    //font-family: 'Proxima Nova Cn Lt';
+                    //line-height: 30px;
+
+                    font-size: 18px;
+                    line-height: 28px;
+                    margin-bottom: 20px;
+                    padding-left: 50px;
+                    padding-right: 50px;
+                }
+
+                a.btn-link {
+                    //font-family: 'Proxima Nova Cn Lt';
+                    //font-size: 17px;
+                    //line-height: 60px;
+                    //padding: 0 35px;
+                }
+            }
+        }
+    }
+
+    .her-eternity-items .content-wrapper {
+        padding: 100 * @v3-base-desktop-vw 0;
+
+        &:nth-child(2n-1) {
+            background: #f4f4f4;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .content {
+            padding-left: 0;
+            padding-right: 0;
+            max-width: 100%;
+
+            .title {
+                font-family: @v3-title-font-family;
+                //font-size: 33em;
+                //font-weight: bold;
+                //line-height: 40 * @v3-base-desktop-vw;
+                padding-bottom: 30 * @v3-base-desktop-vw;
+                //text-transform: uppercase;
+                margin-bottom: 40 * @v3-base-desktop-vw;
+                background: url(../images/v3/i_sharp_shape.png) left bottom no-repeat;
+
+                font-size: 28px;
+                font-weight: 700;
+                line-height: 39px;
+                text-transform: capitalize;
+                color: black;
+
+                &.text-center {
+                    background-position: center bottom;
+                }
+            }
+
+            .sub-category-items-slider-nav {
+                text-align: right;
+                max-width: @v3-container-max-width;
+                margin: 0 auto;
+                padding: 0 30 * @v3-base-desktop-vw;
+                margin-top: -100 * @v3-base-desktop-vw;
+                line-height: 100 * @v3-base-desktop-vw;
+
+                a {
+                    opacity: 0.5;
+                    padding: 0 12px;
+                    transition: all 0.25s ease;
+
+                    &:hover {
+                        opacity: 1;
+                        color: #000;
+                    }
+                    
+                    i {
+                        font-size: 37px;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .slick-slide img {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .slick-track {
+                margin-left: 170 * @v3-base-desktop-vw;
+            }
+
+            li {
+                padding: 0 10px;
+
+                h3 {
+                    padding-top: 10px;
+                    margin-bottom: 10px;
+                    font-family: @v3-title-font-family;
+                    font-size: 22px;
+                    font-weight: 700;
+                    line-height: 30px;
+                    text-transform: capitalize;
+                    color: black;
+                    text-align: center;
+                }
+
+                p {
+                    margin-bottom: 15px;
+                    font-family: @v3-title-font-family-rg;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 22px;
+                    color: black;
+                    text-align: center;
+                }
+            }
+
+            .slick-dots li button:before {
+                font-size: 10px;
+            }
+        }
+
+        @media only screen and (max-width: @v3-mobile-max-width) {
+            padding: 100 * @v3-base-mobile-vw 10px;
+
+            .content {
+                .title {
+                    background-position: center bottom;
+                    padding: 0 0 30 * @v3-base-mobile-vw;
+                    margin-bottom: 50 * @v3-base-mobile-vw;
+                }
+
+                .slick-track {
+                    margin-left: 0;
+                }	
+
+                li {
+                    padding: 0 3px;
+                }
+
+                .sub-category-items-slider-nav {
+                    display: none;
+                }
+
+                .slick-dots {
+                    display: none !important;
+                }
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            padding: 100 * @v3-base-mobile-vw 10px;
+
+            .content {
+                .title {
+                    font-size: 24px;
+                }
+
+                li {
+                    h3 {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+}
