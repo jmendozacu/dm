@@ -17,7 +17,7 @@
     .her-eternity-items-banner {
         .content {
             position: relative;
-            
+
 			max-width: @v3-container-max-width;
 			margin: 0 auto;
 			padding: 0 30 * @v3-base-desktop-vw;
@@ -367,7 +367,15 @@
                     text-align: center;
                 }
 
-                p {
+                .price-box {
+                    .old-price {
+                        display: none;
+                    }
+
+                    .price-label {
+                        display: none;
+                    }
+                    
                     margin-bottom: 15px;
                     font-family: @v3-title-font-family-rg;
                     font-size: 14px;
@@ -384,7 +392,7 @@
         }
 
         @media only screen and (max-width: @v3-mobile-max-width) {
-            padding: 100 * @v3-base-mobile-vw 10px;
+            padding: 100 * @v3-base-mobile-vw 0;
 
             .content {
                 .title {
@@ -412,7 +420,7 @@
         }
 
         @media only screen and (max-width: 768px) {
-            padding: 100 * @v3-base-mobile-vw 10px;
+            padding: 100 * @v3-base-mobile-vw 0;
 
             .content {
                 .title {

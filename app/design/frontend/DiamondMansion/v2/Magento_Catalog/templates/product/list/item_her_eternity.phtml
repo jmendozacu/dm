@@ -15,6 +15,7 @@
             <h3 class="product-name">
                 <a href="<?php echo $productUrl ?>" title="<?php echo $productName ?>"><?php echo $productName ?></a>
             </h3>
+            <?= /* @escapeNotVerified */ $block->getProductPrice($product) ?>
         </div>
     </div>
 </li>
