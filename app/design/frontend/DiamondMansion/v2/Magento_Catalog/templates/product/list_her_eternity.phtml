@@ -19,7 +19,7 @@
     <?php if (count($collection)): ?>
     <div class="content-wrapper" data-category-id="<?= $subCategory->getId() ?>">
         <div class="content">
-            <div class="title text-center"><?= $subCategory->getName() ?></div>
+            <div class="title text-center"><a href="<?= $subCategory->getUrl() ?>" title="<?= $subCategory->getName() ?>"><?= $subCategory->getName() ?></a></div>
             <div class="sub-category-items-slider-nav slider-<?= $subCategory->getId() ?>">
                 <a class="nav-prev" href="javascript:void(0)"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
                 <a class="nav-next" href="javascript:void(0)"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
