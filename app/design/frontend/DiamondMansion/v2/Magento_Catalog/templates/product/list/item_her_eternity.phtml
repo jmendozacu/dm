@@ -3,7 +3,7 @@
     $defaultSmallImage = $this->getViewFileUrl('images/default_small.jpg');
 
     $product = $this->getProduct(); 
-    $productUrl = $product->getProductUrl();
+    $productUrl = '/' . $product->getUrlKey() . '/';
     $productName = $product->getName();
 ?>
 <li class="item" id="item-<?php echo $product->getId() ?>" data-id="<?= $product->getId() ?>">
