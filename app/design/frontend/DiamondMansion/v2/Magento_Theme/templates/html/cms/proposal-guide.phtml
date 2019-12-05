@@ -1254,23 +1254,33 @@ require([
     var $gallery = $('#places_gallery');
     // initialize Masonry after all images have loaded  
     $gallery.imagesLoaded(function() {
-        $gallery.masonry({
-        columnWidth: ".grid_sizer",
-        itemSelector: ".masonry_col",
-        transitionDuration: "1s",
-        });
+        var galleryMasonryTimer = setInterval(function() {
+            if (typeof $gallery.masonry !== 'undefined') {
+                $gallery.masonry({
+                    columnWidth: ".grid_sizer",
+                    itemSelector: ".masonry_col",
+                    transitionDuration: "1s",
+                });
+                clearInterval(galleryMasonryTimer);
+            }
+        }, 500);
     });
     // Blog-2
     //==================================================================================
     var $blog = $('#checklist_blog');
     // initialize Masonry after all images have loaded  
     $blog.imagesLoaded(function() {
-        $blog.masonry({
-            columnWidth: ".grid_sizer_blog",
-            itemSelector: ".masonry_col_blog",
-            transitionDuration: "1s",
-            gutter: 20
-        });
+        var blogMasonryTimer = setInterval(function() {
+            if (typeof $blog.masonry !== 'undefined') {
+                $blog.masonry({
+                    columnWidth: ".grid_sizer_blog",
+                    itemSelector: ".masonry_col_blog",
+                    transitionDuration: "1s",
+                    gutter: 20
+                });
+                clearInterval(blogMasonryTimer);
+            }
+        }, 500);
     });
 	
 	$(document).ready(function() {
