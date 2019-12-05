@@ -1,0 +1,1253 @@
+@charset "utf-8";
+
+/*============================== 
+	- Template Name: LUV - Responsive One Page HTML Wedding Template
+	- Author: DoubleEight
+	- Version: 2.1
+	- Website: www.dethemes.com
+================================= */	
+.cms-ultimate-marriage-proposal-guide p strong,
+.cms-ultimate-marriage-proposal-guide .blog_wrapper p a,
+.cms-ultimate-marriage-proposal-guide .name_wrapper p a {
+    color: #00c0b6;
+    font-weight: normal;
+}
+
+.cms-ultimate-marriage-proposal-guide #share p { font-size: 14px; line-height: 24px; margin: 0; }
+.cms-ultimate-marriage-proposal-guide #share .name_wrapper { background-color: transparent; padding: 10px 20px; }
+
+.cms-ultimate-marriage-proposal-guide #research .thumbnail { float: left; border: 0 none; }
+.cms-ultimate-marriage-proposal-guide #research .name_wrapper { padding-left: 80px; }
+.cms-ultimate-marriage-proposal-guide #research .name_wrapper:after { clear: both; }
+.cms-ultimate-marriage-proposal-guide #research .research-block { margin-bottom: 20px; }
+
+/*---------------------- 
+	Stylesheet Guide
+------------------------
+00. PRELOADER
+01. GENERAL
+	01-1 Common
+	01-2 Title & Intro
+	01-3 Photo Divider
+	01-4 Button
+	01-5 Photo Item
+		01-5-1 Photo Item Caption
+02. HOME
+	02-1 Logo
+	02-2 Slider
+	02-3 Menu
+	02-4 Menu Color
+03. COUPLE
+	03-1 His/Her Profile
+	03-2 Popup Content
+04. THE DAY	
+	04-1 Location, Date, Accomodation
+	04-2 Location Map
+05. BRIDESMAID & GROOMSMEN
+06. GALLERY
+	06-1 Gallery2 - masonry col
+07. GIFT REGISTRY
+08. BLOG
+09. RSVP
+10. FOOTER
+11. MEDIA SCREEN
+12. STYLE SWITCHER
+
+
+/*========================*/
+/* 00. PRELOADER		  */
+/*========================*/
+.cms-ultimate-marriage-proposal-guide #start_preloader{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:#000;
+    z-index:1000;
+}
+.cms-ultimate-marriage-proposal-guide #preloader{
+	background-size:cover;
+	background-position:center center;
+	background-repeat:no-repeat;
+	background-image:url(../images/preloader_background.jpg);
+}
+
+.cms-ultimate-marriage-proposal-guide #qLpercentage{
+	display:none;
+}
+
+.cms-ultimate-marriage-proposal-guide #coupletitle
+{
+	position:absolute;
+	top:50%;
+	left:0;
+	right:0;
+	height:120px;
+	margin-top:-60px;
+}
+
+.cms-ultimate-marriage-proposal-guide #loader_heart{
+	font-size:38px;
+	line-height:70px;
+	color:#ed5843;
+}
+
+.cms-ultimate-marriage-proposal-guide #hisname{
+	font-family: 'Montserrat', sans-serif;
+	font-size:38px;
+	font-weight:bold;
+	color:#FFF;
+	line-height:28px;
+}
+
+.cms-ultimate-marriage-proposal-guide #hername{
+	font-family: 'Montserrat', sans-serif;
+	font-size:38px;
+	font-weight:bold;
+	color:#ed5843;
+	line-height:28px;
+}
+
+.cms-ultimate-marriage-proposal-guide .animated_heart {	
+  -webkit-animation-duration: 1s;
+  -webkit-animation-name: flipYloop;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-delay: 2s;
+  -webkit-animation-direction: alternate;
+  
+  animation-duration: 1s;  
+  animation-name: flipYloop;
+  animation-iteration-count: infinite;
+  animation-delay: 2s;
+  animation-direction: alternate;  
+}
+
+
+@-webkit-keyframes flipYloop 
+{
+  from {
+	-webkit-transform:rotateY(0deg);
+  }
+
+  to {
+   	-webkit-transform:rotateY(180deg);
+  }
+}
+
+@keyframes flipYloop 
+{
+  from {
+	transform:rotateY(0deg);
+  }
+
+  to {
+   	transform:rotateY(180deg);
+  }
+}
+
+	
+/*========================*/
+/* 01. GENERAL 			  */
+/*========================*/
+
+/* 01-1 Common */
+/* ----------------------- */
+body.cms-ultimate-marriage-proposal-guide {
+	font-family: 'PT Sans', sans-serif;	
+	font-size: 1px;
+	color:#747474;
+}
+
+.cms-ultimate-marriage-proposal-guide section {
+	background-color:#e8e8e8;
+}
+
+.cms-ultimate-marriage-proposal-guide h1, 
+.cms-ultimate-marriage-proposal-guide h2, 
+.cms-ultimate-marriage-proposal-guide h3, 
+.cms-ultimate-marriage-proposal-guide h4, 
+.cms-ultimate-marriage-proposal-guide h5, 
+.cms-ultimate-marriage-proposal-guide h6{
+	font-family: 'Montserrat', sans-serif;
+	font-weight:bold;
+	color:#444444;
+}
+
+.cms-ultimate-marriage-proposal-guide h1 a, 
+.cms-ultimate-marriage-proposal-guide h2 a, 
+.cms-ultimate-marriage-proposal-guide h3 a, 
+.cms-ultimate-marriage-proposal-guide h4 a, 
+.cms-ultimate-marriage-proposal-guide h5 a, 
+.cms-ultimate-marriage-proposal-guide h6 a{
+	color:#444444;
+}
+
+.cms-ultimate-marriage-proposal-guide h1 a:hover, 
+.cms-ultimate-marriage-proposal-guide h2 a:hover, 
+.cms-ultimate-marriage-proposal-guide h3 a:hover, 
+.cms-ultimate-marriage-proposal-guide h4 a:hover, 
+.cms-ultimate-marriage-proposal-guide h5 a:hover, 
+.cms-ultimate-marriage-proposal-guide h6 a:hover{
+	color:#ed5843;
+}
+
+.cms-ultimate-marriage-proposal-guide h2{
+	font-size:54px; 
+}
+
+.cms-ultimate-marriage-proposal-guide h3{
+	font-size:30px;
+}
+
+.cms-ultimate-marriage-proposal-guide p{
+	font-size:16px;
+	line-height:24px;
+}
+
+.cms-ultimate-marriage-proposal-guide p a{
+	font-weight:bold;
+	color:#ed5843;
+}
+
+.cms-ultimate-marriage-proposal-guide p a:hover{
+	color:#444444;
+}
+
+.cms-ultimate-marriage-proposal-guide a, a:hover{
+	text-decoration:none;
+}
+
+.cms-ultimate-marriage-proposal-guide a:focus{
+	outline:0;
+}
+
+.cms-ultimate-marriage-proposal-guide .padding0{
+	padding:0;
+}
+
+.cms-ultimate-marriage-proposal-guide .margin0{
+	margin:0;
+}
+
+.cms-ultimate-marriage-proposal-guide .marginbottom50{
+	margin-bottom:50px;
+}
+
+/* 01-2 Title & Intro */
+/* ----------------------- */
+.cms-ultimate-marriage-proposal-guide .the_title{
+	margin-top:140px;
+	margin-bottom:40px;
+}
+
+.cms-ultimate-marriage-proposal-guide .sub_title{
+	font-family: 'Montserrat', sans-serif; 
+	font-size:28px; 
+	color:#8b8a8a; 
+	line-height:20px; 
+	letter-spacing:2px; 
+	display:block
+}
+
+.cms-ultimate-marriage-proposal-guide .the_tip h3{
+    margin-top: 80px;
+    margin-bottom: 30px;
+    color: #ed5843;
+}
+
+.cms-ultimate-marriage-proposal-guide .the_tip p {
+    font-size: 20px;
+}
+
+.cms-ultimate-marriage-proposal-guide .intro_heart{
+	position:absolute;
+	top:-15px; 
+	left:50%;
+	margin-left:-25px;
+	color:#ed5843; 
+	font-size:35px;
+}
+
+.cms-ultimate-marriage-proposal-guide .intro{
+	font-size:20px; 
+	padding:25px; 
+	display:block;
+	border-bottom:1px solid #9e9d9d; 
+	border-top:1px solid #9e9d9d; 
+	margin-bottom:60px;
+}
+
+/* 01-3 Photo Divider */
+/* ----------------------- */
+.cms-ultimate-marriage-proposal-guide .photo_divider{
+	height:375px;
+	width:100%;
+	background-size:100% auto;
+	background-attachment:fixed;
+	background-position:center center;
+	background-repeat:no-repeat;
+	margin-top:140px;
+}
+
+.cms-ultimate-marriage-proposal-guide #photo_divider1{
+	background-image:url(../images/photo_devider_background1.jpg);
+}
+
+.cms-ultimate-marriage-proposal-guide #photo_divider2{
+	background-image:url(../images/photo_devider_background2.jpg);
+}
+
+.cms-ultimate-marriage-proposal-guide #photo_divider3{
+	background-image:url(../images/photo_devider_background3.jpg);
+}
+
+.cms-ultimate-marriage-proposal-guide #photo_divider4{
+	background-image:url(../images/photo_devider_background4.jpg);
+}
+
+.cms-ultimate-marriage-proposal-guide #photo_divider5{
+	background-image:url(../images/photo_devider_background5.jpg);
+}
+
+.cms-ultimate-marriage-proposal-guide #photo_divider6{
+    background-image:url(../images/photo_devider_background6.jpg);
+}
+
+.cms-ultimate-marriage-proposal-guide #photo_divider7{
+	background-image:url(../images/photo_devider_background7.jpg);
+}
+
+/* 01-4 Button */
+/* ----------------------- */
+.cms-ultimate-marriage-proposal-guide .btn-default{
+	background-color:#ed5843 !important;
+	color:#fff !important;
+	border-radius: 0 !important;
+	border-color:#01b7ad !important;
+}
+
+.cms-ultimate-marriage-proposal-guide .btn-default:hover{
+	background-color:#000000 !important;
+	border-color:#000000 !important;
+}
+
+/* 01-5 Photo Item */
+/* ----------------------- */
+.cms-ultimate-marriage-proposal-guide .photo_item {
+	position:relative;
+	overflow:hidden;
+}
+
+.cms-ultimate-marriage-proposal-guide .photo_item_preview > a img {
+	display: block;
+	width: 100%;
+	-webkit-transition: -webkit-transform 0.5s; 
+		-ms-transition: -ms-transform 0.5s;
+		 -o-transition: -o-transform 0.5s;
+			transition: transform 0.5s;
+}
+
+.cms-ultimate-marriage-proposal-guide .photo_item_overlay {
+	position: absolute; 
+	top: 0; 
+	right: 0; 
+	bottom: 0;
+	left: 0; 
+	background-color: rgba(0, 0, 0, 0.5);
+	opacity: 0; 
+	-webkit-transform: scale(0); 
+		-ms-transform: scale(0); 
+		 -o-transform: scale(0); 
+			transform: scale(0); 
+	-webkit-transition: -webkit-transform 0.5s; 
+		-ms-transition: -ms-transform 0.5s;
+		 -o-transition: -o-transform 0.5s;
+			transition: transform 0.5s;
+}
+
+.cms-ultimate-marriage-proposal-guide .photo_item_overlay a,
+.cms-ultimate-marriage-proposal-guide .photo_item_overlay a:hover {
+/*
+	position: absolute; 
+	top: 50%;
+	left:50%;
+	margin-top:-30px;
+	margin-left:-30px;
+*/
+    color: #00c0b6;
+}
+	
+.cms-ultimate-marriage-proposal-guide .photo_item:hover .photo_item_overlay {
+    opacity: 1; 
+    -webkit-transform: scale(1); 
+        -ms-transform: scale(1);
+         -o-transform: scale(1);  
+            transform: scale(1); 
+}
+.cms-ultimate-marriage-proposal-guide #places_gallery .photo_item .photo_item_overlay {
+    height: 50%;
+    bottom: 0;
+    top: auto;
+}
+
+.cms-ultimate-marriage-proposal-guide #places_gallery .photo_item .photo_item_overlay_content {
+    display: table;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+} 
+.cms-ultimate-marriage-proposal-guide #places_gallery .photo_item .photo_item_overlay_content p {
+    display: table-cell;
+    vertical-align: middle;
+    color: #fff;
+    cursor: default;
+    padding: 10px;
+}
+.cms-ultimate-marriage-proposal-guide .photo_item:hover .photo_item_preview > a img { 
+	-webkit-transform: scale(1.1); 
+		-ms-transform: scale(1.1);
+		 -o-transform: scale(1.1);  
+			transform: scale(1.1); 
+}
+
+.cms-ultimate-marriage-proposal-guide .icon_background{
+	display:block; 
+	background: rgba(0, 0, 0, 0); 
+	height:60px; 
+	width:60px; 
+	padding:13px;
+	-webkit-border-radius :150px; 
+		-moz-border-radius:150px; 
+			border-radius :150px; 
+			
+	-webkit-transform: scale(0); 
+		-ms-transform: scale(0); 
+		 -o-transform: scale(0); 
+			transform: scale(0);	
+			
+	-webkit-transition: 0.3s all ease;
+	-moz-transition: 0.3s all ease;
+	-o-transition: 0.3s all ease;
+	-ms-transition: 0.3s all ease;
+	transition: 0.3s all ease;	
+}
+
+.cms-ultimate-marriage-proposal-guide .icon_button{
+	position:absolute;
+	padding:13px; 
+	font-size:30px; 
+	color:#fff; 
+}
+
+.cms-ultimate-marriage-proposal-guide .photo_item_overlay a:hover .icon_background{
+	background: rgba(0, 0, 0, 0.7); 
+	-webkit-transform: scale(1.1); 
+		-ms-transform: scale(1.1);
+		 -o-transform: scale(1.1);  
+			transform: scale(1.1); 
+}
+
+
+/* 01-5-1 Photo Item Caption */
+/* ----------------------- */
+.cms-ultimate-marriage-proposal-guide .photo_caption_wrapper{
+	position:absolute; 
+	bottom:0; 
+	display:block; 
+	width:100%; 
+	height:30%;
+}
+
+.cms-ultimate-marriage-proposal-guide .photo_caption
+{
+	color:#ffffff; 
+	font-size:18px;
+	font-family: 'Montserrat', sans-serif;  
+	letter-spacing:3px; 
+	text-align:center; 
+	text-decoration:none; 
+	display:block;	
+}
+
+/* =================================================== */
+/* 02. HOME		 		                               */
+/* =================================================== */
+
+.cms-ultimate-marriage-proposal-guide #home {
+	background-color:transparent !important;
+	padding:0 !important;
+}
+
+/* 02-1 Logo */
+/* ----------------------- */
+.cms-ultimate-marriage-proposal-guide #logo {
+	font-family: 'Montserrat', sans-serif;
+	display:block;
+	background-color:#eecece;
+	font-size:20px;
+	letter-spacing:2px;
+	color:#ffffff;
+	width:90px;
+	height:80px;
+	padding-top:10px;
+	text-align:center;
+	z-index:999;
+}
+
+.cms-ultimate-marriage-proposal-guide .social-links {
+    list-style: none;
+}
+
+.cms-ultimate-marriage-proposal-guide .social-links li {
+    display: inline-block;
+    padding: 0 5px;
+}
+
+.cms-ultimate-marriage-proposal-guide #logo_link
+{
+	text-decoration:none;
+}
+
+.cms-ultimate-marriage-proposal-guide #logo_link:focus{
+	outline:0;
+}
+
+/* 02-2 Slider */
+/* ----------------------- */
+.cms-ultimate-marriage-proposal-guide #slide_content {
+	margin:310px 0 90px 0;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.cms-ultimate-marriage-proposal-guide #slide_text{
+	color:#ffffff;
+}
+
+.cms-ultimate-marriage-proposal-guide #slide_text1{
+	font-size:38px;
+	line-height:60px;
+	font-weight:bold;
+    letter-spacing: 1px;
+    border-bottom:solid 3px #ffffff;
+}
+
+.cms-ultimate-marriage-proposal-guide #slide_text2{
+	font-size:48px;
+    font-weight: bold;
+	line-height:45px;
+	letter-spacing:3px;
+}
+
+.cms-ultimate-marriage-proposal-guide #slide_text3{
+	font-size:35px;
+	line-height:60px;
+	font-weight:bold;
+	border-top:solid 3px #ffffff;
+}
+
+.cms-ultimate-marriage-proposal-guide #slide_text4{
+	font-size:24px;
+	font-weight:bold;
+    color: #fff;
+}
+
+.cms-ultimate-marriage-proposal-guide #slide_text4 span
+{
+	font-size:12px; 
+	padding:0 8px
+}
+
+.cms-ultimate-marriage-proposal-guide .heart_row {
+	color:#ed5843;
+	margin:0;
+}
+
+.cms-ultimate-marriage-proposal-guide .heart_row span {
+	padding:0 3.7px;
+}
+
+/* 02-3 Menu */
+/* ----------------------- */
+.cms-ultimate-marriage-proposal-guide #nav {
+	font-family: 'Montserrat', sans-serif;
+	text-transform:uppercase;
+	z-index:998;
+	width:100%;
+}
+
+.cms-ultimate-marriage-proposal-guide #nav {
+	padding:0px 0;
+	-webkit-transition: 0.3s all ease;
+	-moz-transition: 0.3s all ease;
+	-o-transition: 0.3s all ease;
+	-ms-transition: 0.3s all ease;
+	transition: 0.3s all ease;	
+}
+
+.cms-ultimate-marriage-proposal-guide .is-sticky #nav {
+	padding:15px 0;
+	-webkit-transition: 0.3s all ease;
+	-moz-transition: 0.3s all ease;
+	-o-transition: 0.3s all ease;
+	-ms-transition: 0.3s all ease;
+	transition: 0.3s all ease;	
+}
+
+.cms-ultimate-marriage-proposal-guide .navbar {
+	border-radius:0;
+	margin-bottom:0;
+}
+
+.cms-ultimate-marriage-proposal-guide .navbar-default{
+	border:none;
+}
+
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav > li > a:focus
+{
+	outline:0;
+}
+
+
+/* 02-4 Menu Color */
+/* ----------------------- */
+/* navbar */
+.cms-ultimate-marriage-proposal-guide .navbar-default {
+    background-color: #ed5843;
+    border-color: #E7E7E7;
+}
+/* title */
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-brand {
+    color: #ffffff;
+}
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-brand:hover,
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-brand:focus {
+    color: #5E5E5E;
+}
+/* link */
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav  {
+	background-color: #ed5843;
+}
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav > li > a {
+    color: #ffffff;
+	-webkit-transition: 0.3s all ease;
+	-moz-transition: 0.3s all ease;
+	-o-transition: 0.3s all ease;
+	-ms-transition: 0.3s all ease;
+	transition: 0.3s all ease;	
+}
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav > li > a:hover,
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav > li > a:focus {
+    color: #000	;
+	-webkit-transition: 0.3s all ease;
+	-moz-transition: 0.3s all ease;
+	-o-transition: 0.3s all ease;
+	-ms-transition: 0.3s all ease;
+	transition: 0.3s all ease;	
+}
+
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav > .active > a, 
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav > .active > a:hover, 
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav > .active > a:focus {
+    color: #000;
+    background-color: #ed5843;
+}
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav > .open > a, 
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav > .open > a:hover, 
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav > .open > a:focus {
+    color: #555;
+    background-color: #D5D5D5;
+}
+/* caret */
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav > .dropdown > a .caret {
+    border-top-color: #777;
+    border-bottom-color: #777;
+}
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav > .dropdown > a:hover .caret,
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: #333;
+    border-bottom-color: #333;
+}
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav > .open > a .caret, 
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav > .open > a:hover .caret, 
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav > .open > a:focus .caret {
+    border-top-color: #555;
+    border-bottom-color: #555;
+}
+/* mobile version */
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-toggle {
+    border-color: #ffffff;
+	-webkit-transition: 0.3s all ease;
+	-moz-transition: 0.3s all ease;
+	-o-transition: 0.3s all ease;
+	-ms-transition: 0.3s all ease;
+	transition: 0.3s all ease;	
+}
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-toggle:hover,
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-toggle:focus {
+    background-color: #000;
+	border-color: #000;
+	-webkit-transition: 0.3s all ease;
+	-moz-transition: 0.3s all ease;
+	-o-transition: 0.3s all ease;
+	-ms-transition: 0.3s all ease;
+	transition: 0.3s all ease;
+}
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-toggle .icon-bar {
+    background-color: #ffffff;
+}
+
+.cms-ultimate-marriage-proposal-guide #nav_shop {
+    margin-left: -15px;
+}
+.cms-ultimate-marriage-proposal-guide #nav_shop a {
+    background-color: #000;
+    color: #fff;
+    text-transform: lowercase;
+}
+
+.cms-ultimate-marriage-proposal-guide #nav { 
+    z-index: 999;
+}
+
+@media (max-width: 767px) {
+    .cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #777;
+    }
+    .cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #333;
+    }
+}
+
+/*========================*/
+/* 03. COUPLE        	  */
+/*========================*/
+
+/* 03-1 His/Her Profile */
+/* ----------------------- */
+.cms-ultimate-marriage-proposal-guide .profile{
+	background-color:#fff; 
+	padding:25px 20px
+}
+
+.cms-ultimate-marriage-proposal-guide .subname {
+	font-family: 'Montserrat', sans-serif; 
+	font-size:22px; 
+	line-height:20px; 
+	color:#8b8a8a
+}
+
+.cms-ultimate-marriage-proposal-guide .profile_text{
+	margin-top:10px;
+}
+
+/* 03-2 Popup Content */
+/* ----------------------- */
+.cms-ultimate-marriage-proposal-guide .popup_content{
+	width:60%; 
+	margin:30px auto; 
+	background-color:#FFF; 
+	height:100%;
+	padding:30px
+}
+
+.cms-ultimate-marriage-proposal-guide .popup_content img{
+	width:100%;
+	margin:20px 0 20px 0
+}
+
+/*========================*/
+/* 04. THE DAY		  	  */
+/*========================*/
+
+/* 04-1 Location, Date, Accomodation */
+/* ----------------------- */
+.cms-ultimate-marriage-proposal-guide .box{
+	background-color:#ffffff;
+	margin-top:20px;
+}
+
+.cms-ultimate-marriage-proposal-guide .box_icon{
+	background-color:#ed5843; 
+	margin-top:-1px; 
+	padding:18px; 
+	height:60px; 
+	width:60px; 
+	color:#ffffff; 
+	font-size:26px
+}
+
+.cms-ultimate-marriage-proposal-guide .box_title{
+	padding-left:20px; 
+	font-weight:bold; 
+	font-family: 'Montserrat', sans-serif; 
+	font-size:18px; 
+	color:#444444
+}
+
+.cms-ultimate-marriage-proposal-guide .box_text{
+	padding:20px 25px;
+}
+
+/* 04-2 Location Map */
+/* ----------------------- */
+.cms-ultimate-marriage-proposal-guide #location_map{
+	width:100%;
+	height:450px;
+	margin-top:30px;
+}
+
+/*===============================*/
+/* 05. BRIDESMAID & GROOMSMEN    */
+/*===============================*/
+
+.cms-ultimate-marriage-proposal-guide .name_wrapper{
+	background-color:#FFF; 
+	padding:20px
+}
+
+.cms-ultimate-marriage-proposal-guide .photo_col{
+	margin-bottom:30px;
+}
+
+/*========================*/
+/* 06. GALLERY			  */
+/*========================*/
+
+/* 06-1 Gallery2 - masonry col */
+/* ----------------------- */
+.cms-ultimate-marriage-proposal-guide .masonry_col, .grid_sizer{
+	width:25%;
+}
+
+.cms-ultimate-marriage-proposal-guide .masonry_col.w2{
+	width:50%;
+}
+
+.cms-ultimate-marriage-proposal-guide .masonry_col.w3{
+	width:75%;
+}
+
+.cms-ultimate-marriage-proposal-guide .masonry_col.w4{
+	width:100%;
+}
+
+
+/*========================*/
+/* 07. GIFT REGISTRY		  */
+/*========================*/
+.cms-ultimate-marriage-proposal-guide #registry_logo .item{
+	text-align:center;	
+}
+
+.cms-ultimate-marriage-proposal-guide #registry_logo .item img{
+	width:80%;
+	height:auto;
+}
+
+/*========================*/
+/* 08. BLOG				  */
+/*========================*/
+.cms-ultimate-marriage-proposal-guide .blog_wrapper{
+	background-color:#fff; 
+	padding:25px 20px
+}
+
+.cms-ultimate-marriage-proposal-guide .blog_text{
+	margin-top:10px;
+}
+
+.cms-ultimate-marriage-proposal-guide .blog_info a{
+	color:#ed5843;
+}
+
+.cms-ultimate-marriage-proposal-guide .blog_info a:hover{
+	color:#444444;
+}
+
+.cms-ultimate-marriage-proposal-guide .masonry_col_blog, .grid_sizer_blog{
+	width:32%;
+	margin-bottom:20px;	
+}
+
+.cms-ultimate-marriage-proposal-guide .masonry_col_blog.w2{
+	width:65.7%;
+}
+
+.cms-ultimate-marriage-proposal-guide .masonry_col_blog.w3{
+	width:100%;
+}
+
+.cms-ultimate-marriage-proposal-guide #loading_more{
+	display:none;
+}
+
+/*========================*/
+/* 09. RSVP				  */
+/*========================*/
+
+.cms-ultimate-marriage-proposal-guide input[type=text], 
+.cms-ultimate-marriage-proposal-guide input[type=email] {
+   	height:45px;
+}
+
+.cms-ultimate-marriage-proposal-guide input[type=text], 
+.cms-ultimate-marriage-proposal-guide input[type=email], 
+.cms-ultimate-marriage-proposal-guide select, 
+.cms-ultimate-marriage-proposal-guide textarea{
+	border-radius:0 !important;
+}
+
+.cms-ultimate-marriage-proposal-guide option{
+	color:#747474;
+}
+
+.cms-ultimate-marriage-proposal-guide #result{
+	margin-bottom:20px;
+}
+
+.cms-ultimate-marriage-proposal-guide #result .bg-danger, 
+.cms-ultimate-marriage-proposal-guide #result .bg-success{
+	padding:10px;
+	color:#ffffff;
+}
+
+.cms-ultimate-marriage-proposal-guide #result .bg-danger{
+	background-color:#C33
+}
+
+.cms-ultimate-marriage-proposal-guide #result .bg-success{
+	background-color:#ed5843
+}
+
+.cms-ultimate-marriage-proposal-guide #submitButton{
+	margin-top:30px
+}
+
+/*========================*/
+/* 10. FOOTER			  */
+/*========================*/
+.cms-ultimate-marriage-proposal-guide #footer_text{
+	background-color:#000; 
+	height:60px; 
+	margin-top:100px; 
+	padding:20px;
+	overflow: hidden;
+}
+
+.cms-ultimate-marriage-proposal-guide #footer_text a {
+    color: #fff;
+}
+
+
+/* =================================================== */
+/* 11. MEDIA SCREEN	 		                           */
+/* =================================================== */
+@media (min-width:992px) and (max-width:1199px) {
+/* Blog -----------------------------*/
+.cms-ultimate-marriage-proposal-guide .masonry_col_blog, 
+.cms-ultimate-marriage-proposal-guide .grid_sizer_blog{
+	width:31.9%;
+}
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+.cms-ultimate-marriage-proposal-guide .photo_divider {
+	background-attachment: scroll !important;
+}
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+.cms-ultimate-marriage-proposal-guide .photo_divider {
+	background-attachment: scroll !important;
+}
+}
+
+@media (max-width:991px){	
+/* Slider-----------------------------*/
+.cms-ultimate-marriage-proposal-guide #slide_content > .text-right{
+	text-align:center !important;
+}
+
+.cms-ultimate-marriage-proposal-guide #slide_content >.pull-right{
+	float:none !important;
+}
+
+/* Menu-----------------------------*/
+.cms-ultimate-marriage-proposal-guide .navbar-collapse{
+	margin-top:15px;
+}
+
+/* His Profile ---------------------*/
+.cms-ultimate-marriage-proposal-guide #his_profile{
+	margin-bottom:40px;
+}
+
+/* Gallery2  ----------------------- */
+.cms-ultimate-marriage-proposal-guide .masonry_col, 
+.cms-ultimate-marriage-proposal-guide .grid_sizer{
+	width:50% !important;
+}
+
+/* Blog 2 -----------------------------*/
+.cms-ultimate-marriage-proposal-guide .masonry_col_blog, 
+.cms-ultimate-marriage-proposal-guide .grid_sizer_blog{
+	width:48.5%;
+}
+
+.cms-ultimate-marriage-proposal-guide .masonry_col_blog.w2{
+	width:100%;
+}
+
+/* Popup Content ----------------------- */
+.cms-ultimate-marriage-proposal-guide .popup_content{
+	width:70%;
+}
+}
+
+@media (min-width:768px) and (max-width:991px) {
+.cms-ultimate-marriage-proposal-guide #slide_content {
+	margin: 100px 0;
+}
+
+/* Photo Divider ----------------------- */
+.cms-ultimate-marriage-proposal-guide .photo_divider {
+	background-attachment: scroll !important;
+}
+}
+
+
+@media (max-width: 767px) {
+.cms-ultimate-marriage-proposal-guide #slide_content {
+	margin: 80px 0;
+}
+
+/* Blog 2 -----------------------------*/
+.cms-ultimate-marriage-proposal-guide .masonry_col_blog, .grid_sizer_blog{
+	width:48.15%;
+}
+
+/* Popup Content ----------------------- */
+.cms-ultimate-marriage-proposal-guide .popup_content{
+	width:80%;
+}
+
+/* Photo Divider ----------------------- */
+.cms-ultimate-marriage-proposal-guide .photo_divider {
+	background-attachment: scroll !important;
+	background-size: cover;
+}
+}
+
+@media (max-width:570px) {
+/* Blog 2 -----------------------------*/
+.cms-ultimate-marriage-proposal-guide .masonry_col_blog, 
+.cms-ultimate-marriage-proposal-guide .grid_sizer_blog{
+	width:100%;
+}
+}
+
+@media (max-width:480px) {
+/* Common --------------------------*/
+.cms-ultimate-marriage-proposal-guide h2{
+	font-size:30px; 
+}
+
+.cms-ultimate-marriage-proposal-guide h3{
+	font-size:24px; 
+}	
+
+/* Title & Intro --------------------*/
+.cms-ultimate-marriage-proposal-guide .sub_title{
+	font-size:20px;
+}
+
+.cms-ultimate-marriage-proposal-guide .intro{
+	padding:35px 5px;
+	font-size: 18px;
+}
+
+/* His/Her Profile ------------------*/
+.cms-ultimate-marriage-proposal-guide .subname{
+	font-size:18px;
+}
+
+
+/* Logo ------------------------------*/	
+.cms-ultimate-marriage-proposal-guide #logo {
+	width:70px;
+	height:62px;
+	padding-top:0;
+	font-size: 16px;
+}	
+	
+/* Slider-----------------------------*/	
+.cms-ultimate-marriage-proposal-guide #slide_content {
+	margin: 50px 0;
+}
+
+.cms-ultimate-marriage-proposal-guide #slide_text1{
+	font-size:30px;
+	line-height:34px;
+	width: 100%;
+	display: inline-block;
+}
+
+.cms-ultimate-marriage-proposal-guide #slide_text2{
+	font-size:20px;
+	line-height:26px;
+	width: 100%;
+	display: inline-block;
+}
+
+.cms-ultimate-marriage-proposal-guide #slide_text3{
+	font-size:40px;
+	line-height:46px;
+	width: 100%;
+	display: inline-block;
+}
+
+.cms-ultimate-marriage-proposal-guide #slide_text4{
+	font-size:30px;
+	line-height:30px;
+}
+
+.cms-ultimate-marriage-proposal-guide #slide_text4 span
+{
+	font-size:12px; 
+	padding:0 8px
+}
+
+.cms-ultimate-marriage-proposal-guide .heart_row {
+	color:#ed5843;
+	margin:0;
+}
+
+.cms-ultimate-marriage-proposal-guide .heart_row span {
+	padding:0 1px;
+}
+
+/* Menu-----------------------------*/
+.cms-ultimate-marriage-proposal-guide #nav {
+	padding: 0 0;
+	-webkit-transition: 0.3s all ease;
+	-moz-transition: 0.3s all ease;
+	-o-transition: 0.3s all ease;
+	-ms-transition: 0.3s all ease;
+	transition: 0.3s all ease;	
+}
+
+.cms-ultimate-marriage-proposal-guide .is-sticky #nav {
+	padding: 5px 0;
+	-webkit-transition: 0.3s all ease;
+	-moz-transition: 0.3s all ease;
+	-o-transition: 0.3s all ease;
+	-ms-transition: 0.3s all ease;
+	transition: 0.3s all ease;	
+}
+
+.cms-ultimate-marriage-proposal-guide .navbar-collapse {
+	margin-top:5px;
+}
+
+/* His/Her Profile -----------------------*/
+.cms-ultimate-marriage-proposal-guide #male_icon, 
+.cms-ultimate-marriage-proposal-guide #female_icon {
+	display:none;
+}
+
+
+}
+
+/* =================================================== */
+/* 12. STYLE SWITCHER	 		                       */
+/* =================================================== */
+.cms-ultimate-marriage-proposal-guide #style_switcher{
+	background-color:#FFF;
+	position:fixed; 
+	top:30%; 
+	padding:5px; 
+	z-index:999; 
+	box-shadow: 2px 2px 3px #888888; 
+	left:-110px
+}
+
+.cms-ultimate-marriage-proposal-guide #theme_options{
+	color:#444444;
+}
+
+.cms-ultimate-marriage-proposal-guide .color_pallete{
+	display:inline-block;
+	width:20px;
+	height:20px;
+	margin-right:3px
+}
+
+.cms-ultimate-marriage-proposal-guide #reset > span{
+	background-color:#ed5843;
+}
+
+.cms-ultimate-marriage-proposal-guide #pink > span{
+	background-color:#d56363;
+}
+
+.cms-ultimate-marriage-proposal-guide #purple > span{
+	background-color:#b06c8b;
+}
+
+.cms-ultimate-marriage-proposal-guide #brown > span{
+	background-color:#ad8763;
+}
+
+.cms-ultimate-marriage-proposal-guide #theme_options > span{
+	font-size:24px;
+	margin: 0 5px 0 10px
+}
+
+@media only screen and (max-width: 480px) {
+	.cms-ultimate-marriage-proposal-guide #header_social-sticky-wrapper {
+		display: none;
+	}
+
+	.cms-ultimate-marriage-proposal-guide #logo {
+		width: 60px;
+		height: 54px;
+	}
+	.cms-ultimate-marriage-proposal-guide #logo img {
+		max-width: 100%;
+	}
+}
+
+/************** Custom **********/
+
+.cms-ultimate-marriage-proposal-guide .page-header {
+	padding-bottom: 0;
+	margin: 0;
+	border-bottom: 0 none;
+}
+
+.cms-ultimate-marriage-proposal-guide #maincontent.page-main {
+	max-width: 100%;
+	padding: 0;
+}
+
+.cms-ultimate-marriage-proposal-guide .page-footer {
+	background: #fff;
+}
+
+.cms-ultimate-marriage-proposal-guide .navbar-default {
+	z-index: 9;
+	width: 100%;
+	box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.1)
+}
+
+.cms-ultimate-marriage-proposal-guide .navbar-default .navbar-nav > li > a {
+	font-family: "Avenir LT Std";
+	font-size: 14px;
+}
+
+@media only screen and (max-width: 1279px) {
+	.cms-ultimate-marriage-proposal-guide #nav-proposal-sticky-wrapper {
+		display: none;
+	}
+}
