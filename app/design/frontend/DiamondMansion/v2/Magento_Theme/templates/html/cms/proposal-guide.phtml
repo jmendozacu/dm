@@ -1253,7 +1253,7 @@ require([
     //==================================================================================
     var $gallery = $('#places_gallery');
     // initialize Masonry after all images have loaded  
-    $(window).on('load', function() {
+    $(document).ready(function() {
         var galleryMasonryTimer = setInterval(function() {
             if (typeof $gallery.masonry !== 'undefined') {
                 $gallery.masonry({
@@ -1269,7 +1269,7 @@ require([
     //==================================================================================
     var $blog = $('#checklist_blog');
     // initialize Masonry after all images have loaded  
-    $(window).on('load', function() {
+    $(document).ready(function() {
         var blogMasonryTimer = setInterval(function() {
             if (typeof $blog.masonry !== 'undefined') {
                 $blog.masonry({
