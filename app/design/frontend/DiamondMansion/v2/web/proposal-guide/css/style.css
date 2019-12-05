@@ -1246,6 +1246,15 @@ body.cms-ultimate-marriage-proposal-guide {
 	font-size: 14px;
 }
 
+.cms-ultimate-marriage-proposal-guide .header-notice p {
+	margin: 0;
+	font-size: 14px;
+	line-height: 20px;
+}
+.cms-ultimate-marriage-proposal-guide .header-notice p strong {
+	color: #000;
+}
+
 @media only screen and (max-width: 1279px) {
 	.cms-ultimate-marriage-proposal-guide #nav-proposal-sticky-wrapper {
 		display: none;
