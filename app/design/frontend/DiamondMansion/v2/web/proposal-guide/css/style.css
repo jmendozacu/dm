@@ -1253,6 +1253,7 @@ body.cms-ultimate-marriage-proposal-guide {
 }
 .cms-ultimate-marriage-proposal-guide .header-notice p strong {
 	color: #000;
+	font-weight: bold;
 }
 
 @media only screen and (max-width: 1279px) {
