@@ -156,7 +156,6 @@
 body.cms-ultimate-marriage-proposal-guide {
 	font-family: 'PT Sans', sans-serif;	
 	font-size: 1px;
-	color:#747474;
 }
 
 .cms-ultimate-marriage-proposal-guide section {
@@ -1254,6 +1253,12 @@ body.cms-ultimate-marriage-proposal-guide {
 .cms-ultimate-marriage-proposal-guide .header-notice p strong {
 	color: #000;
 	font-weight: bold;
+}
+
+.cms-ultimate-marriage-proposal-guide .close:hover, 
+.cms-ultimate-marriage-proposal-guide .close:focus {
+	color: #fff;
+	opacity: 1;
 }
 
 @media only screen and (max-width: 1279px) {
