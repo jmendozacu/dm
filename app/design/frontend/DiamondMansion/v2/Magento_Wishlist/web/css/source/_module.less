@@ -48,7 +48,6 @@
         .wishlist-popup-content {
             background: white;
             padding: 30px;
-            height: 170px;
             margin-top: -85px;
             position: absolute;
             top: 50%;
@@ -73,22 +72,22 @@
                 text-indent: 0;
 
                 &:before {
-                    font-size: 40 * @v3-base-desktop-vw;
-                    line-height: 40 * @v3-base-desktop-vw;
+                    font-size: 40px;
+                    line-height: 40px;
                 }
 
                 cursor: pointer;
                 float: right;
-                margin-top: -35 * @v3-base-desktop-vw;
-                margin-right: -35 * @v3-base-desktop-vw;
+                margin-top: -35px;
+                margin-right: -35px;
             }
 
             .wishlist-popup-form {
                 clear: both;
-                padding: 20px 0 40px;
+                padding: 0;
 
                 .wishlist-popup-form-title {
-                    font-size: 16em;
+                    font-size: 14px;
                     line-height: 24px;
                     margin-bottom: 10px;
                 }
@@ -99,6 +98,19 @@
 
                     input {
                         height: 36px;
+                    }
+
+                    @media only screen and (max-width: 480px) {
+                        display: block;
+
+                        input {
+                            width: 100%;
+                            margin-bottom: 10px;
+                        }
+
+                        .action.primary {
+                            width: 100%;
+                        }
                     }
                 }
             }
