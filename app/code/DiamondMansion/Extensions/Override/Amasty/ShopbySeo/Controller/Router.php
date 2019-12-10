@@ -127,8 +127,12 @@ class Router extends \Amasty\ShopbySeo\Controller\Router {
                 ]);
             }
 
+            if (!$category) {
+                return;
+            }
+
             $matches[self::INDEX_ALIAS] = $category;
-            $matches[self::INDEX_CATEGORY] = substr($identifier, strlen($category) + 1);
+            $matches[self::INDEX_CATEGORY] = $category ? substr($identifier, strlen($category) + 1) : $identifier;
             
             //$posLastValue = strrpos($identifier, "/");
             //$matches[self::INDEX_ALIAS] = substr($identifier, 0, $posLastValue);
