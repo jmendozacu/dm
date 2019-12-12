@@ -30,6 +30,8 @@ class SaveDiamondMansionOptions implements ObserverInterface
             $this->_processRingDesign($product);
         } else if ($product->getTypeId() == 'dm_ring_eternity') {
             $this->_processRingEternity($product);
+        } else if ($product->getTypeId() == 'dm_wedding_band_design') {
+            $this->_processBandDesign($product);
         }
     }
 
@@ -265,6 +267,74 @@ class SaveDiamondMansionOptions implements ObserverInterface
                     }
             }
         }
+    }
+
+    private function _processBandDesign($product) {
+        $options = $this->_request->getParam('dm-options');
+
+        if (!$options) {
+            return;
+        }
+
+        $dm = [];
+        $tmp = [];
+        foreach ($options as $option) {
+            $tmp[] = urlencode("options".$option['name']) . '=' . urlencode($option['value']);
+        }
+        parse_str(implode("&", $tmp), $dm);
+
+        $this->_optionModel = $this->_optionModelFactory->create();
+        $records = $this->_optionModel->getCollection()
+            ->addFieldToFilter('product_id', ['eq' => $product->getId()]);
+
+        foreach ($records as $record) {
+            $this->_optionModel->load($record->getId())->delete();
+        }
+
+        $this->_optionModel = $this->_optionModelFactory->create();
+
+        foreach ($dm['options'] as $group => $options) {
+            switch ($group) {
+                case 'title':
+                case 'slug':
+                    break;
+                case 'ring-size':
+                    foreach ($options as $code => $option) {
+                        if ($code === 'is_default' || is_array($option)) {
+                            continue;
+                        }
+
+                        $this->_saveOption([
+                            'product_id' => $product->getId(),
+                            'group' => $group,
+                            'code' => $option,
+                            'title' => $dm['options']['title'][$group][$option],
+                            'slug' => $dm['options']['slug'][$group][$option],
+                            'is_default' => (isset($options['is_default']) && $options['is_default'] == $option),
+                            'values' => isset($options['size-' . $option]['values'])?json_encode($options['size-' . $option]['values']):"",
+                        ]);
+                    }
+                    break;
+                default:
+                    foreach ($options as $code => $option) {
+                        if ($code === 'is_default') {
+                            continue;
+                        }
+
+                        $this->_saveOption([
+                            'product_id' => $product->getId(),
+                            'group' => $group,
+                            'code' => is_array($option)?$code:$option,
+                            'title' => $dm['options']['title'][$group][is_array($option)?$code:$option],
+                            'slug' => $dm['options']['slug'][$group][is_array($option)?$code:$option],
+                            'is_default' => (isset($options['is_default']) && $options['is_default'] == (is_array($option)?$code:$option)),
+                            'values' => isset($option['values'])?json_encode($option['values']):"",
+                        ]);
+                    }
+            }
+        }
+
+        $this->_saveAttributes($product, $dm['options']);
     }
 
     private function _saveOption($data)

@@ -69,6 +69,8 @@ class Options extends \Magento\Framework\View\Element\Template
             return $this->_getProductRingDesignOptions();
         } else if ($this->getProduct()->getTypeId() == 'dm_ring_eternity') {
             return $this->_getProductRingEternityOptions();
+        } else if ($this->getProduct()->getTypeId() == 'dm_wedding_band_design') {
+            return $this->_getProductBandDesignOptions();
         }
     }
 
@@ -89,6 +91,22 @@ class Options extends \Magento\Framework\View\Element\Template
     }
 
     private function _getProductRingEternityOptions() {
+        $collection = $this->_productOptionsModel->getCollection()
+            ->addFieldToFilter('product_id', ['eq' => $this->getProduct()->getId()]);
+
+        $options = [];
+        foreach ($collection as $item) {
+            $tmp = $item->getData();
+            if ($tmp['values'] !== "") {
+                $tmp['values'] = json_decode($tmp['values'], true);
+            }
+            $options[$item->getGroup()][$item->getCode()] = $tmp;
+        }
+
+        return count($options) ? $options : false;
+    }
+
+    private function _getProductBandDesignOptions() {
         $collection = $this->_productOptionsModel->getCollection()
             ->addFieldToFilter('product_id', ['eq' => $this->getProduct()->getId()]);
 

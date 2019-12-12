@@ -1,0 +1,112 @@
+<?php
+$groups = $this->getOptionsGroup();
+$groups['default'] = [];
+$skipGroups = [];
+
+$productOptions = $this->getProductOptions();
+?>
+
+<div id="dm-options-group">
+    <ul class="tabs-horiz">
+        <?php foreach ($groups as $group => $options): ?>
+            <?php foreach ($options as $option): ?>
+            <input class="dm-option" type="hidden" name="[title][<?php echo $option['group'] ?>][<?php echo $option['code'] ?>]" value="<?php echo $option['title'] ?>"/>
+            <input class="dm-option" type="hidden" name="[slug][<?php echo $option['group'] ?>][<?php echo $option['code'] ?>]" value="<?php echo $option['slug'] ?>"/>
+            <?php endforeach ?>
+            <?php if (in_array($group, $skipGroups)) { continue; }?>
+            <li>
+                <a href="#tab_<?php echo $group ?>_content" id="tab_<?php echo $group ?>" title="<?php echo $group ?>" class="tab-item-link">
+                    <?php echo ucwords(str_replace("-", " ", $group)); ?>
+                </a>
+                <div id="tab_<?php echo $group ?>_content" style="display:none">
+                    <?php if ($group == 'ring-size'): ?>
+                        <div class="row">
+                            <?php foreach ($options as $option): ?>
+                                <div class="col-m-4">
+                                    <div class="row">
+                                        <div class="col-m-4">
+                                            <label>
+                                                <input class="dm-option" type="checkbox" name="[<?php echo $group; ?>][]" value="<?php echo $option['code'] ?>" <?php if (!$productOptions || isset($productOptions[$group][$option['code']])): ?> checked="checked"<?php endif; ?>/>
+                                                <?php echo $option['title'] ?>
+                                            </label>
+                                        </div>
+                                        <div class="col-m-3 input-wrapper">
+                                            <input class="dm-option" type="text" name="[<?php echo $option['group'] ?>][size-<?php echo $option['code'] ?>][values][price]" value="<?php echo ($productOptions && isset($productOptions[$group][$option['code']]['values']['price'])) ? $productOptions[$group][$option['code']]['values']['price'] : "" ?>" placeholder="price"/>
+                                        </div>
+                                        <div class="col-m-2"></div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php elseif ($group == 'default'): ?>
+                        <div class="row">
+                            <?php foreach ($groups as $group2 => $options2): ?>
+                            <?php if ($group2 == 'others' || $group2 == 'default') { continue; } ?>
+                            <div class="col-m-3">
+                                <div class="row">
+                                    <div class="col-m-6">
+                                        <label>
+                                            <?php echo ucwords(str_replace("-", " ", $group2)) ?>
+                                        </label>
+                                    </div>
+                                    <div class="col-m-6 input-wrapper">
+                                        <select class="dm-option" name="[<?php echo $group2; ?>][is_default]">
+                                            <?php foreach ($options2 as $option2): ?>
+                                            <?php if ((!$productOptions && $option2['is_default'])
+                                                || ($productOptions && isset($productOptions[$group2][$option2['code']]) && $productOptions[$group2][$option2['code']]['is_default'])
+                                                || ($productOptions && isset($productOptions[$group2 . '-1'][$option2['code']]) && $productOptions[$group2 . '-1'][$option2['code']]['is_default'])
+                                                || ($productOptions && isset($productOptions[$group2 . '-2'][$option2['code']]) && $productOptions[$group2 . '-2'][$option2['code']]['is_default'])
+                                                || ($productOptions && isset($productOptions[$group2 . '-3'][$option2['code']]) && $productOptions[$group2 . '-3'][$option2['code']]['is_default'])
+                                                || ($productOptions && isset($productOptions[$group2 . '-4'][$option2['code']]) && $productOptions[$group2 . '-4'][$option2['code']]['is_default'])): ?>
+                                            <option value="<?php echo $option2['code'] ?>" selected><?php echo $option2['title'] ?></option>
+                                            <?php else: ?>
+                                            <option value="<?php echo $option2['code'] ?>"><?php echo $option2['title'] ?></option>
+                                            <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php else: ?>
+                        <div class="row">
+                            <?php foreach ($options as $option): ?>
+                                <div class="col-m-2">
+                                    <label>
+                                        <input class="dm-option" type="checkbox" name="[<?php echo $group; ?>][]" value="<?php echo $option['code'] ?>" <?php if (!$productOptions || isset($productOptions[$group][$option['code']])): ?> checked="checked"<?php endif; ?>/>
+                                        <?php echo $option['title'] ?>
+                                    </label>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+    <div id="dm-options-group-content">
+    </div>
+</div>
+<script>
+    require([
+        'jquery',
+        'tabs',
+        'Magento_Ui/js/form/provider'
+    ], function ($, Tabs, Provider) {
+        $("#dm-options-group").tabs({
+            destination: '#dm-options-group-content'
+        });
+
+        $("#dm-options-group-content [data-role='collapsible-title']").on('click', function () {
+            $(this).parent().parent().toggleClass('opened');
+            $(this).parent().parent().find("[data-role='collapsible-content']").slideToggle();
+        });
+
+        $("button.action-delete").on('click', function () {
+            $(this).parent().parent().slideUp('fast', function () {
+                $(this).remove();
+            });
+        });
+    });
+</script>

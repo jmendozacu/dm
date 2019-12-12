@@ -51,10 +51,18 @@ class Image extends Data
             $imagePath .= $carat . DIRECTORY_SEPARATOR;
         }
 
+        if (isset($width) && $width != "") {
+            $imagePath .= $width . DIRECTORY_SEPARATOR;
+        }
+
+        if (isset($finish) && $finish != "") {
+            $imagePath .= $finish . DIRECTORY_SEPARATOR;
+        }
+        
         return $imagePath;
     }    
 
-    public function getProductImages($option)
+    public function getProductImages($option, $firstOnly = true)
     {
         $imagePath = $this->getProductImagePath($option);
         $dir = $this->getProductImageDir() . $imagePath;
@@ -67,26 +75,42 @@ class Image extends Data
 
                 $fileName = basename($imageFile);
 
-                $images = [
+                $tmpImages = [
                     "main" => $this->_resize($imagePath, $fileName, 720),
                     "pop" => $this->_resize($imagePath, $fileName, ''),
                     "thumb" => $this->_resize($imagePath, $fileName, 90),
                     "filename" => $fileName,
                 ];
-                break;
+
+                if ($firstOnly) {
+                    $images = $tmpImages;
+                    break;
+                } else {
+                    if (!isset($images)) {
+                        $images = [];
+                    }
+
+                    $images[] = $tmpImages;
+                }
             }
         }
 
         if (!isset($images)) {
             $product = $this->_productRepository->get($option['sku']);
-            if ($product->getData('image') != 'no_selection') {
+            if ($product->getData('image') != 'no_selection' && $product->getData('image') != '') {
                 $mediaUrl = $this->getMediaUrl();
-                $images = [
+                $tmpImages = [
                     "main" => $mediaUrl . 'catalog/product' . $product->getData('small_image'),
                     "pop" => $mediaUrl . 'catalog/product' . $product->getData('image'),
                     "thumb" => $mediaUrl . 'catalog/product' . $product->getData('thumbnail'),
                     "filename" => basename($product->getData('image')),
                 ];
+
+                if ($firstOnly) {
+                    $images = $tmpImages;
+                } else {
+                    $images = [$tmpImages];
+                }
             }
         }
 
@@ -97,7 +121,7 @@ class Image extends Data
             "filename" => "image.jpg",
         ];
 
-        return isset($images) ? $images : $placeholder;
+        return isset($images) ? $images : ($firstOnly ? $placeholder : [$placeholder]);
     }
 
     private function _resize($relativePath, $fileName, $width, $height = '', $quality = 100)

@@ -86,6 +86,7 @@
                 <item name="dm:amshopby:adjustcustompages" xsi:type="object">DiamondMansion\Extensions\Console\Command\AmshopbyAdjustCustomPages</item>
                 <item name="dm:addoptions:ringsize" xsi:type="object">DiamondMansion\Extensions\Console\Command\AddRingSizeOptions</item>
                 <item name="dm:addoptions:cut" xsi:type="object">DiamondMansion\Extensions\Console\Command\AddCutOptions</item>
+                <item name="dm:addoptions:design-wedding-band" xsi:type="object">DiamondMansion\Extensions\Console\Command\AddDesignBandOptions</item>
                 <item name="dm:reindex:likedislike" xsi:type="object">DiamondMansion\Extensions\Console\Command\ReindexLikeDislike</item>
                 <item name="dm:migrate:attribute" xsi:type="object">DiamondMansion\Extensions\Console\Command\MigrateAttribute</item>
                 <item name="dm:migrate:media" xsi:type="object">DiamondMansion\Extensions\Console\Command\MigrateMedia</item>
