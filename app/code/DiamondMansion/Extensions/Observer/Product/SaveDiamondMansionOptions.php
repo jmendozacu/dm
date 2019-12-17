@@ -298,7 +298,7 @@ class SaveDiamondMansionOptions implements ObserverInterface
                 case 'title':
                 case 'slug':
                     break;
-                case 'ring-size':
+                case 'width':
                     foreach ($options as $code => $option) {
                         if ($code === 'is_default' || is_array($option)) {
                             continue;
