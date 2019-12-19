@@ -6,7 +6,7 @@
     <type name="dm_ring_eternity" label="Eternity Ring" modelInstance="DiamondMansion\Extensions\Model\Ring\Eternity\Product\Type" indexPriority="60" sortOrder="1" isQty="true">
         <priceModel instance="DiamondMansion\Extensions\Model\Ring\Eternity\Product\Price" />
     </type>
-    <type name="dm_wedding_band_design" label="Design Wedding Band" modelInstance="DiamondMansion\Extensions\Model\Band\Design\Product\Type" indexPriority="80" sortOrder="1" isQty="true">
-        <priceModel instance="DiamondMansion\Extensions\Model\Band\Design\Product\Price" />
+    <type name="dm_wedding_band_design" label="Design Wedding Band" modelInstance="DiamondMansion\Extensions\Model\WeddingBand\Design\Product\Type" indexPriority="80" sortOrder="1" isQty="true">
+        <priceModel instance="DiamondMansion\Extensions\Model\WeddingBand\Design\Product\Price" />
     </type>
 </config>

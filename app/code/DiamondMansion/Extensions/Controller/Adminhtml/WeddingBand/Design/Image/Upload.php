@@ -1,5 +1,5 @@
 <?php
-namespace DiamondMansion\Extensions\Controller\Adminhtml\Band\Design\Image;
+namespace DiamondMansion\Extensions\Controller\Adminhtml\WeddingBand\Design\Image;
 
 use \Magento\Framework\App\Filesystem\DirectoryList;
 

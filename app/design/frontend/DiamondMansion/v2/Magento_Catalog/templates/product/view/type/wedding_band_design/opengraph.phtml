@@ -1,0 +1,56 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+
+<?php 
+    $params = $this->getRequest()->getParams();
+    $this->getProduct()->setFilters($params);
+    $url = $block->escapeUrl($block->getProduct()->getProductUrl());
+    $skuSuffix = isset($params['option']) ? '-' . $params['option'] : '';
+?>
+<link rel="canonical" href="<?= strtok($url, '?') ?>">
+<meta property="og:type" content="product" />
+<meta property="og:title" content="<?= $block->escapeHtmlAttr($block->stripTags($block->getProduct()->getDmName())) ?>" />
+<meta property="og:image" content="<?= $block->escapeUrl($block->getProduct()->getImage()) ?>" />
+<meta property="og:description" content="<?= $block->escapeHtmlAttr($block->stripTags($block->getProduct()->getShortDescription())) ?>" />
+<meta property="og:url" content="<?= $url ?>" />
+<?php if ($priceAmount = $block->getProduct()->getPrice()):?>
+    <meta property="product:price:amount" content="<?= /* @escapeNotVerified */ $priceAmount ?>"/>
+    <?= $block->getChildHtml('meta.currency') ?>
+<?php endif;?>
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Product",
+    <?php if ($block->getProduct()->getDmLikes()): ?>
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "<?= $block->getProduct()->getDmLikes() ?>"
+    },
+    <?php endif ?>
+    <?php if ($priceAmount): ?>
+    "offers": {
+        "@type": "Offer",
+        "availability": "http://schema.org/InStock",
+        "price": "<?= $priceAmount ?>",
+        "priceCurrency": "USD",
+        "priceValidUntil": "2999-12-31",
+        "url": "<?= $url ?>"
+    },
+    <?php endif ?>
+    "description": "<?= $block->escapeHtmlAttr($block->stripTags($block->getProduct()->getDescription())) ?>",
+    "name": "<?= $block->escapeHtmlAttr($block->stripTags($block->getProduct()->getDmName())) ?>",
+    "image": "<?= $block->escapeUrl($block->getProduct()->getImage()) ?>",
+    "brand": "Diamond Mansion",
+    "sku": "<?= $block->getProduct()->getSku() . $skuSuffix ?>",
+    "review": []
+}
+</script>

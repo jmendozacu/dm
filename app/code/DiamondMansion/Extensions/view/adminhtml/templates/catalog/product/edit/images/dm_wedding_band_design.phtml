@@ -112,7 +112,7 @@ $numberOfImages = 8;
             'ajaxFileUpload'
         ], function ($) {
             $.ajaxFileUpload({
-                url: '<?php echo $this->getUrl("diamondmansion/band_design_image/upload", ['eid' => 'ELMID', 'form_key' => 'FORMKEY']); ?>'.replace('ELMID', elmId).replace('FORMKEY', FORM_KEY),
+                url: '<?php echo $this->getUrl("diamondmansion/weddingband_design_image/upload", ['eid' => 'ELMID', 'form_key' => 'FORMKEY']); ?>'.replace('ELMID', elmId).replace('FORMKEY', FORM_KEY),
                 secureuri: false,
                 fileElementId: elmId,
                 dataType: 'json',

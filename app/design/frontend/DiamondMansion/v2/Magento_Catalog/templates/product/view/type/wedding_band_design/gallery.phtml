@@ -1,0 +1,137 @@
+<?php 
+$jsonGallery =  $block->getGalleryImagesJson();
+$arrayJsonGallery = json_decode($jsonGallery, true);
+$isVideoExist = false;
+$videoList = [];
+?>
+<div class="gallery-placeholder product-image">
+    <div id="gallery">
+        <?php $index = 0; foreach ($arrayJsonGallery as $_image): ?>
+        <?php if ($_image['type'] == 'video'): ?>
+        <?php
+            if (strpos($_image['videoUrl'], 'watch?v=') !== false) {
+                $videoUrlParams = explode('watch?v=', $_image['videoUrl']);
+                $_image['videoUrl'] = 'https://www.youtube.com/embed/' . $videoUrlParams[1] . '?controls=0';
+            }
+        ?>
+        <li>
+            <div class="video-wrapper" target="video-<?= $index ?>">
+                <div id="video-<?= $index ?>" src="<?= isset($videoUrlParams[1]) ? $videoUrlParams[1] : '' ?>" class="item-youtube-video"></div>
+            </div>
+        </li>
+        <?php else: ?>
+        <li>
+            <div class="zoom-wrapper">
+                <img src="<?php echo $_image['full']; ?>" class="" alt="<?php echo $_image['caption'] ?>"/>
+            </div>
+        </li>
+        <?php endif ?>
+        <?php $index ++; endforeach ?>
+    </div>
+</div>
+
+<script type="text/javascript">
+var tag = document.createElement('script');
+
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var videos = {};
+function onYouTubeIframeAPIReady() {
+    var autoplay = (window.innerWidth >= 1280);
+    var elms = document.getElementsByClassName('item-youtube-video');
+    for (var i=0; i<elms.length; i++) {
+        var elmId = elms[i].getAttribute('id');
+        var elmSrc = elms[i].getAttribute('src');
+
+        var frameWidth = elms[i].parentElement.offsetWidth;
+
+        videos[elmId] = new YT.Player(elmId, {
+            width: frameWidth,
+            height: frameWidth,
+            videoId: elmSrc,
+            playerVars: {
+                'autoplay': autoplay, 
+                'enablejsapi': 1,
+                'controls': 1,
+                'fs': 0,
+                'rel': 0,
+                'modestbranding': 1,
+                'loop': 1,
+                'playlist': elmSrc,
+                'origin': '<?= rtrim($block->getBaseUrl(), '/') ?>'
+            },
+            events: {
+                'onReady': function (event) {
+                    event.target.playVideo();
+                },
+                'onStateChange': function (event) {
+
+                }
+            }
+        });
+    };
+}
+
+require([
+    'jquery',
+    'slick'
+], function ($, slick) {
+    $(document).ready(function () {
+        if ($(window).width() >= 1280) {
+            return;
+        }
+        
+        var adjustGalleryWidth = function () {
+            if ($(window).width() < 1280) {
+                var margin = ($(window).width() - $('#gallery').width()) / 2;
+                $('#gallery').css('marginLeft', -1 * margin);
+                $('#gallery').css('marginRight', -1 * margin);
+            }
+        }
+
+        adjustGalleryWidth();
+
+        $('#gallery').slick({
+            dots: true,
+            arrows: false,
+            infinite: false,
+            lazyLoad: 'ondemand',
+//            fade: true,
+//            cssEase: 'linear',
+//            adaptiveHeight: true
+        });
+
+        $(window).on('resize', function () {
+            //adjustGalleryWidth();
+        });
+
+        $('#gallery').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+            var mySlideNumber = nextSlide;
+            var key = 'video-' + currentSlide;
+            if (key in videos) {
+                videos[key].pauseVideo();
+            }
+        });
+
+        $('#gallery').on('afterChange', function (event, slick, currentSlide, nextSlide) {
+            var key = 'video-' + currentSlide;
+            if (key in videos) {
+                videos[key].playVideo();
+            }
+        });
+
+        $('#gallery iframe').width($('#gallery').width());
+        $('#gallery iframe').height($('#gallery').width());
+
+        $('#gallery .video-wrapper').on('click', function (ev) {
+            var key = $(this).attr('target');
+            if (key in videos) {
+                videos[key].playVideo();
+            }
+            ev.preventDefault();
+        });
+    });
+});
+</script>

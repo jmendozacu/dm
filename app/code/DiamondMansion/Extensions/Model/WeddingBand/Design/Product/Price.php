@@ -1,5 +1,5 @@
 <?php
-namespace DiamondMansion\Extensions\Model\Band\Design\Product;
+namespace DiamondMansion\Extensions\Model\WeddingBand\Design\Product;
 
 class Price extends \Magento\Catalog\Model\Product\Type\Price
 {
@@ -27,9 +27,31 @@ class Price extends \Magento\Catalog\Model\Product\Type\Price
         $allDmOptions = $product->getAllDmOptions();
         $params = $product->getDmOptions();
 
+        $price = 0;
+
+        if (isset($params['width'])) {
+            $values = json_decode($allDmOptions['width'][$params['width']]->getValues(), true);
+            $price = (isset($values["price"])) ? floatval($values["price"]) : 0;                
+        }
+
+        if ((isset($params['ring-size'])) && floor($params['ring-size']) > 7) {
+            $price = $price * (10 + floor($params['ring-size']) - 7) / 10;
+        }
+
+        if (isset($params['metal']) && strpos($params['metal'], "18k") !== false) {
+            $price = $price * 1.5;
+        } else if (isset($params['metal']) && strpos($params['metal'], "platinum") !== false) {
+            $price = $price * 2;
+        }
+
+        if (isset($params['finish']) && $params['finish'] != 'no-finish') {
+            $price += 60;
+        }
+
         $total = round((
-            parent::getPrice($product)
+            $price
         ), 2);
+
         return round($total / 10) * 10;
     }
 

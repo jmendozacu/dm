@@ -1,0 +1,123 @@
+<?php
+    $_product = $this->getProduct();
+
+    extract($block->getOptions());
+
+    $_product->setDefaultDmOptions($defaultOptions);
+
+    $_helper = $this->getHelper();
+
+    $imageDefault = $_product->getImage();
+
+    $category = $this->getHelper()->getObjectManager()->get('Magento\Framework\Registry')->registry('current_category');
+?>
+
+<?php foreach ($allOptions as $group => $options): ?>
+<div class="field required">
+    <label class="label" for="select-<?= $group ?>">
+        <span><?= $groupLabels[$group] ?></span>
+    </label>
+    <div class="control">
+        <select data-validate="{required:true}" id="select-<?= $group ?>" class="super-attribute-select" aria-required="true">
+            <?php foreach ($options as $code => $option): ?>
+            <?php $selected = (isset($defaultOptions[$group]) && $defaultOptions[$group]->getCode() == $code) ? 'selected' : ''; ?>
+            <option value="<?= $option->getSlug() ?>" data-code="<?= $code ?>" <?= $selected ?>><?= $option->getTitle() ?></option>
+            <?php endforeach ?>
+        </select>
+    </div>
+</div>
+<?php endforeach ?>
+<input type="hidden" name="dm_options" class="dm_custom_options" value="<?= isset($params['option']) ? $params['option'] : "" ?>"/>
+<div class="product-options-bottom">
+    <div class="price-box price-final_price" data-role="priceBox">
+        <span class="normal-price">
+            <span class="price-container price-final_price tax weee" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                <span class="price-wrapper "><span class="price">$<?= $_product->getPrice() ? number_format($_product->getPrice()) : 'SOLD OUT' ?></span></span>
+                <meta itemprop="price" content="<?= $_product->getPrice() ?>">
+                <meta itemprop="priceCurrency" content="USD">
+            </span>
+        </span>
+    </div>
+</div>
+<script type="text/javascript">
+require([
+    'jquery'
+], function($) {
+    $(document).ready(function() {        
+
+        function displayPrice(price) {
+            if (price) {
+                $("#maincontent .price-box span.price").html('$'+parseFloat(Math.round(price / 10) * 10).toLocaleString());
+                $(".btn-cart").show();
+            } else {
+                $("#maincontent .price-box span.price").html('SOLD OUT');
+                $(".btn-cart").hide();
+            }
+        }
+
+        displayPrice('<?= $_product->getPrice() ?>');
+
+        $('.super-attribute-select').on('change', function() {
+
+            // Update options
+
+            var dmOptions = "";
+            $('.super-attribute-select').each(function() {
+                dmOptions += $(this).val();
+            });
+
+            $('input.dm_custom_options').val(dmOptions.toLowerCase());
+
+            // Update Url
+            window.history.replaceState({},"","/<?= $_product->getUrlKey() ?>/?option="+dmOptions.toLowerCase());
+
+            // Update Price
+
+            new $.ajax(
+                '/dm/api_weddingband_design_reload/price/',
+                {
+                    method:'post',
+                    asynchronous: false,
+                    data: {
+                        <?php foreach ($allOptions as $group => $options): ?>
+                            "<?= $group ?>": $('#select-<?= $group ?> option:selected').data('code'),
+                        <?php endforeach ?>
+                        "product_id": <?= $_product->getId() ?>
+                    },
+                    complete : function(xhr) {
+                        var json = JSON.parse(xhr.responseText);
+                        var price = parseFloat(json.price);
+
+                        displayPrice(price);
+                    }
+                }
+            );
+
+            // Update Images
+
+            if ($(this).attr('id') == 'select-ring-size') {
+                return;
+            }
+
+            new $.ajax(
+                '/dm/api_weddingband_design_reload/images/',
+                {
+                    method:'post',
+                    asynchronous: false,
+                    data: {
+                        <?php foreach ($allOptions as $group => $options): ?>
+                            "<?= $group ?>": $('#select-<?= $group ?> option:selected').data('code'),
+                        <?php endforeach ?>
+                        "product_id": <?= $_product->getId() ?>
+                    },
+                    complete : function(xhr) {
+                        var images = JSON.parse(xhr.responseText);
+
+                        
+                    }
+                }
+            );
+        });
+    });
+});
+</script>

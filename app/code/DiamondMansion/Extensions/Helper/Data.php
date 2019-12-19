@@ -273,5 +273,51 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             "stone"=>array("stone-type" => 'Type', "stone-shape" => 'Shape', "stone-carat" => 'Carat', "stone-color-clarity" => 'Quality'),
             "params" => $params,
         ];        
-    }    
+    }
+
+    public function getWeddingBandDesignOptions($product, $params) {
+        if (isset($params["option"])) {
+            $skus = str_split($params["option"]);
+        }
+
+        $allOptions = $product->getAllDmOptions(true);
+        $defaultOptions = [];
+        if (isset($skus)) {
+            reset($skus);
+            $sku = current($skus);
+            foreach ($allOptions as $group => $optionGroup) {
+                foreach ($optionGroup as $code => $option) {
+                    if ($option->getSlug() == $sku) {
+                        $defaultOptions[$group] = $option;
+                        break;
+                    }
+                }
+                if (!isset($defaultOptions[$group])) {
+                    $defaultOptions[$group] = current($optionGroup);
+                    foreach ($optionGroup as $code => $option) {
+                        if ($option->getIsDefault()) {
+                            $defaultOptions[$group] = $option;
+                            break;
+                        }
+                    }
+                }
+
+                $sku = next($skus);
+            }
+        } else {
+            $defaultOptions = $product->getDefaultDmOptions(true);
+        }
+
+        return [
+            'allOptions' => $allOptions,
+            'defaultOptions' => $defaultOptions,
+            "params" => $params,
+            'groupLabels' => [
+                'metal' => 'Metal',
+                'width' => 'Width',
+                'ring-size' => 'Ring Size',
+                'finish' => 'Special Finishes'
+            ]
+        ];        
+    }
 }

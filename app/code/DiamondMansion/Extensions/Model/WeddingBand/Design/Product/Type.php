@@ -1,5 +1,5 @@
 <?php
-namespace DiamondMansion\Extensions\Model\Band\Design\Product;
+namespace DiamondMansion\Extensions\Model\WeddingBand\Design\Product;
 
 class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
     protected $_dmAttributes;
@@ -98,13 +98,6 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
                 foreach ($options as $group => $optionGroup) {
                     foreach ($optionGroup as $option) {
                         if ($option->getIsDefault()) {
-                            if ($option->getCode() == 'si1' && 
-                                ($this->_defaultDmOptions[$product->getId()]['main-stone-shape'] == 'emerald' || 
-                                $this->_defaultDmOptions[$product->getId()]['main-stone-shape'] == 'asscher')
-                            ) {
-                                break;
-                            }
-
                             $this->_defaultDmOptions[$product->getId()][$group] = $option;
                             break;
                         }
@@ -112,13 +105,6 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
 
                     if (!isset($this->_defaultDmOptions[$product->getId()][$group])) {
                         $this->_defaultDmOptions[$product->getId()][$group] = current($options[$group]);
-                        if (isset($this->_defaultDmOptions[$product->getId()]['main-stone-shape']) && 
-                            ($this->_defaultDmOptions[$product->getId()]['main-stone-shape'] == 'emerald' || 
-                            $this->_defaultDmOptions[$product->getId()]['main-stone-shape'] == 'asscher') && 
-                            $this->_defaultDmOptions[$product->getId()][$group]->getCode() == 'si1'
-                        ) {
-                            $this->_defaultDmOptions[$product->getId()][$group] = next($options[$group]);
-                        }
                     }
                 }
 
@@ -140,7 +126,7 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
     public function getDmOptions($product, $sort = false) {
         $filters = $product->getFilters();
 
-        $optionSet = $this->_helper->getRingDesignOptions($product, $filters);
+        $optionSet = $this->_helper->getWeddingBandDesignOptions($product, $filters);
         $options = $optionSet['allOptions'];
         $defaultOptions = $optionSet['defaultOptions'];
 
@@ -165,9 +151,7 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
                 continue;
             }
 
-            if (is_array($children) && isset($children[$group]) && !in_array($defaultOptions[$group]->getCode(), $children[$group])) {
-                $result[$group] = $children[$group][0];
-            } else if ($group == 'others') {
+            if ($group == 'others') {
                 $otherCodes = [];
                 foreach ($optionGroup as $code => $option) {
                     $otherCodes[] = $code;
