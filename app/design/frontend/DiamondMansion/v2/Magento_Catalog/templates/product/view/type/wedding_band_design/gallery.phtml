@@ -20,7 +20,7 @@ $videoList = [];
             </div>
         </li>
         <?php else: ?>
-        <li>
+        <li class="<?= isset($_image['isCustom']) ? "custom" : "" ?>">
             <div class="zoom-wrapper">
                 <img src="<?php echo $_image['full']; ?>" class="" alt="<?php echo $_image['caption'] ?>"/>
             </div>

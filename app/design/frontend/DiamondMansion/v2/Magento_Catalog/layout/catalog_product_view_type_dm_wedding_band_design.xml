@@ -56,7 +56,7 @@
                         </arguments>
                     </block>
                 </container>
-                <block class="Magento\Catalog\Block\Product\View\Gallery" name="product.info.media.image" template="Magento_Catalog::product/view/type/wedding_band_design/gallery.phtml"/>
+                <block class="DiamondMansion\Extensions\Block\WeddingBand\Design\Product\Gallery" name="product.info.media.image" template="Magento_Catalog::product/view/type/wedding_band_design/gallery.phtml"/>
                 <container name="skip_gallery_after.wrapper" htmlTag="div" htmlClass="action-skip-wrapper">
                     <block class="Magento\Framework\View\Element\Template" after="product.info.media.image" name="skip_gallery_after" template="Magento_Theme::html/skip.phtml">
                         <arguments>

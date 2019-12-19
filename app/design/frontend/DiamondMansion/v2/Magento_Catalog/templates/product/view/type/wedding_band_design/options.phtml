@@ -41,8 +41,9 @@
 </div>
 <script type="text/javascript">
 require([
-    'jquery'
-], function($) {
+    'jquery',
+    'slick'
+], function($, slick) {
     $(document).ready(function() {        
 
         function displayPrice(price) {
@@ -113,7 +114,20 @@ require([
                     complete : function(xhr) {
                         var images = JSON.parse(xhr.responseText);
 
-                        
+                        if ($(window).width() >= 1280) {
+                            $('#gallery li.custom').remove();
+                            for (var i=0;i<images.length;i++) {
+                                $('#gallery').append('<li class="custom"><div class="zoom-wrapper"><img src="' + images[i].pop + '"/></div></li>');
+                            }
+                        } else {
+                            $('#gallery li.custom').toArray().reverse().forEach(function(elm, index) {
+                                var slickIndex = $(elm).data('slick-index');
+                                $('#gallery').slick('slickRemove', slickIndex);
+                            });
+                            for (var i=0;i<images.length;i++) {
+                                $('#gallery').slick('slickAdd', '<li class="custom"><div class="zoom-wrapper"><img src="' + images[i].pop + '"/></div></li>');
+                            }
+                        }
                     }
                 }
             );
