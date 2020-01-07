@@ -215,10 +215,13 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
         }
 
         $urlPrefix = "";
+        if (isset($params["width"])) {
+            $urlPrefix = $params["width"] . 'mm-';
+        }
 
         $url = $this->_helper->getBaseUrl() . $urlPrefix . $product->getUrlKey() . "/";
 
-        if (count($filters)) {
+        if (count($filters) && !(count($filters) == 1 && isset($filters['id']))) {
             $allDmOptions = $this->getAllDmOptions($product);
 
             $this->_sortDmOptions($params);

@@ -10,10 +10,21 @@ class DbStorage extends \Magento\UrlRewrite\Model\Storage\DbStorage
     protected function doFindOneByData(array $data) {
         if (isset($data[UrlRewrite::REQUEST_PATH])) {
             $data[UrlRewrite::REQUEST_PATH] = rtrim($data[UrlRewrite::REQUEST_PATH], '/') . '/';
+
+            $prefixSet = [];
+            // Design Ring Type
             $eavAttribute = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Eav\Model\Config')->getAttribute('catalog_product', 'dm_stone_shape');
             foreach ($eavAttribute->getSource()->getAllOptions() as $eavOption) {
                 $shape = strtolower(str_replace(" ", "-", $eavOption['label']));
-                $prefix = ($shape == 'heart') ? $shape . '-shape-' : $shape . '-cut-';
+                $prefixSet[] = ($shape == 'heart') ? $shape . '-shape-' : $shape . '-cut-';
+            }
+
+            // Wedding Band Design Type
+            for ($width=3;$width<=10;$width++) {
+                $prefixSet[] = $width . 'mm-';
+            }
+
+            foreach ($prefixSet as $prefix) {
                 if (strpos($data[UrlRewrite::REQUEST_PATH], $prefix) === 0) {
                     $data[UrlRewrite::REQUEST_PATH] = rtrim(substr($data[UrlRewrite::REQUEST_PATH], strlen($prefix)), '/') . '/';
                 }

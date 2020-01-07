@@ -70,7 +70,7 @@ require([
             $('input.dm_custom_options').val(dmOptions.toLowerCase());
 
             // Update Url
-            window.history.replaceState({},"","/<?= $_product->getUrlKey() ?>/?option="+dmOptions.toLowerCase());
+            window.history.replaceState({},"","/"+$("#select-width option:selected").data("code")+"mm-<?= $_product->getUrlKey() ?>/?option="+dmOptions.toLowerCase());
 
             // Update Price
 

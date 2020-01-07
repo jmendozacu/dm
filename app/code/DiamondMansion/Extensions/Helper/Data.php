@@ -278,6 +278,17 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function getWeddingBandDesignOptions($product, $params) {
         if (isset($params["option"])) {
             $skus = str_split($params["option"]);
+        } else {
+            $currentUrl = $this->getStoreManager()->getStore()->getCurrentUrl(false);
+            $urlPaths = explode('/', trim(str_replace($this->getStoreManager()->getStore()->getBaseUrl(), "", $currentUrl), '/'));
+            $urlPath = current($urlPaths);
+
+            for ($w=3;$w<=10;$w++) {
+                if (strpos($urlPath, $w . "mm-") !== false) {
+                    $width = $w;
+                    break;
+                }
+            }
         }
 
         $allOptions = $product->getAllDmOptions(true);
@@ -306,6 +317,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             }
         } else {
             $defaultOptions = $product->getDefaultDmOptions(true);
+            if (isset($width) && isset($defaultOptions['width'])) {
+                $defaultOptions['width'] = $allOptions['width'][$width . ""];
+            }
         }
 
         return [
