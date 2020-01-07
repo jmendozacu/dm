@@ -1,8 +1,7 @@
+<section id="main-background"></section>
+
 <!-- Bootstrap -->
 <link rel="stylesheet" href="<?= $this->getViewFileUrl('proposal-guide/css/bootstrap/bootstrap.css') ?>" type="text/css" media="screen" />
-<!-- Supersized -->
-<link rel="stylesheet" href="<?= $this->getViewFileUrl('proposal-guide/css/supersized/supersized.css') ?>" type="text/css" media="screen" />
-<link rel="stylesheet" href="<?= $this->getViewFileUrl('proposal-guide/css/supersized/supersized.shutter.css') ?>" type="text/css" media="screen" />
 <!-- Animate -->
 <link rel="stylesheet" href="<?= $this->getViewFileUrl('proposal-guide/css/animate/animate.css') ?>" type="text/css" media="screen" />
 <!-- Magnific Popup -->
@@ -17,12 +16,12 @@
 <link href="<?= $this->getViewFileUrl('proposal-guide/css/style.css') ?>" rel="stylesheet" media="screen">
 <!-- PRELOADER -->
 <!-- To change the couple name, edit jquery.queryloader2.js line 943  -->
-<div id="start_preloader"></div>
+<!-- <div id="start_preloader"></div> -->
         
 <!--HOME SECTION START-->
 <section id="home">
     <div class="container">
-        <div id="slide_content" class="row">
+        <div id="slide_content" class="row" style="visibility: hidden">
             <div class="col-md-4 pull-right text-center">
                 <div class="heart_row">
                     <span class="glyphicon glyphicon-heart"></span>
@@ -1099,7 +1098,6 @@ require([
     'proposal-guide/js/masonry/jquery-bridget'
 ], function($) {
     require([
-        'proposal-guide/js/supersized/supersized.3.2.7.min',
         'proposal-guide/js/sticky/jquery.sticky',
         'proposal-guide/js/navjs/jquery.nav',
         'proposal-guide/js/nicescroll/jquery.nicescroll.min',
@@ -1149,18 +1147,6 @@ require([
                 $("#slide_content").addClass("animated delay1 fadeInRight");
             });
         }
-
-        // Supersized Slider
-        //==================================================================================
-        jQuery(function($){
-            $.supersized({
-                slides  :  	
-                [ 
-                    {	image : '<?= $this->getViewFileUrl('proposal-guide/images/preloader_background.jpg') ?>' } ,
-                    {	image : '<?= $this->getViewFileUrl('proposal-guide/images/preloader_background.jpg') ?>' }
-                ]
-            });
-        });
 
         // Sticky
         //==================================================================================

@@ -63,7 +63,7 @@
     left:0;
     right:0;
     bottom:0;
-    background-color:#000;
+    background-color:rgba(255,255,255,0.2);
     z-index:1000;
 }
 .cms-ultimate-marriage-proposal-guide #preloader{
@@ -1261,8 +1261,24 @@ body.cms-ultimate-marriage-proposal-guide {
 	opacity: 1;
 }
 
+.cms-ultimate-marriage-proposal-guide #main-background {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	z-index: -999;
+	background: url('../images/preloader_background.jpg') left top no-repeat;
+	background-size: cover;
+}
+
 @media only screen and (max-width: 1279px) {
-	.cms-ultimate-marriage-proposal-guide #nav-proposal-sticky-wrapper {
+	.cms-ultimate-marriage-proposal-guide #nav-proposal {
 		display: none;
+	}
+
+	.cms-ultimate-marriage-proposal-guide #main-background {
+		background-image: url('../images/preloader_background_m.jpg');
+		background-position: center center;
 	}
 }
