@@ -424,12 +424,27 @@
 				padding: 100 * @v3-base-mobile-vw 0;
 
 				.content {
+					ul {
+						width: 200%;
+
+						&:after {
+							display: block;
+							content: "";
+							clear: both;
+						}
+
+						&.slick-slider {
+							width: 100%;
+						}
+					}
 					li {
-						max-width: 66.67%;
+						max-width: 33.34%;
 						display: none;
 
-						&:first-child {
+						&:first-child,
+						&:nth-child(2) {
 							display: list-item;
+							float: left;
 						}
 
 						h3 {
