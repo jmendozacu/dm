@@ -248,7 +248,7 @@ define([
             if (config.isLoaded) {
                 config.isTypeChanged = true;
 
-                if (code != "natural") {
+                if (code != "natural" && $(".sidecolorclarity-list a[rel^=\"f-g/\"]").length) {
                     $(".sidecolorclarity-list a[rel^=\"f-g/\"]").trigger('click');
                 }
 
@@ -348,7 +348,7 @@ define([
             }
 
             if (list == "color" && config.center_stone["type"] == "natural") {
-                if (code == "g-h" || code == "f-g" ) {
+                if ((code == "g-h" || code == "f-g") && $(".sidecolorclarity-list a[rel^=\"" + code + "/\"]").length) {
                     $(".sidecolorclarity-list a[rel^=\"" + code + "/\"]").trigger("click");
                 }
             }
