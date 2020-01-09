@@ -248,8 +248,12 @@ define([
             if (config.isLoaded) {
                 config.isTypeChanged = true;
 
-                if (code != "natural" && $(".sidecolorclarity-list a[rel^=\"f-g/\"]").length) {
-                    $(".sidecolorclarity-list a[rel^=\"f-g/\"]").trigger('click');
+                if (code != "natural") {
+                    if ($(".sidecolorclarity-list a[rel^=\"f-g/\"]").length) {
+                        $(".sidecolorclarity-list a[rel^=\"f-g/\"]").trigger('click');
+                    } else {
+                        $("#side-stones-details .block-summary li.color-clarity a").html("F-G/VS");
+                    }
                 }
 
                 ['.shape-list', '.carat-list', '.color-list', '.clarity-list', '.cert-list', '.cut-list'].forEach(function(element) {
@@ -347,9 +351,11 @@ define([
                 updateTotalCarat();
             }
 
-            if (list == "color" && config.center_stone["type"] == "natural") {
+            if ((list == "color" || list == "clarity") && config.center_stone["type"] == "natural") {
                 if ((code == "g-h" || code == "f-g") && $(".sidecolorclarity-list a[rel^=\"" + code + "/\"]").length) {
                     $(".sidecolorclarity-list a[rel^=\"" + code + "/\"]").trigger("click");
+                } else if ($(".sidecolorclarity-list a[rel^=\"" + code + "/\"]").length == 0) {
+                    $("#side-stones-details .block-summary li.color-clarity a").html($(".color-list a.selected").data("code").toUpperCase() + "/" + $(".clarity-list a.selected").data("code").toUpperCase());
                 }
             }
 
