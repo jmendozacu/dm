@@ -248,6 +248,10 @@ define([
             if (config.isLoaded) {
                 config.isTypeChanged = true;
 
+                if (code != "natural") {
+                    $(".sidecolorclarity-list a[rel^=\"f-g/\"]").trigger('click');
+                }
+
                 ['.shape-list', '.carat-list', '.color-list', '.clarity-list', '.cert-list', '.cut-list'].forEach(function(element) {
                     var list = $(element + "." + code);
                     var selectedId = $(element + " a.selected").attr("id");
@@ -341,6 +345,12 @@ define([
             
             if (list == "carat") {
                 updateTotalCarat();
+            }
+
+            if (list == "color" && config.center_stone["type"] == "natural") {
+                if (code == "g-h" || code == "f-g" ) {
+                    $(".sidecolorclarity-list a[rel^=\"" + code + "/\"]").trigger("click");
+                }
             }
 
             updateUrl();

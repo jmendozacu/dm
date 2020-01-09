@@ -154,6 +154,15 @@ class Type extends \Magento\Catalog\Model\Product\Type\AbstractType {
                     }
                 }
 
+                if (isset($this->_defaultDmOptions[$product->getId()]["main-stone-type"]) && $this->_defaultDmOptions[$product->getId()]["main-stone-type"]->getCode() == "natural" &&
+                    isset($this->_defaultDmOptions[$product->getId()]["main-stone-color"]) && $this->_defaultDmOptions[$product->getId()]["main-stone-color"]->getCode() == "g-h") {
+                    foreach ($this->_defaultDmOptions[$product->getId()] as $group => $option) {
+                        if (strpos($group, "side-stone-color-clarity-") !== false && isset($options["side-stone-color-clarity-1"]) && isset($options["side-stone-color-clarity-1"]["g-h/si"])) {
+                            $this->_defaultDmOptions[$product->getId()][$group] = $options["side-stone-color-clarity-1"]["g-h/si"];
+                        }
+                    }
+                }
+
                 $this->_cache->save(serialize($this->_defaultDmOptions[$product->getId()]), 'default_dm_options_' . $product->getId());            
             }
         }
