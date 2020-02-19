@@ -85,6 +85,11 @@
                 $('.show-cart').trigger('click');
                 return false;
             });
+
+            if ($('.ddr-page-wrapper').length) {
+                $('.breadcrumbs').hide();
+                $('#maincontent').css('max-width', '100% !important');
+            }
         });
     });
 </script>
