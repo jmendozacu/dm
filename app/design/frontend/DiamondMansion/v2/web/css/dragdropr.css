@@ -1,0 +1,8 @@
+.breadcrumbs {
+    display: none !important;
+}
+
+#maincontent {
+    max-width: 100% !important;
+    padding: 0;
+}
