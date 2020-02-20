@@ -7,11 +7,19 @@
     padding: 0;
 }
 
-h1 {
+.ddr-page-wrapper {
+    color: #000;
+}
+
+.ddr-page-wrapper * {
+    vertical-align: baseline;
+}
+
+.ddr-page-wrapper h1 {
     font-weight: bold;
 }
 
-h2 {
+.ddr-page-wrapper h2 {
     display: block;
     font-size: 1.5em;
     margin-block-start: 0.83em;
@@ -19,14 +27,6 @@ h2 {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     font-weight: bold;    
-}
-
-.ddr-page-wrapper {
-    color: #000;
-}
-
-.ddr-page-wrapper * {
-    vertical-align: baseline;
 }
 
 .ddr-page-wrapper p {
