@@ -1,3 +1,7 @@
+body {
+    color: #000;
+}
+
 .breadcrumbs {
     display: none !important;
 }
@@ -5,4 +9,26 @@
 #maincontent {
     max-width: 100% !important;
     padding: 0;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.ddr-page-wrapper * {
+    vertical-align: baseline;
+}
+
+.ddr-page-wrapper p {
+    margin: 1em 0;
+}
+
+.ddr-page-wrapper blockquote {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+    color: #000;
+    font-family: sans-serif;
 }
