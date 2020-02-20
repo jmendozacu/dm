@@ -24,7 +24,7 @@ class Image extends Data
             $imagePath .= 'include' . DIRECTORY_SEPARATOR;
         }
         if (isset($type) && $type != "") {
-            if ($type == 'natural') {
+            if ($type == 'natural' || $type == 'setting') {
                 $imagePath .= 'colorless' . DIRECTORY_SEPARATOR;
             } else {
                 $imagePath .= $type . DIRECTORY_SEPARATOR;
