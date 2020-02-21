@@ -229,7 +229,7 @@ class Data extends \Mageplaza\ProductFeed\Helper\Data
                         $data[] = [
                             '"' . $newProduct->getSku() . '-' . implode('', $skus) . '"',
                             '"' . $newProduct->getProductUrl() . '"',
-                            '["' . $newProduct->getImage() . ']"',
+                            '["' . $newProduct->getImage() . '"]',
                             '',
                             '"' . $newProduct->getPrice() . '"',
                             '"' . $newProduct->getName() . '"',
