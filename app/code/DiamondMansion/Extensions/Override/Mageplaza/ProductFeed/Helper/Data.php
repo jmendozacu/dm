@@ -4,6 +4,26 @@ namespace DiamondMansion\Extensions\Override\Mageplaza\ProductFeed\Helper;
 
 class Data extends \Mageplaza\ProductFeed\Helper\Data
 {
+    public function generateLiquidTemplate($feed) {
+        if ($feed->getName() == 'Setting Feed') {
+            $data = $this->_getSettingsData();
+
+            $content = "";
+            foreach ($data as $row) {
+                $content .= implode(',', $row) . "\r\n";
+            }
+
+            $this->file->checkAndCreateFolder(self::FEED_FILE_PATH);
+            $fileName = $feed->getFileName() . '.' . $feed->getFileType();
+            $fileUrl = self::FEED_FILE_PATH . '/' . $fileName;
+            $this->file->write($fileUrl, $content);
+    
+            return count($data);
+        } else {
+            return parent::generateLiquidTemplate($feed);
+        }
+    }
+
     public function getProductsData($feed) {
         $productCollection = parent::getProductsData($feed);
 
@@ -138,5 +158,107 @@ class Data extends \Mageplaza\ProductFeed\Helper\Data
         }
 
         return $variations;
+    }
+
+    protected function _getSettingsData() {
+        $productCollection = $this->productFactory->create()->getCollection()
+            ->addAttributeToSelect('*')
+            ->addAttributeToFilter('type_id', 'dm_ring_design');
+
+        $data = [];
+        $data[] = [
+            'Id','URL','ImagesURL','VideosURL','Price','Name','Description','Style','Metal','MetalWeight','RhodiumPlated ','WidthMin','WidthMax','SizeMin','SizeMax','RoundCompatible','RoundCaratMin','RoundCaratMax','CushionCompatible','CushionCaratMin','CushionCaratMax','OvalCompatible','OvalCaratMin','OvalCaratMax','PrincessCompatible','PrincessCaratMin','PrincessCaratMax','EmeraldCompatible','EmeraldCaratMin','EmeradlCaratMax','RadiantCompatible','RadiantCaratMin','RadiantCaratMax','PearCompatible','PearCaratMin','PearCaratMax','AsscherCompatible','AsscherCaratMin','AsscherCaratMax','MarquiseCompatible','MarquiseCaratMin','MarquiseCaratMax','HeartCompatible','HeartCaratMin','HeartCaratMax','SideDiamondsShape','SideDiamondsNumber','SideDiamondsWeight','SideDiamondsColor','SideDiamondsClarity','SideGemstone','SideGemstonesShape','SideGemstonesNumber','SideGemstonesSize','SideGemstonesColor','SideGemstonesClarity','SideGemstonesEnhancement'
+        ];
+
+        foreach ($productCollection as $product) {
+            $allOptions = $product->getAllDmOptions(true);
+            $defaultOptions = $product->getDefaultDmOptions();
+    
+            if (!isset($allOptions['main-stone-type']) || 
+                !isset($allOptions['main-stone-type']['setting']) ||
+                !isset($allOptions['main-stone-shape']) || 
+                !isset($allOptions['main-stone-carat']) || 
+                !isset($allOptions['main-stone-color']) || 
+                !isset($allOptions['main-stone-clarity']) || 
+                !isset($allOptions['metal'])) {
+                return [];
+            }
+    
+            foreach (['natural'] as $type) {
+                if (!isset($allOptions['main-stone-type'][$type])) {
+                    continue;
+                }
+                
+                $skus = [];
+    
+                $skus['main-stone-type'] = $allOptions['main-stone-type']['setting']->getSlug();
+    
+                $values = json_decode($allOptions['main-stone-type'][$type]->getValues(), true);
+                $values = $values['children'];
+    
+                if (!isset($values['main-stone-shape'])) {
+                    continue;
+                }
+    
+                foreach ($values['main-stone-shape'] as $shape) {
+                    $skus['main-stone-shape'] = $allOptions['main-stone-shape'][$shape]->getSlug();
+                    $skus['main-stone-carat'] = $defaultOptions['main-stone-carat']->getSlug();
+                    $skus['main-stone-color'] = $defaultOptions['main-stone-color']->getSlug();
+                    $skus['main-stone-clarity'] = $defaultOptions['main-stone-clarity']->getSlug();
+                    $skus['main-stone-cert'] = $defaultOptions['main-stone-cert']->getSlug();
+    
+                    foreach ($allOptions['metal'] as $metal) {
+    
+                        $skus['metal'] = $metal->getSlug();
+                        $skus['band'] = $defaultOptions['band']->getSlug();
+    
+                        $newProduct = clone $product;
+                        $newProduct->setFilters(['option' => implode('', $skus)]);
+                        $newProduct->setIsCustomized(true);
+    
+                        if ($newProduct->getPrice() <= 0.001) {
+                            continue;
+                        }
+
+                        $settingStyle = $newProduct->getResource()->getAttribute('dm_setting_style')->getFrontend()->getValue($newProduct);
+                        if (!in_array($settingStyle, ["Solitaire", "Three Stone", "Halo"])) {
+                            $settingStyle = "Side Stone";
+                        }
+                        $rhodiumPlated = (strpos($metal->getTitle(), 'White') !== false || strpos($metal->getTitle(), 'Platinum') !== false) ? 1 : 0;
+
+                        $data[] = [
+                            '"' . $newProduct->getSku() . '-' . implode('', $skus) . '"',
+                            '"' . $newProduct->getProductUrl() . '"',
+                            '["' . $newProduct->getImage() . ']"',
+                            '',
+                            '"' . $newProduct->getPrice() . '"',
+                            '"' . $newProduct->getName() . '"',
+                            '"' . $newProduct->getDescription() . '"',
+                            '"' . $settingStyle . '"',
+                            '"' . $metal->getTitle() . '"',
+                            '',
+                            (strpos($metal->getTitle(), 'White') !== false || strpos($metal->getTitle(), 'Platinum') !== false) ? 1 : 0,
+                            '',
+                            '',
+                            '',
+                            '',
+                            ($shape == 'round') ? 1 : 0, '', '',
+                            ($shape == 'cushion') ? 1 : 0, '', '',
+                            ($shape == 'oval') ? 1 : 0, '', '',
+                            ($shape == 'princess') ? 1 : 0, '', '',
+                            ($shape == 'emerald') ? 1 : 0, '', '',
+                            ($shape == 'radiant') ? 1 : 0, '', '',
+                            ($shape == 'pear') ? 1 : 0, '', '',
+                            ($shape == 'asscher') ? 1 : 0, '', '',
+                            ($shape == 'marquise') ? 1 : 0, '', '',
+                            ($shape == 'heart') ? 1 : 0, '', '',
+                            '','','','','','','','','','','','',
+                        ];
+                    }
+                }
+            }
+        }
+        
+        return $data;
     }
 }
